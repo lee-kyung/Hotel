@@ -13,7 +13,7 @@
 			margin : auto;
 			background : black;
 		}
-		#first {
+		header {
 			width : 100%;
 			height : 50px;
 			margin : auto;
@@ -72,7 +72,7 @@
 	<decorator:head/>
 <body> 
 	<div id="banner"></div>
-	<div id="first"></div>
+	<div id="header"></div>
 	<div id="second"></div>
 	
 	<decorator:body/>
