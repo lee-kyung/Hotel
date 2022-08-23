@@ -19,7 +19,7 @@
 			margin : auto;
 			background : red;
 		}
-		#second {
+		#nav {
 			width : 100%;
 			height : 150px;
 			margin : auto;
@@ -73,7 +73,7 @@
 <body> 
 	<div id="banner"></div>
 	<div id="header"></div>
-	<div id="second"></div>
+	<div id="nav"></div>
 	
 	<decorator:body/>
 	<div id="nineth"></div>
