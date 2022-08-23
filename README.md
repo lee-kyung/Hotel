@@ -1,2 +1,2 @@
-# finalp
+# Hotel
 final project / hotel
