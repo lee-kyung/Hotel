@@ -55,15 +55,15 @@
                                 <nav>
                                     <ul id="navigation">
                                         <li><a href="../main/index">home</a></li>
-                                        <li><a class="active" href="../room/rooms">rooms</a></li>
-                                        <li><a class="active" href="../dining/dining">dining</a></li>
-                                        <li><a class="active" href="../wedding/wedding">wedding<i class="ti-angle-down"></i></a>
+                                        <li><a href="../room/rooms">rooms</a></li> <!-- class="active" -->
+                                        <li><a href="../dining/dining">dining</a></li>
+                                        <li><a href="../wedding/wedding">wedding<i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
                                                 <li><a href="../wedding/single_wedding">single-wedding</a></li>
                                             </ul>
                                         </li>
-                                        <li><a class="active" href="../eshop/product">eshop</a></li>
-                                        <li><a class="active" href="../etc/contact">etc<i class="ti-angle-down"></i></a>
+                                        <li><a href="../eshop/product">eshop</a></li>
+                                        <li><a href="../etc/contact">etc<i class="ti-angle-down"></i></a>
                                         	<ul class="submenu">
                                                 <li><a href="../etc/basic">basic</a></li>
                                             </ul>
@@ -114,17 +114,11 @@
         </div>
     </header>
     <!-- header-end -->
-
-    <!-- bradcam_area_start -->
-    <div class="bradcam_area breadcam_bg_1">
-        <h3>사진 및 문구 공통으로 진행 및<br>따로 할 부분 정하기(가능할까..) </h3>
-    </div>
-    <!-- bradcam_area_end -->
+    
     
 		<decorator:body/>
 		
-
-
+		
     <!-- footer -->
     <footer class="footer">
         <div class="footer_top">
