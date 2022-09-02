@@ -3,7 +3,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <head>
-
+<style>
+	#txt1{
+	margin-top:20px;}
+</style>
 </head>
 
 <body>
@@ -14,13 +17,25 @@
     	①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기
     	②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
     <div class="bradcam_area wedding">	<!-- class="bradcam_area 클래스명" -->
-        <h3> 문구(자유롭게 변경하기) </h3>
+        <h3 id="w_main"> W E D D I N G </h3>
     </div>
     <!-- bradcam_area_end -->
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
 
     <!--================ Wedding Area Start =================-->
+<div class="container">
+	<div id="txt1">wedding</div>
+	<div id="txt2">
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+</div>
     <section class="blog_area section-padding">
+    
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 mb-5 mb-lg-0">
@@ -157,10 +172,13 @@
                         </nav>
                     </div>
                 </div>
+            
                 <div class="col-lg-4">
                     <div class="blog_right_sidebar">
-                        <aside class="single_sidebar_widget search_widget">
-                            <form action="#">
+                    
+<!-- search -->                    
+                        <!-- <aside class="single_sidebar_widget search_widget">
+                             <form action="#">
                                 <div class="form-group">
                                     <div class="input-group mb-3">
                                         <input type="text" class="form-control" placeholder='Search Keyword'
@@ -174,7 +192,7 @@
                                 <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
                                     type="submit">Search</button>
                             </form>
-                        </aside>
+                        </aside> -->
 
                         <aside class="single_sidebar_widget post_category_widget">
                             <h4 class="widget_title">Category</h4>
@@ -324,7 +342,8 @@
                             </ul>
                         </aside>
 
-
+<!-- email -->
+<!-- 
                         <aside class="single_sidebar_widget newsletter_widget">
                             <h4 class="widget_title">Newsletter</h4>
 
@@ -337,6 +356,7 @@
                                     type="submit">Subscribe</button>
                             </form>
                         </aside>
+ -->    
                     </div>
                 </div>
             </div>
