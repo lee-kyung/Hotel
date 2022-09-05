@@ -58,7 +58,7 @@
 <div class="underbar">
 <h1 id="w_title" style="color:#FFEBFF;">DESIGN WEDDING AS ART</h1>
 </div>
-<h3>인생의 가장 빛나는 순간, 하나의 예술 작품 같은 웨딩을 위해 '파라다이스시티 웨딩 마스터 그룹'은 설레는 마음으로 최고의 순간을 준비합니다  sdfdsf</h3>
+<h3>인생의 가장 빛나는 순간, 하나의 예술 작품 같은 웨딩을 위해 '파라다이스시티 웨딩 마스터 그룹'은 설레는 마음으로 최고의 순간을 준비합니다  aaaa</h3>
               </div>
                         
                         
