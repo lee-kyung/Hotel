@@ -31,11 +31,6 @@ public class HomeController {
 		return "/wedding/wedding";
 	}
 	
-	@RequestMapping("/wedding/wedding_hall")
-	public String single_wedding() {
-		return "/wedding/wedding_hall";
-	}
-	
 	@RequestMapping("/etc/contact")
 	public String contact() {
 		return "/etc/contact";
