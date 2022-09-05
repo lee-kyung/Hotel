@@ -1,5 +1,7 @@
 package kr.co.hotel.eshop;
 
-public interface EshopService {
+import org.springframework.ui.Model;
 
+public interface EshopService {
+	public String pro_write(Model model);
 }

@@ -13,17 +13,8 @@
     <!-- 새 이미지 추가하는 법
     	①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기
     	②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
-<<<<<<< HEAD
-    <div class="bradcam_area eshop1">	<!-- class="bradcam_area 클래스명" -->
-
-        <h3> 온라인 스토어 </h3>
-
-        <h3> eSHOP </h3>
-
-=======
-    <div class="bradcam_area eshop2">	<!-- class="bradcam_area 클래스명" -->
-        <h3> 배송상품 </h3>
->>>>>>> branch 'main' of https://github.com/ey0k/hotel.git
+    <div class="bradcam_area eshop3">	<!-- class="bradcam_area 클래스명" -->
+        <h3> 기프티콘 </h3>
     </div>
     <!-- bradcam_area_end -->
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
