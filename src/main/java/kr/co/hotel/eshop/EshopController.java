@@ -11,8 +11,18 @@ public class EshopController {
 	@Qualifier("es")
 	private EshopService service;
 	
+	@RequestMapping("/eshop/eshop")
+	public String eshop() {
+		return "/eshop/eshop";
+	}
+	
 	@RequestMapping("/eshop/product")
 	public String product() {
 		return "/eshop/product";
+	}
+	
+	@RequestMapping("/eshop/voucher")
+	public String voucher() {
+		return "/eshop/voucher";
 	}
 }
