@@ -22,9 +22,59 @@
 	.c{
 	height:400px;}
 	
-	.widget_title{
-	}
+	#btn{
+	width:1100px;}
+	#btn .form-group{
+	display:inline-block;}
+	
+	#btn #right{
+	float:right;}
+	
+	#mm #main{
+	width:1100px;
+	height:550px;
+	overflow:hidden;}
+	#mm #main #sub{
+	width:4500px;
+	height:550px;}
+	
+	#mm{
+	width:1100px;
+	height:550px;}
+	
+	
+	
+	
+	
+	
+	
+
+
 </style>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script>
+/*
+	$(function(){
+		
+	$("#af").click(function(){
+		setInterval(function(){
+			
+			$("#mm #sub").animate({
+				
+				marginLeft:"-1100px"
+			}, 3000, function(){
+				
+				$("#mm #sub").css("margin-left", "0px");
+				
+				$("#mm #sub img").eq(0).insertAfter($("#mm #sub img").eq(3));
+			});
+		}); });
+	});
+	*/
+	
+
+</script>
+
 </head>
 
 <body>
@@ -42,87 +92,108 @@
 
     <!--================ Single-Wedding Area Start =================-->
     
-    <section class="blog_area single-post-area section-padding">
 
-  <div id="aa">
-   <div class="navigation-area">
-                       
-                     <ui id="hall">
+  <div id="aa" style="margin-top:50px;">
+<div style="border-bottom:1px solid #f0e9ff; width:1100px;">  
+                <div style="margin-bottom:50px;">       
+                     <ul id="hall">
                      	<li><h2><a href="">a홀</a></h2></li>
                      	<li><h2><a href="">b홀</a></h2></li>
                      	<li><h2><a href="">c홀</a></h2></li>
                      	<li><h2><a href="">d홀</a></h2></li>
-                     </ui>
+                     </ul>
+</div></div>
                      </div>
     
-</div>
+    <section class="blog_area single-post-area section-padding">
 
-       
-         
-         
-         
-         
 
-      <div class="container" style="margin-top:100px;">
+      <div class="container">
          <div class="row">
             <div class="col-lg-8 posts-list">
                <div class="single-post">
                   <div class="feature-img">
-                     <img src="../img/blog/single_blog_2.png" width="1100">
+                  <div id="mm">
+                  <div id="main">
+                     <div id="sub">
+                    <img src="../img/blog/single_blog_2.png" width="1100" height="550"><img src="../img/post/post_8.png"   width="1100" height="550"><img src="../img/post/post_9.png"  width="1100" height="550"><img src="../img/post/post_10.png"  width="1100" height="550">
+                     </div>
+                     </div>
                   </div>
                   
                </div>
                
-               
-     
+               <div id="btn">
+     <div class="form-group" id="left">
+                        <button type="submit" class="button button-contactForm btn_1 boxed-btn" id="be"><-</button>
+                     </div>
+       <div class="form-group" id="right">
+      <button type="submit" class="button button-contactForm btn_1 boxed-btn" id="af">-></button>
+          </div>
+                    </div> 
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+
+
+
+                    
+                     
+                     <!--  
+                     
 <div class="container">
          <div class="row">
     
-    <div class="col-lg-4">
+   
     <div id="bb">
                <div class="blog_right_sidebar">
     <aside class="single_sidebar_widget instagram_feeds">
-                     <h4 class="widget_title">pic</h4>
+                    
                      <ul class="b">
                         <li>
-                           <a href="#">
+                          
                               <img src="../img/post/post_5.png" alt="">
-                           </a>
+                         
                         </li>
                         <li>
-                           <a href="#">
+                          
                               <img  src="../img/post/post_6.png" alt="">
-                           </a>
+                          
                         </li>
                         <li>
-                           <a href="#">
+                           
                               <img  src="../img/post/post_7.png" alt="">
-                           </a>
+                           
                         </li>
                         <li>
-                           <a href="#">
+                          
                               <img src="../img/post/post_8.png" alt="">
-                           </a>
+                         
                         </li>
                         <li>
-                           <a href="#">
+                          
                               <img src="../img/post/post_9.png" alt="">
-                           </a>
+                          
                         </li>
                         <li>
-                           <a href="#">
+                           
                               <img src="../img/post/post_10.png" alt="">
-                           </a>
+                      
                         </li>
                      </ul>
                   </aside>
          </div>
          </div>         
-                 </div> 
-         </div></div>            
-               
-               
-               
+                
+         </div></div>           
+         
+         -->
         
          
 <div class="form-group">
