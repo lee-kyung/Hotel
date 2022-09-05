@@ -66,6 +66,7 @@
                                         <li><a href="../etc/contact">etc<i class="ti-angle-down"></i></a>
                                         	<ul class="submenu">
                                                 <li><a href="../etc/basic">basic</a></li>
+                                                <li><a href="../etc/elements">elements</a></li>
                                             </ul>
                                         </li>
                                     </ul>

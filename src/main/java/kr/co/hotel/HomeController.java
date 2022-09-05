@@ -36,11 +36,6 @@ public class HomeController {
 		return "/wedding/single_wedding";
 	}
 	
-	@RequestMapping("/eshop/product")
-	public String product() {
-		return "/eshop/product";
-	}
-	
 	@RequestMapping("/etc/contact")
 	public String contact() {
 		return "/etc/contact";
@@ -49,5 +44,10 @@ public class HomeController {
 	@RequestMapping("/etc/basic")
 	public String basic() {
 		return "/etc/basic";
+	}
+	
+	@RequestMapping("/etc/elements")
+	public String elements() {
+		return "/etc/elements";
 	}
 }
