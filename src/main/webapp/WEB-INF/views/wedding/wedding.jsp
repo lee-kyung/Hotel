@@ -4,8 +4,36 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <head>
 <style>
-	#txt1{
-	margin-top:20px;}
+	.wedding_txt{
+	margin-top:20px;
+	background:#f9f9ff;
+	border-bottom:1px solid #f0e9ff}
+	.wedding_txt ul li{
+	display:inline-block;
+	width:200px;}
+	
+	#w_first{
+	font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace !important;}
+	#aa .blog_details{
+	width:1100px;}
+	
+	#a .blog_item_date{
+	position:absolute;
+	left:1000px;}
+	
+	#b .blog_item_date{
+	position:absolute;}
+	
+	#w_first .underbar{
+	border-bottom:1px solid #f0e9ff;}
+	
+	.pic{
+	width:270px;
+	height:200px;}
+	
+	.last .blog_details{
+	width:270px;}
+
 </style>
 </head>
 
@@ -24,53 +52,105 @@
 
     <!--================ Wedding Area Start =================-->
 <div class="container">
-	<div id="txt1">wedding</div>
-	<div id="txt2">
-		<ul>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-		</ul>
-	</div>
+	
+             
+<div id="w_first">
+<div class="underbar">
+<h1 id="w_title" style="color:#FFEBFF;">DESIGN WEDDING AS ART</h1>
 </div>
+<h3>인생의 가장 빛나는 순간, 하나의 예술 작품 같은 웨딩을 위해 '파라다이스시티 웨딩 마스터 그룹'은 설레는 마음으로 최고의 순간을 준비합니다12312312312323a</h3>
+              </div>
+                        
+                        
     <section class="blog_area section-padding">
+                        
     
-        <div class="container">
+<!-- 다음+첫번째사진 --><!-- 홀 대표사진 사진 4개 넘기기 -->
             <div class="row">
                 <div class="col-lg-8 mb-5 mb-lg-0">
                     <div class="blog_left_sidebar">
                         <article class="blog_item">
                             <div class="blog_item_img">
-                                <img class="card-img rounded-0" src="../img/blog/single_blog_1.png" alt="">
-                                <a href="#" class="blog_item_date">
-                                    <h3>15</h3>
-                                    <p>Jan</p>
+                            
+                                <img  src="../img/blog/single_blog_1.png" width="1100" >
+                                
+                                <div id="a">
+                                <a href="" class="blog_item_date">
+									<div>다음사진</div>
                                 </a>
+                                </div>
+                                
                             </div>
-
+<!-- 첫번쨰 사진 밑 ㄱ글 -->                            
+						<div id="aa">
                             <div class="blog_details">
                                 <a class="d-inline-block" href="single-blog.html">
                                     <h2>Google inks pact for new 35-storey office</h2>
                                 </a>
                                 <p>That dominion stars lights dominion divide years for fourth have don't stars is that
                                     he earth it first without heaven in place seed it second morning saying.</p>
-                                <ul class="blog-info-link">
-                                    <li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
-                                    <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
-                                </ul>
                             </div>
+                          </div>     
                         </article>
+
+
+
+<!-- 상담하기 -->
+<table width="1100" border="1">
+<tr>
+<td>
+                       <article class="blog_item">
+
+                            <div class="blog_item_img">
+                                <img src="../img/blog/single_blog_2.png" width="600px" height="500">
+                                
+                            </div>
+                            </article>
+</td>
+<td>
+			<article class="blog_item">
+							<div id="bb">
+                            <div class="blog_details">
+                                <a class="d-inline-block" href="single-blog.html">
+                                    <h2>상담예약하기</h2>
+                                </a>
+                                <p>상담예약을 위한 설명 작성~.</p>
+                                
+                                
+                                <div class="blog_item_img">
+			                     <div id="b">
+                                <a href="" class="blog_item_date">
+									<div>예약하기</div>
+                                </a>
+                                </div>
+                                
+                            </div>
+                            </div>
+                      		  </div>
+     
+                        </article>
+</td>
+</tr>
+</table>
+
+
+
+
+<div><h2>웨딩 소개</h2></div>
+<table width="1100" border="1">
+
+<tr>
+<td>
+
+
 
                         <article class="blog_item">
                             <div class="blog_item_img">
-                                <img class="card-img rounded-0" src="../img/blog/single_blog_2.png" alt="">
-                                <a href="#" class="blog_item_date">
-                                    <h3>15</h3>
-                                    <p>Jan</p>
-                                </a>
+                                <img src="../img/blog/single_blog_3.png" class="pic">
                             </div>
 
+
+	<div class="last">
                             <div class="blog_details">
                                 <a class="d-inline-block" href="single-blog.html">
                                     <h2>Google inks pact for new 35-storey office</h2>
@@ -82,17 +162,21 @@
                                     <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
                                 </ul>
                             </div>
+    </div>
                         </article>
+
+
+</td>
+<td>
 
                         <article class="blog_item">
                             <div class="blog_item_img">
-                                <img class="card-img rounded-0" src="../img/blog/single_blog_3.png" alt="">
-                                <a href="#" class="blog_item_date">
-                                    <h3>15</h3>
-                                    <p>Jan</p>
-                                </a>
+                                <img src="../img/blog/single_blog_4.png" class="pic">
                             </div>
 
+
+
+	<div class="last">
                             <div class="blog_details">
                                 <a class="d-inline-block" href="single-blog.html">
                                     <h2>Google inks pact for new 35-storey office</h2>
@@ -104,17 +188,20 @@
                                     <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
                                 </ul>
                             </div>
+    </div>
                         </article>
+</td>
+<td>
+
 
                         <article class="blog_item">
                             <div class="blog_item_img">
-                                <img class="card-img rounded-0" src="../img/blog/single_blog_4.png" alt="">
-                                <a href="#" class="blog_item_date">
-                                    <h3>15</h3>
-                                    <p>Jan</p>
-                                </a>
+                                <img src="../img/blog/single_blog_5.png" class="pic">
                             </div>
 
+
+
+	<div class="last">
                             <div class="blog_details">
                                 <a class="d-inline-block" href="single-blog.html">
                                     <h2>Google inks pact for new 35-storey office</h2>
@@ -126,17 +213,22 @@
                                     <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
                                 </ul>
                             </div>
+    </div>
                         </article>
+
+
+</td>
+<td>
+
 
                         <article class="blog_item">
                             <div class="blog_item_img">
-                                <img class="card-img rounded-0" src="../img/blog/single_blog_5.png" alt="">
-                                <a href="#" class="blog_item_date">
-                                    <h3>15</h3>
-                                    <p>Jan</p>
-                                </a>
+                                <img src="../img/blog/single_blog_5.png" class="pic">
                             </div>
 
+
+
+	<div class="last">
                             <div class="blog_details">
                                 <a class="d-inline-block" href="single-blog.html">
                                     <h2>Google inks pact for new 35-storey office</h2>
@@ -148,220 +240,22 @@
                                     <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
                                 </ul>
                             </div>
+    </div>
                         </article>
 
-                        <nav class="blog-pagination justify-content-center d-flex">
-                            <ul class="pagination">
-                                <li class="page-item">
-                                    <a href="#" class="page-link" aria-label="Previous">
-                                        <i class="ti-angle-left"></i>
-                                    </a>
-                                </li>
-                                <li class="page-item">
-                                    <a href="#" class="page-link">1</a>
-                                </li>
-                                <li class="page-item active">
-                                    <a href="#" class="page-link">2</a>
-                                </li>
-                                <li class="page-item">
-                                    <a href="#" class="page-link" aria-label="Next">
-                                        <i class="ti-angle-right"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
+
+</td>
+</tr>
+</table>
+
+
+
                     </div>
                 </div>
-            
-                <div class="col-lg-4">
-                    <div class="blog_right_sidebar">
-                    
-<!-- search -->                    
-                        <!-- <aside class="single_sidebar_widget search_widget">
-                             <form action="#">
-                                <div class="form-group">
-                                    <div class="input-group mb-3">
-                                        <input type="text" class="form-control" placeholder='Search Keyword'
-                                            onfocus="this.placeholder = ''"
-                                            onblur="this.placeholder = 'Search Keyword'">
-                                        <div class="input-group-append">
-                                            <button class="btn" type="button"><i class="ti-search"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
-                                    type="submit">Search</button>
-                            </form>
-                        </aside> -->
 
-                        <aside class="single_sidebar_widget post_category_widget">
-                            <h4 class="widget_title">Category</h4>
-                            <ul class="list cat-list">
-                                <li>
-                                    <a href="#" class="d-flex">
-                                        <p>Resaurant food</p>
-                                        <p>(37)</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="d-flex">
-                                        <p>Travel news</p>
-                                        <p>(10)</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="d-flex">
-                                        <p>Modern technology</p>
-                                        <p>(03)</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="d-flex">
-                                        <p>Product</p>
-                                        <p>(11)</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="d-flex">
-                                        <p>Inspiration</p>
-                                        <p>21</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="d-flex">
-                                        <p>Health Care (21)</p>
-                                        <p>09</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </aside>
-
-                        <aside class="single_sidebar_widget popular_post_widget">
-                            <h3 class="widget_title">Recent Post</h3>
-                            <div class="media post_item">
-                                <img src="../img/post/post_1.png" alt="post">
-                                <div class="media-body">
-                                    <a href="single-blog.html">
-                                        <h3>From life was you fish...</h3>
-                                    </a>
-                                    <p>January 12, 2019</p>
-                                </div>
-                            </div>
-                            <div class="media post_item">
-                                <img src="../img/post/post_2.png" alt="post">
-                                <div class="media-body">
-                                    <a href="single-blog.html">
-                                        <h3>The Amazing Hubble</h3>
-                                    </a>
-                                    <p>02 Hours ago</p>
-                                </div>
-                            </div>
-                            <div class="media post_item">
-                                <img src="../img/post/post_3.png" alt="post">
-                                <div class="media-body">
-                                    <a href="single-blog.html">
-                                        <h3>Astronomy Or Astrology</h3>
-                                    </a>
-                                    <p>03 Hours ago</p>
-                                </div>
-                            </div>
-                            <div class="media post_item">
-                                <img src="../img/post/post_4.png" alt="post">
-                                <div class="media-body">
-                                    <a href="single-blog.html">
-                                        <h3>Asteroids telescope</h3>
-                                    </a>
-                                    <p>01 Hours ago</p>
-                                </div>
-                            </div>
-                        </aside>
-                        <aside class="single_sidebar_widget tag_cloud_widget">
-                            <h4 class="widget_title">Tag Clouds</h4>
-                            <ul class="list">
-                                <li>
-                                    <a href="#">project</a>
-                                </li>
-                                <li>
-                                    <a href="#">love</a>
-                                </li>
-                                <li>
-                                    <a href="#">technology</a>
-                                </li>
-                                <li>
-                                    <a href="#">travel</a>
-                                </li>
-                                <li>
-                                    <a href="#">restaurant</a>
-                                </li>
-                                <li>
-                                    <a href="#">life style</a>
-                                </li>
-                                <li>
-                                    <a href="#">design</a>
-                                </li>
-                                <li>
-                                    <a href="#">illustration</a>
-                                </li>
-                            </ul>
-                        </aside>
-
-
-                        <aside class="single_sidebar_widget instagram_feeds">
-                            <h4 class="widget_title">Instagram Feeds</h4>
-                            <ul class="instagram_row flex-wrap">
-                                <li>
-                                    <a href="#">
-                                        <img class="img-fluid" src="../img/post/post_5.png" alt="">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img class="img-fluid" src="../img/post/post_6.png" alt="">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img class="img-fluid" src="../img/post/post_7.png" alt="">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img class="img-fluid" src="../img/post/post_8.png" alt="">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img class="img-fluid" src="../img/post/post_9.png" alt="">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img class="img-fluid" src="../img/post/post_10.png" alt="">
-                                    </a>
-                                </li>
-                            </ul>
-                        </aside>
-
-<!-- email -->
-<!-- 
-                        <aside class="single_sidebar_widget newsletter_widget">
-                            <h4 class="widget_title">Newsletter</h4>
-
-                            <form action="#">
-                                <div class="form-group">
-                                    <input type="email" class="form-control" onfocus="this.placeholder = ''"
-                                        onblur="this.placeholder = 'Enter email'" placeholder='Enter email' required>
-                                </div>
-                                <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
-                                    type="submit">Subscribe</button>
-                            </form>
-                        </aside>
- -->    
-                    </div>
-                </div>
             </div>
-        </div>
+
     </section>
     <!--================ Wedding Area End =================-->
-
+</div>
 </body>
