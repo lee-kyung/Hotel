@@ -35,28 +35,28 @@
 	height:200px;}
 	
 	.last .blog_details{
-	width:270px;}
+	width:270px;
+	border:1px solid red;}
 
-	#bb .blog_right_sidebar ul li{
-	display:inline-block;
-	width:257px;}
 	.b img{
-	width:200px;
 	height:200px;
-	transition:all 0.2s linear;}
-	.b img:hover{
-	transform:scale(1.4);}
+	border:1px solid blue;}
+	
 	.b {
-  width: 200px;
   overflow: hidden;
-  margin-left:25px;
-}
+display:inline-block;
+width:255px;
+border:1px solid purple;}
+
 #a .blog_item{
 width:1100px;}
+
 #bb {
 text-align:right;}
+
 .last .blog_details{
 height:400px;}
+
 </style>
 <script>
 function zoom(my)
@@ -139,9 +139,8 @@ function zoom(my)
     <div id="bb">
                <div class="blog_right_sidebar">
     <aside class="single_sidebar_widget instagram_feeds">
-                     <ul>
-                        <li>
-                           
+    
+                  
                            <div class="b">
                           
                     <div class="single_offers">
@@ -154,8 +153,7 @@ function zoom(my)
                              
                              </div>
                            
-                        </li>
-                        <li>
+                        
                            
                            <div class="b">
                            <div class="single_offers">
@@ -167,9 +165,7 @@ function zoom(my)
                              
                               </div>
                           
-                        </li>
-                        <li>
-                           
+                       
                            <div class="b">
                            
                            <div class="single_offers">
@@ -182,8 +178,7 @@ function zoom(my)
                            
                               </div>
                           
-                        </li>
-                        <li>
+                        
                           
                            <div class="b">
                               
@@ -198,9 +193,7 @@ function zoom(my)
 
                               </div>
                          
-                        </li>
-                        
-                     </ul>
+                       
                   </aside>
          </div>
          </div>         
