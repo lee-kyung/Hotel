@@ -145,7 +145,7 @@ function zoom(my)
                           
                     <div class="single_offers">
                         <div class="about_thumb">
-                           <img src="../img/blog/single_blog_2.png" onclick="zoom(this.src)">
+                           <img src="../img/wedding/single_blog_2.png" onclick="zoom(this.src)">
                         </div>
                     </div>
              
@@ -158,7 +158,7 @@ function zoom(my)
                            <div class="b">
                            <div class="single_offers">
                         <div class="about_thumb">
-                            <img  src="../img/post/post_6.png" onclick="zoom(this.src)">
+                            <img  src="../img/wedding/single_blog_3.png" onclick="zoom(this.src)">
                         </div>
                     </div>
                     
@@ -170,7 +170,7 @@ function zoom(my)
                            
                            <div class="single_offers">
                         <div class="about_thumb">
-                            <img src="../img/offers/1.png" onclick="zoom(this.src)">
+                            <img src="../img/wedding/single_blog_4.png" onclick="zoom(this.src)">
                         </div>
                     </div>
                               
@@ -184,7 +184,7 @@ function zoom(my)
                               
 <div class="single_offers">
                         <div class="about_thumb">
-                            <img src="../img/offers/2.png" onclick="zoom(this.src)">
+                            <img src="../img/wedding/single_blog_5.png" onclick="zoom(this.src)">
                         </div>
                     </div>
 
@@ -227,7 +227,7 @@ function zoom(my)
                        <article class="blog_item">
 
                             <div class="blog_item_img">
-                                <img src="../img/blog/single_blog_2.png" width="700px" height="500">
+                                <img src="../img/wedding/single_blog_2.png" width="700px" height="500">
                                 
                             </div>
                             </article>
@@ -275,7 +275,7 @@ function zoom(my)
 
                         <article class="blog_item">
                             <div class="blog_item_img">
-                                <img src="../img/blog/single_blog_3.png" class="pic">
+                                <img src="../img/wedding/single_blog_3.png" class="pic">
                             </div>
 	</article>
 </td>
@@ -285,7 +285,7 @@ function zoom(my)
 
                         <article class="blog_item">
                             <div class="blog_item_img">
-                                <img src="../img/blog/single_blog_4.png" class="pic">
+                                <img src="../img/wedding/single_blog_4.png" class="pic">
                             </div>
 	</article>
 </td>
@@ -295,7 +295,7 @@ function zoom(my)
 
                         <article class="blog_item">
                             <div class="blog_item_img">
-                                <img src="../img/blog/single_blog_5.png" class="pic">
+                                <img src="../img/wedding/single_blog_2.png" class="pic">
                             </div>
 	</article>
 </td>
@@ -305,7 +305,7 @@ function zoom(my)
 
                         <article class="blog_item">
                             <div class="blog_item_img">
-                                <img src="../img/blog/single_blog_5.png" class="pic">
+                                <img src="../img/wedding/single_blog_5.png" class="pic">
                             </div>
 	</article>
 </td>
