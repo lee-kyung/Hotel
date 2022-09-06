@@ -8,20 +8,23 @@
 </style>
 
 <script>
-	var size=1;
 	function add_file()
 	{
-		size++;
-		var outer=document.getElementById("outer");
-		var inner="<p class='fname'><input type='file' name='wed_fname"+size+"'></p>";
-		outer.innerHTML=outer.innerHTML+inner;
+var fname=document.getElementsByClassName("fname");
+		
+		var len=fname.length;	
+		len++;		
+		var inner="<p class='fname'> <input type='file' name='fname"+len+"'> </p> ";
+															
+		document.getElementById("outer").innerHTML=document.getElementById("outer").innerHTML+inner;
 	}
 	function del_file()
 	{
-		if(size>1)
+		var len=document.getElementsByClassName("fname").length;
+		if(len > 1)
 		{
-			document.getElementsByClassName("fname")[size-1].remove();
-			size--;
+			len--;
+			document.getElementsByClassName("fname")[len].remove();
 		}
 	}
 </script>
@@ -48,8 +51,7 @@
     
       <section class="blog_area section-padding">
       <div class="container">
-      
-    	<form method="post" action="wed_hall_write_ok" enctype="multipart/form-data">
+     	<form method="post" action="wed_hall_write_ok" enctype="multipart/form-data">
     	<table width="1100" border="1">
     	<tr>
     			<td>웨딩홀 이름</td>
@@ -64,9 +66,10 @@
     			
     			<td id="outer">
     			
-    				<span class="fname"><input type="file" name="wed_fname" id="file"></span>
-					<input type="button" onclick="add_file()" value="+" class="btn">
-					<input type="button" onclick="del_file()" value="-" class="btn">
+    				<input type="button" onclick="add_file()" value="+">
+					<input type="button" onclick="del_file()" value="-">
+				
+					<p class="fname"><input type="file" name="fname1"></p>
     			</td>
     			
     		</tr>
@@ -96,7 +99,7 @@
     		</tr>
     		<tr>
     			<td>예식타입</td>
-    			<td><input type="wed_type" name="wed_type"></td>
+    			<td><input type="text" name="wed_type"></td>
     		</tr>
     		<tr>
     			<td>Special Benefit</td>
