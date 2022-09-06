@@ -14,11 +14,11 @@
     	①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기
     	②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
     <div class="bradcam_area dining">	<!-- class="bradcam_area 클래스명" -->
-        <h3> 문구(자유롭게 변경하기) </h3>
+        <h3> DINE & DRINK </h3>
     </div>
     <!-- bradcam_area_end -->
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
-
+         <img src="../img/banner/dining2.jpg" width="700">
 	<!-- ================ Dining Area Start ================= -->
     <!-- about_area_start -->
     <div class="about_area">
