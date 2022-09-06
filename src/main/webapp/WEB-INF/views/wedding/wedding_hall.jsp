@@ -270,7 +270,7 @@ function showDivs(n) {
                <div class="blog_right_sidebar">
                
 <div style="border-bottom:1px solid #f0e9ff; width:1100px; margin-top:50px; margin-bottom:30px;">                   
-         <h3>&nbsp;$</h3><p>
+         <h3>&nbsp;${</h3><p>
          <div style="width:1100px; margin-bottom:30px;">37m에 달하는 virgin road와 8m의 높은 층고가 어우러진 공간에서 오는 웅장함과 화려한 연출, 품격 높은 파라다이스시티 웨딩의 대표 베뉴</div>
          </div>
          
