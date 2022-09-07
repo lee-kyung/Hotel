@@ -59,7 +59,7 @@
                                         <li><a href="../dining/dining">dining</a></li>
                                         <li><a href="../wedding/wedding">wedding<i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
-                                                <li><a href="../wedding/wedding_hall">웨딩홀</a></li>
+                                                <li><a href="../wedding/wedding_hall?id=9">웨딩홀</a></li>
                                                 <li><a href="../wedding/wedding_reserve">상담예약</a></li>
                                                 <li><a href="../wedding/wedding_check">견적</a></li>
                                             </ul>

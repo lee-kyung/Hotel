@@ -14,11 +14,11 @@
     	①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기
     	②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
     <div class="bradcam_area dining">	<!-- class="bradcam_area 클래스명" -->
-        <h3> 문구(자유롭게 변경하기) </h3>
+        <h3> DINE & DRINK </h3>
     </div>
     <!-- bradcam_area_end -->
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
-
+         <!-- <img src="../img/banner/dining2.jpg" width="700"> -->
 	<!-- ================ Dining Area Start ================= -->
     <!-- about_area_start -->
     <div class="about_area">
@@ -28,10 +28,11 @@
                     <div class="about_info">
                         <div class="section_title mb-20px">
                             <span>About Us</span>
-                            <h3>A Luxuries Hotel <br>
-                                    with Nature</h3>
+                            <h3> BUFFET <br>
+                                    On the plate</h3>
                         </div>
-                        <p>Suscipit libero pretium nullam potenti. Interdum, blandit phasellus consectetuer dolor ornare dapibus enim ut tincidunt rhoncus tellus sollicitudin pede nam maecenas, dolor sem. Neque sollicitudin enim. Dapibus lorem feugiat facilisi faucibus et. Rhoncus.</p>
+                        <p>파라다이스호텔 부산의 다양한 레스토랑에서
+마스터 쉐프들이 펼치는 화려한 미식의 세계로 초대합니다.</p>
                         <a href="#" class="line-button">Learn More</a>
                     </div>
                 </div>
