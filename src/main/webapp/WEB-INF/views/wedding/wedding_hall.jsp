@@ -170,8 +170,9 @@ function showDivs(n) {
 <div style="border-bottom:1px solid #f0e9ff; width:1100px;">  
                 <div style="margin-bottom:50px;">       
                      <ul id="hall">
-                    
+                    <c:forEach items="${list }" var="wvo">
                      	<li><h2><a href="../wedding/wedding_hall?id=${wvo.id }">${wvo.wed_hall }</a></h2></li>
+                    </c:forEach>
                      
                      </ul>
 </div></div>
@@ -272,7 +273,7 @@ function showDivs(n) {
             <div class="col-lg-4">
                <div class="blog_right_sidebar">
                
-<div style="border-bottom:1px solid #f0e9ff; width:1100px; margin-top:50px; margin-bottom:30px;">                   
+<div style="border-bottom:1px solid #f0e9ff; width:1100px; margin-bottom:30px;">                   
          <h3>&nbsp;${wvo.wed_hall }</h3><p>
          <div style="width:1100px; margin-bottom:30px;">${wvo.wed_title }</div>
          </div>

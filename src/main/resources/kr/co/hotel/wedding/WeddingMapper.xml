@@ -12,4 +12,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="wedding_hall" resultType="kr.co.hotel.wedding.WeddingVO">
 		select * from wedding where id=#{param1}
 	</select>
+	
+	<select id="wedding_hall_name" resultType="kr.co.hotel.wedding.WeddingVO">
+  		select * from wedding order by id asc
+  	</select>
+  	
 </mapper>

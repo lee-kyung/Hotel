@@ -8,5 +8,5 @@ public interface WeddingMapper {
 
 	public WeddingVO wedding_hall(String id);
 
-
+	public ArrayList<WeddingVO> wedding_hall_name();
 }

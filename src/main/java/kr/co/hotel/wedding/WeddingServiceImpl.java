@@ -80,6 +80,9 @@ public class WeddingServiceImpl implements WeddingService{
 		String[] img=wvo.getWed_fname().split(",");
 		model.addAttribute("img", img);
 		model.addAttribute("wvo", wvo);
+		
+		ArrayList<WeddingVO> list=mapper.wedding_hall_name();
+		model.addAttribute("list", list);
 		return "/wedding/wedding_hall";
 	}
 

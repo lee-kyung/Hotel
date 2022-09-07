@@ -25,6 +25,32 @@
 	.widget_title{
 	}
 </style>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script> 
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script>
+	$(function(){
+		
+		$("#date").datepicker({
+			
+			showAnim:"explode",		// 달력이 나타날때의 애니메이션 : show, slideDown, fold, fadeIn, blind, bounce, drop, clip, slide
+			duration:1000,			// 애니메이션 실행시간
+			showOtherMonths:true,	// 이번달에서 이전, 다음달 일의 출력여부 : 기본값은 false
+			selectOtherMonths:true,	// showOtherMonths:true의 경우 보여진 이전, 다음달의 일을 선택할수 없지만 selectOtherMonths:true,을 작성하면 선택가능 : 기본값은 false
+			changeMonth:true,		// 옵션방식으로 월을 이동
+			changeYear:true,		// 옵션방식으로 년을 이동
+			dateFormat:"yy-mm-dd",	// 작성되지 않은 경우 기본 값: mm/dd/yy
+			numberOfMonths:3,		// 이번달과 다음달, 다다음달 달력이 동시에 출력됨
+			showOn:"button",		// 버튼을 클릭해야만 달력이 출력
+			minDate:-5,				// 클릭할수있는 날짜의 범위지정 : 숫자는 따옴표가 필요없다. 
+			maxDate:"1M",			// 클릭할수있는 날짜의 범위지정 : M, D는 따옴표가 필요하다	=> 현재날짜기준 이전과 다음의 선택가능한 날짜 
+//			minDate:0, 				// 오늘 이전까지는 클릭할수 없다. 
+			firstDay:1,				// 달력 요일의 시작 (0:일요일 ~ 6:토요일):기본값 0
+			
+		});
+	});
+</script>
+
 </head>
 
 <body>
@@ -42,16 +68,16 @@
 
     <!--================ Single-Wedding Area Start =================-->
     
-    <section class="blog_area single-post-area section-padding">
-
-      <div class="container" style="margin-top:100px;">
+    
+<section class="blog_area section-padding">
+        <div class="container">
          <div class="row">
             <div class="col-lg-8 posts-list">
             
           <table width="1100" border="1">
           <tr>
           <td colspan="7">
-          <c:if test="${m==1 } }">	<!-- 1월 -->
+          <c:if test="${m==1  }">	<!-- 1월 -->
           	<a href="wedding_reserve?y=${y-1 }&m=12">이전</a>
           </c:if>
           <c:if test="${m!=1 }">	<!-- 1월아님 -->
@@ -97,10 +123,65 @@
           
           </table>
           
+          <!-- 예약가능한 시간 보이는 테이블 :예약가능/예약불가 -->
+          <table border="1">
+          	<tr>
+          		<td>10:00</td>
+          		<td></td>
+          		<td>14:00</td>
+          		<td></td>
+          	</tr>
+          	<tr>
+          		<td>11:00</td>
+          		<td></td>
+          		<td>15:00</td>
+          		<td></td>
+          	</tr>
+          	<tr>
+          		<td>12:00</td>
+          		<td></td>
+          		<td>16:00</td>
+          		<td></td>
+          	</tr>
+          	<tr>
+          		<td>13:00</td>
+          		<td></td>
+          		<td>17:00</td>
+          		<td></td>
+          	</tr>
+          </table>
+          
           <!-- 예약을 위한 정보 -->
           <!-- 객실의 이름을 출력 :get room-->
-          <div></div>
-          
+          <form method="post" action="wed_resv_ok">
+          <table border="1">
+          <tr>
+          	<td>희망하는 웨딩홀</td>
+          	<td></td>
+          </tr>
+          <tr>
+          	<td>클릭된 날짜(상담일)wresv_cday</td>
+          	<td></td>
+          </tr>
+          <tr>
+          	<td>클릭된 시간(상담시간)</td>
+          	<td></td>
+          </tr>
+          <tr>
+          	<td>예식희망일</td>
+          	<td> <input type="text" id="date" name="wresv_wday"></td>
+          </tr>
+          <tr>
+          	<td>내용</td>
+          	<td><textarea name="wresv_content"></textarea></td>
+          </tr>
+          <tr>
+          	<td colspan="2">
+          		<input type="submit" value="전송">
+          	</td>
+          </tr>
+          </table>
+          </form>
           
           
           
@@ -118,7 +199,6 @@
 <div class="container">
          <div class="row">
     
-    <div class="col-lg-4">
     <div id="bb">
                <div class="blog_right_sidebar">
     <aside class="single_sidebar_widget instagram_feeds">
@@ -157,8 +237,7 @@
                      </ul>
                   </aside>
          </div>
-         </div>         
-                 </div> 
+         </div>      
          </div></div>            
                
                

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 @Service
 @Qualifier("wrs")
@@ -16,13 +17,13 @@ public class WeddingResvServiceImpl implements WeddingResvService{
 	private WeddingResvMapper mapper;
 
 	@Override
-	public String wedding_reserve(HttpServletRequest request) 
+	public String wedding_reserve(HttpServletRequest request, Model model, WeddingResvVO wrvo) 
 	{
 		int y, m;
 		if(request.getParameter("y")==null)
 		{
 			LocalDate today=LocalDate.now();
-			y=today.getYear();
+			y=today.getYear();	
 			m=today.getMonthValue();
 		}
 		else
