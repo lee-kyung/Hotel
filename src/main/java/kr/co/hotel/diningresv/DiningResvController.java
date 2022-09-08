@@ -19,5 +19,10 @@ public class DiningResvController {
 	{
 		return service.dining_reserve(request);
 	}
+	@RequestMapping("/dining/getCalendar")
+	public String getCalendar(HttpServletRequest request)
+	{
+		return service.getCalendar(request);
+	}
 
 }

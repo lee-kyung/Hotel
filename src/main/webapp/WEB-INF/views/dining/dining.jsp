@@ -33,16 +33,16 @@
                         </div>
                         <p>파라다이스호텔 부산의 다양한 레스토랑에서
 마스터 쉐프들이 펼치는 화려한 미식의 세계로 초대합니다.</p>
-                        <a href="../dining/reserve" class="line-button">예약하기</a>
+                        <a href="../dining/dining_reserve" class="line-button">예약하기</a>
                     </div>
                 </div>
                 <div class="col-xl-7 col-lg-7">
                     <div class="about_thumb d-flex">
                         <div class="img_1">
-                            <img src="../img/about/about_1.png" alt="">
+                            <img src="../img/about/about_1.jpg" alt="" width="200">
                         </div>
                         <div class="img_2">
-                            <img src="../img/about/about_2.png" alt="">
+                            <img src="../img/about/about_2.jpg" alt="">
                         </div>
                     </div>
                 </div>

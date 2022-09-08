@@ -6,4 +6,6 @@ public interface DiningResvService {
 	
 	public String dining_reserve(HttpServletRequest request);
 
+	public String getCalendar(HttpServletRequest request);
+
 }
