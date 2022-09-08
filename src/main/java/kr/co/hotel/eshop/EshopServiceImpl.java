@@ -13,7 +13,9 @@ public class EshopServiceImpl implements EshopService {
 
 	@Override
 	public String pro_write(Model model) {
-		mapper.pro_write();
-		return "redirect:/eshop/pro_list";
+		/* dae테이블을 읽어와서 view에 전달하기 */
+		model.addAttribute("list", mapper.pro_write());
+		return "/product/pro_write";
 	}
+
 }

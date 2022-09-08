@@ -16,9 +16,9 @@ public class DiningResvController {
 	private DiningResvService service;
 	
 	@RequestMapping("/dining/dining_reserve")
-	public String reserve(HttpServletRequest request, Model model)
+	public String reserve(HttpServletRequest request, Model model, DiningResvVO drvo)
 	{
-		return service.dining_reserve(request, model);
+		return service.dining_reserve(request, model, drvo);
 	}
 
 

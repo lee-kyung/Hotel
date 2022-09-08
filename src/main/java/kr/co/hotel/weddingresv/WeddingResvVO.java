@@ -2,13 +2,33 @@ package kr.co.hotel.weddingresv;
 
 public class WeddingResvVO {
 
-	private int wresv_id, state;
+	private int wresv_id, state, wresv_tid;
 	private String wresv_cday, wresv_day,wresv_wday,wresv_content, wresv_info,userid;
 	
+	// weddingtime 테이블의 wt_time
+	private String wt_time;
+	
+	private int cnt;
 	
 	
-	
-	
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
+	public String getWt_time() {
+		return wt_time;
+	}
+	public void setWt_time(String wt_time) {
+		this.wt_time = wt_time;
+	}
+	public int getWresv_tid() {
+		return wresv_tid;
+	}
+	public void setWresv_tid(int wresv_tid) {
+		this.wresv_tid = wresv_tid;
+	}
 	public int getWresv_id() {
 		return wresv_id;
 	}

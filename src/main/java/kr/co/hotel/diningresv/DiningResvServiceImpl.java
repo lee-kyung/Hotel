@@ -18,7 +18,7 @@ public class DiningResvServiceImpl implements DiningResvService{
 	private DiningResvMapper mapper;
 	
 	@Override
-	public String dining_reserve(HttpServletRequest request, Model model)
+	public String dining_reserve(HttpServletRequest request, Model model, DiningResvVO drvo)
 	{
 	//  1일의 요일, 총일수, 몇주를 구해서 request영역에 저장
     	int y,m;
