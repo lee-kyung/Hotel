@@ -32,11 +32,10 @@
     
 </head>
 
-<body>
+<body>	
     <!--[if lte IE 9]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
         <![endif]-->
-
     <!-- header-start -->
     <header>
         <div class="header-area ">
@@ -52,12 +51,18 @@
                                         <li><a href="../dining/dining">dining</a></li>
                                         <li><a href="../wedding/wedding">wedding<i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
-                                                <li><a href="../wedding/wedding_hall">웨딩홀</a></li>
+                                                <li><a href="../wedding/wedding_hall?id=9">웨딩홀</a></li>
                                                 <li><a href="../wedding/wedding_reserve">상담예약</a></li>
                                                 <li><a href="../wedding/wedding_check">견적</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="../eshop/product">eshop</a></li>
+                                        <li><a href="../eshop/eshop">eshop<i class="ti-angle-down"></i></a>
+                                        	<ul class="submenu">
+                                                <li><a href="../eshop/product">product</a></li>
+                                                <li><a href="../eshop/voucher">voucher</a></li>
+                                                <li><a href="../eshop/pro_write">상품등록</a></li>	<!-- 나중에 관리자만 볼 수 있게 할 메뉴 -->
+                                            </ul>                                        
+                                        </li>
                                         <li><a href="../etc/contact">etc<i class="ti-angle-down"></i></a>
                                         	<ul class="submenu">
                                                 <li><a href="../etc/basic">basic</a></li>

@@ -3,6 +3,150 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <head>
+<style>
+
+	 #hall li{
+	display:inline-block;	
+	width:150px;}
+	#aa{
+	width:1100px;
+	margin:auto;}
+	
+	#bb .blog_right_sidebar{
+	width:1100px;}
+	#bb .blog_right_sidebar ul li{
+	display:inline-block;	}
+	#bb .blog_right_sidebar img{
+	width:120px;}
+	
+	.c{
+	width:1100px;
+	height:500px;;
+	background:#fbf9ff;}
+	
+	
+	#btn{
+	width:1100px;}
+	#btn .form-group{
+	display:inline-block;}
+	
+	#btn #right{
+	float:right;}
+
+/*-----------------------*/	
+	#mm #main{
+	width:1100px;
+	height:550px;}
+	#mm #main #sub{
+	width:4500px;
+	height:550px;
+	}
+	
+	#mm{
+	width:1100px;
+	height:550px;overflow: hidden;}
+	
+/*--------------------------*/	
+
+
+/***************************/	
+.slider{
+    width: 1100px;
+    height: 550px;
+    position: relative;
+    margin: 0 auto;
+    overflow: hidden; /* 현재 슬라이드 오른쪽에 위치한 나머지 슬라이드 들이 보이지 않도록 가림 */
+}
+.slider input[type=radio]{
+    display: none;
+}ul.imgs{
+    padding: 0;
+    margin: 0;
+    list-style: none;    
+}
+ul.imgs li{
+    position: absolute;
+    left: 640px;
+    transition-delay: 1s; /* 새 슬라이드가 이동해 오는 동안 이전 슬라이드 이미지가 배경이 보이도록 지연 */
+
+    padding: 0;
+    margin: 0;
+}.bullets{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 20px;
+    z-index: 2;
+}
+.bullets label{
+    display: inline-block;
+    border-radius: 50%;
+    background-color: rgba(0,0,0,0.55);
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+/* 현재 선택된 불릿 배경 흰색으로 구분 표시 */
+.slider input[type=radio]:nth-child(1):checked~.bullets>label:nth-child(1){
+    background-color: #fff;
+}
+.slider input[type=radio]:nth-child(2):checked~.bullets>label:nth-child(2){
+    background-color: #fff;
+}
+.slider input[type=radio]:nth-child(3):checked~.bullets>label:nth-child(3){
+    background-color: #fff;
+}
+.slider input[type=radio]:nth-child(4):checked~.bullets>label:nth-child(4){
+    background-color: #fff;
+}.slider input[type=radio]:nth-child(1):checked~ul.imgs>li:nth-child(1){
+    left: 0;
+    transition: 0.5s;
+    z-index:1;
+}
+.slider input[type=radio]:nth-child(2):checked~ul.imgs>li:nth-child(2){
+    left: 0;
+    transition: 0.5s;
+    z-index:1;
+}
+.slider input[type=radio]:nth-child(3):checked~ul.imgs>li:nth-child(3){
+    left: 0;
+    transition: 0.5s;
+    z-index:1;
+}
+.slider input[type=radio]:nth-child(4):checked~ul.imgs>li:nth-child(4){
+    left: 0;
+    transition: 0.5s;
+    z-index:1;
+}
+
+/**************************************/
+</style>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script>
+
+/*-------------------------*/
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+    showDivs(slideIndex += n);
+}
+
+function showDivs(n) {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    if (n > x.length) {slideIndex = 1}
+    if (n < 1) {slideIndex = x.length} ;
+    for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+    }
+    x[slideIndex-1].style.display = "block";
+}
+
+/*------------------------------------------*/
+
+
+</script>
 
 </head>
 
@@ -14,416 +158,174 @@
     	①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기
     	②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
     <div class="bradcam_area wedding">	<!-- class="bradcam_area 클래스명" -->
-        <h3> 문구(자유롭게 변경하기) </h3>
+        <h3> 웨딩홀 </h3>
     </div>
     <!-- bradcam_area_end -->
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
 
     <!--================ Single-Wedding Area Start =================-->
-   <section class="blog_area single-post-area section-padding">
+    
+
+  <div id="aa" style="margin-top:50px;">
+<div style="border-bottom:1px solid #f0e9ff; width:1100px;">  
+                <div style="margin-bottom:50px;">       
+                     <ul id="hall">
+                    <c:forEach items="${list }" var="wvo">
+                     	<li><h2><a href="../wedding/wedding_hall?id=${wvo.id }">${wvo.wed_hall }</a></h2></li>
+                    </c:forEach>
+                     
+                     </ul>
+</div></div>
+                     </div>
+    
+     
+   
+     
+     
+     
+    
+    <section class="blog_area single-post-area section-padding">
+
+
       <div class="container">
          <div class="row">
             <div class="col-lg-8 posts-list">
                <div class="single-post">
                   <div class="feature-img">
-                     <img class="img-fluid" src="../img/blog/single_blog_2.png" alt="">
-                  </div>
-                  <div class="blog_details">
-                     <h2>Second divided from form fish beast made every of seas
-                        all gathered us saying he our
-                     </h2>
-                     <ul class="blog-info-link mt-3 mb-4">
-                        <li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
-                        <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
-                     </ul>
-                     <p class="excert">
-                        MCSE boot camps have its supporters and its detractors. Some people do not understand why you
-                        should have to spend money on boot camp when you can get the MCSE study materials yourself at a
-                        fraction of the camp price. However, who has the willpower
-                     </p>
-                     <p>
-                        MCSE boot camps have its supporters and its detractors. Some people do not understand why you
-                        should have to spend money on boot camp when you can get the MCSE study materials yourself at a
-                        fraction of the camp price. However, who has the willpower to actually sit through a
-                        self-imposed MCSE training. who has the willpower to actually
-                     </p>
-                     <div class="quote-wrapper">
-                        <div class="quotes">
-                           MCSE boot camps have its supporters and its detractors. Some people do not understand why you
-                           should have to spend money on boot camp when you can get the MCSE study materials yourself at
-                           a fraction of the camp price. However, who has the willpower to actually sit through a
-                           self-imposed MCSE training.
-                        </div>
-                     </div>
-                     <p>
-                        MCSE boot camps have its supporters and its detractors. Some people do not understand why you
-                        should have to spend money on boot camp when you can get the MCSE study materials yourself at a
-                        fraction of the camp price. However, who has the willpower
-                     </p>
-                     <p>
-                        MCSE boot camps have its supporters and its detractors. Some people do not understand why you
-                        should have to spend money on boot camp when you can get the MCSE study materials yourself at a
-                        fraction of the camp price. However, who has the willpower to actually sit through a
-                        self-imposed MCSE training. who has the willpower to actually
-                     </p>
-                  </div>
+     
+     
+     <!-- ************************** -->             
+           <div class="slider">
+    <input type="radio" name="slide" id="slide1" checked>
+    <input type="radio" name="slide" id="slide2">
+    <input type="radio" name="slide" id="slide3">
+    <input type="radio" name="slide" id="slide4">
+    <ul id="imgholder" class="imgs">
+    <c:forEach items="${img}" var="tt">
+		<li><img src="../img/wedding/${tt}" width="1100" height="550"></li>
+	</c:forEach>
+    </ul>
+    <div class="bullets">
+        <label for="slide1">&nbsp;</label>
+        <label for="slide2">&nbsp;</label>
+        <label for="slide3">&nbsp;</label>
+        <label for="slide4">&nbsp;</label>
+    </div>
+</div>
+           
+    <!-- ********************************** -->       
+           
+     <!-- ---------------------------------- -->      
+        <!--    
+           <div id="mm">
+                  <div id="main">
+                     <div id="sub">
+           <img class="mySlides" src="../img/post/post_10.png" width="1100" height="550">
+<img class="mySlides" src="../img/post/post_4.png" width="1100" height="550">
+<img class="mySlides" src="../img/post/post_3.png" width="1100" height="550">
+<img class="mySlides" src="../img/post/post_2.png" width="1100" height="550">
+</div>
+-->
+
+
+<!-- 
+</div></div>
+
+ <div id="btn" style="margin-top:10px;">
+     <div class="form-group" id="left">
+                        <button type="submit"onclick="plusDivs(-1)" class="button button-contactForm btn_1 boxed-btn" ><-</button>
+                   </div>
+       <div class="form-group" id="right">
+      <button type="submit"onclick="plusDivs(+1)"class="button button-contactForm btn_1 boxed-btn" >-></button>
+          </div>
+<<<<<<< HEAD
+         
+=======
+>>>>>>> branch 'main' of https://github.com/ey0k/hotel.git
+                    </div> 
+-->
+<!-- ---------------------------------- -->
+</div>
+
+
+
+
+
+   
                </div>
-               <div class="navigation-top">
-                  <div class="d-sm-flex justify-content-between text-center">
-                     <p class="like-info"><span class="align-middle"><i class="fa fa-heart"></i></span> Lily and 4
-                        people like this</p>
-                     <div class="col-sm-4 text-center my-2 my-sm-0">
-                        <!-- <p class="comment-count"><span class="align-middle"><i class="fa fa-comment"></i></span> 06 Comments</p> -->
+               
+              
+                     
+         
+        <div style="border-bottom:1px solid #f0e9ff; width:1100px; margin-top:50px; margin-bottom:70px; text-align:right;">
+         
+<div class="form-group">
+                        <button type="submit" class="button button-contactForm btn_1 boxed-btn" onclick="location='../wedding/wedding_reserve'">예약하기</button>
                      </div>
-                     <ul class="social-icons">
-                        <li><a href="#"><i class="fa fa-facebook-f"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                        <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                     </ul>
-                  </div>
-                  <div class="navigation-area">
-                     <div class="row">
-                        <div
-                           class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
-                           <div class="thumb">
-                              <a href="#">
-                                 <img class="img-fluid" src="../img/post/preview.png" alt="">
-                              </a>
-                           </div>
-                           <div class="arrow">
-                              <a href="#">
-                                 <span class="lnr text-white ti-arrow-left"></span>
-                              </a>
-                           </div>
-                           <div class="detials">
-                              <p>Prev Post</p>
-                              <a href="#">
-                                 <h4>Space The Final Frontier</h4>
-                              </a>
-                           </div>
-                        </div>
-                        <div
-                           class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
-                           <div class="detials">
-                              <p>Next Post</p>
-                              <a href="#">
-                                 <h4>Telescopes 101</h4>
-                              </a>
-                           </div>
-                           <div class="arrow">
-                              <a href="#">
-                                 <span class="lnr text-white ti-arrow-right"></span>
-                              </a>
-                           </div>
-                           <div class="thumb">
-                              <a href="#">
-                                 <img class="img-fluid" src="../img/post/next.png" alt="">
-                              </a>
-                           </div>
-                        </div>
                      </div>
-                  </div>
-               </div>
-               <div class="blog-author">
-                  <div class="media align-items-center">
-                     <img src="../img/blog/author.png" alt="">
-                     <div class="media-body">
-                        <a href="#">
-                           <h4>Harvard milan</h4>
-                        </a>
-                        <p>Second divided from form fish beast made. Every of seas all gathered use saying you're, he
-                           our dominion twon Second divided from</p>
-                     </div>
-                  </div>
-               </div>
-               <div class="comments-area">
-                  <h4>05 Comments</h4>
-                  <div class="comment-list">
-                     <div class="single-comment justify-content-between d-flex">
-                        <div class="user justify-content-between d-flex">
-                           <div class="thumb">
-                              <img src="../img/comment/comment_1.png" alt="">
-                           </div>
-                           <div class="desc">
-                              <p class="comment">
-                                 Multiply sea night grass fourth day sea lesser rule open subdue female fill which them
-                                 Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
-                              </p>
-                              <div class="d-flex justify-content-between">
-                                 <div class="d-flex align-items-center">
-                                    <h5>
-                                       <a href="#">Emilly Blunt</a>
-                                    </h5>
-                                    <p class="date">December 4, 2017 at 3:12 pm </p>
-                                 </div>
-                                 <div class="reply-btn">
-                                    <a href="#" class="btn-reply text-uppercase">reply</a>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="comment-list">
-                     <div class="single-comment justify-content-between d-flex">
-                        <div class="user justify-content-between d-flex">
-                           <div class="thumb">
-                              <img src="../img/comment/comment_2.png" alt="">
-                           </div>
-                           <div class="desc">
-                              <p class="comment">
-                                 Multiply sea night grass fourth day sea lesser rule open subdue female fill which them
-                                 Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
-                              </p>
-                              <div class="d-flex justify-content-between">
-                                 <div class="d-flex align-items-center">
-                                    <h5>
-                                       <a href="#">Emilly Blunt</a>
-                                    </h5>
-                                    <p class="date">December 4, 2017 at 3:12 pm </p>
-                                 </div>
-                                 <div class="reply-btn">
-                                    <a href="#" class="btn-reply text-uppercase">reply</a>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="comment-list">
-                     <div class="single-comment justify-content-between d-flex">
-                        <div class="user justify-content-between d-flex">
-                           <div class="thumb">
-                              <img src="../img/comment/comment_3.png" alt="">
-                           </div>
-                           <div class="desc">
-                              <p class="comment">
-                                 Multiply sea night grass fourth day sea lesser rule open subdue female fill which them
-                                 Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
-                              </p>
-                              <div class="d-flex justify-content-between">
-                                 <div class="d-flex align-items-center">
-                                    <h5>
-                                       <a href="#">Emilly Blunt</a>
-                                    </h5>
-                                    <p class="date">December 4, 2017 at 3:12 pm </p>
-                                 </div>
-                                 <div class="reply-btn">
-                                    <a href="#" class="btn-reply text-uppercase">reply</a>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="comment-form">
-                  <h4>Leave a Reply</h4>
-                  <form class="form-contact comment_form" action="#" id="commentForm">
-                     <div class="row">
-                        <div class="col-12">
-                           <div class="form-group">
-                              <textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9"
-                                 placeholder="Write Comment"></textarea>
-                           </div>
-                        </div>
-                        <div class="col-sm-6">
-                           <div class="form-group">
-                              <input class="form-control" name="name" id="name" type="text" placeholder="Name">
-                           </div>
-                        </div>
-                        <div class="col-sm-6">
-                           <div class="form-group">
-                              <input class="form-control" name="email" id="email" type="email" placeholder="Email">
-                           </div>
-                        </div>
-                        <div class="col-12">
-                           <div class="form-group">
-                              <input class="form-control" name="website" id="website" type="text" placeholder="Website">
-                           </div>
-                        </div>
-                     </div>
-                     <div class="form-group">
-                        <button type="submit" class="button button-contactForm btn_1 boxed-btn">Send Message</button>
-                     </div>
-                  </form>
-               </div>
-            </div>
+          </div>     
+
+            
+            
+            
+            
+        <div id="c">
             <div class="col-lg-4">
                <div class="blog_right_sidebar">
-                  <aside class="single_sidebar_widget search_widget">
-                     <form action="#">
-                        <div class="form-group">
-                           <div class="input-group mb-3">
-                              <input type="text" class="form-control" placeholder='Search Keyword'
-                                 onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Keyword'">
-                              <div class="input-group-append">
-                                 <button class="btn" type="button"><i class="ti-search"></i></button>
-                              </div>
-                           </div>
-                        </div>
-                        <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
-                           type="submit">Search</button>
-                     </form>
-                  </aside>
-                  <aside class="single_sidebar_widget post_category_widget">
-                     <h4 class="widget_title">Category</h4>
-                     <ul class="list cat-list">
-                        <li>
-                           <a href="#" class="d-flex">
-                              <p>Resaurant food</p>
-                              <p>(37)</p>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#" class="d-flex">
-                              <p>Travel news</p>
-                              <p>(10)</p>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#" class="d-flex">
-                              <p>Modern technology</p>
-                              <p>(03)</p>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#" class="d-flex">
-                              <p>Product</p>
-                              <p>(11)</p>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#" class="d-flex">
-                              <p>Inspiration</p>
-                              <p>(21)</p>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#" class="d-flex">
-                              <p>Health Care</p>
-                              <p>(21)</p>
-                           </a>
-                        </li>
-                     </ul>
-                  </aside>
-                  <aside class="single_sidebar_widget popular_post_widget">
-                     <h3 class="widget_title">Recent Post</h3>
-                     <div class="media post_item">
-                        <img src="../img/post/post_1.png" alt="post">
-                        <div class="media-body">
-                           <a href="single-blog.html">
-                              <h3>From life was you fish...</h3>
-                           </a>
-                           <p>January 12, 2019</p>
-                        </div>
-                     </div>
-                     <div class="media post_item">
-                        <img src="../img/post/post_2.png" alt="post">
-                        <div class="media-body">
-                           <a href="single-blog.html">
-                              <h3>The Amazing Hubble</h3>
-                           </a>
-                           <p>02 Hours ago</p>
-                        </div>
-                     </div>
-                     <div class="media post_item">
-                        <img src="../img/post/post_3.png" alt="post">
-                        <div class="media-body">
-                           <a href="single-blog.html">
-                              <h3>Astronomy Or Astrology</h3>
-                           </a>
-                           <p>03 Hours ago</p>
-                        </div>
-                     </div>
-                     <div class="media post_item">
-                        <img src="../img/post/post_4.png" alt="post">
-                        <div class="media-body">
-                           <a href="single-blog.html">
-                              <h3>Asteroids telescope</h3>
-                           </a>
-                           <p>01 Hours ago</p>
-                        </div>
-                     </div>
-                  </aside>
-                  <aside class="single_sidebar_widget tag_cloud_widget">
-                     <h4 class="widget_title">Tag Clouds</h4>
-                     <ul class="list">
-                        <li>
-                           <a href="#">project</a>
-                        </li>
-                        <li>
-                           <a href="#">love</a>
-                        </li>
-                        <li>
-                           <a href="#">technology</a>
-                        </li>
-                        <li>
-                           <a href="#">travel</a>
-                        </li>
-                        <li>
-                           <a href="#">restaurant</a>
-                        </li>
-                        <li>
-                           <a href="#">life style</a>
-                        </li>
-                        <li>
-                           <a href="#">design</a>
-                        </li>
-                        <li>
-                           <a href="#">illustration</a>
-                        </li>
-                     </ul>
-                  </aside>
-                  <aside class="single_sidebar_widget instagram_feeds">
-                     <h4 class="widget_title">Instagram Feeds</h4>
-                     <ul class="instagram_row flex-wrap">
-                        <li>
-                           <a href="#">
-                              <img class="img-fluid" src="../img/post/post_5.png" alt="">
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#">
-                              <img class="img-fluid" src="../img/post/post_6.png" alt="">
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#">
-                              <img class="img-fluid" src="../img/post/post_7.png" alt="">
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#">
-                              <img class="img-fluid" src="../img/post/post_8.png" alt="">
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#">
-                              <img class="img-fluid" src="../img/post/post_9.png" alt="">
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#">
-                              <img class="img-fluid" src="../img/post/post_10.png" alt="">
-                           </a>
-                        </li>
-                     </ul>
-                  </aside>
-                  <aside class="single_sidebar_widget newsletter_widget">
-                     <h4 class="widget_title">Newsletter</h4>
-                     <form action="#">
-                        <div class="form-group">
-                           <input type="email" class="form-control" onfocus="this.placeholder = ''"
-                              onblur="this.placeholder = 'Enter email'" placeholder='Enter email' required>
-                        </div>
-                        <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
-                           type="submit">Subscribe</button>
-                     </form>
-                  </aside>
+               
+<div style="border-bottom:1px solid #f0e9ff; width:1100px; margin-bottom:30px;">                   
+         <h3>&nbsp;${wvo.wed_hall }</h3><p>
+         <div style="width:1100px; margin-bottom:30px;">${wvo.wed_title }</div>
+         </div>
+         
+         
+         
+         
+         
+                     
+                     
+                     
+      </div>
+        <table width="1100"class="c" style="margin-top:10px;">
+        	<tr>
+        		<td colspan="3"> 특징</td>
+        	
+        	</tr>
+        	<tr>
+        		<td colspan="3">${wvo.wed_txt }</td>
+        	</tr>
+        	
+        	<tr>
+        		<td>규모</td>
+        		<td>수용인원</td>
+        		<td>하객음식</td>
+        	</tr>
+        	<tr>
+        		<td>${wvo.wed_size }m²</td>
+        		<td>${wvo.wed_min }~${wvo.wed_max }명</td>
+        		<td>${wvo.wed_food }<td>
+        	</tr>
+        	<tr>
+        		<td>연출</td>
+        		<td>예식타입</td>
+        		<td>Special Benefit</td>
+        	</tr>
+        	<tr>
+        		<td>${wvo.wed_direct }</td>
+        		<td>${wvo.wed_type }</td>
+        		<td>${wvo.wed_txt2 }</td>
+        	</tr>
+        </table>
+        
+        
+      
+      
+               
+                  
+               
                </div>
             </div>
+         </div>
          </div>
       </div>
    </section>

@@ -1,5 +1,18 @@
 package kr.co.hotel.diningresv;
 
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.ui.Model;
+
+import kr.co.hotel.dining.DiningVO;
+
 public interface DiningResvService {
+	
+	public String dining_reserve(HttpServletRequest request, Model model, DiningVO dvo, PrintWriter out);
+	
+	
+
 
 }
