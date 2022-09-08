@@ -3,6 +3,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <head>
+
+</head>
+
+<body>
 <style>
 	#pro_write {
 		width : 1000px;
@@ -63,9 +67,6 @@
 		}
 	}
 </script>
-</head>
-
-<body>
 
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
     <!-- bradcam_area_start -->
