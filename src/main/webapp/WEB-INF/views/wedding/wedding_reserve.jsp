@@ -146,7 +146,7 @@
           	</tr>
           		</c:forEach>
           </table>
-          
+          sdfsdfs
           <!-- 예약을 위한 정보 -->
           <!-- 객실의 이름을 출력 :get room-->
           <form name="wresv" method="post" action="weddingReserve_ok">
