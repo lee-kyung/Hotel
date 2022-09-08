@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 @Service
 @Qualifier("drs")
@@ -17,13 +18,7 @@ public class DiningResvServiceImpl implements DiningResvService{
 	private DiningResvMapper mapper;
 	
 	@Override
-	public String dining_reserve(HttpServletRequest request)
-	{
-		return "/dining/dining_reserve";
-	}
-
-	@Override
-	public String getCalendar(HttpServletRequest request) 
+	public String dining_reserve(HttpServletRequest request, Model model)
 	{
 	//  1일의 요일, 총일수, 몇주를 구해서 request영역에 저장
     	int y,m;
