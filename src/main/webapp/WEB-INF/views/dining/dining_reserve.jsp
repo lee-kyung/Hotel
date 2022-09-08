@@ -38,7 +38,6 @@
 	<!-- ================ 타이틀(자유롭게 변경) Area Start ================= -->
     <!-- 부타이틀(자유롭게 변경)_area_start -->
 
-    	<div style="margin:auto;text-align:center;"> 당당한  <input type="button" value="버튼"> 하나 </div>
   <div id="section">
    <table width="900" align="center" border="1">
     <caption>
@@ -71,16 +70,18 @@
     </tr>
     
     <c:set var="day" value="1"/>
+        
         <c:forEach var="i" begin="1" end="6"> <!-- 행 -->
-         <tr id="cell" width="130" height="120">
+         <tr>
+         
           <c:forEach var="j" begin="0" end="6">  <!-- 열 -->
            <c:if test="${(j < yoil && i==1) || (chong < day) }">
              <td> &nbsp; </td>
            </c:if>
            
            <c:if test="${ ((j < yoil && i==1) || i>1) && (chong >= day) }">
-             <td id="cell">
-              <span style="font-weight:600"> ${day} </span>
+             <td>${day}</td>
+             
 		   <!-- 방의 이름을 출력 -->
            <!-- td에 출력되는 날짜가  오늘 이전인지 이후인지를 체크 -->
            <c:if test="${tt==1}">
@@ -90,12 +91,13 @@
             <a href="dining_reserve_next?y=${y}&m=${m}&d=${day}&id=${dvo.id}"> ${dvo.dine_time}</a><br>
           </c:forEach>   <!-- 방 목록 출력 for -->
            </c:if>
-             </td>
-               <c:set var="day" value="${day+1}"/> <!-- 날짜값을 1씩 증가 -->
-                          
+             
+               <c:set var="day" value="${day+1}"/> <!-- 날짜값을 1씩 증가 -->              
            </c:if>
           </c:forEach>
+          
          </tr>
+         
         </c:forEach>
    </table>
   </div>
