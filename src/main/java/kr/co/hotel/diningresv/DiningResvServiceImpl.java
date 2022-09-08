@@ -1,6 +1,8 @@
 package kr.co.hotel.diningresv;
 
+import java.io.PrintWriter;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -10,6 +12,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import kr.co.hotel.dining.DiningVO;
+
 @Service
 @Qualifier("drs")
 public class DiningResvServiceImpl implements DiningResvService{
@@ -18,7 +22,7 @@ public class DiningResvServiceImpl implements DiningResvService{
 	private DiningResvMapper mapper;
 	
 	@Override
-	public String dining_reserve(HttpServletRequest request, Model model, DiningResvVO drvo)
+	public String dining_reserve(HttpServletRequest request, Model model, DiningVO dvo, PrintWriter out)
 	{
 	//  1일의 요일, 총일수, 몇주를 구해서 request영역에 저장
     	int y,m;
@@ -46,13 +50,18 @@ public class DiningResvServiceImpl implements DiningResvService{
     	
     	// 몇 주인가
     	int ju=(int)Math.ceil((yoil+chong)/7.0);
-    	
+        
+        
     	request.setAttribute("yoil", yoil);
     	request.setAttribute("chong", chong);
     	request.setAttribute("ju", ju);
     	request.setAttribute("y", y);
     	request.setAttribute("m", m); 
 		
+    	ArrayList<DiningVO> dlist=mapper.getTime();
+    	model.addAttribute("dlist", dlist);
+    	
+    	model.addAttribute("dvo", dvo);
 		return "/dining/dining_reserve";
 	}
 	
