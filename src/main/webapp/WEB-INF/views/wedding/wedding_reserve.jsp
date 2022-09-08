@@ -33,22 +33,14 @@
 		
 		$("#date").datepicker({
 			
-			showAnim:"explode",		// 달력이 나타날때의 애니메이션 : show, slideDown, fold, fadeIn, blind, bounce, drop, clip, slide
-			duration:1000,			// 애니메이션 실행시간
-			showOtherMonths:true,	// 이번달에서 이전, 다음달 일의 출력여부 : 기본값은 false
-			selectOtherMonths:true,	// showOtherMonths:true의 경우 보여진 이전, 다음달의 일을 선택할수 없지만 selectOtherMonths:true,을 작성하면 선택가능 : 기본값은 false
-			changeMonth:true,		// 옵션방식으로 월을 이동
-			changeYear:true,		// 옵션방식으로 년을 이동
-			dateFormat:"yy-mm-dd",	// 작성되지 않은 경우 기본 값: mm/dd/yy
-			numberOfMonths:3,		// 이번달과 다음달, 다다음달 달력이 동시에 출력됨
-			showOn:"button",		// 버튼을 클릭해야만 달력이 출력
-			minDate:-5,				// 클릭할수있는 날짜의 범위지정 : 숫자는 따옴표가 필요없다. 
-			maxDate:"1M",			// 클릭할수있는 날짜의 범위지정 : M, D는 따옴표가 필요하다	=> 현재날짜기준 이전과 다음의 선택가능한 날짜 
-//			minDate:0, 				// 오늘 이전까지는 클릭할수 없다. 
-			firstDay:1,				// 달력 요일의 시작 (0:일요일 ~ 6:토요일):기본값 0
+
 			
 		});
+		
 	});
+</script>
+<script>
+	
 </script>
 
 </head>
@@ -120,52 +112,66 @@
           </tr>
           
           </c:forEach>
+<!-- ----------------------------------------------------------- -->
+
+
+
+
+
+
+
+
+
+
+
+
           
           </table>
-          
+      
           <!-- 예약가능한 시간 보이는 테이블 :예약가능/예약불가 -->
           <table border="1">
+          		<c:forEach items="${tlist }" var="tvo">
+          			<c:set var="wresv_tid" value="${tvo.wt_id }"/>
           	<tr>
-          		<td>10:00</td>
-          		<td></td>
-          		<td>14:00</td>
-          		<td></td>
+          	<td>
+          		<c:if test="${wrvo.cnt==0 }">
+          			<div id="time2" onclick="time(this)" value="${tvo.wt_time }">${tvo.wt_time }</div>
+          		</c:if>	
+          		<c:if test="${wrvo.cnt==1 }">
+          			<span style="color:red; text-decoration:line-through;">${tvo.wt_time }</span>
+          		</c:if>		
+          	</td>
+          	<td></td>
+
           	</tr>
-          	<tr>
-          		<td>11:00</td>
-          		<td></td>
-          		<td>15:00sdf</td>
-          		<td></td>
-          	</tr>
-          	<tr>
-          		<td>12:00</td>
-          		<td></td>
-          		<td>16:00</td>
-          		<td></td>
-          	</tr>
-          	<tr>
-          		<td>13:00</td>
-          		<td></td>
-          		<td>17:00</td>
-          		<td></td>
-          	</tr>
+          		</c:forEach>
           </table>
           
           <!-- 예약을 위한 정보 -->
           <!-- 객실의 이름을 출력 :get room-->
-          <form method="post" action="wed_resv_ok">
+          <form name="wresv" method="post" action="weddingReserve_ok">
+          <input type="hidden" name="wt_time" value="${wt_time }">
+          
           <table border="1">
           <tr>
           	<td>희망하는 웨딩홀</td>
-          	<td></td>
+          	<td>
+          		<c:forEach items="${hlist }" var="hvo">
+          			<input type="checkbox" name="wed_hall" value="${ hvo.wed_hall}">${hvo.wed_hall }
+          		</c:forEach>
+          	</td>
           </tr>
           <tr>
           	<td>클릭된 날짜(상담일)wresv_cday</td>
-          	<td></td>
+          	<td>
+          		<span id="" name="wresv_cday"></span>
+          	</td>
           </tr>
           <tr>
           	<td>클릭된 시간(상담시간)</td>
-          	<td></td>
+          	<td>
+         		<span id="time" name=""></span>
+          	</td>
           </tr>
           <tr>
           	<td>예식희망일</td>
@@ -184,8 +190,7 @@
           </form>
           
           
-          
-          
+       
           
           
           
