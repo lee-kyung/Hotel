@@ -50,7 +50,7 @@
             
           <table width="1100" border="1">
           <tr>
-          	<td>홀</td>
+          	<td>홀</td>s
           	<td>
 			<input type="checkbox" value="" >a홀
           	<input type="checkbox" value="" >b

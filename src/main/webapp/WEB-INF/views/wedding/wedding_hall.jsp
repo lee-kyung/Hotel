@@ -20,7 +20,10 @@
 	width:120px;}
 	
 	.c{
-	height:400px;}
+	width:1100px;
+	height:500px;;
+	background:#fbf9ff;}
+	
 	
 	#btn{
 	width:1100px;}
@@ -29,21 +32,24 @@
 	
 	#btn #right{
 	float:right;}
-	
+
+/*-----------------------*/	
 	#mm #main{
 	width:1100px;
-	height:550px;
-	overflow:hidden;}
+	height:550px;}
 	#mm #main #sub{
 	width:4500px;
-	height:550px;}
+	height:550px;
+	}
 	
 	#mm{
 	width:1100px;
-	height:550px;}
+	height:550px;overflow: hidden;}
 	
-	
-	
+/*--------------------------*/	
+
+
+/***************************/	
 .slider{
     width: 1100px;
     height: 550px;
@@ -112,10 +118,13 @@ ul.imgs li{
     transition: 0.5s;
     z-index:1;
 }
+
+/**************************************/
 </style>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
 
+/*-------------------------*/
 var slideIndex = 1;
 showDivs(slideIndex);
 
@@ -134,11 +143,8 @@ function showDivs(n) {
     x[slideIndex-1].style.display = "block";
 }
 
+/*------------------------------------------*/
 
-function a_hall()
-{
-	document.getElementById("aa").innertext="dmdm";
-}
 
 </script>
 
@@ -164,10 +170,10 @@ function a_hall()
 <div style="border-bottom:1px solid #f0e9ff; width:1100px;">  
                 <div style="margin-bottom:50px;">       
                      <ul id="hall">
-                     	<li><h2><a onclick="a_hall()">a홀</a></h2></li>
-                     	<li><h2><a href="">b홀</a></h2></li>
-                     	<li><h2><a href="">c홀</a></h2></li>
-                     	<li><h2><a href="">d홀</a></h2></li>
+                    <c:forEach items="${list }" var="wvo">
+                     	<li><h2><a href="../wedding/wedding_hall?id=${wvo.id }">${wvo.wed_hall }</a></h2></li>
+                    </c:forEach>
+                     
                      </ul>
 </div></div>
                      </div>
@@ -186,17 +192,18 @@ function a_hall()
             <div class="col-lg-8 posts-list">
                <div class="single-post">
                   <div class="feature-img">
-                  
+     
+     
+     <!-- ************************** -->             
            <div class="slider">
     <input type="radio" name="slide" id="slide1" checked>
     <input type="radio" name="slide" id="slide2">
     <input type="radio" name="slide" id="slide3">
     <input type="radio" name="slide" id="slide4">
     <ul id="imgholder" class="imgs">
-        <li><img src="../img/post/post_7.png" width="1100" height="550"></li>
-        <li><img src="../img/post/post_8.png" width="1100" height="550"></li>
-        <li><img src="../img/post/post_9.png" width="1100" height="550"></li>
-        <li><img src="../img/post/post_10.png" width="1100" height="550"></li>
+    <c:forEach items="${img}" var="tt">
+		<li><img src="../img/wedding/${tt}" width="1100" height="550"></li>
+	</c:forEach>
     </ul>
     <div class="bullets">
         <label for="slide1">&nbsp;</label>
@@ -206,103 +213,56 @@ function a_hall()
     </div>
 </div>
            
+    <!-- ********************************** -->       
            
-           
+     <!-- ---------------------------------- -->      
+        <!--    
+           <div id="mm">
+                  <div id="main">
+                     <div id="sub">
            <img class="mySlides" src="../img/post/post_10.png" width="1100" height="550">
 <img class="mySlides" src="../img/post/post_4.png" width="1100" height="550">
 <img class="mySlides" src="../img/post/post_3.png" width="1100" height="550">
 <img class="mySlides" src="../img/post/post_2.png" width="1100" height="550">
-<a class="w3-btn-floating" onclick="plusDivs(-1)">&#10094;</a>
-<a class="w3-btn-floating" onclick="plusDivs(+1)">&#10095;</a>
+</div>
+-->
 
 
-   <!--                 
-                  <div id="mm">
-                  <div id="main">
-                     <div id="sub">
-                    <img src="../img/blog/single_blog_2.png" width="1100" height="550"><img src="../img/post/post_8.png"   width="1100" height="550"><img src="../img/post/post_9.png"  width="1100" height="550"><img src="../img/post/post_10.png"  width="1100" height="550">
-                     </div>
-                     </div>
-                  </div>
-         -->         
+<!-- 
+</div></div>
+
+ <div id="btn" style="margin-top:10px;">
+     <div class="form-group" id="left">
+                        <button type="submit"onclick="plusDivs(-1)" class="button button-contactForm btn_1 boxed-btn" ><-</button>
+                   </div>
+       <div class="form-group" id="right">
+      <button type="submit"onclick="plusDivs(+1)"class="button button-contactForm btn_1 boxed-btn" >-></button>
+          </div>
+<<<<<<< HEAD
+         
+=======
+>>>>>>> branch 'main' of https://github.com/ey0k/hotel.git
+                    </div> 
+-->
+<!-- ---------------------------------- -->
+</div>
+
+
+
+
+
+   
                </div>
                
-               <div id="btn">
-     <div class="form-group" id="left">
-                        <button type="submit" class="button button-contactForm btn_1 boxed-btn" id="be"><-</button>
-                     </div>
-       <div class="form-group" id="right">
-      <button type="submit" class="button button-contactForm btn_1 boxed-btn" id="af">-></button>
-          </div>
-                    </div> 
-                     
-                     
+              
                      
          
-                     
-                   
-                     
-                     
-
-
-
-                    
-                     
-                     <!--  
-                     
-<div class="container">
-         <div class="row">
-    
-   
-    <div id="bb">
-               <div class="blog_right_sidebar">
-    <aside class="single_sidebar_widget instagram_feeds">
-                    
-                     <ul class="b">
-                        <li>
-                          
-                              <img src="../img/post/post_5.png" alt="">
-                         
-                        </li>
-                        <li>
-                          
-                              <img  src="../img/post/post_6.png" alt="">
-                          
-                        </li>
-                        <li>
-                           
-                              <img  src="../img/post/post_7.png" alt="">
-                           
-                        </li>
-                        <li>
-                          
-                              <img src="../img/post/post_8.png" alt="">
-                         
-                        </li>
-                        <li>
-                          
-                              <img src="../img/post/post_9.png" alt="">
-                          
-                        </li>
-                        <li>
-                           
-                              <img src="../img/post/post_10.png" alt="">
-                      
-                        </li>
-                     </ul>
-                  </aside>
-         </div>
-         </div>         
-                
-         </div></div>           
-         
-         -->
-        
+        <div style="border-bottom:1px solid #f0e9ff; width:1100px; margin-top:50px; margin-bottom:70px; text-align:right;">
          
 <div class="form-group">
-                        <button type="submit" class="button button-contactForm btn_1 boxed-btn">예약하기</button>
+                        <button type="submit" class="button button-contactForm btn_1 boxed-btn" onclick="location='../wedding/wedding_reserve'">예약하기</button>
                      </div>
-                     <div style="border-bottom:1px solid #f0e9ff; width:1100px;"></div>
+                     </div>
           </div>     
 
             
@@ -313,159 +273,54 @@ function a_hall()
             <div class="col-lg-4">
                <div class="blog_right_sidebar">
                
-                   
-         <table width="1100">
-         <tr>
-         <td colspan="3" style="background:#f9f9ff; border-bottom:1px solid #f0e9ff; height:60px;">
+<div style="border-bottom:1px solid #f0e9ff; width:1100px; margin-bottom:30px;">                   
+         <h3>&nbsp;${wvo.wed_hall }</h3><p>
+         <div style="width:1100px; margin-bottom:30px;">${wvo.wed_title }</div>
+         </div>
          
-        
-        
-        >
-    
-    
-         <h4 >웨딩홀이름</h4>
-        
          
-         </td>
-         </tr>
-         	<tr>
-         		<td><aside class="single_sidebar_widget post_category_widget">
-         		<div class="c">
+         
+         
+         
                      
-                     <ul class="list cat-list">
-                        <li>
-                           <a href="#" class="d-flex">
-                              <p>Resaurant food</p>
-                              <p>(37)</p>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#" class="d-flex">
-                              <p>Travel news</p>
-                              <p>(10)</p>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#" class="d-flex">
-                              <p>Modern technology</p>
-                              <p>(03)</p>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#" class="d-flex">
-                              <p>Product</p>
-                              <p>(11)</p>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#" class="d-flex">
-                              <p>Inspiration</p>
-                              <p>(21)</p>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#" class="d-flex">
-                              <p>Health Care</p>
-                              <p>(21)</p>
-                           </a>
-                        </li>
-                     </ul></div>
-                  </aside></td>
-         	
-         		<td><aside class="single_sidebar_widget post_category_widget">
-                     <div class="c">
-                     <ul class="list cat-list">
                      
-                        <li>
-                           <a href="#" class="d-flex">
-                              <p>Resaurant food</p>
-                              <p>(37)</p>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#" class="d-flex">
-                              <p>Travel news</p>
-                              <p>(10)</p>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#" class="d-flex">
-                              <p>Modern technology</p>
-                              <p>(03)</p>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#" class="d-flex">
-                              <p>Product</p>
-                              <p>(11)</p>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#" class="d-flex">
-                              <p>Inspiration</p>
-                              <p>(21)</p>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#" class="d-flex">
-                              <p>Health Care</p>
-                              <p>(21)</p>
-                           </a>
-                        </li>
-                     </ul></div>
-                  </aside></td>
-         
-         		<td><aside class="single_sidebar_widget post_category_widget">
-                     <div class="c">
-                     <ul class="list cat-list">
-                        <li>
-                           <a href="#" class="d-flex">
-                              <p>Resaurant food</p>
-                              <p>(37)</p>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#" class="d-flex">
-                              <p>Travel news</p>
-                              <p>(10)</p>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#" class="d-flex">
-                              <p>Modern technology</p>
-                              <p>(03)</p>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#" class="d-flex">
-                              <p>Product</p>
-                              <p>(11)</p>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#" class="d-flex">
-                              <p>Inspiration</p>
-                              <p>(21)</p>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#" class="d-flex">
-                              <p>Health Care</p>
-                              <p>(21)</p>
-                           </a>
-                        </li>
-                     </ul></div>
-                  </aside></td>
-         	</tr>
-         
-         </table>   
-            
-            
-            
-            
-                  
-                  
- 
+                     
+      </div>
+        <table width="1100"class="c" style="margin-top:10px;">
+        	<tr>
+        		<td colspan="3"> 특징</td>
+        	
+        	</tr>
+        	<tr>
+        		<td colspan="3">${wvo.wed_txt }</td>
+        	</tr>
+        	
+        	<tr>
+        		<td>규모</td>
+        		<td>수용인원</td>
+        		<td>하객음식</td>
+        	</tr>
+        	<tr>
+        		<td>${wvo.wed_size }m²</td>
+        		<td>${wvo.wed_min }~${wvo.wed_max }명</td>
+        		<td>${wvo.wed_food }<td>
+        	</tr>
+        	<tr>
+        		<td>연출</td>
+        		<td>예식타입</td>
+        		<td>Special Benefit</td>
+        	</tr>
+        	<tr>
+        		<td>${wvo.wed_direct }</td>
+        		<td>${wvo.wed_type }</td>
+        		<td>${wvo.wed_txt2 }</td>
+        	</tr>
+        </table>
+        
+        
+      
+      
+               
                   
                
                </div>
