@@ -22,16 +22,15 @@
 </head>
 
 <body>
-
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
     <c:if test="${pdae == 'p01'}">
 	    <div class="bradcam_area eshop2">
-	        <h3> 오프라인 상품 </h3>
+	        <h3> P R O D U C T </h3>
 	    </div>
     </c:if>
     <c:if test="${pdae == 'p02'}">
 	    <div class="bradcam_area eshop3">
-	        <h3> 온라인 상품 </h3>
+	        <h3> V O U C H E R </h3>
 	    </div>
     </c:if>    
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
