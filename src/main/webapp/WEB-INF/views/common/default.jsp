@@ -219,21 +219,21 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <!-- link that opens popup -->
 
     <!-- form itself end-->
-        <form id="test-form" class="white-popup-block mfp-hide">
+        <form id="test-form" name="dtpick" class="white-popup-block mfp-hide">
                 <div class="popup_box ">
                         <div class="popup_inner">
                             <h3>Check Availability</h3>
-                            <form action="#">
+                            <form action="../room/room_avail">
                                 <div class="row">
                                     <div class="col-xl-6">
-                                        <input id="datepicker" placeholder="Check in date">
+                                        <input id="datepicker" placeholder="체크인 날짜" >
                                     </div>
                                     <div class="col-xl-6">
-                                        <input id="datepicker2" placeholder="Check out date">
+                                        <input id="datepicker2" placeholder="체크아웃 날짜">
                                     </div>
                                     <div class="col-xl-6">
                                         <select class="form-select wide" id="default-select" class="">
-                                            <option data-display="Adult">1</option>
+                                            <option data-display="성인">1</option>
                                             <option value="1">2</option>
                                             <option value="2">3</option>
                                             <option value="3">4</option>
@@ -241,7 +241,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                                     </div>
                                     <div class="col-xl-6">
                                         <select class="form-select wide" id="default-select" class="">
-                                            <option data-display="Children">1</option>
+                                            <option data-display="어린이">1</option>
                                             <option value="1">2</option>
                                             <option value="2">3</option>
                                             <option value="3">4</option>
@@ -249,15 +249,16 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                                     </div>
                                     <div class="col-xl-12">
                                         <select class="form-select wide" id="default-select" class="">
-                                            <option data-display="Room type">Room type</option>
-                                            <option value="1">Laxaries Rooms</option>
-                                            <option value="2">Deluxe Room</option>
-                                            <option value="3">Signature Room</option>
-                                            <option value="4">Couple Room</option>
+                                            <option data-display="객실타입">객실타입</option>
+                                            <option value="1">디럭스 룸</option>
+                                            <option value="2">프리미엄 디럭스 룸</option>
+                                            <option value="3">스위트</option>
+                                            <option value="4">스페셜 스위트</option>
+
                                         </select>
                                     </div>
                                     <div class="col-xl-12">
-                                        <button type="submit" class="boxed-btn3">Check Availability</button>
+                                        <button type="submit" class="boxed-btn3">객실 검색</button>
                                     </div>
                                 </div>
                             </form>
@@ -295,19 +296,29 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
     <script src="../js/main.js"></script>
     <script>
-        $('#datepicker').datepicker({
-            iconsLibrary: 'fontawesome',
-            icons: {
-             rightIcon: '<span class="fa fa-caret-down"></span>'
-         }
-        });
-        $('#datepicker2').datepicker({
-            iconsLibrary: 'fontawesome',
-            icons: {
-             rightIcon: '<span class="fa fa-caret-down"></span>'
-         }
+    $(function(){
+    	
+    	 $('#datepicker').datepicker({
+         	format:"yy-mm-dd",
+         	
+         	iconsLibrary: 'fontawesome',
+             icons: {
+              rightIcon: '<span class="fa fa-caret-down"></span>' 
+          }
+    	 });
+    	 
+         $('#datepicker2').datepicker({
+         	format:"yy-mm-dd",
+         	
+             iconsLibrary: 'fontawesome',
+             icons: {
+              rightIcon: '<span class="fa fa-caret-down"></span>'
+          }
 
-        });
+         });
+        
+    })
+       
     </script>
 
 </body>
