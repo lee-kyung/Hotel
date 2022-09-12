@@ -116,7 +116,7 @@ function zoom(my)
             <div class="col-lg-8 posts-list">
                <div class="single-post">
                   <div class="feature-img">
-                     <img src="../img/blog/single_blog_2.png" width="1100" height="550" id="zoom_img">
+                     <img src="../img/wedding/single_blog_2.png" width="1100" height="550" id="zoom_img">
                   </div>
                   
                </div>

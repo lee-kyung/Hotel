@@ -8,16 +8,19 @@
 </style>
 
 <script>
+	
 	function add_file()
 	{
-var fname=document.getElementsByClassName("fname");
+		var fname=document.getElementsByClassName("fname");
 		
-		var len=fname.length;	
-		len++;		
-		var inner="<p class='fname'> <input type='file' name='fname"+len+"'> </p> ";
-															
+		var len=fname.length;	// 현재 type="file"의 개수
+		len++;		// 추가 될 때마다 file의 개수가 하나씩 늘어야 하기 때문에 증가를 준다. 
+		var inner="<p class='fname'> <input type='file' name='fname"+len+"'> </p> "; // 추가될 내용
+															// fname+숫자 : 추가될때마다 숫자변경해야하기 때문에 
 		document.getElementById("outer").innerHTML=document.getElementById("outer").innerHTML+inner;
+		// jqurty : $("#outer").html($("outer").html()+inner);
 	}
+	
 	function del_file()
 	{
 		var len=document.getElementsByClassName("fname").length;
@@ -113,6 +116,8 @@ var fname=document.getElementsByClassName("fname");
     		
     	</table>
     	</form>
+    	
+  
     	
     	</div>
     	</section>

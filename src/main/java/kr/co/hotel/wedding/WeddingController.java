@@ -1,5 +1,6 @@
 package kr.co.hotel.wedding;
 
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +34,10 @@ public class WeddingController {
 	}
 	
 	@RequestMapping("/wedding/wedding_hall")
-	public String wedding_hall(HttpServletRequest request, Model model, WeddingVO wvo) {
-		return service.wedding_hall(request, model, wvo);
+	
+	public String wedding_hall(HttpServletRequest request, Model model,WeddingVO wvo)
+	{
+		return service.wedding_hall(request,model, wvo); 
 	}
 	
 }

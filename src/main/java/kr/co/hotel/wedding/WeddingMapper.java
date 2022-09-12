@@ -6,7 +6,7 @@ public interface WeddingMapper {
 
 	public void wed_hall_write_ok(WeddingVO wvo);
 
-	public ArrayList<WeddingVO> wedding_hall(String id);
+	public WeddingVO wedding_hall(String id);
 
-	public WeddingVO content(String id);
+	public ArrayList<WeddingVO> wedding_hall_name();
 }

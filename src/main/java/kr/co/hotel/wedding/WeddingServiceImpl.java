@@ -35,7 +35,6 @@ public class WeddingServiceImpl implements WeddingService{
 		String wed_max=multi.getParameter("wed_max");
 		String wed_txt=multi.getParameter("wed_txt");
 		String wed_txt2=multi.getParameter("wed_txt2");
-		String wed_fname=multi.getParameter("wed_fname");
 		String wed_size=multi.getParameter("wed_size");
 		String wed_food=multi.getParameter("wed_food");
 		String wed_direct=multi.getParameter("wed_direct");
@@ -62,7 +61,7 @@ public class WeddingServiceImpl implements WeddingService{
 		wvo.setWed_max(Integer.parseInt(wed_max));
 		wvo.setWed_txt(wed_txt);
 		wvo.setWed_txt2(wed_txt2);
-		wvo.setWed_fname(wed_fname);
+		wvo.setWed_fname(fnames);
 		wvo.setWed_size(Integer.parseInt(wed_size));
 		wvo.setWed_food(wed_food);
 		wvo.setWed_direct(wed_direct);
@@ -70,17 +69,22 @@ public class WeddingServiceImpl implements WeddingService{
 		
 		mapper.wed_hall_write_ok(wvo);
 		
-		return "/wedding/wedding_hall";
+		return "redirect:/wedding/wedding_hall?id=9";
 	}
 
 	@Override
-	public String wedding_hall(HttpServletRequest request,Model model, WeddingVO wvo) 
+	public String wedding_hall(HttpServletRequest request, Model model,WeddingVO wvo) 
 	{
 		String id=request.getParameter("id");
-		ArrayList<WeddingVO> list=mapper.wedding_hall(id);
-		model.addAttribute("list",list);
+		wvo=mapper.wedding_hall(id);
+		String[] img=wvo.getWed_fname().split(",");
+		model.addAttribute("img", img);
+		model.addAttribute("wvo", wvo);
 		
-		
+		ArrayList<WeddingVO> list=mapper.wedding_hall_name();
+		model.addAttribute("list", list);
 		return "/wedding/wedding_hall";
 	}
+
+	
 }

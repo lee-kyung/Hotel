@@ -5,4 +5,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
 <mapper namespace="kr.co.hotel.eshop.EshopMapper">
 	
+	<select id="pro_write" resultType="kr.co.hotel.eshop.PdaeVO">
+		select * from pdae order by code asc
+	</select>
+	
+	<select id="getso" resultType="kr.co.hotel.eshop.PsoVO">
+		select * from pso where daecode=#{param1}
+	</select>
+	
 </mapper>

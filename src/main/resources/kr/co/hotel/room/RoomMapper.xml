@@ -4,5 +4,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybats-3-mapper.dtd">
  
 <mapper namespace="kr.co.hotel.room.RoomMapper">
+	<select id="room_write" resultType="kr.co.hotel.room.RdaeVO">
+		select * from rdae order by code asc;
+	</select>
+
+	<select id="getbunho" resultType="Integer">
+		select ifnull(substring(max(rcode),5,3),"0") from room where rcode like concat(#{param1},'%')
+	</select>
+	
+	<insert id="room_write_ok">
+		insert into room(rname,rmin,rmax,rprice,rsu,rpimg,rcimg,rcode,rtxt,rtxt2,rview,rbed,writeday)
+		values(#{rname},#{rmin},#{rmax},#{rprice},#{rsu},#{rpimg},#{rcimg},#{rcode},#{rtxt},#{rtxt2},#{rviewValue},#{rbed},now())
+	</insert>
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 </mapper>

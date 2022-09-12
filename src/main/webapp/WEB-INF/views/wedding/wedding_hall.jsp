@@ -170,9 +170,10 @@ function showDivs(n) {
 <div style="border-bottom:1px solid #f0e9ff; width:1100px;">  
                 <div style="margin-bottom:50px;">       
                      <ul id="hall">
-                     <c:forEach items="${list }" var="wvo">
-                     	<li><h2><a href="../wedding/wedding_hall">${wvo.wed_hall }</a></h2></li>
-                     </c:forEach>	
+                    <c:forEach items="${list }" var="wvo">
+                     	<li><h2><a href="../wedding/wedding_hall?id=${wvo.id }">${wvo.wed_hall }</a></h2></li>
+                    </c:forEach>
+                     
                      </ul>
 </div></div>
                      </div>
@@ -200,10 +201,9 @@ function showDivs(n) {
     <input type="radio" name="slide" id="slide3">
     <input type="radio" name="slide" id="slide4">
     <ul id="imgholder" class="imgs">
-        <li><img src="../img/post/post_7.png" width="1100" height="550"></li>
-        <li><img src="../img/post/post_8.png" width="1100" height="550"></li>
-        <li><img src="../img/post/post_9.png" width="1100" height="550"></li>
-        <li><img src="../img/post/post_10.png" width="1100" height="550"></li>
+    <c:forEach items="${img}" var="tt">
+		<li><img src="../img/wedding/${tt}" width="1100" height="550"></li>
+	</c:forEach>
     </ul>
     <div class="bullets">
         <label for="slide1">&nbsp;</label>
@@ -238,6 +238,10 @@ function showDivs(n) {
        <div class="form-group" id="right">
       <button type="submit"onclick="plusDivs(+1)"class="button button-contactForm btn_1 boxed-btn" >-></button>
           </div>
+<<<<<<< HEAD
+         
+=======
+>>>>>>> branch 'main' of https://github.com/ey0k/hotel.git
                     </div> 
 -->
 <!-- ---------------------------------- -->
@@ -269,9 +273,9 @@ function showDivs(n) {
             <div class="col-lg-4">
                <div class="blog_right_sidebar">
                
-<div style="border-bottom:1px solid #f0e9ff; width:1100px; margin-top:50px; margin-bottom:30px;">                   
-         <h3>&nbsp;${</h3><p>
-         <div style="width:1100px; margin-bottom:30px;">37m에 달하는 virgin road와 8m의 높은 층고가 어우러진 공간에서 오는 웅장함과 화려한 연출, 품격 높은 파라다이스시티 웨딩의 대표 베뉴</div>
+<div style="border-bottom:1px solid #f0e9ff; width:1100px; margin-bottom:30px;">                   
+         <h3>&nbsp;${wvo.wed_hall }</h3><p>
+         <div style="width:1100px; margin-bottom:30px;">${wvo.wed_title }</div>
          </div>
          
          
@@ -288,7 +292,7 @@ function showDivs(n) {
         	
         	</tr>
         	<tr>
-        		<td colspan="3">모던한 감각이 돋보이는 공간으로 다야8ㅇ한 컨셉의 완성도 노ㅠ은 웨딩 스타일링이 가능한 웨딩홀.</td>
+        		<td colspan="3">${wvo.wed_txt }</td>
         	</tr>
         	
         	<tr>
@@ -297,9 +301,9 @@ function showDivs(n) {
         		<td>하객음식</td>
         	</tr>
         	<tr>
-        		<td>1500m²</td>
-        		<td>200~600명</td>
-        		<td>양식, 중식, 퓨전코스, 뷔페<td>
+        		<td>${wvo.wed_size }m²</td>
+        		<td>${wvo.wed_min }~${wvo.wed_max }명</td>
+        		<td>${wvo.wed_food }<td>
         	</tr>
         	<tr>
         		<td>연출</td>
@@ -307,9 +311,9 @@ function showDivs(n) {
         		<td>Special Benefit</td>
         	</tr>
         	<tr>
-        		<td>무대연출, 플라워연출</td>
-        		<td>분리예식, 동시예식</td>
-        		<td>웨딩스냅장소 무료,Deluxe Suite 1박,무료테이스팅</td>
+        		<td>${wvo.wed_direct }</td>
+        		<td>${wvo.wed_type }</td>
+        		<td>${wvo.wed_txt2 }</td>
         	</tr>
         </table>
         

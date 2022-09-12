@@ -10,4 +10,5 @@ public interface WeddingService {
 
 	public String wedding_hall(HttpServletRequest request, Model model, WeddingVO wvo);
 
+
 }
