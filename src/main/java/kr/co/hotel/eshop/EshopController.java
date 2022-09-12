@@ -21,14 +21,9 @@ public class EshopController {
 		return "/eshop/eshop";
 	}
 	
-	@RequestMapping("/eshop/product")
-	public String product() {
-		return "/eshop/product";
-	}
-	
-	@RequestMapping("/eshop/voucher")
-	public String voucher() {
-		return "/eshop/voucher";
+	@RequestMapping("/eshop/error")
+	public String error() {
+		return "/eshop/error";
 	}
 	
 	/* pdae테이블의 내용을 읽어오기 위한 용도 */
@@ -37,8 +32,27 @@ public class EshopController {
 		return service.pro_write(model);
 	}
 	
+	/* pso테이블의 내용을 읽어오기 위한 용도 */
 	@RequestMapping("/eshop/getso")
 	public void getso(HttpServletRequest request, PrintWriter out) {
 		service.getso(request, out);
+	}
+	
+	/* pcode를 생성하기 */
+	@RequestMapping("/eshop/getpcode")
+	public void getpcode(HttpServletRequest request, PrintWriter out) {
+		service.getpcode(request, out);
+	}
+	
+	/* 상품을 등록하기 */
+	@RequestMapping("/eshop/pro_write_ok")
+	public String pro_write_ok(HttpServletRequest request) {
+		return service.pro_write_ok(request);
+	}
+	
+	/* 상품 목록을 보기 */
+	@RequestMapping("/eshop/pro_list")
+	public String pro_list(HttpServletRequest request, Model model) {
+		return service.pro_list(request, model);
 	}
 }

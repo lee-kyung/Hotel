@@ -1,8 +1,8 @@
 package kr.co.hotel.eshop;
 
 public class ProductVO {
-	private int id, price, halin, juk, su, baefee, opt1, opt2, opt3;
-	private String pcode, title, img1, img2, buyday;
+	private int id, price, halin, juk, su, baefee;
+	private String pcode, title, img1, img2, buyday, opt1, opt2, opt3;
 	
 	public int getId() {
 		return id;
@@ -40,24 +40,6 @@ public class ProductVO {
 	public void setBaefee(int baefee) {
 		this.baefee = baefee;
 	}
-	public int getOpt1() {
-		return opt1;
-	}
-	public void setOpt1(int opt1) {
-		this.opt1 = opt1;
-	}
-	public int getOpt2() {
-		return opt2;
-	}
-	public void setOpt2(int opt2) {
-		this.opt2 = opt2;
-	}
-	public int getOpt3() {
-		return opt3;
-	}
-	public void setOpt3(int opt3) {
-		this.opt3 = opt3;
-	}
 	public String getPcode() {
 		return pcode;
 	}
@@ -87,5 +69,23 @@ public class ProductVO {
 	}
 	public void setBuyday(String buyday) {
 		this.buyday = buyday;
+	}
+	public String getOpt1() {
+		return opt1;
+	}
+	public void setOpt1(String opt1) {
+		this.opt1 = opt1;
+	}
+	public String getOpt2() {
+		return opt2;
+	}
+	public void setOpt2(String opt2) {
+		this.opt2 = opt2;
+	}
+	public String getOpt3() {
+		return opt3;
+	}
+	public void setOpt3(String opt3) {
+		this.opt3 = opt3;
 	}
 }
