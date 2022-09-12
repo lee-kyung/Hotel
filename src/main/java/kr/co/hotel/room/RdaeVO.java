@@ -2,8 +2,16 @@ package kr.co.hotel.room;
 
 public class RdaeVO {
 	private int id;
-	private String code,rtype;
+	private String code,rtype,rtxt;
 	
+	
+	
+	public String getRtxt() {
+		return rtxt;
+	}
+	public void setRtxt(String rtxt) {
+		this.rtxt = rtxt;
+	}
 	public int getId() {
 		return id;
 	}

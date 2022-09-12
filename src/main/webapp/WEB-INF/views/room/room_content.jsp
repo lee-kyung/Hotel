@@ -18,27 +18,21 @@
 	}
 	#rname{
 		margin-top: 50px;
-		font-size: 24px;
+		font-size: 28px;
 	}
 	roomsec{
 		margin-bottom: 80px;
-		color: #887159;
+		
 	}
 	roomsec #ro_outer{
-		outline:1px solid #887159;
+		outline:1px solid black;
 		width: 920px;
 		height:374px;
 	}
-/* 	roomsec #ro_outer #right{
-		background: pink;
-	}
-	roomsec #ro_outer #left{
-		background: gold;
-	} */
 	roomsec #subr{
 		width: 100px;
 		display: inline-block;
-		color: #887159;
+		color: black;
 	}
 	roomsec input[type=button]{
 		color: #887159;
@@ -60,7 +54,7 @@
     	①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기
     	②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
     <div class="bradcam_area rooms"> <!-- class="bradcam_area 클래스명" -->
-        <h3> 객실종류 </h3>
+        <h3> 객실 </h3>
     </div>
     <!-- bradcam_area_end -->
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
@@ -71,37 +65,13 @@
     <div class="container">
     <div class="row"> 
     <roomsec>
- 		<div>객실</div> <p>
- 		<div style="font-size:15px;">파라다이스 호텔 부산에서 격이 다른 휴식과 여유를 경험해보세요.</div>
- 		<br>
- 	 <c:forEach items="${list}" var="rvo">
-		<div id="rtype">${rvo.rtype}</div> <p>
-		<div>${rvo.rtxt}</div><p>
-		<div id="ro_outer">
-			<div id="left" style="float:left;height:374px;width:650px">
-				<img src="../img/rooms/${rvo.rpimg}" width="642px" height="374px">
-			</div>
-			<div id="right" style="float:right;height:290px;width:270px">
-				<div id="rname">${rvo.rname}</div> <p>
-				<div>${rvo.rtxt2}</div> <p>
-				<hr style="width:220px;"> 
-				<div>
-				  <div><span id="subr">전망</span>${rvo.rview}</div>
-				  <div><span id="subr">인원</span>${rvo.rmin}</div>
-				  <div><span id="subr">베드타입</span>${rvo.rbed}</div>
-				  <br>
-				  <br>
-				  <input type="button" value="상세보기" onclick="location='../room/room_content?code=${rvo.code}'">
-				</div>
-			</div> <br>
-		</div>
-		<br>
- 	  </c:forEach>
- 	  </roomsec>
+ 		<c:forEach items="${list}" var="rvo">
+			<img src="../img/rooms/${rvo.rpimg}">
+			<img src="../img/rooms/${rvo.rcimg}">
+		</c:forEach>
+ 	</roomsec>
  	</div>
-  
-  
-  
+ 	</div>
  </div>
 
     <!-- ================ Rooms Area End ================= -->

@@ -62,8 +62,35 @@ public class RoomServiceImpl implements RoomService{
 			
 		}
 		mapper.room_write_ok(rvo);
+		return "redirect:/room/rooms";
+	}
+	
+	@Override
+	public String rooms(Model model,HttpServletRequest request) {
+		String code=request.getParameter("code");
+		ArrayList<RoomVO> list=mapper.rooms(code);
+		model.addAttribute("list", list);
+		
 		return "/room/rooms";
 	}
+	
+	@Override
+	public String room_content(Model model,HttpServletRequest request) {
+		String code=request.getParameter("code");
+		ArrayList<RoomVO> list=mapper.room_content(code);
+		model.addAttribute("list", list);
+		
+		return "/room/room_content";
+	}
+
+	@Override
+	public String room_resv(HttpServletRequest request, Model model) {
+
+		ArrayList<RoomVO> list=mapper.room_resv();
+		model.addAttribute("list", list);
+		return "/room/room_resv";
+	}
+
 	
 	
 	
