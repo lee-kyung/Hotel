@@ -2,8 +2,28 @@ package kr.co.hotel.room;
 
 public class RoomVO {
 	private int id,rmin,rmax,rprice,rstate,rsu;
-	private String rname,rpimg,rcimg,rcode,rtxt,rtxt2,rview,rbed,rtype;
+	private String rname,rpimg,rcimg,rcode,rtxt2,rview,rbed;
 	
+	// rtype추가
+	private String rtype,code,rtxt;
+	
+	
+	
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
+	}
+	public String getRtype() {
+		return rtype;
+	}
+	public void setRtype(String rtype) {
+		this.rtype = rtype;
+	}
+	public String getRview() {
+		return rview;
+	}
 	public int getRsu() {
 		return rsu;
 	}
@@ -94,14 +114,5 @@ public class RoomVO {
 	}
 	public void setRbed(String rbed) {
 		this.rbed = rbed;
-	}
-	public String getRtype() {
-		return rtype;
-	}
-	public void setRtype(String rtype) {
-		this.rtype = rtype;
-	}
-	
-	
-	
+	}	
 }

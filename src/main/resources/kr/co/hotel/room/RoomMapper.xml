@@ -17,13 +17,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values(#{rname},#{rmin},#{rmax},#{rprice},#{rsu},#{rpimg},#{rcimg},#{rcode},#{rtxt},#{rtxt2},#{rviewValue},#{rbed},now())
 	</insert>
 	
+	<select id="rooms" resultType="kr.co.hotel.room.RoomVO">
+		select r.*, rd.code, rd.rtype, rd.rtxt from room r inner join rdae rd on rd.code=substring(r.rcode,2,2)
+	</select>
+
+	<select id="room_content" resultType="kr.co.hotel.room.RoomVO">
+		select r.*, rd.code, rd.rtype, rd.rtxt from room r inner join rdae rd on rd.code=substring(r.rcode,2,2) where code=#{param1}
+	</select>
 	
-	
-	
-	
-	
-	
-	
+	<select id="room_resv" resultType="kr.co.hotel.room.RoomVO">
+		select * from room where rsu != 0;
+	</select>
 	
 	
 </mapper>

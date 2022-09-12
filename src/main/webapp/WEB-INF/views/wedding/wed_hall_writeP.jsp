@@ -45,7 +45,7 @@
     	</tr>
     	<tr>
     		<td>평일/주말</td>
-    		<td></td>
+    		<td>sdfdsf</td>
     	</tr>
     	<tr>
     		<td>인원</td>
