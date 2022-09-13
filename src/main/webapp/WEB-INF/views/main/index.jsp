@@ -58,8 +58,8 @@
                                         </li>
                                         <li><a href="../eshop/eshop">eshop<i class="ti-angle-down"></i></a>
                                         	<ul class="submenu">
-                                                <li><a href="../eshop/pro_list?pdae=p01">product</a></li>
-                                                <li><a href="../eshop/pro_list?pdae=p02">voucher</a></li>
+                                                <li><a href="../eshop/pro_list?pcode=p01">product</a></li>
+                                                <li><a href="../eshop/pro_list?pcode=p02">voucher</a></li>
                                                 <li><a href="../eshop/pro_write">상품등록</a></li>	<!-- 나중에 관리자만 볼 수 있게 할 메뉴 -->
                                             </ul>                                        
                                         </li>

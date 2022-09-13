@@ -58,30 +58,31 @@ public class WeddingResvServiceImpl implements WeddingResvService{
 		ArrayList<WeddingResvTimeVO> hlist=mapper.gethall_name();
 		model.addAttribute("hlist", hlist);
 		
-//		String wresv_tid=request.getParameter("wresv_tid");
-//		String wresv_cday=request.getParameter("wresv_cday");
-//		String wt_time=request.getParameter("wt_time");
-//		mapper.getcheck(wresv_tid, wresv_cday,wt_time);
-		
-		model.addAttribute("wrvo", wrvo);
-		
 		return "/wedding/wedding_reserve";
 	}
 
 	@Override	
 	public String weddingReserve_ok(HttpServletRequest request, WeddingResvVO wrvo) 
 	{
-		String wresv_cday=request.getParameter("wresv_cday");
-		String wresv_wday=request.getParameter("wresv_wday");
-		String[] imsi=wresv_cday.split("-");
-		String[] imsi2=wresv_wday.split("/");
-		int y=Integer.parseInt(imsi2[0]);
-		int m=Integer.parseInt(imsi2[1]);
-		int d=Integer.parseInt(imsi2[2]);
-		LocalDate dday=LocalDate.of(y, m, d);
-		
-		System.out.println(dday);
-		mapper.weddingReserve_ok(dday, wrvo);
+				
+		mapper.weddingReserve_ok(wrvo);
 		return "redirect:/wedding/wedding_reserve";
 	}
+
+	@Override
+	public void getcheck(WeddingResvVO wrvo, HttpServletRequest request, PrintWriter out) 
+	{
+		Integer cnt=mapper.getcheck(wrvo);
+		
+		out.print(cnt);
+		
+/*		String wresv_cday=request.getParameter("wresv_cday");
+		String wresv_time=request.getParameter("wresv_time");
+		
+		wrvo=mapper.getcheck(wresv_cday, wresv_time);
+		model.addAttribute("wrvo", wrvo);
+*/		
+	}
+	
+	
 }

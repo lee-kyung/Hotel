@@ -9,14 +9,9 @@ public interface WeddingResvMapper {
 
 	public ArrayList<WeddingResvTimeVO> gethall_name();
 
-	
-	
-	
-	
-	
-	public WeddingResvVO getcheck(String wresv_tid, String wresv_cday, String wt_time);
+	public void weddingReserve_ok(WeddingResvVO wrvo);
 
-	public void weddingReserve_ok(LocalDate dday, WeddingResvVO wrvo);
+	public Integer getcheck(WeddingResvVO wrvo);
 
 	
 	

@@ -18,12 +18,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="pro_write_ok" parameterType="kr.co.hotel.eshop.ProductVO">
-		insert into product(pcode, title, img1, img2, price, halin, juk, su, baefee, buyday, opt1, opt2, opt3)
-		values(#{pcode}, #{title}, #{img1}, #{img2}, #{price}, #{halin}, #{juk}, #{su}, #{baefee}, now(), #{opt1}, #{opt2}, #{opt3})
+		insert into product(pcode, title, fimg, simg, price, halin, juk, su, baefee, buyday)
+		values(#{pcode}, #{title}, #{fimg}, #{simg}, #{price}, #{halin}, #{juk}, #{su}, #{baefee}, now())
 	</insert>
 	
 	<select id="pro_list" resultType="kr.co.hotel.eshop.ProductVO">
-		select * from product where pcode like concat(#{param1}, '%') limit 12
+		select *, substr(fimg, 1, instr(fimg, ",")-1) as img
+		from product where pcode like concat(#{param1}, '%')
+		order by ${param2} limit ${param3}, ${param4}
+	</select>
+	
+	<select id="total" resultType="Integer">
+		select ceil(count(*)/${value}) from product
 	</select>
 	
 </mapper>
