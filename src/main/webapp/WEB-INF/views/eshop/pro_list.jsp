@@ -57,7 +57,7 @@
 			<c:forEach var="pvo" items="${list}">
 				<td onclick="pro_content('pvo.pcode')">
 					<div class="offers_area padding_top" id="eshop_img"><div class="single_offers"><div class="about_thumb">
-						<img src="../eshop_img/${pvo.img1}" height="300" width="300" style="cursor:pointer">	<!-- 상품이미지 -->
+						<img src="../img/eshop/${pvo.img1}" height="300" width="300" style="cursor:pointer">	<!-- 상품이미지 -->
 					</div></div></div>
 					<div id="title"> <h3> ${pvo.title} </h3> </div>	<!-- 상품명 -->
 					<hr style="width:350px;">

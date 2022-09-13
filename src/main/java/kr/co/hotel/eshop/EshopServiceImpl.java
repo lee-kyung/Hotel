@@ -50,7 +50,7 @@ public class EshopServiceImpl implements EshopService {
 	@Override
 	public String pro_write_ok(HttpServletRequest request) {
 		/* MultipartRequest로 form태그의 값들을 가져와 ProductVO에 넣기 */
-		String path=request.getRealPath("resources/eshop_img");
+		String path=request.getRealPath("resources/img/eshop");
 		int size=1024*1024*30;
 		DefaultFileRenamePolicy rename=new DefaultFileRenamePolicy();		
 		ProductVO pvo=new ProductVO();
