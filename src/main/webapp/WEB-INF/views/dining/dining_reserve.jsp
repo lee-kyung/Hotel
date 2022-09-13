@@ -370,7 +370,26 @@ $('#calendar').calendar();
 		<!-- 방의 이름을 출력 -->
         <!-- td에 출력되는 날짜가  오늘 이전인지 이후인지를 체크 -->
             <c:forEach items="${dlist}" var="dvo">
-               <a href="dining_reserve_next?y=${y}&m=${m}&d=${day}&id=${dvo.id}"> ${dvo.dine_time}</a><br>
+             <c:if test="${dvo.dine_time == Breakfast }">
+               <a href="dining_reserve_next?y=${y}&m=${m}&d=${day}&id=${dvo.id}"> 
+               <img src="../img/dining/breakfast.png" width="10px;">
+               ${dvo.dine_time}
+               </a><br>
+             </c:if>
+             
+             <c:if test="${dvo.dine_time == Lunch }">
+               <a href="dining_reserve_next?y=${y}&m=${m}&d=${day}&id=${dvo.id}"> 
+               <img src="../img/dining/lunch.png" width="10px;">
+               ${dvo.dine_time}
+               </a><br>
+             </c:if>
+               
+             <c:if test="${dvo.dine_time == Dinner }">
+               <a href="dining_reserve_next?y=${y}&m=${m}&d=${day}&id=${dvo.id}"> 
+               <img src="../img/dining/dinner.png" width="10px;">
+               ${dvo.dine_time}
+               </a><br>
+             </c:if>
             </c:forEach>   <!-- 방 목록 출력 for -->
           </td>
                <c:set var="day" value="${day+1}"/> <!-- 날짜값을 1씩 증가 -->              
