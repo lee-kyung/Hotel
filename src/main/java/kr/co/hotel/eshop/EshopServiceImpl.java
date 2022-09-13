@@ -144,5 +144,12 @@ public class EshopServiceImpl implements EshopService {
 		model.addAttribute("ptotal", ptotal);
 		return "/eshop/pro_list";
 	}
+	
+	@Override
+	public String pro_content(HttpServletRequest request, Model model) {
+		String pcode=request.getParameter("pcode");
+		model.addAttribute("pvo", mapper.pro_content(pcode));
+		return "/eshop/pro_content";
+	}
 
 }

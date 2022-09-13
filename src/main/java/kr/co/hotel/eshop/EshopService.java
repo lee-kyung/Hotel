@@ -12,4 +12,6 @@ public interface EshopService {
 	public void getpcode(HttpServletRequest request, PrintWriter out);
 	public String pro_write_ok(HttpServletRequest request);
 	public String pro_list(HttpServletRequest request, Model model);
+	
+	public String pro_content(HttpServletRequest request, Model model);
 }
