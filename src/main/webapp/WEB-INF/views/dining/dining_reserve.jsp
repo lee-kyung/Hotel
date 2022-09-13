@@ -27,7 +27,7 @@
   
   #section th{
     font-weight:700px;
-    width:142px;
+    /* width:142px; */
     height:50px;
     border-bottom:1px solid #887159;
   }
@@ -79,7 +79,7 @@
     <!-- 부타이틀(자유롭게 변경)_area_start -->
 
   <div id="section">
-   <table width="1200" align="center">    
+   <table width="1100" align="center">    
     <tr>
       <th> sun</th>
       <th> mon</th>
@@ -120,7 +120,7 @@
             data-day-format="MM/DD/YYYY"
             data-week-format="MM/DD/YYYY"
             data-month-format="MMMM, YYYY">
-        <span style="font-weight:800px;font-size:20px;"> ${y}년 ${m}월 </span]>
+        <span style="font-weight:800px;font-size:20px;"> ${y}년 ${m}월 </span>
       </div>
       
       <!-- Calendar "next" button -->
@@ -329,7 +329,6 @@
       }
     });
   };
-
   var noConflict = $.fn.calendar;
 
   $.fn.calendar             = Plugin;
@@ -349,7 +348,6 @@
       $elem.calendar(action);
     }
   });
-  
 })(jQuery);
 
 $('#calendar').calendar();
@@ -370,24 +368,24 @@ $('#calendar').calendar();
 		<!-- 방의 이름을 출력 -->
         <!-- td에 출력되는 날짜가  오늘 이전인지 이후인지를 체크 -->
             <c:forEach items="${dlist}" var="dvo">
-             <c:if test="${dvo.dine_time == Breakfast }">
+             <c:if test="${dvo.dine_time == 'Breakfast' }">
                <a href="dining_reserve_next?y=${y}&m=${m}&d=${day}&id=${dvo.id}"> 
-               <img src="../img/dining/breakfast.png" width="10px;">
-               ${dvo.dine_time}
+                <img src="../img/dining/breakfast.png" width="17px;" height="17px;">
+                ${dvo.dine_time}
                </a><br>
              </c:if>
              
-             <c:if test="${dvo.dine_time == Lunch }">
+             <c:if test="${dvo.dine_time == 'Lunch' }">
                <a href="dining_reserve_next?y=${y}&m=${m}&d=${day}&id=${dvo.id}"> 
-               <img src="../img/dining/lunch.png" width="10px;">
-               ${dvo.dine_time}
+                <img src="../img/dining/lunch.png" width="17px;" height="17px;">
+                ${dvo.dine_time}
                </a><br>
              </c:if>
                
-             <c:if test="${dvo.dine_time == Dinner }">
+             <c:if test="${dvo.dine_time == 'Dinner' }">
                <a href="dining_reserve_next?y=${y}&m=${m}&d=${day}&id=${dvo.id}"> 
-               <img src="../img/dining/dinner.png" width="10px;">
-               ${dvo.dine_time}
+                <img src="../img/dining/dinner.png" width="17px;" height="17px;">
+                ${dvo.dine_time}
                </a><br>
              </c:if>
             </c:forEach>   <!-- 방 목록 출력 for -->
