@@ -24,10 +24,15 @@ public class DiningResvController {
 	{
 		return service.dining_reserve(request, model);
 	}
-    @RequestMapping("/dining/getprev")
+/*    @RequestMapping("/dining/getprev")
     public String getprev(HttpServletRequest request, Model model)
     {
     	return service.getprev(request, model);
+    }*/
+    @RequestMapping("/dining/dining_reserve_next")
+    public String dining_reserve_next(HttpServletRequest request, Model model)
+    {
+    	return service.dining_reserve_next(request,model);
     }
 
 

@@ -65,6 +65,23 @@ public class DiningResvServiceImpl implements DiningResvService{
 		return "/dining/dining_reserve";
 	}
 	@Override
+	public String dining_reserve_next(HttpServletRequest request, Model model)
+	{		
+		// jsp에 보내줘야 될내용 => 년,월,일, 방의 정보
+    	int y=Integer.parseInt(request.getParameter("y"));
+    	int m=Integer.parseInt(request.getParameter("m"));
+    	int d=Integer.parseInt(request.getParameter("d"));
+    	String id=request.getParameter("id");
+    	// 입실일
+    	String ymd=y+"-"+m+"-"+d;
+    	
+    	DiningVO dvo=mapper.dining_reserve_next("id");
+    	// request영역에 필요한 값 담기
+    	request.setAttribute("ymd", ymd);
+    	model.addAttribute("dvo", dvo);
+		return "/dining/dining_reserve_next";
+	}
+	/*@Override
 	public String getprev(HttpServletRequest request, Model model)
 	    {
 	    	LocalDate today=LocalDate.now(); //오늘날짜
@@ -93,7 +110,7 @@ public class DiningResvServiceImpl implements DiningResvService{
 	    	
 			return "/dining/getprev";
 	    	
-	    }
+	    }*/
 	/*@Override
 	public void getEmpty(String dday, String )*/
 	
