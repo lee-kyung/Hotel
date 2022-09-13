@@ -20,7 +20,18 @@
 	roomsec table{
 		width: 800px;
 		height: 80px;
-		background: #f1f2f3;
+		border: 1px solid #887159;
+	}
+	roomsec td{
+		height:40px;
+	}
+	roomsec table input[type=text]{
+		height: 42px;
+		margin-top: 17px;
+		border-radius: 5px;
+	}
+	roomsec table input[type=select]{
+		height: 40px;
 	}
 	roomsec #ro_info{
 		width: 800px;
@@ -34,7 +45,27 @@
 		padding-left: 20px;
 	}
 </style>
-
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script> 
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script>
+	$(function(){
+		
+		$("#checkin").datepicker({
+			format: "yyyy-mm-dd",			
+		});
+		$("#checkout").datepicker({
+			format: "yyyy-mm-dd",			
+		});
+	});
+	
+   function form_submit(n)
+   {
+	   //alert(document.room.rcode2[n].value);
+	   document.room.rcode.value=document.room.rcode2[n].value;
+	   document.room.submit();
+   }
+</script>
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
     <!-- bradcam_area_start -->
     <!-- 새 이미지 추가하는 법
@@ -53,57 +84,60 @@
     <div class="row"> 
     	<roomsec>
  			<div> RESERVATION </div>
- 			<div> 파라다이스호텔에 오신것을 환영합니다 </div>
-				<form method="post" action="room_resvnext?checkin={}&checkout={}">
+ 			<div> 호텔에 오신것을 환영합니다 </div>
+				<form name="room" method="post" action="room_resvnext">
+				 <input type="hidden" name="rcode">
 				<table>
 					<tr> 
 						<th> 체크인 </th>
 						<th> 체크아웃 </th>
 						<th> 성인 </th>
 						<th> 어린이 </th>
+						<th rowspan="2"><input type="button" value="검색" onclick="getRoom()"> </th>
 					</tr> 
 					<tr>
-						<td><input type="text" name="checkin" value=""></td>
-						<td><input type="text" name="checkout" value=""></td>
+						<td><input type="text" name="checkin" id="checkin"></td>
+						<td><input type="text" name="checkout" id="checkout"></td>
 						<td> 
-							<select>
-								<option value="-1"> 선택 </option>
-								<option value="0"> 1 </option>
-								<option value="1"> 2 </option>
-								<option value="2"> 3 </option>
-								<option value="3"> 4 </option>
-								<option value="4"> 5 </option>
-								<option value="5"> 6 </option>
+							<select name="adult" id="adult">
+								<option value="0"> 선택 </option>
+								<option value="1"> 1 </option>
+								<option value="2"> 2 </option>
+								<option value="3"> 3 </option>
+								<option value="4"> 4 </option>
+								<option value="5"> 5 </option>
+								<option value="6"> 6 </option>
 							</select>
 						</td>
 						<td> 
-							<select>
-								<option value="-1"> 선택 </option>
-								<option value="0"> 1 </option>
-								<option value="1"> 2 </option>
-								<option value="2"> 3 </option>
-								<option value="3"> 4 </option>
+							<select name="child" id="child">
+								<option value="0"> 선택 </option>
+								<option value="1"> 1 </option>
+								<option value="2"> 2 </option>
+								<option value="3"> 3 </option>
+								<option value="4"> 4 </option>
 							</select>
-						</td>					
+						</td>	
 					</tr>
 				</table>
-			<c:forEach items="${list}" var="rvo">
+				
+			<c:forEach items="${list}" var="rvo" varStatus="my">
  				<div id="ro_info">
+ 				<input type="hidden" name="rcode2" value="${rvo.rcode}">
 					<div id="left" style="float:left;height:250px;width:500px">
-						<img src="../img/rooms/${rvo.rpimg}" width="500px" height="250px">
+						<img src="../img/rooms/${rvo.rpimg}" width="500px" height="248px">
 					</div>
 					<div id="right" style="float:right;height:250px;width:270px">
 						<div id="rname">${rvo.rname}</div> <p>
 						<div><span id="subr">전망</span>${rvo.rview}</div>
 						<div><span id="subr">베드타입</span>${rvo.rbed}</div>
-						<div><span id="subr">가격</span>${rvo.rprice}</div>
-						<div></div>
+						<div><span id="subr">가격</span>${rvo.rprice}</div>						
 						<br>
-						<input type="submit" value="객실선택">
+						<input type="button" value="객실선택" onclick="form_submit(${my.index})">
 					</div>
 				</div>
 			</c:forEach> 
-				</form>
+			</form>	
  	  	</roomsec>
  	</div>
   </div>

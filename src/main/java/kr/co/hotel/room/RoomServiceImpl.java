@@ -83,14 +83,6 @@ public class RoomServiceImpl implements RoomService{
 		return "/room/room_content";
 	}
 
-	@Override
-	public String room_resv(HttpServletRequest request, Model model) {
-
-		ArrayList<RoomVO> list=mapper.room_resv();
-		model.addAttribute("list", list);
-		return "/room/room_resv";
-	}
-
 	
 	
 	
