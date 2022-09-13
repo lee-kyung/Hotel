@@ -107,6 +107,16 @@
                                                 <i class="fa fa-instagram"></i>
                                             </a>
                                         </li>
+                                         <li>
+		                                <c:if test="${userid == null}">
+											<a href="../login/login">로그인</a>
+											<a href="#">회원가입</a>
+										</c:if>
+										<c:if test="${userid != null}">
+											<a href="#"> ${name}님
+											<a href="../login/logout">로그아웃</a>
+										</c:if>
+		                                </li>
                                     </ul>
                                 </div>
                                 <div class="book_btn d-none d-lg-block">
