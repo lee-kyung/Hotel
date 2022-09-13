@@ -110,7 +110,7 @@
                                     </ul>
                                 </div>
                                 <div class="book_btn d-none d-lg-block">
-                                    <a class="popup-with-form" href="#test-form">Book A Room</a>
+                                    <a href="../room/room_resv">객실예약</a>
                                 </div>
                             </div>
                         </div>
@@ -223,7 +223,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                 <div class="popup_box ">
                         <div class="popup_inner">
                             <h3>Check Availability</h3>
-                            <form action="../room/room_avail">
+                            <form action="../room/room_resv">
                                 <div class="row">
                                     <div class="col-xl-6">
                                         <input id="datepicker" placeholder="체크인 날짜" >
