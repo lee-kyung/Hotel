@@ -56,7 +56,12 @@
                                     <ul id="navigation">
                                         <li><a href="../main/index">home</a></li>
                                         <li><a href="../room/rooms">rooms</a></li> <!-- class="active" -->
-                                        <li><a href="../dining/dining">dining</a></li>
+                                        <li><a href="../dining/dining">dining<i class="ti-angle-down"></i></a>
+                                            <ul class="submenu">
+                                                <li><a href="../dining/dining">레스토랑 소개</a></li>
+                                                <li><a href="../dining/dining_reserve">레스토랑 예약</a></li>
+                                            </ul>
+                                        </li>
                                         <li><a href="../wedding/wedding">wedding<i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
                                                 <li><a href="../wedding/wedding_hall?id=9">웨딩홀</a></li>
