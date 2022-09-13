@@ -66,8 +66,8 @@
                                         </li>
                                         <li><a href="../eshop/eshop">eshop<i class="ti-angle-down"></i></a>
                                         	<ul class="submenu">
-                                                <li><a href="../eshop/pro_list?pdae=p01">product</a></li>
-                                                <li><a href="../eshop/pro_list?pdae=p02">voucher</a></li>
+                                                <li><a href="../eshop/pro_list?pcode=p01">product</a></li>
+                                                <li><a href="../eshop/pro_list?pcode=p02">voucher</a></li>
                                                 <li><a href="../eshop/pro_write">상품등록</a></li>	<!-- 나중에 관리자만 볼 수 있게 할 메뉴 -->
                                             </ul>                                        
                                         </li>
@@ -110,7 +110,7 @@
                                     </ul>
                                 </div>
                                 <div class="book_btn d-none d-lg-block">
-                                    <a class="popup-with-form" href="#test-form">Book A Room</a>
+                                    <a href="../room/room_resv">객실예약</a>
                                 </div>
                             </div>
                         </div>
@@ -223,7 +223,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                 <div class="popup_box ">
                         <div class="popup_inner">
                             <h3>Check Availability</h3>
-                            <form action="../room/room_avail">
+                            <form action="../room/room_resv">
                                 <div class="row">
                                     <div class="col-xl-6">
                                         <input id="datepicker" placeholder="체크인 날짜" >
