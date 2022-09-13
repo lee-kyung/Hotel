@@ -6,15 +6,24 @@
 <style>
 	#pro_write {
 		width : 1000px;
-		height : 700px;
+		height : 600px;
 		margin : auto;
+		margin-top : 50px;
+	}
+	#pro_write table {
+		font-family : 돋움;
+		font-size : 14px;
+	}
+	#pro_write table td {
+		padding-bottom : 10px;
 	}
 </style>
 <script>
+	/* pdae테이블의 daecode를 이용하여 pso테이블의 socode를 가져오기 */
 	function getso(daecode){
 		let chk=new XMLHttpRequest();
 		chk.open("get", "getso?daecode="+daecode);
-		chk.send()
+		chk.send();
 		chk.onreadystatechange=function(){
 			if(chk.readyState == 4) {
 				document.inpro.so.innerHTML=decodeURI(chk.responseText.trim());
@@ -22,135 +31,151 @@
 			}
 		}
 	}
-
+	
+	/* p와 daecode와 socode를 합치고(5자리), 뒤의 3자리가 1씩 증가하는 상품코드(8자리) 완성하기 */
 	function getpcode(){
 		let dae=document.inpro.dae.value;
 		let so=document.inpro.so.value;
-		if(dae == "선택") {
-			alert("대분류를 선택하세요")
+		if(dae == "메인분류") {
+			alert("메인분류를 선택하세요.")
 			return false;
 			}
-			else if(so == "선택") {
-				alert("소분류를 선택하세요")
+			else if(so == "하위분류") {
+				alert("하위분류를 선택하세요.")
 				return false;
 				}
 				else {
-					let pcode="p"+dae+so;
+					let pcode1="p"+dae+so;	// pcode 앞5자리 완성
 					let chk=new XMLHttpRequest();
-					chk.open("get", "getpcode?pcode="+pcode)
+					chk.open("get", "getpcode?pcode1="+pcode1)
 					chk.send();
 					chk.onreadystatechange=function(){
 						if(chk.readyState == 4) {
-							let code=chk.responseText;
-							/* 1을 증가하여 상품코드를 완성하기 위해, Integer화하고 1을  더하기 */
-							//code=parseInt(chk.responseText)+1;	// chk.responseText를 Integer화하기
-						//alert(code);
-							/* length를 알기 위해, 다시 String화하기(3가지) */
-							//code=code+"";
-							//String(code);
-							//code.toString();
-						//alert(code.length);
-							/* code의 값을 3자리로 변경하기 */
-							switch(code.length) {
-								case 1 : code="00"+code; break;
-								case 2 : code="0"+code; break;
+							/* pcode 뒤3자리 완성 */
+							let pcode2=chk.responseText;
+							switch(pcode2.length) {
+								case 1 : pcode2="00"+pcode2; break;
+								case 2 : pcode2="0"+pcode2; break;
 							}
-							/* pcode와 code를 연결하기 */
-							document.inpro.pcode.value=pcode+code;
+							document.inpro.pcode.value=pcode1+pcode2;	// pcode 총8자리 완성
 						}
 					}
 					return true;
-		}
+				}
+	}
+	
+	function goback(){
+		window.history.back();
+	}
+	
+	/* 상품코드, 메인이미지, 상세이미지, 상품명, 판매가, 재고가 입력됐는지 체크하기 */
+	function check(){
+		let dom=document.inpro;
+		if(dom.pcode.value.trim() == "") {
+			alert("상품코드를 생성하세요.")
+			return false;
+			}
+			else if(dom.img1.value.trim() == "") {
+				alert("메인이미지를 등록하세요.")
+				return false;
+				}
+				else if(dom.img2.value.trim() == "") {
+					alert("상세이미지를 등록하세요.")
+					return false;
+					}
+					else if(dom.title.value.trim() == "") {
+						alert("상품명을 입력하세요.")
+						return false;
+						}
+						else if(dom.price.value.trim() == "") {
+							alert("판매가를 입력하세요.")
+							return false;
+							}
+							else if(dom.su.value.trim() == "") {
+								alert("재고를 입력하세요.")
+								return false;
+							}
+							else
+								return true;
 	}
 </script>
 </head>
-
 <body>
-
-	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
-    <!-- bradcam_area_start -->
-    <!-- 새 이미지 추가하는 법
-    	①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기
-    	②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
-    <div class="bradcam_area basic">	<!-- class="bradcam_area 클래스명" -->
-        <h3> 상품등록 </h3>
-    </div>
-    <!-- bradcam_area_end -->
-    <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
-
-
 	<!-- ================ 상품등록 Area Start ================= -->
-    <!-- 부타이틀(자유롭게 변경)_area_start -->
-   	<section id="pro_write">
-	<form name="inpro" method="post" action="product_ok" enctype="multipart/form-data">
+	<section id="pro_write">
+	<form name="inpro" method="post" action="pro_write_ok" enctype="multipart/form-data" onsubmit="return check()">
 		<table width="600" align="center">
 		<caption> <h2> 상품 등록 </h2> </caption>
 			<tr>
-				<td> 상품코드 </td>
-				<td> <input type="text" name="pcode" readonly> </td>
-				<td>	<!-- 대, 중, 소 -->
-					<select name="dae" onchange="getjung(this.value)">
-						<option> 선택 </option>
-					<c:forEach var="dvo" items="${list}">
-						<option value="${dvo.code}"> ${dvo.title} </option>
-					</c:forEach>	
+				<td width="80"> 상품코드 </td>
+				<td width="100"> <input type="text" name="pcode" readonly placeholder="상품코드를 생성하세요."> </td>
+				<td>
+					<select name="dae" onchange="getso(this.value)">	<!-- 메인분류 -->
+						<option> 메인분류  </option>
+					<c:forEach var="pdvo" items="${list}">
+						<option value="${pdvo.code}"> ${pdvo.title} </option>
+					</c:forEach>
 					</select>
-					<select name="jung" onchange="getso(this.value)">
-					
-					</select>
-					<select name="so">
-					
-					</select>
-					<input type="button" onclick="return getpcode()" value="생성">
+					<select name="so"> </select>	<!-- 하위분류 -->					
+					<input type="button" onclick="return getpcode()" value="상품코드 생성">
 				</td>
 			</tr>
 			<tr>
-				<td> 상품메인 이미지 </td>
-				<td colspan="2"> <input type="file" name="pimg"> </td>
+				<td> 메인이미지 </td>
+				<td colspan="2"> <input type="file" name="img1"> </td>
 			</tr>
 			<tr>
-				<td> 상품상세 이미지 </td>
-				<td colspan="2"> <input type="file" name="cimg"> </td>
+				<td> 상세이미지 </td>
+				<td colspan="2"> <input type="file" name="img2"> </td>
 			</tr>
 			<tr>
 				<td> 상품명 </td>
-				<td colspan="2"> <input type="text" name="title"> </td>
+				<td colspan="2"> <input type="text" name="title" size="55"> </td>
 			</tr>
 			<tr>
-				<td> 상품가격 </td>
-				<td colspan="2"> <input type="text" name="price" value="0"> </td>
+				<td> 판매가 </td>
+				<td colspan="2"> <input type="number" name="price"  min="0" placeholder="숫자만 입력하세요."> </td>
 			</tr>
 			<tr>
-				<td> 상품제조사 </td>
-				<td colspan="2"> <input type="text" name="made"> </td>
+				<td> 할인율 </td>
+				<td colspan="2"> <input type="number" name="halin" min="0" max="100" placeholder="0~100"> </td>
 			</tr>
 			<tr>
-				<td> 상품할인율 </td>
-				<td colspan="2"> <input type="text" name="halin" value="0"> </td>
+				<td> 적립율 </td>
+				<td colspan="2"> <input type="number" name="juk" min="0" max="100" placeholder="0~100"> </td>
 			</tr>
 			<tr>
-				<td> 적립금 </td>
-				<td colspan="2"> <input type="text" name="juk" value="0"> </td>
-			</tr>
-			<tr>
-				<td> 상품수량 </td>
-				<td colspan="2"> <input type="text" name="su" value="1"> </td>
+				<td> 재고 </td>
+				<td colspan="2"> <input type="number" name="su" min="0" placeholder="숫자만 입력하세요."> </td>
 			</tr>
 			<tr>
 				<td> 배송비 </td>
-				<td colspan="2"> <input type="text" name="baesong" value="0"> </td>
+				<td colspan="2"> <input type="number" name="baefee" min="0" placeholder="숫자만 입력하세요."> </td>
 			</tr>
 			<tr>
-				<td> 배송일 </td>
-				<td colspan="2"> <input type="text" name="baeday" value="2"> </td>
+				<td colspan="2" style="font-size:13px;"> ※옵션이 있다면 입력하세요. </td>
 			</tr>
 			<tr>
-				<td colspan="3" align="center"> <input type="submit" value="등록하기"> </td>
+				<td> 옵션1 </td>
+				<td colspan="2"> <input type="text" name="opt1" placeholder="옵션값은 쉼표(,)로 구분하세요. 예)빨강,주황,노랑 또는  1,2,3" size="55"> </td>
+			</tr>
+			<tr>
+				<td> 옵션2 </td>
+				<td colspan="2"> <input type="text" name="opt2" placeholder="옵션값은 쉼표(,)로 구분하세요. 예)빨강,주황,노랑 또는  1,2,3" size="55"> </td>
+			</tr>
+			<tr>
+				<td> 옵션3 </td>
+				<td colspan="2"> <input type="text" name="opt3" placeholder="옵션값은 쉼표(,)로 구분하세요. 예)빨강,주황,노랑 또는  1,2,3" size="55"> </td>
+			</tr>
+			<tr>
+				<td colspan="3" align="center">
+					<input type="button" value="이전으로" onclick="goback()">
+					<input type="submit" value="등록하기">
+				</td>
 			</tr>
 		</table>
 	</form>
 	</section>
-    <!-- 부타이틀(자유롭게 변경)_area_end -->
     <!-- ================ 상품등록 Area End ================= -->
 
 </body>

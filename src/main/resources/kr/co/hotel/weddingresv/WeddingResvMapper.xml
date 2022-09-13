@@ -13,14 +13,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select wed_hall from wedding order by id asc
 	</select>
 
+	<select id="getcheck" resultType="Integer">
+
+	select count(*) as cnt from weddingresv where wresv_cday=#{wresv_cday} and wresv_time=#{wresv_time}
+
+<!--		select count(*) as cnt from weddingresv as wr, weddingtime as wt 
+		where wr.wresv_cday=#{param2} and wr.wresv_time=#{param1} 
+ -->	
+	</select>
 	
 	<insert id="weddingReserve_ok" parameterType="kr.co.hotel.weddingresv.WeddingResvVO">
-		insert into weddingresv(wresv_wday)
-  		values(#{param1})
-  		<!-- userid  추가 
+		insert into weddingresv(wresv_content, wresv_day,wresv_cday, wresv_time,wresv_wday)
+  		values(#{wresv_content}, now(), #{wresv_cday}, #{wresv_time}, #{wresv_wday})
 
-wresv_cday, wresv_wday,  wresv_id, wresv_day
-#{wresv_cday}, #{wresv_wday}, #{wresv_id}, now()
--->
+
 	</insert>
 </mapper>

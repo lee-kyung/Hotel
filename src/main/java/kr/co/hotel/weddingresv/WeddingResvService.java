@@ -12,4 +12,6 @@ public interface WeddingResvService {
 
 	public String weddingReserve_ok(HttpServletRequest request, WeddingResvVO wrvo);
 
+	public void getcheck(WeddingResvVO wrvo, HttpServletRequest request, PrintWriter out);
+
 }

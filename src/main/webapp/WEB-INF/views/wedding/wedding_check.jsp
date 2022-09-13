@@ -25,6 +25,13 @@
 	.widget_title{
 	}
 </style>
+<script>
+function total_price()
+{
+	var hall=document.pay.h.value;
+	document.getElementById("h1").innerText=hall;
+	}
+</script>
 </head>
 
 <body>
@@ -44,86 +51,86 @@
     
     <section class="blog_area single-post-area section-padding">
 
-      <div class="container" style="margin-top:100px;">
+ <div class="container" style="margin-top:100px;">
+
          <div class="row">
             <div class="col-lg-8 posts-list">
-            
+       <form name="pay" method="post">   
           <table width="1100" border="1">
           <tr>
           	<td>홀</td>s
           	<td>
-			<input type="checkbox" value="" >a홀
-          	<input type="checkbox" value="" >b
-          	<input type="checkbox" value="">c
-          	<input type="checkbox" value="">d
+			<input type="radio" name="h" value="10000" onchange="total_price()">a홀
+          	<input type="radio" name="h" value="20000" onchange="total_price()">b
+          	<input type="radio" name="h" value="30000" onchange="total_price()">c
+          	<input type="radio" name="h" value="40000" onchange="total_price()">d
           	</td>
           </tr>
           <tr>
           	<td>평일/주말</td>
           	<td>
-          	<input type="checkbox" value="">평일
-          	<input type="checkbox" value="">주말
+          	<input type="radio" value="">평일
+          	<input type="radio" value="">주말
           	</td>
           </tr>
           <tr>
           	<td>기준인원(최소/최대)</td>
           	<td>
-          	<input type="checkbox" value="" checked>기준인원표시
-          	<input type="checkbox" value="">+50인
-          	<input type="checkbox" value="">+100인
+          	<input type="radio" value="" checked>기준인원표시
+          	<input type="radio" value="">+50인
+          	<input type="radio" value="">+100인
           	</td>
           </tr>
           <tr>
           	<td>생화</td>
           	<td>
-          	<input type="checkbox" value="" checked>기본
-          	<input type="checkbox" value="">500만원
-          	<input type="checkbox" value="">800만원
-          	<input type="checkbox" value="">1200만원
+          	<input type="radio" value="">500만원
+          	<input type="radio" value="">800만원
+          	<input type="radio" value="">1200만원
           	</td>
           </tr>
            <tr>
           	<td>예식타입</td>
           	<td>
-          	<input type="checkbox" value="" >동시예식
-          	<input type="checkbox" value="">분리예식
+          	<input type="radio" value="" >동시예식
+          	<input type="radio" value="">분리예식
           	</td>
           </tr>
           
           <tr>
           	<td>하객음식(분리예식일경우 선택)</td>
           	<td>
-          	<input type="checkbox" value="" checked>150000
-          	<input type="checkbox" value="">200000
+          	<input type="radio" value="" checked>150000
+          	<input type="radio" value="">200000
           	</td>
           </tr>
           <tr>
           	<td>폐백음식</td>
           	<td>
-          	<input type="checkbox" value="">150000
-          	<input type="checkbox" value="">200000
+          	<input type="radio" value="">150000
+          	<input type="radio" value="">200000
           	</td>
           </tr>
           <tr>
           	<td>웨딩연출</td>
           	<td>
-          	<input type="checkbox" value="" checked>기본
-          	<input type="checkbox" value="" >스크린상영
-          	<input type="checkbox" value="">특수조명
-          	<input type="checkbox" value="">음향시스템
+          	<input type="radio" value="" checked>기본
+          	<input type="radio" value="" >스크린상영
+          	<input type="radio" value="">특수조명
+          	<input type="radio" value="">음향시스템
           	</td>
           </tr>
           <tr>
           	<td>사회자</td>
           	<td>
-          	<input type="checkbox" value="" >필요
+          	<input type="radio" value="" >필요
           	</td>
           </tr>
           <tr>
           	<td>부케</td>
           	<td>
-          	<input type="checkbox" value="" >100000
-          	<input type="checkbox" value="">150000
+          	<input type="radio" value="" >100000
+          	<input type="radio" value="">150000
           	</td>
           </tr>
           </table>
@@ -134,17 +141,88 @@
           <table width="1100" border="1">
           <tr>
           	<td>홀</td>
-         	<td>홀금액</td>
+         	<td>
+         	
+         	<span id="h1">0</span>원
+			
+			</td>
          	<td>평일/주말선택된 날 보이기</td>
-         	<td>금액보이기..</td>
+         	<td></td>
           </tr>
+          <tr>
+          	<td>홀</td>
+         	<td></td>
+         	<td>평일/주말선택된 날 보이기</td>
+         	<td></td>
+          </tr>
+          <tr>
+          	<td>홀</td>
+         	<td></td>
+         	<td>평일/주말선택된 날 보이기</td>
+         	<td></td>
+          </tr>
+          <tr>
+          	<td>홀</td>
+         	<td></td>
+         	<td>평일/주말선택된 날 보이기</td>
+         	<td></td>
+          </tr>
+          <tr>
+          	<td>홀</td>
+         	<td></td>
+         	<td>평일/주말선택된 날 보이기</td>
+         	<td></td>
+          </tr>
+          <tr>
+          	<td>홀</td>
+         	<td></td>
+         	<td>평일/주말선택된 날 보이기</td>
+         	<td></td>
+          </tr>
+          <tr>
+          	<td>홀</td>
+         	<td></td>
+         	<td>평일/주말선택된 날 보이기</td>
+         	<td></td>
+          </tr>
+          <tr>
+          	<td>홀</td>
+         	<td></td>
+         	<td>평일/주말선택된 날 보이기</td>
+         	<td></td>
+          </tr>
+          <tr>
+          	<td>홀</td>
+         	<td></td>
+         	<td>평일/주말선택된 날 보이기</td>
+         	<td></td>
+          </tr>
+          <tr>
+          	<td>홀</td>
+         	<td></td>
+         	<td>평일/주말선택된 날 보이기</td>
+         	<td></td>
+          </tr>
+          <tr>
+          	<td>홀</td>
+         	<td></td>
+         	<td>평일/주말선택된 날 보이기</td>
+         	<td></td>
+          </tr>
+          <tr>
+          	<td>홀</td>
+         	<td></td>
+         	<td>평일/주말선택된 날 보이기</td>
+         	<td></td>
+          </tr>
+          
           <tr>
          	 <td>
           
           	</td>
           </tr>
           </table>
-          
+      </form>      
           
           
           
