@@ -6,6 +6,8 @@ import kr.co.hotel.dining.DiningVO;
 
 public interface DiningResvMapper {
 	
-	public ArrayList<DiningVO> getTime();
+	/*public ArrayList<DiningVO> getTime();*/
+
+	public ArrayList<DiningVO> dining_reserve();
 
 }

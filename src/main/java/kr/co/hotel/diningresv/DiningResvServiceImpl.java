@@ -22,7 +22,7 @@ public class DiningResvServiceImpl implements DiningResvService{
 	private DiningResvMapper mapper;
 	
 	@Override
-	public String dining_reserve(HttpServletRequest request, Model model, DiningVO dvo, PrintWriter out)
+	public String dining_reserve(HttpServletRequest request, Model model)
 	{
 	//  1일의 요일, 총일수, 몇주를 구해서 request영역에 저장
     	int y,m;
@@ -58,12 +58,44 @@ public class DiningResvServiceImpl implements DiningResvService{
     	request.setAttribute("y", y);
     	request.setAttribute("m", m); 
 		
-    	ArrayList<DiningVO> dlist=mapper.getTime();
+    	/*ArrayList<DiningVO> dlist=mapper.getTime();*/
+    	ArrayList<DiningVO> dlist=mapper.dining_reserve();
     	model.addAttribute("dlist", dlist);
     	
-    	model.addAttribute("dvo", dvo);
 		return "/dining/dining_reserve";
 	}
+	@Override
+	public String getprev(HttpServletRequest request, Model model)
+	    {
+	    	LocalDate today=LocalDate.now(); //오늘날짜
+	    	int y,m;
+	    	if(request.getParameter("y")==null) // reserve.jsp를 제일 처음 부를때는 null값임
+	    		y=today.getYear();
+	    	else
+	    	    y=Integer.parseInt(request.getParameter("y"));
+	    	
+	    	if(request.getParameter("m")==null)
+	    		m=today.getMonthValue();
+	    	else
+	    	    m=Integer.parseInt(request.getParameter("m"));
+	    	
+	    	LocalDate xday=LocalDate.of(today.getYear(), today.getMonthValue(), 1); // 오늘기준 1일의날짜
+	    	LocalDate dday=LocalDate.of(y, m, 1); // 현재 달력기준 1일의 날짜
+	    	
+	    	if(xday.isBefore(dday))  // 오늘기준 보다 달력의 기준이 이전일 경우(같을경우도 포함)
+	    	{
+	    		request.setAttribute("prev", "1");
+	    	}
+	    	else 
+	    	{
+	    	      	request.setAttribute("prev", "0");
+	    	}
+	    	
+			return "/dining/getprev";
+	    	
+	    }
+	/*@Override
+	public void getEmpty(String dday, String )*/
 	
 
 }

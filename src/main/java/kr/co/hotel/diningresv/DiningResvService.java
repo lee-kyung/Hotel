@@ -10,7 +10,9 @@ import kr.co.hotel.dining.DiningVO;
 
 public interface DiningResvService {
 	
-	public String dining_reserve(HttpServletRequest request, Model model, DiningVO dvo, PrintWriter out);
+	public String dining_reserve(HttpServletRequest request, Model model);
+
+	public String getprev(HttpServletRequest request, Model model);
 	
 	
 
