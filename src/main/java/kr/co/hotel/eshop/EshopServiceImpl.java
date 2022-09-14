@@ -148,7 +148,12 @@ public class EshopServiceImpl implements EshopService {
 	@Override
 	public String pro_content(HttpServletRequest request, Model model) {
 		String pcode=request.getParameter("pcode");
-		model.addAttribute("pvo", mapper.pro_content(pcode));
+		ProductVO pvo=mapper.pro_content(pcode);
+		
+		/* fimg의 복수이미지를 fimgs[]에 넣기*/
+		pvo.setImgs(pvo.getFimg().split(","));
+		
+		model.addAttribute("pvo", pvo);
 		return "/eshop/pro_content";
 	}
 

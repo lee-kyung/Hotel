@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -81,6 +82,13 @@ public class RoomServiceImpl implements RoomService{
 		model.addAttribute("list", list);
 		
 		return "/room/room_content";
+	}
+
+	@Override
+	public String room_su(HttpServletRequest request, HttpSession session, Model model) {
+		
+		
+		return null;
 	}
 
 	

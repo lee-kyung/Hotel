@@ -117,7 +117,7 @@
                                     </ul>
                                 </div>
                                 <div class="book_btn d-none d-lg-block">
-                                    <a class="popup-with-form" href="#test-form">Book A Room</a>
+                                   <a href="../room/room_resv">객실예약</a>
                                 </div>
                             </div>
                         </div>

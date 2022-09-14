@@ -5,10 +5,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
 <mapper namespace="kr.co.hotel.roomresv.RoomResvMapper">
 	<select id="room_resv" resultType="kr.co.hotel.room.RoomVO">
-		select * from room;
+		select * from room order by rname desc;
 	</select>
 	
 	<select id="room_resvnext" resultType="kr.co.hotel.room.RoomVO">
 		select * from room where rcode=#{param1}
 	</select>
+	
+	<insert id="room_resv_ok" parameterType="kr.co.hotel.roomresv.RoomResvVO">
+		insert into roombk(bcin,bcout,userid,rcode,binwon,bextbed,bmeal,btotal,bstate,bid,bkdate,bkname,bkphone)
+		values(#{bcin},#{bcout},#{userid},#{rcode},#{binwon},#{bextbed},#{bmeal},#{btotal},1,#{bid},now(),#{bkname},#{bkphone})
+	</insert>
+	
+	<select id="getBid" resultType="Integer">
+		select ifnull(max(right(bid,4)),0) from roombk where userid=#{param1}
+	</select>
+	
 </mapper>
