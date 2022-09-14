@@ -79,6 +79,7 @@
     <!-- 부타이틀(자유롭게 변경)_area_start -->
 
   <div id="section">
+   <form name="dine" method="post" action="reserve_next">
    <table width="1100" align="center">    
     <tr>
       <th> sun</th>
@@ -396,6 +397,7 @@ $('#calendar').calendar();
          </tr>
    </c:forEach> 
    </table>
+   </form>
   </div>
     <!-- 부타이틀(자유롭게 변경)_area_end -->
     <!-- ================ 타이틀(자유롭게 변경) Area End ================= -->
