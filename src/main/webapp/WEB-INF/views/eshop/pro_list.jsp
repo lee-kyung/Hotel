@@ -66,6 +66,21 @@
 	#pro_list #title h3 {
 		cursor : pointer;
 	}
+	#pro_list #price_text1 {
+		font-family : TimesNewRoman;
+		font-size : 25px;
+		color : black;
+		margin-left : 5px;
+	}
+	#pro_list #price_text2 {
+		font-family : TimesNewRoman;
+		color : gray;
+		margin-right : 5px;
+	}
+	#pro_list #halin_text1 {
+		font-family : TimesNewRoman;
+		font-size : 20px;
+	}
 </style>
 <script>
 	/* 페이지목록수 선택하기 */
@@ -151,12 +166,12 @@
 					<hr style="width:350px;">
 					<div id="price">		<!-- 판매가 / 할인가 원가 할인율-->
 						<c:if test="${pvo.halin == 0}">
-							KRW <b style="font-family:TimesNewRoman;font-size:25px;color:black;margin-left:5px;"> <fmt:formatNumber value="${pvo.price}" pattern="#,###"/> </b>
+							KRW <b id="price_text1"> <fmt:formatNumber value="${pvo.price}" pattern="#,###"/> </b>
 						</c:if>
 						<c:if test="${pvo.halin != 0}">
-							KRW <b style="font-family:TimesNewRoman;font-size:25px;color:black;margin-left:5px;"> <fmt:formatNumber value="${(pvo.price) - (pvo.price * (pvo.halin / 100) )}" pattern="#,###"/> </b>
-							<s style="font-family:TimesNewRoman;color:gray;margin-right:5px;"><fmt:formatNumber value="${pvo.price}" pattern="#,###"/></s>
-							<b style="font-family:TimesNewRoman;font-size:20px;"> ${pvo.halin}% </b>
+							KRW <b id="price_text1"> <fmt:formatNumber value="${(pvo.price) - (pvo.price * (pvo.halin / 100) )}" pattern="#,###"/> </b>
+							<s id="price_text2"><fmt:formatNumber value="${pvo.price}" pattern="#,###"/></s>
+							<b id="halin_text1"> ${pvo.halin}% </b>
 						</c:if>
 					</div>
 				</td>
