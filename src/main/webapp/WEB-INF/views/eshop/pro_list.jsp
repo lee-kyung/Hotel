@@ -29,16 +29,15 @@
 		margin : auto;
 		text-align : center;
 		margin-top : 50px;
-		font-size : 20px;
-		width : 550px;
+		width : 410px;
 		height : 60px;
 	}
 	#pro_list #cate1 #cate2 {
 		display : inline-block;
 		float : left;
-		width : 270px;
-		height : 50px;
-		padding-top : 10px;
+		width : 200px;
+		height : 35px;
+		padding-top : 5px;
 		border : 1px solid #887159;
 		color : #887159;
 		cursor : pointer;
@@ -46,9 +45,9 @@
 	#pro_list #cate1 #cate3 {
 		display : inline-block;
 		float : right;
-		width : 270px;
-		height : 50px;
-		padding-top : 10px;
+		width : 200px;
+		height : 35px;
+		padding-top : 5px;
 		border : 1px solid #887159;
 		color : #887159;
 		cursor : pointer;
@@ -64,8 +63,12 @@
 		height : 50px;
 		float : right;
 	}
+	#pro_list #title h3 {
+		cursor : pointer;
+	}
 </style>
 <script>
+	/* 페이지목록수 선택하기 */
 	function page_sel(psel){
 		location="pro_list?pcode=${pcode}&osel=${osel}&psel="+psel;	// 정렬후 psel변경해도 정렬순 유지시키기
 	}
@@ -73,11 +76,17 @@
 		document.getElementById("psel").value="${psel}";
 	}
 	
+	/* 정렬순 선택하기 */
 	function order_sel(osel){
 		location="pro_list?pcode=${pcode}&psel=${psel}&osel="+osel;	// 페이지목록수 변경후 osel변경해도 페이지목록개수 유지시키기
 	}
 	window.onload=function(){	/* 사용자가 선택한 정렬순을 브라우저에 나타내기 */
 		document.getElementById("osel").value="${osel}";
+	}
+	
+	/* pro_content로 이동하기 */
+	function content_view(pcode){
+		location="pro_content?pcode="+pcode;
 	}
 </script>
 </head>
@@ -93,7 +102,7 @@
 	    <div class="bradcam_area eshop3">
 	        <h3> V O U C H E R </h3>
 	    </div>
-    </c:if>    
+    </c:if>
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
 
 
@@ -129,16 +138,16 @@
 				<option value="60"> 60개씩 </option>
 			</select>
 		</span>
-		<table align="center">	 <!-- 상품을 10개씩 출력 -->
+		<table align="center">	 <!-- 상품을 9개씩 출력 -->
 		<c:set var="n" value="3"/>	<!-- 한 행에 출력되는 열(상품)의 개수 -->
 		<c:set var="i" value="0"/>	<!-- 상품 3개마다 행을 바꾸기 위한 변수 -->	
 			<tr>
 			<c:forEach var="pvo" items="${list}">
-				<td onclick="pro_content('pvo.pcode')">
+				<td onclick="content_view('${pvo.pcode}')">
 					<div class="offers_area padding_top" id="eshop_img"><div class="single_offers"><div class="about_thumb">
 						<img src="../img/eshop/${pvo.img}" height="300" width="300" style="cursor:pointer">	<!-- 상품이미지 -->
 					</div></div></div>
-					<div id="title"> <h3> ${pvo.title} </h3> </div>	<!-- 상품명 -->
+					<div id="title"> <h3 onclick="content_view('${pvo.pcode}')"> ${pvo.title} </h3> </div>	<!-- 상품명 -->
 					<hr style="width:350px;">
 					<div id="price">		<!-- 판매가 / 할인가 원가 할인율-->
 						<c:if test="${pvo.halin == 0}">

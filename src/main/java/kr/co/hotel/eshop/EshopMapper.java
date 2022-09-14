@@ -9,4 +9,6 @@ public interface EshopMapper {
 	public void pro_write_ok(ProductVO pvo);
 	public ArrayList<ProductVO> pro_list(String pcode, String osel, int pindex, int psel);
 	public int total(int psel);
+	
+	public ProductVO pro_content(String pcode);
 }
