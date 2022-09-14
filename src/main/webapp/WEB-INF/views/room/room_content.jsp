@@ -66,8 +66,9 @@
     <div class="row"> 
     <roomsec>
  		<c:forEach items="${list}" var="rvo">
-			<img src="../img/rooms/${rvo.rpimg}">
-			<img src="../img/rooms/${rvo.rcimg}">
+ 		<div style="font-size:20px; font-weight: 900">${rvo.rname}</div>
+			<img src="../img/rooms/${rvo.rpimg}" width="980px">
+			<img src="../img/rooms/${rvo.rcimg}"> <p>
 		</c:forEach>
  	</roomsec>
  	</div>

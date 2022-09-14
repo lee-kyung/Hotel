@@ -52,10 +52,12 @@
 	$(function(){
 		
 		$("#checkin").datepicker({
-			format: "yyyy-mm-dd",			
+			format: "yyyy-mm-dd",
+			minDate: new Date() 
 		});
 		$("#checkout").datepicker({
-			format: "yyyy-mm-dd",			
+			format: "yyyy-mm-dd",
+			minDate: new Date()
 		});
 	});
 	
