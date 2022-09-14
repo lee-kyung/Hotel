@@ -192,7 +192,16 @@
      </tr>
  </table>
  <hr>
- <p></p>
+  <table width="900" align="center">
+   <tr>
+       <td><input type="text" name="name" size="50"></td>
+       <td>
+        <input type="text" name="p1" class="inputs" maxlength="3" size="10" />-
+        <input type="text" name="p2" class="inputs" maxlength="4" size="10"/>-
+        <input type="text" name="p3" class="inputs" maxlength="4" size="10"/>
+       </td>
+     </tr>
+  </table>
  </div>
  </form>
 </div>
