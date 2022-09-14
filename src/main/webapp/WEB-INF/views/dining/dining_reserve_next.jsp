@@ -6,31 +6,36 @@
  <style>
   .flex-container{
     width:1300px;
-    /* height:2800px; */
     margin:auto;
-    display:inline-flex;
+    /* display:inline-flex; */
   }
   #section_left1 #info{
     font-size:18px;
     font-weight:700px;
     color:#887159;
-    
-    
+    margin:auto;
   }
   #section_left1 #info_con{
     line-height:1.7;
   }
   #section_left1{
-    float:left;
+    /* float:left; */
     width:600px;
-    
   }
   #section_right{
     float:right;
     width:200px;
     /* height:900px; */
   } 
+  table{
+    align:center;
+    margin:auto;
+    font-size:15px;
+    margin-top:10px;
+  }
  </style>
+ <script src="http://code.jquery.com/jquery-latest.js"></script>
+ 
 </head>
 
 <body>
@@ -47,19 +52,23 @@
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
 	<!-- ================ 타이틀(자유롭게 변경) Area Start ================= -->
     <!-- 부타이틀(자유롭게 변경)_area_start -->
-<div class="flex-container">
-   
     
  <div id="section_left1"> 
-  <caption><h3 style="font-weight:790px;">RESERVATION</h3>
-     <h2> 파라다이스호텔 부산에 오신 것을 환영합니다.</h2></caption>
-     <hr>
-     <caption><h2>ON THE PLATE</h2></caption>
-       <span id="info">안내사항</span> 
+  <h3 style="font-weight:790px;">RESERVATION</h3>
+   <table width="1000" align="center">
+   <tr>
+     <td> 
+       <h2> 파라다이스호텔 부산에 오신 것을 환영합니다.</h2><br>
+       <h2>ON THE PLATE</h2><br>
+       <span id="info">안내사항<br></span>
+     </td>
+   </tr>
+   </table>
  </div>
  <div id="section_left2"> 
+  <form name="reser" method="post" action="reserve_ok">
    <div id="1-1">
-   <table width="100%" align="center" border="1">
+   <table width="1000" align="center" >
        <tr>
         <td id="info_con">
       - 예약 신청을 위한 페이지로 예약 신청 후 직원이 확인하여 예약 확정 문자를 보내드립니다.<br>
@@ -71,37 +80,123 @@
       - 홈페이지 예약 할인 프로모션은 예약 상황에 따라 조기 마감 될 수 있으며 바우쳐,쿠폰사용 및 제휴 할인과 중복 적용되지 않습니다.
         </td>
       </tr>
-   </div>
-      
- </table>
- </tr>
- </div>
-</div>
-<div class="flex-container">    
-    <div id="section_right">
-     <caption><h3 style="font-weight:790px;">RESERVATION</h3>
-     <h2> 파라다이스호텔 부산에 오신 것을 환영합니다.</h2></caption>
-     <hr>
-     <caption><h2>ON THE PLATE</h2></caption>
-       <span id="info">안내사항</span>
-  <!--     <table width="100%" align="center" border="1"> -->
-       <tr>
-        <td id="info_con">
-      - 예약 신청을 위한 페이지로 예약 신청 후 직원이 확인하여 예약 확정 문자를 보내드립니다.<br>
-     
-        </td>
-      </tr>
-      <tr>
-        <td>예약정보</td>
-        <td>
-          <!-- <select name="reserve_date">
-           <option value="0"></option>
-          </select>    -->     
-        </td>
-<!--       </table> -->
-    </div>
+   </table>
+    <table width="1000" align="center" >
+     <tr>
+       <td>방문 희망 일자</td>
+       <td>조식/중식/석식</td>
+       <td>예약시간</td>
+     </tr>
+     <tr>
+       <td>${ymd}</td>
+       <td>
+       <!-- <input type="hidden" id="changeInput"> -->
+        <select name="dine_type" onchange="categoryChange(this)">
+         <option>선택</option>
+         <option value="a">Breakfast</option>
+         <option value="b">Lunch</option>
+         <option value="c">Dinner</option>
+        </select>
+       </td>
+       <td>
+ 
+       <%-- <select id="time">
+          <c:if test="${dvo.dine_time == null }">
+           #
+          </c:if> 
+         <option value>선택</option>
+          <c:if test="${dvo.dine_time == Breakfast }">
+            <option value="1">8:00</option>
+            <option value="2">10:00</option>
+          </c:if>
+       
+          <c:if test="${dvo.dine_time == Lunch }">
+            <option value="3">13:00</option>
+            <option value="4">15:00</option>
+          </c:if>
+       
+         <c:if test="${dvo.dine_time == Dinner }">
+            <option value="5">16:00</option>
+            <option value="6">18:00</option>  
+         </c:if>
+       </select> --%>
+        <select id="time">
+         <option>선택</option>
+  
+       </select>
+       
+<script>
+  function categoryChange(e)
+  {
+	  var time_a=["8:00","10:00"];
+	  var time_b=["13:00","15:00"];
+	  var time_c=["16:00","18:00"];
+	  var target= document.getElementById("time");
+	  
+	  if(e.value == "a") var d = time_a;
+		else if(e.value == "b") var d = time_b;
+		else if(e.value == "c") var d = time_c;
 
+		target.options.length = 0;
+
+		for (x in d) {
+			var opt = document.createElement("option");
+			opt.value = d[x];
+			opt.innerHTML = d[x];
+			target.appendChild(opt);
+             }
+  }
+  $(function() {
+	    $(".inputs").keyup (function () {
+	        var charLimit = $(this).attr("maxlength");
+	        if (this.value.length >= charLimit) {
+	            $(this).next('.inputs').focus();
+	            return false;
+	        }
+	    });
+	});
+</script>
+       </td>
+     </tr> 
+     <tr>
+       <td>성인</td>
+       <td>어린이</td>
+       <td>유아</td>
+     </tr>
+     <tr>
+       <td><input type="text" placeholder="성인select칸" readonly></td>
+       <td><input type="text" placeholder="어린이select칸" readonly></td>
+       <td><input type="text" placeholder="유아select칸" readonly></td>
+     </tr>
+     <tr>
+       <td colspan="3"> 추가 요청사항(선택)</td>
+     </tr>
+     <tr>
+       <td colspan="3"> <textarea cols="100" rows="5" name="content"></textarea> </td>
+     </tr>
+     <tr>
+       <td colspan="3">
+       * 요청사항은 레스토랑 사정에 따라 응대가 어려울 수 있으며 추가 문의는 전화 주시기 바랍니다.</td>
+     </tr>
+     <tr>
+       <td>이름</td>
+       <td>휴대폰 번호<input type="hidden" name="phone"></td>
+     </tr>
+     <tr>
+       <td><input type="text" name="name" size="50"></td>
+       <td>
+        <input type="text" name="p1" class="inputs" maxlength="3" size="10" />-
+        <input type="text" name="p2" class="inputs" maxlength="4" size="10"/>-
+        <input type="text" name="p3" class="inputs" maxlength="4" size="10"/>
+       </td>
+     </tr>
+ </table>
+ <hr>
+ <p></p>
+ </div>
+ </form>
 </div>
+
     <!-- 부타이틀(자유롭게 변경)_area_end -->
     <!-- ================ 타이틀(자유롭게 변경) Area End ================= -->
 
