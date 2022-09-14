@@ -13,9 +13,17 @@
 	#pro_write table {
 		font-family : 돋움;
 		font-size : 14px;
+		border-top : 2px solid darkgray;
+		border-bottom : 2px solid darkgray;
+		padding : 10px;
 	}
 	#pro_write table td {
+		padding-top : 10px;
 		padding-bottom : 10px;
+		border-bottom : 1px solid lightgray;
+	}
+	#pro_write table tr:last-child td {
+		border : none;
 	}
 </style>
 <script>
@@ -75,11 +83,11 @@
 			alert("상품코드를 생성하세요.")
 			return false;
 			}
-			else if(dom.img1.value.trim() == "") {
+			else if(dom.fimg1.value.trim() == "") {
 				alert("메인이미지를 등록하세요.")
 				return false;
 				}
-				else if(dom.img2.value.trim() == "") {
+				else if(dom.simg.value.trim() == "") {
 					alert("상세이미지를 등록하세요.")
 					return false;
 					}
@@ -98,13 +106,30 @@
 							else
 								return true;
 	}
+	
+	/* 이미지 첨부파일 추가 & 삭제 */
+	function add_file(){
+		let len=document.getElementsByClassName("imgs").length;	// 현재 type="file"의 개수
+		if(len < 3) {
+			len++;	// type="file"의 이름숫자를 1증가
+			let inner="<p class='imgs'> <input type='file' name='fimg"+len+"'> </p>";	// 추가할 내용(img숫자1증가)
+			document.getElementById("outer").innerHTML=document.getElementById("outer").innerHTML+inner;
+		}
+	}
+	function del_file(){
+		let len=document.getElementsByClassName("imgs").length;	// 현재 type="file"의 개수
+		if(len > 1) {	// type="file"을 하나는 남기기
+			len--;	// type="file"의 이름숫자를 1감소, 왜? 배열은 0부터 시작하니까 그 숫자와 맞추기 위해
+			document.getElementsByClassName("imgs")[len].remove();	// 마지막 type="file"을 삭제
+		}
+	}
 </script>
 </head>
 <body>
 	<!-- ================ 상품등록 Area Start ================= -->
 	<section id="pro_write">
 	<form name="inpro" method="post" action="pro_write_ok" enctype="multipart/form-data" onsubmit="return check()">
-		<table width="600" align="center">
+		<table width="650" align="center">
 		<caption> <h2> 상품 등록 </h2> </caption>
 			<tr>
 				<td width="80"> 상품코드 </td>
@@ -122,11 +147,15 @@
 			</tr>
 			<tr>
 				<td> 메인이미지 </td>
-				<td colspan="2"> <input type="file" name="img1"> </td>
+				<td id="outer" colspan="2">
+					<input type="button" onclick="add_file()" value="추가">
+					<input type="button" onclick="del_file()" value="삭제">
+					<p class="imgs"> <input type="file" name="fimg1"> </p>
+				</td>
 			</tr>
 			<tr>
 				<td> 상세이미지 </td>
-				<td colspan="2"> <input type="file" name="img2"> </td>
+				<td colspan="2"> <input type="file" name="simg"> </td>
 			</tr>
 			<tr>
 				<td> 상품명 </td>
@@ -151,21 +180,6 @@
 			<tr>
 				<td> 배송비 </td>
 				<td colspan="2"> <input type="number" name="baefee" min="0" placeholder="숫자만 입력하세요."> </td>
-			</tr>
-			<tr>
-				<td colspan="2" style="font-size:13px;"> ※옵션이 있다면 입력하세요. </td>
-			</tr>
-			<tr>
-				<td> 옵션1 </td>
-				<td colspan="2"> <input type="text" name="opt1" placeholder="옵션값은 쉼표(,)로 구분하세요. 예)빨강,주황,노랑 또는  1,2,3" size="55"> </td>
-			</tr>
-			<tr>
-				<td> 옵션2 </td>
-				<td colspan="2"> <input type="text" name="opt2" placeholder="옵션값은 쉼표(,)로 구분하세요. 예)빨강,주황,노랑 또는  1,2,3" size="55"> </td>
-			</tr>
-			<tr>
-				<td> 옵션3 </td>
-				<td colspan="2"> <input type="text" name="opt3" placeholder="옵션값은 쉼표(,)로 구분하세요. 예)빨강,주황,노랑 또는  1,2,3" size="55"> </td>
 			</tr>
 			<tr>
 				<td colspan="3" align="center">

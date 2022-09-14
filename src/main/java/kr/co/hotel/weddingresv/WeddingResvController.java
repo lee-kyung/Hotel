@@ -29,4 +29,10 @@ public class WeddingResvController {
 	{
 		return service.weddingReserve_ok(request, wrvo);
 	}
+	
+	@RequestMapping("/wedding/getcheck")
+	public void getcheck(WeddingResvVO wrvo, HttpServletRequest request, PrintWriter out)
+	{
+		service.getcheck(wrvo, request, out );
+	}
 }

@@ -3,6 +3,7 @@ package kr.co.hotel.eshop;
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -54,5 +55,11 @@ public class EshopController {
 	@RequestMapping("/eshop/pro_list")
 	public String pro_list(HttpServletRequest request, Model model) {
 		return service.pro_list(request, model);
+	}
+	
+	/* 상품 상세를 보기*/
+	@RequestMapping("/eshop/pro_content")
+	public String pro_content(HttpServletRequest request, Model model) {
+		return service.pro_content(request, model);
 	}
 }
