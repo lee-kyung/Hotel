@@ -110,10 +110,11 @@
 	/* 이미지 첨부파일 추가 & 삭제 */
 	function add_file(){
 		let len=document.getElementsByClassName("imgs").length;	// 현재 type="file"의 개수
+		if(len < 3) {
 			len++;	// type="file"의 이름숫자를 1증가
 			let inner="<p class='imgs'> <input type='file' name='fimg"+len+"'> </p>";	// 추가할 내용(img숫자1증가)
-		
-		document.getElementById("outer").innerHTML=document.getElementById("outer").innerHTML+inner;
+			document.getElementById("outer").innerHTML=document.getElementById("outer").innerHTML+inner;
+		}
 	}
 	function del_file(){
 		let len=document.getElementsByClassName("imgs").length;	// 현재 type="file"의 개수

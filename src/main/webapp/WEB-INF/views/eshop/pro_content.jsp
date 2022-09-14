@@ -41,7 +41,7 @@
     <div id="pro_cnt">
     <form name="pro_cnt" method="post" action="pro_gumae">
     <input type="hidden" name="pcode" value="${pvo.pcode},">
-    ${pvo.title}
+    	<div></div>
     </div>
     <!-- ================ 상품 상세 Area End ================= -->
 
