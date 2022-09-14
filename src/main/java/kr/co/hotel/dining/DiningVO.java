@@ -3,7 +3,15 @@ package kr.co.hotel.dining;
 public class DiningVO {
 
 	private int id, dine_su, dine_adult, dine_child, dine_halin;
-	private String dine_time, dine_type, dine_pimg, dine_cimg;
+	private String dcode, dine_time, dine_type, dine_pimg, dine_cimg;
+	
+	
+	public String getDcode() {
+		return dcode;
+	}
+	public void setDcode(String dcode) {
+		this.dcode = dcode;
+	}
 	public int getId() {
 		return id;
 	}
