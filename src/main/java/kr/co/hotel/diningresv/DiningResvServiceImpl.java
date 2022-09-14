@@ -22,7 +22,7 @@ public class DiningResvServiceImpl implements DiningResvService{
 	private DiningResvMapper mapper;
 	
 	@Override
-	public String dining_reserve(HttpServletRequest request, Model model, DiningVO dvo, PrintWriter out)
+	public String dining_reserve(HttpServletRequest request, Model model)
 	{
 	//  1일의 요일, 총일수, 몇주를 구해서 request영역에 저장
     	int y,m;
@@ -58,12 +58,30 @@ public class DiningResvServiceImpl implements DiningResvService{
     	request.setAttribute("y", y);
     	request.setAttribute("m", m); 
 		
-    	ArrayList<DiningVO> dlist=mapper.getTime();
+    	/*ArrayList<DiningVO> dlist=mapper.getTime();*/
+    	ArrayList<DiningVO> dlist=mapper.dining_reserve();
     	model.addAttribute("dlist", dlist);
     	
-    	model.addAttribute("dvo", dvo);
 		return "/dining/dining_reserve";
 	}
+	@Override
+	public String dining_reserve_next(HttpServletRequest request, Model model)
+	{		
+		// jsp에 보내줘야 될내용 => 년,월,일, 방의 정보
+    	int y=Integer.parseInt(request.getParameter("y"));
+    	int m=Integer.parseInt(request.getParameter("m"));
+    	int d=Integer.parseInt(request.getParameter("d"));
+    	String id=request.getParameter("id");
+    	// 입실일
+    	String ymd=y+"-"+m+"-"+d;
+    	
+    	DiningVO dvo=mapper.dining_reserve_next("id");
+    	// request영역에 필요한 값 담기
+    	request.setAttribute("ymd", ymd);
+    	model.addAttribute("dvo", dvo);
+		return "/dining/dining_reserve_next";
+	}
+	
 	
 
 }

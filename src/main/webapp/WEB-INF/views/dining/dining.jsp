@@ -3,7 +3,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <head>
-
+<style>
+  .img_3{
+     text-align:center;
+     margin:auto;
+  }
+</style>
 </head>
 
 <body>
@@ -68,9 +73,10 @@
             <div class="row">
                 <div class="col-xl-6 col-md-6">
                     <div class="single_about_info">
-                        <h3>We Serve Fresh and <br>
-                            Delicious Food</h3>
-                            <p>Suscipit libero pretium nullam potenti. Interdum, blandit <br> phasellus consectetuer dolor ornare dapibus enim ut tincidunt <br> rhoncus tellus sollicitudin pede nam maecenas, dolor sem. <br> Neque sollicitudin enim. Dapibus lorem feugiat facilisi <br> faucibus et. Rhoncus.
+                        <h3>천혜의 자연경관인 해운대 바다와 해변 그리고 초록빛 가든의 멋진 경치를 감상하며 미식을 즐길 수 있는 공간 <br>
+                            </h3>
+                            <p>야외 테라스 다이닝 공간과 모든 섹션이 라이브로 운영되는 올 오픈 키친(All Open Kitchen) <br>
+                                       그리고 마스터 셰프들이 전국 각지의 진귀하고 독특한 제철 식재료만을 직접 엄선, 발굴하여 각 지역 본연의 맛을 살린 럭셔리한 미식을 경험하세요.
                             </p>
                     </div>
                 </div>
@@ -86,6 +92,9 @@
         </div>
     </div>
     <!-- about_main_info_end -->
+    <div class="img_3">
+      <img src="../img/about/fee.JPG" width="1100" height="800" text-align="center">
+    </div>
     <!-- ================ Dining Area End ================= -->
 
 </body>

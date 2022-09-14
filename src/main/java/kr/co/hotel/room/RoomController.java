@@ -45,18 +45,8 @@ public class RoomController {
 	{
 		return service.room_content(model,request);
 	}
+
 	
-	@RequestMapping("/room/room_resv")
-	public String room_resv(HttpServletRequest request, Model model)
-	{
-		return service.room_resv(request,model);
-	}
-	
-	@RequestMapping("/room/room_booking")
-	public String room_booking()
-	{
-		return "/room/room_booking";
-	}
 	
 	
 	
