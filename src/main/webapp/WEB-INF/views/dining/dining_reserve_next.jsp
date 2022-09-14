@@ -59,7 +59,7 @@
  </div>
  <div id="section_left2"> 
    <div id="1-1">
-    <!--   <table width="100%" align="center" border="1"> -->
+   <table width="100%" align="center" border="1">
        <tr>
         <td id="info_con">
       - 예약 신청을 위한 페이지로 예약 신청 후 직원이 확인하여 예약 확정 문자를 보내드립니다.<br>
@@ -72,14 +72,8 @@
         </td>
       </tr>
    </div>
-      <tr>
-        <td>예약정보</td>
-        <td>
-          <!-- <select name="reserve_date">
-           <option value="0"></option>
-          </select>  -->       
-        </td>
- <!--      </table> -->
+      
+ </table>
  </tr>
  </div>
 </div>
