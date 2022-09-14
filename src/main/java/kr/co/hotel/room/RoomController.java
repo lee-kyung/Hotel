@@ -45,7 +45,12 @@ public class RoomController {
 	{
 		return service.room_content(model,request);
 	}
-
+	
+	@RequestMapping("/room/room_su")
+	public String room_su()
+	{
+		return "/room/room_su";
+	}
 	
 	
 	

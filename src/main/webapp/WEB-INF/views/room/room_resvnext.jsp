@@ -51,22 +51,30 @@
 	function total_price()
 	{
 		// 인원
-		var ii=document.resv.totinwon.value;
-		alert(ii);
-		ii=ii-${rvo.rmin} // 총 인원수 - 기준인원 해서 추가인원비 구하기
-		var iiprice=ii*20000;
-		document.getElementById("binwon").innerText=iiprice;
+		var binwon=document.getElementById("binwon").innertext;
+				
+		// 투숙일
+		var suk=document.getElementById("suk").innertext;
+		
+		// 추가침대
+		var bb=document.resv.bextbed.value;
+		if(bb==1)
+		{ 
+			bbprice=65000*bb*suk;
+			document.getElementById("bextbed").innerText=bbprice;
+		}
 		
 		// 조식
-		var bb=document.resv.bmeal.value;
-		if(bb.checked==0)
-		{		
-			var bbprice=30000*binwon;
-			document.getElementById("bf").innerText=bbprice;
+		var bf=document.resv.bmeal.value;
+		if(bf==1)
+		{
+			bfprice=30000*1*binwon*suk;
+			document.getElemenyById("bmeal").innertext=bfprice;
 		}
-				
-		// 추가침대
+		var total=bbprice+iiprice+rprice;
+		document.getElementById("btotal").innerText=total;
 		
+		document.resv.btotal.value=${rvo.rprice+bmeal};
 	}
 </script>
 
@@ -92,40 +100,41 @@
  			<table>
  				<tr> 
  					<td> 예약자 성함 </td> 
- 					<td><input type="text" name="bname"></td>
+ 					<td><input type="text" name="bkname"></td>
  				</tr>
  				<tr> 
  					<td> 예약자 전화번호 </td> 
- 					<td><input type="text" name="bphone"></td>
+ 					<td><input type="text" name="bkphone"></td>
  				</tr>
  			</table>
- 			객실명: ${rvo.rname} ${rvo.rcode}
+ 			객실명: ${rvo.rname}<input type="text" name="rcode" value="${rvo.rcode}" readonly></span>
  			<table>
  				 <tr>
  				   <td> 체크인 </td>
- 				   <td> ${checkin} </td>
+ 				   <td><input type="text" name="bcin" value="${checkin}" readonly> </td>
  				   <td> 체크아웃 </td>
- 				   <td> ${checkout} </td>
+ 				   <td> <input type="text" name="bcout" value="${checkout}" readonly></td>
  				 </tr>
  				 <tr>
  				   <td> 기준인원/최대인원 </td>
  				   <td> ${rvo.rmin}/${rvo.rmax} </td>
  				   <td> 투숙인원 </td>
- 				   <td id="totinwon"> 총 ${adult+child}명</td>
+ 				   <td><input type="text" name="binwon" id="binwon" value="${adult+child}" readonly>명</td>
  				 </tr>
  				 <tr>
- 				 	<td> 추가 침대 </td>
+ 				 	<td> 추가 침대(1박65000원)</td>
  				 	<td>
- 				 		예<input type="radio" value="예" name="bextbed">
- 				 		아니오 <input type="radio" value="아니오" name="bextbed">
+ 				 		예<input type="radio" value="1" name="bextbed" onchange="total_price()">
+ 				 		아니오 <input type="radio" value="0" name="bextbbed" onchange="total_price()"> <span id="bed">원</span>
  				 	</td>
+ 				 	<td> 투숙일 </td>
+ 				 	<td><span id="suk" name="suk">${suk}일</span></td>
  				 </tr>
  				 <tr>
  				 	<td> 조식(1인 1박당 30000원) </td>
  				 	<td>
- 				 		예<input type="radio" value="0" name="bmeal" onclick="total_price(0)">
- 				 		아니오 <input type="radio" value="1" name="bmeal" onclick="total_price(1)"><p>
- 				 		<span id="bf">원</span>
+ 				 		예<input type="radio" value="1" name="bmeal" onchange="total_price()">
+ 				 		아니오 <input type="radio" value="0" name="bmeal" onchange="total_price()"> <span id="bf">원</span>
  				 	</td>
  				 </tr>
  				 <tr>
@@ -133,15 +142,11 @@
  				 	<td><span id="rprice">${rvo.rprice}</span>원</td>
  				 </tr>
  				 <tr>
- 				 	<td> 인원 추가 </td>
- 				 	<td><span id="binwon">0</span>원 </td>
- 				 </tr>
- 				 <tr>
  				 	<td> 총 가격 </td>
- 				 	<td colspan="3"><span id="total"></span>원</td> 
+ 				 	<td colspan="3"><span name="btotal" value="${rvo.rprice+bmeal}"> 원</span></td> 
  				 </tr>
 				</table>
-				<div id="pay"><input type="submit" value="결제하기"></div>
+				<div id="pay"><input type="submit" value="예약하기"></div>
  			</form>
  	  	</roomsec>
  	</div>
