@@ -33,6 +33,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="pro_content" resultType="kr.co.hotel.eshop.ProductVO">
-		select *, substr(pcode, 1, 5) as subpcode from product where pcode=#{param1}
+		select *, substr(pcode, 1, 5) as subpcode, substr(fimg, 1, instr(fimg, ",")-1) as img
+		from product where pcode=#{param1}
 	</select>
 </mapper>

@@ -20,7 +20,7 @@
 		margin-top : 30px;
 		width : 350px;
 		height : 350px;
-		padding-top : 10px;
+		padding-top : 30px;
 	}
 	#pro_list table td {
 		padding-right : 20px;
@@ -63,12 +63,15 @@
 	}
 	#pro_list #price_text2 {
 		font-family : TimesNewRoman;
+		font-size : 15px;
+		font-weight : bold;
+		letter-spacing : -1px;
 		color : gray;
 		margin-right : 5px;
 	}
 	#pro_list #halin_text1 {
 		font-family : TimesNewRoman;
-		font-size : 20px;
+		font-size : 22px;
 	}
 </style>
 <script>
@@ -91,14 +94,34 @@
 
 <body>
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
-    <c:if test="${(pcode == 'p01') || (pcode == 'p0101') || (pcode == 'p0102')}">
+    <c:if test="${pcode == 'p01'}">
 	    <div class="bradcam_area eshop2">
 	        <h3> P R O D U C T </h3>
 	    </div>
     </c:if>
-    <c:if test="${(pcode == 'p02') || (pcode == 'p0201') || (pcode == 'p0202')}">
+    <c:if test="${pcode == 'p02'}">
 	    <div class="bradcam_area eshop3">
 	        <h3> V O U C H E R </h3>
+	    </div>
+    </c:if>
+    <c:if test="${pvo.subpcode == 'p0101'}">
+		<div class="bradcam_area eshop2">
+	        <h3> B E D D I N G </h3>
+	    </div>
+	</c:if>
+	<c:if test="${pvo.subpcode == 'p0102'}">
+	    <div class="bradcam_area eshop2">
+	        <h3> L I F E S T Y L E </h3>
+	    </div>
+	</c:if>
+	<c:if test="${pvo.subpcode == 'p0201'}">
+	    <div class="bradcam_area eshop3">
+	        <h3> R E S T A U R A N T </h3>
+	    </div>
+    </c:if>
+    <c:if test="${pvo.subpcode == 'p0202'}">
+	    <div class="bradcam_area eshop3">
+	        <h3> H O T E L </h3>
 	    </div>
     </c:if>
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
@@ -108,14 +131,14 @@
 	<section id="pro_list">
 		<c:if test="${(pcode == 'p01') || (pcode == 'p0101') || (pcode == 'p0102')}">
 			<div id="cate1">
-				<span id="cate2" onclick="location='pro_list?pcode=p0101'"> 고급베딩 </span>
-				<span id="cate3" onclick="location='pro_list?pcode=p0102'"> 라이프스타일 </span>
+				<span id="cate2" onclick="location='pro_list?pcode=p0101'"> B E D D I N G </span>
+				<span id="cate3" onclick="location='pro_list?pcode=p0102'"> L I F E S T Y L E </span>
 			</div>
 		</c:if>
 		<c:if test="${(pcode == 'p02') || (pcode == 'p0201') || (pcode == 'p0202')}">
 			<div id="cate1">
-				<span id="cate2" onclick="location='pro_list?pcode=p0201'"> 레스토랑이용권 </span>
-				<span id="cate3" onclick="location='pro_list?pcode=p0202'"> 호텔상품권 </span>
+				<span id="cate2" onclick="location='pro_list?pcode=p0201'"> R E S T A U R A N T </span>
+				<span id="cate3" onclick="location='pro_list?pcode=p0202'"> H O T E L </span>
 			</div>
 		</c:if>
 		<div class="default-select" id="default-select" style="display:inline-block;">
@@ -133,10 +156,10 @@
 					<option value="id desc"> 최신상품순 </option>
 				</c:if>
 				<c:if test="${osel == 'halin desc'}">
-					<option value="halin desc" selected> 할인율순 </option>
+					<option value="halin desc" selected> 높은할인율순 </option>
 				</c:if>
 				<c:if test="${osel != 'halin desc'}">
-					<option value="halin desc"> 할인율순 </option>
+					<option value="halin desc"> 높은할인율순 </option>
 				</c:if>
 				<c:if test="${osel == 'price asc'}">
 					<option value="price asc" selected> 낮은가격순 </option>
