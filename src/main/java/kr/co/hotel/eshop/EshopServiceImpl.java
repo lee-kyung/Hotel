@@ -66,10 +66,10 @@ public class EshopServiceImpl implements EshopService {
 				String fimg=file.nextElement().toString();	// nextElement()를 통해 저장된 값을 가져오기
 				
 				/* multi.getFilesystemName("fimg1")로 서버에 저장된 파일이름을 가져오기 */
+				if(!fimg.equals("simg"))	// 단, simg도 가져오기 때문에 simg는 빼고 imgs에 담기
 				imgs=multi.getFilesystemName(fimg)+","+imgs;	// 테이블의 fname필드에 [파일명, 파일명, 파일명]의 형태로 저장하기
 			}
 			imgs=imgs.replace("null,", "");	// 'null,'값을 없애기
-			System.out.println(imgs);
 			
 			pvo.setPcode(multi.getParameter("pcode"));
 			pvo.setTitle(multi.getParameter("title"));

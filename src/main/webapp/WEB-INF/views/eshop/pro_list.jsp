@@ -52,19 +52,23 @@
 		color : #887159;
 		cursor : pointer;
 	}
-	#pro_list #select1 {
-		display : inline-block;
-		width : 120px;
-		height : 50px;
-	}
-	#pro_list #select2 {
-		display : inline-block;
-		width : 100px;
-		height : 50px;
-		float : right;
-	}
 	#pro_list #title h3 {
 		cursor : pointer;
+	}
+	#pro_list #price_text1 {
+		font-family : TimesNewRoman;
+		font-size : 25px;
+		color : black;
+		margin-left : 5px;
+	}
+	#pro_list #price_text2 {
+		font-family : TimesNewRoman;
+		color : gray;
+		margin-right : 5px;
+	}
+	#pro_list #halin_text1 {
+		font-family : TimesNewRoman;
+		font-size : 20px;
 	}
 </style>
 <script>
@@ -72,16 +76,10 @@
 	function page_sel(psel){
 		location="pro_list?pcode=${pcode}&osel=${osel}&psel="+psel;	// 정렬후 psel변경해도 정렬순 유지시키기
 	}
-	window.onload=function(){	/* 사용자가 선택한 페이지목록수를 브라우저에 나타내기 */
-		document.getElementById("psel").value="${psel}";
-	}
 	
 	/* 정렬순 선택하기 */
 	function order_sel(osel){
 		location="pro_list?pcode=${pcode}&psel=${psel}&osel="+osel;	// 페이지목록수 변경후 osel변경해도 페이지목록개수 유지시키기
-	}
-	window.onload=function(){	/* 사용자가 선택한 정렬순을 브라우저에 나타내기 */
-		document.getElementById("osel").value="${osel}";
 	}
 	
 	/* pro_content로 이동하기 */
@@ -120,24 +118,74 @@
 				<span id="cate3" onclick="location='pro_list?pcode=p0202'"> 호텔상품권 </span>
 			</div>
 		</c:if>
-		<span id="select1">
+		<div class="default-select" id="default-select" style="display:inline-block;">
 			<select onchange="order_sel(this.value)" id="osel">
-				<option value="id asc"> 등록순 </option>
-				<option value="id desc"> 최신상품순 </option>
-				<option value="halin desc"> 할인율순 </option>
-				<option value="price asc"> 낮은가격순 </option>
-				<option value="price desc"> 높은가격순 </option>
+				<c:if test="${osel == 'id asc'}">
+					<option value="id asc" selected> 등록순 </option>
+				</c:if>
+				<c:if test="${osel != 'id asc'}">
+					<option value="id asc"> 등록순 </option>
+				</c:if>
+				<c:if test="${osel == 'id desc'}">
+					<option value="id desc" selected> 최신상품순 </option>
+				</c:if>
+				<c:if test="${osel != 'id desc'}">
+					<option value="id desc"> 최신상품순 </option>
+				</c:if>
+				<c:if test="${osel == 'halin desc'}">
+					<option value="halin desc" selected> 할인율순 </option>
+				</c:if>
+				<c:if test="${osel != 'halin desc'}">
+					<option value="halin desc"> 할인율순 </option>
+				</c:if>
+				<c:if test="${osel == 'price asc'}">
+					<option value="price asc" selected> 낮은가격순 </option>
+				</c:if>
+				<c:if test="${osel != 'price asc'}">
+					<option value="price asc"> 낮은가격순 </option>
+				</c:if>
+				<c:if test="${osel == 'price desc'}">
+					<option value="price desc" selected> 높은가격순 </option>
+				</c:if>
+				<c:if test="${osel != 'price desc'}">
+					<option value="price desc"> 높은가격순 </option>
+				</c:if>	
 			</select>
-		</span>
-		<span id="select2">
+		</div>
+		<div class="default-select" id="default-select" style="display:inline-block;float:right;">
 			<select onchange="page_sel(this.value)" id="psel">
-				<option value="9"> 9개씩 </option>
-				<option value="15"> 15개씩 </option>
-				<option value="30"> 30개씩 </option>
-				<option value="45"> 45개씩 </option>
-				<option value="60"> 60개씩 </option>
+				<c:if test="${psel == 9}">
+					<option value="9" selected> 9개씩 </option>
+				</c:if>
+				<c:if test="${psel != 9}">
+					<option value="9"> 9개씩 </option>
+				</c:if>
+				<c:if test="${psel == 15}">
+					<option value="15" selected> 15개씩 </option>
+				</c:if>
+				<c:if test="${psel != 15}">
+					<option value="15"> 15개씩 </option>
+				</c:if>
+				<c:if test="${psel == 30}">
+					<option value="30" selected> 30개씩 </option>
+				</c:if>
+				<c:if test="${psel != 30}">
+					<option value="30"> 30개씩 </option>
+				</c:if>
+				<c:if test="${psel == 45}">
+					<option value="45" selected> 45개씩 </option>
+				</c:if>
+				<c:if test="${psel != 45}">
+					<option value="45"> 45개씩 </option>
+				</c:if>
+				<c:if test="${psel == 60}">
+					<option value="60" selected> 60개씩 </option>
+				</c:if>
+				<c:if test="${psel != 60}">
+					<option value="60"> 60개씩 </option>
+				</c:if>	
 			</select>
-		</span>
+		</div>
 		<table align="center">	 <!-- 상품을 9개씩 출력 -->
 		<c:set var="n" value="3"/>	<!-- 한 행에 출력되는 열(상품)의 개수 -->
 		<c:set var="i" value="0"/>	<!-- 상품 3개마다 행을 바꾸기 위한 변수 -->	
@@ -151,12 +199,12 @@
 					<hr style="width:350px;">
 					<div id="price">		<!-- 판매가 / 할인가 원가 할인율-->
 						<c:if test="${pvo.halin == 0}">
-							KRW <b style="font-family:TimesNewRoman;font-size:25px;color:black;margin-left:5px;"> <fmt:formatNumber value="${pvo.price}" pattern="#,###"/> </b>
+							KRW <b id="price_text1"> <fmt:formatNumber value="${pvo.price}" pattern="#,###"/> </b>
 						</c:if>
 						<c:if test="${pvo.halin != 0}">
-							KRW <b style="font-family:TimesNewRoman;font-size:25px;color:black;margin-left:5px;"> <fmt:formatNumber value="${(pvo.price) - (pvo.price * (pvo.halin / 100) )}" pattern="#,###"/> </b>
-							<s style="font-family:TimesNewRoman;color:gray;margin-right:5px;"><fmt:formatNumber value="${pvo.price}" pattern="#,###"/></s>
-							<b style="font-family:TimesNewRoman;font-size:20px;"> ${pvo.halin}% </b>
+							KRW <b id="price_text1"> <fmt:formatNumber value="${(pvo.price) - (pvo.price * (pvo.halin / 100) )}" pattern="#,###"/> </b>
+							<s id="price_text2"><fmt:formatNumber value="${pvo.price}" pattern="#,###"/></s>
+							<b id="halin_text1"> ${pvo.halin}% </b>
 						</c:if>
 					</div>
 				</td>
