@@ -124,9 +124,9 @@
 		                                </li>
                                     </ul>
                                 </div>
-                                <!-- <div class="book_btn d-none d-lg-block">
+                             <!-- <div class="book_btn d-none d-lg-block">
                                     <a href="../room/room_resv">객실예약</a>
-                                </div> -->
+                                </div> --> 
                             </div>
                         </div>
                         <div class="col-12">
