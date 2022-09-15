@@ -1,6 +1,7 @@
 package kr.co.hotel.room;
 
 import java.io.PrintWriter;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -85,10 +86,47 @@ public class RoomServiceImpl implements RoomService{
 	}
 
 	@Override
-	public String room_su(HttpServletRequest request, HttpSession session, Model model) {
+	public String room_su(HttpServletRequest request, HttpSession session, Model model) 
+	{
+		// 1일의 요일, 총일수, 주를 구해서  request 영역에 저장
+		int y,m;
 		
+		if(request.getParameter("y")==null) // 처음 부를땐 y값이 없어서 null일 수 있음
+		{
+			LocalDate today=LocalDate.now(); // 현재날짜 정보를 가
+			y=today.getYear(); // 년도
+    		m=today.getMonthValue(); // 월
+    	}
+    	else
+    	{
+    		y=Integer.parseInt(request.getParameter("y"));
+    		m=Integer.parseInt(request.getParameter("m"));
+    	}
+    	
+		// 해당월의 1일에 대한 날짜객체를 생성
+		LocalDate dday=LocalDate.of(y, m, 1);
 		
-		return null;
+		// 1일의 요일
+		int yoil=dday.getDayOfWeek().getValue();
+		if(yoil==7)
+			yoil=0;
+		
+		// 해당월의 총일수
+		int chong=dday.lengthOfMonth(); // 총일수
+		
+		// 몇주인지
+		int ju=(int) Math.ceil((yoil+chong)/7.0);
+		
+		request.setAttribute("yoil", yoil);
+    	request.setAttribute("chong", chong);
+    	request.setAttribute("ju", ju);
+    	request.setAttribute("y", y);
+    	request.setAttribute("m", m);
+    	
+    	ArrayList<RoomVO> list=mapper.getRoom();
+    	model.addAttribute("list", list);
+    	
+		return "/room/room_su";
 	}
 
 	

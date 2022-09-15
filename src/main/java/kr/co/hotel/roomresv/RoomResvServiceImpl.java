@@ -77,7 +77,7 @@ public class RoomResvServiceImpl implements RoomResvService {
 		// 예약번호 생성 => bk+4자리
 		Integer number=mapper.getBid(userid);
 		number++;
-		System.out.println(number);
+	//	System.out.println(number);
 		String num=number.toString();
 		
 		if(num.length()==1)
@@ -88,7 +88,7 @@ public class RoomResvServiceImpl implements RoomResvService {
 			num="0"+num;	
 		
 		String bid=userid+'r'+num;
-		System.out.println(bid);
+	//	System.out.println(bid);
 		rsvo.setBid(bid);
 		
 		mapper.room_resv_ok(rsvo);

@@ -362,30 +362,30 @@ $('#calendar').calendar();
           </c:if>
            
           <c:if test="${ ((j >= yoil && i==1) || i>1) && (chong >= day) }">
-          <c:set var="id" value="${dvo.dine_time}"/>
+          <c:set var="id" value="${dvo.dine_type}"/>
            <td id="day">${day}<p></p> 
              
 		<!-- 방의 이름을 출력 -->
         <!-- td에 출력되는 날짜가  오늘 이전인지 이후인지를 체크 -->
             <c:forEach items="${dlist}" var="dvo">
-             <c:if test="${dvo.dine_time == 'Breakfast' }">
+             <c:if test="${dvo.dine_type == 'Breakfast' }">
                <a href="dining_reserve_next?y=${y}&m=${m}&d=${day}&id=${dvo.id}"> 
                 <img src="../img/dining/breakfast.png" width="17px;" height="17px;">
-                ${dvo.dine_time}
+                ${dvo.dine_type}
                </a><br>
              </c:if>
              
-             <c:if test="${dvo.dine_time == 'Lunch' }">
+             <c:if test="${dvo.dine_type == 'Lunch' }">
                <a href="dining_reserve_next?y=${y}&m=${m}&d=${day}&id=${dvo.id}"> 
                 <img src="../img/dining/lunch.png" width="17px;" height="17px;">
-                ${dvo.dine_time}
+                ${dvo.dine_type}
                </a><br>
              </c:if>
                
-             <c:if test="${dvo.dine_time == 'Dinner' }">
+             <c:if test="${dvo.dine_type == 'Dinner' }">
                <a href="dining_reserve_next?y=${y}&m=${m}&d=${day}&id=${dvo.id}"> 
                 <img src="../img/dining/dinner.png" width="17px;" height="17px;">
-                ${dvo.dine_time}
+                ${dvo.dine_type}
                </a><br>
              </c:if>
             </c:forEach>   <!-- 방 목록 출력 for -->

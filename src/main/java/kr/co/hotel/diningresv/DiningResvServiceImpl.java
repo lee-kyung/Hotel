@@ -69,15 +69,16 @@ public class DiningResvServiceImpl implements DiningResvService{
 	{		
 		// jsp에 보내줘야 될내용 => 년,월,일, 방의 정보
     	int y=Integer.parseInt(request.getParameter("y"));
-    	int m=Integer.parseInt(request.getParameter("m"));
-    	int d=Integer.parseInt(request.getParameter("d"));
+    	int mm=Integer.parseInt(request.getParameter("m"));
+    	int dd=Integer.parseInt(request.getParameter("d"));
     	String id=request.getParameter("id");
     	// 입실일
-    	String ymd=y+"-"+m+"-"+d;
+    	String ymd=y+"-"+mm+"-"+dd;
     	
     	DiningVO dvo=mapper.dining_reserve_next("id");
     	// request영역에 필요한 값 담기
     	request.setAttribute("ymd", ymd);
+    	
     	model.addAttribute("dvo", dvo);
 		return "/dining/dining_reserve_next";
 	}

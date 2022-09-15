@@ -36,4 +36,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select *, substr(pcode, 1, 5) as subpcode, substr(fimg, 1, instr(fimg, ",")-1) as img
 		from product where pcode=#{param1}
 	</select>
+	
+	<insert id="wish_add">
+		insert into wish(userid, pcode, inday) values(#{param1}, #{param2}, now())
+	</insert>
+	
+	<delete id="wish_del">
+		delete from wish where userid=#{param1} and pcode=#{param2}
+	</delete>
+	
+	<select id="checkWish" resultType="Integer">
+		select count(*) from wish where userid=#{param1} and pcode=#{param2}
+	</select>
+	
 </mapper>

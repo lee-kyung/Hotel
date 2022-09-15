@@ -11,4 +11,7 @@ public interface EshopMapper {
 	public int total(int psel);
 	
 	public ProductVO pro_content(String pcode);
+	public void wish_add(String userid, String pcode);
+	public void wish_del(String userid, String pcode);
+	public Integer checkWish(String userid, String pcode);
 }
