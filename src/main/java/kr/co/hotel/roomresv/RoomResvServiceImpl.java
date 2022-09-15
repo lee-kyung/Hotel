@@ -22,11 +22,27 @@ public class RoomResvServiceImpl implements RoomResvService {
 	private RoomResvMapper mapper;
 
 	@Override
-	public String room_resv(RoomVO rvo, Model model) {
+	public String room_resv(RoomVO rvo, Model model, HttpServletRequest request) {
 		// System.out.println(rvo.getRcode());
 
 		ArrayList<RoomVO> list=mapper.room_resv();
 		model.addAttribute("list",list);
+		
+		String checkin=request.getParameter("checkin");
+		String checkout=request.getParameter("checkout");
+		String rcode=request.getParameter("rcode");
+		
+		model.addAttribute("checkin", checkin);
+		model.addAttribute("checkout", checkout);
+		model.addAttribute("rcode",rcode);
+		
+		int cnt=mapper.getRoomCnt(checkin,rcode);
+		model.addAttribute("cnt",cnt);
+		
+		System.out.println(checkin);
+		System.out.println(checkout);
+		System.out.println(cnt);
+	
 		return "/room/room_resv";
 	}
 	@Override
@@ -77,7 +93,7 @@ public class RoomResvServiceImpl implements RoomResvService {
 		// 예약번호 생성 => bk+4자리
 		Integer number=mapper.getBid(userid);
 		number++;
-		System.out.println(number);
+	//	System.out.println(number);
 		String num=number.toString();
 		
 		if(num.length()==1)
@@ -88,13 +104,13 @@ public class RoomResvServiceImpl implements RoomResvService {
 			num="0"+num;	
 		
 		String bid=userid+'r'+num;
-		System.out.println(bid);
+	//	System.out.println(bid);
 		rsvo.setBid(bid);
 		
 		mapper.room_resv_ok(rsvo);
 		
 		return "redirect:/room/rooms";
 	}
-
+	
 	
 }

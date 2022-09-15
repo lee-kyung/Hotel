@@ -39,27 +39,33 @@ public class EshopController {
 		service.getso(request, out);
 	}
 	
-	/* pcode를 생성하기 */
 	@RequestMapping("/eshop/getpcode")
 	public void getpcode(HttpServletRequest request, PrintWriter out) {
 		service.getpcode(request, out);
 	}
 	
-	/* 상품을 등록하기 */
 	@RequestMapping("/eshop/pro_write_ok")
 	public String pro_write_ok(HttpServletRequest request) {
 		return service.pro_write_ok(request);
 	}
 	
-	/* 상품 목록을 보기 */
 	@RequestMapping("/eshop/pro_list")
 	public String pro_list(HttpServletRequest request, Model model) {
 		return service.pro_list(request, model);
 	}
 	
-	/* 상품 상세를 보기*/
 	@RequestMapping("/eshop/pro_content")
-	public String pro_content(HttpServletRequest request, Model model) {
-		return service.pro_content(request, model);
+	public String pro_content(HttpServletRequest request, Model model, HttpSession session) {
+		return service.pro_content(request, model, session);
+	}
+	
+	@RequestMapping("/eshop/wish_add")
+	public String wish_add(HttpSession session, HttpServletRequest request) {
+		return service.wish_add(session, request);
+	}
+	
+	@RequestMapping("/eshop/wish_del")
+	public String wish_del(HttpSession session, HttpServletRequest request) {
+		return service.wish_del(session, request);
 	}
 }

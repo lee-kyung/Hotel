@@ -35,14 +35,17 @@
 		width : 450px;
 		height : 30px;
 		padding-left : 420px;
+	}
+	#pro_cnt #a1 #right #wish img {
 		cursor : pointer;
 	}
 	#pro_cnt #a1 #right #title {
 		height : 80px;
-		font-size : 40px;
+		font-size : 35px;
 		font-weight : bold;
-		letter-spacing : 1px;
-		border-bottom : 1px solid darkgray;
+		letter-spacing : -2px;
+		word-spacing : 2px;
+		border-bottom : 2px solid darkgray;
 	}
 	#pro_cnt #a1 #right #price {
 		border-bottom : 1px solid lightgray;
@@ -54,7 +57,7 @@
 		height : 80px;
 		color : black;
 	}
-	#pro_cnt #a1 #right #price #price_text1 {
+	#pro_cnt #a1 #right #price .price_text1 {
 		font-family : TimesNewRoman;
 		font-size : 27px;
 		color : black;
@@ -73,11 +76,12 @@
 		font-family : TimesNewRoman;
 		font-size : 22px;
 	}
-	#pro_cnt #pro_info {
+	#pro_cnt #pro_info img {
 		margin-bottom : 100px;
 		border : 1px solid lightgray;
 		text-align : center;
 		padding : 50px;
+		margin-top : 50px;
 	}
 	#pro_cnt #a1 #right #su {
 		border-bottom : 1px solid lightgray;
@@ -90,7 +94,12 @@
 		color : black;
 	}
 	#pro_cnt #a1 #right #su #spinner {
+		border : 1px solid lightgray;
 		outline : none;
+	}
+	input[type=number]::-webkit-inner-spin-button,
+	input[type=number]::-webkit-outer-spin-button {
+		opacity: 1;
 	}
 	#pro_cnt #a1 #right #total #t_title {
 		display : inline-block;
@@ -99,21 +108,48 @@
 		height : 80px;
 		color : black;
 	}
-	#pro_cnt #a1 #right #total #price_text1 {
+	#pro_cnt #a1 #right #total .price_text1 {
 		font-family : TimesNewRoman;
 		font-size : 27px;
 		color : black;
 		margin-left : 5px;
 		padding-top : 5px;
 	}
+	
 </style>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script> 
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script>
+	/* 수량을 변경하면 [총 상품금액]도 변하게 하기 */
+	/*$(function(){
+		$("#spinner").spinner({
+			min : 1,
+			max : 100,
+			spin : function(e, ui){
+				let total=parseInt(${pvo.price} * ui.value);
+				if(${pvo.halin != 0})
+					total=parseInt(${pvo.price - (pvo.price * (pvo.halin / 100) ) } * ui.value);
 
+				total=new Intl.NumberFormat().format(total);
+				document.getElementById("total_price").innerText=total;
+			}
+		});
+	});*/
+	
+	/* 수량을 변경하면 [총 상품금액]도 변하게 하기 */
+	function change_total(su){
+		let total=parseInt(${pvo.price} * su);
+		if(${pvo.halin != 0})
+			total=parseInt(${pvo.price - (pvo.price * (pvo.halin / 100) ) } * su);
+
+		total=new Intl.NumberFormat().format(total);
+		document.getElementById("total_price").innerText=total;
+	}
 </script>
 </head>
 
 <body>
-
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
 	<c:if test="${pvo.subpcode == 'p0101'}">
 		<div class="bradcam_area eshop2">
@@ -157,39 +193,46 @@
 			<!-- 메인이미지_area_end -->
 			<!-- 상품정보_area_start -->
 			<div id="right">
-				<div id="wish">
-					<img src="../img/eshop/wish_off.png" width="20">
+				<div id="wish">	<!-- 위시리스트 -->
+					<c:if test="${(userid == null) && (wishcnt == 0)}">
+						<img src="../img/eshop/wish_off.png" width="20" onclick="alert('로그인하셔야 본 서비스를 이용하실 수 있습니다.')">
+					</c:if>
+					<c:if test="${(userid !=null) && (wishcnt == 0)}">
+						<img src="../img/eshop/wish_off.png" width="20" onclick="location='wish_add?pcode=${pvo.pcode}'">
+					</c:if>
+					<c:if test="${(userid != null) && (wishcnt == 1)}">
+						<img src="../img/eshop/wish_on.png" width="20" onclick="location='wish_del?pcode=${pvo.pcode}'">
+					</c:if>
 				</div>
 				<div id="title"> ${pvo.title} </div>	<!-- 상품명 -->
 				<div id="price">	<!-- 가격 -->
 					<b id="p_title"> 판매가 </b>
-					<c:if test="${pvo.halin != 0}">	<!-- 할인율이 0이 아닌 경우 -->
-						KRW <b id="price_text1"> <fmt:formatNumber value="${pvo.price - (pvo.price * (pvo.halin / 100))}" pattern=",000" /> </b>
+					<c:if test="${pvo.halin != 0}">	<!-- 할인하는 경우 -->
+						KRW <b class="price_text1"> <fmt:formatNumber value="${pvo.price - (pvo.price * (pvo.halin / 100))}" pattern=",000" /> </b>
 						<s id="price_text2"><fmt:formatNumber value="${pvo.price}"/></s>
 						<b id="halin_text1"> ${pvo.halin}% </b>
 					</c:if>
 					<c:if test="${pvo.halin == 0}">
-						KRW <b id="price_text1"> <fmt:formatNumber value="${pvo.price}"/> </b>
+						KRW <b class="price_text1"> <fmt:formatNumber value="${pvo.price}"/> </b>
 					</c:if>
 				</div>
 				<div id="su">	<!-- 수량 -->
 					<b id="s_title"> 수량선택 </b>
-					<input type="number" name="su" min="1" max="${pvo.su}" value="1" id="spinner">
+					<input type="number" name="su" min="1" max="${pvo.su}" value="1" id="spinner" onchange="change_total(this.value)">
 				</div>
 				<div id="total">
 					<b id="t_title"> 총 상품금액 </b>
-					KRW <b id="price_text1"> <fmt:formatNumber value="${pvo.price}"/> </b>
-						<input type="hidden" id="p_price">
+					<c:if test="${pvo.halin != 0}">	<!-- 할인하는 경우 -->
+						KRW <b class="price_text1" id="total_price"> <fmt:formatNumber value="${pvo.price - (pvo.price * (pvo.halin / 100))}" pattern=",000" /> </b>
+					</c:if>
+					<c:if test="${pvo.halin == 0}">
+						KRW <b class="price_text1" id="total_price"> <fmt:formatNumber value="${pvo.price}"/> </b>
+					</c:if>
 				</div>
 				<!-- 회원/비회원_area_start -->
-				<div id="etc">	<!-- 위시리스트, 장바구니, 바로구매 -->
+				<div id="etc">	<!-- 장바구니, 바로구매 -->
 					<!-- 장바구니 -->
-					<c:if test="${userid != null}">
-						<span class="btn" onclick="cart_add()"> 장바구니 </span>
-					</c:if>
-					<c:if test="${userid == null}">
-						<span class="btn" onclick="alert('로그인하셔야 본 서비스를 이용하실 수 있습니다.')"> 장바구니 </span>
-					</c:if>
+					<span class="btn" onclick="cart_add()"> 장바구니 </span>
 					
 					<!-- 바로구매 -->
 					<span class="btn" onclick="pro_submit()"> 바로구매 </span>

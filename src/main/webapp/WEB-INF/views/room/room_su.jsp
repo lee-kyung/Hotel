@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
@@ -15,6 +13,9 @@
 	}
 	roomsec{
 		margin-bottom: 80px;
+	}
+	roomsec table{
+		border: 1px solid #887159;	
 	}
 </style>
 
@@ -36,10 +37,23 @@
     <div class="row"> 
    	<roomsec>
    	<h2>객실 수량</h2>
-		<table border="1">
-			
-			
- 			<tr>
+   			<caption><h3>
+			<c:if test="${m == 1}"> <!-- 1월이면 -->
+				<a href="room_su?y=${y-1}&m=12">◁</a>
+			</c:if>
+			<c:if test="${m != 1}"> <!-- 1월이 아니면 -->
+				<a href="room_su?y=${y}&m=${m-1}">◁</a>
+			</c:if>
+			${y}년 ${m}월
+			<c:if test="${m == 12}"> <!-- 12월이면 -->
+				<a href="room_su?y=${y+1}&m=1">▷</a>
+			</c:if>
+			<c:if test="${m != 12}"> <!-- 12월이 아니면 -->
+				<a href="room_su?y=${y}&m=${m+1}">▷</a>
+			</c:if>
+		</h3></caption>
+		<table border="1" width="1000" align="center">
+ 			<tr height="50">
  				<th> 일 </th>
  				<th> 월 </th>
 				<th> 화 </th>
@@ -48,34 +62,27 @@
 				<th> 금 </th>
 				<th> 토 </th>
  			</tr>
-			<c:set var="day" value="1"/>
+	 		<c:set var="day" value="1"/>
+		
 			<c:forEach var="i" begin="1" end="6"> <!-- 행 -->
-			<tr>
+			<tr height="100">
 			  <c:forEach var="j" begin="0" end="6"> <!-- 열 -->
 				<c:if test="${(j < yoil && i == 1) || (chong < day)}">
 					<td> &nbsp; </td>
 				</c:if>
 				<c:if test="${((j >= yoil && i == 1)|| i > 1 ) && (chong >= day)}">
-				  	<c:if test="${j != 0 && j != 6 }">
-						<td> ${day} <p>
-				  	</c:if>
-				  	<c:if test="${j == 0}">
-				  		<td style='color:red'> ${day} <p>
-				  	</c:if>
-				  	<c:if test="${j == 6}">
-				  		<td style='color:blue'> ${day} <p>
-				  	</c:if>
-				  	<!-- 방의 이름출력..? -->
+				  	<td> ${day} <p>
+				  	<!-- 방의 이름출력.. -->
 				  	<!-- td에 출력되는 날짜가 오늘보다 이전이면 안보이게 -->
-				  	<%
-				 		// 년,월은 request영역, 일은 pageContext영역 => 스크립트릿변수로 변경해야함
-  						// getAttribute는 object니까 toString으로 문자열로 바꾸기
-  						String y=request.getAttribute("y").toString();
-				  	%>
+					  <c:forEach items="${list}" var="rvo">
+						 <span>${rvo.rname} : ${rvo.rsu}</span><p>
+					  </c:forEach>
+					</td>
+				<c:set var="day" value="${day+1}"/> <!-- 날짜값을 1씩 증가 -->
 				</c:if>
-			  </c:forEach> 			
-			</c:forEach>
-			
+			   </c:forEach> 			
+			  </tr>
+			</c:forEach> 
 		</table>
 	</roomsec>
  	</div>
@@ -83,23 +90,6 @@
 </div>
 
     <!-- ================ Rooms Area End ================= -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 </body>
