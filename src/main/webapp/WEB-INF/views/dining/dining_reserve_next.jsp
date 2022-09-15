@@ -4,6 +4,13 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <head>
  <style>
+  .dining_reserve_next{
+    height:1600px;
+    line-height:2;
+  }
+  caption{
+    align:center;
+  }
   .flex-container{
     width:1300px;
     margin:auto;
@@ -30,8 +37,11 @@
   table{
     align:center;
     margin:auto;
-    font-size:15px;
-    margin-top:10px;
+    font-size:13px;
+    
+  }
+  td{
+    margin-top:40px;
   }
  </style>
  <script src="http://code.jquery.com/jquery-latest.js"></script>
@@ -39,7 +49,9 @@
 </head>
  
 <body>
+
    <script>
+   
   function categoryChange(e)
   {
 	  var time_a=["8:00","10:00"];
@@ -84,23 +96,26 @@
     <!-- 부타이틀(자유롭게 변경)_area_start -->
 <div class="dining_reserve_next">   
  <div id="section_left1"> 
-  <h3 style="font-weight:790px;">RESERVATION</h3>
-   <table width="1000" align="center">
-   <tr>
-     <td> 
-       <h2> 파라다이스호텔 부산에 오신 것을 환영합니다.</h2><br>
-       <h2>ON THE PLATE</h2><br>
-       <span id="info">안내사항<br></span>
-     </td>
-   </tr>
-   </table>
+  
+
  </div>
  <div id="section_left2"> 
   <form name="reser" method="post" action="dining_reserve_ok">
    <div id="1-1">
-   <table width="1000" align="center" >
+   <table width="1000" align="center" border="1">
+   <caption>
+  <h3 style="font-weight:790px;"> RESERVATION</h3>
+ 
+       <h2> 파라다이스호텔 부산에 오신 것을 환영합니다.</h2><br>
+       <h2>ON THE PLATE</h2><br>
+       <span id="info">안내사항<br></span>
+
+
+   </caption>
+   </table>
+   <table width="1000" align="center" border="1">
        <tr>
-        <td id="info_con">
+        <td id="info_con" colspan="3">
       - 예약 신청을 위한 페이지로 예약 신청 후 직원이 확인하여 예약 확정 문자를 보내드립니다.<br>
       - 온라인 예약은 이용시간 기준 1일 전 21시까지 신청 가능합니다.<br>
       - 좌석 배치는 사전 예약순에 따르며 특정 좌석 지정은 불가합니다.<br>
@@ -110,19 +125,17 @@
       - 홈페이지 예약 할인 프로모션은 예약 상황에 따라 조기 마감 될 수 있으며 바우쳐,쿠폰사용 및 제휴 할인과 중복 적용되지 않습니다.
         </td>
       </tr>
-   </table>
-    <table width="1000" align="center" >
      <tr>
-       <td>방문 희망 일자</td>
-       <td>조식/중식/석식</td>
-       <td>예약시간</td>
+       <td width="300">방문 희망 일자</td>
+       <td width="300">조식/중식/석식</td>
+       <td width="300">예약시간</td>
      </tr>
      <tr>
        <td>${ymd}</td>
        <td>
        <input type="hidden" id="changeInput">
         <select name="dine_type" onchange="categoryChange(this)">
-         <option>선택</option>
+         <option value="0">선택</option>
          <option value="a">Breakfast</option>
          <option value="b">Lunch</option>
          <option value="c">Dinner</option>
@@ -134,23 +147,24 @@
            
          <option value="0">선택</option>
           <c:if test="${dvo.dine_type == 'Breakfast' }">
+            <option value>선택</option>
             <option value="1">8:00</option>
             <option value="2">10:00</option>
           </c:if>
        
           <c:if test="${dvo.dine_type == 'Lunch' }">
+            <option value>선택</option>
             <option value="3">13:00</option>
             <option value="4">15:00</option>
           </c:if>
        
          <c:if test="${dvo.dine_type == 'Dinner' }">
+            <option value>선택</option>
             <option value="5">16:00</option>
             <option value="6">18:00</option>  
          </c:if>
        </select>
  
-       
-
        </td>
      </tr> 
      <tr>
@@ -175,26 +189,37 @@
      </tr>
      <tr>
        <td>이름</td>
-       <td>휴대폰 번호<input type="hidden" name="phone"></td>
+       <td colspan="2">휴대폰 번호<input type="hidden" name="phone"></td>
      </tr>
      <tr>
-       <td><input type="text" name="name" size="50"></td>
-       <td>
+       <td><input type="text" name="name" size="40"></td>
+       <td colspan="2">
         <input type="text" name="p1" class="inputs" maxlength="3" size="10" />-
         <input type="text" name="p2" class="inputs" maxlength="4" size="10"/>-
         <input type="text" name="p3" class="inputs" maxlength="4" size="10"/>
+       </td>
+     </tr>     
+     <tr>
+       <td>이메일</td>
+     </tr>
+     <tr>
+       <td><input type="text" name="email" size="40"></td>
+     </tr>
+     <tr>
+       <td colspan="3"> 추가 요청사항(선택)</td>
+     </tr>
+     <tr>
+       <td colspan="3"> 
+      - 이용일로부터 1일전 23:59분전까지 무료 취소 가능합니다.<br>
+      - 방문 당일 취소 및 변경은 위약금 10만원이 부과됩니다.
        </td>
      </tr>
- </table>
- <hr>
-  <table width="900" align="center">
-   <tr>
-       <td><input type="text" name="name" size="50"></td>
-       <td>
-        <input type="text" name="p1" class="inputs" maxlength="3" size="10" />-
-        <input type="text" name="p2" class="inputs" maxlength="4" size="10"/>-
-        <input type="text" name="p3" class="inputs" maxlength="4" size="10"/>
-       </td>
+     <tr>
+       <td colspan="3"> 결제 방법</td>
+     </tr>
+     <tr>
+       <td><input type="radio">전체금액 온라인 결제</td>
+        <td colspan="2"><input type="radio">레스토랑에서 결제(예약금 10만원 결제)</td>
      </tr>
     </table>
    </div>
