@@ -96,7 +96,7 @@
    </table>
  </div>
  <div id="section_left2"> 
-  <form name="reser" method="post" action="reserve_ok">
+  <form name="reser" method="post" action="dining_reserve_ok">
    <div id="1-1">
    <table width="1000" align="center" >
        <tr>

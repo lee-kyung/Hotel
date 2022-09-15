@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -82,7 +83,13 @@ public class DiningResvServiceImpl implements DiningResvService{
     	model.addAttribute("dvo", dvo);
 		return "/dining/dining_reserve_next";
 	}
-	
+	@Override
+	public String dining_reserve_ok(HttpServletRequest request, HttpSession session)
+	{
+		String dr_date=request.getParameter("dr_date");
+		
+		return "/dining/dining_reserve_next_ok";
+	}
 	
 	
 
