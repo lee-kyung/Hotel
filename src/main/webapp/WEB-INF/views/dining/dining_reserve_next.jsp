@@ -37,9 +37,39 @@
  <script src="http://code.jquery.com/jquery-latest.js"></script>
  
 </head>
-
+ 
 <body>
-    
+   <script>
+  function categoryChange(e)
+  {
+	  var time_a=["8:00","10:00"];
+	  var time_b=["13:00","15:00"];
+	  var time_c=["16:00","18:00"];
+	  var target= document.getElementById("time");
+	  
+	  if(e.value == "a") var d = time_a;
+		else if(e.value == "b") var d = time_b;
+		else if(e.value == "c") var d = time_c;
+
+		target.options.length = 0;
+
+		for (x in d) {
+			var opt = document.createElement("option");
+			opt.value = d[x];
+			opt.innerHTML = d[x];
+			target.appendChild(opt);
+             }
+  } 
+  $(function() {
+	    $(".inputs").keyup (function () {
+	        var charLimit = $(this).attr("maxlength");
+	        if (this.value.length >= charLimit) {
+	            $(this).next('.inputs').focus();
+	            return false;
+	        }
+	    });
+	});
+</script>
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
     <!-- bradcam_area_start -->
     <!-- 새 이미지 추가하는 법
@@ -52,7 +82,7 @@
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
 	<!-- ================ 타이틀(자유롭게 변경) Area Start ================= -->
     <!-- 부타이틀(자유롭게 변경)_area_start -->
-    
+<div class="dining_reserve_next">   
  <div id="section_left1"> 
   <h3 style="font-weight:790px;">RESERVATION</h3>
    <table width="1000" align="center">
@@ -90,7 +120,7 @@
      <tr>
        <td>${ymd}</td>
        <td>
-       <!-- <input type="hidden" id="changeInput"> -->
+       <input type="hidden" id="changeInput">
         <select name="dine_type" onchange="categoryChange(this)">
          <option>선택</option>
          <option value="a">Breakfast</option>
@@ -100,62 +130,27 @@
        </td>
        <td>
  
-       <%-- <select id="time">
-          <c:if test="${dvo.dine_time == null }">
-           #
-          </c:if> 
-         <option value>선택</option>
-          <c:if test="${dvo.dine_time == Breakfast }">
+      <select id="time">
+           
+         <option value="0">선택</option>
+          <c:if test="${dvo.dine_type == 'Breakfast' }">
             <option value="1">8:00</option>
             <option value="2">10:00</option>
           </c:if>
        
-          <c:if test="${dvo.dine_time == Lunch }">
+          <c:if test="${dvo.dine_type == 'Lunch' }">
             <option value="3">13:00</option>
             <option value="4">15:00</option>
           </c:if>
        
-         <c:if test="${dvo.dine_time == Dinner }">
+         <c:if test="${dvo.dine_type == 'Dinner' }">
             <option value="5">16:00</option>
             <option value="6">18:00</option>  
          </c:if>
-       </select> --%>
-        <select id="time">
-         <option>선택</option>
-  
        </select>
+ 
        
-<script>
-  function categoryChange(e)
-  {
-	  var time_a=["8:00","10:00"];
-	  var time_b=["13:00","15:00"];
-	  var time_c=["16:00","18:00"];
-	  var target= document.getElementById("time");
-	  
-	  if(e.value == "a") var d = time_a;
-		else if(e.value == "b") var d = time_b;
-		else if(e.value == "c") var d = time_c;
 
-		target.options.length = 0;
-
-		for (x in d) {
-			var opt = document.createElement("option");
-			opt.value = d[x];
-			opt.innerHTML = d[x];
-			target.appendChild(opt);
-             }
-  }
-  $(function() {
-	    $(".inputs").keyup (function () {
-	        var charLimit = $(this).attr("maxlength");
-	        if (this.value.length >= charLimit) {
-	            $(this).next('.inputs').focus();
-	            return false;
-	        }
-	    });
-	});
-</script>
        </td>
      </tr> 
      <tr>
@@ -201,11 +196,11 @@
         <input type="text" name="p3" class="inputs" maxlength="4" size="10"/>
        </td>
      </tr>
-  </table>
+    </table>
+   </div>
+  </form>
  </div>
- </form>
 </div>
-
     <!-- 부타이틀(자유롭게 변경)_area_end -->
     <!-- ================ 타이틀(자유롭게 변경) Area End ================= -->
 
