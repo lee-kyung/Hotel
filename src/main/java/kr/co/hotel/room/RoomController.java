@@ -3,6 +3,7 @@ package kr.co.hotel.room;
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -45,7 +46,12 @@ public class RoomController {
 	{
 		return service.room_content(model,request);
 	}
-
+	
+	@RequestMapping("/room/room_su")
+	public String room_su(HttpServletRequest request, HttpSession session, Model model)
+	{
+		return service.room_su(request, session, model);
+	}
 	
 	
 	

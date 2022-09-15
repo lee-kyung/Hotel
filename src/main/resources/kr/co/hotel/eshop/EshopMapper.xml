@@ -14,7 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="getpcode" resultType="Integer">
-		<![CDATA[ select ifnull(substring(max(pcode), 6, 4), 0)+1 from product where pcode like concat(#{param1}, '%') ]]>
+		select ifnull(substring(max(pcode), 6, 4), 0)+1 from product where pcode like concat(#{param1}, '%')
 	</select>
 	
 	<insert id="pro_write_ok" parameterType="kr.co.hotel.eshop.ProductVO">
@@ -23,9 +23,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<select id="pro_list" resultType="kr.co.hotel.eshop.ProductVO">
-		select *, substr(fimg, 1, instr(fimg, ",")-1) as img
-		from product where pcode like concat(#{param1}, '%')
-		order by ${param2} limit ${param3}, ${param4}
+		select *, substr(fimg, 1, instr(fimg, ",")-1) as img,
+		(select count(*) from wish where userid=#{param1} and pcode=#{param2}) as wishchk
+		from product where pcode like concat(#{param3}, '%')
+		order by ${param4} limit ${param5}, ${param6}
 	</select>
 	
 	<select id="total" resultType="Integer">
@@ -33,6 +34,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="pro_content" resultType="kr.co.hotel.eshop.ProductVO">
-		select *, substr(pcode, 1, 5) as subpcode from product where pcode=#{param1}
+		select *, substr(pcode, 1, 5) as subpcode, substr(fimg, 1, instr(fimg, ",")-1) as img
+		from product where pcode=#{param1}
 	</select>
+	
+	<insert id="wish_add">
+		insert into wish(userid, pcode, inday) values(#{param1}, #{param2}, now())
+	</insert>
+	
+	<delete id="wish_del">
+		delete from wish where userid=#{param1} and pcode=#{param2}
+	</delete>
+	
+	<select id="checkWish" resultType="Integer">
+		select count(*) from wish where userid=#{param1} and pcode=#{param2}
+	</select>
+	
+	<select id="getPcode" resultType="kr.co.hotel.eshop.ProductVO">
+		select pcode from product where pcode like concat(#{param1}, '%') limit ${param2}, ${param3}
+	</select>
+	
 </mapper>

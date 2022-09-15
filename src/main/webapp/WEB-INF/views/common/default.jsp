@@ -124,9 +124,9 @@
 		                                </li>
                                     </ul>
                                 </div>
-                                <div class="book_btn d-none d-lg-block">
+                             <!-- <div class="book_btn d-none d-lg-block">
                                     <a href="../room/room_resv">객실예약</a>
-                                </div>
+                                </div> --> 
                             </div>
                         </div>
                         <div class="col-12">
@@ -234,7 +234,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <!-- link that opens popup -->
 
     <!-- form itself end-->
-        <form id="test-form" name="dtpick" class="white-popup-block mfp-hide">
+        <!-- <form id="test-form" name="dtpick" class="white-popup-block mfp-hide">
                 <div class="popup_box ">
                         <div class="popup_inner">
                             <h3>Check Availability</h3>
@@ -279,7 +279,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                             </form>
                         </div>
                     </div>
-            </form>
+            </form> -->
     <!-- form itself end -->
 
     <!-- JS here -->

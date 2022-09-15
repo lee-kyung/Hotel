@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -66,10 +67,10 @@ public class EshopServiceImpl implements EshopService {
 				String fimg=file.nextElement().toString();	// nextElement()를 통해 저장된 값을 가져오기
 				
 				/* multi.getFilesystemName("fimg1")로 서버에 저장된 파일이름을 가져오기 */
+				if(!fimg.equals("simg"))	// 단, simg도 가져오기 때문에 simg는 빼고 imgs에 담기
 				imgs=multi.getFilesystemName(fimg)+","+imgs;	// 테이블의 fname필드에 [파일명, 파일명, 파일명]의 형태로 저장하기
 			}
 			imgs=imgs.replace("null,", "");	// 'null,'값을 없애기
-			System.out.println(imgs);
 			
 			pvo.setPcode(multi.getParameter("pcode"));
 			pvo.setTitle(multi.getParameter("title"));
@@ -90,7 +91,7 @@ public class EshopServiceImpl implements EshopService {
 	}
 
 	@Override
-	public String pro_list(HttpServletRequest request, Model model) {
+	public String pro_list(HttpServletRequest request, Model model, HttpSession session) {
 		String pcode=request.getParameter("pcode");
 		
 		int page, psel;
@@ -133,8 +134,16 @@ public class EshopServiceImpl implements EshopService {
 		/* pend가 총페이지수보다 크다면 값 바꾸기 */
 		if(pend > ptotal)
 			pend=ptotal;
-
-		model.addAttribute("list", mapper.pro_list(pcode, osel, pindex, psel));
+		
+		String userid=session.getAttribute("userid").toString();
+		
+		ArrayList<ProductVO> pcodelist=mapper.getPcode(pcode, pindex, psel);
+		System.out.println(pcodelist.size());
+		for(int i=0;i<pcodelist.size();i++) {
+			ArrayList<ProductVO> plist=mapper.pro_list(userid, pcodelist.get(i).getPcode(), pcode, osel, pindex, psel);
+			model.addAttribute("plist", plist);
+		}
+		
 		model.addAttribute("pcode", pcode);	// 배너사진과 문구를 구별하기 위한 pcode(pdae 또는 pdaeso)값
 		model.addAttribute("page", page);
 		model.addAttribute("psel", psel);
@@ -146,10 +155,43 @@ public class EshopServiceImpl implements EshopService {
 	}
 	
 	@Override
-	public String pro_content(HttpServletRequest request, Model model) {
+	public String pro_content(HttpServletRequest request, Model model, HttpSession session) {
 		String pcode=request.getParameter("pcode");
-		model.addAttribute("pvo", mapper.pro_content(pcode));
+		ProductVO pvo=mapper.pro_content(pcode);
+		
+		/* fimg의 복수이미지를 fimgs[]에 넣기*/
+		pvo.setImgs(pvo.getFimg().split(","));
+		
+		/* wish테이블에 '해당유저'와 '해당상품'이 들어있는지 확인하고 model로 전달하기 */
+		int wishcnt;
+		if(session.getAttribute("userid") == null)	// 로그인을 안 했다면?
+			wishcnt=0;
+		else {	// 로그인했는데
+			String userid=session.getAttribute("userid").toString();
+			int chk=mapper.checkWish(userid, pcode);
+			if(chk == 0)	// wish테이블에 해당상품이 없다면?
+				wishcnt=0;
+			else	// wish테이블에 해당상품이 있다면?
+				wishcnt=1;
+		}
+		model.addAttribute("wishcnt", wishcnt);
+		
+		model.addAttribute("pvo", pvo);
 		return "/eshop/pro_content";
+	}
+
+	@Override
+	public void wish_add(HttpSession session, HttpServletRequest request, PrintWriter out) {
+		String pcode=request.getParameter("pcode");
+		mapper.wish_add(session.getAttribute("userid").toString(), pcode);
+		out.print("0");
+	}
+
+	@Override
+	public void wish_del(HttpSession session, HttpServletRequest request, PrintWriter out) {
+		String pcode=request.getParameter("pcode");
+		mapper.wish_del(session.getAttribute("userid").toString(), pcode);
+		out.print("0");
 	}
 
 }

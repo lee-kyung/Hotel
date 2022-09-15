@@ -9,6 +9,8 @@ public interface RoomMapper {
 	public ArrayList<RoomVO>rooms(String code);
 	public ArrayList<RoomVO>room_content(String code);
 	
+	public ArrayList<RoomVO>getRoom();
+	
 	
 	
 	

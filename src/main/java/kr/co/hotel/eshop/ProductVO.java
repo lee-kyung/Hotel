@@ -10,6 +10,14 @@ public class ProductVO {
 	
 	private String subpcode;	// pcode의 앞5자리(p0101, p0102, p0201, p0202)만 가져오기
 	
+	private int wishchk;
+	
+	public int getWishchk() {
+		return wishchk;
+	}
+	public void setWishchk(int wishchk) {
+		this.wishchk = wishchk;
+	}
 	public String getSubpcode() {
 		return subpcode;
 	}

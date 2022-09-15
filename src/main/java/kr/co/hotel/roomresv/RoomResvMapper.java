@@ -7,5 +7,13 @@ import kr.co.hotel.room.RoomVO;
 public interface RoomResvMapper {
 	public ArrayList<RoomVO> room_resv();
 	public RoomVO room_resvnext(String rcode);
+	public void room_resv_ok(RoomResvVO rsvo);
+	public Integer getBid(String userid); 
+	public Integer getRoomCnt(String checkin, String rcode);
+
+	
+	
+	
+	
 	
 }

@@ -48,7 +48,12 @@
                                     <ul id="navigation">
                                         <li><a class="active" href="../main/index">home</a></li>
                                         <li><a href="../room/rooms">rooms</a></li>
-                                        <li><a href="../dining/dining">dining</a></li>
+                                        <li><a href="../dining/dining">dining<i class="ti-angle-down"></i></a>
+                                            <ul class="submenu">
+                                                <li><a href="../dining/dining">레스토랑 소개</a></li>
+                                                <li><a href="../dining/dining_reserve">레스토랑 예약</a></li>
+                                            </ul>
+                                        </li>
                                         <li><a href="../wedding/wedding">wedding<i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
                                                 <li><a href="../wedding/wedding_hall?id=9">웨딩홀</a></li>
@@ -112,7 +117,7 @@
                                     </ul>
                                 </div>
                                 <div class="book_btn d-none d-lg-block">
-                                    <a class="popup-with-form" href="#test-form">Book A Room</a>
+                                   <a href="../room/room_resv">객실예약</a>
                                 </div>
                             </div>
                         </div>

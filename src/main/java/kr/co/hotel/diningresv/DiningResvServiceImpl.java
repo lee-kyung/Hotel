@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -69,17 +70,39 @@ public class DiningResvServiceImpl implements DiningResvService{
 	{		
 		// jsp에 보내줘야 될내용 => 년,월,일, 방의 정보
     	int y=Integer.parseInt(request.getParameter("y"));
-    	int m=Integer.parseInt(request.getParameter("m"));
-    	int d=Integer.parseInt(request.getParameter("d"));
+    	int mm=Integer.parseInt(request.getParameter("m"));
+    	int dd=Integer.parseInt(request.getParameter("d"));
     	String id=request.getParameter("id");
     	// 입실일
-    	String ymd=y+"-"+m+"-"+d;
+    	String ymd=y+"-"+mm+"-"+dd;
     	
     	DiningVO dvo=mapper.dining_reserve_next("id");
     	// request영역에 필요한 값 담기
     	request.setAttribute("ymd", ymd);
+    	
     	model.addAttribute("dvo", dvo);
 		return "/dining/dining_reserve_next";
+	}
+	@Override
+	public String dining_reserve_ok(HttpServletRequest request, HttpSession session, DiningResvVO drvo)
+	{
+		String dr_date=request.getParameter("dr_date");
+		String dining_id=request.getParameter("dining_id");
+		String dr_type=request.getParameter("dr_type");
+		String dr_total=request.getParameter("dr_total");
+		String name=request.getParameter("name");
+		String p1=request.getParameter("p1");
+		String p2=request.getParameter("p2");
+		
+		
+		mapper.dining_reserve_ok(drvo);
+		
+		return "/dining/dining_reserve_next_ok";
+	}
+	@Override
+	public String dining_reserve_ok(HttpServletRequest request, HttpSession session) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

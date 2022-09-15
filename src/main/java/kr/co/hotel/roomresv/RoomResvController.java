@@ -3,6 +3,7 @@ package kr.co.hotel.roomresv;
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -19,15 +20,9 @@ public class RoomResvController {
 	private RoomResvService service;
 	
 	@RequestMapping("/room/room_resv")
-	public String room_resv(RoomVO rvo, Model model)
+	public String room_resv(RoomVO rvo, Model model, HttpServletRequest request)
 	{
-		return service.room_resv(rvo,model);
-	}
-	
-	@RequestMapping("/room/getRoom")
-	public void getRoom(HttpServletRequest reqeust, Model model)
-	{
-	
+		return service.room_resv(rvo, model, request);
 	}
 	
 	@RequestMapping("/room/room_resvnext")
@@ -36,7 +31,13 @@ public class RoomResvController {
 		return service.room_resvnext(request, model);
 	}
 	
-	
+	@RequestMapping("/room/room_resv_ok")
+	public String room_resv_ok(RoomResvVO rsvo, HttpSession session)
+	{
+		return service.room_resv_ok(rsvo, session);
+	}
 	
 
+	
+	
 }

@@ -25,6 +25,13 @@
 	#pro_write table tr:last-child td {
 		border : none;
 	}
+	#pro_write #size {
+		width : 100px;
+	}
+	input[type=number]::-webkit-inner-spin-button,
+	input[type=number]::-webkit-outer-spin-button {
+		opacity: 1;
+	}
 </style>
 <script>
 	/* pdae테이블의 daecode를 이용하여 pso테이블의 socode를 가져오기 */
@@ -65,15 +72,12 @@
 								case 1 : pcode2="00"+pcode2; break;
 								case 2 : pcode2="0"+pcode2; break;
 							}
-							document.inpro.pcode.value=pcode1+pcode2;	// pcode 총8자리 완성
+							/* pcode 총8자리 완성 */
+							document.inpro.pcode.value=pcode1+pcode2;
 						}
 					}
 					return true;
 				}
-	}
-	
-	function goback(){
-		window.history.back();
 	}
 	
 	/* 상품코드, 메인이미지, 상세이미지, 상품명, 판매가, 재고가 입력됐는지 체크하기 */
@@ -109,36 +113,42 @@
 	
 	/* 이미지 첨부파일 추가 & 삭제 */
 	function add_file(){
-		let len=document.getElementsByClassName("imgs").length;	// 현재 type="file"의 개수
-			len++;	// type="file"의 이름숫자를 1증가
-			let inner="<p class='imgs'> <input type='file' name='fimg"+len+"'> </p>";	// 추가할 내용(img숫자1증가)
-		
-		document.getElementById("outer").innerHTML=document.getElementById("outer").innerHTML+inner;
+		let len=document.getElementsByClassName("imgs").length;
+		if(len < 3) {
+			len++;
+			let inner="<p class='imgs'> <input type='file' name='fimg"+len+"'> </p>";
+			document.getElementById("outer").innerHTML=document.getElementById("outer").innerHTML+inner;
+		}
 	}
 	function del_file(){
-		let len=document.getElementsByClassName("imgs").length;	// 현재 type="file"의 개수
-		if(len > 1) {	// type="file"을 하나는 남기기
-			len--;	// type="file"의 이름숫자를 1감소, 왜? 배열은 0부터 시작하니까 그 숫자와 맞추기 위해
-			document.getElementsByClassName("imgs")[len].remove();	// 마지막 type="file"을 삭제
+		let len=document.getElementsByClassName("imgs").length;
+		if(len > 1) {
+			len--;
+			document.getElementsByClassName("imgs")[len].remove();
 		}
 	}
 </script>
 </head>
 <body>
+	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
+		<div class="bradcam_area basic">
+	        <h3> 상품 등록 </h3>
+	    </div>
+    <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
+    
 	<!-- ================ 상품등록 Area Start ================= -->
 	<section id="pro_write">
 	<form name="inpro" method="post" action="pro_write_ok" enctype="multipart/form-data" onsubmit="return check()">
 		<table width="650" align="center">
-		<caption> <h2> 상품 등록 </h2> </caption>
 			<tr>
 				<td width="80"> 상품코드 </td>
 				<td width="100"> <input type="text" name="pcode" readonly placeholder="상품코드를 생성하세요."> </td>
 				<td>
 					<select name="dae" onchange="getso(this.value)">	<!-- 메인분류 -->
-						<option> 메인분류  </option>
-					<c:forEach var="pdvo" items="${list}">
-						<option value="${pdvo.code}"> ${pdvo.title} </option>
-					</c:forEach>
+							<option> 메인분류  </option>
+						<c:forEach var="pdvo" items="${list}">
+							<option value="${pdvo.code}"> ${pdvo.title} </option>
+						</c:forEach>
 					</select>
 					<select name="so"> </select>	<!-- 하위분류 -->					
 					<input type="button" onclick="return getpcode()" value="상품코드 생성">
@@ -158,7 +168,7 @@
 			</tr>
 			<tr>
 				<td> 상품명 </td>
-				<td colspan="2"> <input type="text" name="title" size="55"> </td>
+				<td colspan="2"> <input type="text" name="title" size="55" placeholder="상품명을 입력하세요."> </td>
 			</tr>
 			<tr>
 				<td> 판매가 </td>
@@ -166,11 +176,11 @@
 			</tr>
 			<tr>
 				<td> 할인율 </td>
-				<td colspan="2"> <input type="number" name="halin" min="0" max="100" placeholder="0~100"> </td>
+				<td colspan="2"> <input type="number" name="halin" min="0" max="100" placeholder="0~100" id="size"> </td>
 			</tr>
 			<tr>
 				<td> 적립율 </td>
-				<td colspan="2"> <input type="number" name="juk" min="0" max="100" placeholder="0~100"> </td>
+				<td colspan="2"> <input type="number" name="juk" min="0" placeholder="숫자만 입력하세요."> </td>
 			</tr>
 			<tr>
 				<td> 재고 </td>
@@ -182,7 +192,6 @@
 			</tr>
 			<tr>
 				<td colspan="3" align="center">
-					<input type="button" value="이전으로" onclick="goback()">
 					<input type="submit" value="등록하기">
 				</td>
 			</tr>
