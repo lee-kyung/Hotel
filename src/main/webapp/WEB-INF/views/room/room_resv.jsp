@@ -41,6 +41,9 @@
 		margin-bottom: 30px;
 		margin-top: 30px;
 	}
+	roomsec #roomdiv{
+		visibility: hidden;
+	}
 	roomsec #ro_info #right{
 		padding-top: 35px;
 		padding-left: 20px;
@@ -68,6 +71,13 @@
 	   document.room.rcode.value=document.room.rcode2[n].value;
 	   document.room.submit();
    }
+   
+   function getRoomAvail()
+   {
+	   document.getElementById("roomdiv").style.visibility="visible";
+   }
+   
+
 </script>
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
     <!-- bradcam_area_start -->
@@ -90,13 +100,13 @@
  			<div> 호텔에 오신것을 환영합니다 </div>
 				<form name="room" method="post" action="room_resvnext">
 				 <input type="hidden" name="rcode">
-				<table>
+				<table id="tb">
 					<tr> 
 						<th> 체크인 </th>
 						<th> 체크아웃 </th>
 						<th> 성인 </th>
 						<th> 어린이 </th>
-						<th rowspan="2"><input type="button" value="검색" onclick="getRoom()"> </th>
+						<th rowspan="2"><input type="button" value="검색" onclick="getRoomAvail()"> </th>
 					</tr> 
 					<tr>
 						<td><input type="text" name="checkin" id="checkin"></td>
@@ -124,8 +134,9 @@
 					</tr>
 				</table>
 				
-			<c:forEach items="${list}" var="rvo" varStatus="my">
- 				<div id="ro_info">
+				<div id="roomdiv">
+				<c:forEach items="${list}" var="rvo" varStatus="my">
+				<div id="ro_info">
  				<input type="hidden" name="rcode2" value="${rvo.rcode}">
 					<div id="left" style="float:left;height:250px;width:500px">
 						<img src="../img/rooms/${rvo.rpimg}" width="500px" height="248px">
@@ -139,7 +150,8 @@
 						<input type="button" value="객실선택" onclick="form_submit(${my.index})">
 					</div>
 				</div>
-			</c:forEach> 
+				</c:forEach> 
+				</div>
 			</form>	
  	  	</roomsec>
  	</div>

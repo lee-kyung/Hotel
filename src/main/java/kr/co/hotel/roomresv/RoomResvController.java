@@ -20,15 +20,9 @@ public class RoomResvController {
 	private RoomResvService service;
 	
 	@RequestMapping("/room/room_resv")
-	public String room_resv(RoomVO rvo, Model model)
+	public String room_resv(RoomVO rvo, Model model, HttpServletRequest request)
 	{
-		return service.room_resv(rvo,model);
-	}
-	
-	@RequestMapping("/room/getRoom")
-	public void getRoom(HttpServletRequest reqeust, Model model)
-	{
-	
+		return service.room_resv(rvo, model, request);
 	}
 	
 	@RequestMapping("/room/room_resvnext")
@@ -44,4 +38,6 @@ public class RoomResvController {
 	}
 	
 
+	
+	
 }

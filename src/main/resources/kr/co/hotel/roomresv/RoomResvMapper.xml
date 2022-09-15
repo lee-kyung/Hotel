@@ -20,5 +20,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getBid" resultType="Integer">
 		select ifnull(max(right(bid,4)),0) from roombk where userid=#{param1}
 	</select>
+
+	<select id="getRoomCnt" resultType="Integer">
+	<![CDATA[ select count(*) as cnt from roombk where #{param1}>=bcin and bcout>#{param1} and rcode=#{param2} ]]>
+	</select>  
+	 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 </mapper>

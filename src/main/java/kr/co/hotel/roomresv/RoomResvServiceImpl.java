@@ -22,11 +22,27 @@ public class RoomResvServiceImpl implements RoomResvService {
 	private RoomResvMapper mapper;
 
 	@Override
-	public String room_resv(RoomVO rvo, Model model) {
+	public String room_resv(RoomVO rvo, Model model, HttpServletRequest request) {
 		// System.out.println(rvo.getRcode());
 
 		ArrayList<RoomVO> list=mapper.room_resv();
 		model.addAttribute("list",list);
+		
+		String checkin=request.getParameter("checkin");
+		String checkout=request.getParameter("checkout");
+		String rcode=request.getParameter("rcode");
+		
+		model.addAttribute("checkin", checkin);
+		model.addAttribute("checkout", checkout);
+		model.addAttribute("rcode",rcode);
+		
+		int cnt=mapper.getRoomCnt(checkin,rcode);
+		model.addAttribute("cnt",cnt);
+		
+		System.out.println(checkin);
+		System.out.println(checkout);
+		System.out.println(cnt);
+	
 		return "/room/room_resv";
 	}
 	@Override
@@ -95,6 +111,6 @@ public class RoomResvServiceImpl implements RoomResvService {
 		
 		return "redirect:/room/rooms";
 	}
-
+	
 	
 }
