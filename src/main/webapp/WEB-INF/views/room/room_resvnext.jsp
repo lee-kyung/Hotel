@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
@@ -66,11 +65,13 @@
 		if(bb==1)
 		{ 
 			bbprice=65000*bb*suk;
-			document.getElementById("bed").innerText=bbprice;
+			document.getElementById("bed").innerText=new Intl.NumberFormat().format(bbprice);
 		}
-		else 
-			document.getElementById("bed").innerText=0;
-		
+		else
+		{
+			bbprice=0;
+			document.getElementById("bed").innerText=new Intl.NumberFormat().format(bbprice);
+		}
 		
 		// 조식
 		var bf=document.resv.bmeal.value;
@@ -82,13 +83,15 @@
 		else
 		{
 			bfprice=0;
-			document.getElementById("bfp").innerText=bfprice;
+			document.getElementById("bfp").innerText=new Intl.NumberFormat().format(bfprice);
 		}
+		
+		
 		// 객실가격
 		var rprice=document.getElementById("rprice").innerText;
 		
 		// 총 가격
-		var total=(bbprice+bfprice)+rprice;
+		var total=(bbprice+bfprice)+Number(rprice);
 	//	alert(total);
 		document.getElementById("btotal").innerText=total;
 		

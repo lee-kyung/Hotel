@@ -74,7 +74,8 @@
    }
    
    function getRoomAvail()
-   {
+   {  
+	   
 	   document.getElementById("roomdiv").style.visibility="visible";
 	   
 	   var checkin=document.room.checkin.value;
@@ -89,14 +90,37 @@
 		   {
 			   //alert(chk.responseText);
 			   document.getElementById("ccc").innerText=chk.responseText;
-			   var len=chk.responseText.split(",").length;
 			   var aa=chk.responseText.split(",");
-			   alert(aa[0]);
-			   alert(aa[1]);
-			   alert(aa[2]);
-			   alert(aa[3]);
+
 			   //alert(chk.responseText.length);
+			   var cbtn=document.getElementsByClassName("cbtn");
+			   alert(aa.length);
+			   if(aa.length==1)
+			   {
+				   for(i=0;i<cbtn.length;i++)
+			       {
+					//   alert(cbtn[i].enabled);
+					  // document.getElementsByClassName("cbtn")[i].setAttribute("disabled","false");
+			       }	   
+				 
+			   }	 
+			   else
+			   {	   
+			     var crcode=document.getElementsByClassName("crcode");
+			    
 			   
+			     for(i=0;i<aa.length;i+=2)
+			     {
+				   for(j=0;j<crcode.length;j++)
+				   {
+					   if(aa[i]==crcode[j].innerText.trim())
+					   {
+						   if(aa[i+1]>=2)
+						     cbtn[j].disabled=true;
+					   }	
+				   }	   
+			     }	   
+			   }
 		   }	
 	   }
 	   //alert(document.room.checkin.value);
@@ -167,13 +191,13 @@
 						<img src="../img/rooms/${rvo.rpimg}" width="500px" height="248px">
 					</div>
 					<div id="right" style="float:right;height:250px;width:270px">
-						<div id="rname">${rvo.rname}</div> ${rvo.rcode} <p>
+						<div id="rname">${rvo.rname}</div> <span class="crcode">${rvo.rcode}</span> <p>
 						<div><span id="subr">전망</span>${rvo.rview}</div>
 						<div><span id="subr">베드타입</span>${rvo.rbed}</div>
 						<div><span id="subr">가격</span>${rvo.rprice}</div>						
 						<br>
 					
-						<input type="button" value="객실선택" onclick="form_submit(${my.index})">
+						<input type="button" value="객실선택" class="cbtn" onclick="form_submit(${my.index})">
 					
 					</div>
 				</div>

@@ -110,7 +110,7 @@ public class RoomResvServiceImpl implements RoomResvService {
 		
 		return "redirect:/room/rooms";
 	}
-	@Override
+	@Override 
 	public void getRoomAvail(HttpServletRequest request, PrintWriter out, RoomVO rvo) {
 		String checkin=request.getParameter("checkin");
 		
@@ -125,7 +125,7 @@ public class RoomResvServiceImpl implements RoomResvService {
 		}
 
 		out.print(str);
-		//out.print(cnt);
+
 		
 	}
 	@Override
