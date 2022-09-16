@@ -4,8 +4,11 @@ import java.io.PrintWriter;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.Random;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -135,7 +138,7 @@ public class EshopServiceImpl implements EshopService {
 		if(pend > ptotal)
 			pend=ptotal;
 		
-		/* 위시리스트트 체크하기 위한 userid */
+		/* 회원과 비회원을 구분하여 plist를 불러와 view에 전달하기 */
 		if(session.getAttribute("userid") == null)
 			model.addAttribute("plist", mapper.pro_list2(pcode, osel, pindex, psel));
 		else {
@@ -190,6 +193,25 @@ public class EshopServiceImpl implements EshopService {
 	public void wish_del(HttpSession session, HttpServletRequest request, PrintWriter out) {
 		String pcode=request.getParameter("pcode");
 		mapper.wish_del(session.getAttribute("userid").toString(), pcode);
+		out.print("0");
+	}
+
+	@Override
+	public void cart_add(HttpSession session, HttpServletRequest request, PrintWriter out, HttpServletResponse response) {
+		if(session.getAttribute("userid") == null) {	// 비회원이라면
+			//Random random=new Random();
+			//int length=random.nextInt(10);
+			Cookie cookie=new Cookie("userid", "12345");
+			cookie.setMaxAge(6000);
+			response.addCookie(cookie);
+			mapper.cart_add(cookie.getValue(), request.getParameter("pcode"), request.getParameter("su"));
+		}
+		else {	// 회원이라면
+			String userid=session.getAttribute("userid").toString();
+			mapper.cart_add(userid, request.getParameter("pcode"), request.getParameter("su"));
+		}
+		
+		
 		out.print("0");
 	}
 

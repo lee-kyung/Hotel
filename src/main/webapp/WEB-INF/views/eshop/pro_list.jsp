@@ -61,6 +61,7 @@
 	}
 	#pro_list #wish {
 		float : right;
+		margin-right : 10px;
 	}
 	#pro_list #wish img {
 		cursor : pointer;

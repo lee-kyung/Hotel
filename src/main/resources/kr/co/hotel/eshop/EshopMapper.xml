@@ -56,8 +56,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) from wish where userid=#{param1} and pcode=#{param2}
 	</select>
 	
-	<select id="getPcode" resultType="kr.co.hotel.eshop.ProductVO">
-		select pcode from product where pcode like concat(#{param1}, '%') limit ${param2}, ${param3}
-	</select>
+	<insert id="cart_add">
+		insert into cart(userid, pcode, su, inday)
+		values(#{param1}, #{param2}, ${param3}, now())
+	</insert>
 	
 </mapper>
