@@ -68,15 +68,22 @@
 			bbprice=65000*bb*suk;
 			document.getElementById("bed").innerText=bbprice;
 		}
+		else 
+			document.getElementById("bed").innerText=0;
+		
 		
 		// 조식
 		var bf=document.resv.bmeal.value;
 		if(bf==1)
 		{
-			bfprice=30000*bf*binwon*suk;
+			bfprice=30000*binwon*suk;
 			document.getElementById("bfp").innerText=bfprice;
 		}
-		
+		else
+		{
+			bfprice=0;
+			document.getElementById("bfp").innerText=bfprice;
+		}
 		// 객실가격
 		var rprice=document.getElementById("rprice").innerText;
 		
@@ -85,11 +92,23 @@
 	//	alert(total);
 		document.getElementById("btotal").innerText=total;
 		
-		document.resv.btotal.value=total;
-	
-		
-		
+		document.resv.btotal.value=total;		
 	}
+	
+	function suUpdate()
+	{
+		var chk=new XMLHttpRequest();
+		chk.onload=function()
+		{
+			if(chk.responseText=="0")
+				alert("수량줄이기");
+		}
+		chk.open("get","suUpdate?rcode=${rvo.rcode}&checkin="+${checkin}+"&checkout="+${checkout});
+		chk.send();
+		
+		document.resv.submit();
+	}
+	
 </script>
 
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
@@ -125,9 +144,9 @@
  			<table id="tb">
  				 <tr>
  				   <td> 체크인 </td>
- 				   <td><input type="text" name="bcin" value="${checkin}" readonly> </td>
+ 				   <td><input type="text" name="checkin" value="${checkin}" readonly> </td>
  				   <td> 체크아웃 </td>
- 				   <td> <input type="text" name="bcout" value="${checkout}" readonly></td>
+ 				   <td> <input type="text" name="checkout" value="${checkout}" readonly></td>
  				 </tr>
  				 <tr>
  				   <td> 기준인원/최대인원 </td>
@@ -160,7 +179,7 @@
  				 	<td colspan="3"><span id="btotal"></span>원</td> 
  				 </tr>
 				</table>
-				<div id="pay"><input type="submit" value="예약하기"></div>
+				<div id="pay"><input type="button" onclick="suUpdate()" value="예약하기"></div>
  			</form>
  	  	</roomsec>
  	</div>

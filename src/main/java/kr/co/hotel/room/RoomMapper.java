@@ -10,7 +10,7 @@ public interface RoomMapper {
 	public ArrayList<RoomVO>room_content(String code);
 	
 	public ArrayList<RoomVO>getRoom();
-	
+	public Integer getCnt(String checkin, RoomVO rvo);
 	
 	
 	

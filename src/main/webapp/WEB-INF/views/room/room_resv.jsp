@@ -57,6 +57,7 @@
 		
 		$("#checkin").datepicker({
 			format: "yyyy-mm-dd",
+			
 			minDate: new Date() 
 		});
 		$("#checkout").datepicker({
@@ -75,6 +76,30 @@
    function getRoomAvail()
    {
 	   document.getElementById("roomdiv").style.visibility="visible";
+	   
+	   var checkin=document.room.checkin.value;
+	   var checkout=document.room.checkout.value;
+	   
+	   var chk=new XMLHttpRequest();
+	   chk.open("get","getRoomAvail?checkin="+checkin+"&checkout="+checkout);
+	   chk.send();
+	   chk.onreadystatechange=function()
+	   {
+		   if(chk.readyState==4)
+		   {
+			   //alert(chk.responseText);
+			   document.getElementById("ccc").innerText=chk.responseText;
+			   var len=chk.responseText.split(",").length;
+			   var aa=chk.responseText.split(",");
+			   alert(aa[0]);
+			   alert(aa[1]);
+			   alert(aa[2]);
+			   alert(aa[3]);
+			   //alert(chk.responseText.length);
+			   
+		   }	
+	   }
+	   //alert(document.room.checkin.value);
    }
    
 
@@ -106,7 +131,7 @@
 						<th> 체크아웃 </th>
 						<th> 성인 </th>
 						<th> 어린이 </th>
-						<th rowspan="2"><input type="button" value="검색" onclick="getRoomAvail()"> </th>
+						<th rowspan="2"><input type="button" value="검색" onclick="getRoomAvail(${my.index})"> </th>
 					</tr> 
 					<tr>
 						<td><input type="text" name="checkin" id="checkin"></td>
@@ -133,7 +158,7 @@
 						</td>	
 					</tr>
 				</table>
-				
+				<div id="ccc"></div>
 				<div id="roomdiv">
 				<c:forEach items="${list}" var="rvo" varStatus="my">
 				<div id="ro_info">
@@ -142,12 +167,14 @@
 						<img src="../img/rooms/${rvo.rpimg}" width="500px" height="248px">
 					</div>
 					<div id="right" style="float:right;height:250px;width:270px">
-						<div id="rname">${rvo.rname}</div> <p>
+						<div id="rname">${rvo.rname}</div> ${rvo.rcode} <p>
 						<div><span id="subr">전망</span>${rvo.rview}</div>
 						<div><span id="subr">베드타입</span>${rvo.rbed}</div>
 						<div><span id="subr">가격</span>${rvo.rprice}</div>						
 						<br>
+					
 						<input type="button" value="객실선택" onclick="form_submit(${my.index})">
+					
 					</div>
 				</div>
 				</c:forEach> 

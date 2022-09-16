@@ -2,7 +2,7 @@ package kr.co.hotel.roomresv;
 
 public class RoomResvVO {
 	private int id,binwon,bextbed,bmeal,btotal,bstate;
-	private String bcin,bcout,userid,bkdate,bkname,bkphone,bid,rcode;
+	private String checkin,checkout,userid,bkdate,bkname,bkphone,bid,rcode;
 	
 	// 투숙일
 	private int suk;
@@ -62,18 +62,6 @@ public class RoomResvVO {
 	public void setBstate(int bstate) {
 		this.bstate = bstate;
 	}
-	public String getBcin() {
-		return bcin;
-	}
-	public void setBcin(String bcin) {
-		this.bcin = bcin;
-	}
-	public String getBcout() {
-		return bcout;
-	}
-	public void setBcout(String bcout) {
-		this.bcout = bcout;
-	}
 	public String getUserid() {
 		return userid;
 	}
@@ -97,6 +85,18 @@ public class RoomResvVO {
 	}
 	public void setBkphone(String bkphone) {
 		this.bkphone = bkphone;
+	}
+	public String getCheckin() {
+		return checkin;
+	}
+	public void setCheckin(String checkin) {
+		this.checkin = checkin;
+	}
+	public String getCheckout() {
+		return checkout;
+	}
+	public void setCheckout(String checkout) {
+		this.checkout = checkout;
 	}
 	
 	
