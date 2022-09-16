@@ -2,10 +2,17 @@ package kr.co.hotel.dining;
 
 public class DiningVO {
 
-	private int id, dine_su, dine_adult, dine_child, dine_halin;
-	private String dcode, dine_time, dine_type, dine_pimg, dine_cimg;
+	private int id, dine_su, dine_adult, dine_child, dine_halin, dining_id;
+	
+	private String dcode, dine_type, dine_pimg, dine_cimg;
 	
 	
+	/*public String getDine_time() {
+		return dine_time;
+	}
+	public void setDine_time(String dine_time) {
+		this.dine_time = dine_time;
+	}*/
 	public String getDcode() {
 		return dcode;
 	}
@@ -42,12 +49,7 @@ public class DiningVO {
 	public void setDine_halin(int dine_halin) {
 		this.dine_halin = dine_halin;
 	}
-	public String getDine_time() {
-		return dine_time;
-	}
-	public void setDine_time(String dine_time) {
-		this.dine_time = dine_time;
-	}
+
 	public String getDine_type() {
 		return dine_type;
 	}
