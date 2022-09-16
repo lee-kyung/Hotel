@@ -144,7 +144,7 @@
        <td>
  
       <select id="time">
-           
+      <%--   <c:forEach items="${ }"> --%>
          <option value="0">선택</option>
           <c:if test="${dvo.dine_type == 'Breakfast' }">
             <option value>선택</option>
@@ -163,6 +163,8 @@
             <option value="5">16:00</option>
             <option value="6">18:00</option>  
          </c:if>
+         
+<%--        </c:forEach> --%>
        </select>
  
        </td>
@@ -220,6 +222,9 @@
      <tr>
        <td><input type="radio">전체금액 온라인 결제</td>
         <td colspan="2"><input type="radio">레스토랑에서 결제(예약금 10만원 결제)</td>
+     </tr>
+     <tr>
+       <td colspan="3" align="center"><input type="submit" value="예약신청"></td>
      </tr>
     </table>
    </div>
