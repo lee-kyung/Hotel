@@ -3,11 +3,41 @@ package kr.co.hotel.diningresv;
 public class DiningResvVO {
 	
 	private int dr_id, dr_stayhalin, dr_total, dr_state;
-	private String dr_time, dr_type, dr_extrarq, dr_date;
-    // 다이닝 id
+	private String dr_time, dr_type, dr_extrarq, dr_date, p1, p2, p3, email;
+	
+	// 다이닝 id
 	private int dining_id;
+	
     // userid
 	private String userid;
+	
+	
+    public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getP1() {
+		return p1;
+	}
+	public void setP1(String p1) {
+		this.p1 = p1;
+	}
+	public String getP2() {
+		return p2;
+	}
+	public void setP2(String p2) {
+		this.p2 = p2;
+	}
+	public String getP3() {
+		return p3;
+	}
+	public void setP3(String p3) {
+		this.p3 = p3;
+	}
+	
+	
 	
 	public int getDr_id() {
 		return dr_id;

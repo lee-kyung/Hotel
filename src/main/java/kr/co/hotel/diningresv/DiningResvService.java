@@ -17,7 +17,7 @@ public interface DiningResvService {
 	
 	public String dining_reserve_next(HttpServletRequest request, Model model);
 
-	public String dining_reserve_ok(HttpServletRequest request, HttpSession session);
+	public String dining_reserve_ok(DiningResvVO drvo);
 
 	
 	

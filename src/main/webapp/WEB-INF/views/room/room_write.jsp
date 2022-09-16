@@ -106,7 +106,7 @@
 				<td> <input type="text" name="rcode" readonly> </td>
 				<td> <!-- 대분류(객실타입) -->
 				&nbsp
-				  <select name="rdae">
+				  <select id="default-select" name="rdae">
 				  	<option> 선택 </option>
 				  	<c:forEach items="${list}" var="rdvo">	
 						<option value="${rdvo.code}"> ${rdvo.rtype} </option>			  				  		
