@@ -9,9 +9,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="dining_write_ok" parameterType="kr.co.hotel.dining.DiningVO">
-	 insert into dining(dcode,dine_pimg,dine_cimg,dine_type,dine_adult,
-	 dine_child,dine_halin,dine_time,dine_su,writeday)
-	 values(#{dcode},#{dine_pimg},#{dine_cimg},#{dine_type},#{dine_adult},
-	 #{dine_child},#{dine_halin},#{dine_time},#{dine_su},now())
+	 insert into dining(dining_id,dine_pimg,dine_cimg,dine_type,dine_adult,
+	 dine_child,dine_halin,dine_su,writeday)
+	 values(#{dining_id},#{dine_pimg},#{dine_cimg},#{dine_type},#{dine_adult},
+	 #{dine_child},#{dine_halin},#{dine_su},now())
 	</insert>
 </mapper>

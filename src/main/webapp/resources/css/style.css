@@ -7,8 +7,12 @@
 /* .클래스명{background-image:url(../img/banner/이미지파일명.png)} */
 .rooms{background-image:url(../img/banner/rooms.png)}
 .dining{background-image:url(../img/banner/dining.png)}
+<<<<<<< HEAD
+.wedding{background-image:url(../img/banner/wedding_main.jpg)}
+=======
 .dining2{background-image:url(../img/banner/dining2.jpg)}
 .wedding{background-image:url(../img/banner/wedding.png)}
+>>>>>>> branch 'main' of https://github.com/ey0k/hotel.git
 .eshop1{background-image:url(../img/banner/eshop1.png)}
 .eshop2{background-image:url(../img/banner/eshop2.jpg)}
 .eshop3{background-image:url(../img/banner/eshop3.jpg)}
