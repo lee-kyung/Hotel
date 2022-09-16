@@ -29,4 +29,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getRoom" resultType="kr.co.hotel.room.RoomVO">
 		select rname,rsu from room;
 	</select>
+	
+	<select id="getCnt" resultType="Integer">
+	<![CDATA[ select count(*) as cnt from roombk where #{param1}>=bcin and bcout>#{param1} and rcode=#{rcode}]]>	
+	</select>
+	
+	
+	
 </mapper>

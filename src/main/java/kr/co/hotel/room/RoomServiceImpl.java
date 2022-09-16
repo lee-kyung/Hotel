@@ -123,8 +123,10 @@ public class RoomServiceImpl implements RoomService{
     	request.setAttribute("y", y);
     	request.setAttribute("m", m);
     	
+    	
     	ArrayList<RoomVO> list=mapper.getRoom();
     	model.addAttribute("list", list);
+    	/*int cnt=mapper.getCnt(checkin, rvo);*/
     	
 		return "/room/room_su";
 	}
