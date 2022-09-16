@@ -135,14 +135,13 @@ public class EshopServiceImpl implements EshopService {
 		if(pend > ptotal)
 			pend=ptotal;
 		
-		String userid=session.getAttribute("userid").toString();
-		
-		ArrayList<ProductVO> pcodelist=mapper.getPcode(pcode, pindex, psel);
-		System.out.println(pcodelist.size());
-		for(int i=0;i<pcodelist.size();i++) {
-			ArrayList<ProductVO> plist=mapper.pro_list(userid, pcodelist.get(i).getPcode(), pcode, osel, pindex, psel);
-			model.addAttribute("plist", plist);
-		}
+		/* 위시리스트트 체크하기 위한 userid */
+		if(session.getAttribute("userid") == null)
+			model.addAttribute("plist", mapper.pro_list2(pcode, osel, pindex, psel));
+		else {
+			String userid=session.getAttribute("userid").toString();
+			model.addAttribute("plist", mapper.pro_list(userid, pcode, osel, pindex, psel));
+		}			
 		
 		model.addAttribute("pcode", pcode);	// 배너사진과 문구를 구별하기 위한 pcode(pdae 또는 pdaeso)값
 		model.addAttribute("page", page);

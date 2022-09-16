@@ -155,9 +155,9 @@
 		let chk=new XMLHttpRequest();
 		chk.onload=function(){
 			if(chk.responseText == "0") {
-				alert("위시리스트에 추가됐습니다.");
+				//alert("위시리스트에 추가됐습니다.");
 				document.getElementById("wishimg").src="../img/eshop/wish_on.png";
-				document.getElementById("wishimg").setAttribute("onclick", "wish_del('${pvo.pcode}')");
+				document.getElementById("wishimg").setAttribute("onclick", "wish_del('"+pcode+"')");
 			}
 		}
 		chk.open("get", "wish_add?pcode="+pcode);
@@ -167,9 +167,9 @@
 		let chk=new XMLHttpRequest();
 		chk.onload=function(){
 			if(chk.responseText == "0") {
-				alert("위시리스트에서 삭제됐습니다.");
+				//alert("위시리스트에서 삭제됐습니다.");
 				document.getElementById("wishimg").src="../img/eshop/wish_off.png";
-				document.getElementById("wishimg").setAttribute("onclick", "wish_add('${pvo.pcode}')");
+				document.getElementById("wishimg").setAttribute("onclick", "wish_add('"+pcode+"')");
 			}
 		}
 		chk.open("get", "wish_del?pcode="+pcode);
@@ -183,22 +183,22 @@
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
 	<c:if test="${pvo.subpcode == 'p0101'}">
 		<div class="bradcam_area eshop2">
-	        <h3> B E D D I N G </h3>
+	        <h3 onclick="location='pro_list?pcode=p0101'" style="cursor:pointer;"> B E D D I N G </h3>
 	    </div>
 	</c:if>
 	<c:if test="${pvo.subpcode == 'p0102'}">
 	    <div class="bradcam_area eshop2">
-	        <h3> L I F E S T Y L E </h3>
+	        <h3 onclick="location='pro_list?pcode=p0102'" style="cursor:pointer;"> L I F E S T Y L E </h3>
 	    </div>
 	</c:if>
 	<c:if test="${pvo.subpcode == 'p0201'}">
 	    <div class="bradcam_area eshop3">
-	        <h3> R E S T A U R A N T </h3>
+	        <h3 onclick="location='pro_list?pcode=p0201'" style="cursor:pointer;"> R E S T A U R A N T </h3>
 	    </div>
     </c:if>
     <c:if test="${pvo.subpcode == 'p0202'}">
 	    <div class="bradcam_area eshop3">
-	        <h3> H O T E L </h3>
+	        <h3 onclick="location='pro_list?pcode=p0202'" style="cursor:pointer;"> H O T E L </h3>
 	    </div>
     </c:if>
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
