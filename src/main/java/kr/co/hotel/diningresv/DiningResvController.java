@@ -36,9 +36,9 @@ public class DiningResvController {
     	return service.dining_reserve_next(request,model);
     }
     @RequestMapping("/dining/dining_reserve_ok")
-    public String dining_reserve_ok(HttpServletRequest request, HttpSession session)
+    public String dining_reserve_ok(DiningResvVO drvo)
     {
-    	return service.dining_reserve_ok(request,session);
+    	return service.dining_reserve_ok(drvo);
     }
 
 

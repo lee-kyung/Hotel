@@ -84,9 +84,9 @@ public class DiningResvServiceImpl implements DiningResvService{
 		return "/dining/dining_reserve_next";
 	}
 	@Override
-	public String dining_reserve_ok(HttpServletRequest request, HttpSession session)
+	public String dining_reserve_ok(DiningResvVO drvo)
 	{
-		DiningResvVO drvo=new DiningResvVO();
+		/*DiningResvVO drvo=new DiningResvVO();
 		try 
 		{
 			drvo.setDining_id(Integer.parseInt(request.getParameter("Dining_id")));
@@ -99,11 +99,14 @@ public class DiningResvServiceImpl implements DiningResvService{
 			drvo.setDr_total(Integer.parseInt(request.getParameter("dr_total")));
 			drvo.setDr_type(request.getParameter("dr_type"));
 			drvo.setUserid(request.getParameter("userid"));
+			drvo.setP1(request.getParameter("p1"));
+			drvo.setP2(request.getParameter("p2"));
+			drvo.setP3(request.getParameter("p3"));
 		}
 		catch(Exception e)
 		{
-			// return "redirect:error"
-		}
+			return "redirect:error";
+		}*/
 		
 		/*String dr_date=request.getParameter("dr_date");
 		String dining_id=request.getParameter("dining_id");
