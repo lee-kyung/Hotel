@@ -7,5 +7,5 @@ import org.springframework.ui.Model;
 public interface DiningService {
 
 	public String dining_write(Model model);
-	public String dining_write_ok(HttpServletRequest request);
+	public String dining_write_ok(HttpServletRequest request)  throws Exception;
 }

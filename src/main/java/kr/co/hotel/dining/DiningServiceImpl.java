@@ -1,5 +1,6 @@
 package kr.co.hotel.dining;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
@@ -28,13 +29,13 @@ public class DiningServiceImpl implements DiningService{
 		return "/dining/dining_write";
 	}
 	@Override
-	public String dining_write_ok(HttpServletRequest request)
+	public String dining_write_ok(HttpServletRequest request) throws Exception
 	{
 		String path="C:\\Users\\EZEZ\\git\\hotel\\src\\main\\webapp\\resources\\img\\dining";
 		int size=1024*1024*20;
 		DiningVO dvo=new DiningVO();
-		try
-		{
+		//String dine_time=request.getParameter("dine_time");
+	 
 		  MultipartRequest multi=new MultipartRequest(request,path,size,"utf-8",new DefaultFileRenamePolicy());
 		  // 폼값 가져오기 => DiningVO에 넣기
 		  dvo.setDcode(multi.getParameter("dcode"));
@@ -44,15 +45,12 @@ public class DiningServiceImpl implements DiningService{
 		  dvo.setDine_adult(Integer.parseInt(multi.getParameter("dine_adult")));
 		  dvo.setDine_child(Integer.parseInt(multi.getParameter("dine_child")));
 		  dvo.setDine_halin(Integer.parseInt(multi.getParameter("dine_halin")));
-		  dvo.setDine_time(multi.getParameter("dine_time"));
-		  dvo.setDine_su(Integer.parseInt(multi.getParameter("dine_su")));
-	     }
-		 catch(Exception e)
-		{
-			 
-		}
+		 /*dvo.setDine_time(multi.getParameter("dine_time"));*/
+		 /*dvo.setDine_su(Integer.parseInt(multi.getParameter("dine_su")));*/
+	   
+		//System.out.println(dine_time);
 		mapper.dining_write_ok(dvo);
-		return "/dining/dining";
+		return "redirect:/dining/dining";
 
 }
 }
