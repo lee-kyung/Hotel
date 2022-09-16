@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
@@ -107,8 +106,6 @@
 			}	
 		}
 	}
-   
-
 </script>
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
     <!-- bradcam_area_start -->
@@ -164,6 +161,7 @@
 						</td>	
 					</tr>
 				</table>
+				
 				<div id="ccc"></div>
 				<div id="roomdiv">
 				<c:forEach items="${list}" var="rvo" varStatus="my">
