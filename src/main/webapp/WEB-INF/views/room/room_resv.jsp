@@ -73,59 +73,41 @@
 	   document.room.submit();
    }
    
-   function getRoomAvail()
-   {  
-	   
-	   document.getElementById("roomdiv").style.visibility="visible";
-	   
-	   var checkin=document.room.checkin.value;
-	   var checkout=document.room.checkout.value;
-	   
-	   var chk=new XMLHttpRequest();
-	   chk.open("get","getRoomAvail?checkin="+checkin+"&checkout="+checkout);
-	   chk.send();
-	   chk.onreadystatechange=function()
-	   {
-		   if(chk.readyState==4)
-		   {
-			   //alert(chk.responseText);
-			   document.getElementById("ccc").innerText=chk.responseText;
-			   var aa=chk.responseText.split(",");
+   function getRoomAvail(){  
+	      document.getElementById("roomdiv").style.visibility="visible";
+	      var checkin=document.room.checkin.value;
+	      var checkout=document.room.checkout.value;
+	      var chk=new XMLHttpRequest();
+	      chk.open("get","getRoomAvail?checkin="+checkin+"&checkout="+checkout);
+	      chk.send();
+	      chk.onreadystatechange=function(){
+	         if(chk.readyState==4){
+	            //alert(chk.responseText);
+	            document.getElementById("ccc").innerText=chk.responseText;
+	            var aa=chk.responseText.split(",");
 
-			   //alert(chk.responseText.length);
-			   var cbtn=document.getElementsByClassName("cbtn");
-			   alert(aa.length);
-			   if(aa.length==1)
-			   {
-				   for(i=0;i<cbtn.length;i++)
-			       {
-					//   alert(cbtn[i].enabled);
-					  // document.getElementsByClassName("cbtn")[i].setAttribute("disabled","false");
-			       }	   
-				 
-			   }	 
-			   else
-			   {	   
-			     var crcode=document.getElementsByClassName("crcode");
-			    
-			   
-			     for(i=0;i<aa.length;i+=2)
-			     {
-				   for(j=0;j<crcode.length;j++)
-				   {
-					   if(aa[i]==crcode[j].innerText.trim())
-					   {
-						   if(aa[i+1]>=2)
-						     cbtn[j].disabled=true;
-					   }	
-				   }	   
-			     }	   
-			   }
-		   }	
-	   }
-	   //alert(document.room.checkin.value);
-   }
-   
+	            //alert(chk.responseText.length);
+	            var cbtn=document.getElementsByClassName("cbtn");
+	             for(i=0;i<cbtn.length;i++){
+	                 document.getElementsByClassName("cbtn")[i].disabled=false;
+	              }      
+	              
+	           if(aa.length > 1){      
+	              var crcode=document.getElementsByClassName("crcode");
+	             
+	            
+	              for(i=0;i<aa.length;i+=2){
+	               for(j=0;j<crcode.length;j++){
+	                  if(aa[i]==crcode[j].innerText.trim()){
+	                     if(aa[i+1]>=2)
+	                       cbtn[j].disabled=true;
+	                  }   
+	               }      
+	             }      
+	          }
+	       }   
+	    }
+	  }
 
 </script>
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
