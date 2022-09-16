@@ -85,40 +85,8 @@ public class DiningResvServiceImpl implements DiningResvService{
 	}
 	@Override
 	public String dining_reserve_ok(DiningResvVO drvo)
-	{
-		/*DiningResvVO drvo=new DiningResvVO();
-		try 
-		{
-			drvo.setDining_id(Integer.parseInt(request.getParameter("Dining_id")));
-			drvo.setDr_date(request.getParameter("dr_date"));
-			drvo.setDr_extrarq(request.getParameter("dr_extrarq"));
-			drvo.setDr_id(Integer.parseInt(request.getParameter("dr_id")));
-			drvo.setDr_state(Integer.parseInt(request.getParameter("dr_state")));
-			drvo.setDr_stayhalin(Integer.parseInt("dr_stayhalin"));
-			drvo.setDr_time(request.getParameter("dr_time"));
-			drvo.setDr_total(Integer.parseInt(request.getParameter("dr_total")));
-			drvo.setDr_type(request.getParameter("dr_type"));
-			drvo.setUserid(request.getParameter("userid"));
-			drvo.setP1(request.getParameter("p1"));
-			drvo.setP2(request.getParameter("p2"));
-			drvo.setP3(request.getParameter("p3"));
-		}
-		catch(Exception e)
-		{
-			return "redirect:error";
-		}*/
-		
-		/*String dr_date=request.getParameter("dr_date");
-		String dining_id=request.getParameter("dining_id");
-		String dr_type=request.getParameter("dr_type");
-		String dr_total=request.getParameter("dr_total");
-		String name=request.getParameter("name");
-		String p1=request.getParameter("p1");
-		String p2=request.getParameter("p2");
-		String p3=request.getParameter("p3");*/
-		
+	{		
 		mapper.dining_reserve_ok(drvo);
-		
 		return "redirect:/dining/dining_reserve";
 	}
 
