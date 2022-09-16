@@ -12,4 +12,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="dining_reserve_next" resultType="kr.co.hotel.dining.DiningVO">
 	  select * from dining where id=#{param1}
 	</select>
+	
+	<insert id="dining_reserve_ok" parameterType="kr.co.hotel.diningresv.DiningResvVO">
+	  insert into diningresv(dining_id,dr_date,dr_extrarq,dr_id,dr_state,dr_stayhalin,dr_time,dr_total,dr_type,userid,writeday)
+	  values(#{dining_id},#{dr_date},#{dr_extrarq},#{dr_id},#{dr_state},#{dr_stayhalin},#{dr_time},#{dr_total},#{dr_type},#{userid},now())
+	</insert>
 </mapper>
