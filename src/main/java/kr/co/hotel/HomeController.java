@@ -15,11 +15,11 @@ public class HomeController {
 	public String index() {
 		return "/main/index";
 	}
-	
+/*	
 	@RequestMapping("/room/rooms")
 	public String rooms() {
 		return "/room/rooms";
-	}
+	}*/
 	
 	@RequestMapping("/dining/dining")
 	public String about() {

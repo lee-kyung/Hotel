@@ -1,12 +1,58 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
 </head>
-
 <body>
+<style>
+	.container{
+		width: 990px;
+		margin: auto;
+	}
+	#rtype{
+		font-size: 15px;
+	}
+	#rname{
+		margin-top: 50px;
+		font-size: 24px;
+	}
+	roomsec{
+		margin-bottom: 80px;
+		color: #887159;
+	}
+	roomsec #ro_outer{
+		outline:1px solid #887159;
+		width: 920px;
+		height:374px;
+	}
+/* 	roomsec #ro_outer #right{
+		background: pink;
+	}
+	roomsec #ro_outer #left{
+		background: gold;
+	} */
+	roomsec #subr{
+		width: 100px;
+		display: inline-block;
+		color: #887159;
+	}
+	roomsec input[type=button]{
+		color: #887159;
+		background: white;
+		border: 1px solid #887159;
+		width: 100px;
+		height: 40px;
+	}
+	roomsec input[type=button]:hover{
+		cursor: pointer;
+		background: #887159;
+		color: white;
+	}
+</style>
 
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
     <!-- bradcam_area_start -->
@@ -14,208 +60,50 @@
     	①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기
     	②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
     <div class="bradcam_area rooms"> <!-- class="bradcam_area 클래스명" -->
-        <h3> 객실예약 </h3>
+        <h3> 객실종류 </h3>
     </div>
     <!-- bradcam_area_end -->
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
 
 	<!-- ================ Rooms Area Start ================= -->
-    <!-- offers_area_start -->
-    <div class="offers_area padding_top">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="section_title text-center mb-100">
-                        <span>Our Offers</span>
-                        <h3>Ongoing Offers</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xl-4 col-md-4">
-                    <div class="single_offers">
-                        <div class="about_thumb">
-                            <img src="../img/offers/1.png" alt="">
-                        </div>
-                        <h3>Up to 35% savings on Club <br> 
-                                rooms and Suites</h3>
-                        <ul>
-                            <li>Luxaries condition</li>
-                            <li>3 Adults & 2 Children size</li>
-                            <li>Sea view side</li>
-                        </ul>
-                        <a href="#" class="book_now">book now</a>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-md-4">
-                    <div class="single_offers">
-                        <div class="about_thumb">
-                            <img src="../img/offers/2.png" alt="">
-                        </div>
-                        <h3>Up to 35% savings on Club <br> 
-                                rooms and Suites</h3>
-                        <ul>
-                            <li>Luxaries condition</li>
-                            <li>3 Adults & 2 Children size</li>
-                            <li>Sea view side</li>
-                        </ul>
-                        <a href="#" class="book_now">book now</a>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-md-4">
-                    <div class="single_offers">
-                        <div class="about_thumb">
-                            <img src="../img/offers/3.png" alt="">
-                        </div>
-                        <h3>Up to 35% savings on Club <br> 
-                                rooms and Suites</h3>
-                        <ul>
-                            <li>Luxaries condition</li>
-                            <li>3 Adults & 2 Children size</li>
-                            <li>Sea view side</li>
-                        </ul>
-                        <a href="#" class="book_now">book now</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- offers_area_end -->
+	<!-- 객실 리스트 -->
+<div class="features_room">
+    <div class="container">
+    <div class="row"> 
+    <roomsec>
+ 		<div>객실</div> <p>
+ 		<div style="font-size:15px;">파라다이스 호텔 부산에서 격이 다른 휴식과 여유를 경험해보세요.</div>
+ 		<br>
+ 	 <c:forEach items="${list}" var="rvo">
+		<div id="rtype">${rvo.rtype}</div> <p>
+		<div>${rvo.rtxt}</div><p>
+		<div id="ro_outer">
+			<div id="left" style="float:left;height:374px;width:650px">
+				<img src="../img/rooms/${rvo.rpimg}" width="642px" height="374px">
+			</div>
+			<div id="right" style="float:right;height:290px;width:270px">
+				<div id="rname">${rvo.rname}</div> <p>
+				<div>${rvo.rtxt2}</div> <p>
+				<hr style="width:220px;"> 
+				<div>
+				  <div><span id="subr">전망</span>${rvo.rview}</div>
+				  <div><span id="subr">인원</span>${rvo.rmin}</div>
+				  <div><span id="subr">베드타입</span>${rvo.rbed}</div>
+				  <br>
+				  <br>
+				  <input type="button" value="상세보기" onclick="location='../room/room_content?code=${rvo.code}'">
+				</div>
+			</div> <br>
+		</div>
+		<br>
+ 	  </c:forEach>
+ 	  </roomsec>
+ 	</div>
+  
+  
+  
+ </div>
 
-    <!-- features_room_startt -->
-    <div class="features_room">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="section_title text-center mb-100">
-                        <span>Featured Rooms</span>
-                        <h3>Choose a Better Room</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="rooms_here">
-            <div class="single_rooms">
-                <div class="room_thumb">
-                    <img src="../img/rooms/1.png" alt="">
-                    <div class="room_heading d-flex justify-content-between align-items-center">
-                        <div class="room_heading_inner">
-                            <span>From $250/night</span>
-                            <h3>Superior Room</h3>
-                        </div>
-                        <a href="#" class="line-button">book now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="single_rooms">
-                <div class="room_thumb">
-                    <img src="../img/rooms/2.png" alt="">
-                    <div class="room_heading d-flex justify-content-between align-items-center">
-                        <div class="room_heading_inner">
-                            <span>From $250/night</span>
-                            <h3>Deluxe Room</h3>
-                        </div>
-                        <a href="#" class="line-button">book now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="single_rooms">
-                <div class="room_thumb">
-                    <img src="../img/rooms/3.png" alt="">
-                    <div class="room_heading d-flex justify-content-between align-items-center">
-                        <div class="room_heading_inner">
-                            <span>From $250/night</span>
-                            <h3>Signature Room</h3>
-                        </div>
-                        <a href="#" class="line-button">book now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="single_rooms">
-                <div class="room_thumb">
-                    <img src="../img/rooms/4.png" alt="">
-                    <div class="room_heading d-flex justify-content-between align-items-center">
-                        <div class="room_heading_inner">
-                            <span>From $250/night</span>
-                            <h3>Couple Room</h3>
-                        </div>
-                        <a href="#" class="line-button">book now</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- features_room_end -->
-    
-        <!-- forQuery_start -->
-    <div class="forQuery">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-10 offset-xl-1 col-md-12">
-                    <div class="Query_border">
-                        <div class="row align-items-center justify-content-center">
-                            <div class="col-xl-6 col-md-6">
-                                <div class="Query_text">
-                                        <p>For Reservation 0r Query?</p>
-                                </div>
-                            </div>
-                            <div class="col-xl-6 col-md-6">
-                                <div class="phone_num">
-                                        <a href="#" class="mobile_no">+10 576 377 4789</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- forQuery_end-->
-
-    <!-- instragram_area_start -->
-    <div class="instragram_area">
-        <div class="single_instagram">
-            <img src="../img/instragram/1.png" alt="">
-            <div class="ovrelay">
-                <a href="#">
-                    <i class="fa fa-instagram"></i>
-                </a>
-            </div>
-        </div>
-        <div class="single_instagram">
-            <img src="../img/instragram/2.png" alt="">
-            <div class="ovrelay">
-                <a href="#">
-                    <i class="fa fa-instagram"></i>
-                </a>
-            </div>
-        </div>
-        <div class="single_instagram">
-            <img src="../img/instragram/3.png" alt="">
-            <div class="ovrelay">
-                <a href="#">
-                    <i class="fa fa-instagram"></i>
-                </a>
-            </div>
-        </div>
-        <div class="single_instagram">
-            <img src="../img/instragram/4.png" alt="">
-            <div class="ovrelay">
-                <a href="#">
-                    <i class="fa fa-instagram"></i>
-                </a>
-            </div>
-        </div>
-        <div class="single_instagram">
-            <img src="../img/instragram/5.png" alt="">
-            <div class="ovrelay">
-                <a href="#">
-                    <i class="fa fa-instagram"></i>
-                </a>
-            </div>
-        </div>
-    </div>
-    <!-- instragram_area_end -->
     <!-- ================ Rooms Area End ================= -->
 
 </body>

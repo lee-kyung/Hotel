@@ -1,16 +1,37 @@
-package kr.co.hotel.weddingresv;
+package kr.co.hotel.wedding;
 
 public class WeddingResvVO {
 
-	private int wresv_id, state, wresv_tid;
-	private String wresv_cday, wresv_day,wresv_wday,wresv_content, wresv_info,userid;
+	private int wresv_id, state;
+	private String wresv_cday, wresv_day,wresv_wday,wresv_content, wresv_info,userid, wresv_time, wresv_hall;
 	
 	// weddingtime 테이블의 wt_time
 	private String wt_time;
 	
 	private int cnt;
 	
+	// wedding 테이블의 wed_hall 추가
+	private String wed_hall;
 	
+	
+	public String getWed_hall() {
+		return wed_hall;
+	}
+	public void setWed_hall(String wed_hall) {
+		this.wed_hall = wed_hall;
+	}
+	public String getWresv_hall() {
+		return wresv_hall;
+	}
+	public void setWresv_hall(String wresv_hall) {
+		this.wresv_hall = wresv_hall;
+	}
+	public String getWresv_time() {
+		return wresv_time;
+	}
+	public void setWresv_time(String wresv_time) {
+		this.wresv_time = wresv_time;
+	}
 	public int getCnt() {
 		return cnt;
 	}
@@ -23,12 +44,7 @@ public class WeddingResvVO {
 	public void setWt_time(String wt_time) {
 		this.wt_time = wt_time;
 	}
-	public int getWresv_tid() {
-		return wresv_tid;
-	}
-	public void setWresv_tid(int wresv_tid) {
-		this.wresv_tid = wresv_tid;
-	}
+
 	public int getWresv_id() {
 		return wresv_id;
 	}

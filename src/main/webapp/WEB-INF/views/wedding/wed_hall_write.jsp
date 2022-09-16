@@ -12,13 +12,15 @@
 	function add_file()
 	{
 		var fname=document.getElementsByClassName("fname");
-		
 		var len=fname.length;	// 현재 type="file"의 개수
+		if(len < 4)
+		{
 		len++;		// 추가 될 때마다 file의 개수가 하나씩 늘어야 하기 때문에 증가를 준다. 
 		var inner="<p class='fname'> <input type='file' name='fname"+len+"'> </p> "; // 추가될 내용
 															// fname+숫자 : 추가될때마다 숫자변경해야하기 때문에 
 		document.getElementById("outer").innerHTML=document.getElementById("outer").innerHTML+inner;
 		// jqurty : $("#outer").html($("outer").html()+inner);
+		}
 	}
 	
 	function del_file()
@@ -108,6 +110,12 @@
     			<td>Special Benefit</td>
     			<td><textarea name="wed_txt2"></textarea></td>
     		</tr>
+    		
+    		<tr>
+    			<td>금액</td>
+    			<td><input type="text" name="wed_price"></td>
+    		</tr>
+    		
     		<tr>
     			<td colspan="2">
 					<input type="submit" value="작성">
@@ -116,6 +124,8 @@
     		
     	</table>
     	</form>
+    	
+  
     	
     	</div>
     	</section>

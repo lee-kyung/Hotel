@@ -2,8 +2,18 @@ package kr.co.hotel.wedding;
 
 public class WeddingVO {
 
-	private int id, wed_min, wed_max, wed_size;
+	private int id, wed_min, wed_max, wed_size, wed_price;
 	private String wed_hall, wed_title, wed_txt, wed_txt2, wed_fname, wed_food, wed_direct, wed_type;
+	
+	
+	
+	
+	public int getWed_price() {
+		return wed_price;
+	}
+	public void setWed_price(int wed_price) {
+		this.wed_price = wed_price;
+	}
 	public int getId() {
 		return id;
 	}

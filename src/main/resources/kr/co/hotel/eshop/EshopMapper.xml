@@ -5,4 +5,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
 <mapper namespace="kr.co.hotel.eshop.EshopMapper">
 	
+	<select id="pro_write" resultType="kr.co.hotel.eshop.PdaeVO">
+		select * from pdae order by code asc
+	</select>
+	
+	<select id="getso" resultType="kr.co.hotel.eshop.PsoVO">
+		select * from pso where daecode=#{param1}
+	</select>
+	
+	<select id="getpcode" resultType="Integer">
+		<![CDATA[ select ifnull(substring(max(pcode), 6, 4), 0)+1 from product where pcode like concat(#{param1}, '%') ]]>
+	</select>
+	
+	<insert id="pro_write_ok" parameterType="kr.co.hotel.eshop.ProductVO">
+		insert into product(pcode, title, img1, img2, price, halin, juk, su, baefee, buyday, opt1, opt2, opt3)
+		values(#{pcode}, #{title}, #{img1}, #{img2}, #{price}, #{halin}, #{juk}, #{su}, #{baefee}, now(), #{opt1}, #{opt2}, #{opt3})
+	</insert>
+	
+	<select id="pro_list" resultType="kr.co.hotel.eshop.ProductVO">
+		select * from product where pcode like concat(#{param1}, '%') limit 12
+	</select>
+	
 </mapper>

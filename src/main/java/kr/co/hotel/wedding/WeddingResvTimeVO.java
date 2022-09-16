@@ -1,4 +1,4 @@
-package kr.co.hotel.weddingresv;
+package kr.co.hotel.wedding;
 
 public class WeddingResvTimeVO {
 
