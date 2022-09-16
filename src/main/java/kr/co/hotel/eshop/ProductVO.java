@@ -2,8 +2,46 @@ package kr.co.hotel.eshop;
 
 public class ProductVO {
 	private int id, price, halin, juk, su, baefee;
-	private String pcode, title, img1, img2, buyday, opt1, opt2, opt3;
+	private String pcode, title, fimg, simg, buyday;
 	
+	private int cnt;	// cnt = fimg의 이미지 개수
+	private String img;	// img = fimg의 첫번째 그림
+	private String[] imgs;	// 콤마기준으로 자른 fimg의 이미지를 넣을 배열
+	
+	private String subpcode;	// pcode의 앞5자리(p0101, p0102, p0201, p0202)만 가져오기
+	
+	private int wishchk;
+	
+	public int getWishchk() {
+		return wishchk;
+	}
+	public void setWishchk(int wishchk) {
+		this.wishchk = wishchk;
+	}
+	public String getSubpcode() {
+		return subpcode;
+	}
+	public void setSubpcode(String subpcode) {
+		this.subpcode = subpcode;
+	}
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img) {
+		this.img = img;
+	}
+	public String[] getImgs() {
+		return imgs;
+	}
+	public void setImgs(String[] imgs) {
+		this.imgs = imgs;
+	}
 	public int getId() {
 		return id;
 	}
@@ -52,40 +90,22 @@ public class ProductVO {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getImg1() {
-		return img1;
+	public String getFimg() {
+		return fimg;
 	}
-	public void setImg1(String img1) {
-		this.img1 = img1;
+	public void setFimg(String fimg) {
+		this.fimg = fimg;
 	}
-	public String getImg2() {
-		return img2;
+	public String getSimg() {
+		return simg;
 	}
-	public void setImg2(String img2) {
-		this.img2 = img2;
+	public void setSimg(String simg) {
+		this.simg = simg;
 	}
 	public String getBuyday() {
 		return buyday;
 	}
 	public void setBuyday(String buyday) {
 		this.buyday = buyday;
-	}
-	public String getOpt1() {
-		return opt1;
-	}
-	public void setOpt1(String opt1) {
-		this.opt1 = opt1;
-	}
-	public String getOpt2() {
-		return opt2;
-	}
-	public void setOpt2(String opt2) {
-		this.opt2 = opt2;
-	}
-	public String getOpt3() {
-		return opt3;
-	}
-	public void setOpt3(String opt3) {
-		this.opt3 = opt3;
 	}
 }

@@ -197,7 +197,7 @@ function day(my)
 
 
 
-          
+          ss
           <form name="wresv" method="post" action="weddingReserve_ok">
 
           <!-- 예약가능한 시간 보이는 테이블 :예약가능/예약불가 -->

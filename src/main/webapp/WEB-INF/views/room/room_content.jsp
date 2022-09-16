@@ -54,7 +54,7 @@
     	①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기
     	②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
     <div class="bradcam_area rooms"> <!-- class="bradcam_area 클래스명" -->
-        <h3> 객실 </h3>
+        <h3> R O O M S </h3>
     </div>
     <!-- bradcam_area_end -->
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
@@ -65,9 +65,20 @@
     <div class="container">
     <div class="row"> 
     <roomsec>
+    	<div style="font-size: 20px;"> 객실 정보: 
+    		<c:forEach items="${list}" var="rvo"> 
+    			<span style="border: 1px solid #887159">${rvo.rname}</span>
+    		</c:forEach>
+    	</div>
+    	<br>
  		<c:forEach items="${list}" var="rvo">
-			<img src="../img/rooms/${rvo.rpimg}">
-			<img src="../img/rooms/${rvo.rcimg}">
+ 		<div style="font-size:35px; font-weight: 900; color: #887159">${rvo.rname}</div>
+		<div style="border:1px solid #887159">
+			<div style="margin:auto;"><img src="../img/rooms/${rvo.rpimg}" width="980px"></div>
+			<img src="../img/rooms/${rvo.rcimg}" width="980px"> <p>
+			<br>
+		</div>
+		<br>
 		</c:forEach>
  	</roomsec>
  	</div>

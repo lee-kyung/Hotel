@@ -3,6 +3,7 @@ package kr.co.hotel.diningresv;
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -20,10 +21,25 @@ public class DiningResvController {
 	private DiningResvService service;
 	
 	@RequestMapping("/dining/dining_reserve")
-	public String reserve(HttpServletRequest request, Model model, DiningVO dvo, PrintWriter out)
+	public String dining_reserve(HttpServletRequest request, Model model)
 	{
-		return service.dining_reserve(request, model, dvo, out);
+		return service.dining_reserve(request, model);
 	}
+/*    @RequestMapping("/dining/getprev")
+    public String getprev(HttpServletRequest request, Model model)
+    {
+    	return service.getprev(request, model);
+    }*/
+    @RequestMapping("/dining/dining_reserve_next")
+    public String dining_reserve_next(HttpServletRequest request, Model model)
+    {
+    	return service.dining_reserve_next(request,model);
+    }
+    @RequestMapping("/dining/dining_reserve_ok")
+    public String dining_reserve_ok(DiningResvVO drvo)
+    {
+    	return service.dining_reserve_ok(drvo);
+    }
 
 
 }
