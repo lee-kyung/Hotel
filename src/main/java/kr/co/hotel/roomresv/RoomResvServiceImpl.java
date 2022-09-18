@@ -27,18 +27,6 @@ public class RoomResvServiceImpl implements RoomResvService {
 
 		ArrayList<RoomVO> list=mapper.room_resv();
 		model.addAttribute("list",list);
-		
-	/*	String checkin=request.getParameter("checkin");
-		String checkout=request.getParameter("checkout");
-		String rcode=request.getParameter("rcode");
-		
-		model.addAttribute("checkin", checkin);
-		model.addAttribute("checkout", checkout);
-		model.addAttribute("rcode",rcode);
-		
-		//int cnt=mapper.getRoomCnt(checkin,rcode);
-		model.addAttribute("cnt",cnt);
-		*/
 
 		return "/room/room_resv";
 	}
@@ -110,11 +98,12 @@ public class RoomResvServiceImpl implements RoomResvService {
 		
 		return "redirect:/room/rooms";
 	}
+	
 	@Override 
 	public void getRoomAvail(HttpServletRequest request, PrintWriter out, RoomVO rvo) {
 		String checkin=request.getParameter("checkin");
 		
-		ArrayList<RoomVO> list=mapper.getCnt(checkin);
+		ArrayList<RoomVO> list=mapper.getRoomAvail(checkin);
 
 		String str="";		
 	
@@ -125,20 +114,8 @@ public class RoomResvServiceImpl implements RoomResvService {
 		}
 
 		out.print(str);
+	}
 
-		
-	}
-	@Override
-	public void suUpdate(HttpServletRequest request, PrintWriter out) {
-		String rcode=request.getParameter("rcode");
-		String checkin=request.getParameter("checkin");
-		String checkout=request.getParameter("checkout");
-		
-		mapper.suUpdate(rcode,checkin,checkout);
-		
-		out.print("0");
-		
-	}
-	
+
 	
 }
