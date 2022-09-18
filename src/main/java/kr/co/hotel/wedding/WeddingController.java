@@ -4,6 +4,7 @@ package kr.co.hotel.wedding;
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -21,8 +22,8 @@ public class WeddingController {
 	
 	
 	@RequestMapping("/wedding/wedding_check")
-	public String wedding_check(Model model, HttpServletRequest request) {
-		return service.wedding_check(model,request);
+	public String wedding_check(Model model) {
+		return service.wedding_check(model);
 	}
 	
 	@RequestMapping("/wedding/wed_hall_write")
@@ -44,27 +45,21 @@ public class WeddingController {
 	}
 	
 	@RequestMapping("/wedding/wedding_reserve")
-	public String wedding_reserve(HttpServletRequest request, Model model, WeddingResvVO wrvo, PrintWriter out) {
+	public String wedding_reserve(HttpServletRequest request, Model model) {
 		
-		return service.wedding_reserve(request, model, wrvo, out);
+		return service.wedding_reserve(request, model);
 	}
 	
 	@RequestMapping("/wedding/weddingReserve_ok")
-	public String weddingReserve_ok(HttpServletRequest request, WeddingResvVO wrvo)
+	public String weddingReserve_ok(WeddingResvVO wrvo, HttpSession session)
 	{
-		return service.weddingReserve_ok(request, wrvo);
-	}
-	
-	@RequestMapping("/wedding/getcheck")
-	public void getcheck(WeddingResvVO wrvo, HttpServletRequest request, Model model)
-	{
-		service.getcheck(wrvo, request, model);
+		return service.weddingReserve_ok(wrvo, session);
 	}
 	
 	@RequestMapping("/wedding/wresv_cal")
-	public void wresv_cal(WeddingResvVO wrvo,PrintWriter out, HttpServletRequest request, Model model,WeddingResvTimeVO wrtvo)
+	public void wresv_cal(WeddingResvVO wrvo,PrintWriter out)
 	{
-		service.wresv_cal(wrvo, out, request,model, wrtvo);
+		service.wresv_cal(wrvo, out);
 	}
 	
 	

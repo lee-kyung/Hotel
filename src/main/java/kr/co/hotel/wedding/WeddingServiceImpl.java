@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.aop.framework.adapter.DefaultAdvisorAdapterRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,7 @@ public class WeddingServiceImpl implements WeddingService{
 		String wed_food=multi.getParameter("wed_food");
 		String wed_direct=multi.getParameter("wed_direct");
 		String wed_type=multi.getParameter("wed_type");
+		String wed_price=multi.getParameter("wed_price");
 	
 		Enumeration file=multi.getFileNames();
 		
@@ -69,10 +71,11 @@ public class WeddingServiceImpl implements WeddingService{
 		wvo.setWed_food(wed_food);
 		wvo.setWed_direct(wed_direct);
 		wvo.setWed_type(wed_type);
+		wvo.setWed_price(Integer.parseInt(wed_price));
 		
 		mapper.wed_hall_write_ok(wvo);
 		
-		return "redirect:/wedding/wedding_hall?id=9";
+		return "redirect:/wedding/wedding_hall?id=15";
 	}
 
 	@Override
@@ -91,7 +94,7 @@ public class WeddingServiceImpl implements WeddingService{
 
 
 	@Override
-	public String wedding_check(Model model, HttpServletRequest request) 
+	public String wedding_check(Model model) 
 	{
 		ArrayList<WeddingVO> list=mapper.getHall();
 		model.addAttribute("list", list);
@@ -100,7 +103,7 @@ public class WeddingServiceImpl implements WeddingService{
 	}
 
 	@Override
-	public String wedding_reserve(HttpServletRequest request, Model model, WeddingResvVO wrvo, PrintWriter out) 
+	public String wedding_reserve(HttpServletRequest request, Model model) 
 	{
 		
 		int y, m;
@@ -144,38 +147,28 @@ public class WeddingServiceImpl implements WeddingService{
 	}
 
 	@Override	
-	public String weddingReserve_ok(HttpServletRequest request, WeddingResvVO wrvo) 
+	public String weddingReserve_ok(WeddingResvVO wrvo, HttpSession session) 
 	{
-				
+		String userid=session.getAttribute("userid").toString();		
+		wrvo.setUserid(userid);
 		mapper.weddingReserve_ok(wrvo);
 		return "redirect:/wedding/wedding_reserve";
 	}
 
-	@Override
+/*	@Override
 	public void getcheck(WeddingResvVO wrvo, HttpServletRequest request, Model model) 
 	{
 		Integer cnt=mapper.getcheck(wrvo);
 		
 		model.addAttribute("cnt", cnt);
-		
-/*		String wresv_cday=request.getParameter("wresv_cday");
-		String wresv_time=request.getParameter("wresv_time");
-		
-		wrvo=mapper.getcheck(wresv_cday, wresv_time);
-		model.addAttribute("wrvo", wrvo);
-*/		
-	}
+	
+	}*/
 
 	@Override
-	public void wresv_cal(WeddingResvVO wrvo,PrintWriter out, HttpServletRequest request, Model model,WeddingResvTimeVO wrtvo) 
+	public void wresv_cal(WeddingResvVO wrvo,PrintWriter out) 
 	{
 		
-		
-	//	ArrayList<String> list=mapper.wresv_cal(wrvo);
-		
-	//	System.out.println(list);
-	//	out.print(list);
-		
+
 		ArrayList<WeddingResvVO> list=mapper.wresv_cal(wrvo);
 		System.out.println(list.size());
 		String str="";
@@ -186,28 +179,7 @@ public class WeddingServiceImpl implements WeddingService{
 			
 		}
 	
-		
-		String wresv_cday=request.getParameter("wresv_cday");
-		ArrayList<WeddingResvTimeVO> list2=mapper.wresv_cal2(wresv_cday);
-		String str2="";
-		for(int i=0; i<list2.size(); i++)
-		{
-			wrtvo=list2.get(i);
-			
-			//str=str+"<div id='aa' class='time2' name='wresv_time' onclick='time(this)' >"+wrtvo.getWt_time()+"</div>";
-			//str2=str2+"<div id='aa' class='time2' name='wresv_time' onclick='time(this)' >"+wrtvo.getWt_time()+"</div>";
-		}
-		
-		
-		if(list.size()==0)
-		{
-			out.print(str2);
-		}
-		else
-		{
 			out.print(str);
-		}
-	
 	}
 	
 	
