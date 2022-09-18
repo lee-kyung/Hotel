@@ -37,6 +37,17 @@ public class RoomResvController {
 		return service.room_resv_ok(rsvo, session);
 	}
 	
+	@RequestMapping("/room/getRoomAvail")
+	public void getRoomAvail(HttpServletRequest request, PrintWriter out, RoomVO rvo)
+	{
+		service.getRoomAvail(request,out,rvo);
+	}
+
+	@RequestMapping("/room/suUpdate")
+	public void suUpdate(HttpServletRequest request, PrintWriter out)
+	{
+		service.suUpdate(request,out);
+	}
 
 	
 	

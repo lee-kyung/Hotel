@@ -37,6 +37,7 @@
     <div class="row"> 
    	<roomsec>
    	<h2>객실 수량</h2>
+   	<span id="checkin"></span>
    			<caption><h3>
 			<c:if test="${m == 1}"> <!-- 1월이면 -->
 				<a href="room_su?y=${y-1}&m=12">◁</a>

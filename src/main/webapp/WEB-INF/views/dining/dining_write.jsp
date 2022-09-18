@@ -38,10 +38,10 @@
        <td>다이닝제목</td>
        <td colspan="2"> <input type="text" name="dine_type"> </td>
      </tr>
-     <tr>
+<!--      <tr>
        <td>다이닝시간</td>
        <td colspan="2"> <input type="text" name="dine_time"> </td>
-     </tr>
+     </tr> -->
      <tr>
        <td>다이닝가격(성인기준)</td>
        <td colspan="2"> <input type="text" name="dine_adult"> </td>

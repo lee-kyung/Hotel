@@ -3,12 +3,14 @@ package kr.co.hotel.eshop;
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -67,5 +69,10 @@ public class EshopController {
 	@RequestMapping("/eshop/wish_del")
 	public void wish_del(HttpSession session, HttpServletRequest request, PrintWriter out) {
 		service.wish_del(session, request, out);
+	}
+	
+	@RequestMapping("/eshop/cart_add")
+	public void cart_add(HttpSession session, HttpServletRequest request, HttpServletResponse response, PrintWriter out) {
+		service.cart_add(session, request, out, response);
 	}
 }

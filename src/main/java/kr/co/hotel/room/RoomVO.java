@@ -7,8 +7,32 @@ public class RoomVO {
 	// rtype추가
 	private String rtype,code,rtxt;
 	
+	// count값 증가
+	private int cnt;
+	private String checkin, checkout;
 	
 	
+	
+	
+
+	public String getCheckin() {
+		return checkin;
+	}
+	public void setCheckin(String checkin) {
+		this.checkin = checkin;
+	}
+	public String getCheckout() {
+		return checkout;
+	}
+	public void setCheckout(String checkout) {
+		this.checkout = checkout;
+	}
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
 	public String getCode() {
 		return code;
 	}

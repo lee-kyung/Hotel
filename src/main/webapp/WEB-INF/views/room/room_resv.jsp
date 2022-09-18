@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
@@ -57,6 +56,7 @@
 		
 		$("#checkin").datepicker({
 			format: "yyyy-mm-dd",
+			
 			minDate: new Date() 
 		});
 		$("#checkout").datepicker({
@@ -72,12 +72,40 @@
 	   document.room.submit();
    }
    
-   function getRoomAvail()
-   {
-	   document.getElementById("roomdiv").style.visibility="visible";
-   }
-   
-
+   function getRoomAvail(){  
+		document.getElementById("roomdiv").style.visibility="visible";
+		var checkin=document.room.checkin.value;
+		var checkout=document.room.checkout.value;
+		var chk=new XMLHttpRequest();
+		chk.open("get","getRoomAvail?checkin="+checkin+"&checkout="+checkout);
+		chk.send();
+		chk.onreadystatechange=function(){
+			if(chk.readyState==4){
+				//alert(chk.responseText);
+				document.getElementById("ccc").innerText=chk.responseText;
+				var aa=chk.responseText.split(",");
+		
+				//alert(chk.responseText.length);
+				var cbtn=document.getElementsByClassName("cbtn");
+				for(i=0;i<cbtn.length;i++){
+					document.getElementsByClassName("cbtn")[i].disabled=false;
+				}	   
+				  
+				if(aa.length > 1){	   
+					var crcode=document.getElementsByClassName("crcode");
+				    
+					for(i=0;i<aa.length;i+=2){
+						for(j=0;j<crcode.length;j++){
+							if(aa[i]==crcode[j].innerText.trim()){
+								if(aa[i+1]>=2)
+									cbtn[j].disabled=true;
+							}
+						}	   
+					}	   
+				}
+			}	
+		}
+	}
 </script>
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
     <!-- bradcam_area_start -->
@@ -106,7 +134,7 @@
 						<th> 체크아웃 </th>
 						<th> 성인 </th>
 						<th> 어린이 </th>
-						<th rowspan="2"><input type="button" value="검색" onclick="getRoomAvail()"> </th>
+						<th rowspan="2"><input type="button" value="검색" onclick="getRoomAvail(${my.index})"> </th>
 					</tr> 
 					<tr>
 						<td><input type="text" name="checkin" id="checkin"></td>
@@ -134,6 +162,7 @@
 					</tr>
 				</table>
 				
+				<div id="ccc"></div>
 				<div id="roomdiv">
 				<c:forEach items="${list}" var="rvo" varStatus="my">
 				<div id="ro_info">
@@ -142,12 +171,14 @@
 						<img src="../img/rooms/${rvo.rpimg}" width="500px" height="248px">
 					</div>
 					<div id="right" style="float:right;height:250px;width:270px">
-						<div id="rname">${rvo.rname}</div> <p>
+						<div id="rname">${rvo.rname}</div> <span class="crcode">${rvo.rcode}</span> <p>
 						<div><span id="subr">전망</span>${rvo.rview}</div>
 						<div><span id="subr">베드타입</span>${rvo.rbed}</div>
 						<div><span id="subr">가격</span>${rvo.rprice}</div>						
 						<br>
-						<input type="button" value="객실선택" onclick="form_submit(${my.index})">
+					
+						<input type="button" value="객실선택" class="cbtn" onclick="form_submit(${my.index})">
+					
 					</div>
 				</div>
 				</c:forEach> 

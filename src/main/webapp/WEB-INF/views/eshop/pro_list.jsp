@@ -61,6 +61,7 @@
 	}
 	#pro_list #wish {
 		float : right;
+		margin-right : 10px;
 	}
 	#pro_list #wish img {
 		cursor : pointer;
@@ -84,6 +85,9 @@
 		font-size : 22px;
 	}
 </style>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script> 
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script>
 	/* 페이지목록수 선택하기 */
 	function page_sel(psel){
@@ -119,65 +123,57 @@
 	}
 	
 	/* 위시리스트에 추가하고 삭제하기 */
-	<c:forEach var="pvo" items="${plist}">
-	function wish_add(pcode){
+	function wish_add(pcode, num){
 		let chk=new XMLHttpRequest();
 		chk.onload=function(){
 			if(chk.responseText == "0") {
-				alert("위시리스트에 추가됐습니다.");
-				document.getElementById("wishimg").src="../img/eshop/wish_on.png";
-				document.getElementById("wishimg").setAttribute("onclick", "wish_del('${pvo.pcode}')");
+				//alert("위시리스트에 추가됐습니다.");
+				//document.getElementById("wishimg").src="../img/eshop/wish_on.png";
+				//document.getElementById("wishimg").setAttribute("onclick", "wish_del('${pvo.pcode}')");
+				//eval("document.getElementById('wishimg').setAttribute('onclick','wish_del('"+pcode+"')')");
+				//var sss="wish_del('"+pcode+"')";
+				//$("#wishimg").attr("onclick",sss);
+				//console.log(pcode);
+				document.getElementsByClassName("wishimg")[num].src="../img/eshop/wish_on.png";
+				document.getElementsByClassName("wishimg")[num].setAttribute("onclick", "wish_del('"+pcode+"','"+num+"')");
+				//alert(document.getElementsByClassName("wishimg")[num].getAttribute("onclick"));
 			}
 		}
 		chk.open("get", "wish_add?pcode="+pcode);
 		chk.send();
 	}
-	function wish_del(pcode){
+	function wish_del(pcode, num){
 		let chk=new XMLHttpRequest();
 		chk.onload=function(){
 			if(chk.responseText == "0") {
-				alert("위시리스트에서 삭제됐습니다.");
-				document.getElementById("wishimg").src="../img/eshop/wish_off.png";
-				document.getElementById("wishimg").setAttribute("onclick", "wish_add('${pvo.pcode}')");
+				//alert("위시리스트에서 삭제됐습니다.");
+				//document.getElementById("wishimg").src="../img/eshop/wish_off.png";
+				//document.getElementById("wishimg").setAttribute("onclick", "wish_add('${pvo.pcode}')");
+				//eval("document.getElementById('wishimg').setAttribute('onclick','wish_add('"+pcode+"')')");
+				//var sss="wish_add('"+pcode+"')";
+				//$("#wishimg").attr("onclick",sss);
+				//console.log(pcode);
+				document.getElementsByClassName("wishimg")[num].src="../img/eshop/wish_off.png";
+				document.getElementsByClassName("wishimg")[num].setAttribute("onclick", "wish_add('"+pcode+"','"+num+"')");
+				//alert(document.getElementsByClassName("wishimg")[num].getAttribute("onclick"));
 			}
 		}
 		chk.open("get", "wish_del?pcode="+pcode);
 		chk.send();
 	}
-	</c:forEach>
 </script>
 </head>
 
 <body>
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
-    <c:if test="${pcode == 'p01'}">
+    <c:if test="${(pcode == 'p01') || (pcode == 'p0101') || (pcode == 'p0102')}">
 	    <div class="bradcam_area eshop2">
-	        <h3> P R O D U C T </h3>
+	        <h3 onclick="location='pro_list?pcode=p01'" style="cursor:pointer;"> P R O D U C T </h3>
 	    </div>
     </c:if>
-    <c:if test="${pcode == 'p02'}">
+    <c:if test="${(pcode == 'p02') || (pcode == 'p0201') || (pcode == 'p0202')}">
 	    <div class="bradcam_area eshop3">
-	        <h3> V O U C H E R </h3>
-	    </div>
-    </c:if>
-    <c:if test="${pcode == 'p0101'}">
-		<div class="bradcam_area eshop2">
-	        <h3> B E D D I N G </h3>
-	    </div>
-	</c:if>
-	<c:if test="${pcode == 'p0102'}">
-	    <div class="bradcam_area eshop2">
-	        <h3> L I F E S T Y L E </h3>
-	    </div>
-	</c:if>
-	<c:if test="${pcode == 'p0201'}">
-	    <div class="bradcam_area eshop3">
-	        <h3> R E S T A U R A N T </h3>
-	    </div>
-    </c:if>
-    <c:if test="${pcode == 'p0202'}">
-	    <div class="bradcam_area eshop3">
-	        <h3> H O T E L </h3>
+	        <h3 onclick="location='pro_list?pcode=p02'" style="cursor:pointer;"> V O U C H E R </h3>
 	    </div>
     </c:if>
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
@@ -269,22 +265,21 @@
 		<c:set var="n" value="3"/>	<!-- 한 행에 출력되는 열(상품)의 개수 -->
 		<c:set var="i" value="0"/>	<!-- 상품 3개마다 행을 바꾸기 위한 변수 -->	
 			<tr>
-			<c:forEach var="pvo" items="${plist}">
-				<td onclick="content_view('${pvo.pcode}')">
+			<c:forEach var="pvo" items="${plist}" varStatus="wish">
+				<td>
 					<div class="offers_area padding_top" id="eshop_img"><div class="single_offers"><div class="about_thumb">
-						<img src="../img/eshop/${pvo.img}" height="300" width="300" style="cursor:pointer">	<!-- 상품이미지 -->
+						<img src="../img/eshop/${pvo.img}" height="300" width="300" onclick="content_view('${pvo.pcode}')" style="cursor:pointer">	<!-- 상품이미지 -->
 					</div></div></div>
-					<div id="title" > ${pvo.title} </div>	<!-- 상품명 -->
+					<div id="title" onclick="content_view('${pvo.pcode}')"> ${pvo.title} </div>	<!-- 상품명 -->
 					<div id="wish">	<!-- 위시리스트 -->
-					${pvo.wishchk}
-						<c:if test="${(userid == null) && (pvo.wishchk == 0)}">
+						<c:if test="${userid == null}">
 							<img src="../img/eshop/wish_off.png" width="20" onclick="alert('로그인하셔야 본 서비스를 이용하실 수 있습니다.')">
 						</c:if>
-						<c:if test="${(userid !=null) && (pvo.wishchk == 0)}">
-							<img src="../img/eshop/wish_off.png" width="20" onclick="wish_add('${pvo.pcode}')" id="wishimg">
+						<c:if test="${(userid != null) && (pvo.wishchk == 0)}">
+							<img src="../img/eshop/wish_off.png" width="20" onclick="wish_add('${pvo.pcode}', ${wish.index})" class="wishimg">
 						</c:if>
 						<c:if test="${(userid != null) && (pvo.wishchk == 1)}">
-							<img src="../img/eshop/wish_on.png" width="20" onclick="wish_del('${pvo.pcode}')" id="wishimg">
+							<img src="../img/eshop/wish_on.png" width="20" onclick="wish_del('${pvo.pcode}', ${wish.index})" class="wishimg">
 						</c:if>
 					</div>
 					<hr style="width:350px;">

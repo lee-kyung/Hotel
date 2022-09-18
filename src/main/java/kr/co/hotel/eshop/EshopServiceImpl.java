@@ -4,14 +4,19 @@ import java.io.PrintWriter;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.Random;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.web.util.WebUtils;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -135,14 +140,13 @@ public class EshopServiceImpl implements EshopService {
 		if(pend > ptotal)
 			pend=ptotal;
 		
-		String userid=session.getAttribute("userid").toString();
-		
-		ArrayList<ProductVO> pcodelist=mapper.getPcode(pcode, pindex, psel);
-		System.out.println(pcodelist.size());
-		for(int i=0;i<pcodelist.size();i++) {
-			ArrayList<ProductVO> plist=mapper.pro_list(userid, pcodelist.get(i).getPcode(), pcode, osel, pindex, psel);
-			model.addAttribute("plist", plist);
-		}
+		/* 회원과 비회원을 구분하여 plist를 불러와 view에 전달하기 */
+		if(session.getAttribute("userid") == null)
+			model.addAttribute("plist", mapper.pro_list2(pcode, osel, pindex, psel));
+		else {
+			String userid=session.getAttribute("userid").toString();
+			model.addAttribute("plist", mapper.pro_list(userid, pcode, osel, pindex, psel));
+		}			
 		
 		model.addAttribute("pcode", pcode);	// 배너사진과 문구를 구별하기 위한 pcode(pdae 또는 pdaeso)값
 		model.addAttribute("page", page);
@@ -191,6 +195,53 @@ public class EshopServiceImpl implements EshopService {
 	public void wish_del(HttpSession session, HttpServletRequest request, PrintWriter out) {
 		String pcode=request.getParameter("pcode");
 		mapper.wish_del(session.getAttribute("userid").toString(), pcode);
+		out.print("0");
+	}
+
+	@Override
+	public void cart_add(HttpSession session, HttpServletRequest request, PrintWriter out, HttpServletResponse response) {
+		String pcode=request.getParameter("pcode");
+		int su=Integer.parseInt(request.getParameter("su"));
+		Cookie cookie = WebUtils.getCookie(request, "cookieid");	// 이미 생성된 쿠키값(cookieid)이 있다면, 그 값을 cookie변수에 넣기
+		
+		if(session.getAttribute("userid") == null) {	// 비회원인데
+			if(cookie == null) {	// cookie값이 없다면
+				String cookievalue=RandomStringUtils.random(30, true, true);	// 쿠키값(cookievalue, 30자, 문자O, 숫자O) 생성하기
+				Cookie cookieid=new Cookie("cookieid", cookievalue);
+			
+				/* 처음 장바구니에 상품을 넣으면 쿠키 유지시간 설정하기 (1시간) */
+				cookieid.setPath("/");
+				cookieid.setMaxAge(60 * 60 * 1);
+				response.addCookie(cookieid);
+				
+				mapper.cart_add(cookievalue, pcode, su);
+			}
+			else {	// cookie값이 이미 있다면
+				String cookievalue=cookie.getValue();
+				
+				/* 장바구니에 상품을 넣을 떄마다 쿠키 유지시간 재설정하기 (1시간) */
+				cookie.setPath("/");
+				cookie.setMaxAge(60 * 60 * 1);
+				response.addCookie(cookie);
+				
+				/* 장바구니 중복 체크하기 */
+				int chk=mapper.checkCart(cookievalue, pcode);
+				if(chk == 0)	// 장바구니에 해당 상품이 없다면 새로 추가하기
+					mapper.cart_add(cookievalue, pcode, su);
+				else	// 있다면 수량만 늘리기
+					mapper.cart_suadd(su, cookievalue, pcode);
+			}
+		}
+		else {	// 회원이라면
+			String userid=session.getAttribute("userid").toString();
+			
+			/*  장바구니 중복 체크하기 */
+			int chk=mapper.checkCart(userid, pcode);
+			if(chk == 0)	// 장바구니에 해당 상품이 없다면 새로 추가하기
+				mapper.cart_add(userid, pcode, su);
+			else	// 있다면 수량만 늘리기
+				mapper.cart_suadd(su, userid, pcode);
+		}
 		out.print("0");
 	}
 

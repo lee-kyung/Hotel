@@ -20,7 +20,7 @@ public class DiningController {
 		return service.dining_write(model);
 	}
 	@RequestMapping("/dining/dining_write_ok")
-	public String dining_write_ok(HttpServletRequest request)
+	public String dining_write_ok(HttpServletRequest request) throws Exception
 	{
 		return service.dining_write_ok(request);
 	}

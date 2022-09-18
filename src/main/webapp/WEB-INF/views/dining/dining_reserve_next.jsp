@@ -54,14 +54,15 @@
    
   function categoryChange(e)
   {
-	  var time_a=["8:00","10:00"];
-	  var time_b=["13:00","15:00"];
-	  var time_c=["16:00","18:00"];
-	  var target= document.getElementById("time");
 	  
-	  if(e.value == "a") var d = time_a;
-		else if(e.value == "b") var d = time_b;
-		else if(e.value == "c") var d = time_c;
+	  var dr_time_Breakfast=["8:00","10:00"];
+	  var dr_time_Lunch=["13:00","15:00"];
+	  var dr_time_Dinner=["16:00","18:00"];
+	  var target= document.getElementById("dr_time");
+	  
+	  if(e.value == "Breakfast") var d = dr_time_Breakfast;
+		else if(e.value == "Lunch") var d = dr_time_Lunch;
+		else if(e.value == "Dinner") var d = dr_time_Dinner;
 
 		target.options.length = 0;
 
@@ -72,6 +73,7 @@
 			target.appendChild(opt);
              }
   } 
+
   $(function() {
 	    $(".inputs").keyup (function () {
 	        var charLimit = $(this).attr("maxlength");
@@ -100,7 +102,7 @@
 
  </div>
  <div id="section_left2"> 
-  <form name="reser" method="post" action="dining_reserve_ok">
+  <form name="reser" method="post" action="dining_reserve_ok" onsubmit="return check(this)">
    <div id="1-1">
    <table width="1000" align="center" border="1">
    <caption>
@@ -134,35 +136,37 @@
        <td>${ymd}</td>
        <td>
        <input type="hidden" id="changeInput">
-        <select name="dine_type" onchange="categoryChange(this)">
+        <select name="dr_type" onchange="categoryChange(this)">
          <option value="0">선택</option>
-         <option value="a">Breakfast</option>
-         <option value="b">Lunch</option>
-         <option value="c">Dinner</option>
+         <option value="Breakfast" name="dine_type">Breakfast</option>
+         <option value="Lunch" name="dine_type">Lunch</option>
+         <option value="Dinner" name="dine_type">Dinner</option>
         </select>
        </td>
        <td>
  
-      <select id="time">
-           
+      <select id="dr_time" name="dr_time">
+      <%--   <c:forEach items="${ }"> --%>
          <option value="0">선택</option>
           <c:if test="${dvo.dine_type == 'Breakfast' }">
-            <option value>선택</option>
+
             <option value="1">8:00</option>
             <option value="2">10:00</option>
           </c:if>
        
           <c:if test="${dvo.dine_type == 'Lunch' }">
-            <option value>선택</option>
+    
             <option value="3">13:00</option>
             <option value="4">15:00</option>
           </c:if>
        
          <c:if test="${dvo.dine_type == 'Dinner' }">
-            <option value>선택</option>
+
             <option value="5">16:00</option>
             <option value="6">18:00</option>  
          </c:if>
+         
+<%--        </c:forEach> --%>
        </select>
  
        </td>
@@ -181,7 +185,7 @@
        <td colspan="3"> 추가 요청사항(선택)</td>
      </tr>
      <tr>
-       <td colspan="3"> <textarea cols="100" rows="5" name="content"></textarea> </td>
+       <td colspan="3"> <textarea cols="100" rows="5" name="dr_extrarq"></textarea> </td>
      </tr>
      <tr>
        <td colspan="3">
@@ -189,14 +193,14 @@
      </tr>
      <tr>
        <td>이름</td>
-       <td colspan="2">휴대폰 번호<input type="hidden" name="phone"></td>
+       <td colspan="2">휴대폰 번호<input type="hidden" name="phone" value="${p1+p2+p3}"></td>
      </tr>
      <tr>
-       <td><input type="text" name="name" size="40"></td>
+       <td><input type="text" name="name" value="${name}" size="40"></td>
        <td colspan="2">
-        <input type="text" name="p1" class="inputs" maxlength="3" size="10" />-
-        <input type="text" name="p2" class="inputs" maxlength="4" size="10"/>-
-        <input type="text" name="p3" class="inputs" maxlength="4" size="10"/>
+        <input type="text" name="p1" value="${p1}" class="inputs" maxlength="3" size="10" />-
+        <input type="text" name="p2" value="${p2}" class="inputs" maxlength="4" size="10"/>-
+        <input type="text" name="p3" value="${p3}" class="inputs" maxlength="4" size="10"/>
        </td>
      </tr>     
      <tr>
@@ -220,6 +224,9 @@
      <tr>
        <td><input type="radio">전체금액 온라인 결제</td>
         <td colspan="2"><input type="radio">레스토랑에서 결제(예약금 10만원 결제)</td>
+     </tr>
+     <tr>
+       <td colspan="3" align="center"><input type="submit" value="예약신청"></td>
      </tr>
     </table>
    </div>

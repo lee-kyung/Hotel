@@ -84,26 +84,14 @@ public class DiningResvServiceImpl implements DiningResvService{
 		return "/dining/dining_reserve_next";
 	}
 	@Override
-	public String dining_reserve_ok(HttpServletRequest request, HttpSession session, DiningResvVO drvo)
-	{
-		String dr_date=request.getParameter("dr_date");
-		String dining_id=request.getParameter("dining_id");
-		String dr_type=request.getParameter("dr_type");
-		String dr_total=request.getParameter("dr_total");
-		String name=request.getParameter("name");
-		String p1=request.getParameter("p1");
-		String p2=request.getParameter("p2");
-		
-		
+	public String dining_reserve_ok(DiningResvVO drvo)
+	{		
 		mapper.dining_reserve_ok(drvo);
-		
-		return "/dining/dining_reserve_next_ok";
+		return "redirect:/dining/dining_reserve";
 	}
-	@Override
-	public String dining_reserve_ok(HttpServletRequest request, HttpSession session) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
+
+
 	
 	
 
