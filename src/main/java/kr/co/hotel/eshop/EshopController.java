@@ -3,11 +3,14 @@ package kr.co.hotel.eshop;
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -38,21 +41,38 @@ public class EshopController {
 		service.getso(request, out);
 	}
 	
-	/* pcode를 생성하기 */
 	@RequestMapping("/eshop/getpcode")
 	public void getpcode(HttpServletRequest request, PrintWriter out) {
 		service.getpcode(request, out);
 	}
 	
-	/* 상품을 등록하기 */
 	@RequestMapping("/eshop/pro_write_ok")
 	public String pro_write_ok(HttpServletRequest request) {
 		return service.pro_write_ok(request);
 	}
 	
-	/* 상품 목록을 보기 */
 	@RequestMapping("/eshop/pro_list")
-	public String pro_list(HttpServletRequest request, Model model) {
-		return service.pro_list(request, model);
+	public String pro_list(HttpServletRequest request, Model model, HttpSession session) {
+		return service.pro_list(request, model, session);
+	}
+	
+	@RequestMapping("/eshop/pro_content")
+	public String pro_content(HttpServletRequest request, Model model, HttpSession session) {
+		return service.pro_content(request, model, session);
+	}
+	
+	@RequestMapping("/eshop/wish_add")
+	public void wish_add(HttpSession session, HttpServletRequest request, PrintWriter out) {
+		service.wish_add(session, request, out);
+	}
+	
+	@RequestMapping("/eshop/wish_del")
+	public void wish_del(HttpSession session, HttpServletRequest request, PrintWriter out) {
+		service.wish_del(session, request, out);
+	}
+	
+	@RequestMapping("/eshop/cart_add")
+	public void cart_add(HttpSession session, HttpServletRequest request, HttpServletResponse response, PrintWriter out) {
+		service.cart_add(session, request, out, response);
 	}
 }

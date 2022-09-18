@@ -3,8 +3,13 @@ package kr.co.hotel.eshop;
 import java.io.PrintWriter;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.Random;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -48,42 +53,166 @@ public class EshopServiceImpl implements EshopService {
 	}
 
 	@Override
-	public String pro_write_ok(HttpServletRequest request) {
+	public String pro_write_ok(HttpServletRequest request) {		
 		/* MultipartRequest로 form태그의 값들을 가져와 ProductVO에 넣기 */
-		String path=request.getRealPath("resources/eshop_img");
+		String path=request.getRealPath("resources/img/eshop");
 		int size=1024*1024*30;
 		DefaultFileRenamePolicy rename=new DefaultFileRenamePolicy();		
 		ProductVO pvo=new ProductVO();
 		try {
 			MultipartRequest multi=new MultipartRequest(request, path, size, "utf-8", rename);
 			
+			/* multi.getFileNames();로 파일이름을 가져와서 'Enumeration 변수명'에 저장하기 (dto사용X) */
+			Enumeration file=multi.getFileNames();
+			
+			String imgs="";	// '파일명'의 값을 누적하기 때문에 초기값(빈값)을 주기
+			while(file.hasMoreElements()) {	// Enumeration은 hasMoreElement()를 통해 다음으로 이동하고,
+				String fimg=file.nextElement().toString();	// nextElement()를 통해 저장된 값을 가져오기
+				
+				/* multi.getFilesystemName("fimg1")로 서버에 저장된 파일이름을 가져오기 */
+				if(!fimg.equals("simg"))	// 단, simg도 가져오기 때문에 simg는 빼고 imgs에 담기
+				imgs=multi.getFilesystemName(fimg)+","+imgs;	// 테이블의 fname필드에 [파일명, 파일명, 파일명]의 형태로 저장하기
+			}
+			imgs=imgs.replace("null,", "");	// 'null,'값을 없애기
+			
 			pvo.setPcode(multi.getParameter("pcode"));
 			pvo.setTitle(multi.getParameter("title"));
-			pvo.setImg1(multi.getFilesystemName("img1"));
-			pvo.setImg2(multi.getFilesystemName("img2"));
+			pvo.setFimg(imgs);
+			pvo.setSimg(multi.getFilesystemName("simg"));
 			pvo.setPrice(Integer.parseInt(multi.getParameter("price")));
 			pvo.setHalin(Integer.parseInt(multi.getParameter("halin")));
 			pvo.setJuk(Integer.parseInt(multi.getParameter("juk")));
 			pvo.setSu(Integer.parseInt(multi.getParameter("su")));
 			pvo.setBaefee(Integer.parseInt(multi.getParameter("baefee")));
 			pvo.setBuyday(multi.getParameter("buyday"));
-			pvo.setOpt1(multi.getParameter("opt1"));
-			pvo.setOpt2(multi.getParameter("opt2"));
-			pvo.setOpt3(multi.getParameter("opt3"));
 		}
 		catch(Exception e) {
 			return "redirect:/eshop/error";
 		}
 		mapper.pro_write_ok(pvo);
-		return "redirect:/eshop/pro_list";
+		return "redirect:/eshop/eshop";
 	}
 
 	@Override
-	public String pro_list(HttpServletRequest request, Model model) {
-		String pdae=request.getParameter("pdae");
-		model.addAttribute("list", mapper.pro_list(pdae));
-		model.addAttribute("pdae", pdae);	// 배너사진과 문구를 구별하기 위한 pdae값
+	public String pro_list(HttpServletRequest request, Model model, HttpSession session) {
+		String pcode=request.getParameter("pcode");
+		
+		int page, psel;
+		String osel;
+		
+		/* 페이지의 초기화면값 처리하기 */
+		if(request.getParameter("page") == null)
+			page=1;
+		else
+			page=Integer.parseInt(request.getParameter("page"));
+		
+		/* 한페이지에 출력할 레코드개수의 초기화면값 처리하기 */
+		if(request.getParameter("psel") == null)
+			psel=9;
+		else
+			psel=Integer.parseInt(request.getParameter("psel"));
+		
+		/* 한페이지에 출력할 레코드의 index값 구하기 */
+		int pindex=(page-1)*psel;
+		
+		/* 정렬말머리의 초기화면값 처리하기*/
+		if(request.getParameter("osel") == null)
+			osel="id asc";
+		else
+			osel=request.getParameter("osel");
+		
+		/* 페이지 이동을 위한 출력 범위 */
+		int pstart, pend, parr=10;
+		
+		pstart=page/parr;	// 페이지 출력 범위 : 1~10, 11~20, 21~30…
+		if((page%parr) == 0)
+			pstart--;
+			
+		pstart=(pstart*parr)+1;
+		pend=pstart+(parr-1);
+		
+		/* 총페이지수 구하기 */
+		int ptotal=mapper.total(psel);
+		
+		/* pend가 총페이지수보다 크다면 값 바꾸기 */
+		if(pend > ptotal)
+			pend=ptotal;
+		
+		/* 회원과 비회원을 구분하여 plist를 불러와 view에 전달하기 */
+		if(session.getAttribute("userid") == null)
+			model.addAttribute("plist", mapper.pro_list2(pcode, osel, pindex, psel));
+		else {
+			String userid=session.getAttribute("userid").toString();
+			model.addAttribute("plist", mapper.pro_list(userid, pcode, osel, pindex, psel));
+		}			
+		
+		model.addAttribute("pcode", pcode);	// 배너사진과 문구를 구별하기 위한 pcode(pdae 또는 pdaeso)값
+		model.addAttribute("page", page);
+		model.addAttribute("psel", psel);
+		model.addAttribute("osel", osel);
+		model.addAttribute("pstart", pstart);
+		model.addAttribute("pend", pend);
+		model.addAttribute("ptotal", ptotal);
 		return "/eshop/pro_list";
+	}
+	
+	@Override
+	public String pro_content(HttpServletRequest request, Model model, HttpSession session) {
+		String pcode=request.getParameter("pcode");
+		ProductVO pvo=mapper.pro_content(pcode);
+		
+		/* fimg의 복수이미지를 fimgs[]에 넣기*/
+		pvo.setImgs(pvo.getFimg().split(","));
+		
+		/* wish테이블에 '해당유저'와 '해당상품'이 들어있는지 확인하고 model로 전달하기 */
+		int wishcnt;
+		if(session.getAttribute("userid") == null)	// 로그인을 안 했다면?
+			wishcnt=0;
+		else {	// 로그인했는데
+			String userid=session.getAttribute("userid").toString();
+			int chk=mapper.checkWish(userid, pcode);
+			if(chk == 0)	// wish테이블에 해당상품이 없다면?
+				wishcnt=0;
+			else	// wish테이블에 해당상품이 있다면?
+				wishcnt=1;
+		}
+		model.addAttribute("wishcnt", wishcnt);
+		
+		model.addAttribute("pvo", pvo);
+		return "/eshop/pro_content";
+	}
+
+	@Override
+	public void wish_add(HttpSession session, HttpServletRequest request, PrintWriter out) {
+		String pcode=request.getParameter("pcode");
+		mapper.wish_add(session.getAttribute("userid").toString(), pcode);
+		out.print("0");
+	}
+
+	@Override
+	public void wish_del(HttpSession session, HttpServletRequest request, PrintWriter out) {
+		String pcode=request.getParameter("pcode");
+		mapper.wish_del(session.getAttribute("userid").toString(), pcode);
+		out.print("0");
+	}
+
+	@Override
+	public void cart_add(HttpSession session, HttpServletRequest request, PrintWriter out, HttpServletResponse response) {
+		if(session.getAttribute("userid") == null) {	// 비회원이라면
+			//Random random=new Random();
+			//int length=random.nextInt(10);
+			Cookie cookie=new Cookie("userid", "12345");
+			cookie.setMaxAge(6000);
+			response.addCookie(cookie);
+			mapper.cart_add(cookie.getValue(), request.getParameter("pcode"), request.getParameter("su"));
+		}
+		else {	// 회원이라면
+			String userid=session.getAttribute("userid").toString();
+			mapper.cart_add(userid, request.getParameter("pcode"), request.getParameter("su"));
+		}
+		
+		
+		out.print("0");
 	}
 
 }

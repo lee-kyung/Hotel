@@ -48,18 +48,23 @@
                                     <ul id="navigation">
                                         <li><a class="active" href="../main/index">home</a></li>
                                         <li><a href="../room/rooms">rooms</a></li>
-                                        <li><a href="../dining/dining">dining</a></li>
+                                        <li><a href="../dining/dining">dining<i class="ti-angle-down"></i></a>
+                                            <ul class="submenu">
+                                                <li><a href="../dining/dining">레스토랑 소개</a></li>
+                                                <li><a href="../dining/dining_reserve">레스토랑 예약</a></li>
+                                            </ul>
+                                        </li>
                                         <li><a href="../wedding/wedding">wedding<i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
-                                                <li><a href="../wedding/wedding_hall?id=9">웨딩홀</a></li>
+                                                <li><a href="../wedding/wedding_hall?id=15">웨딩홀</a></li>
                                                 <li><a href="../wedding/wedding_reserve">상담예약</a></li>
                                                 <li><a href="../wedding/wedding_check">견적</a></li>
                                             </ul>
                                         </li>
                                         <li><a href="../eshop/eshop">eshop<i class="ti-angle-down"></i></a>
                                         	<ul class="submenu">
-                                                <li><a href="../eshop/pro_list?pdae=p01">product</a></li>
-                                                <li><a href="../eshop/pro_list?pdae=p02">voucher</a></li>
+                                                <li><a href="../eshop/pro_list?pcode=p01">product</a></li>
+                                                <li><a href="../eshop/pro_list?pcode=p02">voucher</a></li>
                                                 <li><a href="../eshop/pro_write">상품등록</a></li>	<!-- 나중에 관리자만 볼 수 있게 할 메뉴 -->
                                             </ul>                                        
                                         </li>
@@ -99,10 +104,24 @@
                                                 <i class="fa fa-instagram"></i>
                                             </a>
                                         </li>
+                                        <li>
+		                                <c:if test="${userid == null}">
+											<a href="../login/login">로그인</a>
+											<a href="../member/member_input">회원가입</a>
+										</c:if>
+										<c:if test="${(userid != null) && (userid != 'admin')}">
+											<a href="../member/mypage"> ${name}님
+											<a href="../login/logout">로그아웃</a>
+										</c:if>
+										<c:if test="${userid == 'admin'}">
+											<a href="#"> ${name}님											
+											<a href="../login/logout">로그아웃</a>
+										</c:if>
+		                                </li>
                                     </ul>
                                 </div>
                                 <div class="book_btn d-none d-lg-block">
-                                    <a class="popup-with-form" href="#test-form">Book A Room</a>
+                                   <a href="../room/room_resv">객실예약</a>
                                 </div>
                             </div>
                         </div>

@@ -1,13 +1,17 @@
 package kr.co.hotel.wedding;
 
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 
 @Controller
 public class WeddingController {
@@ -18,8 +22,8 @@ public class WeddingController {
 	
 	
 	@RequestMapping("/wedding/wedding_check")
-	public String wedding_check() {
-		return "/wedding/wedding_check";
+	public String wedding_check(Model model) {
+		return service.wedding_check(model);
 	}
 	
 	@RequestMapping("/wedding/wed_hall_write")
@@ -39,5 +43,26 @@ public class WeddingController {
 	{
 		return service.wedding_hall(request,model, wvo); 
 	}
+	
+	@RequestMapping("/wedding/wedding_reserve")
+	public String wedding_reserve(HttpServletRequest request, Model model) {
+		
+		return service.wedding_reserve(request, model);
+	}
+	
+	@RequestMapping("/wedding/weddingReserve_ok")
+	public String weddingReserve_ok(WeddingResvVO wrvo, HttpSession session)
+	{
+		return service.weddingReserve_ok(wrvo, session);
+	}
+	
+	@RequestMapping("/wedding/wresv_cal")
+	public void wresv_cal(WeddingResvVO wrvo,PrintWriter out)
+	{
+		service.wresv_cal(wrvo, out);
+	}
+	
+	
+	
 	
 }

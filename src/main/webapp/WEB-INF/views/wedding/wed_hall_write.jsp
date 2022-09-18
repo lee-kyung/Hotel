@@ -4,7 +4,39 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <head>
 <style>
-
+	section{
+	width:1100px;
+	margin:auto;
+	margin-top:100px;
+	margin-bottom:200px;}
+	
+	section #wed_write table{
+	width:1100px;
+	border-collapse:separate;
+    border-spacing:20px;}
+    
+    section #wed_write table td:first-child{
+    font-weight:600;
+    width:250px;}
+    
+    section #wed_write table input[type=text]{
+    width:98%;
+    height:50px;
+    outline:none;}
+    
+    section #wed_write table textarea{
+    width:98%;
+    height:200px;
+    outline:none;
+    resize:none;}
+    
+    section #wed_write table tr:last-child{
+    text-align:center;}
+    
+    section #wed_write table input[type=submit]{    
+    width:200px;
+    height:60px;}
+    
 </style>
 
 <script>
@@ -12,13 +44,15 @@
 	function add_file()
 	{
 		var fname=document.getElementsByClassName("fname");
-		
 		var len=fname.length;	// 현재 type="file"의 개수
+		if(len < 4)
+		{
 		len++;		// 추가 될 때마다 file의 개수가 하나씩 늘어야 하기 때문에 증가를 준다. 
 		var inner="<p class='fname'> <input type='file' name='fname"+len+"'> </p> "; // 추가될 내용
 															// fname+숫자 : 추가될때마다 숫자변경해야하기 때문에 
 		document.getElementById("outer").innerHTML=document.getElementById("outer").innerHTML+inner;
 		// jqurty : $("#outer").html($("outer").html()+inner);
+		}
 	}
 	
 	function del_file()
@@ -42,8 +76,8 @@
     <!-- 새 이미지 추가하는 법
     	①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기
     	②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
-    <div class="bradcam_area basic">	<!-- class="bradcam_area 클래스명" -->
-        <h3> 웨딩홀 작성 </h3>
+    <div class="bradcam_area wedding">	<!-- class="bradcam_area 클래스명" -->
+        <h3> 등록 </h3>
     </div>
     <!-- bradcam_area_end -->
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
@@ -52,10 +86,11 @@
 	<!-- ================ 타이틀(자유롭게 변경) Area Start ================= -->
     <!-- 부타이틀(자유롭게 변경)_area_start -->
     
-      <section class="blog_area section-padding">
-      <div class="container">
+<section>
+<div id="wed_write">
+
      	<form method="post" action="wed_hall_write_ok" enctype="multipart/form-data">
-    	<table width="1100" border="1">
+    	<table>
     	<tr>
     			<td>웨딩홀 이름</td>
     			<td><input type="text" name="wed_hall"></td>
@@ -108,42 +143,27 @@
     			<td>Special Benefit</td>
     			<td><textarea name="wed_txt2"></textarea></td>
     		</tr>
+    		
+    		<tr>
+    			<td>금액</td>
+    			<td><input type="text" name="wed_price"></td>
+    		</tr>
+    		
     		<tr>
     			<td colspan="2">
-					<input type="submit" value="작성">
+					<input type="submit" class="button button-contactForm btn_1 boxed-btn" value="작성">
     			</td>
     		</tr>
     		
     	</table>
     	</form>
+</div>
+</section>
     	
-  
-    	
-    	</div>
-    	</section>
-    	
+
     	
     	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
+ 
     	
     	
     	

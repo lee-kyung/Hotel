@@ -13,9 +13,24 @@
 	#pro_write table {
 		font-family : 돋움;
 		font-size : 14px;
+		border-top : 2px solid darkgray;
+		border-bottom : 2px solid darkgray;
+		padding : 10px;
 	}
 	#pro_write table td {
+		padding-top : 10px;
 		padding-bottom : 10px;
+		border-bottom : 1px solid lightgray;
+	}
+	#pro_write table tr:last-child td {
+		border : none;
+	}
+	#pro_write #size {
+		width : 100px;
+	}
+	input[type=number]::-webkit-inner-spin-button,
+	input[type=number]::-webkit-outer-spin-button {
+		opacity: 1;
 	}
 </style>
 <script>
@@ -57,15 +72,12 @@
 								case 1 : pcode2="00"+pcode2; break;
 								case 2 : pcode2="0"+pcode2; break;
 							}
-							document.inpro.pcode.value=pcode1+pcode2;	// pcode 총8자리 완성
+							/* pcode 총8자리 완성 */
+							document.inpro.pcode.value=pcode1+pcode2;
 						}
 					}
 					return true;
 				}
-	}
-	
-	function goback(){
-		window.history.back();
 	}
 	
 	/* 상품코드, 메인이미지, 상세이미지, 상품명, 판매가, 재고가 입력됐는지 체크하기 */
@@ -75,11 +87,11 @@
 			alert("상품코드를 생성하세요.")
 			return false;
 			}
-			else if(dom.img1.value.trim() == "") {
+			else if(dom.fimg1.value.trim() == "") {
 				alert("메인이미지를 등록하세요.")
 				return false;
 				}
-				else if(dom.img2.value.trim() == "") {
+				else if(dom.simg.value.trim() == "") {
 					alert("상세이미지를 등록하세요.")
 					return false;
 					}
@@ -98,23 +110,45 @@
 							else
 								return true;
 	}
+	
+	/* 이미지 첨부파일 추가 & 삭제 */
+	function add_file(){
+		let len=document.getElementsByClassName("imgs").length;
+		if(len < 3) {
+			len++;
+			let inner="<p class='imgs'> <input type='file' name='fimg"+len+"'> </p>";
+			document.getElementById("outer").innerHTML=document.getElementById("outer").innerHTML+inner;
+		}
+	}
+	function del_file(){
+		let len=document.getElementsByClassName("imgs").length;
+		if(len > 1) {
+			len--;
+			document.getElementsByClassName("imgs")[len].remove();
+		}
+	}
 </script>
 </head>
 <body>
+	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
+		<div class="bradcam_area basic">
+	        <h3> 상품 등록 </h3>
+	    </div>
+    <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
+    
 	<!-- ================ 상품등록 Area Start ================= -->
 	<section id="pro_write">
 	<form name="inpro" method="post" action="pro_write_ok" enctype="multipart/form-data" onsubmit="return check()">
-		<table width="600" align="center">
-		<caption> <h2> 상품 등록 </h2> </caption>
+		<table width="650" align="center">
 			<tr>
 				<td width="80"> 상품코드 </td>
 				<td width="100"> <input type="text" name="pcode" readonly placeholder="상품코드를 생성하세요."> </td>
 				<td>
 					<select name="dae" onchange="getso(this.value)">	<!-- 메인분류 -->
-						<option> 메인분류  </option>
-					<c:forEach var="pdvo" items="${list}">
-						<option value="${pdvo.code}"> ${pdvo.title} </option>
-					</c:forEach>
+							<option> 메인분류  </option>
+						<c:forEach var="pdvo" items="${list}">
+							<option value="${pdvo.code}"> ${pdvo.title} </option>
+						</c:forEach>
 					</select>
 					<select name="so"> </select>	<!-- 하위분류 -->					
 					<input type="button" onclick="return getpcode()" value="상품코드 생성">
@@ -122,15 +156,19 @@
 			</tr>
 			<tr>
 				<td> 메인이미지 </td>
-				<td colspan="2"> <input type="file" name="img1"> </td>
+				<td id="outer" colspan="2">
+					<input type="button" onclick="add_file()" value="추가">
+					<input type="button" onclick="del_file()" value="삭제">
+					<p class="imgs"> <input type="file" name="fimg1"> </p>
+				</td>
 			</tr>
 			<tr>
 				<td> 상세이미지 </td>
-				<td colspan="2"> <input type="file" name="img2"> </td>
+				<td colspan="2"> <input type="file" name="simg"> </td>
 			</tr>
 			<tr>
 				<td> 상품명 </td>
-				<td colspan="2"> <input type="text" name="title" size="55"> </td>
+				<td colspan="2"> <input type="text" name="title" size="55" placeholder="상품명을 입력하세요."> </td>
 			</tr>
 			<tr>
 				<td> 판매가 </td>
@@ -138,11 +176,11 @@
 			</tr>
 			<tr>
 				<td> 할인율 </td>
-				<td colspan="2"> <input type="number" name="halin" min="0" max="100" placeholder="0~100"> </td>
+				<td colspan="2"> <input type="number" name="halin" min="0" max="100" placeholder="0~100" id="size"> </td>
 			</tr>
 			<tr>
 				<td> 적립율 </td>
-				<td colspan="2"> <input type="number" name="juk" min="0" max="100" placeholder="0~100"> </td>
+				<td colspan="2"> <input type="number" name="juk" min="0" placeholder="숫자만 입력하세요."> </td>
 			</tr>
 			<tr>
 				<td> 재고 </td>
@@ -153,23 +191,7 @@
 				<td colspan="2"> <input type="number" name="baefee" min="0" placeholder="숫자만 입력하세요."> </td>
 			</tr>
 			<tr>
-				<td colspan="2" style="font-size:13px;"> ※옵션이 있다면 입력하세요. </td>
-			</tr>
-			<tr>
-				<td> 옵션1 </td>
-				<td colspan="2"> <input type="text" name="opt1" placeholder="옵션값은 쉼표(,)로 구분하세요. 예)빨강,주황,노랑 또는  1,2,3" size="55"> </td>
-			</tr>
-			<tr>
-				<td> 옵션2 </td>
-				<td colspan="2"> <input type="text" name="opt2" placeholder="옵션값은 쉼표(,)로 구분하세요. 예)빨강,주황,노랑 또는  1,2,3" size="55"> </td>
-			</tr>
-			<tr>
-				<td> 옵션3 </td>
-				<td colspan="2"> <input type="text" name="opt3" placeholder="옵션값은 쉼표(,)로 구분하세요. 예)빨강,주황,노랑 또는  1,2,3" size="55"> </td>
-			</tr>
-			<tr>
 				<td colspan="3" align="center">
-					<input type="button" value="이전으로" onclick="goback()">
 					<input type="submit" value="등록하기">
 				</td>
 			</tr>

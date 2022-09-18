@@ -56,18 +56,23 @@
                                     <ul id="navigation">
                                         <li><a href="../main/index">home</a></li>
                                         <li><a href="../room/rooms">rooms</a></li> <!-- class="active" -->
-                                        <li><a href="../dining/dining">dining</a></li>
+                                        <li><a href="../dining/dining">dining<i class="ti-angle-down"></i></a>
+                                            <ul class="submenu">
+                                                <li><a href="../dining/dining">레스토랑 소개</a></li>
+                                                <li><a href="../dining/dining_reserve">레스토랑 예약</a></li>
+                                            </ul>
+                                        </li>
                                         <li><a href="../wedding/wedding">wedding<i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
-                                                <li><a href="../wedding/wedding_hall?id=9">웨딩홀</a></li>
+                                                <li><a href="../wedding/wedding_hall?id=15">웨딩홀</a></li>
                                                 <li><a href="../wedding/wedding_reserve">상담예약</a></li>
                                                 <li><a href="../wedding/wedding_check">견적</a></li>
                                             </ul>
                                         </li>
                                         <li><a href="../eshop/eshop">eshop<i class="ti-angle-down"></i></a>
                                         	<ul class="submenu">
-                                                <li><a href="../eshop/pro_list?pdae=p01">product</a></li>
-                                                <li><a href="../eshop/pro_list?pdae=p02">voucher</a></li>
+                                                <li><a href="../eshop/pro_list?pcode=p01">product</a></li>
+                                                <li><a href="../eshop/pro_list?pcode=p02">voucher</a></li>
                                                 <li><a href="../eshop/pro_write">상품등록</a></li>	<!-- 나중에 관리자만 볼 수 있게 할 메뉴 -->
                                             </ul>                                        
                                         </li>
@@ -107,11 +112,26 @@
                                                 <i class="fa fa-instagram"></i>
                                             </a>
                                         </li>
+                                         <li>
+		                                <c:if test="${userid == null}">
+											<a href="../login/login">로그인</a>
+											<a href="../member/member_input">회원가입</a>
+										</c:if>
+										<c:if test="${(userid != null) && (userid != 'admin')}">
+											<a href="../member/mypage"> ${name}님
+											<a href="../login/logout">로그아웃</a>
+										</c:if>
+										<c:if test="${userid == 'admin'}">
+											<a href="#"> ${name}님											
+											<a href="#">ss</a>
+											<a href="../login/logout">로그아웃</a>
+										</c:if>
+		                                </li>
                                     </ul>
                                 </div>
-                                <div class="book_btn d-none d-lg-block">
-                                    <a class="popup-with-form" href="#test-form">Book A Room</a>
-                                </div>
+                              <div class="book_btn d-none d-lg-block">
+                                    <a href="../room/room_resv">객실예약</a>
+                                </div> 
                             </div>
                         </div>
                         <div class="col-12">
@@ -219,11 +239,11 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <!-- link that opens popup -->
 
     <!-- form itself end-->
-        <form id="test-form" name="dtpick" class="white-popup-block mfp-hide">
+        <!-- <form id="test-form" name="dtpick" class="white-popup-block mfp-hide">
                 <div class="popup_box ">
                         <div class="popup_inner">
                             <h3>Check Availability</h3>
-                            <form action="../room/room_avail">
+                            <form action="../room/room_resv">
                                 <div class="row">
                                     <div class="col-xl-6">
                                         <input id="datepicker" placeholder="체크인 날짜" >
@@ -264,7 +284,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                             </form>
                         </div>
                     </div>
-            </form>
+            </form> -->
     <!-- form itself end -->
 
     <!-- JS here -->
