@@ -43,12 +43,7 @@ public class RoomResvController {
 		service.getRoomAvail(request,out,rvo);
 	}
 
-	@RequestMapping("/room/suUpdate")
-	public void suUpdate(HttpServletRequest request, PrintWriter out)
-	{
-		service.suUpdate(request,out);
-	}
-
+	
 	
 	
 }
