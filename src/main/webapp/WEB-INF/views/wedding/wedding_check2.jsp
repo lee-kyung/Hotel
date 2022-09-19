@@ -75,6 +75,9 @@
 	height:150px;
 	text-align:center;}
 	
+	section #wed_chk table:last-child #txt_left{
+	padding-right:505px;}
+	
 	section #wed_chk table:last-child #total{
 	padding-left:100px;}
 	
@@ -98,15 +101,6 @@
 	
 	section #wed_chk table:first-child #tr_food1, #tr_food2{
 	display:none; }
-	
-	section #wed_chk table:first-child #btn1, #btn2{
-	width:120px;
-	height:30px;
-	padding-left:30px;
-	padding-bottom:30px;}
-	
-	section #wed_chk table:first-child #btn2{
-	margin-left:30px;}
 </style>
 
 </head>
@@ -119,32 +113,25 @@
 
 	function change_food1()
 	{
-  		document.getElementById("f_1").style.color="#cccccc";
-  		document.getElementById("f_2").style.color="#cccccc";
-  		document.getElementById("f_3").style.color="black";
-  		document.getElementById("f_4").style.color="black";
   		document.getElementById("tr_food1").style.display="table-row";
-  		document.getElementById("f_txt").innerText="동시예식";
+  		document.getElementById("tr_food2").style.display="none";
   		document.pay.food1.value="0";
-  		document.getElementById("f1").disabled=true;
-  		document.getElementById("f2").disabled=true;
-  		document.getElementById("f3").disabled=false;
-  		document.getElementById("f4").disabled=false;
-	}	
+  		document.getElementsByClassName("food2")[0].style.color="#cccccc";
+  		document.getElementsByClassName("food2")[1].style.color="#cccccc";
+  		document.getElementsByClassName("food1")[0].style.color="black";
+  		document.getElementsByClassName("food1")[1].style.color="black";
+	}
+	
 
 	function change_food2()
 	{
-		document.getElementById("f_3").style.color="#cccccc";
-  		document.getElementById("f_4").style.color="#cccccc";
-  		document.getElementById("f_1").style.color="black";
-  		document.getElementById("f_2").style.color="black";
-  		document.getElementById("tr_food1").style.display="table-row";
-  		document.getElementById("f_txt").innerText="분리예식";
-  		document.pay.food1.value="0";
-  		document.getElementById("f1").disabled=false;
-  		document.getElementById("f2").disabled=false;
-  		document.getElementById("f3").disabled=true;
-  		document.getElementById("f4").disabled=true;
+  		document.getElementById("tr_food2").style.display="table-row";
+  		document.getElementById("tr_food1").style.display="none";
+  		document.pay.food2.value="0";
+  		document.getElementsByClassName("food1")[0].style.color="#cccccc";
+  		document.getElementsByClassName("food1")[1].style.color="#cccccc";
+  		document.getElementsByClassName("food2")[0].style.color="black";
+  		document.getElementsByClassName("food2")[1].style.color="black";
 	}
 	
 	function total_price()
@@ -165,7 +152,12 @@
 		var food_inwon1=document.pay.food_inwon1.value;
 		var food1=document.pay.food1.value;
 		var food_price1=food_inwon1*food1;
-		document.getElementById("food1").innerText=new Intl.NumberFormat().format(food_price1);				
+		document.getElementById("food1").innerText=new Intl.NumberFormat().format(food_price1);			
+
+		var food_inwon2=document.pay.food_inwon2.value;
+		var food2=document.pay.food2.value;
+		var food_price2=food_inwon2*food2;
+		document.getElementById("food2").innerText=new Intl.NumberFormat().format(food_price2);		
 
 		var food3=document.pay.food3.value;
 		document.getElementById("food3").innerText=new Intl.NumberFormat().format(food3);
@@ -188,7 +180,7 @@
 		var direct3=document.pay.direct3.value;
 		document.getElementById("direct3").innerText=new Intl.NumberFormat().format(direct3);
 		
-		var total=Number(hall)+Number(day)+Number(time)+Number(inwon)+Number(food_price1)+Number(food3)+Number(mc)+Number(flower)+Number(bouquet)+Number(direct1)+Number(direct2)+Number(direct3);
+		var total=Number(hall)+Number(day)+Number(time)+Number(inwon)+Number(food_price1)+Number(food_price2)+Number(food3)+Number(mc)+Number(flower)+Number(bouquet)+Number(direct1)+Number(direct2)+Number(direct3);
 		document.getElementById("total").innerText=new Intl.NumberFormat().format(total);
 		
 		document.pay.total.value=total;
@@ -253,20 +245,33 @@
           <tr>
           	<td>하객음식</td>
           	<td>	
-          		<input type="button" id="btn2" class="button button-contactForm btn_1 boxed-btn" onclick="change_food2()" value="분리예식">
-          		<input type="button" id="btn1" class="button button-contactForm btn_1 boxed-btn" onclick="change_food1()" value="동시예식">
+          		<input type="button" id="a" onclick="change_food1()">동시예식
+          		<input type="button" id="b" onclick="change_food2()">분리예식
           	</td>
           </tr>
           <tr id="tr_food1">
-          	<td><span id="f_txt"></span></td>
+          	<td>하객음식_동시예식</td>
           	<td>
           	<input type="radio" name="food1" onchange="total_price()" value="0">선택안함
-          	<input type="radio" name="food1" id="f1" onchange="total_price()" value="4"><span id="f_1">4만원</span>
-          	<input type="radio" name="food1" id="f2" onchange="total_price()" value="6.5"><span id="f_2">6.5만원</span>
-          	<input type="radio" name="food1" id="f3" onchange="total_price()" value="7"><span id="f_3">7만원</span>
-          	<input type="radio" name="food1" id="f4" onchange="total_price()" value="10"><span id="f_4">10만원</span>
+          	<input type="radio" name="food1" onchange="total_price()" value="7">7만원
+          	<input type="radio" name="food1" onchange="total_price()" value="10">10만원
           	x
           	<select name="food_inwon1" onchange="total_price()">
+          			<option value="100">100명</option>
+          			<option value="150">150명</option>
+          			<option value="200">200명</option>
+          			<option value="300">300명</option>
+          	</select>
+          	</td>
+          </tr>
+          <tr id="tr_food2">
+          	<td>하객음식_분리예식</td>
+          	<td>
+          	<input type="radio" name="food2" onchange="total_price()" value="0">선택안함
+          	<input type="radio" name="food2" onchange="total_price()" value="4">4만원
+          	<input type="radio" name="food2" onchange="total_price()" value="6.5">6.5만원
+          	x
+          	<select name="food_inwon2" onchange="total_price()">
           			<option value="100">100명</option>
           			<option value="150">150명</option>
           			<option value="200">200명</option>
@@ -343,28 +348,32 @@
          	<td><span id="inwon">0</span>만원</td>
           </tr>
           <tr>
-          	<td>하객음식</td>
-         	<td><span id="food1">0</span>만원</td>
-         	<td>폐백음식</td>
-         	<td><span id="food3">0</span>만원</td>
+          	<td class="food1">동시예식</td>
+         	<td class="food1"><span id="food1">0</span>만원</td>
+         	<td class="food2">분리예식</td>
+         	<td class="food2"><span id="food2">0</span>만원</td>
           </tr>
           <tr>
-          	<td>사회자</td>
+          	<td>폐백음식</td>
+         	<td><span id="food3">0</span>만원</td>
+         	<td>사회자</td>
          	<td><span id="mc">0</span>만원</td>
-         	<td>부케</td>
-         	<td><span id="bouquet">0</span>만원</td>
           </tr>
           <tr>
           	<td>생화</td>
          	<td><span id="flower">0</span>만원</td>
-         	<td>스크린상영</td>
-         	<td><span id="direct1">0</span>만원</td>
+         	<td>부케</td>
+         	<td><span id="bouquet">0</span>만원</td>
           </tr>
           <tr>
-          	<td>특수조명</td>
+          	<td>스크린상영</td>
+         	<td><span id="direct1">0</span>만원</td>
+         	<td>특수조명</td>
          	<td><span id="direct2">0</span>만원</td>
-         	<td>음향시스셈</td>
-         	<td><span id="direct3">0</span>만원</td>
+          </tr>
+          <tr>
+          	<td>음향시스셈</td>
+         	<td colspan="3" id="txt_left"><span id="direct3">0</span>만원</td>
           </tr>
           <tr>
          	 <td colspan="4">총 금액 <span id="total">0</span>만원</td>

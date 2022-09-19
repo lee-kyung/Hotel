@@ -37,34 +37,4 @@ public class MemberController {
 	{
 		service.userid_check(request, out);
 	}
-	
-	@RequestMapping("/member/mypage")
-	public String mypage()
-	{
-		return "/member/mypage";
-	}
-	
-	@RequestMapping("/member/myprofile_pwd")
-	public String myprofile_pwd()
-	{
-		return "/member/myprofile_pwd";
-	}
-	
-	@RequestMapping("/member/myprofile")
-	public String myprofile(HttpSession session, Model model)
-	{
-		return service.myprorile(session, model);
-	}
-	
-	@RequestMapping("/member/myprofile_pwd_ok")
-	public void myprofile_pwd_ok(HttpSession session, HttpServletRequest request, PrintWriter out)
-	{
-		service.myprofile_pwd_ok(session, request, out);
-	}
-	
-	@RequestMapping("/member/mypwd_change")
-	public String mypwd_change()
-	{
-		return "/member/mypwd_change";
-	}
 }

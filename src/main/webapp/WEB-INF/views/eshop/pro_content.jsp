@@ -12,7 +12,6 @@
 		float : left;
 		width : 520px;
 		height : 700px;
-		border : 1px solid red;
 	}
 	#pro_cnt #a1 #right {
 		float : right;
@@ -118,16 +117,6 @@
 		margin-left : 5px;
 		padding-top : 5px;
 	}
-	#pro_cnt #cart_msg {
-		position : absolute;
-		visibility : hidden;
-		width : 150px;
-		height : 70px;
-		padding-top : 10px;
-		border : 1px solid lightgray;
-		background : white;
-		text-align : center;
-	}
 </style>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script> 
@@ -185,17 +174,14 @@
 		chk.send();
 	}
 	
-	/* 장바구니에 회원/비회원 구분하여 상품 추가하기 */
+	/* 장바구니에 회원/비회원 구분하여 추가하기 */
 	function cart_add(pcode){
-		let x=event.clientX-100;
-		let y=event.clientY-100;
 		let su=document.pro_cnt.su.value;
 		let chk=new XMLHttpRequest();
 		chk.onload=function(){
 			if(chk.responseText == "0") {
-				document.getElementById("cart_msg").style.left=x+"px";
-				document.getElementById("cart_msg").style.top=y+"px";
-				document.getElementById("cart_msg").style.visibility="visible";
+				if(confirm("선택하신 상품이 장바구니에 담겼습니다. 장바구니로 이동하시겠습니까?"))
+					location="../eshop/pro_cart";
 			}
 			else {
 				alert("내부 오류 발생");
@@ -203,6 +189,12 @@
 		}
 		chk.open("get", "cart_add?pcode="+pcode+"&su="+su);
 		chk.send();
+	}
+	
+	/* 후보이미지를 클릭하면 메인이미지 자리에 뜨기 */
+	function show_img(num){
+		document.getElementById("main_fimg").src=document.getElementsByClassName("other_fimgs[num]").src;
+		//console.log(document.getElementsByClassName("mine[num]").src);
 	}
 </script>
 </head>
@@ -240,11 +232,11 @@
     		<!-- 메인이미지_area_start -->
 			<div id="left">
 				<div id="fimg1">
-					<img src="../img/eshop/${pvo.img}" width="500" height="450">
+					<img src="../img/eshop/${pvo.img}" width="500" height="450" id="main_fimg">
 				</div>
 				<div id="fimgs">
-				<c:forEach var="imgs" items="${pvo.imgs}">
-					<img src="../img/eshop/${imgs}" width="80" height="80">
+				<c:forEach var="imgs" items="${pvo.imgs}" varStatus="fimgs">
+					<img src="../img/eshop/${imgs}" width="80" height="80" class="other_fimgs" onclick="show_img(${fimgs.index})">
 				</c:forEach>
 				</div>
 			</div>
@@ -253,7 +245,7 @@
 			<div id="right">
 				<div id="wish">	<!-- 위시리스트 -->
 					<c:if test="${(userid == null) && (wishcnt == 0)}">
-						<img src="../img/eshop/wish_off.png" width="20" onclick="alert('로그인하셔야 본 서비스를 이용하실 수 있습니다.')">
+						<img src="../img/eshop/wish_off.png" width="20" onclick="alert('본 서비스는 로그인하셔야 이용 가능합니다.')">
 					</c:if>
 					<c:if test="${(userid !=null) && (wishcnt == 0)}">
 						<img src="../img/eshop/wish_off.png" width="20" onclick="wish_add('${pvo.pcode}')" id="wishimg">
@@ -303,13 +295,7 @@
 			<!-- 상품정보_area_end -->
 		</article>
 		</form>
-	
-		<div id="cart_msg">	<!-- 장바구니 레이어 -->
-			장바구니로 이동 <p>
-			<input type="button" value="장바구니로" onclick="location='../eshop/cart'">
-			<input type="button" value="계속 쇼핑" onclick="document.getElementById('cart_msg').style.visibility='hidden'">
-		</div>
-	
+
 		<article id="a2">
 		
 		</article>

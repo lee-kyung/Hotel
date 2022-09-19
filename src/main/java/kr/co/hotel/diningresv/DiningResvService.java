@@ -19,6 +19,7 @@ public interface DiningResvService {
 
 	public String dining_reserve_ok(DiningResvVO drvo);
 
+
 	
 	
 

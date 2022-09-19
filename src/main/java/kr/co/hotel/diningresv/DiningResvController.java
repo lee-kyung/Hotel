@@ -25,11 +25,7 @@ public class DiningResvController {
 	{
 		return service.dining_reserve(request, model);
 	}
-/*    @RequestMapping("/dining/getprev")
-    public String getprev(HttpServletRequest request, Model model)
-    {
-    	return service.getprev(request, model);
-    }*/
+
     @RequestMapping("/dining/dining_reserve_next")
     public String dining_reserve_next(HttpServletRequest request, Model model)
     {
@@ -40,6 +36,7 @@ public class DiningResvController {
     {
     	return service.dining_reserve_ok(drvo);
     }
+
 
 
 }
