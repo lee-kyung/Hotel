@@ -75,4 +75,14 @@ public class EshopController {
 	public void cart_add(HttpSession session, HttpServletRequest request, HttpServletResponse response, PrintWriter out) {
 		service.cart_add(session, request, out, response);
 	}
+	
+	@RequestMapping("/eshop/cart")
+	public String cart(HttpSession session, Model model, HttpServletRequest request, HttpServletResponse response) {
+		return service.cart(session, model, request, response);
+	}
+	
+	@RequestMapping("/eshop/cart_del")
+	public String cart_del(HttpServletRequest request) {
+		return service.cart_del(request);
+	}
 }
