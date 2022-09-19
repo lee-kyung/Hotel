@@ -12,12 +12,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="userid_check" resultType="Integer">
 		select count(*) as cnt from member where userid=#{param1}
 	</select>
-	
-	<select id="myprofile" resultType="kr.co.hotel.member.MemberVO">
-		select * from member where userid=#{param1}
-	</select>
-	
-	<select id="myprofile_pwd_ok" resultType="Integer">
-		select count(*) as cnt from member where userid=#{param1} and pwd=#{param2}
-	</select>
+
 </mapper>
