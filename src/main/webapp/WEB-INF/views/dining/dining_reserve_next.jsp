@@ -5,7 +5,7 @@
 <head>
  <style>
   .dining_reserve_next{
-    height:1600px;
+    height:1400px;
     line-height:2;
   }
   caption{
@@ -54,6 +54,13 @@
    
   function categoryChange(e)
   {
+	  
+	  /* var dr_time_"${dine_type}"=dr_time_["Breakfast","Lunch","Dinner"]; */
+	  var dr_time="${dine_type}";
+	  var dr_time_Breakfast=["8:00","10:00"];
+	  var dr_time_Lunch=["13:00","15:00"];
+	  var dr_time_Dinner=["16:00","18:00"];
+	  var target= document.getElementById("dr_time");
 	  
 	  var dr_time_Breakfast=["8:00","10:00"];
 	  var dr_time_Lunch=["13:00","15:00"];
@@ -128,20 +135,21 @@
         </td>
       </tr>
      <tr>
-       <td width="300">방문 희망 일자</td>
-       <td width="300">조식/중식/석식</td>
-       <td width="300">예약시간</td>
+       <th width="300">방문 희망 일자</th>
+       <th width="300">조식/중식/석식</th>
+       <th width="300">예약시간</th>
      </tr>
      <tr>
-       <td>${ymd}</td>
+       <td>${ymd}<input type="hidden" name="dr_date" ></td>
        <td>
        <input type="hidden" id="changeInput">
-        <select name="dr_type" onchange="categoryChange(this)">
-         <option value="0">선택</option>
-         <option value="Breakfast" name="dine_type">Breakfast</option>
-         <option value="Lunch" name="dine_type">Lunch</option>
-         <option value="Dinner" name="dine_type">Dinner</option>
+        <select value="${dine_type}" name="dine_type" id="dine_type" onchange="categoryChange(this)">
+         <option value="${dine_type}">${dine_type}</option>
+         <option value="Breakfast" name="dine_type" id="dine_type">Breakfast</option>
+         <option value="Lunch" name="dine_type" id="dine_type">Lunch</option>
+         <option value="Dinner" name="dine_type" id="dine_type">Dinner</option>
         </select>
+<%--         <input type="text" name="dine_type" value="${ dine_type}"> --%>
        </td>
        <td>
  
@@ -150,20 +158,20 @@
          <option value="0">선택</option>
           <c:if test="${dvo.dine_type == 'Breakfast' }">
 
-            <option value="1">8:00</option>
-            <option value="2">10:00</option>
+            <option value="8:00" name="dr_time">8:00</option>
+            <option value="10:00" name="dr_time">10:00</option>
           </c:if>
        
           <c:if test="${dvo.dine_type == 'Lunch' }">
     
-            <option value="3">13:00</option>
-            <option value="4">15:00</option>
+            <option value="13:00" name="dr_time">13:00</option>
+            <option value="15:00" name="dr_time">15:00</option>
           </c:if>
        
          <c:if test="${dvo.dine_type == 'Dinner' }">
 
-            <option value="5">16:00</option>
-            <option value="6">18:00</option>  
+            <option value="16:00" name="dr_time">16:00</option>
+            <option value="18:00" name="dr_time">18:00</option>  
          </c:if>
          
 <%--        </c:forEach> --%>
@@ -172,14 +180,35 @@
        </td>
      </tr> 
      <tr>
-       <td>성인</td>
-       <td>어린이</td>
-       <td>유아</td>
+       <th>성인</th>
+       <th>어린이</th>
+       <th>유아</th>
      </tr>
      <tr>
-       <td><input type="text" placeholder="성인select칸" readonly></td>
-       <td><input type="text" placeholder="어린이select칸" readonly></td>
-       <td><input type="text" placeholder="유아select칸" readonly></td>
+       <td>
+           <select name="adult" id="adult">
+              <option value="0"> 선택 </option>
+			  <option value="1"> 1 </option>
+		      <option value="2"> 2 </option>
+			  <option value="3"> 3 </option>
+           </select>
+       </td>
+       <td>
+           <select name="child" id="child">
+              <option value="0"> 선택 </option>
+			  <option value="1"> 1 </option>
+		      <option value="2"> 2 </option>
+			  <option value="3"> 3 </option>
+           </select>
+       </td>
+       <td>
+           <select name="baby" id="baby">
+              <option value="0"> 선택 </option>
+			  <option value="1"> 1 </option>
+		      <option value="2"> 2 </option>
+			  <option value="3"> 3 </option>
+           </select>
+       </td>
      </tr>
      <tr>
        <td colspan="3"> 추가 요청사항(선택)</td>

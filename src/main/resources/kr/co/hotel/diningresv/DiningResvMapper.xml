@@ -14,7 +14,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="dining_reserve_ok" parameterType="kr.co.hotel.diningresv.DiningResvVO">
-	  insert into diningresv(dr_date,dr_extrarq,dr_state,dr_stayhalin,dr_time,dr_total,dr_type,userid,email,p1,p2,p3,writeday)
-	  values(#{dr_date},#{dr_extrarq},#{dr_state},#{dr_stayhalin},#{dr_timeValue},#{dr_total},#{dr_type},#{userid},#{email},#{p1},#{p2},#{p3},now())
+	   insert into diningresv(dr_date,dr_extrarq,dr_state,dr_stayhalin,dr_time,dr_total,dine_type,
+	  userid,email,p1,p2,p3,writeday,adult,child,baby)
+	   values(#{dr_date},#{dr_extrarq},#{dr_state},#{dr_stayhalin},#{dr_time},#{dr_total},#{dine_type},
+	  #{userid},#{email},#{p1},#{p2},#{p3},now(),#{adult},#{child},#{baby})
 	</insert>
 </mapper>
