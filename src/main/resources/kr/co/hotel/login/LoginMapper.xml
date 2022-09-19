@@ -9,26 +9,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from member where userid=#{userid} and pwd=#{pwd}
 	</select>
 	
-	<!-- <select id="checkCart" resultType="Integer">
+	<select id="checkCart" resultType="Integer">
 		select count(*) from cart where userid=#{param1}
 	</select>
 	
-	<select id="checkCart_userid" resultType="Integer">
-		select count(*) from cart
-		where (select pcode from cart where userid=#{param1})=(select pcode from cart where userid=#{param2})
-	</select>
-	
-	<update id="cart_userid_change">
+	<update id="cart_chgUserid">
 		update cart set userid=#{param1} where userid=#{param2}
 	</update>
 	
-	<delete id="cart_del">
-		delete from cart where userid=#{param1}
+	<delete id="cart_delDupli">
+		<![CDATA[ delete a.* from cart a, cart b
+		where a.id < b.id and a.userid=b.userid and a.pcode=b.pcode ]]>
 	</delete>
 	
-	<delete id="cart_del_duplicate">
-		delete from cart
-		where (select pcode from cart where userid=#{param1})=(select pcode from cart where userid=#{param2})
-		and userid=#{param2}
-	</delete> -->
 </mapper>

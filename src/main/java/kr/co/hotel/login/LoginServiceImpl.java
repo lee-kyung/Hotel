@@ -26,27 +26,20 @@ public class LoginServiceImpl implements LoginService {
 			session.setAttribute("userid", userid);
 			session.setAttribute("name", mvo.getName());
 			
-			/* 비회원 장바구니를 회원 장바구니로 옮기기 (※중복제크必) */
-			/*Cookie cookie = WebUtils.getCookie(request, "cookieid");
-			if(cookie != null) {	// cookie값이 있다면
+			/* 비회원 장바구니를 회원 장바구니로 옮기기 (+중복삭제) */
+			Cookie cookie = WebUtils.getCookie(request, "cookieid");
+			if(cookie != null) {
 				String cookievalue=cookie.getValue();
-				int chk1=mapper.checkCart(cookievalue);
-				int chk2=mapper.checkCart_userid(userid, cookievalue);
+				int chk=mapper.checkCart(cookievalue);
 				
-				if(chk1 != 0) {	// 비회원일 때 장바구니에 상품을 넣었는데
-					if(chk2 == 0)	// 회원 장바구니에 중복되는 상품이 없다면
-						mapper.cart_userid_change(userid, cookievalue);	// userid만 바꾸기
-					else if((chk2 != 0) && (chk1 > chk2)) {	// 일부 중복되는 상품이 있다면
-							mapper.cart_del_duplicate(userid, cookievalue);	// 중복되는 상품은 지우고,
-							mapper.cart_userid_change(userid, cookievalue);	// 아닌 상품은 userid만 바꾸기
-						}
-						else if(chk1 == chk2)	// 전부 중복되는 상품이라면
-							mapper.cart_del(cookievalue);
+				if(chk != 0) {
+					mapper.cart_chgUserid(userid, cookievalue);
+					mapper.cart_delDupli();
 				}
 				cookie.setPath("/");
 				cookie.setMaxAge(0);
 				response.addCookie(cookie);
-			}*/
+			}
 			return "redirect:/main/index";	
 		}
 		else
