@@ -246,19 +246,58 @@ public class EshopServiceImpl implements EshopService {
 	}
 
 	@Override
-	public String pro_cart(HttpSession session, Model model, HttpServletRequest request, HttpServletResponse response) {
-		Cookie cookie = WebUtils.getCookie(request, "cookieid");
+	public String cart(HttpSession session, Model model, HttpServletRequest request, HttpServletResponse response) {
+		String arrprice="";
+		String arrhalin="";
+		String arrsu="";
+		String arrbaefee="";
 		
-		if(session.getAttribute("userid") == null) {	// 비회원인데			
+		if(session.getAttribute("userid") == null) {	// 비회원인데
+			Cookie cookie = WebUtils.getCookie(request, "cookieid");
 			if(cookie != null) {	// cookie값이 있다면
 				String cookievalue=cookie.getValue();
-				model.addAttribute("clist", mapper.getCart(cookievalue));
+				ArrayList<CartVO> clist=mapper.cart(cookievalue);
+				model.addAttribute("clist", clist);
+				
+				/* 장바구니에 담긴 상품들의 1개당 단가를 배열로 담아서 model로 보내기 */
+				for(int i=0;i<clist.size();i++) {
+					arrprice=arrprice+clist.get(i).getPrice()+",";	// [A상품 1개의 단가, B상품 1개의 단가,] 배열로 담기
+					arrhalin=arrhalin+clist.get(i).getHalin()+",";	// [A상품 1개의 할인율, B상품 1개의 할인율,] 배열로 담기
+					arrsu=arrsu+clist.get(i).getSu()+",";	// [A상품 1개의 수량, B상품 1개의 수량,] 배열로 담기
+					arrbaefee=arrbaefee+clist.get(i).getBaefee()+",";	// [A상품 1개의 배송비, B상품 1개의 배송비,] 배열로 담기
+				}
 			}
 		}
 		else {	// 회원이라면
 			String userid=session.getAttribute("userid").toString();
-			model.addAttribute("clist", mapper.getCart(userid));
+			ArrayList<CartVO> clist=mapper.cart(userid);
+			model.addAttribute("clist", clist);
+			
+			/* 장바구니에 담긴 상품들의 1개당 단가를 배열로 담아서 model로 보내기 */
+			for(int i=0;i<clist.size();i++) {
+				arrprice=arrprice+clist.get(i).getPrice()+",";	// [A상품 1개의 단가, B상품 1개의 단가,] 배열로 담기
+				arrhalin=arrhalin+clist.get(i).getHalin()+",";	// [A상품 1개의 할인율, B상품 1개의 할인율,] 배열로 담기
+				arrsu=arrsu+clist.get(i).getSu()+",";	// [A상품 1개의 수량, B상품 1개의 수량,] 배열로 담기
+				arrbaefee=arrbaefee+clist.get(i).getBaefee()+",";	// [A상품 1개의 배송비, B상품 1개의 배송비,] 배열로 담기
+			}
 		}
-		return "/eshop/pro_cart";
+
+		model.addAttribute("arrprice", arrprice);
+		model.addAttribute("arrhalin", arrhalin);
+		model.addAttribute("arrsu", arrsu);
+		model.addAttribute("arrbaefee", arrbaefee);
+		
+		return "/eshop/cart";
+	}
+
+	@Override /* 장바구니에서 1개 or 여러 개 삭제하기 */
+	public String cart_del(HttpServletRequest request) {
+		/* 삭제할 id값을 분리한 후, 삭제하기 */
+		String[] id=request.getParameter("delid").split(",");
+		for(int i=0;i<id.length;i++) {
+			mapper.cart_del(id[i]);
+		}
+		
+		return "redirect:/eshop/cart";
 	}
 }

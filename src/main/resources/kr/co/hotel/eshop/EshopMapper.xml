@@ -69,12 +69,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update cart set su=su+${param1} where userid=#{param2} and pcode=#{param3}
 	</update>
 	
-	<update id="cart_change">
-		update cart set userid=#{param1}, su=su+${param2} where userid=#{param3} and pcode=#{param4}
-	</update>
-	
-	<select id="getCart" resultType="kr.co.hotel.eshop.CartVO">
-		select * from cart where userid=#{param1}
+	<select id="cart" resultType="kr.co.hotel.eshop.CartVO">
+		select c.*, substr(p.fimg, 1, instr(p.fimg, ",")-1) as fimg, p.title, p.price, p.halin, p.baefee, p.juk, p.su as psu
+		from cart c, product p
+		where c.pcode=p.pcode and userid=#{param1}
+		order by c.inday desc
 	</select>
+	
+	<delete id="cart_del">
+		delete from cart where id=#{param1}
+	</delete>
 	
 </mapper>

@@ -215,7 +215,7 @@
 <section>
 <div id="wed_chk">
 
-	<div id="txt">WEDDING</div>
+	<div id="txt">WEDDINGz</div>
 
 	 <form name="pay" method="post">   
           <table border="1" align="center">
