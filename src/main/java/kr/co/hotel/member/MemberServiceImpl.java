@@ -46,21 +46,4 @@ public class MemberServiceImpl implements MemberService{
 		out.print(cnt);
 	}
 
-	@Override
-	public String myprorile(HttpSession session, Model model) 
-	{
-		String userid=session.getAttribute("userid").toString();
-		MemberVO mvo=mapper.myprofile(userid);
-		model.addAttribute("mvo", mvo);
-		return "/member/myprofile";
-	}
-
-	@Override
-	public void myprofile_pwd_ok(HttpSession session, HttpServletRequest request, PrintWriter out) 
-	{
-		String userid=session.getAttribute("userid").toString();
-		String pwd=request.getParameter("pwd");
-		int cnt=mapper.myprofile_pwd_ok(userid, pwd);
-		out.print(cnt);
-	}
 }

@@ -83,8 +83,12 @@ public class WeddingServiceImpl implements WeddingService{
 	{
 		String id=request.getParameter("id");
 		wvo=mapper.wedding_hall(id);
+		wvo.setWed_title(wvo.getWed_title().replace("\r\n", "<br>"));
+		wvo.setWed_txt(wvo.getWed_txt().replace("\r\n", "<br>"));
+		wvo.setWed_txt2(wvo.getWed_txt2().replace("\r\n", "<br>"));
 		String[] img=wvo.getWed_fname().split(",");
 		model.addAttribute("img", img);
+		
 		model.addAttribute("wvo", wvo);
 		
 		ArrayList<WeddingVO> list=mapper.getHall();
@@ -168,7 +172,7 @@ public class WeddingServiceImpl implements WeddingService{
 	public void wresv_cal(WeddingResvVO wrvo,PrintWriter out) 
 	{
 		
-
+		
 		ArrayList<WeddingResvVO> list=mapper.wresv_cal(wrvo);
 		System.out.println(list.size());
 		String str="";

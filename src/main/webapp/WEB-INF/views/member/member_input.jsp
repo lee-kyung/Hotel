@@ -45,7 +45,7 @@
 	}
 
 
-	var uchk=0;
+	var id_chk=0;
 	function userid_check(userid)
 	{ 
 		var blank=userid.search(/[\s]/g);
@@ -54,25 +54,36 @@
 		
 		var spe =(/[~!@#$%^&*()_+|<>?:{}]/gi).test(userid);
 		
-		if((userid.trim().length < 6) || (userid.trim().length > 12))
+		if(userid.trim().length==0)
+		{
+			document.getElementById("msg").innerText="아이디를 적어주세요.";
+			document.getElementById("msg").style.color="red";
+			id_chk=0;
+		}
+		
+		else if((userid.trim().length < 6) || (userid.trim().length > 12))
 		{
 			document.getElementById("msg").innerText="아이디는 6자 이상, 12자 이하입니다 .";
 			document.getElementById("msg").style.color="red";
+			id_chk=0;
 		}
 		
 		else if(blank>0){
 			document.getElementById("msg").innerText="아이디에 공백을 사용할 수 없습니다.";
 			document.getElementById("msg").style.color="red";
+			id_chk=0;
 		}
 		
 		else if(kor>0){
 			document.getElementById("msg").innerText="아이디에 한글을 사용할 수 없습니다.";
 			document.getElementById("msg").style.color="red";
+			id_chk=0;
 		}
 		
 		else if(spe>0){
 			document.getElementById("msg").innerText="아이디에 특수문자를 사용할 수 없습니다.";
 			document.getElementById("msg").style.color="red";
+			id_chk=0;
 		} 
 		
 		else
@@ -86,19 +97,19 @@
 				{
 					document.getElementById("msg").innerText="사용가능한 아이디입니다";
 					document.getElementById("msg").style.color="blue";
-					uchk=1;
+					id_chk=1;
 				}
 				else
 				{
 					document.getElementById("msg").innerText="사용 불가능한 아이디입니다";
 					document.getElementById("msg").style.color="red";
-					uchk=0;
+					id_chk=0;
 				}
 			}
 		}
 	}
 
-	var pchk=0; 
+	var pwd_chk=0; 
 	function pwd_check(pwd)
 	{
 		var blank=pwd.search(/[\s]/g);
@@ -107,35 +118,47 @@
 		
 		var spe =(/[~!@#$%^&*()_+|<>?:{}]/gi).test(pwd);
 		
-		if((pwd.trim().length < 8) || (pwd.trim().length > 15))
+		if(pwd.trim().length==0)
+		{
+			document.getElementById("msg2").innerText="비밀번호를 적어주세요.";
+			document.getElementById("msg2").style.color="red";
+			pwd_chk=0;
+		}
+		
+		else if((pwd.trim().length < 8) || (pwd.trim().length > 15))
 		{
 			document.getElementById("msg2").innerText="비밀번호는 8자 이상, 15자 이하입니다 .";
 			document.getElementById("msg2").style.color="red";
+			pwd_chk=0;
 		}
 		
 		else if(blank>0){
 			document.getElementById("msg2").innerText="비밀번호에 공백을 사용할 수 없습니다.";
 			document.getElementById("msg2").style.color="red";
+			pwd_chk=0;
 		}
 		
 		else if(kor>0){
 			document.getElementById("msg2").innerText="비밀번호에 한글을 사용할 수 없습니다.";
 			document.getElementById("msg2").style.color="red";
+			pwd_chk=0;
 		}
 		
 		else if(spe<1){
 			document.getElementById("msg2").innerText="비밀번호에 특수문자 하나 이상이 필요합니다.";
 			document.getElementById("msg2").style.color="red";
+			pwd_chk=0;
 		}
 		
 		else
 		{
 			document.getElementById("msg2").innerText="";
+			pwd_chk=1;
 		}
 		
 	} 
 	
-	var pchk=0;
+	var pwd2_chk=0;
 	function pwd_equal(pwd2)
 	{
 		var pwd=document.join.pwd.value;
@@ -143,16 +166,37 @@
 		{
 			document.getElementById("msg3").innerText="비밀번호가 일치합니다";
 			document.getElementById("msg3").style.color="blue";
-			pchk=1;
+			pwd2_chk=1;
 		}
 		else
 		{
 			document.getElementById("msg3").innerText="비밀번호가 불일치합니다";
 			document.getElementById("msg3").style.color="red";
-			pchk=0;
+			pwd2_chk=0;
 		}
 	}
 
+	
+	var phone_chk=0
+	function phone_check(phone)
+	{
+		var kor=(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/).test(phone);
+		var spe =(/[~!@#$%^&*()_+|<>?:{}]/gi).test(phone);
+		var eng=(/^[a-zA-Z]*$/).test(phone); 
+		if((kor > 0)||(spe > 0)||(eng > 0))
+		{
+			document.getElementById("msg4").innerText="전화번호는 숫자로 입력해주세요.";
+			document.getElementById("msg4").style.color="red";
+			phone_chk=0;
+		}
+		else
+		{
+			document.getElementById("msg4").innerText="";
+			phone_chk=1;
+		}	
+	}
+	
+	
 	function juso_search()  // 우편번호 버튼 클릭시 호출 함수명
 	{
 		new daum.Postcode({
@@ -183,6 +227,44 @@
 	}
 
 
+	var email_chk=0; 
+	function email_check(email)
+	{
+		var blank=email.search(/[\s]/g);
+	
+		var kor=(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/).test(email);
+		
+		var spe =(/[~!@#$%^&*()_+|<>?:{}]/gi).test(email);
+		
+		if(email.trim().length==0)
+		{
+			document.getElementById("msg5").innerText="이메일을 적어주세요.";
+			document.getElementById("msg5").style.color="red";
+			email_chk=0;
+		}
+		
+		else if(blank>0){
+			document.getElementById("msg5").innerText="이메일에 공백을 사용할 수 없습니다.";
+			document.getElementById("msg5").style.color="red";
+			email_chk=0;
+		}
+		
+		else if(kor>0){
+			document.getElementById("msg5").innerText="이메일에 한글을 사용할 수 없습니다.";
+			document.getElementById("msg5").style.color="red";
+			email_chk=0;
+		}
+		else
+		{
+			document.getElementById("msg5").innerText="";
+			email_chk=1;
+		}
+		
+	}
+	
+	
+	
+	
 	 $(function() {
 		$('#select').change(function() {
 			if ($('#select').val() == 'directly') 
@@ -212,14 +294,14 @@
 
 	function check(chk)
 	{
-		if(chk.userid.value.trim().length==0)
+		if(id_chk==0)
 		{
-			alert("아이디를 입력하세요.");
+			alert("아이디를 다시 확인하세요.");
 			return false;
 		}
-		else if(chk.pwd.value.trim().length==0)
+		else if((pwd_chk==0) || (pwd2_chk==0))
 		{
-			alert("비밀번호를 입력하세요.");
+			alert("비밀번호를 다시 확인하세요.");
 			return false;
 		}
 		else if(chk.name.value.trim().length==0)	
@@ -227,19 +309,19 @@
 			alert("이름을 입력하세요.");
 			return false;
 		}
-		else if(chk.phone.value.trim().length==0)	
+		else if((phone_chk==0))	
 		{
-			alert("전화번호를 입력하세요.");
+			alert("전화번호를  다시 확인하세요.");
 			return false;
 		}
-		else if(chk.birth.value.trim().length==0)	
+		else if((chk.birth.value.trim().length==0) || (chk.birth1.value.trim().length==0) || (chk.birth2.value.trim().length==0))	
 		{
 			alert("생년월일을 입력하세요.");
 			return false;
 		}
-		else if(chk.email.value.trim().length==0)	
+		else if((email_chk==0) || (chk.email_juso.value.trim().length==0))	
 		{
-			alert("이메일을 입력하세요.");
+			alert("이메일을 다시 확인하세요.");
 			return false;
 		}
 		else if(chk.juso.value.trim().length==0)	
@@ -310,8 +392,9 @@
 					<option value="018">018</option>
 					<option value="019">019</option>
 				</select>
-				<input type="text" name="phone1" id="phone1" maxlength="4">-
-				<input type="text" name="phone2" id="phone2" maxlength="4">
+				<input type="text" name="phone1" id="phone1" maxlength="4" onblur="phone_check(this.value)">-
+				<input type="text" name="phone2" id="phone2" maxlength="4" onblur="phone_check(this.value)">
+				<div id="msg4" style="font-size:13px;"></div>
 		</div>
 		<div>
 			<div>생년월일</div>
@@ -323,7 +406,7 @@
 		<div>
 			<div>이메일</div>
 			
-       		 	<input type="text" name="email_id" > 
+       		 	<input type="text" name="email_id" onkeyup="email_check(this.value)"> 
  				<span>@</span>
  				<input name="email_juso" id="email_juso"> 
  				<select id="select">
@@ -334,6 +417,8 @@
 		            <option value="nate.com" id="nate.com">nate.com</option>
 		            <option value="directly" id="textEmail">직접 입력하기</option>
 	        	</select>
+	        	<br>
+			<span id="msg5" style="font-size:13px;"></span>
 		</div>
 		<div>
 			<div>주소</div>

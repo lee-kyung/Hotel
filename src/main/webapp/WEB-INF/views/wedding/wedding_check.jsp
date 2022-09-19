@@ -98,12 +98,42 @@
 	
 	#wed_chk2 img{
 	width:100%;}
+	
+	section #wed_chk table:first-child #tr_food1, #tr_food2{
+	display:none; }
 </style>
 
 </head>
 
 <body>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+
+
 <script>
+
+	function change_food1()
+	{
+  		document.getElementById("tr_food1").style.display="table-row";
+  		document.getElementById("tr_food2").style.display="none";
+  		document.pay.food1.value="0";
+  		document.getElementsByClassName("food2")[0].style.color="#cccccc";
+  		document.getElementsByClassName("food2")[1].style.color="#cccccc";
+  		document.getElementsByClassName("food1")[0].style.color="black";
+  		document.getElementsByClassName("food1")[1].style.color="black";
+	}
+	
+
+	function change_food2()
+	{
+  		document.getElementById("tr_food2").style.display="table-row";
+  		document.getElementById("tr_food1").style.display="none";
+  		document.pay.food2.value="0";
+  		document.getElementsByClassName("food1")[0].style.color="#cccccc";
+  		document.getElementsByClassName("food1")[1].style.color="#cccccc";
+  		document.getElementsByClassName("food2")[0].style.color="black";
+  		document.getElementsByClassName("food2")[1].style.color="black";
+	}
+	
 	function total_price()
 	{
 		var hall=document.pay.hall.value;
@@ -118,16 +148,17 @@
 		var inwon=document.pay.inwon.value;
 		document.getElementById("inwon").innerText=new Intl.NumberFormat().format(inwon);
 		
+		
 		var food_inwon1=document.pay.food_inwon1.value;
 		var food1=document.pay.food1.value;
 		var food_price1=food_inwon1*food1;
-		document.getElementById("food1").innerText=new Intl.NumberFormat().format(food_price1);
-		
+		document.getElementById("food1").innerText=new Intl.NumberFormat().format(food_price1);			
+
 		var food_inwon2=document.pay.food_inwon2.value;
 		var food2=document.pay.food2.value;
 		var food_price2=food_inwon2*food2;
-		document.getElementById("food2").innerText=new Intl.NumberFormat().format(food_price2);
-		
+		document.getElementById("food2").innerText=new Intl.NumberFormat().format(food_price2);		
+
 		var food3=document.pay.food3.value;
 		document.getElementById("food3").innerText=new Intl.NumberFormat().format(food3);
 		
@@ -212,6 +243,13 @@
           	</td>
           </tr>
           <tr>
+          	<td>하객음식</td>
+          	<td>	
+          		<input type="button" id="a" onclick="change_food1()">동시예식
+          		<input type="button" id="b" onclick="change_food2()">분리예식
+          	</td>
+          </tr>
+          <tr id="tr_food1">
           	<td>하객음식_동시예식</td>
           	<td>
           	<input type="radio" name="food1" onchange="total_price()" value="0">선택안함
@@ -224,11 +262,9 @@
           			<option value="200">200명</option>
           			<option value="300">300명</option>
           	</select>
-          		
-          	
           	</td>
           </tr>
-          <tr>
+          <tr id="tr_food2">
           	<td>하객음식_분리예식</td>
           	<td>
           	<input type="radio" name="food2" onchange="total_price()" value="0">선택안함
@@ -312,10 +348,10 @@
          	<td><span id="inwon">0</span>만원</td>
           </tr>
           <tr>
-          	<td>동시예식</td>
-         	<td><span id="food1">0</span>만원</td>
-         	<td>분리예식</td>
-         	<td><span id="food2">0</span>만원</td>
+          	<td class="food1">동시예식</td>
+         	<td class="food1"><span id="food1">0</span>만원</td>
+         	<td class="food2">분리예식</td>
+         	<td class="food2"><span id="food2">0</span>만원</td>
           </tr>
           <tr>
           	<td>폐백음식</td>
