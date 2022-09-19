@@ -202,7 +202,7 @@ public class EshopServiceImpl implements EshopService {
 	public void cart_add(HttpSession session, HttpServletRequest request, PrintWriter out, HttpServletResponse response) {
 		String pcode=request.getParameter("pcode");
 		int su=Integer.parseInt(request.getParameter("su"));
-		Cookie cookie = WebUtils.getCookie(request, "cookieid");	// 이미 생성된 쿠키값(cookieid)이 있다면, 그 값을 cookie변수에 넣기
+		Cookie cookie = WebUtils.getCookie(request, "cookieid");	// 이미 생성된 쿠키값(cookieid)이 있다면 cookie변수에 넣기
 		
 		if(session.getAttribute("userid") == null) {	// 비회원인데
 			if(cookie == null) {	// cookie값이 없다면
@@ -245,4 +245,20 @@ public class EshopServiceImpl implements EshopService {
 		out.print("0");
 	}
 
+	@Override
+	public String pro_cart(HttpSession session, Model model, HttpServletRequest request, HttpServletResponse response) {
+		Cookie cookie = WebUtils.getCookie(request, "cookieid");
+		
+		if(session.getAttribute("userid") == null) {	// 비회원인데			
+			if(cookie != null) {	// cookie값이 있다면
+				String cookievalue=cookie.getValue();
+				model.addAttribute("clist", mapper.getCart(cookievalue));
+			}
+		}
+		else {	// 회원이라면
+			String userid=session.getAttribute("userid").toString();
+			model.addAttribute("clist", mapper.getCart(userid));
+		}
+		return "/eshop/pro_cart";
+	}
 }

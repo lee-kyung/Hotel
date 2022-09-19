@@ -117,16 +117,6 @@
 		margin-left : 5px;
 		padding-top : 5px;
 	}
-	#pro_cnt #cart_msg {
-		position : absolute;
-		visibility : hidden;
-		width : 150px;
-		height : 70px;
-		padding-top : 10px;
-		border : 1px solid lightgray;
-		background : white;
-		text-align : center;
-	}
 </style>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script> 
@@ -184,17 +174,14 @@
 		chk.send();
 	}
 	
-	/* 장바구니에 회원/비회원 구분하여 상품 추가하기 */
+	/* 장바구니에 회원/비회원 구분하여 추가하기 */
 	function cart_add(pcode){
-		let x=event.clientX-100;
-		let y=event.clientY-100;
 		let su=document.pro_cnt.su.value;
 		let chk=new XMLHttpRequest();
 		chk.onload=function(){
 			if(chk.responseText == "0") {
-				document.getElementById("cart_msg").style.left=x+"px";
-				document.getElementById("cart_msg").style.top=y+"px";
-				document.getElementById("cart_msg").style.visibility="visible";
+				if(confirm("선택하신 상품이 장바구니에 담겼습니다. 장바구니로 이동하시겠습니까?"))
+					location="../eshop/pro_cart";
 			}
 			else {
 				alert("내부 오류 발생");
@@ -308,13 +295,7 @@
 			<!-- 상품정보_area_end -->
 		</article>
 		</form>
-	
-		<div id="cart_msg">	<!-- 장바구니 레이어 -->
-			장바구니로 이동 <p>
-			<input type="button" value="장바구니로" onclick="location='../eshop/cart'">
-			<input type="button" value="계속 쇼핑" onclick="document.getElementById('cart_msg').style.visibility='hidden'">
-		</div>
-	
+
 		<article id="a2">
 		
 		</article>

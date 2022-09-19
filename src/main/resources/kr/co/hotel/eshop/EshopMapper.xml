@@ -73,4 +73,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update cart set userid=#{param1}, su=su+${param2} where userid=#{param3} and pcode=#{param4}
 	</update>
 	
+	<select id="getCart" resultType="kr.co.hotel.eshop.CartVO">
+		select * from cart where userid=#{param1}
+	</select>
+	
 </mapper>

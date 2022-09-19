@@ -21,4 +21,5 @@ public interface EshopMapper {
 	public Integer checkCart(String userid, String pcode);
 	public void cart_suadd(int su, String userid, String pcode);
 	public void cart_change(String userid, int su, String cookievalue, String pcode);
+	public ArrayList<CartVO> getCart(String userid);
 }

@@ -19,4 +19,5 @@ public interface EshopService {
 	public void wish_add(HttpSession session, HttpServletRequest request, PrintWriter out);
 	public void wish_del(HttpSession session, HttpServletRequest request, PrintWriter out);
 	public void cart_add(HttpSession session, HttpServletRequest request, PrintWriter out, HttpServletResponse response);
+	public String pro_cart(HttpSession session, Model model, HttpServletRequest request, HttpServletResponse response);
 }
