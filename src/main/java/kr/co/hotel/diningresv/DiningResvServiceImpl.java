@@ -26,7 +26,8 @@ public class DiningResvServiceImpl implements DiningResvService{
 	public String dining_reserve(HttpServletRequest request, Model model)
 	{
 	//  1일의 요일, 총일수, 몇주를 구해서 request영역에 저장
-    	int y,m;
+		
+		int y,m;
     	if(request.getParameter("y")==null)
     	{
     		LocalDate today=LocalDate.now(); // 현재 날짜 정보를 가져온다..
@@ -52,6 +53,8 @@ public class DiningResvServiceImpl implements DiningResvService{
     	// 몇 주인가
     	int ju=(int)Math.ceil((yoil+chong)/7.0);
         
+    	// 년,월은 request영역, 일은 pageContext => 스크립트릿변수
+    	
         
     	request.setAttribute("yoil", yoil);
     	request.setAttribute("chong", chong);
@@ -65,6 +68,30 @@ public class DiningResvServiceImpl implements DiningResvService{
     	
 		return "/dining/dining_reserve";
 	}
+	/*public void getcheck(String y, String m, String d, HttpServletRequest request)
+    {
+    	int yy=Integer.parseInt(y);
+    	int mm=Integer.parseInt(m);
+    	int dd=Integer.parseInt(d);
+    	
+    	LocalDate today=LocalDate.now(); // 오늘날짜
+    	LocalDate dday=LocalDate.of(yy, mm, dd);
+    	
+    	if(today.isBefore(dday))
+    	{
+    		request.setAttribute("tt", "1");
+    	}
+    	else if(today.isEqual(dday))
+    	{
+    		request.setAttribute("tt", "1");
+    	}
+    	else
+    	{
+    		request.setAttribute("tt", "0");
+    	}
+  
+        mapper.getcheck(y,m,d,request);
+    }*/
 	@Override
 	public String dining_reserve_next(HttpServletRequest request, Model model)
 	{		
@@ -73,12 +100,23 @@ public class DiningResvServiceImpl implements DiningResvService{
     	int mm=Integer.parseInt(request.getParameter("m"));
     	int dd=Integer.parseInt(request.getParameter("d"));
     	String id=request.getParameter("id");
+    	String dine_type=request.getParameter("dine_type");
+    	String adult=request.getParameter("adult");
+    	String child=request.getParameter("child");
+    	String baby=request.getParameter("baby");
+    	
     	// 입실일
     	String ymd=y+"-"+mm+"-"+dd;
     	
     	DiningVO dvo=mapper.dining_reserve_next("id");
     	// request영역에 필요한 값 담기
     	request.setAttribute("ymd", ymd);
+    	
+    	
+    	model.addAttribute("dine_type", dine_type);
+    	model.addAttribute("adult", adult);
+    	model.addAttribute("child", child);
+    	model.addAttribute("baby", baby);
     	
     	model.addAttribute("dvo", dvo);
 		return "/dining/dining_reserve_next";
