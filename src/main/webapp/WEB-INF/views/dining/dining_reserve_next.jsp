@@ -152,7 +152,7 @@
 <%--         <input type="text" name="dine_type" value="${ dine_type}"> --%>
        </td>
        <td>
- 
+ ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ
       <select id="dr_time" name="dr_time">
       <%--   <c:forEach items="${ }"> --%>
          <option value="0">선택</option>
