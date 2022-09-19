@@ -2,8 +2,14 @@ package kr.co.hotel.member;
 
 public class MemberVO {
 	private int id, juk, state;
-	private String userid, name, pwd, zip, juso, juso_etc, phone, email, joinday;
+	private String userid, name, pwd, zip, juso, juso_etc, phone, email, joinday, birth;
 	
+	public String getBirth() {
+		return birth;
+	}
+	public void setBirth(String birth) {
+		this.birth = birth;
+	}
 	public int getId() {
 		return id;
 	}

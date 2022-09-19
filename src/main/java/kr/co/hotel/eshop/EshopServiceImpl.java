@@ -11,10 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.web.util.WebUtils;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -198,20 +200,48 @@ public class EshopServiceImpl implements EshopService {
 
 	@Override
 	public void cart_add(HttpSession session, HttpServletRequest request, PrintWriter out, HttpServletResponse response) {
-		if(session.getAttribute("userid") == null) {	// 비회원이라면
-			//Random random=new Random();
-			//int length=random.nextInt(10);
-			Cookie cookie=new Cookie("userid", "12345");
-			cookie.setMaxAge(6000);
-			response.addCookie(cookie);
-			mapper.cart_add(cookie.getValue(), request.getParameter("pcode"), request.getParameter("su"));
+		String pcode=request.getParameter("pcode");
+		int su=Integer.parseInt(request.getParameter("su"));
+		Cookie cookie = WebUtils.getCookie(request, "cookieid");	// 이미 생성된 쿠키값(cookieid)이 있다면, 그 값을 cookie변수에 넣기
+		
+		if(session.getAttribute("userid") == null) {	// 비회원인데
+			if(cookie == null) {	// cookie값이 없다면
+				String cookievalue=RandomStringUtils.random(30, true, true);	// 쿠키값(cookievalue, 30자, 문자O, 숫자O) 생성하기
+				Cookie cookieid=new Cookie("cookieid", cookievalue);
+			
+				/* 처음 장바구니에 상품을 넣으면 쿠키 유지시간 설정하기 (1시간) */
+				cookieid.setPath("/");
+				cookieid.setMaxAge(60 * 60 * 1);
+				response.addCookie(cookieid);
+				
+				mapper.cart_add(cookievalue, pcode, su);
+			}
+			else {	// cookie값이 이미 있다면
+				String cookievalue=cookie.getValue();
+				
+				/* 장바구니에 상품을 넣을 떄마다 쿠키 유지시간 재설정하기 (1시간) */
+				cookie.setPath("/");
+				cookie.setMaxAge(60 * 60 * 1);
+				response.addCookie(cookie);
+				
+				/* 장바구니 중복 체크하기 */
+				int chk=mapper.checkCart(cookievalue, pcode);
+				if(chk == 0)	// 장바구니에 해당 상품이 없다면 새로 추가하기
+					mapper.cart_add(cookievalue, pcode, su);
+				else	// 있다면 수량만 늘리기
+					mapper.cart_suadd(su, cookievalue, pcode);
+			}
 		}
 		else {	// 회원이라면
 			String userid=session.getAttribute("userid").toString();
-			mapper.cart_add(userid, request.getParameter("pcode"), request.getParameter("su"));
+			
+			/*  장바구니 중복 체크하기 */
+			int chk=mapper.checkCart(userid, pcode);
+			if(chk == 0)	// 장바구니에 해당 상품이 없다면 새로 추가하기
+				mapper.cart_add(userid, pcode, su);
+			else	// 있다면 수량만 늘리기
+				mapper.cart_suadd(su, userid, pcode);
 		}
-		
-		
 		out.print("0");
 	}
 

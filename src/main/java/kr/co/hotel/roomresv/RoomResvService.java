@@ -14,7 +14,5 @@ public interface RoomResvService {
 	public String room_resvnext(HttpServletRequest request, Model model);
 	public String room_resv_ok(RoomResvVO rsvo, HttpSession session);
 	public void getRoomAvail(HttpServletRequest request, PrintWriter out,RoomVO rvo);
-	public void suUpdate(HttpServletRequest request, PrintWriter out);
-	
-	
+
 }

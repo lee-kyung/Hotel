@@ -16,5 +16,9 @@ public interface EshopMapper {
 	public void wish_add(String userid, String pcode);
 	public void wish_del(String userid, String pcode);
 	public Integer checkWish(String userid, String pcode);
-	public void cart_add(String userid, String pcode, String su);	
+	
+	public void cart_add(String userid, String pcode, int su);
+	public Integer checkCart(String userid, String pcode);
+	public void cart_suadd(int su, String userid, String pcode);
+	public void cart_change(String userid, int su, String cookievalue, String pcode);
 }
