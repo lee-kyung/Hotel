@@ -18,8 +18,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="pro_write_ok" parameterType="kr.co.hotel.eshop.ProductVO">
-		insert into product(pcode, title, fimg, simg, price, halin, juk, su, baefee, buyday)
-		values(#{pcode}, #{title}, #{fimg}, #{simg}, #{price}, #{halin}, #{juk}, #{su}, #{baefee}, now())
+		insert into product(pcode, title, fimg, simg, price, halin, juk, su, baefee)
+		values(#{pcode}, #{title}, #{fimg}, #{simg}, #{price}, #{halin}, #{juk}, #{su}, #{baefee})
 	</insert>
 	
 	<select id="pro_list" resultType="kr.co.hotel.eshop.ProductVO">
@@ -45,7 +45,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="wish_add">
-		insert into wish(userid, pcode, inday) values(#{param1}, #{param2}, now())
+		insert into wish(userid, pcode) values(#{param1}, #{param2})
 	</insert>
 	
 	<delete id="wish_del">
@@ -56,8 +56,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) from wish where userid=#{param1} and pcode=#{param2}
 	</select>
 	
-	<select id="getPcode" resultType="kr.co.hotel.eshop.ProductVO">
-		select pcode from product where pcode like concat(#{param1}, '%') limit ${param2}, ${param3}
+	<insert id="cart_add">
+		insert into cart(userid, pcode, su)
+		values(#{param1}, #{param2}, ${param3})
+	</insert>
+	
+	<select id="checkCart" resultType="Integer">
+		select count(*) from cart where userid=#{param1} and pcode=#{param2}
 	</select>
+	
+	<update id="cart_suadd">
+		update cart set su=su+${param1} where userid=#{param2} and pcode=#{param3}
+	</update>
+	
+	<update id="cart_change">
+		update cart set userid=#{param1}, su=su+${param2} where userid=#{param3} and pcode=#{param4}
+	</update>
 	
 </mapper>

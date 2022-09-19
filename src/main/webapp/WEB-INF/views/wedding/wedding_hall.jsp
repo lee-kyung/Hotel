@@ -4,149 +4,157 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <head>
 <style>
+	section{
+	width:1800px;
+	margin:auto;
+	margin-top:100px;}
+	
+	section #wed_hall #wed_hall_name{
+	margin-left:100px;
+	margin-bottom:100px;}
 
-	 #hall li{
-	display:inline-block;	
-	width:150px;}
-	#aa{
-	width:1100px;
-	margin:auto;}
+	section #wed_hall #wed_hall_name li{
+	display:inline-block;
+	padding-right:30px;
+	font-size:50px;
+	font-family:fantasy;}
 	
-	#bb .blog_right_sidebar{
-	width:1100px;}
-	#bb .blog_right_sidebar ul li{
-	display:inline-block;	}
-	#bb .blog_right_sidebar img{
-	width:120px;}
-	
-	.c{
-	width:1100px;
-	height:500px;;
-	background:#fbf9ff;}
-	
-	
-	#btn{
-	width:1100px;}
-	#btn .form-group{
-	display:inline-block;}
-	
-	#btn #right{
-	float:right;}
-
-/*-----------------------*/	
-	#mm #main{
-	width:1100px;
-	height:550px;}
-	#mm #main #sub{
-	width:4500px;
-	height:550px;
-	}
-	
-	#mm{
-	width:1100px;
-	height:550px;overflow: hidden;}
-	
-/*--------------------------*/	
-
-
-/***************************/	
-.slider{
-    width: 1100px;
-    height: 550px;
+	/***************************/	
+	section #wed_hall .slider{
+    width: 1800px;
+    height: 900px;
     position: relative;
     margin: 0 auto;
-    overflow: hidden; /* 현재 슬라이드 오른쪽에 위치한 나머지 슬라이드 들이 보이지 않도록 가림 */
-}
-.slider input[type=radio]{
-    display: none;
-}ul.imgs{
-    padding: 0;
-    margin: 0;
-    list-style: none;    
-}
-ul.imgs li{
-    position: absolute;
-    left: 640px;
-    transition-delay: 1s; /* 새 슬라이드가 이동해 오는 동안 이전 슬라이드 이미지가 배경이 보이도록 지연 */
+    overflow: hidden; /* 현재 슬라이드 오른쪽에 위치한 나머지 슬라이드 들이 보이지 않도록 가림 */}
+    
+	section #wed_hall .slider input[type=radio]{
+    display: none;}
 
+	section #wed_hall .slider ul.imgs{
     padding: 0;
     margin: 0;
-}.bullets{
+    list-style: none;}
+
+	section #wed_hall .slider ul li img{
+	width: 1800px;
+	height:900px;}
+	 
+	section #wed_hall .slider ul.imgs li{
+    position: absolute;
+    left: 1800px;
+    transition-delay: 1s; /* 새 슬라이드가 이동해 오는 동안 이전 슬라이드 이미지가 배경이 보이도록 지연 */
+    padding: 0;
+    margin: 0;}
+
+	section #wed_hall .slider .bullets{
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
     bottom: 20px;
-    z-index: 2;
-}
-.bullets label{
+    z-index: 2;}
+    
+	section #wed_hall .slider .bullets label{
     display: inline-block;
     border-radius: 50%;
     background-color: rgba(0,0,0,0.55);
     width: 20px;
     height: 20px;
-    cursor: pointer;
-}
+    cursor: pointer;}
+    
 /* 현재 선택된 불릿 배경 흰색으로 구분 표시 */
-.slider input[type=radio]:nth-child(1):checked~.bullets>label:nth-child(1){
-    background-color: #fff;
-}
-.slider input[type=radio]:nth-child(2):checked~.bullets>label:nth-child(2){
-    background-color: #fff;
-}
-.slider input[type=radio]:nth-child(3):checked~.bullets>label:nth-child(3){
-    background-color: #fff;
-}
-.slider input[type=radio]:nth-child(4):checked~.bullets>label:nth-child(4){
-    background-color: #fff;
-}.slider input[type=radio]:nth-child(1):checked~ul.imgs>li:nth-child(1){
-    left: 0;
-    transition: 0.5s;
-    z-index:1;
-}
-.slider input[type=radio]:nth-child(2):checked~ul.imgs>li:nth-child(2){
-    left: 0;
-    transition: 0.5s;
-    z-index:1;
-}
-.slider input[type=radio]:nth-child(3):checked~ul.imgs>li:nth-child(3){
-    left: 0;
-    transition: 0.5s;
-    z-index:1;
-}
-.slider input[type=radio]:nth-child(4):checked~ul.imgs>li:nth-child(4){
-    left: 0;
-    transition: 0.5s;
-    z-index:1;
-}
 
-/**************************************/
+	section #wed_hall .slider input[type=radio]:nth-child(1):checked~.bullets>label:nth-child(1){
+    background-color: #fff;}
+    
+	section #wed_hall .slider input[type=radio]:nth-child(2):checked~.bullets>label:nth-child(2){
+    background-color: #fff;}
+    
+	section #wed_hall .slider input[type=radio]:nth-child(3):checked~.bullets>label:nth-child(3){
+    background-color: #fff;}
+    
+	section #wed_hall .slider input[type=radio]:nth-child(4):checked~.bullets>label:nth-child(4){
+    background-color: #fff;}
+    
+	section #wed_hall .slider input[type=radio]:nth-child(1):checked~ul.imgs>li:nth-child(1){
+    left: 0;
+    transition: 0.5s;
+    z-index:1;}
+    
+	section #wed_hall .slider input[type=radio]:nth-child(2):checked~ul.imgs>li:nth-child(2){
+    left: 0;
+    transition: 0.5s;
+    z-index:1;}
+    
+	section #wed_hall .slider input[type=radio]:nth-child(3):checked~ul.imgs>li:nth-child(3){
+    left: 0;
+    transition: 0.5s;
+    z-index:1;}
+    
+	section #wed_hall .slider input[type=radio]:nth-child(4):checked~ul.imgs>li:nth-child(4){
+    left: 0;
+    transition: 0.5s;
+    z-index:1;}
+
+	/**************************************/
+	
+	section #wed_hall2{
+	width:1600px;
+	margin:auto;
+	margin-top:100px;
+	margin-bottom:100px;}
+	
+	section #wed_hall2 #hall_name{
+	font-size:50px;
+	font-family:cursive;
+	color:#E5D85C;}
+	
+	section #wed_hall2 #hall_sogae{
+	}
+	
+	section #wed_hall2 #info{
+	margin-top:100px;
+	font-size:40px;
+	font-family:fantasy ;}
+	
+	section #wed_hall2 table{
+	width:1600px;
+	margin-top:30px;
+	margin-left:20px;
+	border:1px solid #cccccc;}
+	
+	section #wed_hall2 table tr:first-child{
+	height:150px;
+	vertical-align:top;}
+	
+	section #wed_hall2 table td:first-child{
+	padding-left:20px;}
+	
+	section #wed_hall2 table tr:nth-child(2), tr:nth-child(4){
+	font-weight:600;}
+	
+	section #wed_hall2 table tr:nth-child(2), tr:nth-child(3), tr:nth-child(4), tr:nth-child(5){
+	height:70px;}
+	
+	#wed_hall3{
+	text-align:right;
+	width:100%;
+	font-size:18px;
+	padding-top:50px;
+	padding-bottom:50px;
+	margin-bottom:100px;
+	background:#EAEAEA;}
+	
+	#wed_hall3 button{
+	margin-top:20px;
+	width:250px;
+	height:70px;}
+	
+	#wed_chk2 img{
+	width:100%;
+	margin-top:150px;
+	margin-bottom:50px;}
+	
 </style>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
-<script>
-
-/*-------------------------*/
-var slideIndex = 1;
-showDivs(slideIndex);
-
-function plusDivs(n) {
-    showDivs(slideIndex += n);
-}
-
-function showDivs(n) {
-    var i;
-    var x = document.getElementsByClassName("mySlides");
-    if (n > x.length) {slideIndex = 1}
-    if (n < 1) {slideIndex = x.length} ;
-    for (i = 0; i < x.length; i++) {
-        x[i].style.display = "none";
-    }
-    x[slideIndex-1].style.display = "block";
-}
-
-/*------------------------------------------*/
-
-
-</script>
 
 </head>
 
@@ -165,170 +173,94 @@ function showDivs(n) {
 
     <!--================ Single-Wedding Area Start =================-->
     
-
-  <div id="aa" style="margin-top:50px;">
-<div style="border-bottom:1px solid #f0e9ff; width:1100px;">  
-                <div style="margin-bottom:50px;">       
-                     <ul id="hall">
-                    <c:forEach items="${list }" var="wvo">
-                     	<li><h2><a href="../wedding/wedding_hall?id=${wvo.id }">${wvo.wed_hall }</a></h2></li>
-                    </c:forEach>
+<section>
+<div id="wed_hall">
+	
+	<ul id="wed_hall_name">
+	
+		<c:forEach items="${list }" var="wvo">
+		
+			<li><a href="../wedding/wedding_hall?id=${wvo.id }">${wvo.wed_hall }</a></li>
+			
+		</c:forEach>
                      
-                     </ul>
-</div></div>
-                     </div>
+	</ul>
+	
+	
+	<div class="slider">
+	
+		<input type="radio" name="slide" id="slide1" checked>
+		<input type="radio" name="slide" id="slide2">
+		<input type="radio" name="slide" id="slide3">
+		<input type="radio" name="slide" id="slide4">
+		
+		<ul id="imgholder" class="imgs">
+			<c:forEach items="${img}" var="pic">
+				<li><img src="../img/wedding/${pic}" width="1100" height="550"></li>
+			</c:forEach>
+		</ul>
+		
+		<div class="bullets">
+			<label for="slide1">&nbsp;</label>
+			<label for="slide2">&nbsp;</label>
+			<label for="slide3">&nbsp;</label>
+			<label for="slide4">&nbsp;</label>
+		</div>
+		
+	</div>
+
+</div>
+
+<div id="wed_hall2">               
+	<div id="hall_name">${wvo.wed_hall }</div>
     
-     
-   
-     
-     
-     
-    
-    <section class="blog_area single-post-area section-padding">
-
-
-      <div class="container">
-         <div class="row">
-            <div class="col-lg-8 posts-list">
-               <div class="single-post">
-                  <div class="feature-img">
-     
-     
-     <!-- ************************** -->             
-           <div class="slider">
-    <input type="radio" name="slide" id="slide1" checked>
-    <input type="radio" name="slide" id="slide2">
-    <input type="radio" name="slide" id="slide3">
-    <input type="radio" name="slide" id="slide4">
-    <ul id="imgholder" class="imgs">
-    <c:forEach items="${img}" var="tt">
-		<li><img src="../img/wedding/${tt}" width="1100" height="550"></li>
-	</c:forEach>
-    </ul>
-    <div class="bullets">
-        <label for="slide1">&nbsp;</label>
-        <label for="slide2">&nbsp;</label>
-        <label for="slide3">&nbsp;</label>
-        <label for="slide4">&nbsp;</label>
-    </div>
-</div>
-           
-    <!-- ********************************** -->       
-           
-     <!-- ---------------------------------- -->      
-        <!--    
-           <div id="mm">
-                  <div id="main">
-                     <div id="sub">
-           <img class="mySlides" src="../img/post/post_10.png" width="1100" height="550">
-<img class="mySlides" src="../img/post/post_4.png" width="1100" height="550">
-<img class="mySlides" src="../img/post/post_3.png" width="1100" height="550">
-<img class="mySlides" src="../img/post/post_2.png" width="1100" height="550">
-</div>
--->
-
-
-<!-- 
-</div></div>
-
- <div id="btn" style="margin-top:10px;">
-     <div class="form-group" id="left">
-                        <button type="submit"onclick="plusDivs(-1)" class="button button-contactForm btn_1 boxed-btn" ><-</button>
-                   </div>
-       <div class="form-group" id="right">
-      <button type="submit"onclick="plusDivs(+1)"class="button button-contactForm btn_1 boxed-btn" >-></button>
-          </div>
-<<<<<<< HEAD
-         
-=======
->>>>>>> branch 'main' of https://github.com/ey0k/hotel.git
-                    </div> 
--->
-<!-- ---------------------------------- -->
-</div>
-
-
-
-
-
-   
-               </div>
-               
-              
+    <div id="hall_sogae">${wvo.wed_title }</div>
+                    
                      
-         
-        <div style="border-bottom:1px solid #f0e9ff; width:1100px; margin-top:50px; margin-bottom:70px; text-align:right;">
-         
-<div class="form-group">
-                        <button type="submit" class="button button-contactForm btn_1 boxed-btn" onclick="location='../wedding/wedding_reserve'">예약하기</button>
-                     </div>
-                     </div>
-          </div>     
-
-            
-            
-            
-            
-        <div id="c">
-            <div class="col-lg-4">
-               <div class="blog_right_sidebar">
-               
-<div style="border-bottom:1px solid #f0e9ff; width:1100px; margin-bottom:30px;">                   
-         <h3>&nbsp;${wvo.wed_hall }</h3><p>
-         <div style="width:1100px; margin-bottom:30px;">${wvo.wed_title }</div>
-         </div>
-         
-         
-         
-         
-         
-                     
-                     
-                     
-      </div>
-        <table width="1100"class="c" style="margin-top:10px;">
-        	<tr>
-        		<td colspan="3"> 특징</td>
-        	
-        	</tr>
-        	<tr>
-        		<td colspan="3">${wvo.wed_txt }</td>
-        	</tr>
-        	
-        	<tr>
-        		<td>규모</td>
-        		<td>수용인원</td>
-        		<td>하객음식</td>
-        	</tr>
-        	<tr>
-        		<td>${wvo.wed_size }m²</td>
-        		<td>${wvo.wed_min }~${wvo.wed_max }명</td>
-        		<td>${wvo.wed_food }<td>
-        	</tr>
-        	<tr>
-        		<td>연출</td>
-        		<td>예식타입</td>
-        		<td>Special Benefit</td>
-        	</tr>
-        	<tr>
-        		<td>${wvo.wed_direct }</td>
-        		<td>${wvo.wed_type }</td>
-        		<td>${wvo.wed_txt2 }</td>
-        	</tr>
-        </table>
-        
-        
-      
-      
-               
+    <div id="info">INFORMATION</div>  
                   
-               
-               </div>
-            </div>
-         </div>
-         </div>
-      </div>
-   </section>
+	<table>	
+
+		<tr>
+			<td colspan="3"><div id="sogae"><br>${wvo.wed_txt }</div></td>
+		</tr>
+		<tr>
+			<td width="450">규모</td>
+			<td width="450">수용인원</td>
+			<td>하객음식</td>
+		</tr>
+		<tr>
+			<td>${wvo.wed_size }m²</td>
+			<td>${wvo.wed_min }~${wvo.wed_max }명</td>
+			<td>${wvo.wed_food }</td>
+		</tr>
+		<tr>
+			<td>연출</td>
+			<td>예식타입</td>
+			<td>Special Benefit</td>
+		</tr>
+		<tr>
+			<td>${wvo.wed_direct }</td>
+			<td>${wvo.wed_type }</td>
+			<td>${wvo.wed_txt2 }</td>
+		</tr>
+	</table>
+ </div>
+</section>        
+
+<div id="wed_chk2">
+	<img src="../img/wedding/wedding_chk.jpg">
+</div>
+
+<div id="wed_hall3">
+	 
+	<div id="txt"> 운영일 : 월~일요일 &emsp;|&emsp; 운영시간 : 10:00 ~ 18:00 &emsp;|&emsp; Tel : 02-000-000</div>
+			
+	<button type="submit" class="button button-contactForm btn_1 boxed-btn" onclick="location='../wedding/wedding_reserve'">예약하기</button>
+		
+</div>
+
+
    <!--================ Single-Wedding Area end =================-->
 
 </body>

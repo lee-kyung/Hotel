@@ -63,8 +63,27 @@ public class DiningResvVO {
 	public void setDr_state(int dr_state) {
 		this.dr_state = dr_state;
 	}
-	public String getDr_time() {
-		return dr_time;
+	public String getDr_timeValue() {
+		if(dr_time.equals("1")) {
+			return "8:00";
+		}
+		else if(dr_time.equals("2")) {
+			return "10:00";
+		}
+		else if(dr_time.equals("3")) {
+			return "13:00";
+		}
+		else if(dr_time.equals("4")) {
+			return "15:00";
+		}
+		else if(dr_time.equals("5")) {
+			return "16:00";
+		}
+		else if(dr_time.equals("6")) {
+			return "18:00";
+		}
+		return null;
+		/*return dr_time;*/
 	}
 	public void setDr_time(String dr_time) {
 		this.dr_time = dr_time;

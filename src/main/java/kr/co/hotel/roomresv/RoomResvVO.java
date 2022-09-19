@@ -7,7 +7,17 @@ public class RoomResvVO {
 	// 투숙일
 	private int suk;
 		
+	// 요청사항
+	private String spreq;
 	
+	
+	
+	public String getSpreq() {
+		return spreq;
+	}
+	public void setSpreq(String spreq) {
+		this.spreq = spreq;
+	}
 	public int getSuk() {
 		return suk;
 	}

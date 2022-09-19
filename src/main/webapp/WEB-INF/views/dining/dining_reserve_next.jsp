@@ -145,23 +145,23 @@
        </td>
        <td>
  
-      <select id="dr_time">
+      <select id="dr_time" name="dr_time">
       <%--   <c:forEach items="${ }"> --%>
          <option value="0">선택</option>
           <c:if test="${dvo.dine_type == 'Breakfast' }">
-            <option value>선택</option>
+
             <option value="1">8:00</option>
             <option value="2">10:00</option>
           </c:if>
        
           <c:if test="${dvo.dine_type == 'Lunch' }">
-            <option value>선택</option>
+    
             <option value="3">13:00</option>
             <option value="4">15:00</option>
           </c:if>
        
          <c:if test="${dvo.dine_type == 'Dinner' }">
-            <option value>선택</option>
+
             <option value="5">16:00</option>
             <option value="6">18:00</option>  
          </c:if>
