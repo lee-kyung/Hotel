@@ -29,13 +29,13 @@
 		margin : auto;
 		text-align : center;
 		margin-top : 70px;
-		width : 1080px;
-		height : 130px;
+		width : 1090px;
+		height : 80px;
 	}
 	#pro_list #cate1 #cate2 {
 		display : inline-block;
 		float : left;
-		width : 530px;
+		width : 540px;
 		height : 50px;
 		padding-top : 12px;
 		border : 1px solid #887159;
@@ -50,7 +50,7 @@
 	#pro_list #cate1 #cate3 {
 		display : inline-block;
 		float : right;
-		width : 530px;
+		width : 540px;
 		height : 50px;
 		padding-top : 12px;
 		border : 1px solid #887159;
@@ -176,8 +176,18 @@
 
 <body>
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
-    <c:if test="${(pcode == 'p01') || (pcode == 'p0101') || (pcode == 'p0102')}">
+    <c:if test="${(pcode == 'p01')}">
 	    <div class="bradcam_area eshop2">
+	        <h3 onclick="location='pro_list?pcode=p01&osel=${osel}'" style="cursor:pointer;"> P R O D U C T </h3>
+	    </div>
+    </c:if>
+    <c:if test="${(pcode == 'p0101')}">
+	    <div class="bradcam_area eshop4">
+	        <h3 onclick="location='pro_list?pcode=p01&osel=${osel}'" style="cursor:pointer;"> P R O D U C T </h3>
+	    </div>
+    </c:if>
+    <c:if test="${(pcode == 'p0102')}">
+	    <div class="bradcam_area eshop5">
 	        <h3 onclick="location='pro_list?pcode=p01&osel=${osel}'" style="cursor:pointer;"> P R O D U C T </h3>
 	    </div>
     </c:if>
