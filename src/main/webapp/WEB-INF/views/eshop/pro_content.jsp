@@ -7,6 +7,7 @@
 	#pro_cnt {
 		width : 1100px;
 		margin : auto;
+		margin-top : 50px;
 	}
 	#pro_cnt #a1 #left {
 		float : left;
@@ -17,7 +18,6 @@
 		float : right;
 		width : 520px;
 		height : 700px;
-		border : 1px solid red;
 		padding : 30px;
 	}
 	#pro_cnt #a1 #left #fimg1 {
@@ -29,6 +29,7 @@
 	}
 	#pro_cnt #a1 #left #fimgs img {
 		border : 1px solid #887159;
+		cursor : pointer;
 	}
 	#pro_cnt #a1 #right #wish {
 		width : 450px;
@@ -76,13 +77,6 @@
 		font-family : TimesNewRoman;
 		font-size : 20px;
 	}
-	#pro_cnt #pro_info img {
-		margin-bottom : 100px;
-		border : 1px solid lightgray;
-		text-align : center;
-		padding : 50px;
-		margin-top : 50px;
-	}
 	#pro_cnt #a1 #right #su {
 		border-bottom : 1px solid lightgray;
 	}
@@ -104,28 +98,70 @@
 	}
 	#pro_cnt #a1 #right #total #t_title {
 		display : inline-block;
-		margin-top : 70px;
-		width : 220px;
-		height : 100px;
+		margin-top : 75px;
+		width : 230px;
+		height : 70px;
 		color : black;
 		padding-left : 20px;
 	}
+	#pro_cnt #a1 #right #total #won {
+		float : right;
+		margin-top : 80px;
+		margin-right : 10px;
+	}
 	#pro_cnt #a1 #right #total .price_text1 {
+		float : right;
+		margin-top : 70px;
+		margin-right : 10px;
 		font-family : TimesNewRoman;
 		font-size : 30px;
 		color : black;
-		margin-left : 5px;
-		padding-top : 5px;
 	}
-	#pro_cnt #cart_msg {
-		position : absolute;
-		visibility : hidden;
-		width : 150px;
-		height : 70px;
-		padding-top : 10px;
-		border : 1px solid lightgray;
-		background : white;
+	#pro_cnt #a1 #right #juk {
+		display : inline-block;
+		width : 450px;
+		height : 30px;
+		text-align : right;
+	}
+	#pro_cnt #a1 #right #baefee {
+		font-weight : normal;
+		font-size : 13px;
+	}
+	#pro_cnt #a1 #etc {
+		display : inline-block;
+		width : 450px;
+		height : 100px;
+		padding-top : 30px;
 		text-align : center;
+		margin-left : 10px;
+	}
+	#pro_cnt #a1 #etc #btn1 {
+		float : left;
+		width : 220px;
+		height : 50px;
+		padding-top : 12px;
+		border : 1px solid #887159;
+		color : #887159;
+		font-weight : bold;
+		cursor : pointer;
+	}
+	#pro_cnt #a1 #etc #btn2 {
+		float : right;
+		width : 220px;
+		height : 50px;
+		padding-top : 12px;
+		border : 1px solid #887159;
+		background : #887159;
+		color : white;
+		font-weight : bold;
+		cursor : pointer;
+	}
+	#pro_cnt #pro_info img {
+		margin-bottom : 150px;
+		border : 1px solid lightgray;
+		text-align : center;
+		padding : 50px;
+		margin-top : 50px;
 	}
 </style>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
@@ -148,14 +184,35 @@
 		});
 	});*/
 	
-	/* 수량을 변경하면 [총 상품금액]도 변하게 하기 */
-	function change_total(su){
-		let total=parseInt(${pvo.price} * su);
-		if(${pvo.halin != 0})
-			total=parseInt(${pvo.price - (pvo.price * (pvo.halin / 100) ) } * su);
+	/* 수량을 '1~${pvo.su}' 사이값만 입력되도록 하기 */
+	function su_check(su){
+		if(su < 1)
+			document.pro_cnt.su=1;
+		else if(su > ${pvo.su})
+			document.pro_cnt.su=${pvo.su};
+	}
+
+	/* 수량을 변경하면 [총 상품금액]과 [적립금]도 변하게 하기 */
+	function change_total_juk(su){
+		let total=Math.ceil(${pvo.price} * su);
+		let juk="";
+		
+		if(${(pvo.halin == 0) && (pvo.baefee != 0)})
+			total=Math.ceil((${pvo.price} * su) + ${pvo.baefee});
+		else if(${(pvo.halin != 0) && (pvo.baefee == 0)})
+			total=Math.ceil(${pvo.price - (pvo.price * (pvo.halin / 100) ) } * su);
+		else if(${(pvo.halin != 0) && (pvo.baefee != 0)})
+			total=Math.ceil((${pvo.price - (pvo.price * (pvo.halin / 100) ) } * su) + ${pvo.baefee});
+		
+		if(${(pvo.halin == 0) && (pvo.juk != 0)})
+			juk=Math.ceil(${pvo.price * (pvo.juk / 100)} * su);
+		else if(${(pvo.halin != 0) && (pvo.juk != 0)})
+			juk=Math.ceil(${(pvo.price - (pvo.price * (pvo.halin / 100))) * (pvo.juk / 100)} * su);
 
 		total=new Intl.NumberFormat().format(total);
+		juk=new Intl.NumberFormat().format(juk);
 		document.getElementById("total_price").innerText=total;
+		document.getElementById("juk_price").innerText=juk;
 	}
 
 	/* 위시리스트에 추가하고 삭제하기 */
@@ -184,17 +241,14 @@
 		chk.send();
 	}
 	
-	/* 장바구니에 회원/비회원 구분하여 상품 추가하기 */
+	/* 장바구니에 회원/비회원 구분하여 추가하기 */
 	function cart_add(pcode){
-		let x=event.clientX-100;
-		let y=event.clientY-100;
 		let su=document.pro_cnt.su.value;
 		let chk=new XMLHttpRequest();
 		chk.onload=function(){
 			if(chk.responseText == "0") {
-				document.getElementById("cart_msg").style.left=x+"px";
-				document.getElementById("cart_msg").style.top=y+"px";
-				document.getElementById("cart_msg").style.visibility="visible";
+				if(confirm("선택하신 상품이 장바구니에 담겼습니다. 장바구니로 이동하시겠습니까?"))
+					location="../eshop/cart";
 			}
 			else {
 				alert("내부 오류 발생");
@@ -258,20 +312,20 @@
 			<div id="right">
 				<div id="wish">	<!-- 위시리스트 -->
 					<c:if test="${(userid == null) && (wishcnt == 0)}">
-						<img src="../img/eshop/wish_off.png" width="20" onclick="alert('본 서비스는 로그인하셔야 이용 가능합니다.')">
+						<img src="../img/eshop/wish_off.png" width="25" onclick="alert('본 서비스는 로그인하셔야 이용 가능합니다.')">
 					</c:if>
 					<c:if test="${(userid !=null) && (wishcnt == 0)}">
-						<img src="../img/eshop/wish_off.png" width="20" onclick="wish_add('${pvo.pcode}')" id="wishimg">
+						<img src="../img/eshop/wish_off.png" width="25" onclick="wish_add('${pvo.pcode}')" id="wishimg">
 					</c:if>
 					<c:if test="${(userid != null) && (wishcnt == 1)}">
-						<img src="../img/eshop/wish_on.png" width="20" onclick="wish_del('${pvo.pcode}')" id="wishimg">
+						<img src="../img/eshop/wish_on.png" width="25" onclick="wish_del('${pvo.pcode}')" id="wishimg">
 					</c:if>
 				</div>
 				<div id="title"> ${pvo.title} </div>	<!-- 상품명 -->
 				<div id="price">	<!-- 가격 -->
 					<b id="p_title"> 판매가 </b>
 					<c:if test="${pvo.halin != 0}">	<!-- 할인하는 경우 -->
-						KRW <b class="price_text1"> <fmt:formatNumber value="${pvo.price - (pvo.price * (pvo.halin / 100))}" pattern=",000" /> </b>
+						KRW <b class="price_text1"> <fmt:formatNumber value="${pvo.price - (pvo.price * (pvo.halin / 100))}" pattern=",###" /> </b>
 						<s id="price_text2"><fmt:formatNumber value="${pvo.price}"/></s>
 						<b id="halin_text1"> ${pvo.halin}% </b>
 					</c:if>
@@ -281,24 +335,54 @@
 				</div>
 				<div id="su">	<!-- 수량 -->
 					<b id="s_title"> 수량 </b>
-					<input type="number" name="su" min="1" max="${pvo.su}" value="1" id="spinner" onchange="change_total(this.value)">
+					<input type="number" name="su" min="1" max="${pvo.su}" value="1" onchange="change_total_juk(this.value)" onblur="su_check(this.value)" id="spinner" >
 				</div>
 				<div id="total">
-					<b id="t_title"> 총 상품금액 </b>
-					<c:if test="${pvo.halin != 0}">	<!-- 할인하는 경우 -->
-						KRW <b class="price_text1" id="total_price"> <fmt:formatNumber value="${pvo.price - (pvo.price * (pvo.halin / 100))}" pattern=",000" /> </b>
+					<b id="t_title">
+						총 상품금액 <br>
+						<c:if test="${pvo.baefee == 0}">
+							<i id="baefee"> (배송비 무료) </i>
+						</c:if>
+						<c:if test="${pvo.baefee != 0}">
+							<i id="baefee"> (배송비 KRW <fmt:formatNumber value="${pvo.baefee}"/> 포함) </i>
+						</c:if>
+					</b>
+					<c:if test="${(pvo.halin != 0) && (pvo.baefee != 0)}">	<!-- 할인하는데 배송비가 있는 경우 -->
+						<b class="price_text1" id="total_price"> <fmt:formatNumber value="${(pvo.price - (pvo.price * (pvo.halin / 100))) + pvo.baefee}" pattern=",###" /> </b> <span id="won">KRW</span>
 					</c:if>
-					<c:if test="${pvo.halin == 0}">
-						KRW <b class="price_text1" id="total_price"> <fmt:formatNumber value="${pvo.price}"/> </b>
+					<c:if test="${(pvo.halin != 0) && (pvo.baefee == 0)}"> <!-- 할인하는데 배송비가 없는 경우 -->
+						<b class="price_text1" id="total_price"> <fmt:formatNumber value="${pvo.price - (pvo.price * (pvo.halin / 100))}" pattern=",###" /> </b> <span id="won">KRW</span>
+					</c:if>
+					<c:if test="${(pvo.halin == 0) && (pvo.baefee != 0)}"> <!-- 할인 안 하는데 배송비가 있는 경우 -->
+						<b class="price_text1" id="total_price"> <fmt:formatNumber value="${pvo.price + pvo.baefee}" pattern=",###"/> </b> <span id="won">KRW</span>
+					</c:if>
+					<c:if test="${(pvo.halin == 0) && (pvo.baefee == 0)}"> <!-- 할인 안 하는데 배송비가 없는 경우 -->
+						<b class="price_text1" id="total_price"> <fmt:formatNumber value="${pvo.price}" pattern=",###"/> </b> <span id="won">KRW</span>
+					</c:if>
+					<c:if test="${(userid != null) && (pvo.juk!= 0)}"> <!-- 적립금이 있고, 로그인한 경우 -->
+						<c:if test="${pvo.halin == 0}">
+							<i id="juk"> KRW <b id="juk_price"><fmt:formatNumber value="${pvo.price * (pvo.juk / 100)}" pattern=",###"/></b> (${pvo.juk}%) 이 적립 예정입니다. </i>
+						</c:if>
+						<c:if test="${pvo.halin != 0}">
+							<i id="juk"> KRW <b id="juk_price"><fmt:formatNumber value="${(pvo.price - (pvo.price * (pvo.halin / 100))) * (pvo.juk / 100)}" pattern=",###"/></b> (${pvo.juk}%) 이 적립 예정입니다. </i>
+						</c:if>
+					</c:if> <p>
+					<c:if test="${(userid == null) && (pvo.juk!= 0)}">	<!-- 적립금이 없고, 로그인 안 한 경우 -->
+						<c:if test="${pvo.halin == 0}">
+							<i id="juk"> (로그인 후 구매하시면 KRW <b id="juk_price"><fmt:formatNumber value="${pvo.price * (pvo.juk / 100)}" pattern=",###"/></b> (${pvo.juk}%) 이 적립됩니다.) </i>
+						</c:if>
+						<c:if test="${pvo.halin != 0}">
+							<i id="juk"> (로그인 후 구매하시면 KRW <b id="juk_price"><fmt:formatNumber value="${(pvo.price - (pvo.price * (pvo.halin / 100))) * (pvo.juk / 100)}" pattern=",###"/></b> (${pvo.juk}%) 이 적립됩니다.) </i>
+						</c:if>
 					</c:if>
 				</div>
 				<!-- 회원/비회원_area_start -->
 				<div id="etc">	<!-- 장바구니, 바로구매 -->
 					<!-- 장바구니 -->
-					<span class="btn" onclick="cart_add('${pvo.pcode}')"> 장바구니 </span>
+					<span id="btn1" onclick="cart_add('${pvo.pcode}')"> 장바구니 </span>
 					
 					<!-- 바로구매 -->
-					<span class="btn" onclick="pro_submit()"> 바로구매 </span>
+					<span id="btn2" onclick="pro_submit()"> 바로구매 </span>
 				</div>
 				<!-- 회원/비회원_area_start -->
 			</div>
@@ -308,13 +392,7 @@
 			<!-- 상품정보_area_end -->
 		</article>
 		</form>
-	
-		<div id="cart_msg">	<!-- 장바구니 레이어 -->
-			장바구니로 이동 <p>
-			<input type="button" value="장바구니로" onclick="location='../eshop/cart'">
-			<input type="button" value="계속 쇼핑" onclick="document.getElementById('cart_msg').style.visibility='hidden'">
-		</div>
-	
+
 		<article id="a2">
 		
 		</article>
