@@ -183,7 +183,7 @@
 				{
 					time[i].style.color="black";
 					time[i].style.textDecoration="none";
-				//	time[i].getAttribute(" ","onclick");
+					time[i].setAttribute("onclick","time(this)");
 				}
 				
 				if(chk_time.length > 1)
@@ -196,7 +196,7 @@
 							{
 								time[j].style.color="red";
 								time[j].style.textDecoration="line-through";
-								time[j].setAttribute("onclick","");
+								time[j].setAttribute("onclick"," ");
 							}	
 						}	
 					}	
@@ -358,11 +358,11 @@
 		<tr>
           	<td>상담일</td>
           	<td>
-          		<input type="text" name="wresv_cday" id="day2">
+          		<input type="text" name="wresv_cday" id="day2" readonly>
          	</td>
           	<td>상담 시간</td>
           	<td>
-      			<input type="text" name="wresv_time" value="${wresv_time}">
+      			<input type="text" name="wresv_time" value="${wresv_time}" readonly>
          	</td>
 		</tr>
 		

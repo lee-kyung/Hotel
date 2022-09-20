@@ -13,6 +13,7 @@ public interface EshopMapper {
 	public int total(int psel);
 	
 	public ProductVO pro_content(String pcode);
+	
 	public void wish_add(String userid, String pcode);
 	public void wish_del(String userid, String pcode);
 	public Integer checkWish(String userid, String pcode);
@@ -20,6 +21,8 @@ public interface EshopMapper {
 	public void cart_add(String userid, String pcode, int su);
 	public Integer checkCart(String userid, String pcode);
 	public void cart_suadd(int su, String userid, String pcode);
-	public void cart_change(String userid, int su, String cookievalue, String pcode);
-	public ArrayList<CartVO> getCart(String userid);
+	public ArrayList<CartVO> cart(String userid);
+	public void cart_del(String id);
+	
+	public ProductVO pro_gumae(String pcode);
 }

@@ -114,7 +114,7 @@
 					}
 					else
 					{
-						location="../member/myprofile";									
+						location="../mypage/myprofile";									
 					}
 				}
 			}

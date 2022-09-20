@@ -118,7 +118,7 @@
 											<a href="../member/member_input">회원가입</a>
 										</c:if>
 										<c:if test="${(userid != null) && (userid != 'admin')}">
-											<a href="../member/mypage"> ${name}님
+											<a href="../mypage/mypage"> ${name}님
 											<a href="../login/logout">로그아웃</a>
 										</c:if>
 										<c:if test="${userid == 'admin'}">

@@ -13,8 +13,4 @@ public interface MemberService {
 
 	public void userid_check(HttpServletRequest request, PrintWriter out);
 
-	public String myprorile(HttpSession session, Model model);
-
-	public void myprofile_pwd_ok(HttpSession session, HttpServletRequest request, PrintWriter out);
-
 }
