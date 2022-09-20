@@ -13,6 +13,9 @@
   #section table{
     margin:auto; 
   }
+  #section table #info{
+    font-size:14px;
+  }
   #section table #calendar{
     border-top:2px solid #887159;
     padding-left:30px;
@@ -43,6 +46,16 @@
   #section #day{
     text-align:left;
   }
+  #section #dine_type_1:hover{
+    color:red;
+  }
+  #section #dine_type_2:hover{
+    color:blue;
+  }
+  #section #dine_type_3:hover{
+    color:purple;
+  }
+  
   
   /*  bootstrap calendar css 시작  */
   .calendar-toolbar {
@@ -107,6 +120,7 @@
 		document.getElementById("dine_type").value=mine;
 	
 	}
+  
 </script>
 </head>
 
@@ -163,7 +177,7 @@
      </table>
      <table width="1100" border="1">
      <tr>
-        <td>
+        <td id="info">
 ▷ 4월1일부로 디너 이용 시 만12세 이하의 어린이 입장이 제한됩니다.<br>
 ▷ 드레스코드 : 비지니스 캐쥬얼 / 최상의 격식을 갖춘 서비스를 제공하기 위해 입장 시 
 트레이닝 팬츠와 슬러퍼, 샌들 착용을 제한하고 있사오니 너그러운 양해를 부탁드립니다.<br>
@@ -246,11 +260,12 @@
           <c:set var="id" value="${dvo.dine_type}"/>
            <td id="day">${day}<p></p> 
 
- <div id="dine_typediv">        
+ <div id="dine_typediv"> <!-- ajax를 위한 div -->       
 		<!-- 방의 이름을 출력 -->
             <c:forEach items="${dlist}" var="dvo" varStatus="my">
              <c:if test="${dvo.dine_type == 'Breakfast' }">
-               <a href="dining_reserve_next?y=${y}&m=${m}&d=${day}&dine_type=${dvo.dine_type}"> 
+               <%-- <a href="dining_reserve_next?y=${y}&m=${m}&d=${day}&dine_type=${dvo.dine_type}"> --%> 
+               <span id="dine_type" class="dine_type" name="dine_type" style="font-size:14px;" onclick="view_type('${dvo.dine_type}')">
                 <img src="../img/dining/breakfast.png" width="17px;" height="17px;">
                 ${dvo.dine_type}
                </a><br>
@@ -258,7 +273,7 @@
              
              <c:if test="${dvo.dine_type == 'Lunch' }">
                <%-- <a href="dining_reserve_next?y=${y}&m=${m}&d=${day}&dine_type=${dvo.dine_type}">  --%>
-               <span class="dine_type" name="dine_type" style="font-size:12px;" onclick="view_type('${dvo.dine_type}')">
+               <span id="dine_type" class="dine_type" name="dine_type" style="font-size:14px;" onclick="view_type('${dvo.dine_type}')">
                 <img src="../img/dining/lunch.png" width="17px;" height="17px;">
                 ${dvo.dine_type}
                </span>
@@ -266,7 +281,8 @@
              </c:if>
                
              <c:if test="${dvo.dine_type == 'Dinner' }">
-               <a href="dining_reserve_next?y=${y}&m=${m}&d=${day}&dine_type=${dvo.dine_type}"> 
+               <%-- <a href="dining_reserve_next?y=${y}&m=${m}&d=${day}&dine_type=${dvo.dine_type}">  --%>
+               <span id="dine_type" class="dine_type" name="dine_type" style="font-size:14px;" onclick="view_type('${dvo.dine_type}')">
                 <img src="../img/dining/dinner.png" width="17px;" height="17px;">
                 ${dvo.dine_type}
                </a><br>
@@ -293,7 +309,7 @@
        <td>
        <input type="hidden" id="changeInput">
         <select value="" name="dine_type" id="dine_type" onchange="categoryChange(this)">
-         <%-- <option value="${dine_type}">${dine_type}</option> --%>
+         <option value="${dine_type}">${dine_type}</option>
          <option value="Breakfast" name="dine_type" id="dine_type">Breakfast</option>
          <option value="Lunch" name="dine_type" id="dine_type">Lunch</option>
          <option value="Dinner" name="dine_type" id="dine_type">Dinner</option>
