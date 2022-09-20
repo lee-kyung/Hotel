@@ -11,6 +11,6 @@ public interface MyPageService {
 
 	public void myprofile_pwd_ok(HttpSession session, HttpServletRequest request, PrintWriter out);
 
-	public String myprorile(HttpSession session, Model model);
+	public String myprofile(HttpSession session, Model model);
 
 }

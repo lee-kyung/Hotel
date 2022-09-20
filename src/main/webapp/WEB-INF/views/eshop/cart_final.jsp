@@ -37,32 +37,6 @@
 	}
 </style>
 <script>
-	/* 상품당 가격을 구하기 */
-	function cal_pro(){
-		let len=document.getElementsByClassName("subck").length;
-		let exprice=[${arrprice}];
-		let exhalin=[${arrhalin}];
-		let exsu="";
-		let exbaefee=[${arrbaefee}];
-		let total_price="";
-		let total_halin="";
-		let total_baefee="";
-		for(i=0;i<len;i++) {
-			exsu[i]=document.getElementsByClassName("su")[i].value
-			price=parseInt(exprice[i] * exsu[i]);
-			if(exhalin[i] != 0)
-				price=parseInt((exprice[i] - (exprice[i] * (exhalin / 100))) * exsu[i]);
-			document.getElementsByClassName("price")[i].innerText=exprice[i];
-			total_price=parseInt(total_price + (exprice[i] * exsu[i]));
-			total_halin=parseInt(total_halin + ((exprice[i] * (exhalin[i] / 100)) * exsu[i]));
-			total_baefee=parseInt(total_baefee + exbaefee[i]);
-		}
-		document.getElementById("total_price").innerText="KRW "+new Intl.NumberFormat().format(total_price);
-		document.getElementById("total_halin").innerText="KRW "+new Intl.NumberFormat().format(total_halin);
-		document.getElementById("total_baefee").innerText="KRW "+new Intl.NumberFormat().format(total_baefee);
-		document.getElementById("total_pay").innerText="KRW "+new Intl.NumberFormat().format(total_price - total_halin + total_baefee);
-	}
-	
 	/* 장바구니의 초기상태 : 전부체크 및  모든 상품 값을 계산하기 */
 	window.onload=function(){
 		document.getElementById("mainck").checked=true;
@@ -87,7 +61,7 @@
 	}
 	
 	/* 수량을 변경하면 [주문금액]과 체크된 [상품금액합계&할인금액합계&배송비&결제금액]을 변하게 하기 */
-	/*function change_total(su, price, halin, num){
+	function change_total(su, price, halin, num){
 		let total=parseInt(price * su);
 		if(halin != 0)
 			total=parseInt((price - (price * (halin / 100))) * su);
@@ -105,33 +79,6 @@
 			}
 		}
 		console.log(total_price);
-	}*/
-	
-	function change_total(su, num){
-		let len=document.getElementsByClassName("subck").length;
-		let exprice=[${arrprice}];
-		let exhalin=[${arrhalin}];
-		let exbaefee=[${arrbaefee}];
-		let prict="";
-		let total_price="";
-		let total_halin="";
-		let total_baefee="";
-		
-		price=parseInt(exprice[num] * su);
-		if(exhalin[num] != 0)
-			price=parseInt((exprice[num] - (exprice[num] * (exhalin / 100))) * su);
-		document.getElementsByClassName("total")[num].innerText="KRW "+new Intl.NumberFormat().format(price);
-		
-		for(i=0;i<len;i++) {
-			total_price=parseInt(total_price + (exprice[i] * su));
-			total_halin=parseInt(total_halin + ((exprice[i] * (exhalin[i] / 100)) * su));
-			total_baefee=parseInt(total_baefee + exbaefee[i]);
-		}
-		
-		document.getElementById("total_price").innerText="KRW "+new Intl.NumberFormat().format(total_price);
-		document.getElementById("total_halin").innerText="KRW "+new Intl.NumberFormat().format(total_halin);
-		document.getElementById("total_baefee").innerText="KRW "+new Intl.NumberFormat().format(total_baefee);
-		document.getElementById("total_pay").innerText="KRW "+new Intl.NumberFormat().format(total_price - total_halin + total_baefee);
 	}
 	
 	/* 전체 선택 & 해제하기 */
@@ -183,21 +130,12 @@
 	}
 	
 	/* 선택상품 구매하기 */
-	function gumae(n){
+	function sel_gumae(){
 		/* 체크된 상품의 pcode, su를 구분자(,)로 구분하여 하나의 문자열로 생성하기 */
 		let pcode="";
 		let su="";
 		let subck=document.getElementsByClassName("subck");
 		let len=subck.length;
-		
-		/* 상품을 전체 체크시키고, pcode와 su를 구분자(,)로 구분하여 하나의 문자열로 생성하기 */
-		if(n == 2) {
-			document.getElementById("mainck").checked=true;
-			for(i=0;i<len;i++) {
-				document.getElementsByClassName("subck")[i].checked=true;
-			}
-		}
-		
 		for(i=0;i<len;i++) {
 			if(subck[i].checked) {
 				pcode=pcode+document.getElementsByClassName("pcode")[i].value+",";
@@ -208,8 +146,8 @@
 	}
 	
 	/* 전체상품 구매하기 */
-	/*function all_gumae(){
-		
+	function all_gumae(){
+		/* 상품을 전체 체크시키고, pcode와 su를 구분자(,)로 구분하여 하나의 문자열로 생성하기 */
 		let pcode="";
 		let su="";
 		let subck=document.getElementsByClassName("subck");
@@ -227,7 +165,7 @@
 			}
 		}
 		location="pro_gumae?pcode="+pcode+"&su="+su+"&gchk=1";
-	}*/
+	}
 </script>
 </head>
 
@@ -259,18 +197,15 @@
 					<img src="../img/eshop/${cvo.fimg}" width="80" height="80" id="main_fimg">
 					${cvo.title}
 				</td>
-				<!-- 상품금액 -->
-				<td class="price">
+				<td>	<!-- 상품금액 -->
 					<c:if test="${cvo.halin != 0}">
 						KRW <span class="price_text1"> <fmt:formatNumber value="${cvo.price - (cvo.price * (cvo.halin / 100))}" pattern=",###" /> </span>
 					</c:if>
 					<c:if test="${cvo.halin == 0}">
 						KRW <span class="price_text1"> <fmt:formatNumber value="${cvo.price}"/> </span>
 					</c:if>
-				</td>
-				<!-- 수량 -->
-				<%-- <td> <input type="number" name="su" min="1" max="${cvo.psu}" value="${cvo.su}" onchange="change_total(this.value, '${cvo.price}', '${cvo.halin}', ${cart.index})" class="su"> </td> --%>
-				<td> <input type="number" name="su" min="1" max="${cvo.psu}" value="${cvo.su}" onchange="change_total(this.value, ${cart.index})" class="su"> </td>
+				</td>	<!-- 수량 -->
+				<td> <input type="number" name="su" min="1" max="${cvo.psu}" value="${cvo.su}" onchange="change_total(this.value, '${cvo.price}', '${cvo.halin}', ${cart.index})" class="su"> </td>
 				<td class="total">	<!-- 주문금액 -->
 					<c:if test="${cvo.halin != 0}">	<!-- 할인하는 경우 -->
 						KRW <span class="price_text1"> <fmt:formatNumber value="${(cvo.price - (cvo.price * (cvo.halin / 100))) * cvo.su}" pattern=",###" /> </span>
@@ -279,8 +214,7 @@
 						KRW <span class="price_text1"> <fmt:formatNumber value="${cvo.price * cvo.su}"/> </span>
 					</c:if>
 				</td>
-				<!-- 배송비 -->
-				<td class="baefee">
+				<td>	<!-- 배송비 -->
 					<c:if test="${cvo.baefee == 0}">
 						무료
 					</c:if>
@@ -305,8 +239,8 @@
 			<tr>
 				<th colspan="8" height="80">
 					<span onclick="location='eshop'"> 계속 쇼핑하기 </span>
-					<span onclick="gumae(1)"> 선택상품 주문하기 </span>
-					<span onclick="gumae(2)"> 전체상품 주문하기 </span>
+					<span onclick="sel_gumae()"> 선택상품 주문하기 </span>
+					<span onclick="all_gumae()"> 전체상품 주문하기 </span>
 				</th>
 			</tr>
 		</table>

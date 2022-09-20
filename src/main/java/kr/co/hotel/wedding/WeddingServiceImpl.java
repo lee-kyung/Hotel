@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Enumeration;
 
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -123,15 +124,16 @@ public class WeddingServiceImpl implements WeddingService{
 			m=Integer.parseInt(request.getParameter("m"));
 		}
 		
-		LocalDate dday=LocalDate.of(y, m, 1);
+		LocalDate day=LocalDate.of(y, m, 1);
 		
-		int yoil=dday.getDayOfWeek().getValue();
+		int yoil=day.getDayOfWeek().getValue();
 		if(yoil==7)
 			yoil=0;
 		
-		int chong=dday.lengthOfMonth();
+		int chong=day.lengthOfMonth();
 		
 		int ju=(int)Math.ceil((yoil+chong)/7.0);
+		
 		
 		request.setAttribute("yoil", yoil);
 		request.setAttribute("chong", chong);
@@ -147,8 +149,50 @@ public class WeddingServiceImpl implements WeddingService{
 		model.addAttribute("hlist", hlist);
 		
 		
+		
+		LocalDate today=LocalDate.now();
+		
+		int y2,m2,d2;
+		
+		if(request.getParameter("y2")==null)	
+			y2=today.getYear();
+		else
+			y2=Integer.parseInt(request.getParameter("y2"));
+		
+		
+		if(request.getParameter("m2")==null)
+			m2=today.getMonthValue();
+		else
+			m2=Integer.parseInt(request.getParameter("m2"));
+		
+		
+		if(request.getParameter("d2")==null)
+			d2=today.getDayOfMonth();
+		else
+			d2=Integer.parseInt(request.getParameter("d2"));
+		
+		
+		LocalDate day2=LocalDate.of(y2, m2, d2);
+		
+		System.out.println("today="+today);
+		System.out.println("day2="+day2);
+		
+		if(today.isBefore(day2))
+		{
+			request.setAttribute("tt", "1");	
+		}
+		else
+		{
+			request.setAttribute("tt", "0");
+		}
+		
+		
+		
+		
 		return "/wedding/wedding_reserve";
 	}
+	
+	
 
 	@Override	
 	public String weddingReserve_ok(WeddingResvVO wrvo, HttpSession session) 

@@ -90,6 +90,19 @@
 	        }
 	    });
 	});
+  
+/*   function total_price() // 총가격 구하는 함수
+  {
+	  // 다이닝 타입에 따른 인원, 인원타입 선택값을 가져와서 각각의 금액을 구한다
+	  // 다이닝타입
+	  var ss=document.reser.adult.value;
+	  var ssprice=(인원*${dvo.dine_adult})+인원*어린이;
+	  document.getElementById("adult").innerText=new Intl.NumberFormat().format(ssprice);
+	  
+	  // form태그내에 총금액을 전달
+	  document.reser.total.value=tt;
+  } */
+
 </script>
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
     <!-- bradcam_area_start -->
@@ -140,7 +153,7 @@
        <th width="300">예약시간</th>
      </tr>
      <tr>
-       <td>${ymd}<input type="hidden" name="dr_date" ></td>
+       <td><input type="text" name="dr_date" value="${ymd}" readonly></td>
        <td>
        <input type="hidden" id="changeInput">
         <select value="${dine_type}" name="dine_type" id="dine_type" onchange="categoryChange(this)">
@@ -149,12 +162,11 @@
          <option value="Lunch" name="dine_type" id="dine_type">Lunch</option>
          <option value="Dinner" name="dine_type" id="dine_type">Dinner</option>
         </select>
-<%--         <input type="text" name="dine_type" value="${ dine_type}"> --%>
+<%-- <input type="text" name="dine_type" value="${ dine_type}"> --%>
        </td>
        <td>
- ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ
+
       <select id="dr_time" name="dr_time">
-      <%--   <c:forEach items="${ }"> --%>
          <option value="0">선택</option>
           <c:if test="${dvo.dine_type == 'Breakfast' }">
 
@@ -173,8 +185,6 @@
             <option value="16:00" name="dr_time">16:00</option>
             <option value="18:00" name="dr_time">18:00</option>  
          </c:if>
-         
-<%--        </c:forEach> --%>
        </select>
  
        </td>
@@ -186,7 +196,7 @@
      </tr>
      <tr>
        <td>
-           <select name="adult" id="adult">
+           <select name="adult" id="adult" onchange="total_price()">
               <option value="0"> 선택 </option>
 			  <option value="1"> 1 </option>
 		      <option value="2"> 2 </option>
@@ -211,7 +221,7 @@
        </td>
      </tr>
      <tr>
-       <td colspan="3"> 추가 요청사항(선택)</td>
+       <th colspan="3"> 추가 요청사항(선택)</th>
      </tr>
      <tr>
        <td colspan="3"> <textarea cols="100" rows="5" name="dr_extrarq"></textarea> </td>
@@ -221,25 +231,25 @@
        * 요청사항은 레스토랑 사정에 따라 응대가 어려울 수 있으며 추가 문의는 전화 주시기 바랍니다.</td>
      </tr>
      <tr>
-       <td>이름</td>
-       <td colspan="2">휴대폰 번호<input type="hidden" name="phone" value="${p1+p2+p3}"></td>
+       <th>이름</th>
+       <th colspan="2">휴대폰 번호<input type="hidden" name="phone" value="${p1+p2+p3}"></th>
      </tr>
      <tr>
        <td><input type="text" name="name" value="${name}" size="40"></td>
        <td colspan="2">
-        <input type="text" name="p1" value="${p1}" class="inputs" maxlength="3" size="10" />-
+        <input type="text" name="p1" value="${p1}" class="inputs" maxlength="3" size="10"/>-
         <input type="text" name="p2" value="${p2}" class="inputs" maxlength="4" size="10"/>-
         <input type="text" name="p3" value="${p3}" class="inputs" maxlength="4" size="10"/>
        </td>
      </tr>     
      <tr>
-       <td>이메일</td>
+       <th>이메일</th>
      </tr>
      <tr>
        <td><input type="text" name="email" size="40"></td>
      </tr>
      <tr>
-       <td colspan="3"> 추가 요청사항(선택)</td>
+       <th colspan="3"> 추가 요청사항(선택)</th>
      </tr>
      <tr>
        <td colspan="3"> 
@@ -248,12 +258,18 @@
        </td>
      </tr>
      <tr>
-       <td colspan="3"> 결제 방법</td>
+       <th colspan="3"> 결제 방법</th>
      </tr>
      <tr>
        <td><input type="radio">전체금액 온라인 결제</td>
         <td colspan="2"><input type="radio">레스토랑에서 결제(예약금 10만원 결제)</td>
      </tr>
+     
+     <tr>
+       <th> 총 가격 </th>
+       <td colspan="3"> <span id="dr_total">
+       <fmt:formatNumber value="${rdto.price}" type="number"/></span>원 </td>
+     </tr>  
      <tr>
        <td colspan="3" align="center"><input type="submit" value="예약신청"></td>
      </tr>

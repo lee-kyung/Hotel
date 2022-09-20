@@ -23,8 +23,11 @@ public class DiningResvServiceImpl implements DiningResvService{
 	private DiningResvMapper mapper;
 	
 	@Override
-	public String dining_reserve(HttpServletRequest request, Model model)
+	public String dining_reserve(HttpServletRequest request, Model model, HttpSession session)
 	{
+		String userid=session.getAttribute("userid").toString();
+		DiningResvVO drvo=new DiningResvVO();
+		drvo.setUserid(session.getAttribute("userid").toString());
 	//  1일의 요일, 총일수, 몇주를 구해서 request영역에 저장
 		
 		int y,m;
@@ -126,6 +129,14 @@ public class DiningResvServiceImpl implements DiningResvService{
 	{		
 		mapper.dining_reserve_ok(drvo);
 		return "redirect:/dining/dining_reserve";
+	}
+	@Override
+	public String dining_reserve_check(HttpSession session, Model model)
+	{
+		String userid=session.getAttribute("userid").toString();
+		ArrayList<DiningResvVO> list=mapper.dining_reserve_check(userid);
+		model.addAttribute("list", list);
+		return "/dining/dining_reserve_check";
 	}
 
 

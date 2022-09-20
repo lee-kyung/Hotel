@@ -40,7 +40,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="pro_content" resultType="kr.co.hotel.eshop.ProductVO">
-		select *, substr(pcode, 1, 5) as subpcode, substr(fimg, 1, instr(fimg, ",")-1) as img
+		select *, substr(pcode, 1, 5) as subpcode,
+		substr(fimg, 1, instr(fimg, ",")-1) as img
 		from product where pcode=#{param1}
 	</select>
 	
@@ -70,7 +71,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<select id="cart" resultType="kr.co.hotel.eshop.CartVO">
-		select c.*, substr(p.fimg, 1, instr(p.fimg, ",")-1) as fimg, p.title, p.price, p.halin, p.baefee, p.juk, p.su as psu
+		select c.*, substr(p.fimg, 1, instr(p.fimg, ",")-1) as fimg,
+		p.title, p.price, p.halin, p.baefee, p.juk, p.su as psu
 		from cart c, product p
 		where c.pcode=p.pcode and userid=#{param1}
 		order by c.inday desc
@@ -79,5 +81,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="cart_del">
 		delete from cart where id=#{param1}
 	</delete>
+	
+	<select id="pro_gumae" resultType="kr.co.hotel.eshop.ProductVO">
+		select *, substr(fimg, 1, instr(fimg, ",")-1) as img
+		from product where pcode=#{param1}
+	</select>
 	
 </mapper>

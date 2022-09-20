@@ -29,7 +29,7 @@ public class MyPageServiceImpl implements MyPageService{
 	}
 
 	@Override
-	public String myprorile(HttpSession session, Model model) 
+	public String myprofile(HttpSession session, Model model) 
 	{
 		String userid=session.getAttribute("userid").toString();
 		MemberVO mvo=mapper.myprofile(userid);
