@@ -34,6 +34,7 @@ public class LoginServiceImpl implements LoginService {
 				
 				if(chk != 0) {
 					mapper.cart_chgUserid(userid, cookievalue);
+					mapper.cart_addSu();
 					mapper.cart_delDupli();
 				}
 				cookie.setPath("/");

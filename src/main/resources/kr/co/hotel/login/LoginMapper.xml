@@ -22,4 +22,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where a.id < b.id and a.userid=b.userid and a.pcode=b.pcode ]]>
 	</delete>
 	
+	<update id="cart_addSu">
+		<![CDATA[ update cart a, cart b set b.su=b.su+a.su
+		where a.id < b.id and a.userid=b.userid and a.pcode=b.pcode ]]>
+	</update>
+	
 </mapper>

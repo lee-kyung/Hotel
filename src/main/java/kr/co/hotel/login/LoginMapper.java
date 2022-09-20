@@ -8,4 +8,5 @@ public interface LoginMapper {
 	public Integer checkCart(String cookievalue);
 	public void cart_chgUserid(String userid, String cookievalue);
 	public void cart_delDupli();
+	public void cart_addSu();
 }
