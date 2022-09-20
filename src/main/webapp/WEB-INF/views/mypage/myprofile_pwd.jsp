@@ -17,12 +17,14 @@
 	
 	#first #txt{
 	text-align:left;
-	font-size:45px;
+	font-size:40px;
 	padding-top:50px;}
 	
 	#first #txt2{
 	text-align:right;
-	font-size:20px;
+	font-size:18px;}
+	
+	#first #txt2 span{
 	cursor:pointer;}
 	
 	#first ul li{
