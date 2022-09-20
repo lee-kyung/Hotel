@@ -75,16 +75,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		p.title, p.price, p.halin, p.baefee, p.juk, p.su as psu
 		from cart c, product p
 		where c.pcode=p.pcode and userid=#{param1}
-		order by c.inday desc
+		order by c.id desc
 	</select>
 	
-	<delete id="cart_del">
-		delete from cart where id=#{param1}
+	<delete id="wishcart_del">
+		delete from ${param1} where id=#{param2}
 	</delete>
 	
 	<select id="pro_gumae" resultType="kr.co.hotel.eshop.ProductVO">
 		select *, substr(fimg, 1, instr(fimg, ",")-1) as img
 		from product where pcode=#{param1}
 	</select>
+	
+	<select id="wish" resultType="kr.co.hotel.eshop.WishVO">
+		select w.*, substr(p.fimg, 1, instr(p.fimg, ",")-1) as fimg,
+		p.title, p.price, p.halin, p.baefee from wish w, product p
+		where w.pcode=p.pcode and userid=#{param1}
+		order by ${param2}
+	</select>
+	
+	<delete id="cart_delDupli">
+		<![CDATA[ delete a.* from cart a, cart b
+		where a.id < b.id and a.userid=b.userid and a.pcode=b.pcode ]]>
+	</delete>
 	
 </mapper>
