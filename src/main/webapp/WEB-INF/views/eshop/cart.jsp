@@ -35,6 +35,63 @@
 	input[type=number]::-webkit-outer-spin-button {
 		opacity: 1;
 	}
+	#cart #button1 {
+		width : 80px;
+		height : 30px;
+		padding-top : 5px;
+		border : 1px solid #887159;
+		background : #887159;
+		color : white;
+		margin : auto;
+		margin-bottom : 5px;
+		font-size : 13px;
+		font-weight : normal;
+		cursor : pointer;
+	}
+	#cart #button2 {
+		width : 80px;
+		height : 30px;
+		padding-top : 5px;
+		border : 1px solid #887159;
+		color : #887159;
+		margin : auto;
+		font-size : 13px;
+		font-weight : normal;
+		cursor : pointer;
+	}
+	#cart #button11 {
+		width : 150px;
+		height : 42px;
+		padding-top : 8px;
+		border : 1px solid #887159;
+		background : #887159;
+		color : white;
+		font-size : 15px;
+		font-weight : normal;
+		margin : auto;
+		cursor : pointer;
+	}
+	#cart #button22 {
+		width : 150px;
+		height : 42px;
+		padding-top : 8px;
+		border : 1px solid #887159;
+		color : #887159;
+		font-size : 15px;
+		font-weight : normal;
+		margin : auto 5px auto auto;
+		cursor : pointer;
+	}
+	#cart #button3 {
+		width : 100%;
+		height : 30px;
+		padding-top : 5px;
+		border : 1px solid #887159;
+		color : #887159;
+		font-size : 13px;
+		font-weight : normal;
+		cursor : pointer;
+	}
 </style>
 <script>
 	/* 상품당 가격을 구하기 */
@@ -171,9 +228,9 @@
 		let len=subck.length;
 		for(i=0;i<len;i++) {
 			if(subck[i].checked)
-				del=del+document.getElementsByClassName("subck")[i].value+",";
+				del=document.getElementsByClassName("subck")[i].value+","+del;
 		}
-		location="cart_del?delid="+del;	// delid=삭제할id,삭제할id,삭제할id, → 마지막 구분자(콤마)는 신경X		
+		location="wishcart_del?delid="+del+"&dchk=2";	// delid=삭제할id,삭제할id,삭제할id, → 마지막 구분자(콤마)는 신경X		
 	}
 	
 	/* 1개상품 구매하기 */
@@ -183,14 +240,13 @@
 	}
 	
 	/* 선택상품 구매하기 */
-	function gumae(n){
-		/* 체크된 상품의 pcode, su를 구분자(,)로 구분하여 하나의 문자열로 생성하기 */
+	function gumae(n){	// n=1이면 선택주문, n=2면 전체주문
 		let pcode="";
 		let su="";
 		let subck=document.getElementsByClassName("subck");
 		let len=subck.length;
 		
-		/* 상품을 전체 체크시키고, pcode와 su를 구분자(,)로 구분하여 하나의 문자열로 생성하기 */
+		/* 상품을 전체 체크시키기 */
 		if(n == 2) {
 			document.getElementById("mainck").checked=true;
 			for(i=0;i<len;i++) {
@@ -198,10 +254,11 @@
 			}
 		}
 		
+		/* pcode와 su를 구분자(,)로 구분하여 하나의 문자열로 생성하기 */
 		for(i=0;i<len;i++) {
 			if(subck[i].checked) {
-				pcode=pcode+document.getElementsByClassName("pcode")[i].value+",";
-				su=su+document.getElementsByClassName("su")[i].value+",";
+				pcode=document.getElementsByClassName("pcode")[i].value+","+pcode;
+				su=document.getElementsByClassName("su")[i].value+","+su;
 			}
 		}
 		location="pro_gumae?pcode="+pcode+"&su="+su+"&gchk=1";
@@ -244,7 +301,7 @@
 		<table width="1000" align="center" border="1">
 			<tr>
 				<th height="50"> <input type="checkbox" onclick="allcheck(this.checked)" id="mainck"> </th>
-				<th colspan="2">상품정보</th>
+				<th colspan="2">상품정보 </th>
 				<th>상품금액</th>
 				<th>수량</th>
 				<th>주문금액</th>
@@ -254,8 +311,10 @@
 			<c:forEach var="cvo" items="${clist}" varStatus="cart">
 			<input type="hidden" class="pcode" value="${cvo.pcode}">
 			<tr>
-				<td> <input type="checkbox" class="subck" onclick="subcheck()" value="${cvo.id}"> </td> <!-- 체크박스 -->
-				<td colspan="2">	<!-- 상품정보(이미지, 상품명) -->
+				<!-- 체크박스 -->
+				<td> <input type="checkbox" class="subck" onclick="subcheck()" value="${cvo.id}"> </td>
+				<!-- 상품정보(이미지, 상품명) -->
+				<td colspan="2">
 					<img src="../img/eshop/${cvo.fimg}" width="80" height="80" id="main_fimg">
 					${cvo.title}
 				</td>
@@ -289,13 +348,13 @@
 					</c:if>
 				</td>
 				<td>	<!-- 1개 주문 or 삭제하기 -->
-					<span onclick="one_gumae('${cvo.pcode}', ${cart.index})"> 주문하기 </span>
-					<span onclick="location='cart_del?delid=${cvo.id},'"> 삭제하기 </span>
+					<div onclick="one_gumae('${cvo.pcode}', ${cart.index})" id="button1"> 주문하기 </div>
+					<div onclick="location='wishcart_del?delid=${cvo.id},&dchk=2'" id="button2"> 삭제하기 </div>
 				</td>
 			</tr>
 			</c:forEach>
 			<tr>
-				<th colspan="8" height="60"> <span onclick="cart_del()"> 선택상품 삭제하기 </span> </th>
+				<th colspan="8" height="60"> <div onclick="cart_del()" id="button3"> 선택상품 삭제하기 </div> </th>
 			</tr>
 			<tr>
 				<th colspan="8" height="80">
@@ -304,9 +363,9 @@
 			</tr>
 			<tr>
 				<th colspan="8" height="80">
-					<span onclick="location='eshop'"> 계속 쇼핑하기 </span>
-					<span onclick="gumae(1)"> 선택상품 주문하기 </span>
-					<span onclick="gumae(2)"> 전체상품 주문하기 </span>
+					<span onclick="location='eshop'" id="button22" style="float:left;"> 계속 쇼핑하기 </span>
+					<span onclick="gumae(2)" id="button11" style="float:right;"> 전체상품 주문 </span>
+					<span onclick="gumae(1)" id="button22" style="float:right;"> 선택상품 주문 </span>					
 				</th>
 			</tr>
 		</table>
