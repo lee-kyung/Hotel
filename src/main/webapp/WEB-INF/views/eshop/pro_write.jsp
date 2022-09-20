@@ -6,7 +6,7 @@
 <style>
 	#pro_write {
 		width : 1000px;
-		height : 600px;
+		height : 700px;
 		margin : auto;
 		margin-top : 50px;
 	}
@@ -31,6 +31,10 @@
 	input[type=number]::-webkit-inner-spin-button,
 	input[type=number]::-webkit-outer-spin-button {
 		opacity: 1;
+	}
+	#pro_write p {
+		font-family : 돋움;
+		font-size : 14px;
 	}
 </style>
 <script>

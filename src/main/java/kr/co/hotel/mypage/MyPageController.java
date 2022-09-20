@@ -40,7 +40,7 @@ public class MyPageController {
 	@RequestMapping("/mypage/myprofile")
 	public String myprofile(HttpSession session, Model model)
 	{
-		return service.myprorile(session, model);
+		return service.myprofile(session, model);
 	}
 	
 	@RequestMapping("/mypage/mypwd_change")
