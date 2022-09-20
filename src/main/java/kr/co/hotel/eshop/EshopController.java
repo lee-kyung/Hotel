@@ -85,4 +85,9 @@ public class EshopController {
 	public String cart_del(HttpServletRequest request) {
 		return service.cart_del(request);
 	}
+	
+	@RequestMapping("/eshop/pro_gumae")
+	public String pro_gumae(HttpServletRequest request, Model model) {
+		return service.pro_gumae(request, model);
+	}
 }

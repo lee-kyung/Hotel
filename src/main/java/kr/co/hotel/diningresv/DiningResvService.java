@@ -11,13 +11,16 @@ import kr.co.hotel.dining.DiningVO;
 
 public interface DiningResvService {
 	
-	public String dining_reserve(HttpServletRequest request, Model model);
+	public String dining_reserve(HttpServletRequest request, Model model,HttpSession session);
 
 	/*public String getprev(HttpServletRequest request, Model model);*/
 	
 	public String dining_reserve_next(HttpServletRequest request, Model model);
 
 	public String dining_reserve_ok(DiningResvVO drvo);
+
+	public String dining_reserve_check(HttpSession session, Model model);
+
 
 
 	

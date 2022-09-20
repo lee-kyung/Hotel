@@ -67,10 +67,10 @@
 	section #wed_resv #day, #time{
 	cursor:pointer;}
 	
-	section #wed_resv #day:hover, #time:hover{
+ 	section #wed_resv #day:hover, #time:hover{
 	color:red;}
 	
-	
+
 	section #wed_resv #resv_txt{
 	margin-top:100px;
 	font-family:fantasy;
@@ -143,11 +143,12 @@
 		$("#datepicker").datepicker({
 			
 			format: "yyyy-mm-dd",	// 작성되지 않은 경우 기본 값: mm/dd/yy
-			
+			minDate: new Date(),
 		});
 	});
-</script>
-<script>
+	
+	
+	
 	function time(time)
 	{
 		document.wresv.wresv_time.value=time.innerText;
@@ -184,6 +185,7 @@
 					time[i].style.color="black";
 					time[i].style.textDecoration="none";
 					time[i].setAttribute("onclick","time(this)");
+					time[i].setAttribute("style","text-decoration:none;");
 				}
 				
 				if(chk_time.length > 1)
@@ -203,7 +205,39 @@
 				}
 			}
 		}
+		
+		var now = new Date();
+		var year=now.getFullYear();	
+//		var month;	
+		var day2=now.getDate();
+		
+		
+		var	month=now.getMonth()+1;
+	//	alert(month<10);
+		
+		
+		
+		var date=year+month+day2;
+		var date22=year+"-"+month+"-"+day2;
+		
+//		var wresv_cday2=Number(${y})+Number(${m})+Number(day.innerText);
+		var wresv_cday2=${y}+${m}+day.innerText;
+		var wresv_cday2=String(${y})+String(${m})+String(day.innerText);
+		
+	//	alert(month);
+
+		if(date >= wresv_cday2)
+		{
+			//alert(date +","+ wresv_cday2);
+			//document.getElementById("time_1").style.visibility="hidden";
+			//document.getElementById("time").setAttribute("onclick"," ");
+		}
+		else
+		{
+			//document.getElementById("time_1").style.visibility="visible";
+		}
 	}
+	
 	
 	function resv(chk)
 	{
@@ -243,6 +277,7 @@
 			return true;
 		}
 	}
+	
 </script>
 
 </head>
@@ -261,7 +296,6 @@
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
 
     <!--================ Single-Wedding Area Start =================-->
-    
 <section>
 <div id="wed_resv">
 	<div id="txt">WEDDING RESERVATION</div>
@@ -312,13 +346,16 @@
 				<td> &nbsp;</td>								<!-- 해당 달의 총 일수 이후도 빈칸을 주기위해서 : 총일수(30,31)가 숫자(30~, 31~)보다 작다면  빈칸 -->
 			</c:if>
 			<c:if test="${((j >= yoil && i==1) || i>1 ) && (chong >=day)}"><!-- 열이 1일의해당요일보다 크고(1일 이후~) 첫번째 행이거나 || 또는 2번째 행부터는 모두 숫자로 표시-->
-				<td height="100"><div id="day" onclick="day(this)" name="wresv_cday">${day }</div></td>						<!-- 날짜 -->			<!-- 위의 조건과 맞추기 위해 밑에도 총의 조건을 작성해야한다. (&& 총일수가 숫자보다 같거나 큰 경우 출력) -->
+				<td height="100"><div id="day" onclick="day(this)" class="day" name="wresv_cday">${day}</div></td>						<!-- 날짜 -->			<!-- 위의 조건과 맞추기 위해 밑에도 총의 조건을 작성해야한다. (&& 총일수가 숫자보다 같거나 큰 경우 출력) -->			
 			<c:set var="day" value="${day+1 }"/>	<!-- 날짜값을 1씩 증가 -->
 			</c:if>
 			</c:forEach>
+		
+			
 		</tr>
 		</c:forEach>
 	</table>
+
           
 	<div id="time_1">
 		<div id="time_txt"></div>
@@ -347,7 +384,7 @@
 		<tr>
 			<td>희망하는 웨딩홀</td>
           	<td colspan="3">
-				<select name="wresv_hall">
+				<select name="wresv_hall">dd
           		<c:forEach items="${hlist }" var="hvo">
 					<option value="${hvo.wed_hall }">${hvo.wed_hall }</option>
           		</c:forEach>

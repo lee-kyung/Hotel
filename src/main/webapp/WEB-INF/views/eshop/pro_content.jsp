@@ -122,6 +122,7 @@
 		width : 450px;
 		height : 30px;
 		text-align : right;
+		font-size : 15px;
 	}
 	#pro_cnt #a1 #right #baefee {
 		font-weight : normal;

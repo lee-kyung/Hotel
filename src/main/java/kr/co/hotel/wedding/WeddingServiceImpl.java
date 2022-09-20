@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Enumeration;
 
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -133,6 +134,7 @@ public class WeddingServiceImpl implements WeddingService{
 		
 		int ju=(int)Math.ceil((yoil+chong)/7.0);
 		
+		
 		request.setAttribute("yoil", yoil);
 		request.setAttribute("chong", chong);
 		request.setAttribute("ju", ju);
@@ -147,8 +149,13 @@ public class WeddingServiceImpl implements WeddingService{
 		model.addAttribute("hlist", hlist);
 		
 		
+		
+
+		
 		return "/wedding/wedding_reserve";
 	}
+	
+	
 
 	@Override	
 	public String weddingReserve_ok(WeddingResvVO wrvo, HttpSession session) 
