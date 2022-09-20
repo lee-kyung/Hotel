@@ -384,7 +384,7 @@
 		<tr>
 			<td>희망하는 웨딩홀</td>
           	<td colspan="3">
-				<select name="wresv_hall">
+				<select name="wresv_hall">dd
           		<c:forEach items="${hlist }" var="hvo">
 					<option value="${hvo.wed_hall }">${hvo.wed_hall }</option>
           		</c:forEach>
