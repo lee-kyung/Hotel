@@ -303,9 +303,7 @@
 <section>
 <div id="wed_resv">
 	<div id="txt">WEDDING RESERVATION</div>
-	<div id="test" >
-    5
-    </div>
+
 	<div id="cal_title">
 		<c:if test="${m==1  }">	<!-- 1월 -->
 			<a href="wedding_reserve?y=${y-1 }&m=12"><span class="mon">${y } 12</span></a>
