@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
@@ -6,6 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <title>Insert title here</title>
 </head>
 <body>
@@ -23,16 +23,47 @@
 		height: 80px;
 		border: 1px solid #887159;
 	}
+	roomsec #tbouter{
+		background: #F9F9F9;
+		width: 840px;
+		height: 100px;
+		border: 1px solid black;
+	}
+	roomsec #tb{
+		background: #F9F9F9;
+		color: #A6908C;
+		border: none;
+		text-align: center;
+	}
+	roomsec #tb th{
+		text-align: left;
+		height: 16px;
+	}
 	roomsec td{
-		height:40px;
+		height:37px;
 	}
 	roomsec table input[type=text]{
-		height: 42px;
+		height: 35px;
 		margin-top: 17px;
-		border-radius: 5px;
+		border: 1px solid #E6E3DF;
 	}
-	roomsec table input[type=select]{
-		height: 40px;
+	roomsec #searchbtn{
+		background: #FFFFFF;
+		border: 1px solid #887159;
+		color: #887159;
+		width: 80px;
+		height: 35px;
+	}
+	roomsec #searchbtn:hover{
+		color: white;
+		background:#887159;
+		cursor: pointer;
+	}
+	roomsec table select{
+		height: 35px;
+		color:  #887159;
+		border: 1px solid #887159;
+		background: white;
 	}
 	roomsec #ro_info{
 		width: 800px;
@@ -48,66 +79,139 @@
 		padding-top: 35px;
 		padding-left: 20px;
 	}
+ 	roomsec .cbtn{
+		background: #FFFFFF; 
+		border: 1px solid #887159;
+		color: #887159; 
+		width: 80px;
+	}
+ 	roomsec .cbtn:hover{
+		cursor: pointer;
+		background: #887159;
+		color: #FFFFFF;	
+	}
+	.crcode{
+		display: none;
+	} 
 </style>
+
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script> 
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script>
+
+/* $(document).ready(function(){       
+    $( "#checkin,#checkout" ).datepicker({
+         changeMonth: true,
+         changeYear: true,
+         showMonthAfterYear: true,
+         dateFormat:"yyyy-mm-dd",
+     });
+    
+    $('#checkin').datepicker("option", "maxDate", $("#checkout").val());
+    $('#checkin').datepicker("option", "minDate", new Date());
+    $('#checkin').datepicker("option", "onClose", function (selectedDate){
+        $("#checkout").datepicker( "option", "minDate", selectedDate );
+        });
+    
+    $('#checkout').datepicker();
+    $('#checkout').datepicker("option", "minDate", $("#checkin").val());
+    $('#checkout').datepicker("option", "onClose", function (selectedDate){
+        $("#checkin").datepicker( "option", "maxDate", selectedDate );
+       });
+
+});
+ */
 	$(function(){
-		
 		$("#checkin").datepicker({
 			format: "yyyy-mm-dd",
-			
-			minDate: new Date() 
+			minDate :new Date(),
 		});
 		$("#checkout").datepicker({
+			minDate: new Date(),
 			format: "yyyy-mm-dd",
-			minDate: new Date()
 		});
+		
 	});
 	
-   function form_submit(n)
+// rcode받기
+	function maxcheck()
+	{
+		var adult=document.getElementById("adult").value;
+		var child=document.getElementById("child").value;
+		var binwon=adult+child;
+		alert(binwon);
+	}
+
+	function form_submit(n)
    {
 	   //alert(document.room.rcode2[n].value);
 	   document.room.rcode.value=document.room.rcode2[n].value;
 	   document.room.submit();
    }
-   
-   function getRoomAvail(){  
-	      document.getElementById("roomdiv").style.visibility="visible";
-	      var checkin=document.room.checkin.value;
-	      var checkout=document.room.checkout.value;
-	      var chk=new XMLHttpRequest();
-	      chk.open("get","getRoomAvail?checkin="+checkin+"&checkout="+checkout);
-	      chk.send();
-	      chk.onreadystatechange=function(){
-	         if(chk.readyState==4){
-	            //alert(chk.responseText);
-	            document.getElementById("ccc").innerText=chk.responseText;
-	            var aa=chk.responseText.split(",");
 
-	            //alert(chk.responseText.length);
-	            var cbtn=document.getElementsByClassName("cbtn");
-	             for(i=0;i<cbtn.length;i++){
-	                 document.getElementsByClassName("cbtn")[i].disabled=false;
-	              }      
-	              
-	           if(aa.length > 1){      
-	              var crcode=document.getElementsByClassName("crcode");
-	             
-	            
-	              for(i=0;i<aa.length;i+=2){
-	               for(j=0;j<crcode.length;j++){
-	                  if(aa[i]==crcode[j].innerText.trim()){
-	                     if(aa[i+1]>=2)
-	                       cbtn[j].disabled=true;
-	                  }   
-	               }      
-	             }      
-	          }
-	       }   
-	    }
-	  }
+// 비어있는 객실 확인
+   function getRoomAvail(){  
+	// 체크인,체크아웃,성인 인원수 체크
+		if(document.getElementById("checkin").value.trim()=="")
+		{
+			alert("체크인 날짜를 선택하세요")
+			return false;
+		}
+		else if(document.getElementById("checkout").value.trim()=="")
+		{
+			alert("체크아웃 날짜를 선택하세요")
+			return false;
+		}
+		else if(document.getElementById("adult").value==0)
+		{
+			alert("인원을 선택하세요.")
+			return false;
+		}
+		else
+		{
+		// 객실수량 체크해서 예약불가 표시
+		document.getElementById("roomdiv").style.visibility="visible";
+		var checkin=document.room.checkin.value;
+		var checkout=document.room.checkout.value;
+		var adult=document.room.adult.value;
+		var chk=new XMLHttpRequest();
+		chk.open("get","getRoomAvail?checkin="+checkin+"&checkout="+checkout+"&adult="+adult);
+		chk.send();
+		chk.onreadystatechange=function(){
+			if(chk.readyState==4){
+				//alert(chk.responseText);
+				document.getElementById("ccc").innerText=chk.responseText;
+				var aa=chk.responseText.split(",");
+		
+				//alert(chk.responseText.length);
+				var cbtn=document.getElementsByClassName("cbtn");
+				for(i=0;i<cbtn.length;i++){
+					document.getElementsByClassName("cbtn")[i].disabled=false;
+				}	   
+				  
+				if(aa.length > 1){	   
+					var crcode=document.getElementsByClassName("crcode");
+				    
+					for(i=0;i<aa.length;i+=2){ //cnt받아온 객실길이만큼 돌때
+						for(j=0;j<crcode.length;j++){ // 만약 객실rcode가 
+							if(aa[i]==crcode[j].innerText.trim()){ // cnt들어있는 rcode랑 같다면
+								if(aa[i+1]>=2) 
+								{
+									cbtn[j].disabled=true;
+									cbtn[j].style.background="#F9F9F9";
+									cbtn[j].style.border="1px solid #E6E3DF";
+									cbtn[j].style.color="#E6E3DF";
+									cbtn[j].style.hover="none";
+								}
+							}
+						}	   
+					}	   
+				}
+			}	
+		}
+		return true;
+	}
+}
 
 </script>
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
@@ -127,21 +231,22 @@
   <div class="container">
     <div class="row"> 
     	<roomsec>
- 			<div> RESERVATION </div>
- 			<div> 호텔에 오신것을 환영합니다 </div>
-				<form name="room" method="post" action="room_resvnext">
-				 <input type="hidden" name="rcode">
+ 			<div style="color:#887159; font-weight:900">RESERVATION</div>
+    		<div style="font-size: 25px;">호텔에 오신것을 환영합니다.</div>
+ 			<br>
+				<form name="room" method="post" action="room_resvnext" >
+				<input type="hidden" name="rcode">
 				<table id="tb">
 					<tr> 
 						<th> 체크인 </th>
 						<th> 체크아웃 </th>
 						<th> 성인 </th>
 						<th> 어린이 </th>
-						<th rowspan="2"><input type="button" value="검색" onclick="getRoomAvail(${my.index})"> </th>
-					</tr> 
+						<th width="100px"></th>
+					</tr>  
 					<tr>
-						<td><input type="text" name="checkin" id="checkin"></td>
-						<td><input type="text" name="checkout" id="checkout"></td>
+						<td><input type="text" name="checkin" id="checkin" placeholder="체크인"></td>
+						<td><input type="text" name="checkout" id="checkout" placeholder="체크아웃"></td>
 						<td> 
 							<select name="adult" id="adult">
 								<option value="0"> 선택 </option>
@@ -158,13 +263,14 @@
 								<option value="0"> 선택 </option>
 								<option value="1"> 1 </option>
 								<option value="2"> 2 </option>
-								<option value="3"> 3 </option>
-								<option value="4"> 4 </option>
 							</select>
-						</td>	
+						</td>
+						<td> <input type="button" id="searchbtn" value="검색" onclick="return getRoomAvail()"> </td>	
 					</tr>
 				</table>
-				<div id="ccc"></div>
+
+				
+				<div id="ccc" style="display:none"></div>
 				<div id="roomdiv">
 				<c:forEach items="${list}" var="rvo" varStatus="my">
 				<div id="ro_info">
@@ -177,6 +283,7 @@
 						<div><span id="subr">전망</span>${rvo.rview}</div>
 						<div><span id="subr">베드타입</span>${rvo.rbed}</div>
 						<div><span id="subr">가격</span>${rvo.rprice}</div>						
+						<div><span id="subr">기준|최대인원</span>${rvo.rmin}/<span class="crmax">${rvo.rmax}</span></div>						
 						<br>
 					
 						<input type="button" value="객실선택" class="cbtn" onclick="form_submit(${my.index})">

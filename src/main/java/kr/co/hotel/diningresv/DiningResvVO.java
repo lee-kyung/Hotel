@@ -3,7 +3,7 @@ package kr.co.hotel.diningresv;
 public class DiningResvVO {
 	
 	private int dr_id, dr_stayhalin, dr_total, dr_state;
-	private String dr_time, dr_type, dr_extrarq, dr_date, p1, p2, p3, email;
+	private String dr_time, dine_type, dr_extrarq, dr_date, p1, p2, p3, email, adult, child, baby;
 	
 	// 다이닝 id
 	private int dining_id;
@@ -12,7 +12,37 @@ public class DiningResvVO {
 	private String userid;
 	
 	
-    public String getEmail() {
+    public String getAdult() {
+		return adult;
+	}
+	public void setAdult(String adult) {
+		this.adult = adult;
+	}
+	public String getChild() {
+		return child;
+	}
+	public void setChild(String child) {
+		this.child = child;
+	}
+	public String getBaby() {
+		return baby;
+	}
+	public void setBaby(String baby) {
+		this.baby = baby;
+	}
+	public String getDine_type() {
+		return dine_type;
+	}
+	public void setDine_type(String dine_type) {
+		this.dine_type = dine_type;
+	}
+	public String getDr_time() {
+		return dr_time;
+	}
+	public void setDr_time(String dr_time) {
+		this.dr_time = dr_time;
+	}
+	public String getEmail() {
 		return email;
 	}
 	public void setEmail(String email) {
@@ -63,18 +93,32 @@ public class DiningResvVO {
 	public void setDr_state(int dr_state) {
 		this.dr_state = dr_state;
 	}
-	public String getDr_time() {
+	/*public String getDr_timeValue() {
+		if(dr_time.equals("1")) {
+			return "8:00";
+		}
+		else if(dr_time.equals("2")) {
+			return "10:00";
+		}
+		else if(dr_time.equals("3")) {
+			return "13:00";
+		}
+		else if(dr_time.equals("4")) {
+			return "15:00";
+		}
+		else if(dr_time.equals("5")) {
+			return "16:00";
+		}
+		else if(dr_time.equals("6")) {
+			return "18:00";
+		}
+		return null;
 		return dr_time;
 	}
 	public void setDr_time(String dr_time) {
 		this.dr_time = dr_time;
-	}
-	public String getDr_type() {
-		return dr_type;
-	}
-	public void setDr_type(String dr_type) {
-		this.dr_type = dr_type;
-	}
+	}*/
+
 	public String getDr_extrarq() {
 		return dr_extrarq;
 	}

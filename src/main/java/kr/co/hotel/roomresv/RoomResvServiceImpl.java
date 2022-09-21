@@ -27,18 +27,6 @@ public class RoomResvServiceImpl implements RoomResvService {
 
 		ArrayList<RoomVO> list=mapper.room_resv();
 		model.addAttribute("list",list);
-		
-	/*	String checkin=request.getParameter("checkin");
-		String checkout=request.getParameter("checkout");
-		String rcode=request.getParameter("rcode");
-		
-		model.addAttribute("checkin", checkin);
-		model.addAttribute("checkout", checkout);
-		model.addAttribute("rcode",rcode);
-		
-		//int cnt=mapper.getRoomCnt(checkin,rcode);
-		model.addAttribute("cnt",cnt);
-		*/
 
 		return "/room/room_resv";
 	}
@@ -82,40 +70,45 @@ public class RoomResvServiceImpl implements RoomResvService {
 		
 		return "/room/room_resvnext";
 	}
-	
-	
+
 	@Override
 	public String room_resv_ok(RoomResvVO rsvo, HttpSession session) {
-		String userid=session.getAttribute("userid").toString();
-		rsvo.setUserid(userid); // rsvo에 userid 가져와서 넣기
+		if(session.getAttribute("userid")!=null)
+		{
+			String userid=session.getAttribute("userid").toString();
+			rsvo.setUserid(userid); // rsvo에 userid 가져와서 넣기
+					
+			// 예약번호 생성 => bk+4자리
+			Integer number=mapper.getBid(userid);
+			number++;
+		//	System.out.println(number);
+			String num=number.toString();
+			
+			if(num.length()==1)
+				num="000"+num;
+			else if(num.length()==2)
+				num="00"+num;
+			else if(num.length()==3)
+				num="0"+num;	
+			
+			String bid=userid+'r'+num;
+		//	System.out.println(bid);
+			rsvo.setBid(bid);
 		
-		// 예약번호 생성 => bk+4자리
-		Integer number=mapper.getBid(userid);
-		number++;
-	//	System.out.println(number);
-		String num=number.toString();
-		
-		if(num.length()==1)
-			num="000"+num;
-		else if(num.length()==2)
-			num="00"+num;
-		else if(num.length()==3)
-			num="0"+num;	
-		
-		String bid=userid+'r'+num;
-	//	System.out.println(bid);
-		rsvo.setBid(bid);
+		}
 		
 		mapper.room_resv_ok(rsvo);
-		
 		return "redirect:/room/rooms";
-	}
+}
+	
 	@Override 
 	public void getRoomAvail(HttpServletRequest request, PrintWriter out, RoomVO rvo) {
 		String checkin=request.getParameter("checkin");
-		
-		ArrayList<RoomVO> list=mapper.getCnt(checkin);
-
+		String rcode=request.getParameter("rcode");
+		String adult=request.getParameter("adult");
+		System.out.println(adult);
+		ArrayList<RoomVO> list=mapper.getRoomAvail(checkin,adult);
+		//mapper.getRmax(rcode);
 		String str="";		
 	
 		for(int i=0;i<list.size();i++)
@@ -123,22 +116,10 @@ public class RoomResvServiceImpl implements RoomResvService {
 			RoomVO rvo2=list.get(i);
 			str=str+rvo2.getRcode()+","+rvo2.getCnt()+",";
 		}
-
+		
 		out.print(str);
+	}
 
-		
-	}
-	@Override
-	public void suUpdate(HttpServletRequest request, PrintWriter out) {
-		String rcode=request.getParameter("rcode");
-		String checkin=request.getParameter("checkin");
-		String checkout=request.getParameter("checkout");
-		
-		mapper.suUpdate(rcode,checkin,checkout);
-		
-		out.print("0");
-		
-	}
-	
+
 	
 }

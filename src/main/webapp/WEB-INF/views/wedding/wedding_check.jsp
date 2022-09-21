@@ -4,82 +4,195 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <head>
 <style>
-
-	 #hall li{
-	display:inline-block;	
-	width:150px;}
-	#aa{
-	width:1100px;
-	margin:auto;}
 	
-	#bb .blog_right_sidebar{
-	width:1100px;}
-	#bb .blog_right_sidebar ul li{
-	display:inline-block;	}
-	#bb .blog_right_sidebar img{
-	width:120px;}
-	
-	.c{
-	height:400px;}
-	
-	.widget_title{
+	section{
+	width:1300px;
+	margin:auto;
+	margin-top:100px;
+	margin-bottom:200px;
 	}
+	
+	section #wed_chk #txt{
+	font-size:80px;
+	font-family:fantasy;}
+	
+	section #wed_chk table input[type=radio]{
+	margin-left:30px;}
+	
+	section #wed_chk table:first-child{
+	margin-top:100px;
+	width:1100px;
+	border-left:none;
+	border-right:none;
+	border-top:white;}
+	
+	section #wed_chk table:first-child td{
+	padding:20px;
+	border-left:none;
+	border-right:none;}
+	
+	section #wed_chk table:first-child td:first-child{
+	font-weight:600;}
+	
+	section #wed_chk table:first-child #txt2{
+	font-weight:100;
+	font-size:13px;}
+	
+	section #wed_chk table:first-child td:first-child{
+	width:200px;}
+	
+	section #wed_chk table:first-child select{
+	width:100px;
+	height:50px;
+	outline:none;
+	border: 1px solid #cccccc;}
+	
+	section #wed_chk table:first-child select option{
+	font-size:16px;}
+	
+	section #wed_chk table:last-child{
+	width:1000px;
+	margin-top:100px;
+	border:1px solid #cccccc;
+	border-spacing:25px;
+    border-collapse:separate;
+    border-radius:20px;}
+	
+	section #wed_chk table:last-child td{
+	padding:20px;}
+	
+	section #wed_chk table:last-child td:first-child, td:nth-child(3){
+	width:200px;
+	font-weight:600;}
+	
+	section #wed_chk table:last-child td:nth-child(2), td:nth-child(4){
+	width:250px;}
+	
+	section #wed_chk table:last-child td:nth-child(2), td:nth-child(4){
+	text-align:right;}
+	
+	section #wed_chk table:last-child tr:last-child{
+	height:150px;
+	text-align:center;}
+	
+	section #wed_chk table:last-child #total{
+	padding-left:100px;}
+	
+	#wed_hall3{
+	margin-top:50px;
+	text-align:right;
+	width:100%;
+	font-size:18px;
+	padding-top:50px;
+	padding-bottom:50px;
+	background:#EAEAEA;
+	margin-bottom:100px;}
+	
+	#wed_hall3 button{
+	margin-top:20px;
+	width:250px;
+	height:70px;}
+	
+	#wed_chk2 img{
+	width:100%;}
+	
+	section #wed_chk table:first-child #tr_food1, #tr_food2{
+	display:none; }
+	
+	section #wed_chk table:first-child #btn1, #btn2{
+	width:120px;
+	height:30px;
+	padding-left:30px;
+	padding-bottom:30px;}
+	
+	section #wed_chk table:first-child #btn2{
+	margin-left:30px;}
 </style>
 
 </head>
 
 <body>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+
+
 <script>
-function total_price()
-{
-	var hall=document.pay.hall.value;
-	document.getElementById("hall").innerText=new Intl.NumberFormat().format(hall);
+
+	function change_food1()
+	{
+  		document.getElementById("f_1").style.color="#cccccc";
+  		document.getElementById("f_2").style.color="#cccccc";
+  		document.getElementById("f_3").style.color="black";
+  		document.getElementById("f_4").style.color="black";
+  		document.getElementById("tr_food1").style.display="table-row";
+  		document.getElementById("f_txt").innerText="동시예식";
+  		document.pay.food1.value="0";
+  		document.getElementById("f1").disabled=true;
+  		document.getElementById("f2").disabled=true;
+  		document.getElementById("f3").disabled=false;
+  		document.getElementById("f4").disabled=false;
+	}	
+
+	function change_food2()
+	{
+		document.getElementById("f_3").style.color="#cccccc";
+  		document.getElementById("f_4").style.color="#cccccc";
+  		document.getElementById("f_1").style.color="black";
+  		document.getElementById("f_2").style.color="black";
+  		document.getElementById("tr_food1").style.display="table-row";
+  		document.getElementById("f_txt").innerText="분리예식";
+  		document.pay.food1.value="0";
+  		document.getElementById("f1").disabled=false;
+  		document.getElementById("f2").disabled=false;
+  		document.getElementById("f3").disabled=true;
+  		document.getElementById("f4").disabled=true;
+	}
 	
-	var day=document.pay.day.value;
-	document.getElementById("day").innerText=new Intl.NumberFormat().format(day);
-	
-	var time=document.pay.time.value;
-	document.getElementById("time").innerText=new Intl.NumberFormat().format(time);
-	
-	var inwon=document.pay.inwon.value;
-	document.getElementById("inwon").innerText=new Intl.NumberFormat().format(inwon);
-	
-	var food_inwon1=document.pay.food_inwon1.value;
-	var food1=document.pay.food1.value;
-	var food_price1=food_inwon1*food1;
-	document.getElementById("food1").innerText=new Intl.NumberFormat().format(food_price1);
-	
-	var food_inwon2=document.pay.food_inwon2.value;
-	var food2=document.pay.food2.value;
-	var food_price2=food_inwon2*food2;
-	document.getElementById("food2").innerText=new Intl.NumberFormat().format(food_price2);
-	
-	var food3=document.pay.food3.value;
-	document.getElementById("food3").innerText=new Intl.NumberFormat().format(food3);
-	
-	var mc=document.pay.mc.value;
-	document.getElementById("mc").innerText=new Intl.NumberFormat().format(mc);
-	
-	var flower=document.pay.flower.value;
-	document.getElementById("flower").innerText=new Intl.NumberFormat().format(flower);
-	
-	var bouquet=document.pay.bouquet.value;
-	document.getElementById("bouquet").innerText=new Intl.NumberFormat().format(bouquet);
-	
-	var direct1=document.pay.direct1.value;
-	document.getElementById("direct1").innerText=new Intl.NumberFormat().format(direct1);
-	
-	var direct2=document.pay.direct2.value;
-	document.getElementById("direct2").innerText=new Intl.NumberFormat().format(direct2);
-	
-	var direct3=document.pay.direct3.value;
-	document.getElementById("direct3").innerText=new Intl.NumberFormat().format(direct3);
-	
-	var total=Number(hall)+Number(day)+Number(time)+Number(inwon)+Number(food_price1)+Number(food_price2)+Number(food3)+Number(mc)+Number(flower)+Number(bouquet)+Number(direct1)+Number(direct2)+Number(direct3);
-	document.getElementById("total").innerText=new Intl.NumberFormat().format(total);
-	
-	document.pay.total.value=total;
-	
+	function total_price()
+	{
+		var hall=document.pay.hall.value;
+		document.getElementById("hall").innerText=new Intl.NumberFormat().format(hall);
+		
+		var day=document.pay.day.value;
+		document.getElementById("day").innerText=new Intl.NumberFormat().format(day);
+		
+		var time=document.pay.time.value;
+		document.getElementById("time").innerText=new Intl.NumberFormat().format(time);
+		
+		var inwon=document.pay.inwon.value;
+		document.getElementById("inwon").innerText=new Intl.NumberFormat().format(inwon);
+		
+		
+		var food_inwon1=document.pay.food_inwon1.value;
+		var food1=document.pay.food1.value;
+		var food_price1=food_inwon1*food1;
+		document.getElementById("food1").innerText=new Intl.NumberFormat().format(food_price1);				
+
+		var food3=document.pay.food3.value;
+		document.getElementById("food3").innerText=new Intl.NumberFormat().format(food3);
+		
+		var mc=document.pay.mc.value;
+		document.getElementById("mc").innerText=new Intl.NumberFormat().format(mc);
+		
+		var flower=document.pay.flower.value;
+		document.getElementById("flower").innerText=new Intl.NumberFormat().format(flower);
+		
+		var bouquet=document.pay.bouquet.value;
+		document.getElementById("bouquet").innerText=new Intl.NumberFormat().format(bouquet);
+		
+		var direct1=document.pay.direct1.value;
+		document.getElementById("direct1").innerText=new Intl.NumberFormat().format(direct1);
+		
+		var direct2=document.pay.direct2.value;
+		document.getElementById("direct2").innerText=new Intl.NumberFormat().format(direct2);
+		
+		var direct3=document.pay.direct3.value;
+		document.getElementById("direct3").innerText=new Intl.NumberFormat().format(direct3);
+		
+		var total=Number(hall)+Number(day)+Number(time)+Number(inwon)+Number(food_price1)+Number(food3)+Number(mc)+Number(flower)+Number(bouquet)+Number(direct1)+Number(direct2)+Number(direct3);
+		document.getElementById("total").innerText=new Intl.NumberFormat().format(total);
+		
+		document.pay.total.value=total;
+		
 	}
 </script>
 
@@ -96,17 +209,18 @@ function total_price()
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
 
     <!--================ Single-Wedding Area Start =================-->
-    
-    <section class="blog_area single-post-area section-padding">
 
- <div class="container" style="margin-top:100px;">
 
-         <div class="row">
-            <div class="col-lg-8 posts-list">
-       <form name="pay" method="post">   
-          <table width="1100" border="1">
+
+<section>
+<div id="wed_chk">
+
+	<div id="txt">WEDDINGz</div>
+
+	 <form name="pay" method="post">   
+          <table border="1" align="center">
           <tr>
-          	<td>홀</td>
+          	<td>홀 <span id="txt2">(최소인원/최대인원)</span></td>
           	<td>
 			<c:forEach items="${list }" var="wvo">
 				<input type="radio" name="hall" value="${wvo.wed_price }" onchange="total_price()">${wvo.wed_hall } (${wvo.wed_min }/${wvo.wed_max })
@@ -128,7 +242,7 @@ function total_price()
           	</td>
           </tr>
           <tr>
-          	<td>인원(최소인원/최대인원)</td>
+          	<td>인원</td>
           	<td>
           	<input type="radio" name="inwon" onchange="total_price()" value="0" checked>최소인원
           	<input type="radio" name="inwon" onchange="total_price()" value="80">+50인
@@ -137,22 +251,27 @@ function total_price()
           	</td>
           </tr>
           <tr>
-          	<td>하객음식_동시예식</td>
-          	<td>
-          	<input type="radio" name="food1" onchange="total_price()" value="0">선택안함
-          	<input type="radio" name="food1" onchange="total_price()" value="7">7만원
-          	<input type="radio" name="food1" onchange="total_price()" value="10">10만원
-          	x<input type="text" name="food_inwon1" onchange="total_price()" placeholder="인원수 입력">
-          	
+          	<td>하객음식</td>
+          	<td>	
+          		<input type="button" id="btn2" class="button button-contactForm btn_1 boxed-btn" onclick="change_food2()" value="분리예식">
+          		<input type="button" id="btn1" class="button button-contactForm btn_1 boxed-btn" onclick="change_food1()" value="동시예식">
           	</td>
           </tr>
-          <tr>
-          	<td>하객음식_분리예식</td>
+          <tr id="tr_food1">
+          	<td><span id="f_txt"></span></td>
           	<td>
-          	<input type="radio" name="food2" onchange="total_price()" value="0">선택안함
-          	<input type="radio" name="food2" onchange="total_price()" value="4">4만원
-          	<input type="radio" name="food2" onchange="total_price()" value="6.5">6.5만원
-          	x<input type="text" name="food_inwon2" onchange="total_price()" placeholder="인원수 입력">
+          	<input type="radio" name="food1" onchange="total_price()" value="0">선택안함
+          	<input type="radio" name="food1" id="f1" onchange="total_price()" value="4"><span id="f_1">4만원</span>
+          	<input type="radio" name="food1" id="f2" onchange="total_price()" value="6.5"><span id="f_2">6.5만원</span>
+          	<input type="radio" name="food1" id="f3" onchange="total_price()" value="7"><span id="f_3">7만원</span>
+          	<input type="radio" name="food1" id="f4" onchange="total_price()" value="10"><span id="f_4">10만원</span>
+          	x
+          	<select name="food_inwon1" onchange="total_price()">
+          			<option value="100">100명</option>
+          			<option value="150">150명</option>
+          			<option value="200">200명</option>
+          			<option value="300">300명</option>
+          	</select>
           	</td>
           </tr>
           <tr>
@@ -210,8 +329,7 @@ function total_price()
           </tr>
           </table>     
           
-          <!-- 비용보이기 -->
-          <table width="1100" border="1">
+          <table align="center">
           <tr>
           	<td>홀</td>
          	<td><span id="hall" >0</span>만원</td>
@@ -225,271 +343,48 @@ function total_price()
          	<td><span id="inwon">0</span>만원</td>
           </tr>
           <tr>
-          	<td>동시예식</td>
+          	<td>하객음식</td>
          	<td><span id="food1">0</span>만원</td>
-         	<td>분리예식</td>
-         	<td><span id="food2">0</span>만원</td>
-          </tr>
-          <tr>
-          	<td>폐백음식</td>
+         	<td>폐백음식</td>
          	<td><span id="food3">0</span>만원</td>
-         	<td>사회자</td>
-         	<td><span id="mc">0</span>만원</td>
           </tr>
           <tr>
-          	<td>생화</td>
-         	<td><span id="flower">0</span>만원</td>
+          	<td>사회자</td>
+         	<td><span id="mc">0</span>만원</td>
          	<td>부케</td>
          	<td><span id="bouquet">0</span>만원</td>
           </tr>
           <tr>
-          	<td>스크린상영</td>
+          	<td>생화</td>
+         	<td><span id="flower">0</span>만원</td>
+         	<td>스크린상영</td>
          	<td><span id="direct1">0</span>만원</td>
-         	<td>특수조명</td>
+          </tr>
+          <tr>
+          	<td>특수조명</td>
          	<td><span id="direct2">0</span>만원</td>
+         	<td>음향시스셈</td>
+         	<td><span id="direct3">0</span>만원</td>
           </tr>
           <tr>
-          	<td>음향시스셈</td>
-         	<td colspan="3"><span id="direct3">0</span>만원</td>
-          </tr>
-          <tr>
-         	 <td>총 금액</td>
-         	 <td colspan="3"><span id="total">0</span>만원</td>
+         	 <td colspan="4">총 금액 <span id="total">0</span>만원</td>
           </tr>
           </table>
-      </form>      
-          
-          
-          
-          
-          
-          
-          
-            
-             
-               
-     
-<div class="container">
-         <div class="row">
-    
-    <div class="col-lg-4">
-    <div id="bb">
-               <div class="blog_right_sidebar">
-    <aside class="single_sidebar_widget instagram_feeds">
-                     <h4 class="widget_title">pic</h4>
-                     <ul class="b">
-                        <li>
-                           <a href="#">
-                              <img src="../img/post/post_5.png" alt="">
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#">
-                              <img  src="../img/post/post_6.png" alt="">
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#">
-                              <img  src="../img/post/post_7.png" alt="">
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#">
-                              <img src="../img/post/post_8.png" alt="">
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#">
-                              <img src="../img/post/post_9.png" alt="">
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#">
-                              <img src="../img/post/post_10.png" alt="">
-                           </a>
-                        </li>
-                     </ul>
-                  </aside>
-         </div>
-         </div>         
-                 </div> 
-         </div></div>            
-               
-               
-               
-        
-         
-<div class="form-group">
-                        <button type="submit" class="button button-contactForm btn_1 boxed-btn">예약하기</button>
-                     </div>
-                     <div style="border-bottom:1px solid #f0e9ff; width:1100px;"></div>
-          </div>     
+      </form>  
+</div>
+</section>
 
-            
-            
-            
-            
-        <div id="c">
-            <div class="col-lg-4">
-               <div class="blog_right_sidebar">
-               
-                   
-         <table width="1100">
-         <tr>
-         <td colspan="3" style="background:#f9f9ff; border-bottom:1px solid #f0e9ff; height:60px;">
-         
-        
-         <h4 >웨딩홀이름</h4>
-        
-         
-         </td>
-         </tr>
-         	<tr>
-         		<td><aside class="single_sidebar_widget post_category_widget">
-         		<div class="c">
-                     
-                     <ul class="list cat-list">
-                        <li>
-                           <a href="#" class="d-flex">
-                              <p>Resaurant food</p>
-                              <p>(37)</p>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#" class="d-flex">
-                              <p>Travel news</p>
-                              <p>(10)</p>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#" class="d-flex">
-                              <p>Modern technology</p>
-                              <p>(03)</p>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#" class="d-flex">
-                              <p>Product</p>
-                              <p>(11)</p>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#" class="d-flex">
-                              <p>Inspiration</p>
-                              <p>(21)</p>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#" class="d-flex">
-                              <p>Health Care</p>
-                              <p>(21)</p>
-                           </a>
-                        </li>
-                     </ul></div>
-                  </aside></td>
-         	
-         		<td><aside class="single_sidebar_widget post_category_widget">
-                     <div class="c">
-                     <ul class="list cat-list">
-                     
-                        <li>
-                           <a href="#" class="d-flex">
-                              <p>Resaurant food</p>
-                              <p>(37)</p>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#" class="d-flex">
-                              <p>Travel news</p>
-                              <p>(10)</p>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#" class="d-flex">
-                              <p>Modern technology</p>
-                              <p>(03)</p>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#" class="d-flex">
-                              <p>Product</p>
-                              <p>(11)</p>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#" class="d-flex">
-                              <p>Inspiration</p>
-                              <p>(21)</p>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#" class="d-flex">
-                              <p>Health Care</p>
-                              <p>(21)</p>
-                           </a>
-                        </li>
-                     </ul></div>
-                  </aside></td>
-         
-         		<td><aside class="single_sidebar_widget post_category_widget">
-                     <div class="c">
-                     <ul class="list cat-list">
-                        <li>
-                           <a href="#" class="d-flex">
-                              <p>Resaurant food</p>
-                              <p>(37)</p>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#" class="d-flex">
-                              <p>Travel news</p>
-                              <p>(10)</p>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#" class="d-flex">
-                              <p>Modern technology</p>
-                              <p>(03)</p>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#" class="d-flex">
-                              <p>Product</p>
-                              <p>(11)</p>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#" class="d-flex">
-                              <p>Inspiration</p>
-                              <p>(21)</p>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#" class="d-flex">
-                              <p>Health Care</p>
-                              <p>(21)</p>
-                           </a>
-                        </li>
-                     </ul></div>
-                  </aside></td>
-         	</tr>
-         
-         </table>   
-            
-            
-            
-            
-                  
-                  
+<div id="wed_chk2">
+	<img src="../img/wedding/wedding_chk.jpg">
+</div>
+<div id="wed_hall3">
+	 
+	<div id="txt"> 운영일 : 월~일요일 &emsp;|&emsp; 운영시간 : 10:00 ~ 18:00 &emsp;|&emsp; Tel : 02-000-000</div>
+			
+	<button type="submit" class="button button-contactForm btn_1 boxed-btn" onclick="location='../wedding/wedding_reserve'">예약하기</button>
+		
+</div>
  
-                  
-               
-               </div>
-            </div>
-         </div>
-         </div>
-      </div>
-   </section>
    <!--================ Single-Wedding Area end =================-->
 
 </body>

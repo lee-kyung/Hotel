@@ -56,7 +56,7 @@
                                         </li>
                                         <li><a href="../wedding/wedding">wedding<i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
-                                                <li><a href="../wedding/wedding_hall?id=9">웨딩홀</a></li>
+                                                <li><a href="../wedding/wedding_hall?id=15">웨딩홀</a></li>
                                                 <li><a href="../wedding/wedding_reserve">상담예약</a></li>
                                                 <li><a href="../wedding/wedding_check">견적</a></li>
                                             </ul>
@@ -107,10 +107,14 @@
                                         <li>
 		                                <c:if test="${userid == null}">
 											<a href="../login/login">로그인</a>
-											<a href="#">회원가입</a>
+											<a href="../member/member_input">회원가입</a>
 										</c:if>
-										<c:if test="${userid != null}">
-											<a href="#"> ${name}님
+										<c:if test="${(userid != null) && (userid != 'admin')}">
+											<a href="../mypage/mypage"> ${name}님
+											<a href="../login/logout">로그아웃</a>
+										</c:if>
+										<c:if test="${userid == 'admin'}">
+											<a href="#"> ${name}님											
 											<a href="../login/logout">로그아웃</a>
 										</c:if>
 		                                </li>

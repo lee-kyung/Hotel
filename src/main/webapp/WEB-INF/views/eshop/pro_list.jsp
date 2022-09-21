@@ -28,29 +28,39 @@
 	#pro_list #cate1 {
 		margin : auto;
 		text-align : center;
-		margin-top : 50px;
-		width : 410px;
-		height : 60px;
+		margin-top : 70px;
+		width : 1090px;
+		height : 80px;
 	}
 	#pro_list #cate1 #cate2 {
 		display : inline-block;
 		float : left;
-		width : 200px;
-		height : 35px;
-		padding-top : 5px;
+		width : 540px;
+		height : 50px;
+		padding-top : 12px;
 		border : 1px solid #887159;
 		color : #887159;
 		cursor : pointer;
 	}
+	#pro_list #cate1 #cate2:hover {
+		border : 1px solid #887159;
+		background : #887159;
+		color : white;
+	}
 	#pro_list #cate1 #cate3 {
 		display : inline-block;
 		float : right;
-		width : 200px;
-		height : 35px;
-		padding-top : 5px;
+		width : 540px;
+		height : 50px;
+		padding-top : 12px;
 		border : 1px solid #887159;
 		color : #887159;
 		cursor : pointer;
+	}
+	#pro_list #cate1 #cate3:hover {
+		border : 1px solid #887159;
+		background : #887159;
+		color : white;
 	}
 	#pro_list #title {
 		display : inline-block;
@@ -61,6 +71,7 @@
 	}
 	#pro_list #wish {
 		float : right;
+		margin-right : 10px;
 	}
 	#pro_list #wish img {
 		cursor : pointer;
@@ -165,14 +176,24 @@
 
 <body>
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
-    <c:if test="${(pcode == 'p01') || (pcode == 'p0101') || (pcode == 'p0102')}">
+    <c:if test="${(pcode == 'p01')}">
 	    <div class="bradcam_area eshop2">
-	        <h3 onclick="location='pro_list?pcode=p01'" style="cursor:pointer;"> P R O D U C T </h3>
+	        <h3 onclick="location='pro_list?pcode=p01&osel=${osel}'" style="cursor:pointer;"> P R O D U C T </h3>
+	    </div>
+    </c:if>
+    <c:if test="${(pcode == 'p0101')}">
+	    <div class="bradcam_area eshop4">
+	        <h3 onclick="location='pro_list?pcode=p01&osel=${osel}'" style="cursor:pointer;"> P R O D U C T </h3>
+	    </div>
+    </c:if>
+    <c:if test="${(pcode == 'p0102')}">
+	    <div class="bradcam_area eshop5">
+	        <h3 onclick="location='pro_list?pcode=p01&osel=${osel}'" style="cursor:pointer;"> P R O D U C T </h3>
 	    </div>
     </c:if>
     <c:if test="${(pcode == 'p02') || (pcode == 'p0201') || (pcode == 'p0202')}">
 	    <div class="bradcam_area eshop3">
-	        <h3 onclick="location='pro_list?pcode=p02'" style="cursor:pointer;"> V O U C H E R </h3>
+	        <h3 onclick="location='pro_list?pcode=p02&osel=${osel}'" style="cursor:pointer;"> V O U C H E R </h3>
 	    </div>
     </c:if>
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
@@ -182,14 +203,14 @@
 	<section id="pro_list">
 		<c:if test="${(pcode == 'p01') || (pcode == 'p0101') || (pcode == 'p0102')}">
 			<div id="cate1">
-				<span id="cate2" onclick="location='pro_list?pcode=p0101'"> B E D D I N G </span>
-				<span id="cate3" onclick="location='pro_list?pcode=p0102'"> L I F E S T Y L E </span>
+				<span id="cate2" onclick="location='pro_list?pcode=p0101&osel=${osel}'"> B E D D I N G </span>
+				<span id="cate3" onclick="location='pro_list?pcode=p0102&osel=${osel}'"> L I F E S T Y L E </span>
 			</div>
 		</c:if>
 		<c:if test="${(pcode == 'p02') || (pcode == 'p0201') || (pcode == 'p0202')}">
 			<div id="cate1">
-				<span id="cate2" onclick="location='pro_list?pcode=p0201'"> R E S T A U R A N T </span>
-				<span id="cate3" onclick="location='pro_list?pcode=p0202'"> H O T E L </span>
+				<span id="cate2" onclick="location='pro_list?pcode=p0201&osel=${osel}'"> R E S T A U R A N T </span>
+				<span id="cate3" onclick="location='pro_list?pcode=p0202&osel=${osel}'"> H O T E L </span>
 			</div>
 		</c:if>
 		<div class="default-select" id="default-select" style="display:inline-block;">
@@ -226,7 +247,7 @@
 				</c:if>
 			</select>
 		</div>
-		<div class="default-select" id="default-select" style="display:inline-block;float:right;">
+		<div class="default-select" id="default-select" style="display:inline-block;float:right;margin-right:5px;">
 			<select onchange="page_sel(this.value)" id="psel">
 				<c:if test="${psel == 9}">
 					<option value="9" selected> 9개씩 </option>
@@ -246,7 +267,7 @@
 				<c:if test="${psel != 30}">
 					<option value="30"> 30개씩 </option>
 				</c:if>
-				<c:if test="${psel == 45}">
+				<%-- <c:if test="${psel == 45}">
 					<option value="45" selected> 45개씩 </option>
 				</c:if>
 				<c:if test="${psel != 45}">
@@ -257,14 +278,14 @@
 				</c:if>
 				<c:if test="${psel != 60}">
 					<option value="60"> 60개씩 </option>
-				</c:if>	
+				</c:if>	 --%>
 			</select>
 		</div>
 		<table align="center">	 <!-- 상품을 9개씩 출력 -->
 		<c:set var="n" value="3"/>	<!-- 한 행에 출력되는 열(상품)의 개수 -->
 		<c:set var="i" value="0"/>	<!-- 상품 3개마다 행을 바꾸기 위한 변수 -->	
 			<tr>
-			<c:forEach var="pvo" items="${plist}" varStatus="my">
+			<c:forEach var="pvo" items="${plist}" varStatus="wish">
 				<td>
 					<div class="offers_area padding_top" id="eshop_img"><div class="single_offers"><div class="about_thumb">
 						<img src="../img/eshop/${pvo.img}" height="300" width="300" onclick="content_view('${pvo.pcode}')" style="cursor:pointer">	<!-- 상품이미지 -->
@@ -275,10 +296,10 @@
 							<img src="../img/eshop/wish_off.png" width="20" onclick="alert('로그인하셔야 본 서비스를 이용하실 수 있습니다.')">
 						</c:if>
 						<c:if test="${(userid != null) && (pvo.wishchk == 0)}">
-							<img src="../img/eshop/wish_off.png" width="20" onclick="wish_add('${pvo.pcode}', ${my.index})" class="wishimg">
+							<img src="../img/eshop/wish_off.png" width="20" onclick="wish_add('${pvo.pcode}', ${wish.index})" class="wishimg">
 						</c:if>
 						<c:if test="${(userid != null) && (pvo.wishchk == 1)}">
-							<img src="../img/eshop/wish_on.png" width="20" onclick="wish_del('${pvo.pcode}', ${my.index})" class="wishimg">
+							<img src="../img/eshop/wish_on.png" width="20" onclick="wish_del('${pvo.pcode}', ${wish.index})" class="wishimg">
 						</c:if>
 					</div>
 					<hr style="width:350px;">

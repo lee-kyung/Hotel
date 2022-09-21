@@ -9,12 +9,11 @@ public interface RoomResvMapper {
 	public RoomVO room_resvnext(String rcode);
 	public void room_resv_ok(RoomResvVO rsvo);
 	public Integer getBid(String userid); 
-	public ArrayList<RoomVO> getRoomAvail(String checkin);
-	public ArrayList<RoomVO> getCnt(String checkin);
-	public void suUpdate(String rcode,String checkin,String checkout);
-	
-	
-	
+	public ArrayList<RoomVO> getRoomAvail(String checkin, String adult);
+	/*public ArrayList<RoomVO> getRmax(String rcode);*/
+/*	public ArrayList<RoomVO> getCnt(String checkin);*/
+
+
 	
 	
 }

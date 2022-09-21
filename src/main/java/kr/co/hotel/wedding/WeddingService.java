@@ -3,6 +3,7 @@ package kr.co.hotel.wedding;
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.ui.Model;
 
@@ -13,14 +14,12 @@ public interface WeddingService {
 
 	public String wedding_hall(HttpServletRequest request, Model model, WeddingVO wvo);
 
-	public String wedding_check(Model model, HttpServletRequest request);
+	public String wedding_check(Model model);
 	
-	public String wedding_reserve(HttpServletRequest request, Model model, WeddingResvVO wrvo, PrintWriter out);
+	public String wedding_reserve(HttpServletRequest request, Model model);
 
-	public String weddingReserve_ok(HttpServletRequest request, WeddingResvVO wrvo);
+	public String weddingReserve_ok(WeddingResvVO wrvo, HttpSession session);
 
-	public void getcheck(WeddingResvVO wrvo, HttpServletRequest request, Model model);
-
-	public void wresv_cal(WeddingResvVO wrvo,PrintWriter out, HttpServletRequest request, Model model,WeddingResvTimeVO wrtvo);
+	public void wresv_cal(WeddingResvVO wrvo,PrintWriter out);
 
 }

@@ -4,14 +4,19 @@ import java.io.PrintWriter;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.Random;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.web.util.WebUtils;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -135,7 +140,7 @@ public class EshopServiceImpl implements EshopService {
 		if(pend > ptotal)
 			pend=ptotal;
 		
-		/* 위시리스트트 체크하기 위한 userid */
+		/* 회원과 비회원을 구분하여 plist를 불러와 view에 전달하기 */
 		if(session.getAttribute("userid") == null)
 			model.addAttribute("plist", mapper.pro_list2(pcode, osel, pindex, psel));
 		else {
@@ -193,4 +198,106 @@ public class EshopServiceImpl implements EshopService {
 		out.print("0");
 	}
 
+	@Override
+	public void cart_add(HttpSession session, HttpServletRequest request, PrintWriter out, HttpServletResponse response) {
+		String pcode=request.getParameter("pcode");
+		int su=Integer.parseInt(request.getParameter("su"));
+		Cookie cookie = WebUtils.getCookie(request, "cookieid");	// 이미 생성된 쿠키값(cookieid)이 있다면 cookie변수에 넣기
+		
+		if(session.getAttribute("userid") == null) {	// 비회원인데
+			if(cookie == null) {	// cookie값이 없다면
+				String cookievalue=RandomStringUtils.random(30, true, true);	// 쿠키값(cookievalue, 30자, 문자O, 숫자O) 생성하기
+				Cookie cookieid=new Cookie("cookieid", cookievalue);
+			
+				/* 처음 장바구니에 상품을 넣으면 쿠키 유지시간 설정하기 (1시간) */
+				cookieid.setPath("/");
+				cookieid.setMaxAge(60 * 60 * 1);
+				response.addCookie(cookieid);
+				
+				mapper.cart_add(cookievalue, pcode, su);
+			}
+			else {	// cookie값이 이미 있다면
+				String cookievalue=cookie.getValue();
+				
+				/* 장바구니에 상품을 넣을 떄마다 쿠키 유지시간 재설정하기 (1시간) */
+				cookie.setPath("/");
+				cookie.setMaxAge(60 * 60 * 1);
+				response.addCookie(cookie);
+				
+				/* 장바구니 중복 체크하기 */
+				int chk=mapper.checkCart(cookievalue, pcode);
+				if(chk == 0)	// 장바구니에 해당 상품이 없다면 새로 추가하기
+					mapper.cart_add(cookievalue, pcode, su);
+				else	// 있다면 수량만 늘리기
+					mapper.cart_suadd(su, cookievalue, pcode);
+			}
+		}
+		else {	// 회원이라면
+			String userid=session.getAttribute("userid").toString();
+			
+			/*  장바구니 중복 체크하기 */
+			int chk=mapper.checkCart(userid, pcode);
+			if(chk == 0)	// 장바구니에 해당 상품이 없다면 새로 추가하기
+				mapper.cart_add(userid, pcode, su);
+			else	// 있다면 수량만 늘리기
+				mapper.cart_suadd(su, userid, pcode);
+		}
+		out.print("0");
+	}
+
+	@Override
+	public String cart(HttpSession session, Model model, HttpServletRequest request, HttpServletResponse response) {
+		String arrprice="";
+		String arrhalin="";
+		String arrsu="";
+		String arrbaefee="";
+		
+		if(session.getAttribute("userid") == null) {	// 비회원인데
+			Cookie cookie = WebUtils.getCookie(request, "cookieid");
+			if(cookie != null) {	// cookie값이 있다면
+				String cookievalue=cookie.getValue();
+				ArrayList<CartVO> clist=mapper.cart(cookievalue);
+				model.addAttribute("clist", clist);
+				
+				/* 장바구니에 담긴 상품들의 1개당 단가를 배열로 담아서 model로 보내기 */
+				for(int i=0;i<clist.size();i++) {
+					arrprice=arrprice+clist.get(i).getPrice()+",";	// [A상품 1개의 단가, B상품 1개의 단가,] 배열로 담기
+					arrhalin=arrhalin+clist.get(i).getHalin()+",";	// [A상품 1개의 할인율, B상품 1개의 할인율,] 배열로 담기
+					arrsu=arrsu+clist.get(i).getSu()+",";	// [A상품 1개의 수량, B상품 1개의 수량,] 배열로 담기
+					arrbaefee=arrbaefee+clist.get(i).getBaefee()+",";	// [A상품 1개의 배송비, B상품 1개의 배송비,] 배열로 담기
+				}
+			}
+		}
+		else {	// 회원이라면
+			String userid=session.getAttribute("userid").toString();
+			ArrayList<CartVO> clist=mapper.cart(userid);
+			model.addAttribute("clist", clist);
+			
+			/* 장바구니에 담긴 상품들의 1개당 단가를 배열로 담아서 model로 보내기 */
+			for(int i=0;i<clist.size();i++) {
+				arrprice=arrprice+clist.get(i).getPrice()+",";	// [A상품 1개의 단가, B상품 1개의 단가,] 배열로 담기
+				arrhalin=arrhalin+clist.get(i).getHalin()+",";	// [A상품 1개의 할인율, B상품 1개의 할인율,] 배열로 담기
+				arrsu=arrsu+clist.get(i).getSu()+",";	// [A상품 1개의 수량, B상품 1개의 수량,] 배열로 담기
+				arrbaefee=arrbaefee+clist.get(i).getBaefee()+",";	// [A상품 1개의 배송비, B상품 1개의 배송비,] 배열로 담기
+			}
+		}
+
+		model.addAttribute("arrprice", arrprice);
+		model.addAttribute("arrhalin", arrhalin);
+		model.addAttribute("arrsu", arrsu);
+		model.addAttribute("arrbaefee", arrbaefee);
+		
+		return "/eshop/cart";
+	}
+
+	@Override /* 장바구니에서 1개 or 여러 개 삭제하기 */
+	public String cart_del(HttpServletRequest request) {
+		/* 삭제할 id값을 분리한 후, 삭제하기 */
+		String[] id=request.getParameter("delid").split(",");
+		for(int i=0;i<id.length;i++) {
+			mapper.cart_del(id[i]);
+		}
+		
+		return "redirect:/eshop/cart";
+	}
 }

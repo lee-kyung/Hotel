@@ -64,7 +64,7 @@
                                         </li>
                                         <li><a href="../wedding/wedding">wedding<i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
-                                                <li><a href="../wedding/wedding_hall?id=9">웨딩홀</a></li>
+                                                <li><a href="../wedding/wedding_hall?id=15">웨딩홀</a></li>
                                                 <li><a href="../wedding/wedding_reserve">상담예약</a></li>
                                                 <li><a href="../wedding/wedding_check">견적</a></li>
                                             </ul>
@@ -115,18 +115,80 @@
                                          <li>
 		                                <c:if test="${userid == null}">
 											<a href="../login/login">로그인</a>
-											<a href="#">회원가입</a>
+											<a href="../member/member_input">회원가입</a>
 										</c:if>
-										<c:if test="${userid != null}">
-											<a href="#"> ${name}님
+										<c:if test="${(userid != null) && (userid != 'admin')}">
+											<a href="../mypage/mypage"> ${name}님
+											<a href="../login/logout">로그아웃</a>
+										</c:if>
+										<c:if test="${userid == 'admin'}">
+											<a href="#"> ${name}님											
+											<a href="#">ss</a>
 											<a href="../login/logout">로그아웃</a>
 										</c:if>
 		                                </li>
                                     </ul>
                                 </div>
                               <div class="book_btn d-none d-lg-block">
-                                    <a href="../room/room_resv">객실예약</a>
-                                </div> 
+                              	    	<a href="#" onclick="logcheck()">객실예약</a>
+                              </div>
+<style>
+	#loglayer{
+		position: absolute;
+		visibility: hidden;
+		width: 650px;
+		height: 750px;
+		border: 1px solid black;
+		background: white;
+		text-align: center;
+	}
+	#loglayer #gologin{
+		width: 400px;
+		height: 80px;
+		border: 1px solid #887159;
+		background: white;
+		margin-top: 200px;
+		color: #887159;
+	}
+	#loglayer #keepgo{
+		width: 400px;
+		height: 80px;
+		border: 1px solid #887159;
+		background: #887159;
+		color: white;
+	}
+	#loglayer #txt{
+		margin-top: 150px;
+		font-size: 20px;
+		color: #887159
+	}
+</style>
+<script>
+	function logcheck()
+	{
+		document.getElementById("loglayer").style.visibility="visible";
+		position_chg();
+	}
+	function position_chg() // 브라우저의 중앙에 레이어를 위치 시키기 위한 좌표
+	{
+		var x=innerWidth; // 브라우저 가로 크기
+		var y=innerHeight; // 브라우저 세로 크기
+		
+		var left=(x/2)-1500;  //220은 qlayer가로크기인 440의 반
+		var top=(y/2)-350;
+		
+		document.getElementById("loglayer").style.left=left+"px";
+		document.getElementById("loglayer").style.top=top+"px";
+	}
+</script>
+<div id="loglayer">
+	<div>
+		<div id="txt">객실 예약을 진행하려면 로그인 또는 비회원으로 진행 선택을 해주세요.</div>
+		<a href="../login/login?chk=1"><input type="button" value="로그인으로 이동" id="gologin"></a><p>
+		<br>
+		<a href="../room/room_resv"><input type="button" value="비회원으로 계속" id="keepgo"></a>
+	</div>
+</div> 
                             </div>
                         </div>
                         <div class="col-12">
@@ -311,7 +373,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
     <script src="../js/main.js"></script>
     <script>
-    $(function(){
+/*     $(function(){
     	
     	 $('#datepicker').datepicker({
          	format:"yy-mm-dd",
@@ -333,7 +395,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
          });
         
     })
-       
+        */
     </script>
 
 </body>

@@ -46,8 +46,55 @@
 		background: #887159;
 		color: white;
 	}
+	
+	section #rmenu{
+		width: 1000px;
+		height: 60px;
+		margin: auto;
+		position: relative; // 스크롤 관련
+	}
+	section #rmenu ul{
+		padding-left: 0px;
+	}
+	section #rmenu ul li{
+		list-style-type: none;
+		display: inline-block;
+		width: 100px;
+		height: 38px;
+		text-align: center;
+		font-weight: 900;
+		border: 1px solid black;
+		border-top: 3px solid #CCCCFF;
+		padding-top:12px;
+		margin-left: 0px;
+		border-right: none;
+		background: lavender;
+	}
+	section #rmenu ul li:last-child{
+		border-right: 1px solid #CCCCFF;
+	}
+	section #rmenu ul li:first-child{
+		border-bottom: none;
+		background: white;
+	}
 </style>
+<script>
+	function change_sub(my)
+	{
+		// 배경색 lavender, 밑줄 #CCCCFF 생기기
+		var rsub=document.getElementsByClassName("rsub")
+		var len=rsub.length;
+		for(i=0;i<len;i++)
+		{
+			rsub[i].style.background="lavender";
+			rsub[i].style.borderBottom="1px solid #CCCCFF";
+		}
+		// 선택된 li 배경색 : white, 밑줄 X
+		rsub[n].style.background="white";
+		rsub[n].style.borderBottom="none";
+	}
 
+</script>
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
     <!-- bradcam_area_start -->
     <!-- 새 이미지 추가하는 법
@@ -65,14 +112,16 @@
     <div class="container">
     <div class="row"> 
     <roomsec>
-    	<div style="font-size: 20px;"> 객실 정보: 
+    	<div style="font-size: 20px;" id="rmenu"> 
+    	<ul>
     		<c:forEach items="${list}" var="rvo"> 
-    			<span style="border: 1px solid #887159">${rvo.rname}</span>
+    			<li class="rsub" onclick="change_sub(this)"> <a href="#rr(n)">${rvo.rname}</a></li>
     		</c:forEach>
+    	</ul>
     	</div>
     	<br>
  		<c:forEach items="${list}" var="rvo">
- 		<div style="font-size:35px; font-weight: 900; color: #887159">${rvo.rname}</div>
+ 		<div class="rr" style="font-size:35px; font-weight: 900; color: #887159">${rvo.rname}</div>
 		<div style="border:1px solid #887159">
 			<div style="margin:auto;"><img src="../img/rooms/${rvo.rpimg}" width="980px"></div>
 			<img src="../img/rooms/${rvo.rcimg}" width="980px"> <p>

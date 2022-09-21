@@ -3,12 +3,10 @@ package kr.co.hotel.wedding;
 public class WeddingResvVO {
 
 	private int wresv_id, state;
-	private String wresv_cday, wresv_day,wresv_wday,wresv_content, wresv_info,userid, wresv_time, wresv_hall;
+	private String wresv_cday, wresv_day,wresv_wday,wresv_content, userid, wresv_time, wresv_hall, wresv_name, wresv_phone, wresv_inwon;
 	
 	// weddingtime 테이블의 wt_time
 	private String wt_time;
-	
-	private int cnt;
 	
 	// wedding 테이블의 wed_hall 추가
 	private String wed_hall;
@@ -32,12 +30,7 @@ public class WeddingResvVO {
 	public void setWresv_time(String wresv_time) {
 		this.wresv_time = wresv_time;
 	}
-	public int getCnt() {
-		return cnt;
-	}
-	public void setCnt(int cnt) {
-		this.cnt = cnt;
-	}
+
 	public String getWt_time() {
 		return wt_time;
 	}
@@ -81,11 +74,24 @@ public class WeddingResvVO {
 	public void setWresv_content(String wresv_content) {
 		this.wresv_content = wresv_content;
 	}
-	public String getWresv_info() {
-		return wresv_info;
+
+	public String getWresv_name() {
+		return wresv_name;
 	}
-	public void setWresv_info(String wresv_info) {
-		this.wresv_info = wresv_info;
+	public void setWresv_name(String wresv_name) {
+		this.wresv_name = wresv_name;
+	}
+	public String getWresv_phone() {
+		return wresv_phone;
+	}
+	public void setWresv_phone(String wresv_phone) {
+		this.wresv_phone = wresv_phone;
+	}
+	public String getWresv_inwon() {
+		return wresv_inwon;
+	}
+	public void setWresv_inwon(String wresv_inwon) {
+		this.wresv_inwon = wresv_inwon;
 	}
 	public String getUserid() {
 		return userid;

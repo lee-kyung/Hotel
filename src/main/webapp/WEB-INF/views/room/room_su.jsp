@@ -75,9 +75,11 @@
 				  	<td> ${day} <p>
 				  	<!-- 방의 이름출력.. -->
 				  	<!-- td에 출력되는 날짜가 오늘보다 이전이면 안보이게 -->
+				  	<c:if test="${tt == 1}">	
 					  <c:forEach items="${list}" var="rvo">
 						 <span>${rvo.rname} : ${rvo.rsu}</span><p>
 					  </c:forEach>
+					 </c:if>
 					</td>
 				<c:set var="day" value="${day+1}"/> <!-- 날짜값을 1씩 증가 -->
 				</c:if>
