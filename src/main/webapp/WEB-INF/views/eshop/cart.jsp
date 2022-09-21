@@ -239,7 +239,7 @@
 		location="pro_gumae?pcode="+pcode+"&su="+su+"&gchk=1";
 	}
 	
-	/* 선택상품 구매하기 */
+	/* 선택상품 or 전체상품 구매하기 */
 	function gumae(n){	// n=1이면 선택주문, n=2면 전체주문
 		let pcode="";
 		let su="";
