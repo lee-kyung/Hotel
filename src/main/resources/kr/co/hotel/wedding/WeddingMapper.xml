@@ -31,9 +31,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	</select>
 	 -->
+	<select id="getWresv_code" resultType="Integer">
+		select ifnull(max(right(wresv_code,4)),0) from weddingresv where userid=#{param1}
+	</select>
+	 
+	 
 	<insert id="weddingReserve_ok" parameterType="kr.co.hotel.wedding.WeddingResvVO">
-		insert into weddingresv(wresv_content, wresv_day,wresv_cday, wresv_time,wresv_wday, wresv_hall, userid, wresv_name, wresv_phone, wresv_inwon)
-  		values(#{wresv_content}, now(), #{wresv_cday}, #{wresv_time}, #{wresv_wday}, #{wresv_hall}, #{userid}, #{wresv_name}, #{wresv_phone}, #{wresv_inwon})
+		insert into weddingresv(wresv_content, wresv_day,wresv_cday, wresv_time,wresv_wday, wresv_hall, userid, wresv_name, wresv_phone, wresv_inwon, wresv_code)
+  		values(#{wresv_content}, now(), #{wresv_cday}, #{wresv_time}, #{wresv_wday}, #{wresv_hall}, #{userid}, #{wresv_name}, #{wresv_phone}, #{wresv_inwon}, #{wresv_code})
 	</insert>
 	
  
