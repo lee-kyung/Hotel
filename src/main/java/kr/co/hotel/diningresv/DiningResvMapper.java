@@ -13,4 +13,5 @@ public interface DiningResvMapper {
 	public void dining_reserve_ok(DiningResvVO drvo);
 	public void getcheck(String y, String m, String d, HttpServletRequest request);
 
+	public ArrayList<DiningResvVO> dining_reserve_check(String userid);
 }

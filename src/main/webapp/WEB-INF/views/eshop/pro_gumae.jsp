@@ -25,7 +25,7 @@
 	<section id="pro_gumae">
 	<form method="post" action="pro_gumae_ok">
 	<input type="hidden" name="gchk" value="${gchk}">
-		<!-- 주문상품정보 -->
+		<!-- 주문상품정보 start -->
 		<table width="1000" align="center" border="1">
 		<caption> 주문상품 확인 </caption>
 			<tr>
@@ -75,6 +75,10 @@
 			</tr>
 			</c:forEach>
 		</table>
+		<!-- 주문상품정보 end -->
+		
+		<!-- 주문서작성 start -->
+		<!-- 주문서작성 end -->
 	</form>
 	</section>
     <!-- ================ 주문/결제 Area End ================= -->

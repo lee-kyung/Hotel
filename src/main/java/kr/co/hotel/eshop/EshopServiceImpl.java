@@ -116,7 +116,7 @@ public class EshopServiceImpl implements EshopService {
 		
 		/* 한페이지에 출력할 레코드의 index값 구하기 */
 		int pindex=(page-1)*psel;
-		
+
 		/* 정렬말머리의 초기화면값 처리하기*/
 		if(request.getParameter("osel") == null)
 			osel="id asc";
@@ -281,15 +281,25 @@ public class EshopServiceImpl implements EshopService {
 		return "/eshop/cart";
 	}
 
-	@Override /* 장바구니에서 1개 or 여러 개 삭제하기 */
-	public String cart_del(HttpServletRequest request) {
-		/* 삭제할 id값을 분리한 후, 삭제하기 */
+	@Override /* 위시리스트&장바구니에서 1개 or 여러 개 삭제하기 */
+	public String wishcart_del(HttpServletRequest request) {
+		/* 삭제할 id값을 분리한 후 삭제하기 */
 		String[] id=request.getParameter("delid").split(",");
-		for(int i=0;i<id.length;i++) {
-			mapper.cart_del(id[i]);
-		}
+		int dchk=Integer.parseInt(request.getParameter("dchk"));	// 위시리스트에서 왔다면 1, 장바구니에서 왔다면 2
+		String ad="";
 		
-		return "redirect:/eshop/cart";
+		for(int i=0;i<id.length;i++) {
+			
+			if(dchk == 1) {
+				ad="wish";
+				mapper.wishcart_del(ad, id[i]);				
+			}
+			else if(dchk == 2) {
+				ad="cart";
+				mapper.wishcart_del(ad, id[i]);
+			}
+		}
+		return "redirect:/eshop/"+ad;
 	}
 
 	@Override
@@ -309,5 +319,44 @@ public class EshopServiceImpl implements EshopService {
 		model.addAttribute("gchk", request.getParameter("gchk"));
 		
 		return "/eshop/pro_gumae";		
+	}
+
+	@Override
+	public String wish(HttpSession session, Model model, HttpServletRequest request) {
+		/* 정렬말머리의 초기화면값 처리하기*/
+		String osel;
+		if(request.getParameter("osel") == null)
+			osel="id asc";
+		else
+			osel=request.getParameter("osel");
+		
+		if(session.getAttribute("userid") != null) {
+			String userid=session.getAttribute("userid").toString();
+			model.addAttribute("wlist", mapper.wish(userid, osel));
+		}
+		
+		model.addAttribute("osel", osel);
+		return "/eshop/wish";
+	}
+
+	@Override
+	public String move_cart(HttpSession session, HttpServletRequest request) {
+		String[] pcode=request.getParameter("pcode").split(",");
+		String userid=session.getAttribute("userid").toString();
+		int chk;
+		for(int i=0;i<pcode.length;i++) {
+			/* 장바구니에 해당상품(수량1)을 추가하기 */
+			mapper.cart_add(userid, pcode[i], 1);
+			
+			/*  장바구니 중복 체크하기 */
+			chk=mapper.checkCart(userid, pcode[i]);
+			if(chk != 0)	// 장바구니에 해당상품이 있다면 기존의 것을 지우기
+				mapper.cart_delDupli();
+			
+			/* wish테이블에서 해당삭품을 삭제하기 */
+			mapper.wish_del(userid, pcode[i]);
+		}
+		
+		return "redirect:/eshop/wish";
 	}
 }

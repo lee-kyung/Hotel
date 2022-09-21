@@ -20,5 +20,7 @@ public interface WeddingMapper {
 	public ArrayList<WeddingResvVO> wresv_cal(WeddingResvVO wrvo);
 
 	public ArrayList<WeddingResvTimeVO> wresv_cal2(String wresv_cday);
+
+	public Integer getWresv_code(String userid);
 	
 }

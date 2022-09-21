@@ -84,6 +84,16 @@
 	section #wed_resv table#resv td{
 	padding:10px;}
 	
+	section #wed_resv table#resv tr:first-child{
+	text-align:right;
+	font-size:13px;}
+	
+	section #wed_resv table#resv tr:first-child input[type=button]{
+	outline:none;
+	background:white;
+	cursor:pointer;
+	border:1px solid black;}
+	
 	section #wed_resv table#resv td:first-child{
 	width:200px;}
 	
@@ -138,16 +148,19 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script> 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script>
-	$(function(){
-		
-		$("#datepicker").datepicker({
-			
-			format: "yyyy-mm-dd",	// 작성되지 않은 경우 기본 값: mm/dd/yy
-			minDate: new Date(),
-		});
-	});
 	
-	
+ /*	$(function(){
+		$("#test").click(function(){
+	        alert($(this).text());
+	    });
+	});  
+*/	
+	function edit()
+	{
+		document.getElementById("wresv_name").readOnly=false; 
+	  	document.getElementById("wresv_phone").readOnly=false;
+
+	}
 	
 	function time(time)
 	{
@@ -206,36 +219,6 @@
 			}
 		}
 		
-		var now = new Date();
-		var year=now.getFullYear();	
-//		var month;	
-		var day2=now.getDate();
-		
-		
-		var	month=now.getMonth()+1;
-	//	alert(month<10);
-		
-		
-		
-		var date=year+month+day2;
-		var date22=year+"-"+month+"-"+day2;
-		
-//		var wresv_cday2=Number(${y})+Number(${m})+Number(day.innerText);
-		var wresv_cday2=${y}+${m}+day.innerText;
-		var wresv_cday2=String(${y})+String(${m})+String(day.innerText);
-		
-	//	alert(month);
-
-		if(date >= wresv_cday2)
-		{
-			//alert(date +","+ wresv_cday2);
-			//document.getElementById("time_1").style.visibility="hidden";
-			//document.getElementById("time").setAttribute("onclick"," ");
-		}
-		else
-		{
-			//document.getElementById("time_1").style.visibility="visible";
-		}
 	}
 	
 	
@@ -278,6 +261,16 @@
 		}
 	}
 	
+	
+	
+	$(function(){
+		
+		$("#datepicker").datepicker({
+			format: "yyyy-mm-dd",	// 작성되지 않은 경우 기본 값: mm/dd/yy
+			minDate: new Date("${y}-${m}-${day}"),
+		});
+	});
+	
 </script>
 
 </head>
@@ -299,7 +292,7 @@
 <section>
 <div id="wed_resv">
 	<div id="txt">WEDDING RESERVATION</div>
-	
+${wresv_cday}
 	<div id="cal_title">
 		<c:if test="${m==1  }">	<!-- 1월 -->
 			<a href="wedding_reserve?y=${y-1 }&m=12"><span class="mon">${y } 12</span></a>
@@ -326,7 +319,7 @@
 			<a href="wedding_reserve?y=${y }&m=${m+1}"><span class="mon">${y } ${m+1 }</span></a>
 		</c:if>
 	</div>			
-				
+
 	<table border="1" id="cal">
 	
 		<tr>
@@ -346,7 +339,29 @@
 				<td> &nbsp;</td>								<!-- 해당 달의 총 일수 이후도 빈칸을 주기위해서 : 총일수(30,31)가 숫자(30~, 31~)보다 작다면  빈칸 -->
 			</c:if>
 			<c:if test="${((j >= yoil && i==1) || i>1 ) && (chong >=day)}"><!-- 열이 1일의해당요일보다 크고(1일 이후~) 첫번째 행이거나 || 또는 2번째 행부터는 모두 숫자로 표시-->
-				<td height="100"><div id="day" onclick="day(this)" class="day" name="wresv_cday">${day}</div></td>						<!-- 날짜 -->			<!-- 위의 조건과 맞추기 위해 밑에도 총의 조건을 작성해야한다. (&& 총일수가 숫자보다 같거나 큰 경우 출력) -->			
+
+
+				<td height="100">
+				
+						<div id="day" onclick="day(this)" class="day" name="wresv_cday">${day}</div>	
+
+
+								<c:if test="${tt==1 }">
+									tt=1
+								</c:if>
+					
+					
+								<c:if test="${tt==0 }">
+									tt=0
+								</c:if>
+							
+							
+					
+
+
+				</td>						<!-- 날짜 -->			<!-- 위의 조건과 맞추기 위해 밑에도 총의 조건을 작성해야한다. (&& 총일수가 숫자보다 같거나 큰 경우 출력) -->			
+
+
 			<c:set var="day" value="${day+1 }"/>	<!-- 날짜값을 1씩 증가 -->
 			</c:if>
 			</c:forEach>
@@ -368,13 +383,33 @@
 	<form name="wresv" method="post" action="weddingReserve_ok" onsubmit="return resv(this)">
 
 	<div id="resv_txt">RESERVATION</div>	
-
 	<table id="resv" align="center">
 		<tr>
+			<td colspan="4">
+				<c:if test="${userid != null }">
+					<input type="button" onclick="edit()" value="정보수정">
+				</c:if>
+			</td>
+		</tr>
+		<tr>
 			<td>이름</td>
-			<td width="400"><input type="text" name="wresv_name"></td>
+			<td width="400">
+				<c:if test="${userid != null }">dd
+						<input type="text" name="wresv_name" id="wresv_name" value="${name}" readonly>
+				</c:if>
+				<c:if test="${userid == null }">
+						<input type="text" name="wresv_name">
+				</c:if>
+			</td>
 			<td>전화번호</td>
-			<td><input type="text" name="wresv_phone"></td>
+			<td>
+				<c:if test="${userid != null }">
+					<input type="text" name="wresv_phone" id="wresv_phone" value="${phone }" readonly>
+				</c:if>
+				<c:if test="${userid == null }">
+						<input type="text" name="wresv_name">
+				</c:if>
+			</td>
 			<td rowspan="5">
 				<img src="../img/wedding/wedding_resv.jpg" width="400" height="400">
 				<input type="submit" class="button button-contactForm btn_1 boxed-btn" value="예약하기" onclick="resv()">

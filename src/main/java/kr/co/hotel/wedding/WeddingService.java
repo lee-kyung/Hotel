@@ -20,6 +20,6 @@ public interface WeddingService {
 
 	public String weddingReserve_ok(WeddingResvVO wrvo, HttpSession session);
 
-	public void wresv_cal(WeddingResvVO wrvo,PrintWriter out);
+	public void wresv_cal(WeddingResvVO wrvo,PrintWriter out, HttpServletRequest request, Model model);
 
 }

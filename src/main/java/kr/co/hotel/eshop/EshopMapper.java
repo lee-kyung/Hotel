@@ -22,7 +22,11 @@ public interface EshopMapper {
 	public Integer checkCart(String userid, String pcode);
 	public void cart_suadd(int su, String userid, String pcode);
 	public ArrayList<CartVO> cart(String userid);
-	public void cart_del(String id);
+	public void wishcart_del(String ad, String id);
 	
 	public ProductVO pro_gumae(String pcode);
+	
+	public ArrayList<WishVO> wish(String userid, String osel);
+	public void move_cart(String userid, String pcode);
+	public void cart_delDupli();
 }

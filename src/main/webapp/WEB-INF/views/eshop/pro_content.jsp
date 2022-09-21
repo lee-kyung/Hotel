@@ -264,6 +264,11 @@
 		document.getElementById("main_fimg").src=document.getElementsByClassName("other_fimgs[num]").src;
 		//console.log(document.getElementsByClassName("mine[num]").src);
 	}
+	
+	/* 바로구매 : javascript로 form을 submit시키기*/
+	function pro_submit(){
+		document.pro_cnt.submit();	
+	}
 </script>
 </head>
 
