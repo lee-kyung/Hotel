@@ -394,7 +394,7 @@ ${wresv_cday}
 		<tr>
 			<td>이름</td>
 			<td width="400">
-				<c:if test="${userid != null }">
+				<c:if test="${userid != null }">dd
 						<input type="text" name="wresv_name" id="wresv_name" value="${name}" readonly>
 				</c:if>
 				<c:if test="${userid == null }">
