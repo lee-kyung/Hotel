@@ -150,29 +150,37 @@ public class WeddingServiceImpl implements WeddingService{
 		
 		
 		
+		
+		
 		LocalDate today=LocalDate.now();
 		
 		int y2,m2,d2;
 		
-		if(request.getParameter("y2")==null)	
+		if(request.getParameter("y")==null)	
 			y2=today.getYear();
 		else
-			y2=Integer.parseInt(request.getParameter("y2"));
+			y2=Integer.parseInt(request.getParameter("y"));
 		
 		
-		if(request.getParameter("m2")==null)
+		if(request.getParameter("m")==null)
 			m2=today.getMonthValue();
 		else
-			m2=Integer.parseInt(request.getParameter("m2"));
+			m2=Integer.parseInt(request.getParameter("m"));
 		
 		
-		if(request.getParameter("d2")==null)
+		if(request.getParameter("day")==null)
+		{
 			d2=today.getDayOfMonth();
+			d2++;
+		}
 		else
-			d2=Integer.parseInt(request.getParameter("d2"));
+		{
+			d2=Integer.parseInt(request.getParameter("day"));
+			d2++;
+		}
 		
 		
-		LocalDate day2=LocalDate.of(y2, m2, d2);
+		LocalDate day2=LocalDate.of(y2, m2, 30);
 		
 		System.out.println("today="+today);
 		System.out.println("day2="+day2);
@@ -199,7 +207,26 @@ public class WeddingServiceImpl implements WeddingService{
 	{
 		String userid=session.getAttribute("userid").toString();		
 		wrvo.setUserid(userid);
+		
+		Integer number=mapper.getWresv_code(userid);
+		number++;
+		System.out.println(number);
+		
+		String num=number.toString();
+		
+		if(num.length()==1)
+			num="000"+num;
+		else if(num.length()==2)
+			num="00"+num;
+		else if(num.length()==3)
+			num="0"+num;
+		
+		String wresv_code=userid+'w'+num;
+
+		wrvo.setWresv_code(wresv_code);
+		
 		mapper.weddingReserve_ok(wrvo);
+		
 		return "redirect:/wedding/wedding_reserve";
 	}
 
@@ -213,8 +240,13 @@ public class WeddingServiceImpl implements WeddingService{
 	}*/
 
 	@Override
-	public void wresv_cal(WeddingResvVO wrvo,PrintWriter out) 
+	public void wresv_cal(WeddingResvVO wrvo,PrintWriter out,HttpServletRequest request, Model model) 
 	{
+		
+		String wresv_cday=request.getParameter("wresv_cday");
+		model.addAttribute("wresv_cday", wresv_cday);
+		request.setAttribute("wresv_cday", wresv_cday);
+		System.out.println("wresv_cday="+wresv_cday);
 		
 		
 		ArrayList<WeddingResvVO> list=mapper.wresv_cal(wrvo);
@@ -228,6 +260,7 @@ public class WeddingServiceImpl implements WeddingService{
 		}
 	
 			out.print(str);
+			out.print(wresv_cday);
 	}
 	
 	

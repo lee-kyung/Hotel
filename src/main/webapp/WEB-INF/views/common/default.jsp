@@ -130,7 +130,12 @@
                                     </ul>
                                 </div>
                               <div class="book_btn d-none d-lg-block">
-                              	    	<a href="#" onclick="logcheck()">객실예약</a>
+                              	<c:if test="${userid==null}">
+                                    <a href="#" onclick="logcheck()">객실예약</a>
+                                </c:if>
+                                <c:if test="${userid!=null}">
+                                	<a href="../room/room_resv">객실예약</a>
+                                </c:if>
                               </div>
 <style>
 	#loglayer{
@@ -184,7 +189,7 @@
 <div id="loglayer">
 	<div>
 		<div id="txt">객실 예약을 진행하려면 로그인 또는 비회원으로 진행 선택을 해주세요.</div>
-		<a href="../login/login?chk=1"><input type="button" value="로그인으로 이동" id="gologin"></a><p>
+		<a href="../login/login"><input type="button" value="로그인으로 이동" id="gologin"></a><p>
 		<br>
 		<a href="../room/room_resv"><input type="button" value="비회원으로 계속" id="keepgo"></a>
 	</div>

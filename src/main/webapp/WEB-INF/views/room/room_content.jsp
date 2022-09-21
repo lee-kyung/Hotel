@@ -70,29 +70,19 @@
 		border-right: none;
 		background: lavender;
 	}
-	section #rmenu ul li:last-child{
-		border-right: 1px solid #CCCCFF;
-	}
-	section #rmenu ul li:first-child{
-		border-bottom: none;
-		background: white;
-	}
+
+	section #rname{
+	margin-left:100px;
+	margin-bottom:100px;}
+
+	section #rname li{
+	display:inline-block;
+	padding-right:30px;
+	font-size:50px;
+	font-family:fantasy;}
 </style>
 <script>
-	function change_sub(my)
-	{
-		// 배경색 lavender, 밑줄 #CCCCFF 생기기
-		var rsub=document.getElementsByClassName("rsub")
-		var len=rsub.length;
-		for(i=0;i<len;i++)
-		{
-			rsub[i].style.background="lavender";
-			rsub[i].style.borderBottom="1px solid #CCCCFF";
-		}
-		// 선택된 li 배경색 : white, 밑줄 X
-		rsub[n].style.background="white";
-		rsub[n].style.borderBottom="none";
-	}
+
 
 </script>
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
@@ -113,14 +103,15 @@
     <div class="row"> 
     <roomsec>
     	<div style="font-size: 20px;" id="rmenu"> 
-    	<ul>
+    	<ul id="rname">
     		<c:forEach items="${list}" var="rvo"> 
-    			<li class="rsub" onclick="change_sub(this)"> <a href="#rr(n)">${rvo.rname}</a></li>
+    			<li><a href="../room/room_content?code=${rvo.code}&rcode=${rvo.rcode}">${rvo.rname}</a></li>
     		</c:forEach>
     	</ul>
     	</div>
     	<br>
  		<c:forEach items="${list}" var="rvo">
+ 		<input type="hidden" name="rcode" value="${rvo.rcode}">
  		<div class="rr" style="font-size:35px; font-weight: 900; color: #887159">${rvo.rname}</div>
 		<div style="border:1px solid #887159">
 			<div style="margin:auto;"><img src="../img/rooms/${rvo.rpimg}" width="980px"></div>

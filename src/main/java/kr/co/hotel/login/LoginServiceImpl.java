@@ -21,10 +21,13 @@ public class LoginServiceImpl implements LoginService {
 	@Override
 	public String login_ok(MemberVO mvo, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
 		mvo=mapper.login_ok(mvo);
+		
 		if(mvo != null) {
 			String userid=mvo.getUserid();
 			session.setAttribute("userid", userid);
 			session.setAttribute("name", mvo.getName());
+			session.setAttribute("email", mvo.getEmail());
+			session.setAttribute("phone", mvo.getPhone());
 			
 			/* 비회원 장바구니를 회원 장바구니로 옮기기 (+중복삭제) */
 			Cookie cookie = WebUtils.getCookie(request, "cookieid");

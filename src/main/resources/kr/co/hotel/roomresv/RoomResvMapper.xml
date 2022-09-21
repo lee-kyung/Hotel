@@ -28,6 +28,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getRmax" resultType="kr.co.hotel.room.RoomVO">
 		select rmax from room where rcode=#{param1}
 	</select>
+	
+	
 	<!-- <select id="getCnt" resultType="kr.co.hotel.room.RoomVO">
 	<![CDATA[ select rcode,count(*) as cnt from roombk where #{param1}>=checkin and checkout>#{param1} group by rcode]]>	
 	</select>

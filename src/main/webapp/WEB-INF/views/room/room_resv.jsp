@@ -99,12 +99,12 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script> 
 <script>
 
-/* $(document).ready(function(){       
+/*   $(document).ready(function(){       
     $( "#checkin,#checkout" ).datepicker({
          changeMonth: true,
          changeYear: true,
          showMonthAfterYear: true,
-         dateFormat:"yyyy-mm-dd",
+         dateFormat:"yy-mm-dd",
      });
     
     $('#checkin').datepicker("option", "maxDate", $("#checkout").val());
@@ -119,9 +119,9 @@
         $("#checkin").datepicker( "option", "maxDate", selectedDate );
        });
 
-});
- */
-	$(function(){
+}); */
+ 
+  $(function(){
 		$("#checkin").datepicker({
 			format: "yyyy-mm-dd",
 			minDate :new Date(),
@@ -132,7 +132,7 @@
 		});
 		
 	});
-	
+  
 // rcode받기
 	function maxcheck()
 	{

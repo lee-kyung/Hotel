@@ -31,13 +31,13 @@ public class RoomResvServiceImpl implements RoomResvService {
 		return "/room/room_resv";
 	}
 	@Override
-	public String room_resvnext(HttpServletRequest request, Model model) {
+	public String room_resvnext(HttpServletRequest request, Model model, HttpSession session) {
 		String checkin=request.getParameter("checkin");
 		String checkout=request.getParameter("checkout");
 		String adult=request.getParameter("adult");
 		String child=request.getParameter("child");
 		String rcode=request.getParameter("rcode");
-		 
+		 		
 		RoomVO rvo=mapper.room_resvnext(rcode);
 		
 		String[] imsi=checkin.split("-");
@@ -73,6 +73,7 @@ public class RoomResvServiceImpl implements RoomResvService {
 
 	@Override
 	public String room_resv_ok(RoomResvVO rsvo, HttpSession session) {
+		
 		if(session.getAttribute("userid")!=null)
 		{
 			String userid=session.getAttribute("userid").toString();
@@ -94,7 +95,28 @@ public class RoomResvServiceImpl implements RoomResvService {
 			String bid=userid+'r'+num;
 		//	System.out.println(bid);
 			rsvo.setBid(bid);
-		
+		}
+		else
+		{
+			String userid="guest";
+			rsvo.setUserid(userid); // rsvo에 userid 가져와서 넣기
+			
+			// 예약번호 생성 => bk+4자리
+			Integer number=mapper.getBid(userid);
+			number++;
+		//	System.out.println(number);
+			String num=number.toString();
+			
+			if(num.length()==1)
+				num="000"+num;
+			else if(num.length()==2)
+				num="00"+num;
+			else if(num.length()==3)
+				num="0"+num;	
+			
+			String bid=userid+'r'+num;
+		//	System.out.println(bid);
+			rsvo.setBid(bid);
 		}
 		
 		mapper.room_resv_ok(rsvo);

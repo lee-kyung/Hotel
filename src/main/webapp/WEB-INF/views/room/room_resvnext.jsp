@@ -173,7 +173,8 @@
 	}
 	document.onscroll=check; 
   */
-	</script>
+  
+</script>
 	
 <!-- jQuery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous" type="text/javascript"></script>
@@ -206,12 +207,20 @@
  			<form name="resv" method="post" action="room_resv_ok" >
  			<input type="hidden" name="btotal" value="${rvo.rprice}">
  			<div><div style="float:left; width:500px;"><b>고객 정보</b></div><div style="float:right;align:right;font-size:12px">* 필수입력항목</div></div><br>
- 			<c:if test="${!empty userid}">
- 				<div class="bb" onclick="mem_chuga()" id="mem_use"> 기존 회원 정보 사용</div>
+ 			<c:if test="${userid!=null}">
+ 				<div class="bb" onclick="edit()"> 새로운 정보 사용</div>
  			</c:if>
  			<table>
  				<tr height="10px"> 
- 					<td>* 예약자 이름 &nbsp<input type="text" name="bkname">* 휴대폰 번호 &nbsp<input type="text" name="bkphone"></td>
+ 					<td>
+ 					<c:if test="${userid==null}">
+ 					* 예약자 이름 &nbsp<input type="text" name="bkname">
+ 					* 휴대폰 번호 &nbsp<input type="text" name="bkphone"></td>
+ 					</c:if>
+ 					<c:if test="${userid!=null }">
+ 					* 예약자 이름 &nbsp<input type="text" name="bkname" value="${name}">
+ 					* 휴대폰 번호 &nbsp<input type="text" name="bkphone" value="${phone}"></td>
+ 					</c:if>
  				</tr>
  				<tr>
  					<td> &nbsp </td>
@@ -349,47 +358,47 @@
 		else
 		{
 			//결제관련
-			  $("#paymentBtn").click(function () {
-			  	var IMP = window.IMP; // 생략가능
-			  	IMP.init('imp66382802'); 
-			  	// i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
-			  	// ''안에 띄어쓰기 없이 가맹점 식별코드를 붙여넣어주세요. 안그러면 결제창이 안뜹니다.
-			  	IMP.request_pay({
-			  		pg: 'kakaopay',
-			  		pay_method: 'card',
-			  		merchant_uid: 'merchant_' + new Date().getTime(),
-			  		/* 
-			  		 *  merchant_uid에 경우 
-			  		 *  https://docs.iamport.kr/implementation/payment
-			  		 *  위에 url에 따라가시면 넣을 수 있는 방법이 있습니다.
-			  		 */
-			  		name: '주문명 : ${rvo.rname}',
-			  		// 결제창에서 보여질 이름
-			  		// name: '주문명 : ${auction.a_title}',
-			  		// 위와같이 model에 담은 정보를 넣어 쓸수도 있습니다.
-			  		amount: 2000,
-			  		// amount: ${bid.b_bid},
-			  		// 가격 
-			  		buyer_name: '${bkname}',
-			  		// 구매자 이름, 구매자 정보도 model값으로 바꿀 수 있습니다.
-			  		// 구매자 정보에 여러가지도 있으므로, 자세한 내용은 맨 위 링크를 참고해주세요.
-			  		buyer_postcode: '123-456',
-			  		}, function (rsp) {
-			  			console.log(rsp);
-			  		if (rsp.success) {
-			  			var msg = '결제가 완료되었습니다.';
-			  			msg += '결제 금액 : ' + rsp.paid_amount;
-			  			document.resv.submit();
-			  			// success.submit();
-			  			// 결제 성공 시 정보를 넘겨줘야한다면 body에 form을 만든 뒤 위의 코드를 사용하는 방법이 있습니다.
-			  			// 자세한 설명은 구글링으로 보시는게 좋습니다.
-			  		} else {
-			  			var msg = '결제에 실패하였습니다.';
-			  			msg += '에러내용 : ' + rsp.error_msg;
-			  		}
-			  		alert(msg);
-			  	});
-			  });
+			$("#paymentBtn").click(function () {
+				var IMP = window.IMP; // 생략가능
+				IMP.init('imp66382802'); 
+				// i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
+				// ''안에 띄어쓰기 없이 가맹점 식별코드를 붙여넣어주세요. 안그러면 결제창이 안뜹니다.
+				IMP.request_pay({
+					pg: 'INIBillTst',
+					pay_method: 'card',
+					merchant_uid: 'merchant_' + new Date().getTime(),
+					/* 
+					 *  merchant_uid에 경우 
+					 *  https://docs.iamport.kr/implementation/payment
+					 *  위에 url에 따라가시면 넣을 수 있는 방법이 있습니다.
+					 */
+					name: '주문명 : ${rvo.rname}',
+					// 결제창에서 보여질 이름
+					// name: '주문명 : ${auction.a_title}',
+					// 위와같이 model에 담은 정보를 넣어 쓸수도 있습니다.
+					amount: 2000,
+					// amount: ${bid.b_bid},
+					// 가격 
+					buyer_name: '이름',
+					// 구매자 이름, 구매자 정보도 model값으로 바꿀 수 있습니다.
+					// 구매자 정보에 여러가지도 있으므로, 자세한 내용은 맨 위 링크를 참고해주세요.
+					buyer_postcode: '123-456',
+					}, function (rsp) {
+						console.log(rsp);
+					if (rsp.success) {
+						var msg = '결제가 완료되었습니다.';
+						msg += '결제 금액 : ' + rsp.paid_amount;
+						// success.submit();
+						// 결제 성공 시 정보를 넘겨줘야한다면 body에 form을 만든 뒤 위의 코드를 사용하는 방법이 있습니다.
+						// 자세한 설명은 구글링으로 보시는게 좋습니다.
+					} else {
+						var msg = '결제에 실패하였습니다.';
+						msg += '에러내용 : ' + rsp.error_msg;
+					}
+					alert(msg);
+				});
+			});
+
 		  
 			return true;
 			
