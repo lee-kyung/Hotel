@@ -81,8 +81,23 @@ public class EshopController {
 		return service.cart(session, model, request, response);
 	}
 	
-	@RequestMapping("/eshop/cart_del")
-	public String cart_del(HttpServletRequest request) {
-		return service.cart_del(request);
+	@RequestMapping("/eshop/wishcart_del")
+	public String wishcart_del(HttpServletRequest request) {
+		return service.wishcart_del(request);
+	}
+	
+	@RequestMapping("/eshop/pro_gumae")
+	public String pro_gumae(HttpServletRequest request, Model model) {
+		return service.pro_gumae(request, model);
+	}
+	
+	@RequestMapping("/eshop/wish")
+	public String wish(HttpSession session, Model model, HttpServletRequest request) {
+		return service.wish(session, model, request);
+	}
+	
+	@RequestMapping("/eshop/move_cart")
+	public String move_cart(HttpSession session, HttpServletRequest request) {
+		return service.move_cart(session, request);
 	}
 }
