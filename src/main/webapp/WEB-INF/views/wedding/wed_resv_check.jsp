@@ -93,7 +93,7 @@
 <div id="resv_check"> 
 	
 	<div id="title">RESERVATION</div>
-	<div id="name">${wrvo.wresv_name }님 ! <span id="txt">예약이 완료되었습니다.</span></div>
+	<div id="name">${wrvo.wresv_name }님 !  <span id="txt">예약이 완료되었습니다.</span></div>
 	<div id="border">
 	<div id="left">
 		<div>상담 예약일</div>
