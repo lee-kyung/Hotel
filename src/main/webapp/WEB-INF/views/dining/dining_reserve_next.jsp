@@ -28,7 +28,7 @@
 	margin-bottom: 30px;
   }
   diningsec input[type=text]{
-	width: 260px;
+	/* width: 260px; */
 	height: 30px;
 	border: 1px solid #887159;
 	}
@@ -51,7 +51,7 @@
 	left: 950px; */
   } 
   diningsec #outer #right input[type=text]{
-	width:100px;
+	/* width:100px; */
 	border: none;
 	background: none;
   }
@@ -66,8 +66,8 @@
 	align: right;
 	}
   table{
-    align:center;
-    margin:auto;
+    /* align:center;
+    margin:auto; */
     font-size:13px;
     
   }
