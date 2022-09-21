@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <title>Insert title here</title>
 </head>
 <body>
@@ -79,42 +80,69 @@
 		padding-left: 20px;
 	}
  	roomsec .cbtn{
-		/* background: #FFFFFF; */
+		background: #FFFFFF; 
 		border: 1px solid #887159;
-		/* color: #887159; */
+		color: #887159; 
 		width: 80px;
+	}
+ 	roomsec .cbtn:hover{
+		cursor: pointer;
+		background: #887159;
+		color: #FFFFFF;	
 	}
 	.crcode{
 		display: none;
 	} 
 </style>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script> 
 <script>
 
-	$(document).ready(function(){       
-	    $( "#checkin,#checkout" ).datepicker({
-	         changeMonth: true,
-	         changeYear: true,
-	         showMonthAfterYear: true,
-	         dateFormat:'yyyy-mm-dd',
-	         minDate: new Date(), 
-	     });
-	    $('#checkin').datepicker("option", "maxDate", $("#checkout").val());
-	    $('#checkin').datepicker("option", "onClose", function (selectedDate){
-	        $("#checkout").datepicker( "option", "minDate", selectedDate );
-	        });
-	    
-	    $('#checkout').datepicker();
-	    $('#checkout').datepicker("option", "minDate", $("#checkin").val());
-	    $('#checkout').datepicker("option", "onClose", function (selectedDate){
-	        $("#checkin").datepicker( "option", "maxDate", selectedDate );
-	       });
-	});
+/*   $(document).ready(function(){       
+    $( "#checkin,#checkout" ).datepicker({
+         changeMonth: true,
+         changeYear: true,
+         showMonthAfterYear: true,
+         dateFormat:"yy-mm-dd",
+     });
+    
+    $('#checkin').datepicker("option", "maxDate", $("#checkout").val());
+    $('#checkin').datepicker("option", "minDate", new Date());
+    $('#checkin').datepicker("option", "onClose", function (selectedDate){
+        $("#checkout").datepicker( "option", "minDate", selectedDate );
+        });
+    
+    $('#checkout').datepicker();
+    $('#checkout').datepicker("option", "minDate", $("#checkin").val());
+    $('#checkout').datepicker("option", "onClose", function (selectedDate){
+        $("#checkin").datepicker( "option", "maxDate", selectedDate );
+       });
 
+}); */
+ 
+  $(function(){
+		$("#checkin").datepicker({
+			format: "yyyy-mm-dd",
+			minDate :new Date(),
+		});
+		$("#checkout").datepicker({
+			minDate: new Date(),
+			format: "yyyy-mm-dd",
+		});
+		
+	});
+  
 // rcode받기
-   function form_submit(n)
+	function maxcheck()
+	{
+		var adult=document.getElementById("adult").value;
+		var child=document.getElementById("child").value;
+		var binwon=adult+child;
+		alert(binwon);
+	}
+
+	function form_submit(n)
    {
 	   //alert(document.room.rcode2[n].value);
 	   document.room.rcode.value=document.room.rcode2[n].value;
@@ -123,11 +151,31 @@
 
 // 비어있는 객실 확인
    function getRoomAvail(){  
+	// 체크인,체크아웃,성인 인원수 체크
+		if(document.getElementById("checkin").value.trim()=="")
+		{
+			alert("체크인 날짜를 선택하세요")
+			return false;
+		}
+		else if(document.getElementById("checkout").value.trim()=="")
+		{
+			alert("체크아웃 날짜를 선택하세요")
+			return false;
+		}
+		else if(document.getElementById("adult").value==0)
+		{
+			alert("인원을 선택하세요.")
+			return false;
+		}
+		else
+		{
+		// 객실수량 체크해서 예약불가 표시
 		document.getElementById("roomdiv").style.visibility="visible";
 		var checkin=document.room.checkin.value;
 		var checkout=document.room.checkout.value;
+		var adult=document.room.adult.value;
 		var chk=new XMLHttpRequest();
-		chk.open("get","getRoomAvail?checkin="+checkin+"&checkout="+checkout);
+		chk.open("get","getRoomAvail?checkin="+checkin+"&checkout="+checkout+"&adult="+adult);
 		chk.send();
 		chk.onreadystatechange=function(){
 			if(chk.readyState==4){
@@ -144,18 +192,27 @@
 				if(aa.length > 1){	   
 					var crcode=document.getElementsByClassName("crcode");
 				    
-					for(i=0;i<aa.length;i+=2){
-						for(j=0;j<crcode.length;j++){
-							if(aa[i]==crcode[j].innerText.trim()){
-								if(aa[i+1]>=2)
+					for(i=0;i<aa.length;i+=2){ //cnt받아온 객실길이만큼 돌때
+						for(j=0;j<crcode.length;j++){ // 만약 객실rcode가 
+							if(aa[i]==crcode[j].innerText.trim()){ // cnt들어있는 rcode랑 같다면
+								if(aa[i+1]>=2) 
+								{
 									cbtn[j].disabled=true;
+									cbtn[j].style.background="#F9F9F9";
+									cbtn[j].style.border="1px solid #E6E3DF";
+									cbtn[j].style.color="#E6E3DF";
+									cbtn[j].style.hover="none";
+								}
 							}
 						}	   
 					}	   
 				}
 			}	
 		}
+		return true;
 	}
+}
+
 </script>
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
     <!-- bradcam_area_start -->
@@ -177,7 +234,7 @@
  			<div style="color:#887159; font-weight:900">RESERVATION</div>
     		<div style="font-size: 25px;">호텔에 오신것을 환영합니다.</div>
  			<br>
-				<form name="room" method="post" action="room_resvnext">
+				<form name="room" method="post" action="room_resvnext" >
 				<input type="hidden" name="rcode">
 				<table id="tb">
 					<tr> 
@@ -196,6 +253,9 @@
 								<option value="1"> 1 </option>
 								<option value="2"> 2 </option>
 								<option value="3"> 3 </option>
+								<option value="4"> 4 </option>
+								<option value="5"> 5 </option>
+								<option value="6"> 6 </option>
 							</select>
 						</td>
 						<td> 
@@ -205,7 +265,7 @@
 								<option value="2"> 2 </option>
 							</select>
 						</td>
-						<td> <input type="button" id="searchbtn" value="검색" onclick="getRoomAvail(${my.index})"> </td>	
+						<td> <input type="button" id="searchbtn" value="검색" onclick="return getRoomAvail()"> </td>	
 					</tr>
 				</table>
 
@@ -223,6 +283,7 @@
 						<div><span id="subr">전망</span>${rvo.rview}</div>
 						<div><span id="subr">베드타입</span>${rvo.rbed}</div>
 						<div><span id="subr">가격</span>${rvo.rprice}</div>						
+						<div><span id="subr">기준|최대인원</span>${rvo.rmin}/<span class="crmax">${rvo.rmax}</span></div>						
 						<br>
 					
 						<input type="button" value="객실선택" class="cbtn" onclick="form_submit(${my.index})">
