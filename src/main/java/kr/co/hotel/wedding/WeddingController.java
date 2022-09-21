@@ -57,11 +57,16 @@ public class WeddingController {
 	}
 	
 	@RequestMapping("/wedding/wresv_cal")
-	public void wresv_cal(WeddingResvVO wrvo,PrintWriter out)
+	public void wresv_cal(WeddingResvVO wrvo,PrintWriter out, HttpServletRequest request, Model model)
 	{
-		service.wresv_cal(wrvo, out);
+		service.wresv_cal(wrvo, out, request, model);
 	}
 	
+	@RequestMapping("/wedding/wed_resv_check")
+	public String wed_resv_check(HttpServletRequest request, HttpSession session, Model model)
+	{
+		return service.wed_resv_check(request, session, model);
+	}
 	
 	
 	

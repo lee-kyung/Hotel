@@ -116,7 +116,7 @@ public class EshopServiceImpl implements EshopService {
 		
 		/* 한페이지에 출력할 레코드의 index값 구하기 */
 		int pindex=(page-1)*psel;
-		
+
 		/* 정렬말머리의 초기화면값 처리하기*/
 		if(request.getParameter("osel") == null)
 			osel="id asc";
@@ -180,6 +180,10 @@ public class EshopServiceImpl implements EshopService {
 		}
 		model.addAttribute("wishcnt", wishcnt);
 		
+		/* 메인분류값을 model로 view에 보내서 pro_gumae에 붙여 보내기 */
+		String p=pcode.substring(0, 3);
+		model.addAttribute("p", p);
+		
 		model.addAttribute("pvo", pvo);
 		return "/eshop/pro_content";
 	}
@@ -200,7 +204,7 @@ public class EshopServiceImpl implements EshopService {
 
 	@Override
 	public void cart_add(HttpSession session, HttpServletRequest request, PrintWriter out, HttpServletResponse response) {
-		String pcode=request.getParameter("pcode");
+		String pcode=request.getParameter("pcode");	// 상품코드
 		int su=Integer.parseInt(request.getParameter("su"));
 		Cookie cookie = WebUtils.getCookie(request, "cookieid");	// 이미 생성된 쿠키값(cookieid)이 있다면 cookie변수에 넣기
 		
@@ -242,28 +246,33 @@ public class EshopServiceImpl implements EshopService {
 			else	// 있다면 수량만 늘리기
 				mapper.cart_suadd(su, userid, pcode);
 		}
-		out.print("0");
+		
+		String p=pcode.substring(0, 3);	// 메인분류값
+		String str="0,"+p;
+		out.print(str);
 	}
 
 	@Override
 	public String cart(HttpSession session, Model model, HttpServletRequest request, HttpServletResponse response) {
-		String arrprice="";
-		String arrhalin="";
-		String arrsu="";
-		String arrbaefee="";
 		ArrayList<CartVO> clist=new ArrayList<CartVO>();
+		String p=request.getParameter("p");	// 메인분류값
 		
 		if(session.getAttribute("userid") == null) {	// 비회원인데
 			Cookie cookie = WebUtils.getCookie(request, "cookieid");
 			if(cookie != null) {	// cookie값이 있다면
 				String cookievalue=cookie.getValue();
-				clist=mapper.cart(cookievalue);
+				clist=mapper.cart(cookievalue, p);
 			}
 		}
 		else {	// 회원이라면
 			String userid=session.getAttribute("userid").toString();
-			clist=mapper.cart(userid);
+			clist=mapper.cart(userid, p);
 		}
+		
+		String arrprice="";
+		String arrhalin="";
+		String arrsu="";
+		String arrbaefee="";
 		
 		/* 장바구니에 담긴 상품들의 1개당 단가를 배열로 담아서 model로 보내기 */
 		for(int i=0;i<clist.size();i++) {
@@ -273,6 +282,7 @@ public class EshopServiceImpl implements EshopService {
 			arrbaefee=arrbaefee+clist.get(i).getBaefee()+",";	// [A상품 1개의 배송비, B상품 1개의 배송비,] 배열로 담기
 		}
 		
+		model.addAttribute("p", p);
 		model.addAttribute("clist", clist);
 		model.addAttribute("arrprice", arrprice);
 		model.addAttribute("arrhalin", arrhalin);
@@ -281,21 +291,40 @@ public class EshopServiceImpl implements EshopService {
 		return "/eshop/cart";
 	}
 
-	@Override /* 장바구니에서 1개 or 여러 개 삭제하기 */
-	public String cart_del(HttpServletRequest request) {
-		/* 삭제할 id값을 분리한 후, 삭제하기 */
+	@Override /* 위시리스트&장바구니에서 1개 or 여러 개 삭제하기 */
+	public String wishcart_del(HttpServletRequest request) {
+		/* 삭제할 id값을 분리한 후 삭제하기 */
 		String[] id=request.getParameter("delid").split(",");
-		for(int i=0;i<id.length;i++) {
-			mapper.cart_del(id[i]);
+		int dchk=Integer.parseInt(request.getParameter("dchk"));	// 위시리스트에서 왔다면 1, 장바구니에서 왔다면 2
+		String ad="";
+
+		if(dchk == 1) {
+			for(int i=0;i<id.length;i++) {
+				ad="wish";
+				mapper.wishcart_del(ad, id[i]);
+			}
+			return "redirect:/eshop/"+ad;
 		}
-		
-		return "redirect:/eshop/cart";
+		else if(dchk == 2) {
+			for(int i=0;i<id.length;i++) {
+				ad="cart";
+				mapper.wishcart_del(ad, id[i]);
+			}
+			String p=request.getParameter("p");
+			return "redirect:/eshop/"+ad+"?p="+p;
+		}
+		else
+			return "redirect:/eshop/error";
 	}
 
 	@Override
 	public String pro_gumae(HttpServletRequest request, Model model) {
 		String[] pcode=request.getParameter("pcode").split(",");
 		String[] su=request.getParameter("su").split(",");
+		String total_price=request.getParameter("total_price");
+		String total_halin=request.getParameter("total_halin");
+		String total_baefee=request.getParameter("total_baefee");
+		String total_pay=request.getParameter("total_pay");
 		
 		ArrayList<ProductVO> plist=new ArrayList<ProductVO>();
 		for(int i=0;i<pcode.length;i++) {
@@ -304,10 +333,53 @@ public class EshopServiceImpl implements EshopService {
 			plist.add(pvo);
 		}
 		model.addAttribute("plist", plist);
+		model.addAttribute("total_price", total_price);
+		model.addAttribute("total_halin", total_halin);
+		model.addAttribute("total_baefee", total_baefee);
+		model.addAttribute("total_pay", total_pay);
 		
 		/* 장바구니에서 왔다는 표시 : gchk=1 */
 		model.addAttribute("gchk", request.getParameter("gchk"));
 		
 		return "/eshop/pro_gumae";		
+	}
+
+	@Override
+	public String wish(HttpSession session, Model model, HttpServletRequest request) {
+		/* 정렬말머리의 초기화면값 처리하기*/
+		String osel;
+		if(request.getParameter("osel") == null)
+			osel="id asc";
+		else
+			osel=request.getParameter("osel");
+		
+		if(session.getAttribute("userid") != null) {
+			String userid=session.getAttribute("userid").toString();
+			model.addAttribute("wlist", mapper.wish(userid, osel));
+		}
+		
+		model.addAttribute("osel", osel);
+		return "/eshop/wish";
+	}
+
+	@Override
+	public String move_cart(HttpSession session, HttpServletRequest request) {
+		String[] pcode=request.getParameter("pcode").split(",");
+		String userid=session.getAttribute("userid").toString();
+		int chk;
+		for(int i=0;i<pcode.length;i++) {
+			/* 장바구니에 해당상품(수량1)을 추가하기 */
+			mapper.cart_add(userid, pcode[i], 1);
+			
+			/*  장바구니 중복 체크하기 */
+			chk=mapper.checkCart(userid, pcode[i]);
+			if(chk != 0)	// 장바구니에 해당상품이 있다면 기존의 것을 지우기
+				mapper.cart_delDupli();
+			
+			/* wish테이블에서 해당삭품을 삭제하기 */
+			mapper.wish_del(userid, pcode[i]);
+		}
+		
+		return "redirect:/eshop/wish";
 	}
 }

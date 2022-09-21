@@ -19,6 +19,9 @@
 	font-size:50px;
 	font-family:fantasy;}
 	
+	section #wed_hall #wed_hall_name a:hover{
+	color:orange;}
+	
 	/***************************/	
 	section #wed_hall .slider{
     width: 1800px;
@@ -106,7 +109,7 @@
 	section #wed_hall2 #hall_name{
 	font-size:50px;
 	font-family:cursive;
-	color:#E5D85C;}
+	color:orange;}
 	
 	section #wed_hall2 #hall_sogae{
 	}

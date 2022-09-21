@@ -247,9 +247,10 @@
 		let su=document.pro_cnt.su.value;
 		let chk=new XMLHttpRequest();
 		chk.onload=function(){
-			if(chk.responseText == "0") {
+			let arr=chk.responseText.split(",");
+			if(arr[0] == "0") {
 				if(confirm("선택하신 상품이 장바구니에 담겼습니다. 장바구니로 이동하시겠습니까?"))
-					location="../eshop/cart";
+					location="../eshop/cart?p="+arr[1];
 			}
 			else {
 				alert("내부 오류 발생");
@@ -263,6 +264,11 @@
 	function show_img(num){
 		document.getElementById("main_fimg").src=document.getElementsByClassName("other_fimgs[num]").src;
 		//console.log(document.getElementsByClassName("mine[num]").src);
+	}
+	
+	/* 바로구매 : javascript로 form을 submit시키기*/
+	function pro_submit(){
+		document.pro_cnt.submit();	
 	}
 </script>
 </head>
@@ -294,7 +300,7 @@
 
 	<!-- ================ 상품 상세 Area Start ================= -->
     <div id="pro_cnt">
-		<form name="pro_cnt" method="post" action="pro_gumae">
+		<form name="pro_cnt" method="post" action="pro_gumae?p=${p}">
 		<input type="hidden" name="pcode" value="${pvo.pcode},">
     	<article id="a1">
     		<!-- 메인이미지_area_start -->

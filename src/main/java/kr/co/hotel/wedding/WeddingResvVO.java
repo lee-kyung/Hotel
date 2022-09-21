@@ -3,7 +3,7 @@ package kr.co.hotel.wedding;
 public class WeddingResvVO {
 
 	private int wresv_id, state;
-	private String wresv_cday, wresv_day,wresv_wday,wresv_content, userid, wresv_time, wresv_hall, wresv_name, wresv_phone, wresv_inwon;
+	private String wresv_cday, wresv_day,wresv_wday,wresv_content, userid, wresv_time, wresv_hall, wresv_name, wresv_phone, wresv_inwon, wresv_code;
 	
 	// weddingtime 테이블의 wt_time
 	private String wt_time;
@@ -12,6 +12,14 @@ public class WeddingResvVO {
 	private String wed_hall;
 	
 	
+	
+	
+	public String getWresv_code() {
+		return wresv_code;
+	}
+	public void setWresv_code(String wresv_code) {
+		this.wresv_code = wresv_code;
+	}
 	public String getWed_hall() {
 		return wed_hall;
 	}
