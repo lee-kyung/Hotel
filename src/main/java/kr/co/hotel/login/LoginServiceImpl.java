@@ -20,7 +20,9 @@ public class LoginServiceImpl implements LoginService {
 
 	@Override
 	public String login_ok(MemberVO mvo, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+		
 		mvo=mapper.login_ok(mvo);
+		
 		if(mvo != null) {
 			String userid=mvo.getUserid();
 			session.setAttribute("userid", userid);
@@ -43,6 +45,7 @@ public class LoginServiceImpl implements LoginService {
 				cookie.setMaxAge(0);
 				response.addCookie(cookie);
 			}
+		
 			return "redirect:/main/index";	
 		}
 		else
