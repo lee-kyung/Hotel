@@ -14,7 +14,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="getpcode" resultType="Integer">
-		select ifnull(substring(max(pcode), 6, 4), 0)+1 from product where pcode like concat(#{param1}, '%')
+		select ifnull(substring(max(pcode), 6, 4), 0)+1
+		from product where pcode like concat(#{param1}, '%')
 	</select>
 	
 	<insert id="pro_write_ok" parameterType="kr.co.hotel.eshop.ProductVO">
@@ -24,14 +25,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="pro_list" resultType="kr.co.hotel.eshop.ProductVO">
 		select *, substr(fimg, 1, instr(fimg, ",")-1) as img,
-		(select count(*) from wish where userid=#{param1} and pcode=product.pcode) as wishchk
-		from product where pcode like concat(#{param2}, '%')
+		(select count(*) from wish where userid=#{param1}
+		and pcode=product.pcode) as wishchk
+		from product
+		where pcode like concat(#{param2}, '%')
 		order by ${param3} limit ${param4}, ${param5}
 	</select>
 	
 	<select id="pro_list2" resultType="kr.co.hotel.eshop.ProductVO">
 		select *, substr(fimg, 1, instr(fimg, ",")-1) as img
-		from product where pcode like concat(#{param1}, '%')
+		from product
+		where pcode like concat(#{param1}, '%')
 		order by ${param2} limit ${param3}, ${param4}
 	</select>
 	
@@ -74,7 +78,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select c.*, substr(p.fimg, 1, instr(p.fimg, ",")-1) as fimg,
 		p.title, p.price, p.halin, p.baefee, p.juk, p.su as psu
 		from cart c, product p
-		where c.pcode=p.pcode and userid=#{param1}
+		where c.pcode like concat(#{param2}, '%')
+		and c.pcode=p.pcode and userid=#{param1}
 		order by c.id desc
 	</select>
 	
@@ -89,7 +94,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="wish" resultType="kr.co.hotel.eshop.WishVO">
 		select w.*, substr(p.fimg, 1, instr(p.fimg, ",")-1) as fimg,
-		p.title, p.price, p.halin, p.baefee from wish w, product p
+		p.title, p.price, p.halin, p.baefee
+		from wish w, product p
 		where w.pcode=p.pcode and userid=#{param1}
 		order by ${param2}
 	</select>
