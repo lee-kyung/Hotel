@@ -49,6 +49,7 @@
 	<!-- ================ 로그인 Area Start ================= -->
 	<section id="login">
 		<form method="post" action="login_ok">
+		<input type="hidden" name="ck" value="3">
 			<div> <input type="text" name="userid" placeholder="아이디"> </div>
 			<div> <input type="password" name="pwd" placeholder="비밀번호"> </div>
 			<div> <input type="submit" value="로그인"> </div>

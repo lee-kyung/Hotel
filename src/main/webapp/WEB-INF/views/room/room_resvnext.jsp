@@ -21,7 +21,7 @@
 	roomsec table{
 		width: 750px;
 		height: 80px;
-	 	border: 1px solid #887159; 
+	 	/* border: 1px solid #887159;  */
 		margin-bottom: 30px;
 	}
 	roomsec input[type=text]{
@@ -67,8 +67,8 @@
 		align: right;
 	}
 	roomsec #pay{
-	margin: auto;
-	text-align: center;
+		margin: auto;
+		text-align: center;
 	}
 	roomsec #pay input[type=button]{
 		width: 200px;
@@ -257,9 +257,7 @@
 				<br>
 				<div><b>결제 방법</b></div>
 				<div id="paymethod">
-					간편결제 <input type="radio" value="0" name="paym">
-					카드결제 <input type="radio" value="1" name="paym">
-					
+					간편결제 <input type="radio" value="0" name="paym">					
 				</div>
 				<br>
 				<div><b>약관 동의</b></div>
@@ -364,7 +362,7 @@
 				// i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
 				// ''안에 띄어쓰기 없이 가맹점 식별코드를 붙여넣어주세요. 안그러면 결제창이 안뜹니다.
 				IMP.request_pay({
-					pg: 'kakaopay',
+					pg: 'html5_inicis',
 					pay_method: 'card',
 					merchant_uid: 'merchant_' + new Date().getTime(),
 					/* 

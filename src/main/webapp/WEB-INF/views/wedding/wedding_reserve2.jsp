@@ -119,8 +119,8 @@
 	section #wed_resv table#resv{
 	margin-top:50px;
 	margin-bottom:50px;
-	width:1600px;
-	display:none;}
+	width:1600px;/* 
+	display:none; */}
 	
 	section #wed_resv table#resv td{
 	padding:10px;}
@@ -191,6 +191,22 @@
 	
 	
 	
+	
+	
+	
+	
+	
+	section #wed_resv #check{
+    position:absolute;
+    width:700px;
+    height:500px;
+    border:1px solid black;
+    background:white;
+    visibility:hidden;
+    z-index:1;}
+	
+	
+/* 	
 	section #wed_resv #background{
 	position:absolute;
     left:0px;
@@ -268,7 +284,7 @@
 	display:inline-block;
 	font-size:14px;
 	text-align:center;
-	width:130px;}
+	width:130px;} */
 	
 	#wed_chk2{
 	margin-bottom:100px;}
@@ -298,7 +314,7 @@
 	});
 	
 	
-	$(document).ready(function(){		
+/* 	$(document).ready(function(){		
 		$(window).scroll(function(){			
 			$('#login').css('top',$(window).scrollTop()+270);		
 			});	
@@ -312,7 +328,7 @@
 		document.getElementById("login").style.visibility="visible";
 		position_chg();
     }
-    
+*/    
     // 브라우저 중앙에 레이어를 위치 시키지 위한 좌표
     function position_chg()
     {
@@ -328,7 +344,7 @@
     // 브라우저의 크기를 바꿀때마다 실행
     window.onresize=position_chg;
     
-    
+ /*    
     function login_close()
     {
     	document.getElementById("background").style.visibility="hidden";
@@ -340,7 +356,7 @@
 		document.getElementById("resv").style.display="block";
 		document.getElementById("user").style.display="none";
 	}
-	
+	  */
 	function edit()
 	{
 		document.getElementById("wresv_name").readOnly=false; 
@@ -442,6 +458,7 @@
 			alert("문의사항을 입력하세요.");
 			return false;
 		}
+
 		else
 		{
 			alert("예약이 완료되었습니다.");
@@ -560,7 +577,7 @@
 
 	<div id="resv_txt">RESERVATION</div> 
 	
-	
+<%-- 	
 	
 	<c:if test="${userid==null }">
 		<div id="user">
@@ -568,7 +585,7 @@
 			<div id="n_user" onclick="resv_view()">비회원으로 예약</div>	
 		</div>	
 	</c:if>
-		
+
 	<div id="background">
 	<div id="login">
 	<form method="post" action="../login/login_ok">
@@ -596,7 +613,7 @@
 		
 		
 	</div>
-		
+ --%>		
 		
 		
 
@@ -643,7 +660,7 @@
 		<tr>
 			<td>희망하는 웨딩홀</td>
           	<td colspan="3">
-				<select name="wresv_hall">dd
+				<select name="wresv_hall">
           		<c:forEach items="${hlist }" var="hvo">
 					<option value="${hvo.wed_hall }">${hvo.wed_hall }</option>
           		</c:forEach>
@@ -684,6 +701,25 @@
 	</table>
 	</form>  
 
+	
+	
+	<div id="check">
+		<div>주문번호는 .... 입니다.</div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 </div>
 </section>    
