@@ -35,8 +35,7 @@
 	request.setAttribute("ju", ju);
 	request.setAttribute("y", y);
 	request.setAttribute("m", m);
-	
-	
+
 	
 %> 
 <head>
@@ -119,8 +118,7 @@
 	section #wed_resv table#resv{
 	margin-top:50px;
 	margin-bottom:50px;
-	width:1600px;/* 
-	display:none; */}
+	width:1600px;}
 	
 	section #wed_resv table#resv td{
 	padding:10px;}
@@ -191,47 +189,48 @@
 	
 	
 	
-	
-	
-	
-	
-	
-	section #wed_resv #check{
-    position:absolute;
-    width:700px;
-    height:500px;
-    border:1px solid black;
-    background:white;
-    visibility:hidden;
-    z-index:1;}
-	
-	
-/* 	
 	section #wed_resv #background{
 	position:absolute;
     left:0px;
     top:0px;
     width:100%;
-    height:4200px;
+    height:3638px;
     background:rgba(240,240,240,0.6);
     visibility:hidden;}
 	
 	section #wed_resv #user{
-	margin-top:50px;
+	margin-top:70px;
+	border:1px solid #887159;
+	margin-left:300px;
+	height:400px;
+	width:1100px;
+	position:absolute;
 	text-align:center;
-	margin-bottom:200px;}
+	background:white;
+	z-index:1;}
 	
-	section #wed_resv #user div{
+	section #wed_resv #user #user_txt{
+	margin-top:50px;
+	color:#887159;
+	font-size:20px;}
+	
+	section #wed_resv #user #y_user, #n_user{
+	margin-top:100px;
 	display:inline-block;
 	border:1px solid black;
 	width:400px;
 	height:100px;
 	padding-top:30px;
 	font-size:30px;
-	text-align:center;}
+	text-align:center;
+	background:#887159;
+	color:white;
+	border:none;}
+	
 	
 	section #wed_resv #login{
     position:absolute;
+    margin-left:600px;
     width:700px;
     height:500px;
     border:1px solid black;
@@ -284,7 +283,7 @@
 	display:inline-block;
 	font-size:14px;
 	text-align:center;
-	width:130px;} */
+	width:130px;}
 	
 	#wed_chk2{
 	margin-bottom:100px;}
@@ -314,7 +313,7 @@
 	});
 	
 	
-/* 	$(document).ready(function(){		
+	$(document).ready(function(){		
 		$(window).scroll(function(){			
 			$('#login').css('top',$(window).scrollTop()+270);		
 			});	
@@ -322,19 +321,20 @@
 	
 	
 	
-	function login()
+	function login_view()
 	{
 		document.getElementById("background").style.visibility="visible";
 		document.getElementById("login").style.visibility="visible";
+		document.getElementById("user").style.visibility="hidden";
 		position_chg();
     }
-*/    
+    
     // 브라우저 중앙에 레이어를 위치 시키지 위한 좌표
     function position_chg()
     {
 	   	 var x=innerWidth;  // 브라우저 가로
 	   	 var y=innerHeight; // 브라우저 세로
-	   	 var left=(x/2)-360;
+	   	 var left=(x/2)-500;
 	   	 var top=(y/2)-200+document.documentElement.scrollTop;
 	   	 
 	   	 document.getElementById("login").style.left=left+"px";
@@ -344,7 +344,7 @@
     // 브라우저의 크기를 바꿀때마다 실행
     window.onresize=position_chg;
     
- /*    
+    
     function login_close()
     {
     	document.getElementById("background").style.visibility="hidden";
@@ -356,7 +356,7 @@
 		document.getElementById("resv").style.display="block";
 		document.getElementById("user").style.display="none";
 	}
-	  */
+	
 	function edit()
 	{
 		document.getElementById("wresv_name").readOnly=false; 
@@ -458,7 +458,6 @@
 			alert("문의사항을 입력하세요.");
 			return false;
 		}
-
 		else
 		{
 			alert("예약이 완료되었습니다.");
@@ -577,19 +576,20 @@
 
 	<div id="resv_txt">RESERVATION</div> 
 	
-<%-- 	
+	
 	
 	<c:if test="${userid==null }">
 		<div id="user">
-			<div id="user" onclick="login()">회원으로 예약</div>	
+			<div id="user_txt">상담 예약을 진행하려면 로그인 또는 비회원으로 진행 선택을 해주세요 </div>
+			<div id="y_user" onclick="login_view()">회원으로 예약</div>	
 			<div id="n_user" onclick="resv_view()">비회원으로 예약</div>	
 		</div>	
 	</c:if>
-
+		
 	<div id="background">
 	<div id="login">
 	<form method="post" action="../login/login_ok">
-	
+	<input type="hidden" name="ck" value="1">
 		<div id="login_first">
 			<div id="login_left">로그인</div>
 			<div id="login_right" onclick="login_close()">X</div>		
@@ -613,7 +613,7 @@
 		
 		
 	</div>
- --%>		
+		
 		
 		
 
@@ -660,7 +660,7 @@
 		<tr>
 			<td>희망하는 웨딩홀</td>
           	<td colspan="3">
-				<select name="wresv_hall">
+				<select name="wresv_hall">dd
           		<c:forEach items="${hlist }" var="hvo">
 					<option value="${hvo.wed_hall }">${hvo.wed_hall }</option>
           		</c:forEach>
@@ -701,25 +701,6 @@
 	</table>
 	</form>  
 
-	
-	
-	<div id="check">
-		<div>주문번호는 .... 입니다.</div>
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 </div>
 </section>    

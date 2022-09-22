@@ -205,6 +205,7 @@ public class WeddingServiceImpl implements WeddingService{
 	{
 		
 		String userid="";
+		
 		if(session.getAttribute("userid")!=null)
 		{
 			userid=session.getAttribute("userid").toString();
@@ -269,10 +270,13 @@ public class WeddingServiceImpl implements WeddingService{
 	}
 
 	@Override
-	public String wed_resv_check(HttpServletRequest request, HttpSession session) 
+	public String wed_resv_check(HttpServletRequest request, HttpSession session, Model model) 
 	{
 	//	String userid=session.getAttribute("userid").toString();
-		return null;
+		String wresv_code=request.getParameter("wresv_code");
+		WeddingResvVO wrvo=mapper.wed_resv_check(wresv_code);
+		model.addAttribute("wrvo", wrvo);
+		return "/wedding/wed_resv_check";
 	}
 	
 	

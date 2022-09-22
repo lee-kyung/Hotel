@@ -364,7 +364,7 @@
 				// i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
 				// ''안에 띄어쓰기 없이 가맹점 식별코드를 붙여넣어주세요. 안그러면 결제창이 안뜹니다.
 				IMP.request_pay({
-					pg: 'INIBillTst',
+					pg: 'kakaopay',
 					pay_method: 'card',
 					merchant_uid: 'merchant_' + new Date().getTime(),
 					/* 

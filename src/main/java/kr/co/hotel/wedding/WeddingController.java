@@ -63,9 +63,9 @@ public class WeddingController {
 	}
 	
 	@RequestMapping("/wedding/wed_resv_check")
-	public String wed_resv_check(HttpServletRequest request, HttpSession session)
+	public String wed_resv_check(HttpServletRequest request, HttpSession session, Model model)
 	{
-		return service.wed_resv_check(request, session);
+		return service.wed_resv_check(request, session, model);
 	}
 	
 	
