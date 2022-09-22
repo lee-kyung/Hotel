@@ -64,17 +64,17 @@ public class EshopServiceImpl implements EshopService {
 		try {
 			MultipartRequest multi=new MultipartRequest(request, path, size, "utf-8", rename);
 			
-			/* multi.getFileNames();로 파일이름을 가져와서 'Enumeration 변수명'에 저장하기 (dto사용X) */
+			/* 파일이름을 가져와서 Enumeration에 저장하기 (dto사용X) */
 			Enumeration file=multi.getFileNames();
-			
-			String imgs="";	// '파일명'의 값을 누적하기 때문에 초기값(빈값)을 주기
-			while(file.hasMoreElements()) {	// Enumeration은 hasMoreElement()를 통해 다음으로 이동하고,
-				String fimg=file.nextElement().toString();	// nextElement()를 통해 저장된 값을 가져오기
+			String imgs="";
+			while(file.hasMoreElements()) {
+				String fimg=file.nextElement().toString();
 				
-				/* multi.getFilesystemName("fimg1")로 서버에 저장된 파일이름을 가져오기 */
-				if(!fimg.equals("simg"))	// 단, simg도 가져오기 때문에 simg는 빼고 imgs에 담기
-				imgs=multi.getFilesystemName(fimg)+","+imgs;	// 테이블의 fname필드에 [파일명, 파일명, 파일명]의 형태로 저장하기
+				/* simg를 제외한 파일이름들을 하나의 변수에 구분자로 구분하여 담기 */
+				if(!fimg.equals("simg"))
+					imgs=multi.getFilesystemName(fimg)+","+imgs;
 			}
+			
 			imgs=imgs.replace("null,", "");	// 'null,'값을 없애기
 			
 			pvo.setPcode(multi.getParameter("pcode"));
@@ -206,14 +206,14 @@ public class EshopServiceImpl implements EshopService {
 	public void cart_add(HttpSession session, HttpServletRequest request, PrintWriter out, HttpServletResponse response) {
 		String pcode=request.getParameter("pcode");	// 상품코드
 		int su=Integer.parseInt(request.getParameter("su"));
-		Cookie cookie = WebUtils.getCookie(request, "cookieid");	// 이미 생성된 쿠키값(cookieid)이 있다면 cookie변수에 넣기
+		Cookie cookie = WebUtils.getCookie(request, "cookieid");	// 이미 생성된 쿠키값
 		
 		if(session.getAttribute("userid") == null) {	// 비회원인데
 			if(cookie == null) {	// cookie값이 없다면
-				String cookievalue=RandomStringUtils.random(30, true, true);	// 쿠키값(cookievalue, 30자, 문자O, 숫자O) 생성하기
+				String cookievalue=RandomStringUtils.random(30, true, true);
 				Cookie cookieid=new Cookie("cookieid", cookievalue);
 			
-				/* 처음 장바구니에 상품을 넣으면 쿠키 유지시간 설정하기 (1시간) */
+				/* 쿠키유지시간 설정하기 */
 				cookieid.setPath("/");
 				cookieid.setMaxAge(60 * 60 * 1);
 				response.addCookie(cookieid);
@@ -223,16 +223,16 @@ public class EshopServiceImpl implements EshopService {
 			else {	// cookie값이 이미 있다면
 				String cookievalue=cookie.getValue();
 				
-				/* 장바구니에 상품을 넣을 떄마다 쿠키 유지시간 재설정하기 (1시간) */
+				/* 쿠키유지시간 재설정하기 */
 				cookie.setPath("/");
 				cookie.setMaxAge(60 * 60 * 1);
 				response.addCookie(cookie);
 				
 				/* 장바구니 중복 체크하기 */
 				int chk=mapper.checkCart(cookievalue, pcode);
-				if(chk == 0)	// 장바구니에 해당 상품이 없다면 새로 추가하기
+				if(chk == 0)
 					mapper.cart_add(cookievalue, pcode, su);
-				else	// 있다면 수량만 늘리기
+				else
 					mapper.cart_suadd(su, cookievalue, pcode);
 			}
 		}
@@ -241,9 +241,9 @@ public class EshopServiceImpl implements EshopService {
 			
 			/*  장바구니 중복 체크하기 */
 			int chk=mapper.checkCart(userid, pcode);
-			if(chk == 0)	// 장바구니에 해당 상품이 없다면 새로 추가하기
+			if(chk == 0)
 				mapper.cart_add(userid, pcode, su);
-			else	// 있다면 수량만 늘리기
+			else
 				mapper.cart_suadd(su, userid, pcode);
 		}
 		
@@ -276,10 +276,10 @@ public class EshopServiceImpl implements EshopService {
 		
 		/* 장바구니에 담긴 상품들의 1개당 단가를 배열로 담아서 model로 보내기 */
 		for(int i=0;i<clist.size();i++) {
-			arrprice=arrprice+clist.get(i).getPrice()+",";	// [A상품 1개의 단가, B상품 1개의 단가,] 배열로 담기
-			arrhalin=arrhalin+clist.get(i).getHalin()+",";	// [A상품 1개의 할인율, B상품 1개의 할인율,] 배열로 담기
-			arrsu=arrsu+clist.get(i).getSu()+",";	// [A상품 1개의 수량, B상품 1개의 수량,] 배열로 담기
-			arrbaefee=arrbaefee+clist.get(i).getBaefee()+",";	// [A상품 1개의 배송비, B상품 1개의 배송비,] 배열로 담기
+			arrprice=arrprice+clist.get(i).getPrice()+",";	// 상품당 단가
+			arrhalin=arrhalin+clist.get(i).getHalin()+",";	// 상품당 할인율
+			arrsu=arrsu+clist.get(i).getSu()+",";	// 상품당 수량
+			arrbaefee=arrbaefee+clist.get(i).getBaefee()+",";	// 상품당 배송비
 		}
 		
 		model.addAttribute("p", p);
@@ -341,6 +341,10 @@ public class EshopServiceImpl implements EshopService {
 		/* 장바구니에서 왔다는 표시 : gchk=1 */
 		model.addAttribute("gchk", request.getParameter("gchk"));
 		
+		/* 메인분류값 */
+		String p=request.getParameter("p");
+		model.addAttribute("p", p);
+		
 		return "/eshop/pro_gumae";		
 	}
 
@@ -373,7 +377,7 @@ public class EshopServiceImpl implements EshopService {
 			
 			/*  장바구니 중복 체크하기 */
 			chk=mapper.checkCart(userid, pcode[i]);
-			if(chk != 0)	// 장바구니에 해당상품이 있다면 기존의 것을 지우기
+			if(chk != 0)
 				mapper.cart_delDupli();
 			
 			/* wish테이블에서 해당삭품을 삭제하기 */

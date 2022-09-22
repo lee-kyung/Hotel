@@ -147,12 +147,22 @@
 		background: white;
 		text-align: center;
 	}
+	#loglayer #logform{
+		margin-top: 200px;
+	}
 	#loglayer #gologin{
+		width: 400px;
+		height: 50px;
+		border: none;
+		border-bottom: 2px solid #887159;
+		background: white;
+		color: #887159;
+	}
+	#loglayer input[type=submit]{
 		width: 400px;
 		height: 80px;
 		border: 1px solid #887159;
 		background: white;
-		margin-top: 200px;
 		color: #887159;
 	}
 	#loglayer #keepgo{
@@ -179,19 +189,27 @@
 		var x=innerWidth; // 브라우저 가로 크기
 		var y=innerHeight; // 브라우저 세로 크기
 		
-		var left=(x/2)-1500;  //220은 qlayer가로크기인 440의 반
+		var left=(x/2)-1500; 
 		var top=(y/2)-350;
 		
 		document.getElementById("loglayer").style.left=left+"px";
 		document.getElementById("loglayer").style.top=top+"px";
 	}
+	window.onresize=position_chg;
 </script>
 <div id="loglayer">
 	<div>
 		<div id="txt">객실 예약을 진행하려면 로그인 또는 비회원으로 진행 선택을 해주세요.</div>
-		<a href="../login/login"><input type="button" value="로그인으로 이동" id="gologin"></a><p>
+		<form method="post" action="../login/login_ok" id="logform">
+		<input type="hidden" name="ck" value="2">
+			<div><input type="text" name="userid" placeholder="아이디" id="gologin"></div>
+			<div><input type="password" name="pwd" placeholder="비밀번호" id="gologin"></div>
+			<p>
+			<div><input type="submit" value="로그인"></div>
+			<hr>
+			<a href="../room/room_resv"><input type="button" value="비회원으로 계속" id="keepgo"></a>
+		</form>
 		<br>
-		<a href="../room/room_resv"><input type="button" value="비회원으로 계속" id="keepgo"></a>
 	</div>
 </div> 
                             </div>
