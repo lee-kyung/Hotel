@@ -341,6 +341,12 @@ public class EshopServiceImpl implements EshopService {
 		/* 장바구니에서 왔다는 표시 : gchk=1 */
 		model.addAttribute("gchk", request.getParameter("gchk"));
 		
+		/* 메인분류값 */
+		String p=request.getParameter("p");
+		model.addAttribute("p", p);
+		
+		System.out.println("p");
+		
 		return "/eshop/pro_gumae";		
 	}
 

@@ -205,6 +205,7 @@ public class WeddingServiceImpl implements WeddingService{
 	{
 		
 		String userid="";
+		
 		if(session.getAttribute("userid")!=null)
 		{
 			userid=session.getAttribute("userid").toString();

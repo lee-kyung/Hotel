@@ -5,7 +5,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <title>Insert title here</title>
 </head>
 <body>
@@ -94,12 +93,12 @@
 		display: none;
 	} 
 </style>
-
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script> 
 <script>
 
-/*   $(document).ready(function(){       
+/*     $(document).ready(function(){       
     $( "#checkin,#checkout" ).datepicker({
          changeMonth: true,
          changeYear: true,
@@ -119,9 +118,9 @@
         $("#checkin").datepicker( "option", "maxDate", selectedDate );
        });
 
-}); */
+	});   */
  
-  $(function(){
+   $(function(){
 		$("#checkin").datepicker({
 			format: "yyyy-mm-dd",
 			minDate :new Date(),
@@ -131,17 +130,9 @@
 			format: "yyyy-mm-dd",
 		});
 		
-	});
+	}); 
   
 // rcode받기
-	function maxcheck()
-	{
-		var adult=document.getElementById("adult").value;
-		var child=document.getElementById("child").value;
-		var binwon=adult+child;
-		alert(binwon);
-	}
-
 	function form_submit(n)
    {
 	   //alert(document.room.rcode2[n].value);
@@ -150,7 +141,10 @@
    }
 
 // 비어있는 객실 확인
-   function getRoomAvail(){  
+	function getRoomAvail(){
+		var adult=document.getElementById("adult").value;
+		var child=document.getElementById("child").value;
+		var binwon=adult+child;
 	// 체크인,체크아웃,성인 인원수 체크
 		if(document.getElementById("checkin").value.trim()=="")
 		{
@@ -175,7 +169,7 @@
 		var checkout=document.room.checkout.value;
 		var adult=document.room.adult.value;
 		var chk=new XMLHttpRequest();
-		chk.open("get","getRoomAvail?checkin="+checkin+"&checkout="+checkout+"&adult="+adult);
+		chk.open("get","getRoomAvail?checkin="+checkin+"&checkout="+checkout);
 		chk.send();
 		chk.onreadystatechange=function(){
 			if(chk.readyState==4){
@@ -285,9 +279,7 @@
 						<div><span id="subr">가격</span>${rvo.rprice}</div>						
 						<div><span id="subr">기준|최대인원</span>${rvo.rmin}/<span class="crmax">${rvo.rmax}</span></div>						
 						<br>
-					
 						<input type="button" value="객실선택" class="cbtn" onclick="form_submit(${my.index})">
-					
 					</div>
 				</div>
 				</c:forEach> 

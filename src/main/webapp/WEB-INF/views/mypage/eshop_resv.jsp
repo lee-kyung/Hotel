@@ -41,7 +41,7 @@
 	border-right:1px solid #cccccc;}
 	
 	section{
-	width:1100px;
+	width:1300px;
 	margin:auto;
 	border:1px solid red;
 	margin-top:100px;
@@ -69,40 +69,14 @@
 		</div> 
 	</div>	
 	<ul>
-		<li>객실 예약 확인</li><li>레스토랑 예약 확인</li><li>E-SHOP 주문내역</li><li>웨딩 예약 확인</li>
+		<li onclick="location='room_resv'">객실 예약 확인</li><li onclick="location='dine_resv'">레스토랑 예약 확인</li><li onclick="location='eshop_resv'">E-SHOP 주문내역</li><li onclick="location='wedding_resv'">웨딩 예약 확인</li>
 	</ul>
 </div>
 
 <section>
-<div id="profile_edit">
-		<div>
-			<div>아이디</div>
-			<div>${mvo.userid }</div>
-		</div>
-		<div>
-			<div>이름</div>
-			<div>${mvo.name }</div>
-		</div>
-		<div>
-			<div>휴대전화</div>
-			<div>${mvo.phone }</div>
-		</div>
-		<div>
-			<div>생년월일</div>
-			<div>${mvo.birth }</div>
-		</div>
-		<div>
-			<div>이메일</div>
-			<div>${mvo.email }</div>
-		</div>
-		<div>
-			<div>주소</div>
-			<div>${mvo.juso } ${mvo.juso_etc }</div>
-		</div>
+<div id="eshop">
 		
-		<input type="button" onclick="location='../mypage/myprofile_edit'" value="정보수정">
-		<input type="button" value="회원탈퇴">
-		
+이샵
 		
 </div>
 </section>

@@ -1,5 +1,7 @@
 package kr.co.hotel.login;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -30,5 +32,23 @@ public class LoginController {
 	@RequestMapping("/login/logout")
 	public String logout(HttpSession session) {
 		return service.logout(session);
+	}
+	
+	@RequestMapping("/login/find_IdPw")
+	public String find_IdPw()
+	{
+		return "/login/find_IdPw";
+	}
+	
+	@RequestMapping("/login/userid_search_ok")
+	public void userid_search_ok(MemberVO mvo, PrintWriter out)
+	{
+		service.userid_search_ok(mvo, out);
+	}
+	
+	@RequestMapping("/login/pwd_search_ok")
+	public void pwd_search_ok(MemberVO mvo, PrintWriter out)
+	{
+		service.pwd_search_ok(mvo, out);
 	}
 }
