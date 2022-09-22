@@ -1,5 +1,7 @@
 package kr.co.hotel.login;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,6 +24,7 @@ public class LoginServiceImpl implements LoginService {
 	public String login_ok(MemberVO mvo, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
 		
 		mvo=mapper.login_ok(mvo);
+		int ck=Integer.parseInt(request.getParameter("ck"));
 		
 		if(mvo != null) {
 			String userid=mvo.getUserid();
@@ -29,6 +32,7 @@ public class LoginServiceImpl implements LoginService {
 			session.setAttribute("name", mvo.getName());
 			session.setAttribute("email", mvo.getEmail());
 			session.setAttribute("phone", mvo.getPhone());
+			session.setAttribute("joinday", mvo.getJoinday());
 			
 			/* 비회원 장바구니를 회원 장바구니로 옮기기 (+중복삭제) */
 			Cookie cookie = WebUtils.getCookie(request, "cookieid");
@@ -45,8 +49,21 @@ public class LoginServiceImpl implements LoginService {
 				cookie.setMaxAge(0);
 				response.addCookie(cookie);
 			}
-		
-			return "redirect:/main/index";	
+			
+			if(ck==1)
+			{
+				return "redirect:/wedding/wedding_reserve";
+			}
+			else if(ck==2)
+			{
+				return "redirect:/room/room_resv";
+			}
+			else if(ck==3)
+			{
+				return "redirect:/main/index";					
+			}
+			else
+				return "redirect:/main/index";
 		}
 		else
 			return "redirect:/login/login";
@@ -57,4 +74,28 @@ public class LoginServiceImpl implements LoginService {
 		session.invalidate();
 		return "redirect:/main/index";
 	}
+
+	@Override
+	public void userid_search_ok(MemberVO mvo, PrintWriter out) 
+	{
+		String userid=mapper.userid_search_ok(mvo);
+		
+		if(userid==null)
+			userid="0";
+		
+		System.out.println(userid);
+		out.print(userid);
+	}
+
+	@Override
+	public void pwd_search_ok(MemberVO mvo, PrintWriter out) 
+	{
+		String pwd=mapper.pwd_search_ok(mvo);
+		if(pwd==null)
+			pwd="0";
+		System.out.println(pwd);
+		out.print(pwd);
+		
+	}
+
 }

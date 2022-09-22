@@ -237,11 +237,11 @@
  				</tr>
  				<tr>
  					<td> 배송 주소* </td>
- 					<td> <input type="text" name="zip" readonly placeholder="우편번호" id="zip"><input type="button" value="주소검색" onclick="juso_search()" id="zip_btn"> </td>
+ 					<td> <input type="text" name="zip" readonly placeholder="우편번호" id="zip" onclick="juso_search()" ><input type="button" value="주소검색" onclick="juso_search()" id="zip_btn"> </td>
  				</tr>
  				<tr>
  					<td></td>
- 					<td> <input type="text" name="juso" readonly placeholder="기본주소"> </td>
+ 					<td> <input type="text" name="juso" readonly placeholder="기본주소" onclick="juso_search()" > </td>
  				</tr>
  				<tr>
  					<td></td>

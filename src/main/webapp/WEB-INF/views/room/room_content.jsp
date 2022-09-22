@@ -10,7 +10,7 @@
 <body>
 <style>
 	.container{
-		width: 990px;
+		width: 1100px;
 		margin: auto;
 	}
 	#rtype{
@@ -46,40 +46,25 @@
 		background: #887159;
 		color: white;
 	}
-	
-	section #rmenu{
+	roomsec #rmenu{
 		width: 1000px;
 		height: 60px;
 		margin: auto;
 		position: relative; // 스크롤 관련
 	}
-	section #rmenu ul{
-		padding-left: 0px;
+	roomsec #rname{
+		margin-bottom:100px;
+		margin-left: 0;
+		padding-left: 0;
 	}
-	section #rmenu ul li{
-		list-style-type: none;
-		display: inline-block;
-		width: 100px;
-		height: 38px;
-		text-align: center;
+	roomsec #rname li{
+		display:inline-block;
+		padding-right:30px;
+		font-size:33px;
 		font-weight: 900;
-		border: 1px solid black;
-		border-top: 3px solid #CCCCFF;
-		padding-top:12px;
-		margin-left: 0px;
-		border-right: none;
-		background: lavender;
+		font-family: fantasy;
+		color: #887159;
 	}
-
-	section #rname{
-	margin-left:100px;
-	margin-bottom:100px;}
-
-	section #rname li{
-	display:inline-block;
-	padding-right:30px;
-	font-size:50px;
-	font-family:fantasy;}
 </style>
 <script>
 
@@ -110,16 +95,15 @@
     	</ul>
     	</div>
     	<br>
- 		<c:forEach items="${list}" var="rvo">
- 		<input type="hidden" name="rcode" value="${rvo.rcode}">
+ 	
  		<div class="rr" style="font-size:35px; font-weight: 900; color: #887159">${rvo.rname}</div>
 		<div style="border:1px solid #887159">
-			<div style="margin:auto;"><img src="../img/rooms/${rvo.rpimg}" width="980px"></div>
-			<img src="../img/rooms/${rvo.rcimg}" width="980px"> <p>
+			<div style="margin:auto;"><img src="../img/rooms/${rvo.rpimg}" width="1000px"></div>
+			<img src="../img/rooms/${rvo.rcimg}" width="1000px"> <p>
 			<br>
 		</div>
 		<br>
-		</c:forEach>
+		 
  	</roomsec>
  	</div>
  	</div>

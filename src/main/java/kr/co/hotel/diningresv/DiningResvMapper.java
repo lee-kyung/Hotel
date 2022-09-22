@@ -11,11 +11,11 @@ import kr.co.hotel.room.RoomVO;
 
 public interface DiningResvMapper {
 
-	public ArrayList<DiningVO> dining_reserve();
+	public ArrayList<DiningVO> dining_reserve(String start, String end);
 	
-	public ArrayList<DiningVO> getDineAvail(String dine_type);
+	/*public ArrayList<DiningVO> getDineAvail(String dine_type);*/
 	
-	public DiningVO dining_reserve_next(String id);
+	public DiningVO dining_reserve_next(String dine_type);
 	
 	// old
 	public DiningVO dining_reserve_next_old(String id);

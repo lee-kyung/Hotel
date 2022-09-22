@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@	page import="java.time.LocalDate" %> 
+<%LocalDate today=LocalDate.now();%>
 <head>
 <style>
 	section{
@@ -25,7 +27,7 @@
 	
 	section #resv_check #border{
 	border:1px solid black;
-	height:450px;
+	height:600px;
 	width:850px;
 	margin:auto;}
 	
@@ -56,7 +58,7 @@
 	border-bottom:1px solid black;}
 	
 	section #resv_check #btn_center{
-	margin-top:150px;
+	margin-top:100px;
 	text-align:center;}
 	
 	section #resv_check input[type=button]{
@@ -99,13 +101,24 @@
 		<div>상담 예약일</div>
 		<div>상담 시간</div>
 		<div>주문번호</div>
-		<div>전화번호</div>
+		<div>주문번호</div>
+		<div>이메일</div>
+		<c:if test="${wrvo.wresv_pay==1 }">
+			<div>결제</div>
+		</c:if>
 	</div>
 	<div id="right">
 		<div>${wrvo.wresv_cday }</div>
 		<div>${wrvo.wresv_time }</div>
 		<div>${wrvo.wresv_code }</div>
 		<div>${wrvo.wresv_phone }</div>
+		<div>${wrvo.wresv_email }</div>
+		
+		<c:if test="${wrvo.wresv_pay==1 }">
+			<fmt:formatDate var="today" value="<%=new java.util.Date() %>" pattern="yyyy-MM-dd"/>
+			<div>신한은행  020202-08-0880808 " ${today } 23:59 "까지 입금해주세요</div>
+		</c:if>
+		
 	</div>
 		<div id="txt2">비회원은 이름과 주문코드로 조회가 가능합니다.</div>
 	</div>
