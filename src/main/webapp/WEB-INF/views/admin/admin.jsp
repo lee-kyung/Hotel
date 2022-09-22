@@ -85,7 +85,19 @@
 <section>
 <div id="mypage">
 <!-- mypage 내용 작성 -->
-
+	
+	<table>
+		<h2>객실 예약 리스트</h2>
+		<tr>
+			<td> ID </td>
+			<td> 아이디 </td>
+			<td> 체크인 </td>
+			<td> 체크아웃 </td>
+			<td> 객실명 </td>
+			<td> ID </td>
+		</tr>
+		
+	</table>
 
 
 </div>
