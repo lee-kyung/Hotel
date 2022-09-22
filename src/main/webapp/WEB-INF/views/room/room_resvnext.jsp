@@ -11,7 +11,7 @@
 <body>
 <style>
 	.container{
-		width: 990px;
+		width: 1100px;
 		margin: auto;
 	}
 	roomsec{
@@ -21,29 +21,13 @@
 	roomsec table{
 		width: 750px;
 		height: 80px;
-	/* 	border: 1px solid #887159; */
+	 	/* border: 1px solid #887159;  */
 		margin-bottom: 30px;
 	}
 	roomsec input[type=text]{
 		width: 260px;
 		height: 30px;
 		border: 1px solid #887159;
-	}
-	roomsec #pay{
-		margin: auto;
-		text-align: center;
-	}
-	roomsec #pay input[type=button]{
-		width: 200px;
-		height: 50px;
-		border: 1px solid #887159;
-		color: #887159;
-		background: white;
-		pointer: cursor;
-	}
-	roomsec #pay input[type=button]:hover{
-		background: #887159;
-		color: white;
 	}
 	roomsec #tb input[type=text]{
 		border: none;
@@ -81,6 +65,22 @@
 	}
 	roomsec .bb{
 		align: right;
+	}
+	roomsec #pay{
+		margin: auto;
+		text-align: center;
+	}
+	roomsec #pay input[type=button]{
+		width: 200px;
+		height: 50px;
+		border: 1px solid #887159;
+		color: #887159;
+		background: white;
+		pointer: cursor;
+	}
+	roomsec #pay input[type=button]:hover{
+		background: #887159;
+		color: white;
 	}
 </style>
 <script>
@@ -257,9 +257,7 @@
 				<br>
 				<div><b>결제 방법</b></div>
 				<div id="paymethod">
-					간편결제 <input type="radio" value="0" name="paym">
-					카드결제 <input type="radio" value="1" name="paym">
-					
+					간편결제 <input type="radio" value="0" name="paym">					
 				</div>
 				<br>
 				<div><b>약관 동의</b></div>
@@ -327,32 +325,32 @@
 		// 아이디, 비번, 이름, 전화번호
 		if(document.resv.binwon.value>${rvo.rmax})
 		{
-			alert("선택된 인원수가 최대가능 인원보다 많습니다. 객실을 다시 선택해주세요.")
+			alert("선택된 인원수가 최대가능 인원보다 많습니다. 객실을 다시 선택해주세요.");
 			return false;
 		}
 		else if(document.resv.bkname.value.trim()=="")
 		{
-			alert("이름을 입력하세요")
+			alert("이름을 입력하세요");
 			return false;
 		}
 		else if(document.resv.bkphone.value.trim()=="")
 		{
-			alert("전화번호를 입력하세요")
+			alert("전화번호를 입력하세요");
 			return false;
 		}
 		else if(document.resv.agree1.checked!=true)
 		{
-			alert("개인정보 수집 및 이용에 대한 동의가 필요합니다.")
+			alert("개인정보 수집 및 이용에 대한 동의가 필요합니다.");
 			return false;
 		}
 		else if(document.resv.agree2.checked!=true)
 		{
-			alert("상품 정보 및 취소 규정에 대한 동의가 필요합니다.")
+			alert("상품 정보 및 취소 규정에 대한 동의가 필요합니다.");
 			return false;
 		}
 		else if(document.resv.paym.value=="")
 		{
-			alert("결제방법을 선택하세요")	
+			alert("결제방법을 선택하세요")	;
 			return false;
 		}
 		else
@@ -388,7 +386,8 @@
 					if (rsp.success) {
 						var msg = '결제가 완료되었습니다.';
 						msg += '결제 금액 : ' + rsp.paid_amount;
-						// success.submit();
+						document.resv.submit();
+						
 						// 결제 성공 시 정보를 넘겨줘야한다면 body에 form을 만든 뒤 위의 코드를 사용하는 방법이 있습니다.
 						// 자세한 설명은 구글링으로 보시는게 좋습니다.
 					} else {
@@ -398,10 +397,7 @@
 					alert(msg);
 				});
 			});
-
-		  
 			return true;
-			
 		}
 	}
 	

@@ -51,10 +51,16 @@ public class LoginServiceImpl implements LoginService {
 			{
 				return "redirect:/wedding/wedding_reserve";
 			}
-			else
+			else if(ck==2)
+			{
+				return "redirect:/room/room_resv";
+			}
+			else if(ck==3)
 			{
 				return "redirect:/main/index";					
 			}
+			else
+				return "redirect:/main/index";
 		}
 		else
 			return "redirect:/login/login";

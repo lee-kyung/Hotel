@@ -5,7 +5,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <title>Insert title here</title>
 </head>
 <body>
@@ -94,12 +93,12 @@
 		display: none;
 	} 
 </style>
-
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script> 
 <script>
 
-/*   $(document).ready(function(){       
+/*     $(document).ready(function(){       
     $( "#checkin,#checkout" ).datepicker({
          changeMonth: true,
          changeYear: true,
@@ -119,9 +118,9 @@
         $("#checkin").datepicker( "option", "maxDate", selectedDate );
        });
 
-}); */
+	});   */
  
-  $(function(){
+   $(function(){
 		$("#checkin").datepicker({
 			format: "yyyy-mm-dd",
 			minDate :new Date(),
@@ -131,7 +130,7 @@
 			format: "yyyy-mm-dd",
 		});
 		
-	});
+	}); 
   
 // rcode받기
 	function maxcheck()

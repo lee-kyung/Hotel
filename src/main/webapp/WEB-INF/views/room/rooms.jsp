@@ -97,7 +97,7 @@
 				  <div><span id="subr">베드타입</span>${rvo.rbed}</div>
 				  <br>
 				  <br>
-				  <input type="button" value="상세보기" onclick="location='../room/room_content?code=${rvo.code}'">
+				  <input type="button" value="상세보기" onclick="location='../room/room_content?code=${rvo.code}&rcode=${rvo.rcode}'">
 				</div>
 			</div> <br>
 		</div>
