@@ -10,7 +10,7 @@
 <body>
 <style>
 	.container{
-		width: 990px;
+		width: 1100px;
 		margin: auto;
 	}
 	#rtype{
@@ -46,8 +46,28 @@
 		background: #887159;
 		color: white;
 	}
-</style>
+	roomsec #rmenu{
+		width: 1000px;
+		height: 60px;
+		margin: auto;
+		position: relative; // 스크롤 관련
+	}
+	roomsec #rname{
+	margin-left:100px;
+	margin-bottom:100px;}
 
+	roomsec #rname li{
+	display:inline-block;
+	padding-right:30px;
+	font-size:33px;
+	font-family:fantasy;
+	border: 1px solid black;
+	}
+</style>
+<script>
+
+
+</script>
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
     <!-- bradcam_area_start -->
     <!-- 새 이미지 추가하는 법
@@ -65,21 +85,23 @@
     <div class="container">
     <div class="row"> 
     <roomsec>
-    	<div style="font-size: 20px;"> 객실 정보: 
+    	<div style="font-size: 20px;" id="rmenu"> 
+    	<ul id="rname">
     		<c:forEach items="${list}" var="rvo"> 
-    			<span style="border: 1px solid #887159">${rvo.rname}</span>
+    			<li><a href="../room/room_content?code=${rvo.code}&rcode=${rvo.rcode}">${rvo.rname}</a></li>
     		</c:forEach>
+    	</ul>
     	</div>
     	<br>
- 		<c:forEach items="${list}" var="rvo">
- 		<div style="font-size:35px; font-weight: 900; color: #887159">${rvo.rname}</div>
+ 	
+ 		<div class="rr" style="font-size:35px; font-weight: 900; color: #887159">${rvo.rname}</div>
 		<div style="border:1px solid #887159">
 			<div style="margin:auto;"><img src="../img/rooms/${rvo.rpimg}" width="980px"></div>
 			<img src="../img/rooms/${rvo.rcimg}" width="980px"> <p>
 			<br>
 		</div>
 		<br>
-		</c:forEach>
+		 
  	</roomsec>
  	</div>
  	</div>

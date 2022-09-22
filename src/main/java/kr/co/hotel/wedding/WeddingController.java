@@ -62,6 +62,11 @@ public class WeddingController {
 		service.wresv_cal(wrvo, out, request, model);
 	}
 	
+	@RequestMapping("/wedding/wed_resv_check")
+	public String wed_resv_check(HttpServletRequest request, HttpSession session, Model model)
+	{
+		return service.wed_resv_check(request, session, model);
+	}
 	
 	
 	

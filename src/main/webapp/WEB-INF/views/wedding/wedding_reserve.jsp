@@ -2,6 +2,42 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@	page import="java.time.LocalDate" %> 
+<%
+	int y, m, d;
+	if(request.getParameter("y")==null)
+	{
+		LocalDate today=LocalDate.now();
+		y=today.getYear();	
+		m=today.getMonthValue();
+
+	}
+	else
+	{
+		y=Integer.parseInt(request.getParameter("y"));
+		m=Integer.parseInt(request.getParameter("m"));
+
+	}
+	
+	LocalDate day=LocalDate.of(y, m, 1);
+	
+	int yoil=day.getDayOfWeek().getValue();
+	if(yoil==7)
+		yoil=0;
+	
+	int chong=day.lengthOfMonth();
+	
+	int ju=(int)Math.ceil((yoil+chong)/7.0);
+	
+	
+	request.setAttribute("yoil", yoil);
+	request.setAttribute("chong", chong);
+	request.setAttribute("ju", ju);
+	request.setAttribute("y", y);
+	request.setAttribute("m", m);
+
+	
+%> 
 <head>
 <style>
 	
@@ -64,12 +100,14 @@
 	section #wed_resv #time_1 #time{
 	height:52px;}
 	
-	section #wed_resv #day, #time{
+	section #wed_resv #day1, #time{
 	cursor:pointer;}
 	
- 	section #wed_resv #day:hover, #time:hover{
+ 	section #wed_resv #day1:hover, #time:hover{
 	color:red;}
 	
+	section #wed_resv #day2{
+	color:#D5D5D5;}
 
 	section #wed_resv #resv_txt{
 	margin-top:100px;
@@ -79,6 +117,7 @@
 	
 	section #wed_resv table#resv{
 	margin-top:50px;
+	margin-bottom:50px;
 	width:1600px;}
 	
 	section #wed_resv table#resv td{
@@ -93,6 +132,9 @@
 	background:white;
 	cursor:pointer;
 	border:1px solid black;}
+	
+	section #wed_resv table#resv #wresv_name, #wresv_phone, #cday, #wresv_time{
+	background:#F3F3F3;}
 	
 	section #wed_resv table#resv td:first-child{
 	width:200px;}
@@ -143,36 +185,198 @@
 	height:70px;}
 	
 	
+	
+	
+	
+	
+	section #wed_resv #background{
+	position:absolute;
+    left:0px;
+    top:0px;
+    width:100%;
+    height:3638px;
+    background:rgba(240,240,240,0.6);
+    visibility:hidden;}
+	
+	section #wed_resv #user{
+	margin-top:70px;
+	border:1px solid #887159;
+	margin-left:300px;
+	height:400px;
+	width:1100px;
+	position:absolute;
+	text-align:center;
+	background:white;
+	z-index:1;}
+	
+	section #wed_resv #user #user_txt{
+	margin-top:50px;
+	color:#887159;
+	font-size:20px;}
+	
+	section #wed_resv #user #y_user, #n_user{
+	margin-top:100px;
+	display:inline-block;
+	border:1px solid black;
+	width:400px;
+	height:100px;
+	padding-top:30px;
+	font-size:30px;
+	text-align:center;
+	background:#887159;
+	color:white;
+	border:none;}
+	
+	
+	section #wed_resv #login{
+    position:absolute;
+    margin-left:600px;
+    width:700px;
+    height:500px;
+    border:1px solid black;
+    background:white;
+    visibility:hidden;
+    z-index:1;}
+    
+    section #wed_resv #login #login_first div{
+    display:inline-block;}
+    
+    section #wed_resv #login #login_first{
+    height:50px;
+    background:black;
+    color:white;
+    padding-top:10px;
+    font-size:18px;}
+    
+    section #wed_resv #login #login_first #login_left{
+    padding-left:20px;}
+    
+    section #wed_resv #login #login_first #login_right{
+    float:right;
+    padding-right:20px;}
+    
+    section #wed_resv #login #login_input{
+    margin:auto;
+    margin-top:100px;
+    width:500px;
+    height:280px;}
+    
+    section #wed_resv #login #login_input input[type=text], input[type=password]{
+    border:none;
+    border-bottom:1px solid #D5D5D5;
+    outline:none;
+    width:500px;
+    height:50px;}
+    
+    section #wed_resv #login input[type=submit]{
+    margin-top:50px;
+    width:500px;
+    height:50px;
+    background:black;
+    color:white;}
+	
+	section #wed_resv #login #login_txt{
+	width:400px;
+	margin:auto;}
+	
+	section #wed_resv #login #login_txt ul li{
+	display:inline-block;
+	font-size:14px;
+	text-align:center;
+	width:130px;}
+	
+	#wed_chk2{
+	margin-bottom:100px;}
+	#wed_chk2 img{
+	width:100%;}
+	
 </style>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script> 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script>
-	
- /*	$(function(){
+
+
+ 	$(function(){
 		$("#test").click(function(){
 	        alert($(this).text());
 	    });
 	});  
-*/	
+
+
+	$(function(){
+		
+		$("#datepicker").datepicker({
+			format: "yyyy-mm-dd",	// 작성되지 않은 경우 기본 값: mm/dd/yy
+			minDate: new Date(),
+		});
+	});
+	
+	
+	$(document).ready(function(){		
+		$(window).scroll(function(){			
+			$('#login').css('top',$(window).scrollTop()+270);		
+			});	
+		});
+	
+	
+	
+	function login_view()
+	{
+		document.getElementById("background").style.visibility="visible";
+		document.getElementById("login").style.visibility="visible";
+		document.getElementById("user").style.visibility="hidden";
+		position_chg();
+    }
+    
+    // 브라우저 중앙에 레이어를 위치 시키지 위한 좌표
+    function position_chg()
+    {
+	   	 var x=innerWidth;  // 브라우저 가로
+	   	 var y=innerHeight; // 브라우저 세로
+	   	 var left=(x/2)-500;
+	   	 var top=(y/2)-200+document.documentElement.scrollTop;
+	   	 
+	   	 document.getElementById("login").style.left=left+"px";
+	   	 document.getElementById("login").style.top=top+"px";
+    }
+    
+    // 브라우저의 크기를 바꿀때마다 실행
+    window.onresize=position_chg;
+    
+    
+    function login_close()
+    {
+    	document.getElementById("background").style.visibility="hidden";
+    	document.getElementById("login").style.visibility="hidden";
+    }
+    
+	function resv_view()
+	{
+		document.getElementById("resv").style.display="block";
+		document.getElementById("user").style.display="none";
+	}
+	
 	function edit()
 	{
 		document.getElementById("wresv_name").readOnly=false; 
 	  	document.getElementById("wresv_phone").readOnly=false;
+	  	document.getElementById("wresv_name").style.background="white";
+	  	document.getElementById("wresv_phone").style.background="white";
 
 	}
-	
+
 	function time(time)
 	{
 		document.wresv.wresv_time.value=time.innerText;
 	
 	}
-
 	function day(day)
 	{
+		document.getElementById("time_1").style.visibility="visible";
 		document.wresv.wresv_cday.value="${y}"+"-"+"${m}"+"-"+day.innerText;
 		document.getElementById("time_txt").innerText="${y}"+"-"+"${m}"+"-"+day.innerText;
-
+		
 		var wresv_cday=${y}+"-"+${m}+"-"+day.innerText;
 	//	alert(wresv_cday);
 		var time=document.getElementsByClassName("time");
@@ -185,7 +389,7 @@
 		
 			if(chk.readyState==4)
 			{		
-		//		alert(chk.responseText);
+			//	alert(chk.responseText);
 				var chk_time=chk.responseText.split(",");
 		 		
 		//		alert(chk.responseText.length);
@@ -224,12 +428,12 @@
 	
 	function resv(chk)
 	{
-		if(chk.wresv_name.value.trim().length==0)
+		if(chk.wresv_name.value.trim()=="")
 		{
 			alert("이름을 입력하세요.");
 			return false;
 		}
-		else if(chk.wresv_phone.value.trim().length==0)
+		else if(chk.wresv_phone.value.trim()=="")
 		{
 			alert("전화번호를 입력하세요.");
 			return false;
@@ -260,17 +464,7 @@
 			return true;
 		}
 	}
-	
-	
-	
-	$(function(){
-		
-		$("#datepicker").datepicker({
-			format: "yyyy-mm-dd",	// 작성되지 않은 경우 기본 값: mm/dd/yy
-			minDate: new Date("${y}-${m}-${day}"),
-		});
-	});
-	
+
 </script>
 
 </head>
@@ -291,8 +485,10 @@
     <!--================ Single-Wedding Area Start =================-->
 <section>
 <div id="wed_resv">
+
+
+
 	<div id="txt">WEDDING RESERVATION</div>
-${wresv_cday}
 	<div id="cal_title">
 		<c:if test="${m==1  }">	<!-- 1월 -->
 			<a href="wedding_reserve?y=${y-1 }&m=12"><span class="mon">${y } 12</span></a>
@@ -329,7 +525,7 @@ ${wresv_cday}
          	<td>WED</td>
          	<td>THU</td>
          	<td>FRI</td>
-         	<td>SAT</td>
+         	<td>SAT</td>a
 		</tr> 
 		<c:set var="day" value="1"/>
 		<c:forEach var="i" begin="1" end="${ju }">	<!-- 행 -->
@@ -341,25 +537,21 @@ ${wresv_cday}
 			<c:if test="${((j >= yoil && i==1) || i>1 ) && (chong >=day)}"><!-- 열이 1일의해당요일보다 크고(1일 이후~) 첫번째 행이거나 || 또는 2번째 행부터는 모두 숫자로 표시-->
 
 
-				<td height="100">
+			<td height="100">
 				
-						<div id="day" onclick="day(this)" class="day" name="wresv_cday">${day}</div>	
+				<% int day2=Integer.parseInt(pageContext.getAttribute("day").toString()); %>
 
-
-								<c:if test="${tt==1 }">
-									tt=1
-								</c:if>
-					
-					
-								<c:if test="${tt==0 }">
-									tt=0
-								</c:if>
+				<fmt:formatDate var="today" value="<%=new java.util.Date() %>" pattern="yyyy-MM-dd"/>
+	        	<fmt:formatDate var="dday" value="<%=new java.util.Date(y-1900,m-1,day2-1) %>"  pattern="yyyy-MM-dd"/>
+        	
+	            <c:if test="${dday >= today}">
+	             	<div id="day1" onclick="day(this)" class="day" name="wresv_cday">${day}</div>	
+	            </c:if>
+	            <c:if test="${dday < today}">
+	             	<div id="day2" class="day" name="wresv_cday" >${day}</div>	
+	            </c:if>
 							
-							
-					
-
-
-				</td>						<!-- 날짜 -->			<!-- 위의 조건과 맞추기 위해 밑에도 총의 조건을 작성해야한다. (&& 총일수가 숫자보다 같거나 큰 경우 출력) -->			
+			</td>						<!-- 날짜 -->			<!-- 위의 조건과 맞추기 위해 밑에도 총의 조건을 작성해야한다. (&& 총일수가 숫자보다 같거나 큰 경우 출력) -->			
 
 
 			<c:set var="day" value="${day+1 }"/>	<!-- 날짜값을 1씩 증가 -->
@@ -376,43 +568,92 @@ ${wresv_cday}
 		<div id="time_txt"></div>
 		<hr>
         <c:forEach items="${tlist }" var="tvo">
-			<div id="time" class="time" name="wresv_time" onclick="time(this)" >${tvo.wt_time }</div>
+			<div id="time" class="time" name="wresv_time" >${tvo.wt_time }</div>
 		</c:forEach>  
 	</div>
 
-	<form name="wresv" method="post" action="weddingReserve_ok" onsubmit="return resv(this)">
+	
 
-	<div id="resv_txt">RESERVATION</div>	
+	<div id="resv_txt">RESERVATION</div> 
+	
+	
+	
+	<c:if test="${userid==null }">
+		<div id="user">
+			<div id="user_txt">상담 예약을 진행하려면 로그인 또는 비회원으로 진행 선택을 해주세요 </div>
+			<div id="y_user" onclick="login_view()">회원으로 예약</div>	
+			<div id="n_user" onclick="resv_view()">비회원으로 예약</div>	
+		</div>	
+	</c:if>
+		
+	<div id="background">
+	<div id="login">
+	<form method="post" action="../login/login_ok">
+	<input type="hidden" name="ck" value="1">
+		<div id="login_first">
+			<div id="login_left">로그인</div>
+			<div id="login_right" onclick="login_close()">X</div>		
+		</div>
+		<div id="login_input">
+			<div>아이디</div>
+			<div><input type="text" name="userid" placeholder="아이디를 입력하세요"></div>
+			<div style="margin-top:10px;">비밀번호</div>
+			<div><input type="password" name="pwd" placeholder="비밀번호를 입력하세요"></div>
+			<div><input type="submit" value="LOGIN"></div>
+		</div>
+		<div id="login_txt">
+			<ul>
+				<li>회원가입 ></li>
+				<li>아이디 찾기 ></li>
+				<li>비밀번호 찾기 ></li>
+			</ul>
+		</div>
+	</form>
+	</div>	
+		
+		
+	</div>
+		
+		
+		
+
+		
+		
+	
+	<form name="wresv" method="post" action="weddingReserve_ok" onsubmit="return resv(this)">	
 	<table id="resv" align="center">
 		<tr>
 			<td colspan="4">
-				<c:if test="${userid != null }">
-					<input type="button" onclick="edit()" value="정보수정">
-				</c:if>
+			<c:if test="${userid==null }">
+				<div>비회원입니다. 비회원의 경우 주문번호와 이름으로 조회가 가능합니다. </div>
+			</c:if>
+			<c:if test="${userid != null }">
+				<input type="button" onclick="edit()" value="정보수정">
+			</c:if> 
 			</td>
-		</tr>
+		</tr> 
 		<tr>
 			<td>이름</td>
 			<td width="400">
-				<c:if test="${userid != null }">dd
+	 			<c:if test="${userid != null }">
 						<input type="text" name="wresv_name" id="wresv_name" value="${name}" readonly>
 				</c:if>
 				<c:if test="${userid == null }">
 						<input type="text" name="wresv_name">
-				</c:if>
+			 	</c:if> 
 			</td>
 			<td>전화번호</td>
-			<td>
+			 <td>
 				<c:if test="${userid != null }">
 					<input type="text" name="wresv_phone" id="wresv_phone" value="${phone }" readonly>
 				</c:if>
-				<c:if test="${userid == null }">
-						<input type="text" name="wresv_name">
-				</c:if>
+				<c:if test="${userid == null }"> 
+						<input type="text" name="wresv_phone">
+				 </c:if> 
 			</td>
 			<td rowspan="5">
 				<img src="../img/wedding/wedding_resv.jpg" width="400" height="400">
-				<input type="submit" class="button button-contactForm btn_1 boxed-btn" value="예약하기" onclick="resv()">
+					<input type="submit" class="button button-contactForm btn_1 boxed-btn" value="예약하기" onclick="resv()">			
 			</td>
 		</tr>
 		
@@ -430,17 +671,17 @@ ${wresv_cday}
 		<tr>
           	<td>상담일</td>
           	<td>
-          		<input type="text" name="wresv_cday" id="day2" readonly>
+          		<input type="text" name="wresv_cday" id="cday" readonly>
          	</td>
           	<td>상담 시간</td>
           	<td>
-      			<input type="text" name="wresv_time" value="${wresv_time}" readonly>
+      			<input type="text" name="wresv_time" id="wresv_time" value="${wresv_time}" readonly>
          	</td>
 		</tr>
 		
 		<tr>
           	<td>예식 희망일</td>
-          	<td><input type="text" id="datepicker" name="wresv_wday"></td>
+          	<td><input type="text" id="datepicker" name="wresv_wday" readonly></td>
           	<td>예상 하객수</td>
           	<td>
           		<select name="wresv_inwon">
@@ -459,10 +700,14 @@ ${wresv_cday}
 		
 	</table>
 	</form>  
+
 	
 </div>
 </section>    
 
+<div id="wed_chk2">
+	<img src="../img/wedding/wedding_chk.jpg">
+</div>
 
    <!--================ Single-Wedding Area end =================-->
 

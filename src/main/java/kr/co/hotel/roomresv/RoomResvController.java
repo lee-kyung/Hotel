@@ -26,9 +26,9 @@ public class RoomResvController {
 	}
 	
 	@RequestMapping("/room/room_resvnext")
-	public String room_resvnext(HttpServletRequest request, Model model)
+	public String room_resvnext(HttpServletRequest request, Model model, HttpSession session)
 	{	
-		return service.room_resvnext(request, model);
+		return service.room_resvnext(request, model, session);
 	}
 	
 	@RequestMapping("/room/room_resv_ok")
@@ -43,6 +43,11 @@ public class RoomResvController {
 		service.getRoomAvail(request,out,rvo);
 	}
 
+	@RequestMapping("/room/room_bkconfirm")
+	public String room_bkconfirm(HttpServletRequest request, Model model)
+	{
+		return service.room_bkconfirm(request, model);
+	}
 	
 	
 	

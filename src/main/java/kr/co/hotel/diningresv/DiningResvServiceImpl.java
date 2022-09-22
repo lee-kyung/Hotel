@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import kr.co.hotel.dining.DiningVO;
+import kr.co.hotel.room.RoomVO;
 
 @Service
 @Qualifier("drs")
@@ -95,6 +96,25 @@ public class DiningResvServiceImpl implements DiningResvService{
   
         mapper.getcheck(y,m,d,request);
     }*/
+	
+	@Override 
+	public void getDineAvail(HttpServletRequest request, PrintWriter out, DiningVO dvo) {
+		String dine_type=request.getParameter("dine_type");
+		
+		ArrayList<DiningVO> list=mapper.getDineAvail(dine_type);
+
+		String str="";		
+	
+		for(int i=0;i<list.size();i++)
+		{
+			DiningVO dvo2=list.get(i);
+			str=str+dvo2.getDine_type()+","+dvo2.getCnt()+",";
+		}
+
+		out.print(str);
+	}
+
+	
 	@Override
 	public String dining_reserve_next(HttpServletRequest request, Model model)
 	{		
@@ -141,7 +161,35 @@ public class DiningResvServiceImpl implements DiningResvService{
 
 
 
-	
+	@Override
+	public String dining_reserve_next_old(HttpServletRequest request, Model model)
+	{		
+		// jsp에 보내줘야 될내용 => 년,월,일, 방의 정보
+    	int y=Integer.parseInt(request.getParameter("y"));
+    	int mm=Integer.parseInt(request.getParameter("m"));
+    	int dd=Integer.parseInt(request.getParameter("d"));
+    	String id=request.getParameter("id");
+    	String dine_type=request.getParameter("dine_type");
+    	String adult=request.getParameter("adult");
+    	String child=request.getParameter("child");
+    	String baby=request.getParameter("baby");
+    	
+    	// 입실일
+    	String ymd=y+"-"+mm+"-"+dd;
+    	
+    	DiningVO dvo=mapper.dining_reserve_next_old("id");
+    	// request영역에 필요한 값 담기
+    	request.setAttribute("ymd", ymd);
+    	
+    	
+    	model.addAttribute("dine_type", dine_type);
+    	model.addAttribute("adult", adult);
+    	model.addAttribute("child", child);
+    	model.addAttribute("baby", baby);
+    	
+    	model.addAttribute("dvo", dvo);
+		return "/dining/dining_reserve_next_old";
+	}
 	
 
 }

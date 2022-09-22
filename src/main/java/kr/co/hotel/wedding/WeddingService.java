@@ -22,4 +22,6 @@ public interface WeddingService {
 
 	public void wresv_cal(WeddingResvVO wrvo,PrintWriter out, HttpServletRequest request, Model model);
 
+	public String wed_resv_check(HttpServletRequest request, HttpSession session, Model model);
+
 }
