@@ -120,7 +120,7 @@
 </style>
 <script>
 	/* 상품당 가격을 구하기 */
-	function cal_pro(){
+	/*function cal_pro(){
 		let len=document.getElementsByClassName("subck").length;
 		let exprice=[${arrprice}];
 		let exhalin=[${arrhalin}];
@@ -143,40 +143,7 @@
 		document.getElementById("total_halin").innerText="KRW "+new Intl.NumberFormat().format(total_halin);
 		document.getElementById("total_baefee").innerText="KRW "+new Intl.NumberFormat().format(total_baefee);
 		document.getElementById("total_pay").innerText="KRW "+new Intl.NumberFormat().format(total_price - total_halin + total_baefee);
-	}
-	
-	/* 장바구니의 초기상태 : 전부체크 및  모든 상품 값을 계산하기 */
-	window.onload=function(){
-		document.getElementById("mainck").checked=true;
-		let len=document.getElementsByClassName("subck").length;
-		let exprice=[${arrprice}];
-		let exhalin=[${arrhalin}];
-		let exsu=[${arrsu}];
-		let exbaefee=[${arrbaefee}];
-		let total_price="";
-		let total_halin="";
-		let total_baefee="";
-		for(i=0;i<len;i++) {
-			document.getElementsByClassName("subck")[i].checked=true;
-			total_price=parseInt(total_price + (exprice[i] * exsu[i]));
-			total_halin=parseInt(total_halin + ((exprice[i] * (exhalin[i] / 100)) * exsu[i]));
-			total_baefee=parseInt(total_baefee + exbaefee[i]);
-		}
-		document.getElementById("total_price").innerText=new Intl.NumberFormat().format(total_price);
-		document.getElementById("total_halin").innerText=new Intl.NumberFormat().format(total_halin);
-		document.getElementById("total_baefee").innerText=new Intl.NumberFormat().format(total_baefee);
-		document.getElementById("total_pay").innerText=new Intl.NumberFormat().format(total_price - total_halin + total_baefee);
-		
-		/* [하위분류]를 클릭하면 버튼색상을 변화시키기 */
-		if(${p == 'p01'}) {
-			document.getElementById("cate2").style.background="#887159";
-			document.getElementById("cate2").style.color="white";
-		}
-		else if(${p == 'p02'}) {
-			document.getElementById("cate3").style.background="#887159";
-			document.getElementById("cate3").style.color="white";
-		}
-	}
+	}*/
 	
 	/* 수량을 변경하면 [주문금액]과 체크된 [상품금액합계&할인금액합계&배송비&결제금액]을 변하게 하기 */
 	/*function change_total(su, price, halin, num){
@@ -199,25 +166,88 @@
 		console.log(total_price);
 	}*/
 	
-	function change_total(su, num){
-		let len=document.getElementsByClassName("subck").length;
+	/* 전체상품 구매하기 */
+	/*function all_gumae(){
+		
+		let pcode="";
+		let su="";
+		let subck=document.getElementsByClassName("subck");
+		let len=subck.length;
+		
+		document.getElementById("mainck").checked=true;
+		for(i=0;i<len;i++) {
+			document.getElementsByClassName("subck")[i].checked=true;
+		}
+
+		for(i=0;i<len;i++) {
+			if(subck[i].checked) {
+				pcode=pcode+document.getElementsByClassName("pcode")[i].value+",";
+				su=su+document.getElementsByClassName("su")[i].value+",";
+			}
+		}
+		location="pro_gumae?pcode="+pcode+"&su="+su+"&gchk=1";
+	}*/
+	
+	/* 장바구니의 초기상태 : 전부체크 및  모든 상품 값을 계산하기 */
+	window.onload=function(){
 		let exprice=[${arrprice}];
 		let exhalin=[${arrhalin}];
+		let exsu=[${arrsu}];
 		let exbaefee=[${arrbaefee}];
-		let prict="";
 		let total_price="";
 		let total_halin="";
 		let total_baefee="";
 		
+		document.getElementById("mainck").checked=true;
+		let subck=document.getElementsByClassName("subck");
+		let len=subck.length;
+	
+		for(i=0;i<len;i++) {
+			subck[i].checked=true;
+			total_price=parseInt(total_price + (exprice[i] * exsu[i]));
+			total_halin=parseInt(total_halin + ((exprice[i] * (exhalin[i] / 100)) * exsu[i]));
+			total_baefee=parseInt(total_baefee + exbaefee[i]);
+		}
+		
+		document.getElementById("total_price").innerText=new Intl.NumberFormat().format(total_price);
+		document.getElementById("total_halin").innerText=new Intl.NumberFormat().format(total_halin);
+		document.getElementById("total_baefee").innerText=new Intl.NumberFormat().format(total_baefee);
+		document.getElementById("total_pay").innerText=new Intl.NumberFormat().format(total_price - total_halin + total_baefee);
+		
+		/* [하위분류]를 클릭하면 버튼색상을 변화시키기 */
+		if(${p == 'p01'}) {
+			document.getElementById("cate2").style.background="#887159";
+			document.getElementById("cate2").style.color="white";
+		}
+		else if(${p == 'p02'}) {
+			document.getElementById("cate3").style.background="#887159";
+			document.getElementById("cate3").style.color="white";
+		}
+	}
+	
+	/* 수량이 변경되면 값들도 변하기 */
+	function change_total(su, num){
+		let exprice=[${arrprice}];
+		let exhalin=[${arrhalin}];
+		let exbaefee=[${arrbaefee}];
+		let price="";
+		let total_price="";
+		let total_halin="";
+		let total_baefee="";
+	
 		price=parseInt(exprice[num] * su);
 		if(exhalin[num] != 0)
-			price=parseInt((exprice[num] - (exprice[num] * (exhalin / 100))) * su);
+			price=parseInt((exprice[num] - (exprice[num] * (exhalin[num] / 100))) * su);
 		document.getElementsByClassName("total")[num].innerText="KRW "+new Intl.NumberFormat().format(price);
 		
+		let subck=document.getElementsByClassName("subck");
+		let len=subck.length;
 		for(i=0;i<len;i++) {
-			total_price=parseInt(total_price + (exprice[i] * su));
-			total_halin=parseInt(total_halin + ((exprice[i] * (exhalin[i] / 100)) * su));
-			total_baefee=parseInt(total_baefee + exbaefee[i]);
+			if(subck[i].checked) {
+				total_price=parseInt(total_price + (exprice[i] * document.getElementsByClassName("su")[i].value));
+				total_halin=parseInt(total_halin + ((exprice[i] * (exhalin[i] / 100)) * document.getElementsByClassName("su")[i].value));
+				total_baefee=parseInt(total_baefee + exbaefee[i]);
+			}
 		}
 		
 		document.getElementById("total_price").innerText=new Intl.NumberFormat().format(total_price);
@@ -228,27 +258,61 @@
 	
 	/* 전체 선택 & 해제하기 */
 	function allcheck(ck){	// ck가 true면 체크된 상태, ck가 false면 체크가 안된 상태
+		let exprice=[${arrprice}];
+		let exhalin=[${arrhalin}];
+		let exbaefee=[${arrbaefee}];
+		let total_price="";
+		let total_halin="";
+		let total_baefee="";
+		
 		let len=document.getElementsByClassName("subck").length;	// subck의 개수를 구하기
-		if(ck){	// [mainck]가 체크되면, class="subck"의 checked속성을 true로 바꾸기			
-			for(i=0;i<len;i++) {
+		
+		for(i=0;i<len;i++) {
+			if(ck)	// [mainck]가 체크되면, class="subck"의 checked속성을 true로 바꾸기			
 				document.getElementsByClassName("subck")[i].checked=true;
-			}
-		}
-		else {	// [mainck]의 체크가 해제되면, class="subck"의 checked속성을 false로 바꾸기		
-			for(i=0;i<len;i++) {
+			else	// [mainck]의 체크가 해제되면, class="subck"의 checked속성을 false로 바꾸기		
 				document.getElementsByClassName("subck")[i].checked=false;
+			
+			if(document.getElementsByClassName("subck")[i].checked) {
+				total_price=parseInt(total_price + (exprice[i] * document.getElementsByClassName("su")[i].value));
+				total_halin=parseInt(total_halin + ((exprice[i] * (exhalin[i] / 100)) * document.getElementsByClassName("su")[i].value));
+				total_baefee=parseInt(total_baefee + exbaefee[i]);				
 			}
 		}
+		
+		document.getElementById("total_price").innerText=new Intl.NumberFormat().format(total_price);
+		document.getElementById("total_halin").innerText=new Intl.NumberFormat().format(total_halin);
+		document.getElementById("total_baefee").innerText=new Intl.NumberFormat().format(total_baefee);
+		document.getElementById("total_pay").innerText=new Intl.NumberFormat().format(total_price - total_halin + total_baefee);
 	}
 	
 	/* 개별로 선택 & 해제하기 */
 	function subcheck(){
+		let exprice=[${arrprice}];
+		let exhalin=[${arrhalin}];
+		let exbaefee=[${arrbaefee}];
+		let total_price="";
+		let total_halin="";
+		let total_baefee="";
+		
 		let chk=0;	// subck의 항목이 얼마나 체크됐는지 확인하는 변수
 		let len=document.getElementsByClassName("subck").length;	// subck의 개수를 구하기
+		
 		for(i=0;i<len;i++) {	// subck의 checked속성의 true/false를 일일이 확인하여 개수 세기
-			if(document.getElementsByClassName("subck")[i].checked)
+			if(document.getElementsByClassName("subck")[i].checked) {
 				chk++;
+				
+				total_price=parseInt(total_price + (exprice[i] * document.getElementsByClassName("su")[i].value));
+				total_halin=parseInt(total_halin + ((exprice[i] * (exhalin[i] / 100)) * document.getElementsByClassName("su")[i].value));
+				total_baefee=parseInt(total_baefee + exbaefee[i]);				
+			}
 		}
+		
+		document.getElementById("total_price").innerText=new Intl.NumberFormat().format(total_price);
+		document.getElementById("total_halin").innerText=new Intl.NumberFormat().format(total_halin);
+		document.getElementById("total_baefee").innerText=new Intl.NumberFormat().format(total_baefee);
+		document.getElementById("total_pay").innerText=new Intl.NumberFormat().format(total_price - total_halin + total_baefee);
+		
 		if(chk == len)	// 전체 subck의 개수와 checked된 개수가 같다면? mainck의 checked를 true로, 다르다면? mainck의 checked는 false로
 			document.getElementById("mainck").checked=true;
 		else
@@ -270,8 +334,25 @@
 	
 	/* 1개상품 구매하기 */
 	function one_gumae(pcode, num){
-		let su=document.getElementsByClassName("su")[num].value;		
-		location="pro_gumae?pcode="+pcode+"&su="+su+"&gchk=1&p=${p}";
+		let su=document.getElementsByClassName("su")[num].value;
+		
+		/* 가격에 대한 최종 정보도 가져가기 */
+		let total_price=document.getElementsByClassName("price")[num].innerText;
+			total_price=total_price.substring(4, total_price.length);
+			total_price=parseInt(total_price.replace(/,/g, "") * su);
+		let total_halin=parseInt(document.getElementsByClassName("halin")[num].value);
+		let total_baefee=document.getElementsByClassName("baefee")[num].innerText;
+		let total_pay=parseInt(total_price - total_halin);
+		
+		if(total_baefee != "무료") {
+			total_baefee=total_baefee.substring(4, total_baefee.length);
+			total_baefee=parseInt(total_baefee.replace(/,/g, ""));;
+			total_pay=parseInt(total_price - total_halin + total_baefee);
+		}
+		else
+			total_baefee=0;
+		
+		location="pro_gumae?pcode="+pcode+"&su="+su+"&gchk=1&p=${p}&total_price="+total_price+"&total_halin="+total_halin+"&total_baefee="+total_baefee+"&total_pay="+total_pay;
 	}
 	
 	/* 선택상품 or 전체상품 구매하기 */
@@ -299,34 +380,16 @@
 		
 		/* 가격에 대한 최종 정보도 가져가기 */
 		let total_price=document.getElementById("total_price").innerText;
+			total_price=total_price.replace(/,/g, "");
 		let total_halin=document.getElementById("total_halin").innerText;
+			total_halin=total_halin.replace(/,/g, "");
 		let total_baefee=document.getElementById("total_baefee").innerText;
+			total_baefee=total_baefee.replace(/,/g, "");
 		let total_pay=document.getElementById("total_pay").innerText;
-		
+			total_pay=total_pay.replace(/,/g, "");
+			
 		location="pro_gumae?pcode="+pcode+"&su="+su+"&gchk=1&p=${p}&total_price="+total_price+"&total_halin="+total_halin+"&total_baefee="+total_baefee+"&total_pay="+total_pay;
 	}
-	
-	/* 전체상품 구매하기 */
-	/*function all_gumae(){
-		
-		let pcode="";
-		let su="";
-		let subck=document.getElementsByClassName("subck");
-		let len=subck.length;
-		
-		document.getElementById("mainck").checked=true;
-		for(i=0;i<len;i++) {
-			document.getElementsByClassName("subck")[i].checked=true;
-		}
-
-		for(i=0;i<len;i++) {
-			if(subck[i].checked) {
-				pcode=pcode+document.getElementsByClassName("pcode")[i].value+",";
-				su=su+document.getElementsByClassName("su")[i].value+",";
-			}
-		}
-		location="pro_gumae?pcode="+pcode+"&su="+su+"&gchk=1";
-	}*/
 </script>
 </head>
 
@@ -367,6 +430,7 @@
 		</c:if>
 		<c:forEach var="cvo" items="${clist}" varStatus="cart">
 			<input type="hidden" class="pcode" value="${cvo.pcode}">
+			<input type="hidden" class="halin" value="${cvo.price * (cvo.halin / 100)}">
 			<tr>
 				<!-- 체크박스 -->
 				<td> <input type="checkbox" class="subck" onclick="subcheck()" value="${cvo.id}"> </td>

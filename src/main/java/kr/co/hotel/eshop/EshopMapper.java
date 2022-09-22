@@ -2,6 +2,8 @@ package kr.co.hotel.eshop;
 
 import java.util.ArrayList;
 
+import kr.co.hotel.member.MemberVO;
+
 public interface EshopMapper {
 	public ArrayList<PdaeVO> pro_write();
 	public ArrayList<PsoVO> getso(String daecode);
@@ -25,8 +27,12 @@ public interface EshopMapper {
 	public void wishcart_del(String ad, String id);
 	
 	public ProductVO pro_gumae(String pcode);
+	public MemberVO getInfo(String userid);
 	
 	public ArrayList<WishVO> wish(String userid, String osel);
-	public void move_cart(String userid, String pcode);
 	public void cart_delDupli();
+	
+	public void pro_gumae_ok(GumaeVO gvo);
+	public Integer getJumun();
+	public void cart_del(String pcode, String userid);
 }
