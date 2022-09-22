@@ -165,9 +165,9 @@ public class DiningResvServiceImpl implements DiningResvService{
 	public String dining_reserve_next_old(HttpServletRequest request, Model model)
 	{		
 		// jsp에 보내줘야 될내용 => 년,월,일, 방의 정보
-    	int y=Integer.parseInt(request.getParameter("y"));
+    /*	int y=Integer.parseInt(request.getParameter("y"));
     	int mm=Integer.parseInt(request.getParameter("m"));
-    	int dd=Integer.parseInt(request.getParameter("d"));
+    	int dd=Integer.parseInt(request.getParameter("d"));*/
     	String id=request.getParameter("id");
     	String dine_type=request.getParameter("dine_type");
     	String adult=request.getParameter("adult");
@@ -175,11 +175,11 @@ public class DiningResvServiceImpl implements DiningResvService{
     	String baby=request.getParameter("baby");
     	
     	// 입실일
-    	String ymd=y+"-"+mm+"-"+dd;
+  /*  	String ymd=y+"-"+mm+"-"+dd;*/
     	
     	DiningVO dvo=mapper.dining_reserve_next_old("id");
     	// request영역에 필요한 값 담기
-    	request.setAttribute("ymd", ymd);
+    /*	request.setAttribute("ymd", ymd);*/
     	
     	
     	model.addAttribute("dine_type", dine_type);

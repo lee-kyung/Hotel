@@ -114,7 +114,7 @@
 											<a href="../login/logout">로그아웃</a>
 										</c:if>
 										<c:if test="${userid == 'admin'}">
-											<a href="#"> ${name}님											
+											<a href="../admin/admin"> ${name}님</a>
 											<a href="../login/logout">로그아웃</a>
 										</c:if>
 		                                </li>
