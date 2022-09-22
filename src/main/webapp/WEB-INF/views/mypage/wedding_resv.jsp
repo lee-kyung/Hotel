@@ -76,7 +76,7 @@
 <section>
 <div id="wed">
 		
-웨딩
+웨딩ㅇㅇ
 		
 </div>
 </section>
