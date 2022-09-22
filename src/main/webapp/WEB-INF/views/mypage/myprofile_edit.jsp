@@ -48,6 +48,38 @@
 	margin-bottom:200px;}
 
 </style>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+	function juso_search()  // 우편번호 버튼 클릭시 호출 함수명
+	{
+		new daum.Postcode({
+			
+			oncomplete: function(data) {
+				
+				if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+					
+					addr = data.roadAddress;
+				} 
+				
+				else { // 사용자가 지번 주소를 선택했을 경우(J)
+				
+					addr = data.jibunAddress;
+				}
+	
+				// 우편번호와 주소 정보를 해당 필드에 넣는다.
+				document.join.zip.value = data.zonecode; // 우편번호
+				document.join.juso.value = addr;  // 주소
+				
+				// 커서를 상세주소 필드로 이동한다.
+				document.join.juso_etc.focus();
+				
+			}
+		
+		}).open();
+		
+	}
+</script>
 </head>
 
 <body>
@@ -74,7 +106,8 @@
 </div>
 
 <section>
-<div id="profile_edit">
+<div id="profile">
+<form method="post" action="myprofile_edit_ok">
 		<div>
 			<div>아이디</div>
 			<div>${mvo.userid }</div>
@@ -85,24 +118,29 @@
 		</div>
 		<div>
 			<div>휴대전화</div>
-			<div>${mvo.phone }</div>
+			<div><input type="text" name="phone" value="${mvo.phone }"></div>
 		</div>
 		<div>
 			<div>생년월일</div>
-			<div>${mvo.birth }</div>
+			<div><input type="text" name="birth" value="${mvo.birth }"></div>
 		</div>
 		<div>
 			<div>이메일</div>
-			<div>${mvo.email }</div>
+			<div><input type="text" name="email" value="${mvo.email }"></div>
 		</div>
 		<div>
 			<div>주소</div>
-			<div>${mvo.juso } ${mvo.juso_etc }</div>
+			<div>
+				<input type="text" name="zip" readonly  placeholder="우편번호" value="${mvo.zip }">
+				<input type="button" value="주소찾기" onclick="juso_search()">
+				<input type="text" name="juso" placeholder="주소" readonly value="${mvo.juso }">
+				<input type="text" name="juso_etc" placeholder="상세주소" value="${mvo.juso_etc }">
+			
+			</div>
 		</div>
 		
-		<input type="button" onclick="location='../mypage/myprofile_edit'" value="정보수정">
-		<input type="button" value="회원탈퇴">
-		
+		<input type="submit" value="정보수정완료">
+</form>		
 		
 </div>
 </section>

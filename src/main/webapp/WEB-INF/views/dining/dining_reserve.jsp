@@ -55,9 +55,9 @@
   #section #dine_type_3:hover{
     color:purple;
   }
-  #section #dine_typediv{
+/*   #section #dine_typediv{
     visibility:hidden;
-  } 
+  } */ 
   
   /*  bootstrap calendar css 시작  */
   .calendar-toolbar {
@@ -84,97 +84,119 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script> 
 <script>
 
+   window.onload=function()
+   {
+      var td=[${td}];    // var td=[25, 30, 27, 27, 28]
+      var dt=[${dt}];  // var td=[아침, 아침, 점심, 저녁, 저녁]
+      var today=new Date();
+      var dd=1;
+          //if(today.getFullYear()==${y} && today.getMonth()+1 == ${m}) // 요청한 달이 이번달이라면  
+          //dd=today.getDate();
+       //alert(dd);
+      //alert(td.length);
+      for(i=0;i<td.length;i++)
+      {
+         if(dt[i] == 1)
+                 document.getElementsByClassName("b1")[td[i]-dd].style.color="red";
+            else if(dt[i] == 2)
+                     document.getElementsByClassName("b2")[td[i]-dd].style.color="red";
+                 else if(dt[i] == 3)
+                     document.getElementsByClassName("b3")[td[i]-dd].style.color="red";
+      }
+      
+   }
+
   //} 
   /*function categoryChange(e)
   {*/
-	  
-	  /* var dr_time_"${dine_type}"=dr_time_["Breakfast","Lunch","Dinner"]; */
-	  /*var dr_time="${dine_type}";
-	  var dr_time_Breakfast=["8:00","10:00"];
-	  var dr_time_Lunch=["13:00","15:00"];
-	  var dr_time_Dinner=["16:00","18:00"];
-	  var target= document.getElementById("dr_time");
-	  
-	  var dr_time_Breakfast=["8:00","10:00"];
-	  var dr_time_Lunch=["13:00","15:00"];
-	  var dr_time_Dinner=["16:00","18:00"];
-	  var target= document.getElementById("dr_time");
-	  
-	  if(e.value == "Breakfast") var d = dr_time_Breakfast;
-		else if(e.value == "Lunch") var d = dr_time_Lunch;
-		else if(e.value == "Dinner") var d = dr_time_Dinner;
+     
+     /* var dr_time_"${dine_type}"=dr_time_["Breakfast","Lunch","Dinner"]; */
+     /*var dr_time="${dine_type}";
+     var dr_time_Breakfast=["8:00","10:00"];
+     var dr_time_Lunch=["13:00","15:00"];
+     var dr_time_Dinner=["16:00","18:00"];
+     var target= document.getElementById("dr_time");
+     
+     var dr_time_Breakfast=["8:00","10:00"];
+     var dr_time_Lunch=["13:00","15:00"];
+     var dr_time_Dinner=["16:00","18:00"];
+     var target= document.getElementById("dr_time");
+     
+     if(e.value == "Breakfast") var d = dr_time_Breakfast;
+      else if(e.value == "Lunch") var d = dr_time_Lunch;
+      else if(e.value == "Dinner") var d = dr_time_Dinner;
 
-		target.options.length = 0;
+      target.options.length = 0;
 
-		for (x in d) {
-			var opt = document.createElement("option");
-			opt.value = d[x];
-			opt.innerHTML = d[x];
-			target.appendChild(opt);
+      for (x in d) {
+         var opt = document.createElement("option");
+         opt.value = d[x];
+         opt.innerHTML = d[x];
+         target.appendChild(opt);
              }
   }*/
   
   /* 달력에서 [아침,점심,저녁]을 클릭하면, 해당 [날짜], [다이닝타입], [시간대]를 보내기 */
-  	function date_type(y, m, d, t) {
-		document.getElementById("dr_date").value=y+"-"+m+"-"+d;
-		document.getElementById("dr_type").innerHTML="<option value='"+t+"'>"+t+"</option>";
-		if(t == 'Breakfast')
-			document.getElementById("dr_time").innerHTML="<option>선택</option><option value='8:00'>8:00</option><option value='10:00' name='dr_time'>10:00</option>";
-			else if(t == 'Lunch')
-				document.getElementById("dr_time").innerHTML="<option>선택</option><option value='13:00'>13:00</option><option value='15:00' name='dr_time'>15:00</option>";
-				else if(t == 'Dinner')
-					document.getElementById("dr_time").innerHTML="<option>선택</option><option value='16:00'>16:00</option><option value='18:00' name='dr_time'>18:00</option>";
+     function date_type(y, m, d, t) {
+      document.getElementById("dr_date").value=y+"-"+m+"-"+d;
+      document.getElementById("dr_type").innerHTML="<option value='"+t+"'>"+t+"</option>";
+      if(t == 'Breakfast')
+         document.getElementById("dr_time").innerHTML="<option>선택</option><option value='8:00'>8:00</option><option value='10:00' name='dr_time'>10:00</option>";
+         else if(t == 'Lunch')
+            document.getElementById("dr_time").innerHTML="<option>선택</option><option value='13:00'>13:00</option><option value='15:00' name='dr_time'>15:00</option>";
+            else if(t == 'Dinner')
+               document.getElementById("dr_time").innerHTML="<option>선택</option><option value='16:00'>16:00</option><option value='18:00' name='dr_time'>18:00</option>";
   }
-  // 예약 가능한 다이닝 타입 확인
+/*   // 예약 가능한 다이닝 타입 확인
    function getDineAvail(){
-	  document.getElementById("dine_typediv").style.visibility="visible";
-	  var adult=document.view_type.adult.value;
-	  // input name=document.form이름.input id
-	  var child=document.view_type.child.value;
-	  var chk=new XMLHttpRequest();
-	  chk.open("get","getDineAvail?adult="+adult+"&child="+child);
-	  chk.send();
-	  chk.onreadystatechange=function(){
-		  if(chk.readyState==4){
-			alert(chk.responseText);  
-			document.getElementById("ccc").innerText=chk.responseText;
-			var aa=chk.responseText.split(",");
-			
-		    alert(chk.responseText.length);
-		    var cbtn=document.getElementsByClassName("cbtn");
-		    for(i=0;i<cbtn.length;i++){
-		    	document.getElementsByClassName("cbtn")[i].disabled=false;		    	
-		    }
-		    if(aa.length >1){
-		    	var dine_type=document.getElementsByClassName("dine_type");
-		    	
-		    	for(i=0;i<aa.length;i+=2){
-					for(j=0;j<dine_type.length;j++){
-						if(aa[i]==dine_type[j].innerText.trim()){
-							if(aa[i+1]>=2)
-								cbtn[j].disabled=true;
-						}
-					}	   
-				}	   
-			}
-		}	
-	}
-}  
+     document.getElementById("dine_typediv").style.visibility="visible";
+     var adult=document.view_type.adult.value;
+     // input name=document.form이름.input id
+     var child=document.view_type.child.value;
+     var chk=new XMLHttpRequest();
+     chk.open("get","getDineAvail?adult="+adult+"&child="+child);
+     chk.send();
+     chk.onreadystatechange=function(){
+        if(chk.readyState==4){
+         alert(chk.responseText);  
+         document.getElementById("ccc").innerText=chk.responseText;
+         var aa=chk.responseText.split(",");
+         
+          alert(chk.responseText.length);
+          var cbtn=document.getElementsByClassName("cbtn");
+          for(i=0;i<cbtn.length;i++){
+             document.getElementsByClassName("cbtn")[i].disabled=false;             
+          }
+          if(aa.length >1){
+             var dine_type=document.getElementsByClassName("dine_type");
+             
+             for(i=0;i<aa.length;i+=2){
+               for(j=0;j<dine_type.length;j++){
+                  if(aa[i]==dine_type[j].innerText.trim()){
+                     if(aa[i+1]>=2)
+                        cbtn[j].disabled=true;
+                  }
+               }      
+            }      
+         }
+      }   
+   }
+} */  
 </script>
 </head>
 
 <body>
-	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
+   <!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
     <!-- bradcam_area_start -->
     <!-- 새 이미지 추가하는 법
-    	①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기
-    	②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
-    <div class="bradcam_area dining">	<!-- class="bradcam_area 클래스명" -->
+       ①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기
+       ②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
+    <div class="bradcam_area dining">   <!-- class="bradcam_area 클래스명" -->
         <h3> ON THE PLATE </h3>
     </div>
     <!-- bradcam_area_end -->
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
-	<!-- ================ 타이틀(자유롭게 변경) Area Start ================= -->
+   <!-- ================ 타이틀(자유롭게 변경) Area Start ================= -->
     <!-- 부타이틀(자유롭게 변경)_area_start -->
 
 <div id="section">
@@ -182,7 +204,7 @@
  <input type="hidden" name="dine_type">
  <div id="step1">
 
-  <table width="1100" align="center" border="1">
+  <%-- <table width="1100" align="center" border="1">
      <tr>
         <th>STEP 1</th>
         <td >예약인원 선택</td>
@@ -192,34 +214,34 @@
         <td width="183">
            <select name="adult" id="adult">
               <option name="adult" id="adult" value="0"> 선택 </option>
-			  <option name="adult" id="adult" value="1"> 1 </option>
-		      <option name="adult" id="adult" value="2"> 2 </option>
-			  <option name="adult" id="adult" value="3"> 3 </option>
+           <option name="adult" id="adult" value="1"> 1 </option>
+            <option name="adult" id="adult" value="2"> 2 </option>
+           <option name="adult" id="adult" value="3"> 3 </option>
            </select>
         </td>
         <th width="183">어린이</th>
         <td width="183">
            <select name="child" id="child">
               <option value="0"> 선택 </option>
-			  <option value="1"> 1 </option>
-		      <option value="2"> 2 </option>
-			  <option value="3"> 3 </option>
+           <option value="1"> 1 </option>
+            <option value="2"> 2 </option>
+           <option value="3"> 3 </option>
            </select>
         </td>
         <th width="183">유아</th>
         <td width="183">
            <select name="baby" id="baby">
               <option value="0"> 선택 </option>
-			  <option value="1"> 1 </option>
-		      <option value="2"> 2 </option>
-			  <option value="3"> 3 </option>
+           <option value="1"> 1 </option>
+            <option value="2"> 2 </option>
+           <option value="3"> 3 </option>
            </select>
         </td>
      </tr>
      <tr>
        <td><input type="button" id="searchbtn" value="조회" onclick="getDineAvail(${my.index})"></td>
      </tr>
-     </table>
+     </table> --%>
     <table width="1100" border="1">
      <tr>
         <td id="info">
@@ -234,7 +256,7 @@
 
   </div> <!-- step 1 div 끝 -->
     
-    
+    </form>
 <!-- bootstrap calendar html 시작 --> <!-- bootstrap calendar html 시작 --> <!-- bootstrap calendar html 시작 -->
  <table id="top" width="1100" border="1">
   <tr>
@@ -260,24 +282,24 @@
           </c:if>
       </button>
 
-		    <!-- Calendar "date-indicator" span -->
-		     <div class="calendar-current-date"
-		          data-day-format="MM/DD/YYYY"
-		          data-week-format="MM/DD/YYYY"
-		          data-month-format="MMMM, YYYY">
-		            <span style="font-weight:800px;font-size:20px;"> ${y}년 ${m}월 </span>
-		     </div>
-		      
-		    <!-- Calendar "next" button -->
-		      <button data-toggle="calendar" data-action="next" class="btn btn-default">
-		          <c:if test="${m==12}">
-		            <a href="dining_reserve?y=${y+1}&m=1"> <i class="fa fa-chevron-right"></i> </a>
-		          </c:if>
-		     
-		          <c:if test="${m!=12}">
-		            <a href="dining_reserve?y=${y}&m=${m+1}"> <i class="fa fa-chevron-right"></i> </a>
-		          </c:if>
-		      </button>
+          <!-- Calendar "date-indicator" span -->
+           <div class="calendar-current-date"
+                data-day-format="MM/DD/YYYY"
+                data-week-format="MM/DD/YYYY"
+                data-month-format="MMMM, YYYY">
+                  <span style="font-weight:800px;font-size:20px;"> ${y}년 ${m}월 </span>
+           </div>
+            
+          <!-- Calendar "next" button -->
+            <button data-toggle="calendar" data-action="next" class="btn btn-default">
+                <c:if test="${m==12}">
+                  <a href="dining_reserve?y=${y+1}&m=1"> <i class="fa fa-chevron-right"></i> </a>
+                </c:if>
+           
+                <c:if test="${m!=12}">
+                  <a href="dining_reserve?y=${y}&m=${m+1}"> <i class="fa fa-chevron-right"></i> </a>
+                </c:if>
+            </button>
    </div>  <!-- Calendar toolbar div 끝 -->  <!-- Calendar toolbar div 끝 -->
    </div>
    </th>
@@ -285,74 +307,82 @@
   </table>
   
   <table id="calendar" width="1100" align="center">    <!-- table 시작 -->
-			   <tr>
-			      <th> sun</th>
-			      <th> mon</th>
-			      <th> tue</th>
-			      <th> wed</th>
-			      <th> thu</th>
-			      <th> fri</th>
-			      <th> sat </th>
-			    </tr> 
-    
+     <tr>
+        <th> sun</th>
+        <th> mon</th>
+        <th> tue</th>
+        <th> wed</th>
+        <th> thu</th>
+        <th> fri</th>
+        <th> sat </th>
+      </tr> 
    <c:set var="day" value="1"/>
    <c:forEach  var="i" begin="1" end="${ju}"> <!-- 행 -->
       <tr> 
+      
         <c:forEach var="j" begin="0" end="6">  <!-- 열 -->
           <c:if test="${(j < yoil && i==1) || (chong < day) }">
            <td>&nbsp;</td>
           </c:if>
            
-          <c:if test="${ ((j >= yoil && i==1) || i>1) && (chong >= day) }">
-          <c:set var="id" value="${dvo.dine_type}"/>
-           <td id="day">${day}<p></p> 
-      <%--    <%
-            // 년,월은 request영역, 일은 pageContext => 스크립트릿변수
-            String y=request.getAttribute("y").toString();
-            String m=request.getAttribute("m").toString();
-            String d=pageContext.getAttribute("day").toString();
-            String dday=y+"-"+m+"-"+d;  // YYYY-MM-DD
-       /*      rdao.getcheck(y,m,d,request); */
-         %> --%>
-    
-		<!-- 방의 이름을 출력 -->
-	<%-- <c:if test="${tt==1}"> --%>
-        <c:forEach items="${dlist}" var="dvo">
-          <c:set var="dine_type" value="${dvo.id}"/>
-          
-         <%--   <!-- request영역의 cnt변수의 값이 1이면 예약불가, 0이면 예약가능 -->
-           <c:if test="${cnt ==0}">
-           </c:if>
-           
-           <c:if test="${cnt ==1}">
-           </c:if> --%>
-           
-		         <span id="dine_type" class="dine_type" name="dine_type" style="font-size:14px;" onclick="date_type(${y}, ${m}, ${day}, '${dvo.dine_type}')">
-		         <c:if test="${dvo.dine_type == 'Breakfast' }">
-		            <img src="../img/dining/breakfast.png" width="17px;" height="17px;">
-		         </c:if>
-		         <c:if test="${dvo.dine_type == 'Lunch' }">
-		            <img src="../img/dining/lunch.png" width="17px;" height="17px;">
-		         </c:if>   
-		         <c:if test="${dvo.dine_type == 'Dinner' }">
-		            <img src="../img/dining/dinner.png" width="17px;" height="17px;">  
-		         </c:if>
-		         ${dvo.dine_type} <br>
-		         </span>
-        </c:forEach> 
-     </c:if>  
- </div>
-          </td>
-               <c:set var="day" value="${day+1}"/> <!-- 날짜값을 1씩 증가 -->              
-       <%--     </c:if> --%>
-         </c:forEach>
+          <c:if test="${ !((yoil>j && i==1) || (chong < day)) }">
+
+          <td id="day">
+             ${day}<p>
+          <%
+               int day2=Integer.parseInt(pageContext.getAttribute("day").toString());
+               int y=Integer.parseInt(request.getAttribute("y").toString());
+               int m=Integer.parseInt(request.getAttribute("m").toString());
+             %> 
+          <fmt:formatDate var="today" value="<%=new java.util.Date() %>" pattern="yyyy-MM-dd"/>
+          <fmt:formatDate var="dday" value="<%=new java.util.Date(y-1900,m-1,day2) %>"  pattern="yyyy-MM-dd"/> 
   
-         </tr>
-   </c:forEach> 
+            <c:if test="${dday >= today}"> <!--  오늘 이후면 클릭 되도록 -->
+           
+            <span id="dine_type" class="b1" name="dine_type" style="font-size:14px;" onclick="date_type(${y}, ${m}, ${day}, 'Breakfast')">
+               <img src="../img/dining/breakfast.png" width="17px;" height="17px;">
+               Breakfast <br>
+            </span>
+            <span id="dine_type" class="b2" name="dine_type" style="font-size:14px;" onclick="date_type(${y}, ${m}, ${day}, 'Lunch')">
+               <img src="../img/dining/lunch.png" width="17px;" height="17px;">
+               Lunch <br>
+            </span>
+            <span id="dine_type" class="b3" name="dine_type" style="font-size:14px;" onclick="date_type(${y}, ${m}, ${day}, 'Dinner')">
+               <img src="../img/dining/dinner.png" width="17px;" height="17px;">
+               Dinner <br>
+            </span>
+            </c:if>
+             
+            
+            <c:if test="${dday < today}"> <!--  오늘보다 이전이면 안보이게, 클릭 안되게 -->
+           
+            <span id="dine_type" class="b1" name="dine_type" style="font-size:14px;display:none;" >
+               <img src="../img/dining/breakfast.png" width="17px;" height="17px;">
+               Breakfast <br>
+            </span>
+            <span id="dine_type" class="b2" name="dine_type" style="font-size:14px;visibility:hidden;" >
+               <img src="../img/dining/lunch.png" width="17px;" height="17px;">
+               Lunch <br>
+            </span>
+            <span id="dine_type" class="b3" name="dine_type" style="font-size:14px;visibility:hidden;" >
+               <img src="../img/dining/dinner.png" width="17px;" height="17px;">
+               Dinner <br>
+            </span>
+             
+            </c:if> 
+            </td>
+            
+            <c:set var="day" value="${day+1}"/> <!-- 날짜값을 1씩 증가 -->
+         </c:if> 
+
+         </c:forEach>
+       </tr>
+     </c:forEach> 
    </table>
-   
+ </div>  
    <div id="ccc" style="display:none"></div>
- <div id="dine_typediv"> <!-- ajax를 위한 div -->    
+ <div id="dine_typediv"> <!-- ajax를 위한 div -->  
+ <form name="view_type" method="post" action="dining_reserve_next">  
    <table id="dine" width="1100" border="1">
     <tr>
        <th width="300">방문 희망 일자</th>
@@ -367,6 +397,7 @@
        <td>
 
       <select name="dr_time" id="dr_time"></select>
+      
       <%-- <select id="dr_time" name="dr_time">
          <option value="0">선택</option>
           <c:if test="${dvo.dine_type == 'Breakfast' }">
@@ -387,19 +418,26 @@
             <option value="18:00" name="dr_time">18:00</option>  
          </c:if>
        </select> --%>
+       
        </td>
      </tr>
      <tr>
-       <td><input type="button" value="예약하기" class="cbtn" onclick="form_submit(${my.index})"></td>
+       <td><input type="submit" value="예약하기" class="cbtn" >
+       <%-- onclick="location='dining_reserve_next?dr_date=${drvo.dr_date}&dr_time=${drvo.dr_time }'"> --%>
+       </td>
      </tr>
    </table>
+   </form>
      </div>
-</form>
+<<<<<<< HEAD
+=======
+
 </div>
 
 
 
 
+>>>>>>> branch 'main' of https://github.com/ey0k/hotel.git
 
 
    

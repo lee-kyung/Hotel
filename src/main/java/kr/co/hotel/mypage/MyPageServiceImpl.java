@@ -37,4 +37,37 @@ public class MyPageServiceImpl implements MyPageService{
 		return "/mypage/myprofile";
 	}
 
+	@Override
+	public String myprofile_edit(Model model, HttpSession session) 
+	{
+		String userid=session.getAttribute("userid").toString();
+		MemberVO mvo=mapper.myprofile(userid);
+		model.addAttribute("mvo", mvo);
+		
+		return "/mypage/myprofile_edit";
+	}
+
+	@Override
+	public String myprofile_edit_ok(MemberVO mvo, HttpSession session) 
+	{
+		String userid=session.getAttribute("userid").toString();
+		mvo.setUserid(userid);
+		mapper.myprofile_edit_ok(mvo);
+		return "redirect:/mypage/myprofile";
+	}
+
+	@Override
+	public String mypwd_change_ok(HttpSession session, HttpServletRequest request) 
+	{
+		String userid=session.getAttribute("userid").toString();
+		String prepwd=request.getParameter("prepwd");
+//		String dbpwd=mapper.getPwd(userid);
+		String newpwd=request.getParameter("newpwd1");
+		
+		mapper.mypwd_change_ok(newpwd, userid);
+			
+		return "redirect:/mypage/mypage";
+
+	}
+
 }

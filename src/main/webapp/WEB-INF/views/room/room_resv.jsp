@@ -133,14 +133,6 @@
 	}); 
   
 // rcode받기
-	function maxcheck()
-	{
-		var adult=document.getElementById("adult").value;
-		var child=document.getElementById("child").value;
-		var binwon=adult+child;
-		alert(binwon);
-	}
-
 	function form_submit(n)
    {
 	   //alert(document.room.rcode2[n].value);
@@ -149,7 +141,10 @@
    }
 
 // 비어있는 객실 확인
-   function getRoomAvail(){  
+	function getRoomAvail(){
+		var adult=document.getElementById("adult").value;
+		var child=document.getElementById("child").value;
+		var binwon=adult+child;
 	// 체크인,체크아웃,성인 인원수 체크
 		if(document.getElementById("checkin").value.trim()=="")
 		{
@@ -174,7 +169,7 @@
 		var checkout=document.room.checkout.value;
 		var adult=document.room.adult.value;
 		var chk=new XMLHttpRequest();
-		chk.open("get","getRoomAvail?checkin="+checkin+"&checkout="+checkout+"&adult="+adult);
+		chk.open("get","getRoomAvail?checkin="+checkin+"&checkout="+checkout);
 		chk.send();
 		chk.onreadystatechange=function(){
 			if(chk.readyState==4){
@@ -284,9 +279,7 @@
 						<div><span id="subr">가격</span>${rvo.rprice}</div>						
 						<div><span id="subr">기준|최대인원</span>${rvo.rmin}/<span class="crmax">${rvo.rmax}</span></div>						
 						<br>
-					
 						<input type="button" value="객실선택" class="cbtn" onclick="form_submit(${my.index})">
-					
 					</div>
 				</div>
 				</c:forEach> 
