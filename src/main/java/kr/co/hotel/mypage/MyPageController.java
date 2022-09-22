@@ -69,4 +69,28 @@ public class MyPageController {
 		return service.mypwd_change_ok(session, request);
 	}
 	
+	@RequestMapping("/mypage/room_resv")
+	public String room_resv()
+	{
+		return "/mypage/room_resv";
+	}
+	
+	@RequestMapping("/mypage/dine_resv")
+	public String dine_resv()
+	{
+		return "/mypage/dine_resv";
+	}
+	
+	@RequestMapping("/mypage/eshop_resv")
+	public String eshop_resv()
+	{
+		return "/mypage/eshop_resv";
+	}
+	
+	@RequestMapping("/mypage/wedding_resv")
+	public String wedding_resv()
+	{
+		return "/mypage/wedding_resv";
+	}
+	
 }

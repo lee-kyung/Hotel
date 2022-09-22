@@ -21,6 +21,7 @@
 	padding-top:50px;}
 	
 	#first #txt2{
+	margin-bottom:20px;
 	text-align:right;
 	font-size:18px;}
 	
@@ -144,7 +145,7 @@
 	
 		var kor=(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/).test(newpwd1);
 		
-		var spe =(/[~!@#$%^&*()_+|<>?:{}]/gi).test(newpwd1);
+		var spe =(/[~!@#$%^&*()_|<>?:{}]/gi).test(newpwd1);
 		
 		if((newpwd1.trim().length < 8) || (newpwd1.trim().length > 15))
 		{
@@ -166,7 +167,7 @@
 		}
 		
 		else if(spe<1){
-			document.getElementById("msg2").innerText="비밀번호에 특수문자 하나 이상이 필요합니다.";
+			document.getElementById("msg2").innerText="비밀번호에 특수문자 하나 이상이 필요합니다. (+는 사용할 수 없습니다.)";
 			document.getElementById("msg2").style.color="red";
 			new1=0;
 		}

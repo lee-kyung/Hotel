@@ -35,6 +35,9 @@
 		cursor : pointer;
 	}
 </style>
+<script>
+
+</script>
 </head>
 
 <body>
@@ -54,6 +57,33 @@
 			<div> <input type="password" name="pwd" placeholder="비밀번호"> </div>
 			<div> <input type="submit" value="로그인"> </div>
 		</form>
+		<div>
+			<div onclick="location='find_IdPw'">아이디 찾기 ></div>
+			<div onclick="location='find_IdPw'">비밀번호 찾기 ></div>
+		</div>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	</section>
     	
     <!-- ================ 로그인 Area End ================= -->

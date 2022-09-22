@@ -16,10 +16,11 @@
 	
 	#first #txt{
 	text-align:left;
-	font-size:45px;
+	font-size:40px;
 	padding-top:50px;}
 	
 	#first .txt2{
+	margin-bottom:20px;
 	text-align:right;
 	font-size:20px;
 	cursor:pointer;}

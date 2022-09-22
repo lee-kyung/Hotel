@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from member order by id desc
 	</select>
 	
-	<select id="getroombk" resyltType="kr.co.hotel.roomresv.RoomResvVO">
+	<select id="getroombk" resultType="kr.co.hotel.roomresv.RoomResvVO">
 		select rb.*, r.rname, r.rcode 
 		from roombk as rb, room as r 
 		where rb.rcode=r.rcode

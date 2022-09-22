@@ -1,5 +1,7 @@
 package kr.co.hotel.login;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,6 +32,7 @@ public class LoginServiceImpl implements LoginService {
 			session.setAttribute("name", mvo.getName());
 			session.setAttribute("email", mvo.getEmail());
 			session.setAttribute("phone", mvo.getPhone());
+			session.setAttribute("joinday", mvo.getJoinday());
 			
 			/* 비회원 장바구니를 회원 장바구니로 옮기기 (+중복삭제) */
 			Cookie cookie = WebUtils.getCookie(request, "cookieid");
@@ -71,4 +74,28 @@ public class LoginServiceImpl implements LoginService {
 		session.invalidate();
 		return "redirect:/main/index";
 	}
+
+	@Override
+	public void userid_search_ok(MemberVO mvo, PrintWriter out) 
+	{
+		String userid=mapper.userid_search_ok(mvo);
+		
+		if(userid==null)
+			userid="0";
+		
+		System.out.println(userid);
+		out.print(userid);
+	}
+
+	@Override
+	public void pwd_search_ok(MemberVO mvo, PrintWriter out) 
+	{
+		String pwd=mapper.pwd_search_ok(mvo);
+		if(pwd==null)
+			pwd="0";
+		System.out.println(pwd);
+		out.print(pwd);
+		
+	}
+
 }

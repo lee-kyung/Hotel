@@ -21,6 +21,7 @@
 	padding-top:50px;}
 	
 	#first #txt2{
+	margin-bottom:20px;
 	text-align:right;
 	font-size:18px;}
 	
