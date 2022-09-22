@@ -27,16 +27,16 @@ public class DiningResvController {
 		return service.dining_reserve(request, model, session);
 	}
 
-	@RequestMapping("/dining/getDineAvail")
+	/*@RequestMapping("/dining/getDineAvail")
 	public void getDineAvail(HttpServletRequest request, PrintWriter out, DiningVO dvo)
 	{
 		service.getDineAvail(request,out,dvo);
-	}
+	}*/
 	
     @RequestMapping("/dining/dining_reserve_next")
-    public String dining_reserve_next(HttpServletRequest request, Model model)
+    public String dining_reserve_next(HttpServletRequest request, Model model, HttpSession session)
     {
-    	return service.dining_reserve_next(request,model);
+    	return service.dining_reserve_next(request,model,session);
     }
     // old
     @RequestMapping("/dining/dining_reserve_next_old")

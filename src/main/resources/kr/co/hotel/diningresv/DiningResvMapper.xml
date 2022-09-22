@@ -6,10 +6,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="kr.co.hotel.diningresv.DiningResvMapper">
     
     <select id="dining_reserve" resultType="kr.co.hotel.dining.DiningVO">
-	  select * from dining order by id asc;
-	</select>
+	  <![CDATA[  select d.*, dr.dine_type, right(dr.dr_date,2) as td
+	  from dining as d, diningresv as dr
+	  where dr.dr_date>=#{param1} and dr.dr_date <= #{param2}
+	  and d.dine_type=dr.dine_type order by id asc ]]>
+	</select>                                      <!-- 며칠 -->
 	
-	<select id="dining_reserve_next" resultType="kr.co.hotel.dining.DiningVO">
+	<select id="dining_reserve_next" resultType="kr.co.hotel.diningresv.DiningResvVO">
 	  select * from dining where id=#{param1}
 	</select>
 	
