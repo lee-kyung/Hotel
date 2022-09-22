@@ -120,7 +120,7 @@ public class RoomResvServiceImpl implements RoomResvService {
 		}
 		
 		mapper.room_resv_ok(rsvo);
-		return "redirect:/room/rooms";
+		return "redirect:/room/room_bkconfirm";
 }
 	
 	@Override 
@@ -140,6 +140,15 @@ public class RoomResvServiceImpl implements RoomResvService {
 		}
 		
 		out.print(str);
+	}
+	@Override
+	public String room_bkconfirm(HttpServletRequest request, Model model) {
+		String bid=request.getParameter("bid");
+		
+		RoomResvVO rsvo=mapper.room_bkconfirm(bid);
+		model.addAttribute("rsvo", rsvo);
+		
+		return "/room/room_bkconfirm";
 	}
 
 

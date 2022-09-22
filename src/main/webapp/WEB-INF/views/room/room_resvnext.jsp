@@ -327,32 +327,32 @@
 		// 아이디, 비번, 이름, 전화번호
 		if(document.resv.binwon.value>${rvo.rmax})
 		{
-			alert("선택된 인원수가 최대가능 인원보다 많습니다. 객실을 다시 선택해주세요.")
+			alert("선택된 인원수가 최대가능 인원보다 많습니다. 객실을 다시 선택해주세요.");
 			return false;
 		}
 		else if(document.resv.bkname.value.trim()=="")
 		{
-			alert("이름을 입력하세요")
+			alert("이름을 입력하세요");
 			return false;
 		}
 		else if(document.resv.bkphone.value.trim()=="")
 		{
-			alert("전화번호를 입력하세요")
+			alert("전화번호를 입력하세요");
 			return false;
 		}
 		else if(document.resv.agree1.checked!=true)
 		{
-			alert("개인정보 수집 및 이용에 대한 동의가 필요합니다.")
+			alert("개인정보 수집 및 이용에 대한 동의가 필요합니다.");
 			return false;
 		}
 		else if(document.resv.agree2.checked!=true)
 		{
-			alert("상품 정보 및 취소 규정에 대한 동의가 필요합니다.")
+			alert("상품 정보 및 취소 규정에 대한 동의가 필요합니다.");
 			return false;
 		}
 		else if(document.resv.paym.value=="")
 		{
-			alert("결제방법을 선택하세요")	
+			alert("결제방법을 선택하세요")	;
 			return false;
 		}
 		else
@@ -364,7 +364,7 @@
 				// i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
 				// ''안에 띄어쓰기 없이 가맹점 식별코드를 붙여넣어주세요. 안그러면 결제창이 안뜹니다.
 				IMP.request_pay({
-					pg: 'INIBillTst',
+					pg: 'kakaopay',
 					pay_method: 'card',
 					merchant_uid: 'merchant_' + new Date().getTime(),
 					/* 
@@ -388,7 +388,8 @@
 					if (rsp.success) {
 						var msg = '결제가 완료되었습니다.';
 						msg += '결제 금액 : ' + rsp.paid_amount;
-						// success.submit();
+						document.resv.submit();
+						
 						// 결제 성공 시 정보를 넘겨줘야한다면 body에 form을 만든 뒤 위의 코드를 사용하는 방법이 있습니다.
 						// 자세한 설명은 구글링으로 보시는게 좋습니다.
 					} else {
@@ -398,10 +399,7 @@
 					alert(msg);
 				});
 			});
-
-		  
 			return true;
-			
 		}
 	}
 	

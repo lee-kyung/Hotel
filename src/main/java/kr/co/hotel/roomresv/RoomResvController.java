@@ -43,7 +43,11 @@ public class RoomResvController {
 		service.getRoomAvail(request,out,rvo);
 	}
 
-	
+	@RequestMapping("/room/room_bkconfirm")
+	public String room_bkconfirm(HttpServletRequest request, Model model)
+	{
+		return service.room_bkconfirm(request, model);
+	}
 	
 	
 	

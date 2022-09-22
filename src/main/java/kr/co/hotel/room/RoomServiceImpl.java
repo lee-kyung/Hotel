@@ -81,7 +81,11 @@ public class RoomServiceImpl implements RoomService{
 		String code=request.getParameter("code");
 		ArrayList<RoomVO> list=mapper.room_content(code);
 		model.addAttribute("list", list);
-		
+	/*	
+		String rcode=request.getParameter("rcode");
+		RoomVO rvo=mapper.get_roomcontent(rcode);
+		model.addAttribute("rvo", rvo);
+		*/
 		return "/room/room_content";
 	}
 
@@ -123,28 +127,10 @@ public class RoomServiceImpl implements RoomService{
     	request.setAttribute("y", y);
     	request.setAttribute("m", m);
     	
-    	
-  /*  	LocalDate today2=LocalDate.now(); // 오늘 날짜
-		int dd=Integer.parseInt(request.getParameter("day"));
-    	LocalDate dday2=LocalDate.of(y, m, dd);
-    	
-    	if(today2.isBefore(dday)) // 오늘이 디데이보다 이전
-		{
-			request.setAttribute("tt", "1");
-		}
-		else if(today2.isEqual(dday)) // 같은날
-		{
-			request.setAttribute("tt", "1");
-		}
-		else
-		{
-			request.setAttribute("tt", "0");
-		}*/
-		
+ 
     	ArrayList<RoomVO> list=mapper.getRoom();
     	model.addAttribute("list", list);
-//    	/*int cnt=mapper.getCnt(checkin, rvo);*/
-//    	
+	
 		return "/room/room_su";
 	}
 
