@@ -525,7 +525,7 @@
          	<td>WED</td>
          	<td>THU</td>
          	<td>FRI</td>
-         	<td>SAT</td>
+         	<td>SAT</td>a
 		</tr> 
 		<c:set var="day" value="1"/>
 		<c:forEach var="i" begin="1" end="${ju }">	<!-- 행 -->
