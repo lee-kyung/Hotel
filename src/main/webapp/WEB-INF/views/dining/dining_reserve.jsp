@@ -234,7 +234,7 @@
 
   </div> <!-- step 1 div 끝 -->
     
-    
+    </form>
 <!-- bootstrap calendar html 시작 --> <!-- bootstrap calendar html 시작 --> <!-- bootstrap calendar html 시작 -->
  <table id="top" width="1100" border="1">
   <tr>
@@ -394,7 +394,7 @@
      </tr>
    </table>
      </div>
-</form>
+
 </div>
 
 
