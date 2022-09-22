@@ -95,6 +95,8 @@ public class RoomResvServiceImpl implements RoomResvService {
 			String bid=userid+'r'+num;
 		//	System.out.println(bid);
 			rsvo.setBid(bid);
+			mapper.room_resv_ok(rsvo);
+			return "redirect:/room/room_bkconfirm?bid="+bid;
 		}
 		else
 		{
@@ -117,10 +119,11 @@ public class RoomResvServiceImpl implements RoomResvService {
 			String bid=userid+'r'+num;
 		//	System.out.println(bid);
 			rsvo.setBid(bid);
+			mapper.room_resv_ok(rsvo);
+			return "redirect:/room/room_bkconfirm?bid="+bid;
 		}
 		
-		mapper.room_resv_ok(rsvo);
-		return "redirect:/room/room_bkconfirm";
+
 }
 	
 	@Override 

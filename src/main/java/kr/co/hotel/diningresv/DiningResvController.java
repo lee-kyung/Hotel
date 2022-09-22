@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.co.hotel.dining.DiningVO;
+import kr.co.hotel.room.RoomVO;
 
 @Controller
 public class DiningResvController {
@@ -26,11 +27,25 @@ public class DiningResvController {
 		return service.dining_reserve(request, model, session);
 	}
 
+	@RequestMapping("/dining/getDineAvail")
+	public void getDineAvail(HttpServletRequest request, PrintWriter out, DiningVO dvo)
+	{
+		service.getDineAvail(request,out,dvo);
+	}
+	
     @RequestMapping("/dining/dining_reserve_next")
     public String dining_reserve_next(HttpServletRequest request, Model model)
     {
     	return service.dining_reserve_next(request,model);
     }
+    // old
+    @RequestMapping("/dining/dining_reserve_next_old")
+    public String dining_reserve_next_old(HttpServletRequest request, Model model)
+    {
+    	return service.dining_reserve_next_old(request,model);
+    }
+    //   
+    
     @RequestMapping("/dining/dining_reserve_ok")
     public String dining_reserve_ok(DiningResvVO drvo)
     {
@@ -41,6 +56,17 @@ public class DiningResvController {
     {
     	return service.dining_reserve_check(session, model);
     }
+    
+   /* @RequestMapping("/dining/getcheck")
+    public void getcheck(HttpServletRequest request, Model model)
+    {
+    	service.getcheck(request, model);
+    }
+    @RequestMapping("/dining/getEmpty")
+    public void getEmpty(HttpServletRequest request, Model model)
+    {
+    	service.getEmpty(request, model);
+    }*/
 
 
 

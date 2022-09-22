@@ -50,7 +50,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 select * from weddingtime where wt_time not in (select wresv_time from weddingresv where wresv_cday=#{param1} order by wresv_time asc) 
 	</select>
 
-  	
+  	<select id="wed_resv_check" resultType="kr.co.hotel.wedding.WeddingResvVO">
+  		select * from weddingresv where wresv_code=#{param}
+  	</select>
   	
   	
   	

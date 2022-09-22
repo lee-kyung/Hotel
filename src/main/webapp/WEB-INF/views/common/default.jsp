@@ -179,12 +179,13 @@
 		var x=innerWidth; // 브라우저 가로 크기
 		var y=innerHeight; // 브라우저 세로 크기
 		
-		var left=(x/2)-1500;  //220은 qlayer가로크기인 440의 반
+		var left=(x/2)-1500; 
 		var top=(y/2)-350;
 		
 		document.getElementById("loglayer").style.left=left+"px";
 		document.getElementById("loglayer").style.top=top+"px";
 	}
+	window.onresize=position_chg;
 </script>
 <div id="loglayer">
 	<div>

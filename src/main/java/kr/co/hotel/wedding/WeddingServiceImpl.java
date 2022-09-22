@@ -110,7 +110,7 @@ public class WeddingServiceImpl implements WeddingService{
 	@Override
 	public String wedding_reserve(HttpServletRequest request, Model model) 
 	{
-		
+/*		
 		int y, m;
 		if(request.getParameter("y")==null)
 		{
@@ -140,7 +140,7 @@ public class WeddingServiceImpl implements WeddingService{
 		request.setAttribute("ju", ju);
 		request.setAttribute("y", y);
 		request.setAttribute("m", m);
-		
+*/		
 	
 		ArrayList<WeddingResvTimeVO> tlist=mapper.gettime();
 		model.addAttribute("tlist", tlist);
@@ -151,7 +151,7 @@ public class WeddingServiceImpl implements WeddingService{
 		
 		
 		
-		
+/*		
 		LocalDate today=LocalDate.now();
 		
 		int y2,m2,d2;
@@ -171,12 +171,10 @@ public class WeddingServiceImpl implements WeddingService{
 		if(request.getParameter("day")==null)
 		{
 			d2=today.getDayOfMonth();
-			d2++;
 		}
 		else
 		{
 			d2=Integer.parseInt(request.getParameter("day"));
-			d2++;
 		}
 		
 		
@@ -193,7 +191,7 @@ public class WeddingServiceImpl implements WeddingService{
 		{
 			request.setAttribute("tt", "0");
 		}
-		
+		*/
 		
 		
 		
@@ -205,10 +203,17 @@ public class WeddingServiceImpl implements WeddingService{
 	@Override	
 	public String weddingReserve_ok(WeddingResvVO wrvo, HttpSession session) 
 	{
-		String userid=session.getAttribute("userid").toString();		
-		wrvo.setUserid(userid);
 		
+		String userid="";
+		if(session.getAttribute("userid")!=null)
+		{
+			userid=session.getAttribute("userid").toString();
+		}
+		
+		wrvo.setUserid(userid);
 		Integer number=mapper.getWresv_code(userid);
+		
+		
 		number++;
 		System.out.println(number);
 		
@@ -227,7 +232,7 @@ public class WeddingServiceImpl implements WeddingService{
 		
 		mapper.weddingReserve_ok(wrvo);
 		
-		return "redirect:/wedding/wedding_reserve";
+		return "redirect:/wedding/wed_resv_check?wresv_code="+wresv_code;
 	}
 
 /*	@Override
@@ -261,6 +266,16 @@ public class WeddingServiceImpl implements WeddingService{
 	
 			out.print(str);
 			out.print(wresv_cday);
+	}
+
+	@Override
+	public String wed_resv_check(HttpServletRequest request, HttpSession session, Model model) 
+	{
+	//	String userid=session.getAttribute("userid").toString();
+		String wresv_code=request.getParameter("wresv_code");
+		WeddingResvVO wrvo=mapper.wed_resv_check(wresv_code);
+		model.addAttribute("wrvo", wrvo);
+		return "/wedding/wed_resv_check";
 	}
 	
 	

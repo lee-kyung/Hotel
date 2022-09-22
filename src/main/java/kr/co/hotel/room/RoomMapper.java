@@ -6,11 +6,11 @@ public interface RoomMapper {
 	public ArrayList<RdaeVO>room_write();
 	public Integer getbunho(String code);
 	public void room_write_ok(RoomVO rvo);
+	
 	public ArrayList<RoomVO>rooms(String code);
 	public ArrayList<RoomVO>room_content(String code);
-	/*public RoomVO get_roomcontent(String rcode);
+	public RoomVO get_room(String rcode);
 	
-	*/
 	
 	public ArrayList<RoomVO>getRoom();
 	public Integer getCnt(String checkin, RoomVO rvo);

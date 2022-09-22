@@ -237,7 +237,12 @@
 				<th>배송비</th>
 				<th>장바구니</th>
 			</tr>
-			<c:forEach var="wvo" items="${wlist}">
+		<c:if test="${wlist.size() < 1}">
+			<tr>
+				<td colspan="80" height="100"> 등록된 상품이 없습니다. </td>
+			</tr>
+		</c:if>
+		<c:forEach var="wvo" items="${wlist}">
 			<input type="hidden" class="pcode" value="${wvo.pcode}">
 			<tr>
 				<td> <input type="checkbox" class="subck" onclick="subcheck()" value="${wvo.id}"> </td> <!-- 체크박스 -->
@@ -267,7 +272,7 @@
 					<div onclick="location='wishcart_del?delid=${wvo.id},&dchk=1'" id="button2"> 삭제하기 </div>
 				</td>
 			</tr>
-			</c:forEach>
+		</c:forEach>
 			<tr>
 				<th colspan="8" height="60"> <div onclick="wish_del()" id="button3"> 선택상품 삭제하기 </div> </th>
 			</tr>

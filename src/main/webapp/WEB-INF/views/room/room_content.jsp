@@ -93,8 +93,7 @@
     	</ul>
     	</div>
     	<br>
-  		<c:forEach items="${list}" var="rvo"> 
- 		<input type="hidden" name="rcode" value="${rvo.rcode}">
+ 	
  		<div class="rr" style="font-size:35px; font-weight: 900; color: #887159">${rvo.rname}</div>
 		<div style="border:1px solid #887159">
 			<div style="margin:auto;"><img src="../img/rooms/${rvo.rpimg}" width="980px"></div>
@@ -102,7 +101,7 @@
 			<br>
 		</div>
 		<br>
-		</c:forEach> 
+		 
  	</roomsec>
  	</div>
  	</div>

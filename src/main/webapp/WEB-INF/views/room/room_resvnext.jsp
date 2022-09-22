@@ -11,7 +11,7 @@
 <body>
 <style>
 	.container{
-		width: 990px;
+		width: 1100px;
 		margin: auto;
 	}
 	roomsec{
@@ -21,29 +21,13 @@
 	roomsec table{
 		width: 750px;
 		height: 80px;
-	/* 	border: 1px solid #887159; */
+	 	border: 1px solid #887159; 
 		margin-bottom: 30px;
 	}
 	roomsec input[type=text]{
 		width: 260px;
 		height: 30px;
 		border: 1px solid #887159;
-	}
-	roomsec #pay{
-		margin: auto;
-		text-align: center;
-	}
-	roomsec #pay input[type=button]{
-		width: 200px;
-		height: 50px;
-		border: 1px solid #887159;
-		color: #887159;
-		background: white;
-		pointer: cursor;
-	}
-	roomsec #pay input[type=button]:hover{
-		background: #887159;
-		color: white;
 	}
 	roomsec #tb input[type=text]{
 		border: none;
@@ -81,6 +65,22 @@
 	}
 	roomsec .bb{
 		align: right;
+	}
+	roomsec #pay{
+	margin: auto;
+	text-align: center;
+	}
+	roomsec #pay input[type=button]{
+		width: 200px;
+		height: 50px;
+		border: 1px solid #887159;
+		color: #887159;
+		background: white;
+		pointer: cursor;
+	}
+	roomsec #pay input[type=button]:hover{
+		background: #887159;
+		color: white;
 	}
 </style>
 <script>

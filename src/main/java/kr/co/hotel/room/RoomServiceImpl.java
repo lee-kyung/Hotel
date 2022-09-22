@@ -81,11 +81,12 @@ public class RoomServiceImpl implements RoomService{
 		String code=request.getParameter("code");
 		ArrayList<RoomVO> list=mapper.room_content(code);
 		model.addAttribute("list", list);
-	/*	
+		
+		
 		String rcode=request.getParameter("rcode");
-		RoomVO rvo=mapper.get_roomcontent(rcode);
+		RoomVO rvo=mapper.get_room(rcode);
 		model.addAttribute("rvo", rvo);
-		*/
+		
 		return "/room/room_content";
 	}
 
