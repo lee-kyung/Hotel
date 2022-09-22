@@ -133,7 +133,7 @@
 	cursor:pointer;
 	border:1px solid black;}
 	
-	section #wed_resv table#resv #wresv_name, #wresv_phone, #cday, #wresv_time{
+	section #wed_resv table#resv #wresv_name, #wresv_phone, #cday, #wresv_time, #wresv_email{
 	background:#F3F3F3;}
 	
 	section #wed_resv table#resv td:first-child{
@@ -173,21 +173,72 @@
 	width:362px;
 	height:50px;
 	outline:none;
-	border: 1px solid #cccccc;}
+	border: 1px solid #cccccc;
+	margin-top:15px;}
 	
 	section #wed_resv table#resv select option{
 	font-size:18px;}
 
-
-	section #wed_resv table#resv input[type=submit]{
-	margin-top:20px;
+	section #wed_resv table#resv #w_pay{
+	height:450px;}
+	
+	section #wed_resv table#resv #w_pay #txt1{
+	font-size:20px;}
+	
+	section #wed_resv table#resv #w_pay #pay{
+	margin-left:20px;
+	width:370px;}
+	
+	section #wed_resv table#resv #w_pay #pay div{
+	display:inline-block;}
+	
+	section #wed_resv table#resv #w_pay #pay #right{
+	float:right;}
+	
+	section #wed_resv table#resv #w_pay #txt2{
+	margin-top:60px;
+	font-size:20px;}
+	 
+	section #wed_resv table#resv #w_pay #paymethod{
+	margin-left:20px;}
+	
+	section #wed_resv table#resv #w_pay #paymethod .radio{
+	display:inline-block;
+	border:1px solid #887159;
+	margin-left:10px;
+	width:160px;
+	height:40px;
+	text-align:center;
+	padding-top:7px;
+	color:#887159;}
+    
+	section #wed_resv table#resv #w_pay #paymethod .radio input[type=radio] {
+	display: none;}
+	
+	section #wed_resv table#resv #w_pay #paymethod .radio label {
+	display: block;
+   	margin:-9px;
+   	padding-top:15px;
+    text-align: center;
+    height:50px;
+    border:1px solid #887159;}
+		 
+	section #wed_resv table#resv #w_pay #paymethod input[type=radio]:checked + label {
+	background: #887159;
+	color: white;}
+		 	 
+	section #wed_resv table#resv #w_pay #paymethod input[type=radio] + label {
+	background:white;
+	color:#887159;}
+	
+	section #wed_resv table#resv #w_pay #bank{
+	visibility:hidden;
+	margin-top:40px;
+	margin-left:30px;}
+	
+	section #wed_resv table#resv #paymentBtn{
 	width:400px;
 	height:70px;}
-	
-	
-	
-	
-	
 	
 	section #wed_resv #background{
 	position:absolute;
@@ -233,7 +284,7 @@
     margin-left:600px;
     width:700px;
     height:500px;
-    border:1px solid black;
+    border:1px solid #887159;
     background:white;
     visibility:hidden;
     z-index:1;}
@@ -243,7 +294,7 @@
     
     section #wed_resv #login #login_first{
     height:50px;
-    background:black;
+    background:#887159;
     color:white;
     padding-top:10px;
     font-size:18px;}
@@ -272,7 +323,8 @@
     margin-top:50px;
     width:500px;
     height:50px;
-    background:black;
+    border:none;
+    background:#887159;
     color:white;}
 	
 	section #wed_resv #login #login_txt{
@@ -361,8 +413,10 @@
 	{
 		document.getElementById("wresv_name").readOnly=false; 
 	  	document.getElementById("wresv_phone").readOnly=false;
+	  	document.getElementById("wresv_email").readOnly=false;
 	  	document.getElementById("wresv_name").style.background="white";
 	  	document.getElementById("wresv_phone").style.background="white";
+	  	document.getElementById("wresv_email").style.background="white";
 
 	}
 
@@ -425,45 +479,17 @@
 		
 	}
 	
-	
-	function resv(chk)
+	function bank()
 	{
-		if(chk.wresv_name.value.trim()=="")
-		{
-			alert("이름을 입력하세요.");
-			return false;
-		}
-		else if(chk.wresv_phone.value.trim()=="")
-		{
-			alert("전화번호를 입력하세요.");
-			return false;
-		}
-		else if(chk.wresv_cday.value.trim().length==0)	
-		{
-			alert("상담일을 선택하세요.");
-			return false;
-		}
-		else if(chk.wresv_time.value.trim().length==0)	
-		{
-			alert("상담시간을 선택하세요.");
-			return false;
-		}
-		else if(chk.wresv_wday.value.trim().length==0)	
-		{
-			alert("예식 희망일을 선택하세요.");
-			return false;
-		}
-		else if(chk.wresv_content.value.trim().length==0)	
-		{
-			alert("문의사항을 입력하세요.");
-			return false;
-		}
-		else
-		{
-			alert("예약이 완료되었습니다.");
-			return true;
-		}
+		document.getElementById("bank").style.visibility="visible";
 	}
+	
+	function kakao()
+	{
+		document.getElementById("bank").style.visibility="hidden";
+	}
+	
+
 
 </script>
 
@@ -525,7 +551,7 @@
          	<td>WED</td>
          	<td>THU</td>
          	<td>FRI</td>
-         	<td>SAT</td>a
+         	<td>SAT</td>
 		</tr> 
 		<c:set var="day" value="1"/>
 		<c:forEach var="i" begin="1" end="${ju }">	<!-- 행 -->
@@ -620,7 +646,7 @@
 		
 		
 	
-	<form name="wresv" method="post" action="weddingReserve_ok" onsubmit="return resv(this)">	
+	<form name="wresv" method="post" action="weddingReserve_ok">	
 	<table id="resv" align="center">
 		<tr>
 			<td colspan="4">
@@ -652,19 +678,56 @@
 				 </c:if> 
 			</td>
 			<td rowspan="5">
-				<img src="../img/wedding/wedding_resv.jpg" width="400" height="400">
-					<input type="submit" class="button button-contactForm btn_1 boxed-btn" value="예약하기" onclick="resv()">			
+			<!-- 	<img src="../img/wedding/wedding_resv.jpg" width="400" height="400"> -->
+				<div id="w_pay">
+					<div id="txt1">결제정보</div>
+					<hr>
+					<div id="pay">
+						<div id="left">상담 결제비용</div>
+						<div id="right">5000 KRW</div>
+					</div>
+					
+					<div id="txt2">결제 방법선택</div>
+					<hr>
+					<div id="paymethod">
+						<div class="radio">
+							<input id="radio-1" type="radio" name="wresv_pay" value="0" onclick="kakao()"><label for="radio-1">카카오 결제</label>
+						</div>
+										 
+						<div class="radio">
+							<input id="radio-2" type="radio" name="wresv_pay" value="1" onclick="bank()"><label for="radio-2">무통장 입금</label>
+						</div>
+	
+					</div>
+	
+					<div id="bank">
+						<div>신한은행</div>
+						<div>020202-08-0880808</div>
+						<div>${today } 23:59까지 입금해주세요</div>
+					</div>
+				</div>
+				<input type="button" class="button button-contactForm btn_1 boxed-btn" id="paymentBtn" onclick="return resv_check()" value="상담예약 결제하기">			
 			</td>
 		</tr>
 		
 		<tr>
 			<td>희망하는 웨딩홀</td>
-          	<td colspan="3">
-				<select name="wresv_hall">dd
+          	<td>
+				<select name="wresv_hall">
           		<c:forEach items="${hlist }" var="hvo">
 					<option value="${hvo.wed_hall }">${hvo.wed_hall }</option>
           		</c:forEach>
 				</select>
+          	</td>
+          	<td>이메일</td>
+          	<td>
+          		<c:if test="${userid != null }">
+					<input type="text" name="wresv_email" id="wresv_email" value="${email }" readonly>
+				</c:if>
+				<c:if test="${userid == null }"> 
+					<input type="text" name="wresv_email">
+				 </c:if> 
+          	
           	</td>
 		</tr>
 		
@@ -708,7 +771,112 @@
 <div id="wed_chk2">
 	<img src="../img/wedding/wedding_chk.jpg">
 </div>
+<!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous" type="text/javascript"></script>
+<!-- iamport.payment.js -->
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+<script>
+	function resv_check()
+	{
+		if(document.wresv.wresv_name.value.trim()=="")
+		{
+			alert("이름을 입력하세요.");
+			return false;
+		}
+		else if(document.wresv.wresv_phone.value.trim()=="")
+		{
+			alert("전화번호를 입력하세요.");
+			return false;
+		}
+		else if(document.wresv.wresv_email.value.trim()=="")
+		{
+			alert("이메일 입력하세요.");
+			return false;
+		}
+		else if(document.wresv.wresv_cday.value.trim().length==0)	
+		{
+			alert("상담일을 선택하세요.");
+			return false;
+		}
+		else if(document.wresv.wresv_time.value.trim().length==0)	
+		{
+			alert("상담시간을 선택하세요.");
+			return false;
+		}
+		else if(document.wresv.wresv_wday.value.trim().length==0)	
+		{
+			alert("예식 희망일을 선택하세요.");
+			return false;
+		}
+		else if(document.wresv.wresv_content.value.trim().length==0)	
+		{
+			alert("문의사항을 입력하세요.");
+			return false;
+		}
+		else if(document.wresv.wresv_pay.value=="")	
+		{
+			alert("결제방법을 선택하세요.");
+			return false;
+		}
+		else if(document.wresv.wresv_pay.value=="0")
+		{
+			//alert("카카오");
+				//결제관련
+				$("#paymentBtn").click(function () {
+					var IMP = window.IMP; // 생략가능
+					IMP.init('imp66382802'); 
+					// i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
+					// ''안에 띄어쓰기 없이 가맹점 식별코드를 붙여넣어주세요. 안그러면 결제창이 안뜹니다.
+					IMP.request_pay({
+						pg: 'html5_inicis',
+						pay_method: 'card',
+						merchant_uid: 'merchant_' + new Date().getTime(),
+						/* 
+						 *  merchant_uid에 경우 
+						 *  https://docs.iamport.kr/implementation/payment
+						 *  위에 url에 따라가시면 넣을 수 있는 방법이 있습니다.
+						 */
+						// name: '주문명 :',
+						// 결제창에서 보여질 이름
+						// name: '주문명 : ${auction.a_title}',
+						// 위와같이 model에 담은 정보를 넣어 쓸수도 있습니다.
+						amount: 5000,
+						// amount: ${bid.b_bid},
+						// 가격 
+						 buyer_name: '이름 : ${name}',
+						// 구매자 이름, 구매자 정보도 model값으로 바꿀 수 있습니다.
+						// 구매자 정보에 여러가지도 있으므로, 자세한 내용은 맨 위 링크를 참고해주세요.
+						// buyer_postcode: '123-456',
+						
+						}, function (rsp) {
+							console.log(rsp);
+						if (rsp.success) {
+							var msg = '결제가 완료되었습니다.';
+							msg += '결제 금액 : ' + rsp.paid_amount;
+							
+							document.wresv.submit();
+							
+							// 결제 성공 시 정보를 넘겨줘야한다면 body에 form을 만든 뒤 위의 코드를 사용하는 방법이 있습니다.
+							// 자세한 설명은 구글링으로 보시는게 좋습니다.
+						} else {
+							var msg = '결제에 실패하였습니다.';
+							msg += '에러내용 : ' + rsp.error_msg;
+						}
+						alert(msg);
+					});
+				});
+				return true;
+		}
+		
+		else if(document.wresv.wresv_pay.value=="1")
+		{
+			document.wresv.submit();
+			alert("입금");
+			return true;
+		}
+	}
 
+</script>
    <!--================ Single-Wedding Area end =================-->
 
 </body>

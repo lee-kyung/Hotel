@@ -13,5 +13,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from member where userid=#{param1}
 	</select>
 	
+	<update id="myprofile_edit_ok">
+		update member set phone=#{phone}, birth=#{birth}, email=#{email}, zip=#{zip}, juso=#{juso}, juso_etc=#{juso_etc} where userid=#{userid}
+	</update>
 	
+<!-- 	<select id="getPwd" resultType="String">
+  		select pwd from member where userid=#{param1}
+  	</select> -->
+  	
+	<update id="mypwd_change_ok">
+		update member set pwd=#{param1} where userid=#{param2}
+	</update>
 </mapper>

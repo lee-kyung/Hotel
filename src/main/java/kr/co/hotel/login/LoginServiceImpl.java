@@ -49,7 +49,7 @@ public class LoginServiceImpl implements LoginService {
 			
 			if(ck==1)
 			{
-				return "redirect:/wedding/wedding";
+				return "redirect:/wedding/wedding_reserve";
 			}
 			else
 			{

@@ -276,7 +276,8 @@
 			else 
 			{
 	            $('#email_juso').val($('#select').val());
-	            $('#email_juso').attr("disabled", true);
+	            $('#email_juso').attr("readonly", true);
+	            $('#email_juso').css({"background": "#F3F3F3"});
 	        }
 	    })
 	});

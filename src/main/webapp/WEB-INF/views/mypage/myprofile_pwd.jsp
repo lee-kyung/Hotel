@@ -142,8 +142,8 @@
 	<div id="first_1">
 		<div id="txt">${name }님, 환영합니다.</div> 
 		<div id="txt2">
-			<span>회원정보 수정 > </span>&nbsp;&nbsp;
-			<span>비밀번호 수정 > </span>
+			<span onclick="location='../mypage/myprofile_pwd'">회원정보 수정 > </span>&nbsp;&nbsp;
+			<span onclick="location='../mypage/mypwd_change'">비밀번호 수정 > </span>
 		</div> 
 	</div>	
 	<ul>

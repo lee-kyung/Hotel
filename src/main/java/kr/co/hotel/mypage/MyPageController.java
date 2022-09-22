@@ -12,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import kr.co.hotel.member.MemberVO;
+
 @Controller
 public class MyPageController {
 
@@ -43,10 +45,28 @@ public class MyPageController {
 		return service.myprofile(session, model);
 	}
 	
+	@RequestMapping("/mypage/myprofile_edit")
+	public String myprofile_edit(Model model, HttpSession session)
+	{
+		return service.myprofile_edit(model, session);
+	}
+	
+	@RequestMapping("/mypage/myprofile_edit_ok")
+	public String myprofile_edit_ok(MemberVO mvo, HttpSession session)
+	{
+		return service.myprofile_edit_ok(mvo, session);
+	}
+	
 	@RequestMapping("/mypage/mypwd_change")
 	public String mypwd_change()
 	{
 		return "/mypage/mypwd_change";
+	}
+	
+	@RequestMapping("/mypage/mypwd_change_ok")
+	public String mypwd_change_ok(HttpSession session, HttpServletRequest request)
+	{
+		return service.mypwd_change_ok(session, request);
 	}
 	
 }
