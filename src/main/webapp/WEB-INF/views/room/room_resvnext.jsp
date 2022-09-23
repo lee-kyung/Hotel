@@ -350,6 +350,32 @@
 		}
 		else
 		{
+			//결제관련
+	/* 		$("#paymentBtn").click(function () {
+				var IMP = window.IMP; // 생략가능
+				IMP.init('imp66382802'); 
+				IMP.request_pay({
+					pg: 'html5_inicis',
+					pay_method: 'card',
+					merchant_uid: 'merchant_' + new Date().getTime(),
+
+					name: '주문명 : ${rvo.rname}',
+					amount: 2000,
+					buyer_name: '이름',
+					buyer_postcode: '123-456',
+					}, function (rsp) {
+						console.log(rsp);
+					if (rsp.success) {
+						var msg = '결제가 완료되었습니다.';
+						msg += '결제 금액 : ' + rsp.paid_amount;
+						document.resv.submit();
+					} else {
+						var msg = '결제에 실패하였습니다.';
+						msg += '에러내용 : ' + rsp.error_msg;
+					}
+					alert(msg);
+				});
+			}); */
 			document.resv.submit();
 			return true;
 		}
