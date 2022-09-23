@@ -61,7 +61,7 @@
       <div> ${drvo.bkname} </div>
       <div> ${drvo.dine_type} <img src="../resources/img/${dvo.dine_pimg}" width="70" height="70"> </div>
       <div> ${drvo.dr_time} </div>
-      <div> ${drvo.pay_sudan}</div>
+      <div> ${drvo.sudan}</div>
       <div> <fmt:formatNumber value="${drvo.dr_total}" pattern="#,###"/>원 </div>
       <div> ${drvo.dr_extrarq}</div>
       

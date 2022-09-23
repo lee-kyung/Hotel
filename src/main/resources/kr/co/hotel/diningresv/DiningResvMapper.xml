@@ -12,16 +12,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	  and d.dine_type=dr.dine_type order by id asc ]]>
 	</select>                                      <!-- 며칠 -->
 	
-	<select id="dining_reserve_next" resultType="kr.co.hotel.diningresv.DiningResvVO">
-	  select * from dining where id=#{param1}
+	<select id="dining_reserve_next" resultType="kr.co.hotel.dining.DiningVO">
+	  select * from dining where dine_type=#{param1}
 	</select>
 	
 	<insert id="dining_reserve_ok" parameterType="kr.co.hotel.diningresv.DiningResvVO">
 	   insert into diningresv
 	   (dr_date,dr_extrarq,dr_state,dr_time,dr_total,dine_type,
-	      bkname,userid,email,p1,p2,p3,writeday,adult,child,baby,bid)
+	      bkname,userid,email,p1,p2,p3,writeday,adult,child,baby,bid,sudan)
 	   values(#{dr_date},#{dr_extrarq},#{dr_state},#{dr_time},#{dr_total},#{dine_type},
-	      #{bkname},#{userid},#{email},#{p1},#{p2},#{p3},now(),#{adult},#{child},#{baby},#{bid})
+	      #{bkname},#{userid},#{email},#{p1},#{p2},#{p3},now(),#{adult},#{child},#{baby},#{bid},#{sudan})
 	</insert>
 
 	<select id="getBid" resultType="Integer">

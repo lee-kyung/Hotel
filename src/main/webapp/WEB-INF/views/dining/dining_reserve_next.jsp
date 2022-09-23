@@ -319,8 +319,8 @@
 			      <br>
 			      <div><b>결제 방법</b></div>
 				  <div id="paymethod">
-					<input type="radio" value="0" name="paym"> 간편결제&nbsp;&nbsp;
-					<input type="radio" value="1"> 현장결제(예약금 10만원) <br> 
+					<input type="radio" name="sudan" value="0" > 간편결제&nbsp;&nbsp;
+					<input type="radio" name="sudan" value="1" > 현장결제(예약금 10만원) <br> 
 					* 쿠폰 / 제휴 바우처 / 이벤트 쿠폰 사용 원하실 경우, 레스토랑에서 결제하기를 선택해 주세요.
 			      </div>
 			      <br>
