@@ -7,9 +7,6 @@
   .dining_reserve_next{
     line-height:2;
   }
-/*  caption{
-    align:center;
-  } */
   .container{
 	width: 990px;
 	margin: auto;
@@ -25,6 +22,7 @@
     width: 750px;
 	height: 80px;
 	/* 	border: 1px solid #887159; */
+	marin-top:20px;
 	margin-bottom: 30px;
   }
   diningsec input[type=text]{
@@ -46,7 +44,8 @@
 	width: 225px;
 	height: 780px;
 	float: right;
-	margin-left: 5px;
+	margin-left: 10px;
+	padding-left: 10px;
 	/* position: absolute;
 	left: 950px; */
   } 
@@ -74,6 +73,24 @@
   td{
     margin-top:40px;
   }
+  
+  /* 결제 css */
+  diningsec #pay{
+	margin: auto;
+	text-align: center;
+	}
+  diningsec #pay input[type=button]{
+	width: 200px;
+	height: 50px;
+	border: 1px solid #887159;
+	color: #887159;
+	background: white;
+	pointer: cursor;
+	}
+  diningsec #pay input[type=button]:hover{
+	background: #887159;
+	color: white;
+	}
  </style>
  
  <!-- jQuery -->
@@ -86,36 +103,7 @@
 <body>
 
    <script>
-   
-  /* function categoryChange(e)
-  {
-	  
-	  var dr_time_"${dine_type}"=dr_time_["Breakfast","Lunch","Dinner"]; 
-	  var dr_time="${dine_type}";
-	  var dr_time_Breakfast=["8:00","10:00"];
-	  var dr_time_Lunch=["13:00","15:00"];
-	  var dr_time_Dinner=["16:00","18:00"];
-	  var target= document.getElementById("dr_time");
-	  
-	  var dr_time_Breakfast=["8:00","10:00"];
-	  var dr_time_Lunch=["13:00","15:00"];
-	  var dr_time_Dinner=["16:00","18:00"];
-	  var target= document.getElementById("dr_time");
-	  
-	  if(e.value == "Breakfast") var d = dr_time_Breakfast;
-		else if(e.value == "Lunch") var d = dr_time_Lunch;
-		else if(e.value == "Dinner") var d = dr_time_Dinner;
-
-		target.options.length = 0;
-
-		for (x in d) {
-			var opt = document.createElement("option");
-			opt.value = d[x];
-			opt.innerHTML = d[x];
-			target.appendChild(opt);
-             }
-  }  */
-
+   // 핸드폰 번호 자릿수 채우면 자동 이동
   $(function() {
 	    $(".inputs").keyup (function () {
 	        var charLimit = $(this).attr("maxlength");
@@ -125,6 +113,7 @@
 	        }
 	    });
 	});
+  
 	// 요청사항 바이트 확인
 	function fn_checkByte(obj){
 	    const maxByte = 100; //최대 100바이트
@@ -153,72 +142,52 @@
 	            document.getElementById("nowByte").style.color = "green";
 	        }
 	    }
+	
 	// 총가격 구하는 함수
    function total_price() 
    {
 	  // 다이닝 타입에 따른 인원, 인원타입 선택값을 가져와서 각각의 금액을 구한다
-	  
-	  // 어른 금액
-	  /* var aprice=document.getElementById("aprice").innerText; */
-		  
-	  // 어린이 추가 금액
-/* 	  var cprice=document.getElementById("cprice").innerText; */
-	  
+
 	  // 예약 인원
 	  var ad_su=document.reser.adult.value;
 	  document.getElementById("a_su").innerText=ad_su;
+	  
 	  var cd_su=document.reser.child.value;
 	  document.getElementById("c_su").innerText=cd_su;
 	  
-	// 다이닝타입
+	  var bd_su=document.reser.baby.value;
+	  document.getElementById("b_su").innerText=bd_su;
+	  
+	  // 총 예약 인원
+	  var su_total=Number(ad_su)+Number(cd_su)+Number(bd_su);
+	  document.getElementById("sutotal").innerText=su_total;
+	  
+	  // 총 금액
 	  var dine_type=document.getElementById("dine_type").value;
 	  
 	  if(dine_type=='Breakfast')
 	  {
-		  var total=60000*ad_su+30000*cd_su;
-		  
-		  
-		  /* document.getElementById("cprice").innerText=new Intl.NumberFormat().format(cprice); */ 
+		  var total=Number(60000*ad_su)+Number(30000*cd_su);
+		  /* document.getElementById("drtotal").innerText=total; */	
 	  }
 	  	else if(dine_type=='Lunch')
-		  {/* 
-			  dine_aprice=105000*(a_su);
-			  document.getElementById("aprice").innerText=new Intl.NumberFormat().format(aprice);
-			  dine_cprice=52500*(c_su);
-			  document.getElementById("cprice").innerText=new Intl.NumberFormat().format(cprice); */ 
-			  var total=105000*ad_su+52500*0;
-			  document.getElementById("drtotal").innerText=total;			  
+		  {
+	  		  var total=Number(105000*ad_su)+Number(52500*cd_su);
+			  /* document.getElementById("drtotal").innerText=total; */		  
 			
 		  }
-	  		else 
+	  		else // dine_type=='Dinner'
 			  {
-				  dine_aprice=120000*(a_su);
-				  document.getElementById("aprice").innerText=new Intl.NumberFormat().format(aprice);
-				  dine_cprice=60000*(c_su);
-				  document.getElementById("cprice").innerText=new Intl.NumberFormat().format(cprice); 
+				  var total=Number(120000*ad_su)+Number(60000*cd_su);
+				  /* document.getElementById("drtotal").innerText=new Intl.NumberFormat().format(total); */
 			  }
+	  
+	               document.getElementById("dr_total").innerText=new Intl.NumberFormat().format(total);
 
-      // 총 인원
-/*       var su=Number(a_su)+Number(c_su);
-      document.getElementById("su").innerText=new Intl.NumberFormat().format(su);
- */      
-	  // 총 금액
-	  /* var total=Number(dine_aprice)+Number(dine_cprice); */
-	  /*   document.getElementById("drtotal").innerText=10000*ad_su; */
-	  
-	  /* 성인 수*성인 가격
-	  어린이 수*추가 가격 */
-	  
 	  // form태그내에 총금액을 전달
-	  /* document.reser.dr_total.value=total; */
-	
-	 /*  document.getElementById("dr_total").innerText=comma(tt); */
+	  document.reser.dr_total.value=total;
   } 
-   function comma(pp)
-   {  
-   	return new Intl.NumberFormat().format(pp);
-   }
-
+   
 </script>
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
     <!-- bradcam_area_start -->
@@ -237,15 +206,15 @@
   <div class="row">
      <diningsec>
       <form name="reser" method="post" action="dining_reserve_ok">	
-	   <input type="hidden" name="dr_total" value="${dvo.dine_adult }">
-	   <input type="hidden" name="dr_total" value="${dvo.dine_child }">
+	   <input type="hidden" name="dr_total" value="${dvo.dine_adult}">
+	  <%--  <input type="hidden" name="dr_total" value="${dvo.dine_child }"> --%>
 		  <div style="color:#887159; font-weight:900"> RESERVATION</div>
 		       <div style="font-size: 25px;"> 파라다이스호텔 부산에 오신 것을 환영합니다.</div><br>
 		       
 		       <h2>ON THE PLATE</h2><br>
 		       <hr>
 		   <div id="outer">
-<!--left--><div id="left" style="border:1px solid black">	
+<!--left--><div id="left">	
 			       
                <div style="float:left; width:700px;" id="info"><b>안내사항</b></div><br>
 			   <div id="info_con">
@@ -257,8 +226,9 @@
 			      - 어린이 인원 예약 시 요청사항에 나이 정보를 입력해 주시기 바랍니다.<br>
 			      - 홈페이지 예약 할인 프로모션은 예약 상황에 따라 조기 마감 될 수 있으며 바우쳐,쿠폰사용 및 제휴 할인과 중복 적용되지 않습니다.<br>
 			   </div>
+			   
 			   <!-- 예약정보 -->
-			   <table border="1">
+			   <table>
 			   <tr>
 			   
 			       <th width="300">방문 희망 일자</th>
@@ -267,47 +237,16 @@
 			   </tr>
 			   <tr>
 			       <td><input type="text" name="dr_date" value="${dr_date}" readonly></td>
-			       <td>
-			       <%-- <input type="hidden" id="changeInput">
-				        <select value="${dine_type}" name="dine_type" id="dine_type" onchange="javascript:categoryChange(this);total_price(this);">
-				         <option value="${dine_type}">${dine_type}</option>
-				         <option value="Breakfast" name="dine_type" id="dine_type">Breakfast</option>
-				         <option value="Lunch" name="dine_type" id="dine_type">Lunch</option>
-				         <option value="Dinner" name="dine_type" id="dine_type">Dinner</option>
-				        </select> --%>
-				        <input type="text" name="dine_type" id="dine_type" value="${dine_type}" readonly></td>
-			       </td>
-			       
-			       <td>
-			            <input type="text" name="dr_time" value="${dr_time}" readonly></td>
-			      <%-- <select id="dr_time" name="dr_time" onchange="total_price()">
-				         <option value="0">선택</option>
-				         
-				          <c:if test="${dvo.dine_type == 'Breakfast' }">
-				                <option value="${dr_time}">${dr_time}</option>
-					            <option value="8:00" name="dr_time">8:00</option>
-					            <option value="10:00" name="dr_time">10:00</option>
-				          </c:if>
-				       
-				          <c:if test="${dvo.dine_type == 'Lunch' }">
-					            <option value="13:00" name="dr_time">13:00</option>
-					            <option value="15:00" name="dr_time">15:00</option>
-				          </c:if>
-				       
-				         <c:if test="${dvo.dine_type == 'Dinner' }">
-					            <option value="16:00" name="dr_time">16:00</option>
-					            <option value="18:00" name="dr_time">18:00</option>  
-				         </c:if>
-			       </select> --%>
-			 
-			       </td>
+			       <td><input type="text" name="dine_type" id="dine_type" value="${dine_type}" readonly></td>
+			       <td><input type="text" name="dr_time" id="dr_time" value="${dr_time}" readonly></td>
 			   </tr> 
-			   <tr>
+			   
+			   <tr> <!-- 성인, 어린이, 유아 select --> <!-- 성인, 어린이, 유아 select -->
 			       <th>성인</th>
 			       <th>어린이</th>
 			       <th>유아</th>
 			   </tr>
-			   <tr>
+			   <tr> 
 			       <td>
 			           <select name="adult" id="adult" onchange="total_price()">
 			              <option value="0"> 선택 </option>
@@ -325,66 +264,52 @@
 			           </select>
 			       </td>
 			       <td>
-			           <select name="baby" id="baby">
+			           <select name="baby" id="baby" onchange="total_price()">
 			              <option value="0"> 선택 </option>
 						  <option value="1"> 1 </option>
 					      <option value="2"> 2 </option>
 						  <option value="3"> 3 </option>
 			           </select>
 			       </td>
-			   </tr>
+			   </tr> <!-- 성인, 어린이, 유아 select --> <!-- 성인, 어린이, 유아 select -->
+			   
 			   <tr>
 			       <th colspan="3"> 추가 요청사항(선택)<sup>(<span id="nowByte">0</span>/100bytes)</sup></th>
 			   </tr>
 			   <tr>
-			       <td colspan="3"> <textarea cols="100" rows="5" name="dr_extrarq"></textarea> </td>
-			   </tr>
-			   <tr>
-			       <td colspan="3">
-			       * 요청사항은 레스토랑 사정에 따라 응대가 어려울 수 있으며 추가 문의는 전화 주시기 바랍니다.</td>
+			       <td colspan="3"> <textarea cols="100" rows="5" name="dr_extrarq" onkeyup="fn_checkByte(this)" placeholder="* 요청사항은 레스토랑 사정에 따라 응대가 어려울 수 있으며 추가 문의는 전화 주시기 바랍니다."></textarea> </td>
 			   </tr>
 			   <!-- 고객정보 -->
 			   <div><div style="float:left; width:500px;"><b>고객 정보</b></div><div style="float:right;align:right;font-size:12px">* 필수입력항목</div></div><br>
  			</table>
  			<table>
- 			< 	<tr height="10px"> 
+ 			 	<tr height="10px"> 
  					<td>
  					<c:if test="${userid==null}">
- 					* 예약자 이름 &nbsp<input type="text" name="bkname">
- 					* 휴대폰 번호 &nbsp
+ 					* 예약자 이름 &nbsp;<input type="text" name="bkname">
+ 					* 휴대폰 번호 &nbsp;
                     <input type="text" name="p1" value="${p1}" class="inputs" maxlength="3" size="10"/>-
 			        <input type="text" name="p2" value="${p2}" class="inputs" maxlength="4" size="10"/>-
 			        <input type="text" name="p3" value="${p3}" class="inputs" maxlength="4" size="10"/>
+                    </c:if>
                     </td>
- 					</c:if>
+ 					
  					<c:if test="${userid!=null }">
- 					* 예약자 이름 &nbsp<input type="text" name="bkname" value="${name}">
- 					* 휴대폰 번호 &nbsp
+ 					* 예약자 이름 &nbsp;<input type="text" name="bkname" value="${name}">
+ 					* 휴대폰 번호 &nbsp;
  					<input type="text" name="p1" value="${p1}" class="inputs" maxlength="3" size="10"/>-
 			        <input type="text" name="p2" value="${p2}" class="inputs" maxlength="4" size="10"/>-
 			        <input type="text" name="p3" value="${p3}" class="inputs" maxlength="4" size="10"/>
+                    </c:if>
                     </td>
 
- 					</c:if>
+ 					
  				</tr> 
  				
  				<tr>
- 					<td> &nbsp </td>
+ 					<td> &nbsp; </td>
  				</tr>
           </table>
-			   <%-- <tr>
-			       <th>이름</th>
-			       <th colspan="2">휴대폰 번호<input type="hidden" name="phone" value="${p1+p2+p3}"></th>
-			   </tr>
-			   <tr>
-			       <td><input type="text" name="name" value="${name}" size="40"></td>
-			       <td colspan="2">
-			        <input type="text" name="p1" value="${p1}" class="inputs" maxlength="3" size="10"/>-
-			        <input type="text" name="p2" value="${p2}" class="inputs" maxlength="4" size="10"/>-
-			        <input type="text" name="p3" value="${p3}" class="inputs" maxlength="4" size="10"/>
-			       </td>
-			   </tr> --%>     
-			   
 			   
 			      <div><b>취소 규정</b></div>
 			      <div>
@@ -394,8 +319,8 @@
 			      <br>
 			      <div><b>결제 방법</b></div>
 				  <div id="paymethod">
-					<input type="radio" value="0" name="paym"> 간편결제
-					<input type="radio" value="1" name="paym"> 현장결제(예약금 10만원) <br> 
+					<input type="radio" name="sudan" value="0" > 간편결제&nbsp;&nbsp;
+					<input type="radio" name="sudan" value="1" > 현장결제(예약금 10만원) <br> 
 					* 쿠폰 / 제휴 바우처 / 이벤트 쿠폰 사용 원하실 경우, 레스토랑에서 결제하기를 선택해 주세요.
 			      </div>
 			      <br>
@@ -416,43 +341,36 @@
 				</div>
 				<br>
 				<div>
-					<div style="float:left; width:500px;font-weight:900">상품 정보 및 취소 규정에 대한 동의 </div><div style="float:right;align:right;font-size:12px"><input type="checkbox" name="agree2">동의합니다</div>
+					<div style="float:left; width:500px;font-weight:900">취소 규정에 대한 동의 </div><div style="float:right;align:right;font-size:12px"><input type="checkbox" name="agree2">동의합니다</div>
+					<br>
+				<div>
+				 - 이용일로부터 1일전 23:59분전까지 무료 취소 가능합니다.<br>
+			     - 방문 당일 취소 및 변경은 위약금 10만원이 부과됩니다.
+				</div>
 				</div><br>
 				<div>
-<textarea style="resize: none; border:none" rows="3" cols="80" readonly>예약 취소 및 변경은 상기 [취소 규정] 기간 내 가능하며, 이후 도착일 기준 하루 전 18시까지 1박 요금의 50%, 이후 취소 시 1박 요금의 100%수수료가 발생합니다.
-투숙 당일 노쇼(No Show) 발생 시 동일한 위약금이 청구될 수 있습니다.
-</textarea>
 				</div>
 				</div>
 				</div>
 				
-<!-- right --> <div id="right" style="color:black;border:1px solid black">
+<!-- right --> <div id="right" style="color:black;">
 					<div><b>다이닝 타입</b></div>		
-					<div>${dine_type}<input type="hidden" name="dine_type" value="${dine_type}" readonly></div><br>
+					<div>${dine_type}</div>
 					<div><b>예약날짜</b></div>	
-					<div><input type="text" name="dr_date" value="${dr_date}" readonly></div>   
+					<div>${dr_date}</div>   
 					<div><b>예약시간</b></div>
-					<div><b>총인원</b></div>
-	                <div>성인<span id="a_su"></span>명/어린이<span id="c_su">${child}</span>명/유아${baby}명 <br> 
-						총<input type="text" style="width:15px;" name="su" id="su" value="${adult+child+baby}" readonly>명
-					</div><br>
+					<div>${dr_time}</div>  
+					<div><b>예약인원</b></div>
+	                <div>성인<span id="a_su"></span>명/어린이<span id="c_su"></span>명/유아<span id="b_su"></span>명</div><br>
+					<div>총<span id="sutotal">&nbsp;&nbsp;&nbsp;</span>명</div><br>
 					<div><b>총 가격</b></div>
-	                <div>
-			   <span id="dr_total">
-			       <%-- <fmt:formatNumber value="${drvo.dr_total}" type="number"/></span>원 --%>
-			       <span id="drtotal"></span>
-			       </div>
-	                <div>
-	                 	<span>성인 요금</span>&nbsp; <span id="aprice">${dvo.dine_adult}</span>
-	                </div>
-	                <div>${dvo.dine_adult}</div>
-	                <div><b>어린이 예약 금액</b></div>
-	                <div>${dvo.dine_child}</div>
-	                
-			  
-			       <div id="reserve"><input type="submit" value="예약신청"></div>
-              
-               
+	                <div><span id="dr_total" name="dr_total">${dvo.dine_adult}</span></div>
+                    <br>
+					<br>
+					<br>
+					<br>			  
+			       <!-- <div id="pay"><input type="button" id="paymentBtn" value="예약신청" onclick="return check()"></div> -->
+			       <div id="pay"><input type="submit" id="paymentBtn" value="예약신청"></div>
            </div>
      </form>
 
@@ -461,7 +379,10 @@
  </div>
 </div>
 
-
+<script>
+    //필수입력사항 입력 했는지 확인
+    
+</script>
     <!-- 부타이틀(자유롭게 변경)_area_end -->
     <!-- ================ 타이틀(자유롭게 변경) Area End ================= -->
 

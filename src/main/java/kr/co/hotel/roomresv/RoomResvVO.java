@@ -10,8 +10,15 @@ public class RoomResvVO {
 	// 요청사항
 	private String spreq;
 	
+	// 객실명
+	private String rname;
 	
-	
+	public String getRname() {
+		return rname;
+	}
+	public void setRname(String rname) {
+		this.rname = rname;
+	}
 	public String getSpreq() {
 		return spreq;
 	}

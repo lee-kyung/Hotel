@@ -89,9 +89,9 @@ public class MyPageController {
 	}
 	
 	@RequestMapping("/mypage/wedding_resv")
-	public String wedding_resv(Model model, HttpSession session, HttpServletRequest request, WeddingResvVO wvo)
+	public String wedding_resv(Model model, HttpSession session, HttpServletRequest request)
 	{
-		return service.wedding_resv(model, session, request, wvo);
+		return service.wedding_resv(model, session, request);
 	}
 	
 	@RequestMapping("/mypage/wedding_resv_search")

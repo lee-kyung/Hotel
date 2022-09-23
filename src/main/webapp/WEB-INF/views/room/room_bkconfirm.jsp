@@ -10,90 +10,36 @@
 </head>
 <style>
 	section{
-	width:1100px;
-	margin:auto;
-	margin-top:100px;
-	margin-bottom:200px;}
-	
-	section #resv_check #title{
-	font-family:fantasy;
-	font-size:70px;}
-	
-	section #resv_check #txt{
-	font-size:18px;
-	margin-left:40px;}
-	
-	section #resv_check #name{
-	margin-top:120px;
-	font-size:40px;
-	margin-bottom:30px;}
-	
-	section #resv_check #border{
-	border:1px solid black;
-	height:450px;
-	width:850px;
-	margin:auto;}
-	
-	section #resv_check #left{
-	margin-top:50px;
-	display:inline-block;
-	margin-left:20px;
-	width:150px;}
-	
-	section #resv_check #right{
-	display:inline-block;
-	width:550px;}
-	
-	section #resv_check #left div{
-	font-weight:600;
-	padding:25px;}
-	
-	section #resv_check #right div{
-	padding:25px;
-	border-bottom:1px solid black;}
-	
-	section #resv_check #txt2{
-	margin-top:50px;
-	margin-right:20px;
-	float:right;}
-	
-	section #resv_check .under{
-	border-bottom:1px solid black;}
-	
-	section #resv_check #btn_center{
-	margin-top:150px;
-	text-align:center;}
-	
-	section #resv_check input[type=button]{
-	margin-left:50px;
-	width:500px;
-	height:70px;
-	background:black;
-	color:white;}
-
+		width:1100px;
+		margin:auto;
+		margin-top:100px;
+		margin-bottom:200px;
+	}
+	section table{
+		margin: auto;
+	}
 </style>
 <body>
 <section>
-<div id="resv_check">
 <div id="title">RESERVATION</div>
 	<div id="name">예약이 완료되었습니다.</div>
-	<div id="border">
-	<div id="left">
-		<div>예약번호</div>
-		<div>체크인</div>
-		<div>체크아웃</div>
-		<div>예약자</div>
-	</div>
-	<div id="right">
-		<div>${rsvo.bid}</div>
-		<div>${rsvo.checkin}</div>
-		<div>${rsvo.checkout}</div>
-		<div>${rsvo.bkname}</div>
-	</div>
+	<table border="1" width="600">
+		<tr>
+			<td> 예약번호 </td>
+			<td> 체크인 </td>
+			<td> 체크아웃 </td>
+			<td> 예약자 </td>
+		</tr>
+		<tr>
+			<td> ${rsvo.bid} </td>
+			<td> ${rsvo.checkin} </td>
+			<td> ${rsvo.checkout} </td>
+			<td> ${rsvo.bkname} </td>
+		</tr>
+	</table>
 	<div id="txt2">비회원은 이름과 주문코드로 조회가 가능합니다.</div>
 	</div>
 	<div id="btn_center"><input type="button" onclick="location='../main/index'" value="확 인"></div>
-</div>
 </section>
 </body>
 </html>

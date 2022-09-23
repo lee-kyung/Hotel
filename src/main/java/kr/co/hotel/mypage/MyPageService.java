@@ -24,7 +24,7 @@ public interface MyPageService {
 
 	public String mypage(Model model, HttpSession session);
 
-	public String wedding_resv(Model model, HttpSession session, HttpServletRequest request, WeddingResvVO wvo);
+	public String wedding_resv(Model model, HttpSession session, HttpServletRequest request);
 
 	public void wedding_resv_search(HttpSession session, HttpServletRequest request, PrintWriter out);
 

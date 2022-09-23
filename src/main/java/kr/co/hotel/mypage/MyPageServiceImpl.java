@@ -100,7 +100,7 @@ public class MyPageServiceImpl implements MyPageService{
 	}
 
 	@Override
-	public String wedding_resv(Model model, HttpSession session, HttpServletRequest request, WeddingResvVO wvo) 
+	public String wedding_resv(Model model, HttpSession session, HttpServletRequest request) 
 	{
 		String userid=session.getAttribute("userid").toString();
 		ArrayList<WeddingResvVO> wlist=mapper.wedding_resv(userid);

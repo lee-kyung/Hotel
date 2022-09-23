@@ -396,24 +396,21 @@ public class EshopServiceImpl implements EshopService {
 	@Override
 	public String pro_gumae_ok(GumaeVO gvo, HttpSession session, HttpServletRequest request) {
 		Cookie cookie = WebUtils.getCookie(request, "cookieid");	// 이미 생성된 쿠키값
-		//Cookie[] cookie=request.getCookies();
-		String cookie1=cookie.toString();
-		System.out.println(cookie1);
 		
 		if(session.getAttribute("userid") == null)
 			if(cookie == null)
 				gvo.setUserid("guest");
 			else
-				gvo.setUserid(cookie1);
+				gvo.setUserid(cookie.getValue());
 		else
 			gvo.setUserid(session.getAttribute("userid").toString());
 		
-		/* 주문번호 생성하기 → 구매날짜(8자리)+난수(6자리)+찐숫자(4자리) */
+		/* 주문번호 생성하기 → 구매날짜(8자리)+난수(4자리)+찐숫자(4자리) */
 		Date today = new Date();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
 		String now = dateFormat.format(today);
 		
-		String rand=RandomStringUtils.random(6, false, true);
+		String rand=RandomStringUtils.random(4, false, true);
 		
 		Integer n=mapper.getJumun();
 		n++;
@@ -424,7 +421,7 @@ public class EshopServiceImpl implements EshopService {
 			case 3 : num="0"+num; break;
 		}
 		
-		String jumuncode=now+rand+num;		
+		String jumuncode='e'+now+rand+num;		
 		gvo.setJumuncode(jumuncode);
 		
 		String userid=gvo.getUserid();

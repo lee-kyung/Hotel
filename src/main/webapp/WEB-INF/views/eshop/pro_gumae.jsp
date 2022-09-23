@@ -112,6 +112,10 @@
 		cursor : pointer;
 	}
 </style>
+<!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous" type="text/javascript"></script>
+<!-- iamport.payment.js -->
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
 	/* 우편번호 버튼 클릭시 호출되는 함수 */
@@ -360,49 +364,46 @@
 	</section>
 	
 	<script>
-	/* 필수입력 체크후 [결제하기]로 넘어가기 */
+	/* 필수입력 체크후 [결제하기]로 진행 */
 	function check()
 	{
 		if(document.gumae.bname.value.trim() == "") {
 			alert("주문자명을 입력하세요.");
 			return false;
-		}
-		else if(document.gumae.bphone.value.trim() == "") {
-			alert("주문자의 연락처를 입력하세요.");
-			return false;
-		}
-	
-		else if(document.gumae.pname.value.trim() == "") {
-			alert("받는 사람을 입력하세요.");
-			return false;
-		}
-		else if(document.gumae.bphone.value.trim() == "") {
-			alert("받는 사람의 연락처를 입력하세요.");
-			return false;
-		}
-		else if(document.gumae.bzip.value.trim() == "") {
-			alert("주소를 검색하여 우편번호를 입력하세요.");
-			return false;
-		}
-		else if(document.gumae.bjuso.value.trim() == "") {
-			alert("주소를 검색하여 기본주소를 입력하세요.");
-			return false;
-		}
-		else if(document.gumae.bjuso_etc.value.trim() == "") {
-			alert("상세주소를 입력하세요.");
-			return false;
-		}
-
-		else if(document.gumae.agree1.checked == false)
-		{
-			alert("비회원주문 개인정보 수집이용에 대한 동의가 필요합니다.");
-			return false;
-		}
-		else
-		{
-			document.gumae.submit();
-			return true;
-		}
+			}
+			else if(document.gumae.bphone.value.trim() == "") {
+				alert("주문자의 연락처를 입력하세요.");
+				return false;
+				}
+				else if(document.gumae.pname.value.trim() == "") {
+					alert("받는 사람을 입력하세요.");
+					return false;
+					}
+					else if(document.gumae.bphone.value.trim() == "") {
+						alert("받는 사람의 연락처를 입력하세요.");
+						return false;
+						}
+						else if(document.gumae.bzip.value.trim() == "") {
+							alert("주소를 검색하여 우편번호를 입력하세요.");
+							return false;
+							}
+							else if(document.gumae.bjuso.value.trim() == "") {
+								alert("주소를 검색하여 기본주소를 입력하세요.");
+								return false;
+								}
+								else if(document.gumae.bjuso_etc.value.trim() == "") {
+									alert("상세주소를 입력하세요.");
+									return false;
+									}
+									else if(document.gumae.agree1.checked == false) {
+										alert("비회원주문 개인정보 수집이용에 대한 동의가 필요합니다.");
+										return false;
+									}
+									else
+									{
+										document.gumae.submit();
+										return true;
+									}
 	}
   </script>
   
