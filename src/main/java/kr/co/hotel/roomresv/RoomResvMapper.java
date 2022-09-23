@@ -8,7 +8,7 @@ public interface RoomResvMapper {
 	public ArrayList<RoomVO> room_resv();
 	public RoomVO room_resvnext(String rcode);
 	public void room_resv_ok(RoomResvVO rsvo);
-	public Integer getBid(String userid); 
+	public Integer getBid(); 
 	public ArrayList<RoomVO> getRoomAvail(String checkin, String adult);
 	public RoomResvVO room_bkconfirm(String bid);
 	

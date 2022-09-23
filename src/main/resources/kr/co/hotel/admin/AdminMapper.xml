@@ -5,25 +5,74 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
 <mapper namespace="kr.co.hotel.admin.AdminMapper">
 	<select id="memberlist" resultType="kr.co.hotel.member.MemberVO">
-		select * from member order by id desc
+		select * from member order by id desc 
 	</select>
 	
+<!-- admin첫 화면에서 최신 5개 예약 보이게 -->
 	<select id="getroombk" resultType="kr.co.hotel.roomresv.RoomResvVO">
 		select rb.*, r.rname, r.rcode 
 		from roombk as rb, room as r 
 		where rb.rcode=r.rcode
-		order by id desc, checkin asc
-	</select>
+		order by id desc limit 5;
+	</select> 
 	
 	<select id="getdiningresv" resultType="kr.co.hotel.diningresv.DiningResvVO">
-		select * from diningresv order by id desc, dr_date asc
+		select * from diningresv order by dr_id desc, dr_date asc limit 5;
 	</select>
 	
-	<select id="getweddingresv" resultType="kr.co.hotel.wedding.WeddingVO">
-		select * from weddingresv order by id desc, wresv_cday asc
+	<select id="getweddingresv" resultType="kr.co.hotel.wedding.WeddingResvVO">
+		select * from weddingresv order by wresv_id desc, wresv_cday asc limit 5;
 	</select>
 	
-	<!-- <select id="getgumae" resultType="kr.co.hotel.">
-		select * from gumae order by id desc
-	</select> -->
+	<select id="getgumae" resultType="kr.co.hotel.eshop.GumaeVO">
+		select * from gumae order by id desc limit 5;
+	</select> 
+	
+<!-- 회원목록 각각 페이지에서 보이게 -->
+	<select id="rlist" resultType="kr.co.hotel.roomresv.RoomResvVO">
+		select rb.*, r.rname, r.rcode 
+		from roombk as rb, room as r 
+		where rb.rcode=r.rcode and ${param1} like concat('%',#{param2},'%') 
+		order by checkin desc limit #{param3},#{param4}
+	</select>
+	<select id="getRChong" resultType="Integer">
+		select ceil(count(*)/#{param1}) from roombk where ${param2} like concat ('%',#{param3},'%') 
+	</select>
+
+	<select id="wlist" resultType="kr.co.hotel.wedding.WeddingResvVO">
+		select * from weddingresv where ${param1} like concat('%',#{param2},'%') order by wresv_id desc limit #{param3},#{param4}
+	</select>
+	<select id="getWChong" resultType="Integer">
+		select ceil(count(*)/#{param1}) from weddingresv where ${param2} like concat('%',#{param3},'%')
+	</select>
+	
+	<select id="dlist" resultType="kr.co.hotel.diningresv.DiningResvVO">
+		select * from diningresv where ${param1} like concat('%',#{param2},'%') order by dr_id desc limit #{param3},#{param4}
+	</select>
+	<select id="getDChong" resultType="Integer">
+		select ceil(count(*)/#{param1}) from diningresv where ${param2} like concat('%',#{param3},'%')
+	</select>
+	
+	<select id="glist" resultType="kr.co.hotel.eshop.GumaeVO">
+		select * from gumae where ${param1} like concat('%',#{param2},'%') order by id desc limit #{param3},#{param4}
+	</select>
+	<select id="getGChong" resultType="Integer">
+		select ceil(count(*)/#{param1}) from gumae where ${param2} like concat('%',#{param3},'%')
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	 
 </mapper>

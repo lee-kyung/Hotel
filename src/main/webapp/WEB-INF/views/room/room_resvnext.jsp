@@ -323,12 +323,7 @@
 	function check()
 	{
 		// 아이디, 비번, 이름, 전화번호
-		if(document.resv.binwon.value>${rvo.rmax})
-		{
-			alert("선택된 인원수가 최대가능 인원보다 많습니다. 객실을 다시 선택해주세요.");
-			return false;
-		}
-		else if(document.resv.bkname.value.trim()=="")
+		if(document.resv.bkname.value.trim()=="")
 		{
 			alert("이름을 입력하세요");
 			return false;
@@ -355,6 +350,32 @@
 		}
 		else
 		{
+			//결제관련
+	/* 		$("#paymentBtn").click(function () {
+				var IMP = window.IMP; // 생략가능
+				IMP.init('imp66382802'); 
+				IMP.request_pay({
+					pg: 'html5_inicis',
+					pay_method: 'card',
+					merchant_uid: 'merchant_' + new Date().getTime(),
+
+					name: '주문명 : ${rvo.rname}',
+					amount: 2000,
+					buyer_name: '이름',
+					buyer_postcode: '123-456',
+					}, function (rsp) {
+						console.log(rsp);
+					if (rsp.success) {
+						var msg = '결제가 완료되었습니다.';
+						msg += '결제 금액 : ' + rsp.paid_amount;
+						document.resv.submit();
+					} else {
+						var msg = '결제에 실패하였습니다.';
+						msg += '에러내용 : ' + rsp.error_msg;
+					}
+					alert(msg);
+				});
+			}); */
 			document.resv.submit();
 			return true;
 		}
