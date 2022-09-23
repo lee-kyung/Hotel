@@ -2,8 +2,8 @@ package kr.co.hotel.diningresv;
 
 public class DiningResvVO {
 	
-	private int dr_id, dr_stayhalin, dr_total, dr_state;
-	private String dr_time, dine_type, dr_extrarq, dr_date, p1, p2, p3, email, adult, child, baby;
+	private int dr_id, dr_state;
+	private String dr_time, dine_type, dr_extrarq, dr_date, p1, p2, p3, email, adult, child, baby, dr_total;
 	
 	// 다이닝 id
 	private int dining_id;
@@ -12,7 +12,13 @@ public class DiningResvVO {
 	private String userid;
 	
 	
-    public String getAdult() {
+    public String getDr_total() {
+		return dr_total;
+	}
+	public void setDr_total(String dr_total) {
+		this.dr_total = dr_total;
+	}
+	public String getAdult() {
 		return adult;
 	}
 	public void setAdult(String adult) {
@@ -75,18 +81,7 @@ public class DiningResvVO {
 	public void setDr_id(int dr_id) {
 		this.dr_id = dr_id;
 	}
-	public int getDr_stayhalin() {
-		return dr_stayhalin;
-	}
-	public void setDr_stayhalin(int dr_stayhalin) {
-		this.dr_stayhalin = dr_stayhalin;
-	}
-	public int getDr_total() {
-		return dr_total;
-	}
-	public void setDr_total(int dr_total) {
-		this.dr_total = dr_total;
-	}
+
 	public int getDr_state() {
 		return dr_state;
 	}

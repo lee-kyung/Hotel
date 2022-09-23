@@ -323,12 +323,7 @@
 	function check()
 	{
 		// 아이디, 비번, 이름, 전화번호
-		if(document.resv.binwon.value>${rvo.rmax})
-		{
-			alert("선택된 인원수가 최대가능 인원보다 많습니다. 객실을 다시 선택해주세요.");
-			return false;
-		}
-		else if(document.resv.bkname.value.trim()=="")
+		if(document.resv.bkname.value.trim()=="")
 		{
 			alert("이름을 입력하세요");
 			return false;

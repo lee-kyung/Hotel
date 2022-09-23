@@ -157,7 +157,7 @@ public class DiningResvServiceImpl implements DiningResvService{
    public String dining_reserve_ok(DiningResvVO drvo)
    {      
       mapper.dining_reserve_ok(drvo);
-      return "redirect:/dining/dining_reserve";
+      return "redirect:/dining/dining_reserve_check";
    }
    @Override
    public String dining_reserve_check(HttpSession session, Model model)

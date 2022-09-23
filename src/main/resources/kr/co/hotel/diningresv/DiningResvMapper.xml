@@ -22,14 +22,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="dining_reserve_ok" parameterType="kr.co.hotel.diningresv.DiningResvVO">
-	   insert into diningresv(dr_date,dr_extrarq,dr_state,dr_stayhalin,dr_time,dr_total,dine_type,
-	  userid,email,p1,p2,p3,writeday,adult,child,baby)
-	   values(#{dr_date},#{dr_extrarq},#{dr_state},#{dr_stayhalin},#{dr_time},#{dr_total},#{dine_type},
-	  #{userid},#{email},#{p1},#{p2},#{p3},now(),#{adult},#{child},#{baby})
+	   insert into diningresv
+	   (dr_date,dr_extrarq,dr_state,dr_time,dr_total,dine_type,
+	      userid,email,p1,p2,p3,writeday,adult,child,baby)
+	   values(#{dr_date},#{dr_extrarq},#{dr_state},#{dr_time},#{dr_total},#{dine_type},
+	      #{userid},#{email},#{p1},#{p2},#{p3},now(),#{adult},#{child},#{baby})
 	</insert>
 	
 	<select id="dining_reserve_check" resultType="kr.co.hotel.diningresv.DiningResvVO">
-	  select * from diningresv where userid=#{param1}
+	  select * from diningresv
 	</select>
 	
 	<select id="getDineAvail" resultType="kr.co.hotel.dining.DiningVO">
