@@ -181,10 +181,11 @@
 				  var total=Number(120000*ad_su)+Number(60000*cd_su);
 				  /* document.getElementById("drtotal").innerText=new Intl.NumberFormat().format(total); */
 			  }
-	  document.getElementById("dr_total").innerText=new Intl.NumberFormat().format(total);
+	  
+	               document.getElementById("dr_total").innerText=new Intl.NumberFormat().format(total);
 
 	  // form태그내에 총금액을 전달
-	  /* document.reser.dr_total.value=total;  */
+	  document.reser.dr_total.value=total;
   } 
    
 </script>
@@ -205,7 +206,7 @@
   <div class="row">
      <diningsec>
       <form name="reser" method="post" action="dining_reserve_ok">	
-	   <input type="hidden" name="dr_total" value="${dvo.dine_adult+dvo.dine_child}">
+	   <input type="hidden" name="dr_total" value="${dvo.dine_adult}">
 	  <%--  <input type="hidden" name="dr_total" value="${dvo.dine_child }"> --%>
 		  <div style="color:#887159; font-weight:900"> RESERVATION</div>
 		       <div style="font-size: 25px;"> 파라다이스호텔 부산에 오신 것을 환영합니다.</div><br>
@@ -285,8 +286,8 @@
  			 	<tr height="10px"> 
  					<td>
  					<c:if test="${userid==null}">
- 					* 예약자 이름 &nbsp<input type="text" name="bkname">
- 					* 휴대폰 번호 &nbsp
+ 					* 예약자 이름 &nbsp;<input type="text" name="bkname">
+ 					* 휴대폰 번호 &nbsp;
                     <input type="text" name="p1" value="${p1}" class="inputs" maxlength="3" size="10"/>-
 			        <input type="text" name="p2" value="${p2}" class="inputs" maxlength="4" size="10"/>-
 			        <input type="text" name="p3" value="${p3}" class="inputs" maxlength="4" size="10"/>
@@ -294,8 +295,8 @@
                     </td>
  					
  					<c:if test="${userid!=null }">
- 					* 예약자 이름 &nbsp<input type="text" name="bkname" value="${name}">
- 					* 휴대폰 번호 &nbsp<input type="hidden" name="bkphone" value="${p1}">
+ 					* 예약자 이름 &nbsp;<input type="text" name="bkname" value="${name}">
+ 					* 휴대폰 번호 &nbsp;
  					<input type="text" name="p1" value="${p1}" class="inputs" maxlength="3" size="10"/>-
 			        <input type="text" name="p2" value="${p2}" class="inputs" maxlength="4" size="10"/>-
 			        <input type="text" name="p3" value="${p3}" class="inputs" maxlength="4" size="10"/>
@@ -306,7 +307,7 @@
  				</tr> 
  				
  				<tr>
- 					<td> &nbsp </td>
+ 					<td> &nbsp; </td>
  				</tr>
           </table>
 			   
@@ -361,7 +362,7 @@
 	                <div>성인<span id="a_su"></span>명/어린이<span id="c_su"></span>명/유아<span id="b_su"></span>명</div><br>
 					<div>총<span id="sutotal">&nbsp;&nbsp;&nbsp;</span>명</div><br>
 					<div><b>총 가격</b></div>
-	                <div><span id="dr_total" name="dr_total"></span></div>
+	                <div><span id="dr_total" name="dr_total">${dvo.dine_adult}</span></div>
                     <br>
 					<br>
 					<br>

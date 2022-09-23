@@ -22,8 +22,10 @@ public interface DiningResvMapper {
 	//
 	
 	public void dining_reserve_ok(DiningResvVO drvo);
+	
+	public Integer getBid(); 
 
-	public ArrayList<DiningResvVO> dining_reserve_check(String userid);
+	public DiningResvVO dining_reserve_check(String bid);
 	
 /*	public void getcheck(String y, String m, String d);
 	public void getEmpty(String dday, String bang_id);*/
