@@ -46,7 +46,10 @@
     text-align:left;
   }
   .sprite{
-  background: repeating-linear-gradient(-45deg, #444, #444 10px, #888 0, #888 20px);
+  background-color: #fefefe;
+opacity: 0.4;
+background-size: 7px 7px;
+background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.7000000000000001px, #fefefe 0, #fefefe 50%);
   }
   
   /*  bootstrap calendar css 시작  */

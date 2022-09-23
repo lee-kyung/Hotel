@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.co.hotel.member.MemberVO;
+import kr.co.hotel.wedding.WeddingResvVO;
 
 @Controller
 public class MyPageController {
@@ -22,9 +23,9 @@ public class MyPageController {
 	private MyPageService service;
 	
 	@RequestMapping("/mypage/mypage")
-	public String mypage()
+	public String mypage(Model model, HttpSession session)
 	{
-		return "/mypage/mypage";
+		return service.mypage(model, session);
 	}
 	
 	@RequestMapping("/mypage/myprofile_pwd")
@@ -88,9 +89,21 @@ public class MyPageController {
 	}
 	
 	@RequestMapping("/mypage/wedding_resv")
-	public String wedding_resv()
+	public String wedding_resv(Model model, HttpSession session, HttpServletRequest request)
 	{
-		return "/mypage/wedding_resv";
+		return service.wedding_resv(model, session, request);
+	}
+	
+	@RequestMapping("/mypage/wedding_resv_search")
+	public void wedding_resv_search(HttpSession session, HttpServletRequest request, PrintWriter out)
+	{
+		service.wedding_resv_search(session, request, out);
+	}
+	
+	@RequestMapping("/mypage/weddingR_state_change")
+	public String weddingR_state_change(HttpServletRequest request)
+	{
+		return service.weddingR_state_change(request);
 	}
 	
 }
