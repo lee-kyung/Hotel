@@ -108,7 +108,7 @@ public class MyPageServiceImpl implements MyPageService{
 		model.addAttribute("wlist", wlist);
 
 		
-		
+		//
 		
 		
 		
