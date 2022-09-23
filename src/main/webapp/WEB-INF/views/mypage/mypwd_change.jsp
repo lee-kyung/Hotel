@@ -38,7 +38,8 @@
 	border-right:none;
 	text-align:center;
 	font-size:25px;
-	padding-top:50px;}
+	padding-top:50px;
+	cursor:pointer;}
 	
 	#first ul li:last-child{
 	border-right:1px solid #cccccc;}
