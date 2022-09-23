@@ -37,8 +37,8 @@ public class DiningResvVO {
 	public void setBid(String bid) {
 		this.bid = bid;
 	}
-	public String getWriteday() {
 
+    public String getWriteday() {
 		return writeday;
 	}
 	public void setWriteday(String writeday) {
