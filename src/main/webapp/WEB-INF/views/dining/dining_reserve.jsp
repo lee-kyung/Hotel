@@ -259,8 +259,9 @@
          </c:forEach>
        </tr>
      </c:forEach> 
-   		<span id="ccc" style="display:none"></span>
-<div id="dine_typediv"> <!-- 타임 클릭시 아래 반영되는 div -->  
+   </table>		
+<div id="dine_typediv"> <!-- 타임 클릭시 아래 반영되는 div --> 
+<span id="ccc" style="display:none"></span> 
   <form name="view_type" method="post" action="dining_reserve_next">
      <table id="dine" width="1100" border="1">
 	    <tr>
