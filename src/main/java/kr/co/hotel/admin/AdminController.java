@@ -26,9 +26,50 @@ public class AdminController {
 		return service.memberlist(model);
 	}
 	
-	@RequestMapping("/admin/roombk")
-	public String roombk(Model model, HttpServletRequest request)
+	@RequestMapping("/admin/roomlist")
+	public String roomlist(Model model, HttpServletRequest request)
 	{
-		return service.roombk(model, request);
+		return service.roomlist(model, request);
+	}
+	
+	@RequestMapping("/admin/wedlist")
+	public String wedlist(Model model, HttpServletRequest request)
+	{
+		return service.wedlist(model, request);
+
+	}
+	
+	@RequestMapping("/admin/dinelist")
+	public String dinelist(Model model, HttpServletRequest request)
+	{
+		return service.dinelist(model, request);
+	}
+	
+	@RequestMapping("/admin/gumaelist")
+	public String gumaelist(Model model, HttpServletRequest request)
+	{
+		return service.gumaelist(model, request);
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

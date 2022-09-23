@@ -49,66 +49,11 @@
 		margin:auto;
 		margin-top:100px;
 		margin-bottom:200px;
-		border: 1px solid blue;
-		height: 1000px;
 	}
 	section table{
 		width: 1500px;
-		visibility: hidden;
-		position: absolute;
 	}
-/* 	section #room{
-		 visibility: hidden;
-		 position: absolute;
-	}
-	section #dine{
-		 visibility: hidden;
-		 position: absolute;
-	}
-	section #shop{
-		visibility: hidden;
-		position: absolute;
-	}
-	section #wedding{
-		visibility: hidden;
-		position: absolute;
-	} */
 </style>
-<script>
-	function showr()
-	{
-		document.getElementById("room").style.visibility="visible";
-		
-		document.getElementById("dine").style.visibility="hidden";
-		document.getElementById("shop").style.visibility="hidden";
-		document.getElementById("wedding").style.visibility="hidden";
-	}
-	function showd()
-	{
-		document.getElementById("dine").style.visibility="visible";
-		
-		document.getElementById("room").style.visibility="hidden";
-		document.getElementById("shop").style.visibility="hidden";
-		document.getElementById("wedding").style.visibility="hidden";
-	}
-	function showe()
-	{
-		document.getElementById("shop").style.visibility="visible";
-		
-		document.getElementById("dine").style.visibility="hidden";
-		document.getElementById("room").style.visibility="hidden";
-		document.getElementById("wedding").style.visibility="hidden";
-	}
-	function showw()
-	{
-		document.getElementById("wedding").style.visibility="visible";
-		
-		document.getElementById("dine").style.visibility="hidden";
-		document.getElementById("shop").style.visibility="hidden";
-		document.getElementById("room").style.visibility="hidden";
-	}
-</script>
-
 </head>
 
 <body>
@@ -119,19 +64,18 @@
     	①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기
     	②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
     <div class="bradcam_area basic">	<!-- class="bradcam_area 클래스명" -->
-        <h3> 문구(자유롭게 변경하기) </h3>
+        <h3> 최신 예약 </h3>
     </div>
     
 <!-- first -->    
 <div id="first">
-	<div id="first_1">
-		<div id="txt">${name }님, 환영합니다.</div> 
+	<div id="first_1"> 
 		<div class="txt2">
 			<span onclick="location='../admin/memberlist'">회원 목록 확인 </span>&nbsp;&nbsp;
 		</div> 
 	</div>
 	<ul>
-		<li><a href="../admin/roombk">객실 예약 확인</a></li><li onclick="showd()">레스토랑 예약 확인</li><li onclick="showe()">E-SHOP 주문내역</li><li onclick="showw()">웨딩 예약 확인</li>
+		<li><a href="../admin/roomlist">객실 예약 확인</a></li><li><a href="../admin/dinelist">레스토랑 예약 확인</a></li><li><a href="../admin/gumaelist">E-SHOP 주문내역</a></li><li><a href="../admin/wedlist">웨딩 예약 확인</a></li>
 	</ul>
 </div>
 <!-- first/ -->
@@ -140,10 +84,11 @@
 <section>
 <div>
 <!-- 내용 작성 -->
-	
+	<h2> 최근 예약/구매 내역 5개</h2>
+	<br>
 	<table id="room" border="1">
 		<tr>
-			<td colspan="14"><h2>객실 예약 리스트</h2></td>
+			<td colspan="14"><h2>객실 예약</h2></td>
 		</tr>
 		<tr>
 			<td> ID </td>
@@ -178,10 +123,11 @@
 	  	<tr>
 	  </c:forEach>
 	</table>
-	
+	<br>
+	<hr>
 	<table id="dine" border="1">
 		<tr>
-			<td colspan="15"><h2>레스토랑 예약 리스트</h2></td>
+			<td colspan="15"><h2>레스토랑 예약</h2></td>
 		</tr>
 		<tr>
 			<td> 번호 </td>
@@ -220,22 +166,45 @@
 	  	</tr>
 	  </c:forEach>
 	</table>
+	<br>
+	<hr>
 	<table id="shop" border="1">
 		<tr>
-			<td colspan="6"><h2>상품 구매 내역 리스트</h2></td>
+			<td colspan="6"><h2>상품 판매</h2></td>
 		</tr>
 		<tr>
-			<td> 다인 </td>
+			<td> 번호 </td>
 			<td> 아이디 </td>
-			<td> 체크인 </td>
-			<td> 체크아웃 </td>
-			<td> 객실명 </td>
-			<td> dd </td>
+			<td> 주문번호 </td>
+			<td> 구매자 </td>
+			<td> 연락번호 </td>
+			<td> 이메일 </td>
+			<td> 상품명 </td>
+			<td> 상품코드 </td>
+			<td> 총결제금액 </td>
+			<td> 구매일 </td>
+			<td> 상태 </td>
 		</tr>
+	  <c:forEach items="${glist}" var="gvo">
+		<tr>
+			<td> ${gvo.id} </td>
+			<td> ${gvo.userid} </td>
+			<td> ${gvo.jumuncode} </td>
+			<td> ${gvo.pname} </td>
+			<td> ${gvo.pphone} </td>
+			<td> ${gvo.pname} </td>
+			<td> ${gvo.pcode} </td>
+			<td> ${gvo.total_price} </td>
+			<td> ${gvo.buyday} </td>
+			<td> ${gvo.state} </td>
+		</tr>
+	  </c:forEach>
 	</table>
+	<br>
+	<hr>
 	<table id="wedding" border="1">
 		<tr>
-			<td colspan="11"><h2>웨딩 상담 요청 리스트</h2></td>
+			<td colspan="11"><h2>웨딩 상담 예약</h2></td>
 		</tr>
 		<tr>
 			<td> 번호 </td>
@@ -266,15 +235,8 @@
 	  	</tr>
 	  </c:forEach>
 	</table>
-
-
 </div>
 </section>
-
-
-
-
-
 </body>
 
 

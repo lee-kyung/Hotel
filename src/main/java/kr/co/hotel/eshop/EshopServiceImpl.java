@@ -424,7 +424,7 @@ public class EshopServiceImpl implements EshopService {
 			case 3 : num="0"+num; break;
 		}
 		
-		String jumuncode=now+rand+num;		
+		String jumuncode='e'+now+rand+num;		
 		gvo.setJumuncode(jumuncode);
 		
 		String userid=gvo.getUserid();
