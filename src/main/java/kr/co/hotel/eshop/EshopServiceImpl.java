@@ -396,15 +396,12 @@ public class EshopServiceImpl implements EshopService {
 	@Override
 	public String pro_gumae_ok(GumaeVO gvo, HttpSession session, HttpServletRequest request) {
 		Cookie cookie = WebUtils.getCookie(request, "cookieid");	// 이미 생성된 쿠키값
-		//Cookie[] cookie=request.getCookies();
-		String cookie1=cookie.toString();
-		System.out.println(cookie1);
 		
 		if(session.getAttribute("userid") == null)
 			if(cookie == null)
 				gvo.setUserid("guest");
 			else
-				gvo.setUserid(cookie1);
+				gvo.setUserid(cookie.getValue());
 		else
 			gvo.setUserid(session.getAttribute("userid").toString());
 		
