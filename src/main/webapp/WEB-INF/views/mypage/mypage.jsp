@@ -2,6 +2,15 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@	page import="java.time.LocalDate" %> 
+<%
+	int y, m, d;
+	LocalDate today=LocalDate.now();
+	y=today.getYear();	
+	m=today.getMonthValue();
+	request.setAttribute("y", y);
+	request.setAttribute("m", m);
+%>
 <head>
 <style>
 /******************/
@@ -18,7 +27,8 @@
 	#first #txt{
 	text-align:left;
 	font-size:40px;
-	padding-top:50px;}
+	padding-top:50px;
+	margin-bottom:50px;}
 	
 	#first .txt2{
 	text-align:right;
@@ -46,7 +56,7 @@
 
 	
 	section{
-	width:1100px;
+	width:1300px;
 	margin:auto;
 	border:1px solid red;
 	margin-top:100px;
@@ -71,13 +81,9 @@
 <div id="first">
 	<div id="first_1">
 		<div id="txt">${name }님, 환영합니다.</div> 
-		<div class="txt2">
-			<span onclick="location='../mypage/myprofile_pwd'">회원정보 수정 > </span>&nbsp;&nbsp;
-			<span onclick="location='../mypage/mypwd_change'">비밀번호 수정 > </span>
-		</div> 
 	</div>
 	<ul>
-		<li>객실 예약 확인</li><li>레스토랑 예약 확인</li><li>E-SHOP 주문내역</li><li>웨딩 예약 확인</li>
+		<li onclick="location='room_resv'">객실 예약 확인</li><li onclick="location='dine_resv'">레스토랑 예약 확인</li><li onclick="location='eshop_resv'">E-SHOP 주문내역</li><li onclick="location='wedding_resv'">웨딩 예약 확인</li>
 	</ul>
 </div>
 <!-- first/ -->
@@ -85,8 +91,30 @@
 	
 <section>
 <div id="mypage">
-<!-- mypage 내용 작성 -->
 
+	<div style="border:1px solid black; height:200px;">
+		<div style="border:1px solid blue; width:400px; float:left; height:200px;">
+			호텔 회원<br>
+			가입일 ${joinday }<br>
+		</div>
+		<div style="border:1px solid red; width:800px; float:right; height:200px;">
+			<div class="txt2">
+			<span onclick="location='../mypage/myprofile_pwd'">회원정보 수정 > </span>&nbsp;&nbsp;
+			<span onclick="location='../mypage/mypwd_change'">비밀번호 수정 > </span>
+			<div>쿠폰</div>
+		</div> 
+		</div>
+	</div>
+	
+	
+	<div style="border:1px solid black; height:250px;">
+			<div>${y } 년 이용실적</div>
+			<div>투숙횟수 : </div>
+			<div>다이닝횟수 : </div>
+			<div>상품구매횟수 : </div>
+			<div>적립금 : </div>
+
+	</div>
 
 
 </div>

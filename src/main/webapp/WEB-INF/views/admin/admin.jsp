@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <head>
 <style>
+/******************/
 	#first{
 	width:100%;
 	height:400px;
@@ -20,9 +21,10 @@
 	padding-top:50px;}
 	
 	#first .txt2{
-	margin-bottom:20px;
 	text-align:right;
-	font-size:20px;
+	font-size:18px;}
+	
+	#first .txt2 span{
 	cursor:pointer;}
 	
 	#first ul li{
@@ -39,6 +41,9 @@
 	
 	#first ul li:last-child{
 	border-right:1px solid #cccccc;}
+/******************/
+
+
 	
 	section{
 	width:1100px;
@@ -46,8 +51,9 @@
 	border:1px solid red;
 	margin-top:100px;
 	margin-bottom:200px;}
-
+	
 </style>
+
 </head>
 
 <body>
@@ -60,50 +66,44 @@
     <div class="bradcam_area basic">	<!-- class="bradcam_area 클래스명" -->
         <h3> 문구(자유롭게 변경하기) </h3>
     </div>
+    
+<!-- first -->    
 <div id="first">
 	<div id="first_1">
 		<div id="txt">${name }님, 환영합니다.</div> 
 		<div class="txt2">
-			<span onclick="location='../mypage/myprofile_pwd'">회원정보 수정 > </span>&nbsp;&nbsp;
-			<span onclick="location='../mypage/mypwd_change'">비밀번호 수정 > </span>
+			<span onclick="location='../admin/memberlist'">회원 목록 확인 </span>&nbsp;&nbsp;
 		</div> 
-	</div>	
+	</div>
 	<ul>
 		<li>객실 예약 확인</li><li>레스토랑 예약 확인</li><li>E-SHOP 주문내역</li><li>웨딩 예약 확인</li>
 	</ul>
 </div>
-
+<!-- first/ -->
+	
+	
 <section>
-<div id="profile_edit">
-		<div>
-			<div>아이디</div>
-			<div>${mvo.userid }</div>
-		</div>
-		<div>
-			<div>이름</div>
-			<div>${mvo.name }</div>
-		</div>
-		<div>
-			<div>휴대전화</div>
-			<div>${mvo.phone }</div>
-		</div>
-		<div>
-			<div>생년월일</div>
-			<div>${mvo.birth }</div>
-		</div>
-		<div>
-			<div>이메일</div>
-			<div>${mvo.email }</div>
-		</div>
-		<div>
-			<div>주소</div>
-			<div>${mvo.juso } ${mvo.juso_etc }</div>
-		</div>
+<div id="mypage">
+<!-- mypage 내용 작성 -->
+	
+	<table>
+		<h2>객실 예약 리스트</h2>
+		<tr>
+			<td> ID </td>
+			<td> 아이디 </td>
+			<td> 체크인 </td>
+			<td> 체크아웃 </td>
+			<td> 객실명 </td>
+			<td> ID </td>
+		</tr>
 		
-		<input type="button" onclick="location='../mypage/myprofile_edit'" value="정보수정">
-		<input type="button" value="회원탈퇴">
-		
-		
+	</table>
+
+
 </div>
 </section>
+
+
+
+
 </body>

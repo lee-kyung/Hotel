@@ -8,4 +8,11 @@ public interface MyPageMapper {
 
 	public MemberVO myprofile(String userid);
 
+	public void myprofile_edit_ok(MemberVO mvo);
+
+//	public String getPwd(String userid);
+
+	public void mypwd_change_ok(String newpwd, String userid);
+
+
 }

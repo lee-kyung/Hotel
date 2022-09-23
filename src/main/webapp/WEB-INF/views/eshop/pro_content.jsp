@@ -194,7 +194,7 @@
 	}
 
 	/* 수량을 변경하면 [총 상품금액]과 [적립금]도 변하게 하기 */
-	function change_total_juk(su){
+	function change_total_juk(su){		
 		let total=Math.ceil(${pvo.price} * su);
 		let juk="";
 		
@@ -215,7 +215,7 @@
 		document.getElementById("total_price").innerText=total;
 		document.getElementById("juk_price").innerText=juk;
 	}
-
+	
 	/* 위시리스트에 추가하고 삭제하기 */
 	function wish_add(pcode){
 		let chk=new XMLHttpRequest();
@@ -302,6 +302,7 @@
     <div id="pro_cnt">
 		<form name="pro_cnt" method="post" action="pro_gumae?p=${p}">
 		<input type="hidden" name="pcode" value="${pvo.pcode},">
+		
     	<article id="a1">
     		<!-- 메인이미지_area_start -->
 			<div id="left">
@@ -351,7 +352,7 @@
 							<i id="baefee"> (배송비 무료) </i>
 						</c:if>
 						<c:if test="${pvo.baefee != 0}">
-							<i id="baefee"> (배송비 KRW <fmt:formatNumber value="${pvo.baefee}"/> 포함) </i>
+							<i id="baefee"> (배송비 KRW <b style="color:black;"> <fmt:formatNumber value="${pvo.baefee}"/> </b> 포함) </i>
 						</c:if>
 					</b>
 					<c:if test="${(pvo.halin != 0) && (pvo.baefee != 0)}">	<!-- 할인하는데 배송비가 있는 경우 -->
@@ -366,7 +367,7 @@
 					<c:if test="${(pvo.halin == 0) && (pvo.baefee == 0)}"> <!-- 할인 안 하는데 배송비가 없는 경우 -->
 						<b class="price_text1" id="total_price"> <fmt:formatNumber value="${pvo.price}" pattern=",###"/> </b> <span id="won">KRW</span>
 					</c:if>
-					<c:if test="${(userid != null) && (pvo.juk!= 0)}"> <!-- 적립금이 있고, 로그인한 경우 -->
+					<c:if test="${(userid != null) && (pvo.juk != 0)}"> <!-- 적립금이 있고, 로그인한 경우 -->
 						<c:if test="${pvo.halin == 0}">
 							<i id="juk"> KRW <b id="juk_price"><fmt:formatNumber value="${pvo.price * (pvo.juk / 100)}" pattern=",###"/></b> (${pvo.juk}%) 이 적립 예정입니다. </i>
 						</c:if>
@@ -374,7 +375,7 @@
 							<i id="juk"> KRW <b id="juk_price"><fmt:formatNumber value="${(pvo.price - (pvo.price * (pvo.halin / 100))) * (pvo.juk / 100)}" pattern=",###"/></b> (${pvo.juk}%) 이 적립 예정입니다. </i>
 						</c:if>
 					</c:if> <p>
-					<c:if test="${(userid == null) && (pvo.juk!= 0)}">	<!-- 적립금이 없고, 로그인 안 한 경우 -->
+					<c:if test="${(userid == null) && (pvo.juk != 0)}">	<!-- 적립금이 없고, 로그인 안 한 경우 -->
 						<c:if test="${pvo.halin == 0}">
 							<i id="juk"> (로그인 후 구매하시면 KRW <b id="juk_price"><fmt:formatNumber value="${pvo.price * (pvo.juk / 100)}" pattern=",###"/></b> (${pvo.juk}%) 이 적립됩니다.) </i>
 						</c:if>
@@ -383,20 +384,33 @@
 						</c:if>
 					</c:if>
 				</div>
-				<!-- 회원/비회원_area_start -->
-				<div id="etc">	<!-- 장바구니, 바로구매 -->
+
+				<!-- 장바구니, 바로구매 -->
+				<div id="etc">	
 					<!-- 장바구니 -->
 					<span id="btn1" onclick="cart_add('${pvo.pcode}')"> 장바구니 </span>
 					
 					<!-- 바로구매 -->
 					<span id="btn2" onclick="pro_submit()"> 바로구매 </span>
 				</div>
-				<!-- 회원/비회원_area_start -->
+
 			</div>
 			<div id="pro_info">
 					<img src="../img/eshop/${pvo.simg}" width="100%">
 			</div>
 			<!-- 상품정보_area_end -->
+			
+			<!-- pro_gumae에 보낼 정보 start -->
+			<fmt:formatNumber var="cprice" value="${pvo.price}"/>	<!-- 바뀐 수량을 곱해야 하는데.. -->
+			<fmt:formatNumber var="chalin" value="${pvo.price * (pvo.halin / 100)}" pattern="###"/>	<!-- 바뀐 수량을 곱해야 하는데.. -->
+			<fmt:formatNumber var="cpay" value="${pvo.price - (pvo.price * (pvo.halin / 100)) + pvo.baefee}" pattern="###"/>	<!-- 바뀐 수량을 곱해야 하는데.. -->
+			
+			<input type="hidden" name="total_price" value="${pvo.price}">
+			<input type="hidden" name="total_halin" value="${chalin}">
+			<input type="hidden" name="total_baefee" value="${pvo.baefee}">
+			<input type="hidden" name="total_pay" value="${cpay}">
+			<!-- pro_gumae에 보낼 정보 end -->
+		
 		</article>
 		</form>
 

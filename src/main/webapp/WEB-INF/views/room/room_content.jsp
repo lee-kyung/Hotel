@@ -53,15 +53,17 @@
 		position: relative; // 스크롤 관련
 	}
 	roomsec #rname{
-	margin-left:100px;
-	margin-bottom:100px;}
-
+		margin-bottom:100px;
+		margin-left: 0;
+		padding-left: 0;
+	}
 	roomsec #rname li{
-	display:inline-block;
-	padding-right:30px;
-	font-size:33px;
-	font-family:fantasy;
-	border: 1px solid black;
+		display:inline-block;
+		padding-right:30px;
+		font-size:33px;
+		font-weight: 900;
+		font-family: fantasy;
+		color: #887159;
 	}
 </style>
 <script>
@@ -96,8 +98,8 @@
  	
  		<div class="rr" style="font-size:35px; font-weight: 900; color: #887159">${rvo.rname}</div>
 		<div style="border:1px solid #887159">
-			<div style="margin:auto;"><img src="../img/rooms/${rvo.rpimg}" width="980px"></div>
-			<img src="../img/rooms/${rvo.rcimg}" width="980px"> <p>
+			<div style="margin:auto;"><img src="../img/rooms/${rvo.rpimg}" width="1000px"></div>
+			<img src="../img/rooms/${rvo.rcimg}" width="1000px"> <p>
 			<br>
 		</div>
 		<br>

@@ -4,5 +4,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybats-3-mapper.dtd">
  
 <mapper namespace="kr.co.hotel.admin.AdminMapper">
+	<select id="memberlist" resultType="kr.co.hotel.member.MemberVO">
+		select * from member order by id desc
+	</select>
 	
+	<select id="getroombk" resultType="kr.co.hotel.roomresv.RoomResvVO">
+		select rb.*, r.rname, r.rcode 
+		from roombk as rb, room as r 
+		where rb.rcode=r.rcode
+		order by id desc, checkin asc
+	</select>
+	
+	<select id="getdiningresv" resultType="kr.co.hotel.diningresv.DiningResvVO">
+		select * from diningresv order by id desc, dr_date asc
+	</select>
+	
+	<select id="getweddingresv" resultType="kr.co.hotel.wedding.WeddingVO">
+		select * from weddingresv order by id desc, wresv_cday asc
+	</select>
+	
+	<!-- <select id="getgumae" resultType="kr.co.hotel.">
+		select * from gumae order by id desc
+	</select> -->
 </mapper>

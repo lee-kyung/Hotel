@@ -21,6 +21,7 @@
 	padding-top:50px;}
 	
 	#first #txt2{
+	margin-bottom:20px;
 	text-align:right;
 	font-size:18px;}
 	
@@ -144,7 +145,7 @@
 	
 		var kor=(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/).test(newpwd1);
 		
-		var spe =(/[~!@#$%^&*()_+|<>?:{}]/gi).test(newpwd1);
+		var spe =(/[~!@#$%^&*()_|<>?:{}]/gi).test(newpwd1);
 		
 		if((newpwd1.trim().length < 8) || (newpwd1.trim().length > 15))
 		{
@@ -166,7 +167,7 @@
 		}
 		
 		else if(spe<1){
-			document.getElementById("msg2").innerText="비밀번호에 특수문자 하나 이상이 필요합니다.";
+			document.getElementById("msg2").innerText="비밀번호에 특수문자 하나 이상이 필요합니다. (+는 사용할 수 없습니다.)";
 			document.getElementById("msg2").style.color="red";
 			new1=0;
 		}
@@ -225,9 +226,9 @@
  			document.getElementById("msg4").innerText="새로운 비밀번호를 다시 입력하세요";
  			document.getElementById("msg4").style.color="red";
  			return false;
- 			
  		}
  		else 
+ 			alert("비밀번호가 변경되었습니다.");
  			return true;
  	}
 	
@@ -250,8 +251,8 @@
 	<div id="first_1">
 		<div id="txt">${name }님, 환영합니다.</div> 
 		<div id="txt2">
-			<span>회원정보 수정 > </span>&nbsp;&nbsp;
-			<span>비밀번호 수정 > </span>
+			<span onclick="location='../mypage/myprofile_pwd'">회원정보 수정 > </span>&nbsp;&nbsp;
+			<span onclick="location='../mypage/mypwd_change'">비밀번호 수정 > </span>
 		</div> 
 	</div>	
 	<ul>

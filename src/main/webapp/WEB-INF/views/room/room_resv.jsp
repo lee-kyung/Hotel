@@ -133,14 +133,6 @@
 	}); 
   
 // rcode받기
-	function maxcheck()
-	{
-		var adult=document.getElementById("adult").value;
-		var child=document.getElementById("child").value;
-		var binwon=adult+child;
-		alert(binwon);
-	}
-
 	function form_submit(n)
    {
 	   //alert(document.room.rcode2[n].value);
@@ -149,7 +141,10 @@
    }
 
 // 비어있는 객실 확인
-   function getRoomAvail(){  
+	function getRoomAvail(){
+		var adult=parseInt(document.getElementById("adult").value);
+		var child=parseInt(document.getElementById("child").value);
+		var binwon=parseInt(adult+child);
 	// 체크인,체크아웃,성인 인원수 체크
 		if(document.getElementById("checkin").value.trim()=="")
 		{
@@ -172,9 +167,9 @@
 		document.getElementById("roomdiv").style.visibility="visible";
 		var checkin=document.room.checkin.value;
 		var checkout=document.room.checkout.value;
-		var adult=document.room.adult.value;
+		//var adult=document.room.adult.value;
 		var chk=new XMLHttpRequest();
-		chk.open("get","getRoomAvail?checkin="+checkin+"&checkout="+checkout+"&adult="+adult);
+		chk.open("get","getRoomAvail?checkin="+checkin+"&checkout="+checkout);
 		chk.send();
 		chk.onreadystatechange=function(){
 			if(chk.readyState==4){
@@ -186,15 +181,26 @@
 				var cbtn=document.getElementsByClassName("cbtn");
 				for(i=0;i<cbtn.length;i++){
 					document.getElementsByClassName("cbtn")[i].disabled=false;
-				}	   
-				  
-				if(aa.length > 1){	   
+				}
+				
+				var crmax=document.getElementsByClassName("crmax");
+				for(i=0;i<cbtn.length;i++){
+					if(binwon > crmax[i].innerText){	   
+						cbtn[i].disabled=true;
+						cbtn[i].style.background="#F9F9F9";
+						cbtn[i].style.border="1px solid #E6E3DF";
+						cbtn[i].style.color="#E6E3DF";
+						cbtn[i].style.hover="none";
+					}
+				}	
+
+				if(aa.length > 1) {
 					var crcode=document.getElementsByClassName("crcode");
-				    
+					
 					for(i=0;i<aa.length;i+=2){ //cnt받아온 객실길이만큼 돌때
 						for(j=0;j<crcode.length;j++){ // 만약 객실rcode가 
 							if(aa[i]==crcode[j].innerText.trim()){ // cnt들어있는 rcode랑 같다면
-								if(aa[i+1]>=2) 
+								if(aa[i+1]>=1) 
 								{
 									cbtn[j].disabled=true;
 									cbtn[j].style.background="#F9F9F9";
@@ -205,7 +211,7 @@
 							}
 						}	   
 					}	   
-				}
+				}	
 			}	
 		}
 		return true;
@@ -284,9 +290,7 @@
 						<div><span id="subr">가격</span>${rvo.rprice}</div>						
 						<div><span id="subr">기준|최대인원</span>${rvo.rmin}/<span class="crmax">${rvo.rmax}</span></div>						
 						<br>
-					
 						<input type="button" value="객실선택" class="cbtn" onclick="form_submit(${my.index})">
-					
 					</div>
 				</div>
 				</c:forEach> 

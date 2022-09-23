@@ -16,9 +16,9 @@ public interface DiningResvService {
 
 	/*public String getprev(HttpServletRequest request, Model model);*/
 	
-	public void getDineAvail(HttpServletRequest request, PrintWriter out,DiningVO dvo);
+	/*public void getDineAvail(HttpServletRequest request, PrintWriter out,DiningVO dvo);*/
 	
-	public String dining_reserve_next(HttpServletRequest request, Model model);
+	public String dining_reserve_next(HttpServletRequest request, Model model, HttpSession session);
 	
 	//old
 	public String dining_reserve_next_old(HttpServletRequest request, Model model);
