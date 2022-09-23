@@ -24,4 +24,34 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="mypwd_change_ok">
 		update member set pwd=#{param1} where userid=#{param2}
 	</update>
+	
+	<select id="getRoomcount" resultType="Integer">
+  		select count(*) as cnt from roombk where checkin like concat('%',#{param},'%')
+  	</select>
+  	
+  	<select id="getDinecount" resultType="Integer">
+  		select count(*) as cnt from diningresv where dr_date like concat('%',#{param},'%')
+  	</select>
+  	
+  	<select id="getEshopcount" resultType="Integer">
+  		select count(*) as cnt from gumae where buyday like concat('%',#{param},'%')
+  	</select>
+  	
+  	<select id="wedding_resv" resultType="kr.co.hotel.wedding.WeddingResvVO">
+  		select * from weddingresv where userid=#{param1} order by wresv_id desc
+  	</select>
+  	
+  	<select id="wedding_resv_search" resultType="kr.co.hotel.wedding.WeddingResvVO">
+  		<![CDATA[select * from weddingresv where userid=#{param1} and #{param2}<= wresv_day and wresv_day <=#{param3} order by wresv_id desc]]>
+  	</select>
+  	
+  	<update id="weddingR_state_change">
+  		update weddingresv set state=#{param2} where wresv_id=#{param1}
+  	</update>
+  	
+  	<update id="state_complete_change">
+  		 <![CDATA[update weddingresv set state=2 where wresv_cday <= #{param1} and state=0]]>
+  	</update>
+  	
+  	
 </mapper>

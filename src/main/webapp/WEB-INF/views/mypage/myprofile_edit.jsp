@@ -35,7 +35,8 @@
 	border-right:none;
 	text-align:center;
 	font-size:25px;
-	padding-top:50px;}
+	padding-top:50px;
+	cursor:pointer;}
 	
 	#first ul li:last-child{
 	border-right:1px solid #cccccc;}
@@ -43,9 +44,63 @@
 	section{
 	width:1100px;
 	margin:auto;
-	border:1px solid red;
-	margin-top:100px;
+	margin-top:50px;
 	margin-bottom:200px;}
+	
+	section #profile_edit form{
+	margin-top:70px;
+	margin-bottom:70px;
+	border:1px solid #887159;
+	padding-top:20px;
+	padding-bottom:40px;}
+	
+	section #profile_edit div{
+	padding:10px;}
+	
+	section #profile_edit #title{
+	text-align:center;
+	font-size:35px;}
+	
+	section #profile_edit .my{
+	border:1px solid #887159;
+	width:500px;
+	height:50px;
+	margin-left:20px;
+	background:#F6F6F6;}
+	
+	section #profile_edit input[type=text]{
+	margin-left:20px;
+	width:490px;
+	height:50px;
+	outline:none;}
+	
+	section #profile_edit #zip{
+	width:200px;
+	outline:none;}
+	
+	section #profile_edit #juso, #profile_edit #juso_etc{
+	width:650px;
+	margin-top:10px;
+	outline:none;}
+	
+	section #profile_edit input[type=button]{
+	width:150px;
+	margin-left:296px;
+	background:#887159;
+	color:white;
+	border:none;
+	height:50px;}
+	
+	section #profile_edit #btn_right{
+	float:right;}
+	
+	section #profile_edit input[type=submit]{
+	margin-top:70px;
+	width:300px;
+	height:60px;
+	background:#887159;
+	border:none;
+	color:white;}
 
 </style>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
@@ -106,15 +161,17 @@
 </div>
 
 <section>
-<div id="profile">
-<form method="post" action="myprofile_edit_ok">
+<div id="profile_edit">
+
+	<div id="title">회원 정보 수정</div>
+	<form method="post" action="myprofile_edit_ok">
 		<div>
 			<div>아이디</div>
-			<div>${mvo.userid }</div>
+			<div class="my">${mvo.userid }</div>
 		</div>
 		<div>
 			<div>이름</div>
-			<div>${mvo.name }</div>
+			<div class="my">${mvo.name }</div>
 		</div>
 		<div>
 			<div>휴대전화</div>
@@ -131,16 +188,17 @@
 		<div>
 			<div>주소</div>
 			<div>
-				<input type="text" name="zip" readonly  placeholder="우편번호" value="${mvo.zip }">
+				<input type="text" name="zip" readonly  placeholder="우편번호" id="zip" value="${mvo.zip }">
 				<input type="button" value="주소찾기" onclick="juso_search()">
-				<input type="text" name="juso" placeholder="주소" readonly value="${mvo.juso }">
-				<input type="text" name="juso_etc" placeholder="상세주소" value="${mvo.juso_etc }">
+				<input type="text" name="juso" placeholder="주소" readonly id="juso" value="${mvo.juso }">
+				<input type="text" name="juso_etc" placeholder="상세주소" id="juso_etc" value="${mvo.juso_etc }">
 			
 			</div>
 		</div>
-		
-		<input type="submit" value="정보수정완료">
-</form>		
+		<div id="btn_right">
+			<input type="submit" value="정보수정완료">
+		</div>
+	</form>		
 		
 </div>
 </section>

@@ -33,6 +33,7 @@ public class LoginServiceImpl implements LoginService {
 			session.setAttribute("email", mvo.getEmail());
 			session.setAttribute("phone", mvo.getPhone());
 			session.setAttribute("joinday", mvo.getJoinday());
+			session.setAttribute("juk", mvo.getJuk());
 			
 			/* 비회원 장바구니를 회원 장바구니로 옮기기 (+중복삭제) */
 			Cookie cookie = WebUtils.getCookie(request, "cookieid");

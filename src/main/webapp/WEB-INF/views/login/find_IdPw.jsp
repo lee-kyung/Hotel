@@ -18,18 +18,27 @@
 	font-size:40px;
 	margin-bottom:30px;}
 	
-	section #search #txt1 div{
+	section #search #txt1 #userid{
+	display:inline-block;
+	padding-top:20px;
+	font-size:25px;
+	border:1px solid #887159;
+	border-bottom:none;
+	width:400px;
+	height:70px;
+	border-right:1px solid #887159;
+	color:#887159;;}
+	
+	section #search #txt1 #pwd{
+	border-right:1px solid #DCDCDC;
 	display:inline-block;
 	padding-top:20px;
 	font-size:25px;
 	border:1px solid #DCDCDC;
+	border-bottom:1px solid #887159;
 	width:400px;
 	height:70px;
-	border-right:none;
 	color:#9E9E9E;}
-	
-	section #search #txt1 div:last-child{
-	border-right:1px solid #DCDCDC;}
 	
 	section #search #txt2, #txt3{
 	margin-top:40px;
@@ -106,6 +115,10 @@
 		document.pwd_search.userid.value="";
 		document.pwd_search.email.value="";
 		document.getElementById("msg1").innerText="";
+		document.getElementById("userid").style.border="1px solid #887159";
+		document.getElementById("userid").style.borderBottom="none";
+		document.getElementById("pwd").style.border="1px solid #DCDCDC";
+		document.getElementById("pwd").style.borderBottom="1px solid #887159";
 	}
 	
 	function pwd_fn()
@@ -120,6 +133,10 @@
 		document.userid_search.name.value="";
 		document.userid_search.email.value="";
 		document.getElementById("msg1").innerText="";
+		document.getElementById("pwd").style.border="1px solid #887159";
+		document.getElementById("pwd").style.borderBottom="none";
+		document.getElementById("userid").style.border="1px solid #DCDCDC";
+		document.getElementById("userid").style.borderBottom="1px solid #887159";
 	}
 	
 	
