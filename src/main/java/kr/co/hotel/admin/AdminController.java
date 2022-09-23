@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import kr.co.hotel.roomresv.RoomResvVO;
+
 @Controller
 public class AdminController {
 	@Autowired
@@ -50,6 +52,7 @@ public class AdminController {
 	{
 		return service.gumaelist(model, request);
 	}
+
 }
 
 

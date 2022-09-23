@@ -64,7 +64,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select ceil(count(*)/#{param1}) from gumae where ${param2} like concat('%',#{param3},'%')
 	</select>
 	
-	
+	<update id="bstatechange">
+		<![CDATA[update roombk set bstate=2 where checkin<=#{param1} and bstate=0]]>
+	</update>
 	
 	
 	

@@ -61,8 +61,7 @@
 <section>
 <div>
 <!-- 내용 작성 -->
-
-	<table id="dining" border="1">
+	<table id="room" border="1">
 	<tr>
 		<h3> <a href="roomlist">객실 예약 리스트</a></h3>
 		<h5>
@@ -107,8 +106,17 @@
 	  		<td> ${rvo.bmeal} </td>
 	  		<td> ${rvo.btotal} </td>	  		
 	  		<td> ${rvo.spreq} </td>
-	  		<td> ${rvo.bstate} </td>
-	  	<tr>
+	  	<c:if test="${rvo.bstate == 1}">
+	  		<c:set var="bstate" value="예약"/>
+	  	</c:if>
+	  	<c:if test="${rvo.bstate == 2}">
+	  		<c:set var="bstate" value="사용완료"/>
+	  	</c:if>
+	  	<c:if test="${rvo.bstate == 3}">
+	  		<c:set var="bstate" value="취소됌"/>
+	  	</c:if>
+	  		<td> ${bstate} </td>
+	  	</tr>
 	  </c:forEach>
 	</table>
 	<div id="lis">

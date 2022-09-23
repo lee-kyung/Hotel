@@ -1,5 +1,7 @@
 package kr.co.hotel.admin;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -33,6 +35,10 @@ public class AdminServiceImpl implements AdminService{
 		model.addAttribute("dlist", dlist);
 		model.addAttribute("wlist", wlist);
 		model.addAttribute("glist", glist);
+		
+		Date date = Date.valueOf(LocalDate.now());
+		
+		mapper.bstatechange(date);
 		
 		return "/admin/admin";
 	}
@@ -271,6 +277,7 @@ public class AdminServiceImpl implements AdminService{
 		
 		return "/admin/gumaelist";
 	}
+
 }
 
 

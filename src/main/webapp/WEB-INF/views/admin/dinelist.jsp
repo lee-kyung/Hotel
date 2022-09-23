@@ -93,7 +93,7 @@
 			<td> 예약일 </td>
 			<td> 예약상태 </td>
 		</tr>
-	  <c:forEach items="${dlist}" var="dvo">
+<%-- 	  <c:forEach items="${dlist}" var="dvo">
 	  	<tr>
 	  		<td> ${dvo.dr_id} </td>
 	  		<td> ${dvo.userid} </td>
@@ -110,7 +110,7 @@
 	  		<td> ${dvo.writeday} </td>
 	  		<td> ${dvo.dr_state} </td>
 	  	</tr>
-	  </c:forEach>
+	  </c:forEach> --%>
 	</table>
 	<div id="lis">
 		<!-- 10페이지 단위로 이전으로 가기 -->
