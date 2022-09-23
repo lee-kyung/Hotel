@@ -21,7 +21,14 @@ public class DiningResvVO {
 	// 예약번호
 	private String bid;
 	
-    public String getBid() {
+	
+    public String getBkname() {
+		return bkname;
+	}
+	public void setBkname(String bkname) {
+		this.bkname = bkname;
+	}
+	public String getBid() {
 		return bid;
 	}
 	public void setBid(String bid) {
