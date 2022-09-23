@@ -4,10 +4,7 @@ public class DiningResvVO {
 	
 	private int dr_id, dr_state;
 	private String dr_time, dine_type, dr_extrarq, dr_date, p1, p2, p3, email, adult, child, baby, dr_total;
-	
-	// 다이닝 id
-	private int dining_id;
-	
+
     // userid
 	private String userid;
 	

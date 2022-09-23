@@ -157,7 +157,7 @@ public class DiningResvServiceImpl implements DiningResvService{
    public String dining_reserve_ok(DiningResvVO drvo)
    {      
       mapper.dining_reserve_ok(drvo);
-      return "redirect:/dining/dining_reserve_check";
+      return "redirect:/dining/dining_reserve";
    }
    @Override
    public String dining_reserve_check(HttpSession session, Model model)
@@ -165,7 +165,7 @@ public class DiningResvServiceImpl implements DiningResvService{
       String userid=session.getAttribute("userid").toString();
       ArrayList<DiningResvVO> list=mapper.dining_reserve_check(userid);
       model.addAttribute("list", list);
-      return "/dining/dining_reserve";
+      return "/dining/dining_reserve_check";
    }
 
    @Override
