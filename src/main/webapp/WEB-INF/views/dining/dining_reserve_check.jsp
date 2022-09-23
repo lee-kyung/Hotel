@@ -59,9 +59,16 @@
       <div> ${drvo.writeday} </div>
       <div> ${drvo.bid}</div>
       <div> ${drvo.bkname} </div>
-      <div> ${drvo.dine_type} <img src="../resources/img/${dvo.dine_pimg}" width="70" height="70"> </div>
+      <div> ${drvo.dine_type} <img src="../resources/img/${dine_pimg}" width="70" height="70"> </div>
       <div> ${drvo.dr_time} </div>
-      <div> ${drvo.sudan}</div>
+      <div> 
+      <c:if test="${drvo.sudan == 0}">
+         <c:set var="sudan" value="간편결제"/>
+       </c:if>
+       <c:if test="${drvo.sudan == 1}">
+         <c:set var="sudan" value="현장결제"/>
+       </c:if>
+      <div>${sudan}</div>
       <div> <fmt:formatNumber value="${drvo.dr_total}" pattern="#,###"/>원 </div>
       <div> ${drvo.dr_extrarq}</div>
       
@@ -69,6 +76,7 @@
    </div>
   </div> 
 
+       
               
   <%-- <!-- state 관련 if -->
        <c:if test="${gvo.state == 0}">

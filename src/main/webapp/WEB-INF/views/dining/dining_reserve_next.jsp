@@ -19,7 +19,7 @@
 	margin-bottom: 120px;
   }
   diningsec table{
-    width: 750px;
+    width: 800px;
 	height: 80px;
 	/* 	border: 1px solid #887159; */
 	marin-top:20px;
@@ -41,11 +41,11 @@
   }
   diningsec #outer #right{
 	background: #f9f9f9; 
-	width: 225px;
+	width: 240px;
 	height: 780px;
 	float: right;
 	margin-left: 10px;
-	padding-left: 10px;
+	padding: 20px;
 	/* position: absolute;
 	left: 950px; */
   } 
@@ -226,9 +226,12 @@
 			      - 어린이 인원 예약 시 요청사항에 나이 정보를 입력해 주시기 바랍니다.<br>
 			      - 홈페이지 예약 할인 프로모션은 예약 상황에 따라 조기 마감 될 수 있으며 바우쳐,쿠폰사용 및 제휴 할인과 중복 적용되지 않습니다.<br>
 			   </div>
-			   
+			   <div>
+			   <br>
+			   </div>
 			   <!-- 예약정보 -->
 			   <table>
+			   
 			   <tr>
 			   
 			       <th width="300">방문 희망 일자</th>
@@ -277,8 +280,19 @@
 			       <th colspan="3"> 추가 요청사항(선택)<sup>(<span id="nowByte">0</span>/100bytes)</sup></th>
 			   </tr>
 			   <tr>
-			       <td colspan="3"> <textarea cols="100" rows="5" name="dr_extrarq" onkeyup="fn_checkByte(this)" placeholder="* 요청사항은 레스토랑 사정에 따라 응대가 어려울 수 있으며 추가 문의는 전화 주시기 바랍니다."></textarea> </td>
+			       <td colspan="3">
+			       <textarea cols="100" rows="5" name="dr_extrarq" onkeyup="fn_checkByte(this)" 
+			       placeholder="알레르기가 있다면, 예약시 미리 말씀해 주십시오. 유아용품이 필요하신 경우 여기에 기재해 주십시오."></textarea>
+			       </td>
 			   </tr>
+			   <tr>
+			       <td colspan="3">
+			      m1 * 요청사항은 레스토랑 사정에 따라 응대가 어려울 수 있으며 추가 문의는 전화 주시기 바랍니다.<br>
+			      m2 * 요청사항을 최대한 반영하도록 최선을 다하겠습니다.<br>
+         &nbsp;&nbsp;다만, 호텔의 사정으로 부득이 반영되지 않을 수도 있으니 이 점 양해 부탁드립니다.
+			       </td>
+			   </tr>
+			   
 			   <!-- 고객정보 -->
 			   <div><div style="float:left; width:500px;"><b>고객 정보</b></div><div style="float:right;align:right;font-size:12px">* 필수입력항목</div></div><br>
  			</table>
@@ -291,6 +305,7 @@
                     <input type="text" name="p1" value="${p1}" class="inputs" maxlength="3" size="10"/>-
 			        <input type="text" name="p2" value="${p2}" class="inputs" maxlength="4" size="10"/>-
 			        <input type="text" name="p3" value="${p3}" class="inputs" maxlength="4" size="10"/>
+			        * 휴대폰 번호는 예약번호 전송에 쓰입니다. 정확히 기입해 주세요.
                     </c:if>
                     </td>
  					
@@ -299,7 +314,8 @@
  					* 휴대폰 번호 &nbsp;
  					<input type="text" name="p1" value="${p1}" class="inputs" maxlength="3" size="10"/>-
 			        <input type="text" name="p2" value="${p2}" class="inputs" maxlength="4" size="10"/>-
-			        <input type="text" name="p3" value="${p3}" class="inputs" maxlength="4" size="10"/>
+			        <input type="text" name="p3" value="${p3}" class="inputs" maxlength="4" size="10"/><br>
+			        * 휴대폰 번호는 예약번호 전송에 쓰입니다. 정확히 기입해 주세요.
                     </c:if>
                     </td>
 
