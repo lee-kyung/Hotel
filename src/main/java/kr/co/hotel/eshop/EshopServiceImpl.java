@@ -359,7 +359,7 @@ public class EshopServiceImpl implements EshopService {
 		/* 정렬말머리의 초기화면값 처리하기*/
 		String osel;
 		if(request.getParameter("osel") == null)
-			osel="id asc";
+			osel="id desc";
 		else
 			osel=request.getParameter("osel");
 		
