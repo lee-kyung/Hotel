@@ -182,10 +182,11 @@
 				for(i=0;i<cbtn.length;i++){
 					document.getElementsByClassName("cbtn")[i].disabled=false;
 				}	   
-				  
+				
+				var crmax=document.getElementsByClassName("crmax"); 
+				
 				if(aa.length > 1){	   
 					var crcode=document.getElementsByClassName("crcode");
-				    
 					for(i=0;i<aa.length;i+=2){ //cnt받아온 객실길이만큼 돌때
 						for(j=0;j<crcode.length;j++){ // 만약 객실rcode가 
 							if(aa[i]==crcode[j].innerText.trim()){ // cnt들어있는 rcode랑 같다면

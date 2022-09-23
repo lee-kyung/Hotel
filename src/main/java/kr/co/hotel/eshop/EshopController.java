@@ -87,8 +87,8 @@ public class EshopController {
 	}
 	
 	@RequestMapping("/eshop/pro_gumae")
-	public String pro_gumae(HttpServletRequest request, Model model) {
-		return service.pro_gumae(request, model);
+	public String pro_gumae(HttpServletRequest request, Model model, HttpSession session) {
+		return service.pro_gumae(request, model, session);
 	}
 	
 	@RequestMapping("/eshop/wish")
@@ -99,5 +99,10 @@ public class EshopController {
 	@RequestMapping("/eshop/move_cart")
 	public String move_cart(HttpSession session, HttpServletRequest request) {
 		return service.move_cart(session, request);
+	}
+	
+	@RequestMapping("/eshop/pro_gumae_ok")
+	public String pro_gumae_ok(GumaeVO gvo, HttpSession session, HttpServletRequest request) {
+		return service.pro_gumae_ok(gvo, session, request);
 	}
 }

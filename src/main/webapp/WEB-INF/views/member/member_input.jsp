@@ -116,7 +116,7 @@
 	
 		var kor=(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/).test(pwd);
 		
-		var spe =(/[~!@#$%^&*()_+|<>?:{}]/gi).test(pwd);
+		var spe =(/[~!@#$%^&*()_|<>?:{}]/gi).test(pwd);
 		
 		if(pwd.trim().length==0)
 		{
@@ -145,7 +145,7 @@
 		}
 		
 		else if(spe<1){
-			document.getElementById("msg2").innerText="비밀번호에 특수문자 하나 이상이 필요합니다.";
+			document.getElementById("msg2").innerText="비밀번호에 특수문자 하나 이상이 필요합니다.(+ 는 사용할 수 없습니다.)";
 			document.getElementById("msg2").style.color="red";
 			pwd_chk=0;
 		}
@@ -276,7 +276,8 @@
 			else 
 			{
 	            $('#email_juso').val($('#select').val());
-	            $('#email_juso').attr("disabled", true);
+	            $('#email_juso').attr("readonly", true);
+	            $('#email_juso').css({"background": "#F3F3F3"});
 	        }
 	    })
 	});

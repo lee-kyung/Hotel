@@ -10,7 +10,16 @@ public class DiningVO {
 		private int cnt;
 		private String dine_type;
 		
-		
+
+	// 
+	private int td;
+	
+	public int getTd() {
+		return td;
+	}
+	public void setTd(int td) {
+		this.td = td;
+	}
 	public int getDining_id() {
 			return dining_id;
 		}

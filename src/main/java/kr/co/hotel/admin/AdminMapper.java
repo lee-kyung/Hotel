@@ -14,5 +14,6 @@ public interface AdminMapper {
 	public ArrayList<DiningResvVO> getdiningresv();
 	public ArrayList<WeddingResvVO> getweddingresv();
 	public int getRChong(int pcnt,String sel,String sword); 
-	
+
+	public ArrayList<RoomResvVO> roombk(String sel,String sword,int start,int pcnt);
 }

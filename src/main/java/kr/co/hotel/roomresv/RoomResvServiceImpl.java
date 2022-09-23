@@ -1,13 +1,16 @@
 package kr.co.hotel.roomresv;
 
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -78,52 +81,33 @@ public class RoomResvServiceImpl implements RoomResvService {
 		{
 			String userid=session.getAttribute("userid").toString();
 			rsvo.setUserid(userid); // rsvo에 userid 가져와서 넣기
-					
-			// 예약번호 생성 => bk+4자리
-			Integer number=mapper.getBid(userid);
-			number++;
-		//	System.out.println(number);
-			String num=number.toString();
-			
-			if(num.length()==1)
-				num="000"+num;
-			else if(num.length()==2)
-				num="00"+num;
-			else if(num.length()==3)
-				num="0"+num;	
-			
-			String bid=userid+'r'+num;
-		//	System.out.println(bid);
-			rsvo.setBid(bid);
-			mapper.room_resv_ok(rsvo);
-			return "redirect:/room/room_bkconfirm?bid="+bid;
 		}
 		else
 		{
 			String userid="guest";
 			rsvo.setUserid(userid); // rsvo에 userid 가져와서 넣기
-			
-			// 예약번호 생성 => bk+4자리
-			Integer number=mapper.getBid(userid);
-			number++;
-		//	System.out.println(number);
-			String num=number.toString();
-			
-			if(num.length()==1)
-				num="000"+num;
-			else if(num.length()==2)
-				num="00"+num;
-			else if(num.length()==3)
-				num="0"+num;	
-			
-			String bid=userid+'r'+num;
-		//	System.out.println(bid);
-			rsvo.setBid(bid);
-			mapper.room_resv_ok(rsvo);
-			return "redirect:/room/room_bkconfirm?bid="+bid;
+		}
+		/* 주문번호 생성하기 → 구매날짜(8자리)+난수(4자리)+찐숫자(4자리) */
+		Date today = new Date();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+		String now = dateFormat.format(today);
+		
+		String rand=RandomStringUtils.random(4, false, true);
+		
+		Integer n=mapper.getBid();
+		n++;
+		String num=n.toString();
+		switch(num.length()) {
+			case 1 : num="000"+num; break;
+			case 2 : num="00"+num; break;
+			case 3 : num="0"+num; break;
 		}
 		
-
+		String bid='r'+now+rand+num;		
+		rsvo.setBid(bid);
+		
+			mapper.room_resv_ok(rsvo);
+			return "redirect:/room/room_bkconfirm?bid="+bid;
 }
 	
 	@Override 

@@ -30,4 +30,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getRChong" resultType="Integer">
 		select ceil(count(*)/#{param1}) from roombk where ${param2} like concat ('%',#{param3},'%')
 	</select>
+
+<!--  	<select id="roombk" resultType="kr.co.board_model3.vo.BoardVO">
+		select*
+		from roombk  ${param1} like concat('%',#{param2},'%') 
+		order by id desc limit #{param3},#{param4}
+	</select>  --> 
 </mapper>

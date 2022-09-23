@@ -55,7 +55,34 @@
 	}
 
 </style>
-
+<script>
+	function move(my)
+	{
+		location="roombk?pcnt="+my.value; // pcnt는 한 페이지에 표시할 글의 수. 10개, 20개 등등
+	}
+	window.onload=function()
+	{
+		document.getElementById("pcnt").value="${pcnt}";
+		
+		// 검색필드를 보여주기
+		document.getElementById("sel").value="${sel}";
+	}
+	function check(my)
+	{
+		if(my.sel.selectedIndex==0)
+		{
+			alert("검색필드를 선택하세요")
+			return false;
+		}	
+		else if(my.sword.value.trim()=="")
+		{
+			alert("검색어를 입력하세요")
+			return false;
+		}
+		else
+			return true;		
+	}
+</script>
 </head>
 
 <body>
@@ -73,10 +100,10 @@
 <section>
 <div>
 <!-- 내용 작성 -->
-	
+
 	<table border="1">
 		<tr>
-			<td colspan="14"><h2>LIST</h2></td>
+			<td colspan="14"><h2>roombk</h2></td>
 		</tr>
 		<tr>
 			<td> ID </td>
@@ -93,14 +120,14 @@
 			<td> 특별요청사항 </td>
 			<td> 예약상태 </td>		
 		</tr>
-	  <c:forEach items="${rlist}" var="rvo">
+ 	  <c:forEach items="${rlist}" var="rvo">
 	    <tr> 
 	  		<td> ${rvo.id} </td>
 	  		<td> ${rvo.userid} </td>
 	  		<td> ${rvo.bkname} </td>
 	  		<td> ${rvo.checkin} </td>
 	  		<td> ${rvo.checkout} </td>
-	  		<td> ${rvo.rname} </td>
+	  		<%-- <td> ${rvo.rname} </td> --%>
 	  		<td> ${rvo.bkdate} </td>
 	  		<td> ${rvo.binwon} </td>
 	  		<td> ${rvo.bextbed} </td>
@@ -109,9 +136,10 @@
 	  		<td> ${rvo.spreq} </td>
 	  		<td> ${rvo.bstate} </td>
 	  	<tr>
-	  </c:forEach>
+	  </c:forEach> --
 	</table>
 	
+
 </div>
 </section>
 

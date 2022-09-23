@@ -42,9 +42,10 @@ public class AdminServiceImpl implements AdminService{
 		return "/admin/memberlist";
 	}
 
+// 객실예약 리스트 확인
 	@Override
 	public String roombk(Model model, HttpServletRequest request) {
-		int page, start; 
+		/*int page, start; 
 		int pcnt;
 		if(request.getParameter("pcnt")==null)
 			pcnt=10;
@@ -79,9 +80,18 @@ public class AdminServiceImpl implements AdminService{
 			sword=request.getParameter("sword");
 		
 		int chong=mapper.getRChong(pcnt, sel, sword);
+		
+		model.addAttribute("rlist",mapper.roombk(sel, sword, start, pcnt));
+		model.addAttribute("page",page);
+		model.addAttribute("pstart",pstart);
+		model.addAttribute("pend",pend);
+		model.addAttribute("chong",chong);
+		model.addAttribute("pcnt",pcnt);
+		model.addAttribute("sel",sel);
+		model.addAttribute("sword",sword);
+		*/
 		ArrayList<RoomResvVO> rlist=mapper.getroombk();
 		model.addAttribute("rlist", rlist);
-		
 		return "/admin/roombk";
 	}
 }
