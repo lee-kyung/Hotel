@@ -79,7 +79,6 @@
 		<tr>
 			<td> 번호 </td>
 			<td> 아이디 </td>
-			<td> 예약번호 </td>
 			<td> 전화번호 </td>
 			<td> 이메일 </td>
 			<td> 식사날짜 </td>
@@ -97,7 +96,6 @@
 	  	<tr>
 	  		<td> ${dvo.dr_id} </td>
 	  		<td> ${dvo.userid} </td>
-	  		<td> ${dvo.dining_id} </td>
 	  		<td> ${dvo.p1}-${dvo.p2}-${dvo.p3} </td>
 	  		<td> ${dvo.email} </td>
 	  		<td> ${dvo.dr_date} </td>

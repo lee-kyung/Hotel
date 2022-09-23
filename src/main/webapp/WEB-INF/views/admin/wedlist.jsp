@@ -14,7 +14,10 @@
 	section table{
 		width: 1300px;
 	}
-
+	input[type=button]{
+		display: none;
+	}
+	
 </style>
 <script>
 	function move(my)
@@ -42,6 +45,14 @@
 		}
 		else
 			return true;		
+	}
+	
+	function ordersort(my)
+	{
+		 /* var oby=document.getElementById("oby").value; */ 
+		 var oby=document.aa.oby.value; 
+		
+		 location="wedlist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby="+oby; 
 	}
 </script>
 </head>
@@ -78,7 +89,17 @@
 		</div></h5>
 		</tr>
 		<tr>
-			<td> 번호 </td>
+			<td>
+			<form name="aa" method="post" >
+			<c:if test="${oby == 'wresv_id desc'}">
+				<input type="button" onclick="ordersort(this.value)" id="oby" value="wresv_id asc"><label for="oby">∨</label>　번호
+			</c:if> 
+			<c:if test="${oby == 'wresv_id asc'}">
+				　번호<input type="button" onclick="ordersort(this.value)" id="oby" value="wresv_id desc"><label for="oby">∧</label>
+			</c:if> 
+			
+		
+			</td>
 			<td> 아이디 </td>
 			<td> 예약상담일 </td>
 			<td> 예약일 </td>
@@ -105,6 +126,7 @@
 	  		<td> ${wvo.state} </td>		
 	  	</tr>
 	  </c:forEach>
+	  </form>
 	</table>
 	<div id="lis">
 		<!-- 10페이지 단위로 이전으로 가기 -->
