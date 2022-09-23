@@ -193,8 +193,13 @@
 			document.pro_cnt.su=${pvo.su};
 	}
 
+	/* pro_gumae로 넘어갈 [주문금액], [할인금액], [총결제금액]의 개당 가격 */
+	let tprice="${pvo.price}";
+	let thalin=parseInt("${pvo.price * (pvo.halin / 100)}");
+	let tpay=parseInt("${pvo.price - (pvo.price * (pvo.halin / 100)) + pvo.baefee}");
+	
 	/* 수량을 변경하면 [총 상품금액]과 [적립금]도 변하게 하기 */
-	function change_total_juk(su){		
+	function change_total_juk(su){	
 		let total=Math.ceil(${pvo.price} * su);
 		let juk="";
 		
@@ -214,6 +219,15 @@
 		juk=new Intl.NumberFormat().format(juk);
 		document.getElementById("total_price").innerText=total;
 		document.getElementById("juk_price").innerText=juk;
+		
+		/* pro_gumae로 넘어갈 [주문금액], [할인금액], [총결제금액]의 최종가격을 구해서 input type="hidden"에 넣기 */
+		let pimsi=tprice*su;
+		let himsi=thalin*su;
+		let yimsi=tpay*su;
+		
+		document.getElementById("tprice").value=pimsi;
+		document.getElementById("thalin").value=himsi;
+		document.getElementById("tpay").value=yimsi;
 	}
 	
 	/* 위시리스트에 추가하고 삭제하기 */
@@ -300,7 +314,7 @@
 
 	<!-- ================ 상품 상세 Area Start ================= -->
     <div id="pro_cnt">
-		<form name="pro_cnt" method="post" action="pro_gumae?p=${p}">
+		<form name="pro_cnt" method="post" action="pro_gumae?p=${p}&gchk=0">
 		<input type="hidden" name="pcode" value="${pvo.pcode},">
 		
     	<article id="a1">
@@ -401,14 +415,10 @@
 			<!-- 상품정보_area_end -->
 			
 			<!-- pro_gumae에 보낼 정보 start -->
-			<fmt:formatNumber var="cprice" value="${pvo.price}"/>	<!-- 바뀐 수량을 곱해야 하는데.. -->
-			<fmt:formatNumber var="chalin" value="${pvo.price * (pvo.halin / 100)}" pattern="###"/>	<!-- 바뀐 수량을 곱해야 하는데.. -->
-			<fmt:formatNumber var="cpay" value="${pvo.price - (pvo.price * (pvo.halin / 100)) + pvo.baefee}" pattern="###"/>	<!-- 바뀐 수량을 곱해야 하는데.. -->
-			
-			<input type="hidden" name="total_price" value="${pvo.price}">
-			<input type="hidden" name="total_halin" value="${chalin}">
+			<input type="hidden" name="total_price" value="${pvo.price}" id="tprice">
+			<input type="hidden" name="total_halin" value="${chalin}" id="thalin">
 			<input type="hidden" name="total_baefee" value="${pvo.baefee}">
-			<input type="hidden" name="total_pay" value="${cpay}">
+			<input type="hidden" name="total_pay" value="${cpay}" id="tpay">
 			<!-- pro_gumae에 보낼 정보 end -->
 		
 		</article>

@@ -89,7 +89,7 @@
                             <div class="book_room">
                                 <div class="socail_links">
                                     <ul>
-                                        <li>
+                                       <!--  <li>
                                             <a href="#">
                                                 <i class="fa fa-facebook-square"></i>
                                             </a>
@@ -103,14 +103,18 @@
                                             <a href="#">
                                                 <i class="fa fa-instagram"></i>
                                             </a>
-                                        </li>
+                                        </li> -->
                                         <li>
 		                                <c:if test="${userid == null}">
+		                                	<a href="#"> <i class="fa fa-list-alt"></i> </a>
+                                            <a href="../eshop/cart?p=p01"> <i class="fa fa-cart-arrow-down"></i> </a>
 											<a href="../login/login">로그인</a>
 											<a href="../member/member_input">회원가입</a>
 										</c:if>
 										<c:if test="${(userid != null) && (userid != 'admin')}">
 											<a href="../mypage/mypage"> ${name}님
+											<a href="../eshop/cart?p=p01"> <i class="fa fa-cart-arrow-down"></i> </a>
+                                            <a href="../eshop/wish"> <i class="fa fa-heart-o"></i> </a>
 											<a href="../login/logout">로그아웃</a>
 										</c:if>
 										<c:if test="${userid == 'admin'}">

@@ -265,15 +265,15 @@
 		let total_halin="";
 		let total_baefee="";
 		
-		let len=document.getElementsByClassName("subck").length;	// subck의 개수를 구하기
-		
+		let subck=document.getElementsByClassName("subck");
+		let len=subck.length;		
 		for(i=0;i<len;i++) {
 			if(ck)	// [mainck]가 체크되면, class="subck"의 checked속성을 true로 바꾸기			
-				document.getElementsByClassName("subck")[i].checked=true;
+				subck[i].checked=true;
 			else	// [mainck]의 체크가 해제되면, class="subck"의 checked속성을 false로 바꾸기		
-				document.getElementsByClassName("subck")[i].checked=false;
+				subck[i].checked=false;
 			
-			if(document.getElementsByClassName("subck")[i].checked) {
+			if(subck[i].checked) {
 				total_price=parseInt(total_price + (exprice[i] * document.getElementsByClassName("su")[i].value));
 				total_halin=parseInt(total_halin + ((exprice[i] * (exhalin[i] / 100)) * document.getElementsByClassName("su")[i].value));
 				total_baefee=parseInt(total_baefee + exbaefee[i]);				
@@ -296,10 +296,10 @@
 		let total_baefee="";
 		
 		let chk=0;	// subck의 항목이 얼마나 체크됐는지 확인하는 변수
-		let len=document.getElementsByClassName("subck").length;	// subck의 개수를 구하기
-		
+		let subck=document.getElementsByClassName("subck");
+		let len=subck.length;			
 		for(i=0;i<len;i++) {	// subck의 checked속성의 true/false를 일일이 확인하여 개수 세기
-			if(document.getElementsByClassName("subck")[i].checked) {
+			if(subck[i].checked) {
 				chk++;
 				
 				total_price=parseInt(total_price + (exprice[i] * document.getElementsByClassName("su")[i].value));
@@ -327,7 +327,7 @@
 		let len=subck.length;
 		for(i=0;i<len;i++) {
 			if(subck[i].checked)
-				del=document.getElementsByClassName("subck")[i].value+","+del;
+				del=subck[i].value+","+del;
 		}
 		location="wishcart_del?delid="+del+"&dchk=2&p=${p}";	// delid=삭제할id,삭제할id,삭제할id, → 마지막 구분자(콤마)는 신경X		
 	}
@@ -366,7 +366,7 @@
 		if(n == 2) {
 			document.getElementById("mainck").checked=true;
 			for(i=0;i<len;i++) {
-				document.getElementsByClassName("subck")[i].checked=true;
+				subck[i].checked=true;
 			}
 		}
 		

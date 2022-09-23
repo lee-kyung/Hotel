@@ -86,6 +86,47 @@
 <!-- 내용 작성 -->
 	<h2> 최근 예약/구매 내역 5개</h2>
 	<br>
+<<<<<<< HEAD
+	<hr>
+	<table id="dine" border="1">
+		<tr>
+			<td colspan="15"><h2>레스토랑 예약</h2></td>
+		</tr>
+		<tr>
+			<td> 번호 </td>
+			<td> 아이디 </td>
+			<td> 전화번호 </td>
+			<td> 이메일 </td>
+			<td> 식사날짜 </td>
+			<td> 식사유형 </td>
+			<td> 식사시간 </td>
+			<td> 성인 </td>
+			<td> 어린이 </td>
+			<td> 유아 </td>
+			<td> 총 금액 </td>
+			<td> 요청사항 </td>
+			<td> 예약일 </td>
+			<td> 예약상태 </td>
+		</tr>
+	  <c:forEach items="${dlist}" var="dvo">
+	  	<tr>
+	  		<td> ${dvo.dr_id} </td>
+	  		<td> ${dvo.userid} </td>
+	  		<td> ${dvo.p1}-${dvo.p2}-${dvo.p3} </td>
+	  		<td> ${dvo.email} </td>
+	  		<td> ${dvo.dr_date} </td>
+	  		<td> ${dvo.dine_type} </td>
+	  		<td> ${dvo.dr_time} </td>
+	  		<td> ${dvo.adult} </td>
+	  		<td> ${dvo.child} </td>
+	  		<td> ${dvo.baby} </td>
+	  		<td> ${dvo.dr_total} </td>
+	  		<td> ${dvo.dr_extrarq} </td>
+	  		<td> ${dvo.writeday} </td>
+	  		<td> ${dvo.dr_state} </td>
+	  	</tr>
+	  </c:forEach>
+=======
 	<table id="room" border="1">
 		<tr>
 			<td colspan="14"><h2>객실 예약</h2></td>
@@ -122,6 +163,7 @@
 	  		<td> ${rvo.bstate} </td>
 	  	<tr>
 	  </c:forEach>
+>>>>>>> branch 'main' of https://github.com/ey0k/hotel.git
 	</table>
 	<br>
 	<hr>
@@ -132,6 +174,7 @@
 		<tr>
 			<td> 번호 </td>
 			<td> 아이디 </td>
+			<td> 예약번호 </td>
 			<td> 전화번호 </td>
 			<td> 이메일 </td>
 			<td> 식사날짜 </td>
@@ -149,6 +192,7 @@
 	  	<tr>
 	  		<td> ${dvo.dr_id} </td>
 	  		<td> ${dvo.userid} </td>
+	  		<td> ${dvo.dining_id} </td>
 	  		<td> ${dvo.p1}-${dvo.p2}-${dvo.p3} </td>
 	  		<td> ${dvo.email} </td>
 	  		<td> ${dvo.dr_date} </td>
