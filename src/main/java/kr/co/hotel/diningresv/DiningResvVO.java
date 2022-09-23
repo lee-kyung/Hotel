@@ -126,12 +126,7 @@ public class DiningResvVO {
 	public void setDr_date(String dr_date) {
 		this.dr_date = dr_date;
 	}
-	public int getDining_id() {
-		return dining_id;
-	}
-	public void setDining_id(int dining_id) {
-		this.dining_id = dining_id;
-	}
+
 	public String getUserid() {
 		return userid;
 	}

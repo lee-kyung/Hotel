@@ -165,7 +165,7 @@ public class DiningResvServiceImpl implements DiningResvService{
       String userid=session.getAttribute("userid").toString();
       ArrayList<DiningResvVO> list=mapper.dining_reserve_check(userid);
       model.addAttribute("list", list);
-      return "/dining/dining_reserve_check";
+      return "/dining/dining_reserve";
    }
 
    @Override

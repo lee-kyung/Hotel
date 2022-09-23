@@ -7,9 +7,6 @@
   .dining_reserve_next{
     line-height:2;
   }
-/*  caption{
-    align:center;
-  } */
   .container{
 	width: 990px;
 	margin: auto;
@@ -25,6 +22,7 @@
     width: 750px;
 	height: 80px;
 	/* 	border: 1px solid #887159; */
+	marin-top:20px;
 	margin-bottom: 30px;
   }
   diningsec input[type=text]{
@@ -46,7 +44,8 @@
 	width: 225px;
 	height: 780px;
 	float: right;
-	margin-left: 5px;
+	margin-left: 10px;
+	padding-left: 10px;
 	/* position: absolute;
 	left: 950px; */
   } 
@@ -74,6 +73,24 @@
   td{
     margin-top:40px;
   }
+  
+  /* 결제 css */
+  diningsec #pay{
+	margin: auto;
+	text-align: center;
+	}
+  diningsec #pay input[type=button]{
+	width: 200px;
+	height: 50px;
+	border: 1px solid #887159;
+	color: #887159;
+	background: white;
+	pointer: cursor;
+	}
+  diningsec #pay input[type=button]:hover{
+	background: #887159;
+	color: white;
+	}
  </style>
  
  <!-- jQuery -->
@@ -201,7 +218,7 @@
 		       <h2>ON THE PLATE</h2><br>
 		       <hr>
 		   <div id="outer">
-<!--left--><div id="left" style="border:1px solid black">	
+<!--left--><div id="left">	
 			       
                <div style="float:left; width:700px;" id="info"><b>안내사항</b></div><br>
 			   <div id="info_con">
@@ -215,7 +232,7 @@
 			   </div>
 			   
 			   <!-- 예약정보 -->
-			   <table border="1">
+			   <table>
 			   <tr>
 			   
 			       <th width="300">방문 희망 일자</th>
@@ -264,11 +281,7 @@
 			       <th colspan="3"> 추가 요청사항(선택)<sup>(<span id="nowByte">0</span>/100bytes)</sup></th>
 			   </tr>
 			   <tr>
-			       <td colspan="3"> <textarea cols="100" rows="5" name="dr_extrarq"></textarea> </td>
-			   </tr>
-			   <tr>
-			       <td colspan="3">
-			       * 요청사항은 레스토랑 사정에 따라 응대가 어려울 수 있으며 추가 문의는 전화 주시기 바랍니다.</td>
+			       <td colspan="3"> <textarea cols="100" rows="5" name="dr_extrarq" onkeyup="fn_checkByte(this)" placeholder="* 요청사항은 레스토랑 사정에 따라 응대가 어려울 수 있으며 추가 문의는 전화 주시기 바랍니다."></textarea> </td>
 			   </tr>
 			   <!-- 고객정보 -->
 			   <div><div style="float:left; width:500px;"><b>고객 정보</b></div><div style="float:right;align:right;font-size:12px">* 필수입력항목</div></div><br>
@@ -340,27 +353,23 @@
 				</div>
 				</div>
 				
-<!-- right --> <div id="right" style="color:black;border:1px solid black">
+<!-- right --> <div id="right" style="color:black;">
 					<div><b>다이닝 타입</b></div>		
-					<div><input type="text" name="dine_type" value="${dine_type}" readonly></div>
+					<div>${dine_type}</div>
 					<div><b>예약날짜</b></div>	
-					<div><input type="text" name="dr_date" value="${dr_date}" readonly></div>   
+					<div>${dr_date}</div>   
 					<div><b>예약시간</b></div>
-					<div><input type="text" name="dr_time" value="${dr_time}" readonly></div>  
+					<div>${dr_time}</div>  
 					<div><b>예약인원</b></div>
 	                <div>성인<span id="a_su"></span>명/어린이<span id="c_su"></span>명/유아<span id="b_su"></span>명</div><br>
 					<div>총<span id="sutotal">&nbsp;&nbsp;&nbsp;</span>명</div><br>
 					<div><b>총 가격</b></div>
 	                <div><span id="dr_total" name="dr_total"></span></div>
-	                <div>
-	                 	<span>성인 요금</span>&nbsp; <span id="aprice">${dvo.dine_adult}</span>
-	                </div>
-
-	                
-			  
-			       <div id="reserve"><input type="submit" value="예약신청"></div>
-              
-               
+                    <br>
+					<br>
+					<br>
+					<br>			  
+			       <div id="pay"><input type="button" id="paymentBtn" value="예약신청" onclick="return check()"></div>
            </div>
      </form>
 
@@ -374,32 +383,37 @@
     function check()
 	{
 		// 아이디, 비번, 이름, 전화번호
-		if(document.resv.binwon.value>${rvo.rmax})
-		{
-			alert("선택된 인원수가 최대가능 인원보다 많습니다. 객실을 다시 선택해주세요.");
-			return false;
-		}
-		else if(document.resv.bkname.value.trim()=="")
+		if(document.reser.bkname.value.trim()=="")
 		{
 			alert("이름을 입력하세요");
 			return false;
 		}
-		else if(document.resv.bkphone.value.trim()=="")
+		else if(document.reser.p1.value.trim()=="")
 		{
 			alert("전화번호를 입력하세요");
 			return false;
 		}
-		else if(document.resv.agree1.checked!=true)
+		else if(document.reser.p2.value.trim()=="")
+		{
+			alert("전화번호를 입력하세요");
+			return false;
+		}
+		else if(document.reser.p3.value.trim()=="")
+		{
+			alert("전화번호를 입력하세요");
+			return false;
+		}
+		else if(document.reser.agree1.checked!=true)
 		{
 			alert("개인정보 수집 및 이용에 대한 동의가 필요합니다.");
 			return false;
 		}
-		else if(document.resv.agree2.checked!=true)
+		else if(document.reser.agree2.checked!=true)
 		{
 			alert("상품 정보 및 취소 규정에 대한 동의가 필요합니다.");
 			return false;
 		}
-		else if(document.resv.paym.value=="")
+		else if(document.reser.paym.value=="")
 		{
 			alert("결제방법을 선택하세요")	;
 			return false;
@@ -409,7 +423,7 @@
 			//결제관련
 			$("#paymentBtn").click(function () {
 				var IMP = window.IMP; // 생략가능
-				IMP.init('kakaopay'); 
+				IMP.init('imp66382802'); 
 				// i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
 				// ''안에 띄어쓰기 없이 가맹점 식별코드를 붙여넣어주세요. 안그러면 결제창이 안뜹니다.
 				IMP.request_pay({
