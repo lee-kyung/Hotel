@@ -3,7 +3,26 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <head>
-
+ <style>
+  section{
+    width:1000px;
+    margin:auto;
+  }
+  section #resv_check #left{
+    margin-top:20px;
+    display:inline-block;
+    margin-left:20px;
+    width:150px;
+  }
+  section #resv_check #right{
+    margin-top:20px;
+    display:inline-block;
+    /* margin-left:20px; */
+    width:150px;
+  }
+ </style>
+ 
+ 
 </head>
 
 <body>
@@ -13,7 +32,7 @@
     <!-- 새 이미지 추가하는 법
     	①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기
     	②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
-    <div class="bradcam_area basic">	<!-- class="bradcam_area 클래스명" -->
+    <div class="bradcam_area dining2">	<!-- class="bradcam_area 클래스명" -->
         <h3> Dining Reservation</h3>
     </div>
     <!-- bradcam_area_end -->
@@ -32,15 +51,19 @@
       <div> 예약자 성함 </div>
       <div> 예약 상품 </div>
       <div> 입장 시간 </div>
+      <div> 결제 방법 </div>
       <div> 결제 금액 </div>
+      <div> 요청 사항</div>
     </div>   
     <div id="right">
       <div> ${drvo.writeday} </div>
       <div> ${drvo.bid}</div>
       <div> ${drvo.bkname} </div>
-      <div> ${drvo.dine_type} <img src="../resources/img/${dvo.pimg}" width="70" height="70"> </div>
+      <div> ${drvo.dine_type} <img src="../resources/img/${dvo.dine_pimg}" width="70" height="70"> </div>
       <div> ${drvo.dr_time} </div>
+      <div> ${drvo.pay_sudan}</div>
       <div> <fmt:formatNumber value="${drvo.dr_total}" pattern="#,###"/>원 </div>
+      <div> ${drvo.dr_extrarq}</div>
       
     </div> 
    </div>

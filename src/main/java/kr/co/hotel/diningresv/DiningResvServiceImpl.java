@@ -185,6 +185,7 @@ public class DiningResvServiceImpl implements DiningResvService{
 			case 3 : num="0"+num; break;
 		}
 		
+		
 		String bid='d'+now+rand+num;		
 		drvo.setBid(bid);
 	
@@ -198,6 +199,8 @@ public class DiningResvServiceImpl implements DiningResvService{
       String bid=request.getParameter("bid");
       
       DiningResvVO drvo=mapper.dining_reserve_check(bid);
+	  /*String dr_extrarq=((String)request.getParameter("dr_extrarq")).replace("\r\n", "<br>");*/
+                                                  // 줄바뀜
       model.addAttribute("drvo", drvo);
       
       return "/dining/dining_reserve_check";

@@ -319,8 +319,8 @@
 			      <br>
 			      <div><b>결제 방법</b></div>
 				  <div id="paymethod">
-					<input type="radio" value="0" name="paym"> 간편결제
-					<input type="radio" value="1" name="paym"> 현장결제(예약금 10만원) <br> 
+					<input type="radio" value="0" name="paym"> 간편결제&nbsp;&nbsp;
+					<input type="radio" value="1"> 현장결제(예약금 10만원) <br> 
 					* 쿠폰 / 제휴 바우처 / 이벤트 쿠폰 사용 원하실 경우, 레스토랑에서 결제하기를 선택해 주세요.
 			      </div>
 			      <br>
@@ -341,12 +341,14 @@
 				</div>
 				<br>
 				<div>
-					<div style="float:left; width:500px;font-weight:900">상품 정보 및 취소 규정에 대한 동의 </div><div style="float:right;align:right;font-size:12px"><input type="checkbox" name="agree2">동의합니다</div>
+					<div style="float:left; width:500px;font-weight:900">취소 규정에 대한 동의 </div><div style="float:right;align:right;font-size:12px"><input type="checkbox" name="agree2">동의합니다</div>
+					<br>
+				<div>
+				 - 이용일로부터 1일전 23:59분전까지 무료 취소 가능합니다.<br>
+			     - 방문 당일 취소 및 변경은 위약금 10만원이 부과됩니다.
+				</div>
 				</div><br>
 				<div>
-<textarea style="resize: none; border:none" rows="3" cols="80" readonly>예약 취소 및 변경은 상기 [취소 규정] 기간 내 가능하며, 이후 도착일 기준 하루 전 18시까지 1박 요금의 50%, 이후 취소 시 1박 요금의 100%수수료가 발생합니다.
-투숙 당일 노쇼(No Show) 발생 시 동일한 위약금이 청구될 수 있습니다.
-</textarea>
 				</div>
 				</div>
 				</div>
