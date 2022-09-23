@@ -20,7 +20,7 @@ public interface AdminMapper {
 	public ArrayList<RoomResvVO> rlist(String sel,String sword,int start,int pcnt);
 	public int getRChong(int pcnt,String sel,String sword);
 	
-	public ArrayList<WeddingResvVO> wlist(String sel,String sword,int start,int pcnt);
+	public ArrayList<WeddingResvVO> wlist(String sel,String sword,int start,int pcnt,String oby);
 	public int getWChong(int pcnt,String sel,String sword);
 	
 	public ArrayList<DiningResvVO> dlist(String sel,String sword,int start,int pcnt);

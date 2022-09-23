@@ -2,8 +2,20 @@ package kr.co.hotel.diningresv;
 
 public class DiningResvVO {
 	
+<<<<<<< HEAD
+
+=======
+>>>>>>> branch 'main' of https://github.com/ey0k/hotel.git
 	private int dr_id, dr_state;
+<<<<<<< HEAD
 	private String dr_time, dine_type, dr_extrarq, dr_date, email, dr_total;
+=======
+<<<<<<< HEAD
+	private String dr_time, dine_type, dr_extrarq, dr_date, p1, p2, p3, email, adult, child, baby, dr_total, writeday;
+=======
+	private String dr_time, dine_type, dr_extrarq, dr_date, p1, p2, p3, email, adult, child, baby, writeday, dr_total;
+>>>>>>> branch 'main' of https://github.com/ey0k/hotel.git
+>>>>>>> branch 'main' of https://github.com/ey0k/hotel.git
 
 	// userid
 	private String userid;
@@ -22,6 +34,7 @@ public class DiningResvVO {
 	private String bid;
 	
 	
+<<<<<<< HEAD
     public String getBkname() {
 		return bkname;
 	}
@@ -35,6 +48,13 @@ public class DiningResvVO {
 		this.bid = bid;
 	}
 	public String getWriteday() {
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> branch 'main' of https://github.com/ey0k/hotel.git
+    public String getWriteday() {
+>>>>>>> branch 'main' of https://github.com/ey0k/hotel.git
 		return writeday;
 	}
 	public void setWriteday(String writeday) {

@@ -103,8 +103,9 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public String wedlist(Model model, HttpServletRequest request) {
 		int page, start;
-		
 		int pcnt;
+		String oby;
+		
 		if(request.getParameter("pcnt")==null)
 			pcnt=10;
 		else
@@ -117,6 +118,13 @@ public class AdminServiceImpl implements AdminService{
 		
 		start=(page-1)*pcnt;
 		
+		// 정렬
+		if(request.getParameter("oby")==null)
+			oby="wresv_id desc";
+		else
+			oby=request.getParameter("oby");
+		
+		// 페이지 마저..
 		int pstart,pend;
 		pstart=page/10;
 		if(page%10==0)
@@ -143,7 +151,7 @@ public class AdminServiceImpl implements AdminService{
 			pend=chong;
 		
 		
-		model.addAttribute("wlist",mapper.wlist(sel, sword, start, pcnt));
+		model.addAttribute("wlist",mapper.wlist(sel, sword, start, pcnt, oby));
 		model.addAttribute("page",page);
 		model.addAttribute("pstart",pstart);
 		model.addAttribute("pend",pend);
@@ -151,6 +159,7 @@ public class AdminServiceImpl implements AdminService{
 		model.addAttribute("pcnt",pcnt);
 		model.addAttribute("sel",sel);
 		model.addAttribute("sword",sword);
+		model.addAttribute("oby",oby);
 		
 		return "/admin/wedlist";
 	}
