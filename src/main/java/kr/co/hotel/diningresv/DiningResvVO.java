@@ -3,14 +3,31 @@ package kr.co.hotel.diningresv;
 public class DiningResvVO {
 	
 	private int dr_id, dr_state;
-	private String dr_time, dine_type, dr_extrarq, dr_date, p1, p2, p3, email, adult, child, baby, writeday, dr_total;
+	private String dr_time, dine_type, dr_extrarq, dr_date, email, dr_total;
 
-    // userid
+	// userid
 	private String userid;
 
+	// phone
+	private String p1, p2, p3;
 	
+	// 예약 인원 타입
+	private String adult, child, baby;
+	// 결제일
+	private String writeday;
+	// 예약자 이름
+	private String bkname;
 	
-    public String getWriteday() {
+	// 예약번호
+	private String bid;
+	
+    public String getBid() {
+		return bid;
+	}
+	public void setBid(String bid) {
+		this.bid = bid;
+	}
+	public String getWriteday() {
 		return writeday;
 	}
 	public void setWriteday(String writeday) {
@@ -32,7 +49,7 @@ public class DiningResvVO {
 		return child;
 	}
 	public void setChild(String child) {
-		this.child = child;
+		 this.child = child;
 	}
 	public String getBaby() {
 		return baby;
