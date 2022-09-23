@@ -4,6 +4,7 @@ public class DiningResvVO {
 	
 
 	private int dr_id, dr_state;
+
 	private String dr_time, dine_type, dr_extrarq, dr_date, email, dr_total;
 
 
