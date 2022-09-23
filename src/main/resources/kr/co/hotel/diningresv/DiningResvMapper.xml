@@ -12,29 +12,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	  and d.dine_type=dr.dine_type order by id asc ]]>
 	</select>                                      <!-- 며칠 -->
 	
-	<select id="dining_reserve_next" resultType="kr.co.hotel.diningresv.DiningResvVO">
-	  select * from dining where id=#{param1}
-	</select>
-	
-	<!-- old -->
-	<select id="dining_reserve_next_old" resultType="kr.co.hotel.dining.DiningVO">
-	  select * from dining where id=#{param1}
+	<select id="dining_reserve_next" resultType="kr.co.hotel.dining.DiningVO">
+	  select * from dining where dine_type=#{param1}
 	</select>
 	
 	<insert id="dining_reserve_ok" parameterType="kr.co.hotel.diningresv.DiningResvVO">
-	   insert into diningresv(dr_date,dr_extrarq,dr_state,dr_stayhalin,dr_time,dr_total,dine_type,
-	  userid,email,p1,p2,p3,writeday,adult,child,baby)
-	   values(#{dr_date},#{dr_extrarq},#{dr_state},#{dr_stayhalin},#{dr_time},#{dr_total},#{dine_type},
-	  #{userid},#{email},#{p1},#{p2},#{p3},now(),#{adult},#{child},#{baby})
+	   insert into diningresv
+	   (dr_date,dr_extrarq,dr_state,dr_time,dr_total,dine_type,
+	      bkname,userid,email,p1,p2,p3,writeday,adult,child,baby,bid,sudan)
+	   values(#{dr_date},#{dr_extrarq},#{dr_state},#{dr_time},#{dr_total},#{dine_type},
+	      #{bkname},#{userid},#{email},#{p1},#{p2},#{p3},now(),#{adult},#{child},#{baby},#{bid},#{sudan})
 	</insert>
-	
+
+	<select id="getBid" resultType="Integer">
+	  select ifnull(max(right(bid,4)),0) from diningresv
+    </select>
+
 	<select id="dining_reserve_check" resultType="kr.co.hotel.diningresv.DiningResvVO">
-	  select * from diningresv where userid=#{param1}
+	  select * from diningresv where bid=#{param1}
 	</select>
 	
-	<select id="getDineAvail" resultType="kr.co.hotel.dining.DiningVO">
+	<!-- <select id="getDineAvail" resultType="kr.co.hotel.dining.DiningVO">
 	<![CDATA[ select dine_type,count(*) as cnt from diningresv where #{param1}>=dine_type group by dine_type]]>
-	</select> 
+	</select>  -->
+	
+	<!-- <select id="dining_reserve_next_old" resultType="kr.co.hotel.dining.DiningVO">
+	  select * from dining where id=#{param1}
+	</select> -->
 	
 <!-- 	<select id="getEmpty" resultType="Integer">
 	select count(*) as cnt from dining where inday<=? and ?< outday and bang_id=?
