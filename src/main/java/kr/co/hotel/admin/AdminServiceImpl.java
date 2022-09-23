@@ -2,6 +2,8 @@ package kr.co.hotel.admin;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -10,6 +12,7 @@ import org.springframework.ui.Model;
 import kr.co.hotel.diningresv.DiningResvVO;
 import kr.co.hotel.member.MemberVO;
 import kr.co.hotel.roomresv.RoomResvVO;
+import kr.co.hotel.wedding.WeddingResvVO;
 import kr.co.hotel.wedding.WeddingVO;
 
 @Service
@@ -20,11 +23,11 @@ public class AdminServiceImpl implements AdminService{
 
 	@Override
 	public String admin(Model model) {
-		ArrayList<RoomResvVO> mlist=mapper.getroombk();
+		ArrayList<RoomResvVO> rlist=mapper.getroombk();
 		ArrayList<DiningResvVO> dlist=mapper.getdiningresv();
-		ArrayList<WeddingVO> wlist=mapper.getweddingresv();
+		ArrayList<WeddingResvVO> wlist=mapper.getweddingresv();
 
-		model.addAttribute("mlist", mlist);
+		model.addAttribute("rlist", rlist);
 		model.addAttribute("dlist", dlist);
 		model.addAttribute("wlist", wlist);
 		
@@ -38,4 +41,68 @@ public class AdminServiceImpl implements AdminService{
 		
 		return "/admin/memberlist";
 	}
+
+	@Override
+	public String roombk(Model model, HttpServletRequest request) {
+		int page, start; 
+		int pcnt;
+		if(request.getParameter("pcnt")==null)
+			pcnt=10;
+		else
+			pcnt=Integer.parseInt(request.getParameter("pcnt"));
+		
+		if(request.getParameter("page")==null)
+			page=1;
+		else
+			page=Integer.parseInt(request.getParameter("page"));
+		
+		start=(page-1)*pcnt;
+		
+		int pstart, pend;
+		pstart=page/10;
+		if(page%10==0)
+			pstart--;
+		
+		pstart=pstart*10+1;
+		pend=pstart+9;
+		
+		String sel;
+		if(request.getParameter("sel")==null)
+			sel="0";
+		else
+			sel=request.getParameter("sel");
+		
+		String sword;
+		if(request.getParameter("sword")==null)
+			sword="";
+		else
+			sword=request.getParameter("sword");
+		
+		int chong=mapper.getRChong(pcnt, sel, sword);
+		ArrayList<RoomResvVO> rlist=mapper.getroombk();
+		model.addAttribute("rlist", rlist);
+		
+		return "/admin/roombk";
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

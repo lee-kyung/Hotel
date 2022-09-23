@@ -1,5 +1,7 @@
 package kr.co.hotel.admin;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -22,5 +24,11 @@ public class AdminController {
 	public String memberlist(Model model)
 	{
 		return service.memberlist(model);
+	}
+	
+	@RequestMapping("/admin/roombk")
+	public String roombk(Model model, HttpServletRequest request)
+	{
+		return service.roombk(model, request);
 	}
 }

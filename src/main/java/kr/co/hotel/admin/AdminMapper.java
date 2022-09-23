@@ -5,12 +5,14 @@ import java.util.ArrayList;
 import kr.co.hotel.diningresv.DiningResvVO;
 import kr.co.hotel.member.MemberVO;
 import kr.co.hotel.roomresv.RoomResvVO;
-import kr.co.hotel.wedding.WeddingVO;
+import kr.co.hotel.wedding.WeddingResvVO;
+
 
 public interface AdminMapper {
 	public ArrayList<MemberVO> memberlist();
 	public ArrayList<RoomResvVO> getroombk();
 	public ArrayList<DiningResvVO> getdiningresv();
-	public ArrayList<WeddingVO> getweddingresv();
+	public ArrayList<WeddingResvVO> getweddingresv();
+	public int getRChong(int pcnt,String sel,String sword); 
 	
 }

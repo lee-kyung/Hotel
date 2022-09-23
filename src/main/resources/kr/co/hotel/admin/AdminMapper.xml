@@ -8,22 +8,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from member order by id desc
 	</select>
 	
-	<select id="getroombk" resyltType="kr.co.hotel.roomresv.RoomResvVO">
+	<select id="getroombk" resultType="kr.co.hotel.roomresv.RoomResvVO">
 		select rb.*, r.rname, r.rcode 
 		from roombk as rb, room as r 
 		where rb.rcode=r.rcode
-		order by id desc, checkin asc
+		order by checkin asc, bkdate asc
 	</select>
 	
 	<select id="getdiningresv" resultType="kr.co.hotel.diningresv.DiningResvVO">
-		select * from diningresv order by id desc, dr_date asc
+		select * from diningresv order by dr_id desc, dr_date asc
 	</select>
 	
-	<select id="getweddingresv" resultType="kr.co.hotel.wedding.WeddingVO">
-		select * from weddingresv order by id desc, wresv_cday asc
+	<select id="getweddingresv" resultType="kr.co.hotel.wedding.WeddingResvVO">
+		select * from weddingresv order by wresv_id desc, wresv_cday asc
 	</select>
 	
 	<!-- <select id="getgumae" resultType="kr.co.hotel.">
 		select * from gumae order by id desc
 	</select> -->
+	
+	<select id="getRChong" resultType="Integer">
+		select ceil(count(*)/#{param1}) from roombk where ${param2} like concat ('%',#{param3},'%')
+	</select>
 </mapper>

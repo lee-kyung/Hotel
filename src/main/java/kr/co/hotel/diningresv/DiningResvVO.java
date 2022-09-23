@@ -3,7 +3,7 @@ package kr.co.hotel.diningresv;
 public class DiningResvVO {
 	
 	private int dr_id, dr_stayhalin, dr_total, dr_state;
-	private String dr_time, dine_type, dr_extrarq, dr_date, p1, p2, p3, email, adult, child, baby;
+	private String dr_time, dine_type, dr_extrarq, dr_date, p1, p2, p3, email, adult, child, baby, writeday;
 	
 	// 다이닝 id
 	private int dining_id;
@@ -12,7 +12,13 @@ public class DiningResvVO {
 	private String userid;
 	
 	
-    public String getAdult() {
+    public String getWriteday() {
+		return writeday;
+	}
+	public void setWriteday(String writeday) {
+		this.writeday = writeday;
+	}
+	public String getAdult() {
 		return adult;
 	}
 	public void setAdult(String adult) {
