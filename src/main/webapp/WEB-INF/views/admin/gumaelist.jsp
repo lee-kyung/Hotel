@@ -82,12 +82,11 @@
 			<td> 주문번호 </td>
 			<td> 구매자 </td>
 			<td> 연락번호 </td>
-			<td> 이메일 </td>
 			<td> 상품명 </td>
 			<td> 상품코드 </td>
 			<td> 총결제금액 </td>
 			<td> 구매일 </td>
-			<td> 상태 </td>
+			<td colspan="2"> 상태 </td>			
 		</tr>
 	  <c:forEach items="${glist}" var="gvo">
 		<tr>
@@ -100,7 +99,26 @@
 			<td> ${gvo.pcode} </td>
 			<td> ${gvo.total_price} </td>
 			<td> ${gvo.buyday} </td>
-			<td> ${gvo.state} </td>
+			<c:if test="${gvo.state == 0}">
+	  			<c:set var="state" value="결제완료"/>
+		  	</c:if>
+		  	<c:if test="${gvo.state == 1}">
+		  		<c:set var="state" value="취소요청"/>
+		  	</c:if>
+		  	<c:if test="${gvo.state == 2}">
+		  		<c:set var="state" value="취소완료"/>
+		  	</c:if>
+		  	<c:if test="${gvo.state == 3}">
+		  		<c:set var="state" value="배송완료"/>
+		  	</c:if>
+	  		<td> ${state}
+	  		<c:if test="${gvo.state == 0}">
+	  			<input type="button" value="배송완료" onclick="location='../admin/estatechange?state=3&id=${gvo.id}'">
+	  		</c:if>
+	  		<c:if test="${gvo.state == 1}">
+	  			<input type="button" value="취소승인" onclick="location='../admin/estatechange?state=2&id=${gvo.id}&pcode=${gvo.pcode}&su=${gvo.total_su}'">
+	  		</c:if>
+	  		</td>	  		
 		</tr>
 	  </c:forEach>
 	</table>

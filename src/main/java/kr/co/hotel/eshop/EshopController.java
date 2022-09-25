@@ -102,7 +102,12 @@ public class EshopController {
 	}
 	
 	@RequestMapping("/eshop/pro_gumae_ok")
-	public String pro_gumae_ok(GumaeVO gvo, HttpSession session, HttpServletRequest request) {
-		return service.pro_gumae_ok(gvo, session, request);
+	public String pro_gumae_ok(GumaeVO gvo, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+		return service.pro_gumae_ok(gvo, session, request, response);
+	}
+	
+	@RequestMapping("/eshop/gumae_okmsg")
+	public String gumae_okmsg(HttpServletRequest request, Model model) {
+		return service.gumae_okmsg(request, model);
 	}
 }

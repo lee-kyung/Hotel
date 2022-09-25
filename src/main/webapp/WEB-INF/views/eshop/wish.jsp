@@ -63,8 +63,8 @@
 	}
 	#wish #button11 {
 		width : 150px;
-		height : 42px;
-		padding-top : 8px;
+		height : 41px;
+		padding-top : 9px;
 		border : 1px solid #887159;
 		background : #887159;
 		color : white;
@@ -75,8 +75,8 @@
 	}
 	#wish #button22 {
 		width : 150px;
-		height : 42px;
-		padding-top : 8px;
+		height : 41px;
+		padding-top : 9px;
 		border : 1px solid #887159;
 		color : #887159;
 		font-size : 15px;

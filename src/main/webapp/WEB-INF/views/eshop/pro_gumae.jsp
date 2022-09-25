@@ -181,7 +181,7 @@
 	function right_stop(){
 		//document.getElementById("abc").innerText=document.documentElement.scrollTop;	// 스크롤 위치 보는 법 	<span id="abc"></span>
 		let top=document.documentElement.scrollTop;
-		if(top > 940 && top < 1800) {
+		if(top > 750 && top < 1300) {
 			document.getElementById("right").style.position="fixed";
 			document.getElementById("right").style.top="110px";
 			document.getElementById("right").style.left="905px";
@@ -191,7 +191,7 @@
 			document.getElementById("right").style.top="1910px";
 			document.getElementById("right").style.left="905px";
 		}*/
-		else if(top <= 940) {
+		else if(top <= 750) {
 			document.getElementById("right").style.position="relative";
 			document.getElementById("right").style.top="0px";
 			document.getElementById("right").style.left="0px";
@@ -378,7 +378,12 @@
 				<div id="total_p"> KRW <b style="font-family:TimesNewRoman;"> <fmt:formatNumber value="${total_pay}" pattern=",###"/> </b> </div>
 				<div id="btns">					
 					<input type="button" id="gobackBtn" value="이전단계" onclick="goBack()">
-					<input type="button" id="paymentBtn" value="결제하기" onclick="return check()">
+					<c:if test="${p == 'p01'}">	<!-- 배송상품일 경우 -->
+						<input type="button" id="paymentBtn" value="결제하기" onclick="return check1()">
+					</c:if>
+					<c:if test="${p == 'p02'}">	<!-- 모바일상품일 경우 -->
+						<input type="button" id="paymentBtn" value="결제하기" onclick="return check2()">
+					</c:if>
 				</div>
 		</div>
 		</div>
@@ -391,18 +396,18 @@
 	</section>
 	
 	<script>
-	/* 필수입력 체크후 [결제하기]로 진행 */
-	function check()
+	/* 배송상품의 필수입력 체크후 [결제하기]로 진행 */
+	function check1()
 	{
-		if(document.gumae.bname.value.trim() == "") {
+		if(document.gumae.pname.value.trim() == "") {
 			alert("주문자명을 입력하세요.");
 			return false;
 			}
-			else if(document.gumae.bphone.value.trim() == "") {
+			else if(document.gumae.pphone.value.trim() == "") {
 				alert("주문자의 연락처를 입력하세요.");
 				return false;
 				}
-				else if(document.gumae.pname.value.trim() == "") {
+				else if(document.gumae.bname.value.trim() == "") {
 					alert("받는 사람을 입력하세요.");
 					return false;
 					}
@@ -425,12 +430,32 @@
 									else if(document.gumae.agree1.checked == false) {
 										alert("비회원주문 개인정보 수집이용에 대한 동의가 필요합니다.");
 										return false;
-									}
-									else
-									{
-										document.gumae.submit();
-										return true;
-									}
+										}
+										else {
+											document.gumae.submit();
+											return true;
+										}
+	}
+	
+	/* 모바일상품의 필수입력 체크후 [결제하기]로 진행 */
+	function check2()
+	{
+		if(document.gumae.pname.value.trim() == "") {
+			alert("주문자명을 입력하세요.");
+			return false;
+			}
+			else if(document.gumae.pphone.value.trim() == "") {
+				alert("주문자의 연락처를 입력하세요.");
+				return false;
+				}
+				else if(document.gumae.agree1.checked == false) {
+					alert("비회원주문 개인정보 수집이용에 대한 동의가 필요합니다.");
+					return false;
+					}
+					else {
+						document.gumae.submit();
+						return true;
+					}
 	}
   </script>
   

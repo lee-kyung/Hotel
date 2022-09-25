@@ -52,6 +52,12 @@ public class AdminController {
 	{
 		return service.gumaelist(model, request);
 	}
+	
+	@RequestMapping("/admin/estatechange")
+	public String estatechange(HttpServletRequest request)
+	{
+		return service.estatechange(request);
+	}
 
 }
 

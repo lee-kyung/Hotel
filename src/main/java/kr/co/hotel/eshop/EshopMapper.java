@@ -35,4 +35,6 @@ public interface EshopMapper {
 	public void pro_gumae_ok(GumaeVO gvo);
 	public Integer getJumun();
 	public void cart_del(String pcode, String userid);
+	public void suMinusPlus(String su, String pcode);
+	public String getName(String jumuncode);
 }
