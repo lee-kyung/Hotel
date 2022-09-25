@@ -36,9 +36,12 @@ public class AdminServiceImpl implements AdminService{
 		model.addAttribute("wlist", wlist);
 		model.addAttribute("glist", glist);
 		
+		// 상태 변경
 		Date date = Date.valueOf(LocalDate.now());
 		
 		mapper.bstatechange(date);
+		mapper.wstatechange(date);
+		mapper.dstatechange(date);
 		
 		return "/admin/admin";
 	}
@@ -51,7 +54,7 @@ public class AdminServiceImpl implements AdminService{
 		return "/admin/memberlist";
 	}
 
-// 객실예약 리스트 확인
+// 각 예약 리스트 확인
 	@Override
 	public String roomlist(Model model, HttpServletRequest request) {
 		int page, start;
@@ -110,7 +113,7 @@ public class AdminServiceImpl implements AdminService{
 	public String wedlist(Model model, HttpServletRequest request) {
 		int page, start;
 		int pcnt;
-		String oby;
+		String oby, oby2;
 		
 		if(request.getParameter("pcnt")==null)
 			pcnt=10;
@@ -276,6 +279,15 @@ public class AdminServiceImpl implements AdminService{
 		model.addAttribute("sword",sword);
 		
 		return "/admin/gumaelist";
+	}
+
+	@Override
+	public String estatechange(HttpServletRequest request) {
+		String state=request.getParameter("state");
+		String id=request.getParameter("id");
+		mapper.estatechange(state, id);
+		
+		return "redirect:/admin/gumaelist";
 	}
 
 }

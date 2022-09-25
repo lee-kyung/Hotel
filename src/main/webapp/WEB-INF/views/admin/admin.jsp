@@ -22,6 +22,7 @@
 	padding-top:50px;}
 	
 	#first .txt2{
+	padding-top: 10px;
 	text-align:right;
 	font-size:18px;}
 	
@@ -32,13 +33,13 @@
 	display:inline-block;
 	border:1px solid #cccccc;
 	width:450px;
-	height:150px;
-	margin-top:20px;
+	height:100px;
+	margin-top:44px;
 	background:white;
 	border-right:none;
 	text-align:center;
 	font-size:25px;
-	padding-top:50px;}
+	padding-top:30px;}
 	
 	#first ul li:last-child{
 	border-right:1px solid #cccccc;}
@@ -64,7 +65,7 @@
     	①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기
     	②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
     <div class="bradcam_area basic">	<!-- class="bradcam_area 클래스명" -->
-        <h3> 최신 예약 </h3>
+        <h3> ADMIN </h3>
     </div>
     
 <!-- first -->    
@@ -76,6 +77,9 @@
 	</div>
 	<ul>
 		<li><a href="../admin/roomlist">객실 예약 확인</a></li><li><a href="../admin/dinelist">레스토랑 예약 확인</a></li><li><a href="../admin/gumaelist">E-SHOP 주문내역</a></li><li><a href="../admin/wedlist">웨딩 예약 확인</a></li>
+	</ul>
+	<ul>
+		<li><a href="../room/room_write">객실 등록</a></li><li><a href="../dining/dining_write">레스토랑 등록</a></li><li><a href="../eshop/pro_write">E-SHOP 상품 등록</a></li><li><a href="../wedding/wed_hall_write">웨딩홀 등록</a></li>
 	</ul>
 </div>
 <!-- first/ -->
@@ -137,13 +141,14 @@
 	<hr>
 	<table id="dine" border="1">
 		<tr>
-			<td colspan="15"><h2>레스토랑 예약</h2></td>
+			<td colspan="16"><h2>레스토랑 예약</h2></td>
 		</tr>
 		<tr>
 			<td> 번호 </td>
 			<td> 아이디 </td>
 			<td> 예약번호 </td>
-			<td> 전화번호 </td>
+			<td> 예약자 </td>
+			<td> 연락번호 </td>
 			<td> 이메일 </td>
 			<td> 식사날짜 </td>
 			<td> 식사유형 </td>
@@ -156,11 +161,12 @@
 			<td> 예약일 </td>
 			<td> 예약상태 </td>
 		</tr>
-<%-- 	  <c:forEach items="${dlist}" var="dvo">
+ 	  <c:forEach items="${dlist}" var="dvo">
 	  	<tr>
 	  		<td> ${dvo.dr_id} </td>
 	  		<td> ${dvo.userid} </td>
-	  		<td> ${dvo.dining_id} </td>
+	  		<td> ${dvo.bid} </td>
+	  		<td> ${dvo.bkname} </td>
 	  		<td> ${dvo.p1}-${dvo.p2}-${dvo.p3} </td>
 	  		<td> ${dvo.email} </td>
 	  		<td> ${dvo.dr_date} </td>
@@ -172,15 +178,24 @@
 	  		<td> ${dvo.dr_total} </td>
 	  		<td> ${dvo.dr_extrarq} </td>
 	  		<td> ${dvo.writeday} </td>
-	  		<td> ${dvo.dr_state} </td>
+	  		<c:if test="${dvo.dr_state == 0}">
+	  			<c:set var="state" value="예약"/>
+		  	</c:if>
+		  	<c:if test="${dvo.dr_state == 1}">
+		  		<c:set var="state" value="사용완료"/>
+		  	</c:if>
+		  	<c:if test="${dvo.dr_state == 2}">
+		  		<c:set var="state" value="취소됌"/>
+		  	</c:if>
+		  		<td> ${state} </td>
 	  	</tr>
-	  </c:forEach> --%>
+	  </c:forEach> 
 	</table>
 	<br>
 	<hr>
 	<table id="shop" border="1">
 		<tr>
-			<td colspan="6"><h2>상품 판매</h2></td>
+			<td colspan="11"><h2>상품 판매</h2></td>
 		</tr>
 		<tr>
 			<td> 번호 </td>
@@ -188,7 +203,6 @@
 			<td> 주문번호 </td>
 			<td> 구매자 </td>
 			<td> 연락번호 </td>
-			<td> 이메일 </td>
 			<td> 상품명 </td>
 			<td> 상품코드 </td>
 			<td> 총결제금액 </td>
@@ -206,7 +220,19 @@
 			<td> ${gvo.pcode} </td>
 			<td> ${gvo.total_price} </td>
 			<td> ${gvo.buyday} </td>
-			<td> ${gvo.state} </td>
+			<c:if test="${gvo.state == 0}">
+	  			<c:set var="state" value="결제완료"/>
+		  	</c:if>
+		  	<c:if test="${gvo.state == 1}">
+		  		<c:set var="state" value="취소요청"/>
+		  	</c:if>
+		  	<c:if test="${gvo.state == 2}">
+		  		<c:set var="state" value="취소완료"/>
+		  	</c:if>
+		  	<c:if test="${gvo.state == 3}">
+		  		<c:set var="state" value="배송완료"/>
+		  	</c:if>
+	  		<td> ${state} </td>	
 		</tr>
 	  </c:forEach>
 	</table>
@@ -214,7 +240,7 @@
 	<hr>
 	<table id="wedding" border="1">
 		<tr>
-			<td colspan="11"><h2>웨딩 상담 예약</h2></td>
+			<td colspan="12"><h2>웨딩 상담 예약</h2></td>
 		</tr>
 		<tr>
 			<td> 번호 </td>
@@ -227,6 +253,7 @@
 			<td> 예약자 </td>
 			<td> 연락번호 </td>
 			<td> 인원 </td>
+			<td> 예약번호 </td>
 			<td> 예약상태 </td>
 		</tr>
 	  <c:forEach items="${wlist}" var="wvo">
@@ -241,7 +268,17 @@
 	  		<td> ${wvo.wresv_name} </td>
 	  		<td> ${wvo.wresv_phone} </td>
 	  		<td> ${wvo.wresv_inwon} </td>
-	  		<td> ${wvo.state} </td>		
+	  		<td> ${wvo.wresv_inwon} </td>
+	  		<c:if test="${wvo.state == 0}">
+	  			<c:set var="state" value="예약완료"/>
+		  	</c:if>
+		  	<c:if test="${wvo.state == 1}">
+		  		<c:set var="state" value="취소됌"/>
+		  	</c:if>
+		  	<c:if test="${wvo.state == 2}">
+		  		<c:set var="state" value="사용완료"/>
+		  	</c:if>
+	  		<td> ${state} </td>				
 	  	</tr>
 	  </c:forEach>
 	</table>
