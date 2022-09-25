@@ -76,38 +76,81 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script> 
 <script>
-   // 예약 완료된 타임은 빨간색 으로 처리
-   window.onload=function()
-   {
-      var td=[${td}];    // var td=[25, 30, 27, 27, 28]
-      var dt=[${dt}];  // var td=[아침, 아침, 점심, 저녁, 저녁]
-      var today=new Date();
-      var dd=1;
-          //if(today.getFullYear()==${y} && today.getMonth()+1 == ${m}) // 요청한 달이 이번달이라면  
-          //dd=today.getDate();
-       //alert(dd);
-      //alert(td.length);
-      for(i=0;i<td.length;i++)
-      {
-         if(dt[i] == 1)
-                 document.getElementsByClassName("b1")[td[i]-dd].style.color="red";
-            else if(dt[i] == 2)
-                     document.getElementsByClassName("b2")[td[i]-dd].style.color="red";
-                 else if(dt[i] == 3)
-                     document.getElementsByClassName("b3")[td[i]-dd].style.color="red";
-      }
+	/* 달력에서 예약마감된 날짜의 식사타입을 빨간색으로 처리 */
+	window.onload=function() {
+		let dt=[${dt}];	// 예약된 식사타입
+		let td=[${td}];	// 예약된 날짜
+		let cnt=[${cnt}];	// 예약된 수
+		let bk=6;	// 식사타입당 두 타임을 합쳐 만석인 테이블의 수를 입력 (ex : 8시 타임 3테이블 + 10시 타임 3테이블 = 총 6 입력)
       
-   }
-  /* 달력에서 [아침,점심,저녁]을 클릭하면, 해당 [날짜], [다이닝타입], [시간대]를 보내기 */
-     function date_type(y, m, d, t) {
-      document.getElementById("dr_date").value=y+"-"+m+"-"+d;
-      document.getElementById("dr_type").innerHTML="<option value='"+t+"'>"+t+"</option>";
-      if(t == 'Breakfast')
-         document.getElementById("dr_time").innerHTML="<option>선택</option><option value='8:00'>8:00</option><option value='10:00' name='dr_time'>10:00</option>";
-         else if(t == 'Lunch')
-            document.getElementById("dr_time").innerHTML="<option>선택</option><option value='13:00'>13:00</option><option value='15:00' name='dr_time'>15:00</option>";
-            else if(t == 'Dinner')
-               document.getElementById("dr_time").innerHTML="<option>선택</option><option value='16:00'>16:00</option><option value='18:00' name='dr_time'>18:00</option>";
+		for(i=0;i<td.length;i++) {
+			if(dt[i] == 1 && cnt[i] == bk) {
+				document.getElementsByClassName("b1")[td[i]-1].style.color="red";
+				document.getElementsByClassName("b1")[td[i]-1].setAttribute("onclick", "alert('예약이 마감됐습니다.');");
+				}
+				else if(dt[i] == 2 && cnt[i] == bk) {
+					document.getElementsByClassName("b2")[td[i]-1].style.color="red";
+					document.getElementsByClassName("b2")[td[i]-1].setAttribute("onclick", "alert('예약이 마감됐습니다.');");
+					}
+					else if(dt[i] == 3 && cnt[i] == bk) {
+						document.getElementsByClassName("b3")[td[i]-1].style.color="red";
+						document.getElementsByClassName("b3")[td[i]-1].setAttribute("onclick", "alert('예약이 마감됐습니다.');");
+					}
+		}
+	}
+   
+  /* 달력에서 [아침,점심,저녁]을 클릭하면, 해당 [날짜], [다이닝타입], [시간대]를 보내기 → [시간대]의 예약마감은 ajax로 값 가져와서 처리 */
+	function date_type(y, m, d, t) {
+		let ymd=y+"-"+m+"-"+d;
+		document.getElementById("dr_date").value=ymd;
+		
+		let chk=new XMLHttpRequest();
+		chk.open("get", "getDTresv?dd="+ymd+"&dt="+t);
+		chk.send();
+		chk.onreadystatechange=function(){
+			if(chk.readyState == 4) {
+				/* 예약된 게 없다면 */
+				/*document.getElementById("dr_type").innerHTML="<option value='"+t+"'>"+t+"</option>";
+				if(t == 'Breakfast')
+					document.getElementById("dr_time").innerHTML="<option>선택</option><option value='08:00'>08:00</option><option value='10:00''>10:00</option>";
+					else if(t == 'Lunch')
+						document.getElementById("dr_time").innerHTML="<option>선택</option><option value='13:00'>13:00</option><option value='15:00'>15:00</option>";
+						else if(t == 'Dinner')
+							document.getElementById("dr_time").innerHTML="<option>선택</option><option value='16:00'>16:00</option><option value='18:00'>18:00</option>";*/
+			              
+				/* 예약된 게 있다면 */
+				let tmcnt=chk.responseText.split(",");
+				let bk=3;	// 타임당 만석인 테이블의 수를 입력 (ex : 8시 타임 3테이블, 10시 타임 3테이블 = 3 입력)
+				console.log(tmcnt);
+				console.log(tmcnt.length);
+				if(tmcnt.length > 1) {
+					for(i=0;i<tmcnt.length;i+=2) {
+						if(tmcnt[i] == 8 && tmcnt[i+1] == bk){
+							document.getElementById("dr_time").innerHTML="<option>선택</option><option value='10:00'>10:00</option>";
+							console.log(tmcnt[i]);
+							console.log(tmcnt[i+1]);
+							console.log(bk);
+						}
+							else if(tmcnt[i] == 10 && tmcnt[i+1] == bk)
+								document.getElementById("dr_time").innerHTML="<option>선택</option><option value='08:00'>08:00</option>";
+								else if(t == 'Breakfast')
+									document.getElementById("dr_time").innerHTML="<option>선택</option><option value='08:00'>08:00</option><option value='10:00'>10:00</option>";
+						else if(tmcnt[i] == 13 && tmcnt[i+1] == bk)
+							document.getElementById("dr_time").innerHTML="<option>선택</option><option value='15:00'>15:00</option>";
+							else if(tmcnt[i] == 15 && tmcnt[i+1] == bk)
+								document.getElementById("dr_time").innerHTML="<option>선택</option><option value='13:00'>13:00</option>";
+								else if(t == 'Lunch')
+									document.getElementById("dr_time").innerHTML="<option>선택</option><option value='13:00'>13:00</option><option value='15:00'>15:00</option>";
+						else if(tmcnt[i] == 16 && tmcnt[i+1] == bk)
+							document.getElementById("dr_time").innerHTML="<option>선택</option><option value='18:00'>18:00</option>";
+							else if(tmcnt[i] == 18 && tmcnt[i+1] == bk)
+								document.getElementById("dr_time").innerHTML="<option>선택</option><option value='16:00'>16:00</option>";
+								else if(t == 'Dinner')
+									document.getElementById("dr_time").innerHTML="<option>선택</option><option value='16:00'>16:00</option><option value='18:00'>18:00</option>";
+					}
+				}
+			}
+		}	
   }
  
 </script>

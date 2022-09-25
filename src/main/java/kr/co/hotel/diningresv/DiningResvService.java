@@ -13,6 +13,8 @@ import kr.co.hotel.room.RoomVO;
 public interface DiningResvService {
 	
 	public String dining_reserve(HttpServletRequest request, Model model,HttpSession session);
+	
+	public void getDTresv(HttpServletRequest request, PrintWriter out);
 
 	/*public String getprev(HttpServletRequest request, Model model);*/
 	
