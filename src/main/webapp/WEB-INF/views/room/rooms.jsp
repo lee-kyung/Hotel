@@ -19,7 +19,7 @@
 		font-weight: 900;
 	}
 	#rname{
-		margin-top: 50px;
+		margin-top: 20px;
 		font-size: 24px;
 	}
 	roomsec{

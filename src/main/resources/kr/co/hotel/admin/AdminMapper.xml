@@ -63,12 +63,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getGChong" resultType="Integer">
 		select ceil(count(*)/#{param1}) from gumae where ${param2} like concat('%',#{param3},'%')
 	</select>
-	
+
+<!-- 상태변경 -->	
 	<update id="bstatechange">
-		<![CDATA[update roombk set bstate=2 where checkin<=#{param1} and bstate=0]]>
+		<![CDATA[update roombk set bstate=2 where checkin<=#{param1} and bstate=1]]>
 	</update>
-	
-	
+	<update id="wstatechange">
+		<![CDATA[update weddingresv set state=2 where wresv_cday<=#{param1} and state=0]]>
+	</update>
+	<update id="dstatechange">
+		<![CDATA[update diningresv set dr_state=1 where dr_date<=#{param1} and dr_state=0]]>
+	</update>
+	<update id="estatechange">
+		<![CDATA[update gumae set state=#{param1} where id=#{param2}]]>
+	</update>
 	
 	
 	

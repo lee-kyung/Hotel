@@ -33,7 +33,11 @@ public interface AdminMapper {
 	public ArrayList<GumaeVO> glist(String sel,String sword,int start,int pcnt);
 	public int getGChong(int pcnt,String sel,String sword);
 	
-// 상태 변경
+// 상태 변경 - 날짜 지나면 변경
 	public void bstatechange(Date date);
+	public void wstatechange(Date date);
+	public void dstatechange(Date date);
+//	상태 변경 - 버튼으로 변경
+	public void estatechange(String state, String id);
 	
 }

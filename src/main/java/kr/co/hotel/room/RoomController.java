@@ -54,7 +54,11 @@ public class RoomController {
 	}
 	
 	
-	
+	@RequestMapping("/room/roomtest")
+	public String roomtest()
+	{
+		return "/room/roomtest";
+	}
 	
 	
 	

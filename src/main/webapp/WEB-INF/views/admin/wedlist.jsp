@@ -51,6 +51,7 @@
 	{	
 		location="wedlist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby="+oby; 
 	}
+
 </script>
 </head>
 
@@ -87,23 +88,31 @@
 		</tr>
 		<form name="aa" method="post" >
 		<tr>
-			<td>			
-				<c:if test="${oby == 'wresv_id desc'}">
-					<input type="button" onclick="ordersort(this.value)" id="oby" value="wresv_id asc"><label for="oby">번호</label>
-				</c:if> 
-				<c:if test="${oby == 'wresv_id asc'}">
-					<input type="button" onclick="ordersort(this.value)" id="oby" value="wresv_id desc"><label for="oby">번호</label>
-				</c:if> 
-			</td>
+			<td> 번호	 </td>
 			<td> 아이디 </td>
-			<td> 예약상담일 </td>
+			<td> 예약상담일
+				<c:if test="${oby != 'wresv_cday asc'}">
+					<input type="button" onclick="ordersort(this.value)" id="oby" value="wresv_cday asc">
+				</c:if><label for="oby">∧</label>
+				<c:if test="${oby != 'wresv_cday desc'}">
+					<input type="button" onclick="ordersort(this.value)" id="oby" value="wresv_cday desc">
+				</c:if><label for="oby">∨</label>
+			</td>
 			<td> 예약일 </td>
-			<td> 예식희망일 </td>
+			<td> 예식희망일
+				<c:if test="${oby != 'wresv_wday asc'}">
+					<input type="button" onclick="ordersort(this.value)" id="oby" value="wresv_wday asc">
+				</c:if><label for="oby">∧</label>
+				<c:if test="${oby != 'wresv_wday desc'}">
+					<input type="button" onclick="ordersort(this.value)" id="oby" value="wresv_wday desc">
+				</c:if><label for="oby">∨</label>
+			 </td>
 			<td> 예약시간 </td>
 			<td> 웨딩홀 </td>
 			<td> 예약자 </td>
 			<td> 연락번호 </td>
 			<td> 인원 </td>
+			<td> 예약번호 </td>
 			<td> 예약상태 </td>
 		</tr>
 	  <c:forEach items="${wlist}" var="wvo">
@@ -118,7 +127,17 @@
 	  		<td> ${wvo.wresv_name} </td>
 	  		<td> ${wvo.wresv_phone} </td>
 	  		<td> ${wvo.wresv_inwon} </td>
-	  		<td> ${wvo.state} </td>		
+	  		<td> ${wvo.wresv_code} </td>
+	  		<c:if test="${wvo.state == 0}">
+	  			<c:set var="state" value="예약완료"/>
+		  	</c:if>
+		  	<c:if test="${wvo.state == 1}">
+		  		<c:set var="state" value="취소됌"/>
+		  	</c:if>
+		  	<c:if test="${wvo.state == 2}">
+		  		<c:set var="state" value="사용완료"/>
+		  	</c:if>
+	  		<td> ${state} </td>		
 	  	</tr>
 	  </c:forEach>
 	  </form>
