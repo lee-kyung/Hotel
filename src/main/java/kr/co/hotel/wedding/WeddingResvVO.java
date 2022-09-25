@@ -1,5 +1,7 @@
 package kr.co.hotel.wedding;
 
+import java.time.LocalDate;
+
 public class WeddingResvVO {
 
 	private int wresv_id, state, wresv_pay;
@@ -10,9 +12,8 @@ public class WeddingResvVO {
 	
 	// wedding 테이블의 wed_hall 추가
 	private String wed_hall;
-	
-	
-	
+
+
 	
 	public int getWresv_pay() {
 		return wresv_pay;

@@ -24,7 +24,7 @@
     	①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기
     	②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
     <div class="bradcam_area basic">	<!-- class="bradcam_area 클래스명" -->
-        <h3> ADMIN: MEMBER LIST</h3>
+        <h3> <a href="../admin/admin">ADMIN: MEMBER LIST</a></h3>
     </div>
     
 <section>

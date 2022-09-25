@@ -2,17 +2,62 @@ package kr.co.hotel.diningresv;
 
 public class DiningResvVO {
 	
-	private int dr_id, dr_stayhalin, dr_total, dr_state;
-	private String dr_time, dine_type, dr_extrarq, dr_date, p1, p2, p3, email, adult, child, baby;
-	
-	// 다이닝 id
-	private int dining_id;
-	
-    // userid
+	private int dr_id, dr_state;
+	private String dr_time, dine_type, dr_extrarq, dr_date, email, dr_total;
+
+	// userid
 	private String userid;
+
+	// phone
+	private String p1, p2, p3;
 	
+	// 결제 수단
+	private int sudan;
 	
-    public String getAdult() {
+	// 예약 인원 타입
+	private String adult, child, baby;
+	
+	// 결제일
+	private String writeday;
+	
+	// 예약자 이름
+	private String bkname;
+	
+	// 예약번호
+	private String bid;
+	
+    public int getSudan() {
+		return sudan;
+	}
+	public void setSudan(int sudan) {
+		this.sudan = sudan;
+	}
+	public String getBkname() {
+		return bkname;
+	}
+	public void setBkname(String bkname) {
+		this.bkname = bkname;
+	}
+	public String getBid() {
+		return bid;
+	}
+	public void setBid(String bid) {
+		this.bid = bid;
+	}
+
+    public String getWriteday() {
+		return writeday;
+	}
+	public void setWriteday(String writeday) {
+		this.writeday = writeday;
+	}
+	public String getDr_total() {
+		return dr_total;
+	}
+	public void setDr_total(String dr_total) {
+		this.dr_total = dr_total;
+	}
+	public String getAdult() {
 		return adult;
 	}
 	public void setAdult(String adult) {
@@ -22,7 +67,7 @@ public class DiningResvVO {
 		return child;
 	}
 	public void setChild(String child) {
-		this.child = child;
+		 this.child = child;
 	}
 	public String getBaby() {
 		return baby;
@@ -75,18 +120,7 @@ public class DiningResvVO {
 	public void setDr_id(int dr_id) {
 		this.dr_id = dr_id;
 	}
-	public int getDr_stayhalin() {
-		return dr_stayhalin;
-	}
-	public void setDr_stayhalin(int dr_stayhalin) {
-		this.dr_stayhalin = dr_stayhalin;
-	}
-	public int getDr_total() {
-		return dr_total;
-	}
-	public void setDr_total(int dr_total) {
-		this.dr_total = dr_total;
-	}
+
 	public int getDr_state() {
 		return dr_state;
 	}
@@ -131,12 +165,7 @@ public class DiningResvVO {
 	public void setDr_date(String dr_date) {
 		this.dr_date = dr_date;
 	}
-	public int getDining_id() {
-		return dining_id;
-	}
-	public void setDining_id(int dining_id) {
-		this.dining_id = dining_id;
-	}
+
 	public String getUserid() {
 		return userid;
 	}

@@ -92,6 +92,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from product where pcode=#{param1}
 	</select>
 	
+	<select id="getInfo" resultType="kr.co.hotel.member.MemberVO">
+		select * from member where userid=#{param1}
+	</select>
+	
 	<select id="wish" resultType="kr.co.hotel.eshop.WishVO">
 		select w.*, substr(p.fimg, 1, instr(p.fimg, ",")-1) as fimg,
 		p.title, p.price, p.halin, p.baefee
@@ -103,6 +107,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="cart_delDupli">
 		<![CDATA[ delete a.* from cart a, cart b
 		where a.id < b.id and a.userid=b.userid and a.pcode=b.pcode ]]>
+	</delete>
+	
+	<insert id="pro_gumae_ok" parameterType="kr.co.hotel.eshop.GumaeVO">
+		insert into gumae(jumuncode, userid, pcode, total_su, total_price, pay_sudan,
+		pname, pphone, pemail, bname, bphone, bzip, bjuso, bjuso_etc)
+		values(#{jumuncode}, #{userid}, #{pcode}, #{total_su}, #{total_price}, #{pay_sudan},
+		#{pname}, #{pphone}, #{pemail}, #{bname}, #{bphone}, #{bzip}, #{bjuso}, #{bjuso_etc})
+	</insert>
+	
+	<select id="getJumun" resultType="Integer">
+		select ifnull(max(right(jumuncode, 4)), 0) from gumae
+	</select>
+	
+	<delete id="cart_del">
+		delete from cart where pcode=#{param1} and userid=#{param2}
 	</delete>
 	
 </mapper>

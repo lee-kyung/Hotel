@@ -2,7 +2,9 @@ package kr.co.hotel.eshop;
 
 import java.io.PrintWriter;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Enumeration;
 import java.util.Random;
 
@@ -210,7 +212,7 @@ public class EshopServiceImpl implements EshopService {
 		
 		if(session.getAttribute("userid") == null) {	// 비회원인데
 			if(cookie == null) {	// cookie값이 없다면
-				String cookievalue=RandomStringUtils.random(30, true, true);
+				String cookievalue=RandomStringUtils.random(20, true, true);
 				Cookie cookieid=new Cookie("cookieid", cookievalue);
 			
 				/* 쿠키유지시간 설정하기 */
@@ -318,7 +320,7 @@ public class EshopServiceImpl implements EshopService {
 	}
 
 	@Override
-	public String pro_gumae(HttpServletRequest request, Model model) {
+	public String pro_gumae(HttpServletRequest request, Model model, HttpSession session) {
 		String[] pcode=request.getParameter("pcode").split(",");
 		String[] su=request.getParameter("su").split(",");
 		String total_price=request.getParameter("total_price");
@@ -345,6 +347,10 @@ public class EshopServiceImpl implements EshopService {
 		String p=request.getParameter("p");
 		model.addAttribute("p", p);
 		
+		/* 로그인한 회원의 정보 가져오기 */
+		if(session.getAttribute("userid") != null)
+			model.addAttribute("mvo", mapper.getInfo(session.getAttribute("userid").toString()));
+		
 		return "/eshop/pro_gumae";		
 	}
 
@@ -353,7 +359,7 @@ public class EshopServiceImpl implements EshopService {
 		/* 정렬말머리의 초기화면값 처리하기*/
 		String osel;
 		if(request.getParameter("osel") == null)
-			osel="id asc";
+			osel="id desc";
 		else
 			osel=request.getParameter("osel");
 		
@@ -385,5 +391,58 @@ public class EshopServiceImpl implements EshopService {
 		}
 		
 		return "redirect:/eshop/wish";
+	}
+
+	@Override
+	public String pro_gumae_ok(GumaeVO gvo, HttpSession session, HttpServletRequest request) {
+		Cookie cookie = WebUtils.getCookie(request, "cookieid");	// 이미 생성된 쿠키값
+		
+		if(session.getAttribute("userid") == null)
+			if(cookie == null)
+				gvo.setUserid("guest");
+			else
+				gvo.setUserid(cookie.getValue());
+		else
+			gvo.setUserid(session.getAttribute("userid").toString());
+		
+		/* 주문번호 생성하기 → 구매날짜(8자리)+난수(4자리)+찐숫자(4자리) */
+		Date today = new Date();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+		String now = dateFormat.format(today);
+		
+		String rand=RandomStringUtils.random(4, false, true);
+		
+		Integer n=mapper.getJumun();
+		n++;
+		String num=n.toString();
+		switch(num.length()) {
+			case 1 : num="000"+num; break;
+			case 2 : num="00"+num; break;
+			case 3 : num="0"+num; break;
+		}
+		
+		String jumuncode='e'+now+rand+num;		
+		gvo.setJumuncode(jumuncode);
+		
+		String userid=gvo.getUserid();
+		
+		/* 문자열로 오는 [pcode, su_imsi, price_imsi]를 배열에 나눠서 저장 */
+		String[] pcode=gvo.getPcode().split(",");
+		String[] su=gvo.getSu_imsi().split(",");
+		String[] price=gvo.getPrice_imsi().split(",");
+		
+		int gchk=Integer.parseInt(request.getParameter("gchk"));
+		
+		for(int i=0;i<pcode.length;i++) {
+			gvo.setPcode(pcode[i]);
+			gvo.setTotal_su(Integer.parseInt(su[i]));
+			gvo.setTotal_price(Integer.parseInt(price[i]));
+			mapper.pro_gumae_ok(gvo);
+			
+			if(gchk == 1)	// 1이면 장바구니에서
+				mapper.cart_del(pcode[i], userid);	// [구매]로 넘어간 [장바구니 속 상품]을 cart테이블에서 삭제하기					
+		}
+
+		return "redirect:/main/index";
 	}
 }

@@ -18,7 +18,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<select id="getBid" resultType="Integer">
-		select ifnull(max(right(bid,4)),0) from roombk where userid=#{param1}
+		select ifnull(max(right(bid,4)),0) from roombk
 	</select>
 
 	<select id="getRoomAvail" resultType="kr.co.hotel.room.RoomVO">

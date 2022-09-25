@@ -3,26 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <head>
- <style>
-  section{
-    width:1000px;
-    margin:auto;
-  }
-  section #resv_check #left{
-    margin-top:20px;
-    display:inline-block;
-    margin-left:20px;
-    width:150px;
-  }
-  section #resv_check #right{
-    margin-top:20px;
-    display:inline-block;
-    /* margin-left:20px; */
-    width:150px;
-  }
- </style>
- 
- 
+
 </head>
 
 <body>
@@ -32,7 +13,7 @@
     <!-- 새 이미지 추가하는 법
     	①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기
     	②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
-    <div class="bradcam_area dining2">	<!-- class="bradcam_area 클래스명" -->
+    <div class="bradcam_area basic">	<!-- class="bradcam_area 클래스명" -->
         <h3> Dining Reservation</h3>
     </div>
     <!-- bradcam_area_end -->
@@ -40,45 +21,28 @@
 	<!-- ================ 타이틀(자유롭게 변경) Area Start ================= -->
     <!-- 부타이틀(자유롭게 변경)_area_start -->
 <section>
-<div id="resv_check"> 
-	
-	<div id="title">RESERVATION</div>
-	<div id="name">${drvo.bkname }님 !  <span id="txt">예약이 완료되었습니다.</span></div>
-	<div id="border">
-	<div id="left">
-      <div> 예약 일자 </div>
-      <div> 예약 번호</div>
-      <div> 예약자 성함 </div>
-      <div> 예약 상품 </div>
-      <div> 입장 시간 </div>
-      <div> 결제 방법 </div>
-      <div> 결제 금액 </div>
-      <div> 요청 사항</div>
-    </div>   
-    <div id="right">
-      <div> ${drvo.writeday} </div>
-      <div> ${drvo.bid}</div>
-      <div> ${drvo.bkname} </div>
-      <div> ${drvo.dine_type} <img src="../resources/img/${dine_pimg}" width="70" height="70"> </div>
-      <div> ${drvo.dr_time} </div>
-      <div> 
-      <c:if test="${drvo.sudan == 0}">
-         <c:set var="sudan" value="간편결제"/>
-       </c:if>
-       <c:if test="${drvo.sudan == 1}">
-         <c:set var="sudan" value="현장결제"/>
-       </c:if>
-      <div>${sudan}</div>
-      <div> <fmt:formatNumber value="${drvo.dr_total}" pattern="#,###"/>원 </div>
-      <div> ${drvo.dr_extrarq}</div>
-      
-    </div> 
-   </div>
-  </div> 
-
+   <table width="900" align="center">
+    <caption><h3> 주 문 내 역</h3></caption>
+    <tr> 
+      <td> 예약 일자 </td>
+      <td> 예약 상품 </td>
+      <td> 예약 타입 </td>
+      <td> 입장 시간 </td>
+      <td> 결제 금액 </td>
+      <td> 상태 </td>
+      <td> 변경 </td>
+      <td> 상품평 </td>
+    </tr>
+    
+    <c:forEach items="${list}" var="drvo">
+     <tr>
+       <td> ${drvo.writeday} </td>
+       <%-- <td> <img src="../resources/img/${dvo.pimg}" width="70" height="70"> </td> --%>
+       <td> ${drvo.dine_type} </td>
+       <td> ${drvo.dine_time} </td>
+      <%--  <td> <fmt:formatNumber value="${gvo.chong}" pattern="#,###"/>원 </td>
        
-              
-  <%-- <!-- state 관련 if -->
+       <!-- state 관련 if -->
        <c:if test="${gvo.state == 0}">
          <c:set var="state" value="결제완료"/>
        </c:if>
@@ -143,8 +107,9 @@
              <input type="button" value="상품평 작성" disabled>
            </c:if>
        </td>
-    </tr> 
-    </c:forEach> --%>
+    </tr> --%>
+    </c:forEach>
+   </table>
   </section>
     <!-- 부타이틀(자유롭게 변경)_area_end -->
     <!-- ================ 타이틀(자유롭게 변경) Area End ================= -->
