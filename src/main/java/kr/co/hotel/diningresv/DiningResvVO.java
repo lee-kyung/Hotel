@@ -3,13 +3,69 @@ package kr.co.hotel.diningresv;
 public class DiningResvVO {
 	
 	private int dr_id, dr_state;
-	private String dr_time, dine_type, dr_extrarq, dr_date, p1, p2, p3, email, adult, child, baby, writeday, dr_total;
+	private String dr_time, dine_type, dr_extrarq, dr_date, email, dr_total;
 
-    // userid
+	// userid
 	private String userid;
 
+	// phone
+	private String p1, p2, p3;
 	
+	// 결제 수단
+	private int sudan;
 	
+	// 예약 인원 타입
+	private String adult, child, baby;
+	
+	// 결제일
+	private String writeday;
+	
+	// 예약자 이름
+	private String bkname;
+	
+	// 예약번호
+	private String bid;
+	
+	/* 달력의 예약마감 표시용 */
+	private int cnt, td, dt;
+	
+    public int getDt() {
+		return dt;
+	}
+	public void setDt(int dt) {
+		this.dt = dt;
+	}
+	public int getTd() {
+		return td;
+	}
+	public void setTd(int td) {
+		this.td = td;
+	}
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
+	public int getSudan() {
+		return sudan;
+	}
+	public void setSudan(int sudan) {
+		this.sudan = sudan;
+	}
+	public String getBkname() {
+		return bkname;
+	}
+	public void setBkname(String bkname) {
+		this.bkname = bkname;
+	}
+	public String getBid() {
+		return bid;
+	}
+	public void setBid(String bid) {
+		this.bid = bid;
+	}
+
     public String getWriteday() {
 		return writeday;
 	}
@@ -32,7 +88,7 @@ public class DiningResvVO {
 		return child;
 	}
 	public void setChild(String child) {
-		this.child = child;
+		 this.child = child;
 	}
 	public String getBaby() {
 		return baby;

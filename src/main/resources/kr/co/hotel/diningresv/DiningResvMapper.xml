@@ -6,26 +6,40 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="kr.co.hotel.diningresv.DiningResvMapper">
     
     <select id="dining_reserve" resultType="kr.co.hotel.dining.DiningVO">
-	  <![CDATA[  select d.*, dr.dine_type, right(dr.dr_date,2) as td
-	  from dining as d, diningresv as dr
-	  where dr.dr_date>=#{param1} and dr.dr_date <= #{param2}
-	  and d.dine_type=dr.dine_type order by id asc ]]>
-	</select>                                      <!-- 며칠 -->
+		select * from dining order by id asc
+	</select>
 	
-	<select id="dining_reserve_next" resultType="kr.co.hotel.diningresv.DiningResvVO">
-	  select * from dining where id=#{param1}
+	<select id="getDresv" resultType="kr.co.hotel.diningresv.DiningResvVO">
+		<![CDATA[ select dine_type, right(dr_date, 2) as td, count(*) as cnt
+		from diningresv
+		where dr_date >= #{param1} and dr_date <= #{param2}
+		group by dine_type, dr_date ]]>
+	</select>
+	
+	<select id="getDTresv" resultType="kr.co.hotel.diningresv.DiningResvVO">
+		select left(dr_time, 2) as dt, count(*) as cnt
+		from diningresv where dr_date=#{param1} and dine_type=#{param2}
+		group by dr_time;
+	</select>
+	
+	<select id="dining_reserve_next" resultType="kr.co.hotel.dining.DiningVO">
+	  select * from dining where dine_type=#{param1}
 	</select>
 	
 	<insert id="dining_reserve_ok" parameterType="kr.co.hotel.diningresv.DiningResvVO">
 	   insert into diningresv
 	   (dr_date,dr_extrarq,dr_state,dr_time,dr_total,dine_type,
-	      userid,email,p1,p2,p3,writeday,adult,child,baby)
+	      bkname,userid,email,p1,p2,p3,writeday,adult,child,baby,bid,sudan)
 	   values(#{dr_date},#{dr_extrarq},#{dr_state},#{dr_time},#{dr_total},#{dine_type},
-	      #{userid},#{email},#{p1},#{p2},#{p3},now(),#{adult},#{child},#{baby})
+	      #{bkname},#{userid},#{email},#{p1},#{p2},#{p3},now(),#{adult},#{child},#{baby},#{bid},#{sudan})
 	</insert>
-	
+
+	<select id="getBid" resultType="Integer">
+	  select ifnull(max(right(bid,4)),0) from diningresv
+    </select>
+
 	<select id="dining_reserve_check" resultType="kr.co.hotel.diningresv.DiningResvVO">
-	  select * from diningresv
+	  select * from diningresv where bid=#{param1}
 	</select>
 	
 	<!-- <select id="getDineAvail" resultType="kr.co.hotel.dining.DiningVO">

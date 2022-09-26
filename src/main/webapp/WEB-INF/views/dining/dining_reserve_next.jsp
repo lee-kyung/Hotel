@@ -19,7 +19,7 @@
 	margin-bottom: 120px;
   }
   diningsec table{
-    width: 750px;
+    width: 800px;
 	height: 80px;
 	/* 	border: 1px solid #887159; */
 	marin-top:20px;
@@ -41,11 +41,11 @@
   }
   diningsec #outer #right{
 	background: #f9f9f9; 
-	width: 225px;
+	width: 240px;
 	height: 780px;
 	float: right;
 	margin-left: 10px;
-	padding-left: 10px;
+	padding: 20px;
 	/* position: absolute;
 	left: 950px; */
   } 
@@ -181,10 +181,11 @@
 				  var total=Number(120000*ad_su)+Number(60000*cd_su);
 				  /* document.getElementById("drtotal").innerText=new Intl.NumberFormat().format(total); */
 			  }
-	  document.getElementById("dr_total").innerText=new Intl.NumberFormat().format(total);
+	  
+	               document.getElementById("dr_total").innerText=new Intl.NumberFormat().format(total);
 
 	  // form태그내에 총금액을 전달
-	  /* document.reser.dr_total.value=total;  */
+	  document.reser.dr_total.value=total;
   } 
    
 </script>
@@ -205,7 +206,7 @@
   <div class="row">
      <diningsec>
       <form name="reser" method="post" action="dining_reserve_ok">	
-	   <input type="hidden" name="dr_total" value="${dvo.dine_adult+dvo.dine_child}">
+	   <input type="hidden" name="dr_total" value="${dvo.dine_adult}">
 	  <%--  <input type="hidden" name="dr_total" value="${dvo.dine_child }"> --%>
 		  <div style="color:#887159; font-weight:900"> RESERVATION</div>
 		       <div style="font-size: 25px;"> 파라다이스호텔 부산에 오신 것을 환영합니다.</div><br>
@@ -225,9 +226,12 @@
 			      - 어린이 인원 예약 시 요청사항에 나이 정보를 입력해 주시기 바랍니다.<br>
 			      - 홈페이지 예약 할인 프로모션은 예약 상황에 따라 조기 마감 될 수 있으며 바우쳐,쿠폰사용 및 제휴 할인과 중복 적용되지 않습니다.<br>
 			   </div>
-			   
+			   <div>
+			   <br>
+			   </div>
 			   <!-- 예약정보 -->
 			   <table>
+			   
 			   <tr>
 			   
 			       <th width="300">방문 희망 일자</th>
@@ -276,8 +280,19 @@
 			       <th colspan="3"> 추가 요청사항(선택)<sup>(<span id="nowByte">0</span>/100bytes)</sup></th>
 			   </tr>
 			   <tr>
-			       <td colspan="3"> <textarea cols="100" rows="5" name="dr_extrarq" onkeyup="fn_checkByte(this)" placeholder="* 요청사항은 레스토랑 사정에 따라 응대가 어려울 수 있으며 추가 문의는 전화 주시기 바랍니다."></textarea> </td>
+			       <td colspan="3">
+			       <textarea cols="100" rows="5" name="dr_extrarq" onkeyup="fn_checkByte(this)" 
+			       placeholder="알레르기가 있다면, 예약시 미리 말씀해 주십시오. 유아용품이 필요하신 경우 여기에 기재해 주십시오."></textarea>
+			       </td>
 			   </tr>
+			   <tr>
+			       <td colspan="3">
+			      m1 * 요청사항은 레스토랑 사정에 따라 응대가 어려울 수 있으며 추가 문의는 전화 주시기 바랍니다.<br>
+			      m2 * 요청사항을 최대한 반영하도록 최선을 다하겠습니다.<br>
+         &nbsp;&nbsp;다만, 호텔의 사정으로 부득이 반영되지 않을 수도 있으니 이 점 양해 부탁드립니다.
+			       </td>
+			   </tr>
+			   
 			   <!-- 고객정보 -->
 			   <div><div style="float:left; width:500px;"><b>고객 정보</b></div><div style="float:right;align:right;font-size:12px">* 필수입력항목</div></div><br>
  			</table>
@@ -285,28 +300,27 @@
  			 	<tr height="10px"> 
  					<td>
  					<c:if test="${userid==null}">
- 					* 예약자 이름 &nbsp<input type="text" name="bkname">
- 					* 휴대폰 번호 &nbsp
+ 					* 예약자 이름 &nbsp;<input type="text" name="bkname">
+ 					* 휴대폰 번호 &nbsp;
                     <input type="text" name="p1" value="${p1}" class="inputs" maxlength="3" size="10"/>-
 			        <input type="text" name="p2" value="${p2}" class="inputs" maxlength="4" size="10"/>-
 			        <input type="text" name="p3" value="${p3}" class="inputs" maxlength="4" size="10"/>
+			        * 휴대폰 번호는 예약번호 전송에 쓰입니다. 정확히 기입해 주세요.
                     </c:if>
                     </td>
  					
  					<c:if test="${userid!=null }">
- 					* 예약자 이름 &nbsp<input type="text" name="bkname" value="${name}">
- 					* 휴대폰 번호 &nbsp<input type="hidden" name="bkphone" value="${p1}">
+ 					* 예약자 이름 &nbsp;<input type="text" name="bkname" value="${name}">
+ 					* 휴대폰 번호 &nbsp;
  					<input type="text" name="p1" value="${p1}" class="inputs" maxlength="3" size="10"/>-
 			        <input type="text" name="p2" value="${p2}" class="inputs" maxlength="4" size="10"/>-
-			        <input type="text" name="p3" value="${p3}" class="inputs" maxlength="4" size="10"/>
+			        <input type="text" name="p3" value="${p3}" class="inputs" maxlength="4" size="10"/><br>
+			        * 휴대폰 번호는 예약번호 전송에 쓰입니다. 정확히 기입해 주세요.
                     </c:if>
                     </td>
-
- 					
  				</tr> 
- 				
  				<tr>
- 					<td> &nbsp </td>
+ 					<td> &nbsp; </td>
  				</tr>
           </table>
 			   
@@ -318,8 +332,8 @@
 			      <br>
 			      <div><b>결제 방법</b></div>
 				  <div id="paymethod">
-					<input type="radio" value="0" name="paym"> 간편결제
-					<input type="radio" value="1" name="paym"> 현장결제(예약금 10만원) <br> 
+					<input type="radio" name="sudan" value="0" > 간편결제&nbsp;&nbsp;
+					<input type="radio" name="sudan" value="1" > 현장결제 <br> 
 					* 쿠폰 / 제휴 바우처 / 이벤트 쿠폰 사용 원하실 경우, 레스토랑에서 결제하기를 선택해 주세요.
 			      </div>
 			      <br>
@@ -340,12 +354,14 @@
 				</div>
 				<br>
 				<div>
-					<div style="float:left; width:500px;font-weight:900">상품 정보 및 취소 규정에 대한 동의 </div><div style="float:right;align:right;font-size:12px"><input type="checkbox" name="agree2">동의합니다</div>
+					<div style="float:left; width:500px;font-weight:900">취소 규정에 대한 동의 </div><div style="float:right;align:right;font-size:12px"><input type="checkbox" name="agree2">동의합니다</div>
+					<br>
+				<div>
+				 - 이용일로부터 1일전 23:59분전까지 무료 취소 가능합니다.<br>
+			     - 방문 당일 취소 및 변경은 위약금 10만원이 부과됩니다.
+				</div>
 				</div><br>
 				<div>
-<textarea style="resize: none; border:none" rows="3" cols="80" readonly>예약 취소 및 변경은 상기 [취소 규정] 기간 내 가능하며, 이후 도착일 기준 하루 전 18시까지 1박 요금의 50%, 이후 취소 시 1박 요금의 100%수수료가 발생합니다.
-투숙 당일 노쇼(No Show) 발생 시 동일한 위약금이 청구될 수 있습니다.
-</textarea>
 				</div>
 				</div>
 				</div>
@@ -361,7 +377,7 @@
 	                <div>성인<span id="a_su"></span>명/어린이<span id="c_su"></span>명/유아<span id="b_su"></span>명</div><br>
 					<div>총<span id="sutotal">&nbsp;&nbsp;&nbsp;</span>명</div><br>
 					<div><b>총 가격</b></div>
-	                <div><span id="dr_total" name="dr_total"></span></div>
+	                <div><span id="dr_total" name="dr_total">${dvo.dine_adult}</span></div>
                     <br>
 					<br>
 					<br>

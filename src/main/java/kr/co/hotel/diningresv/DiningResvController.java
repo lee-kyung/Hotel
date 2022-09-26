@@ -26,6 +26,12 @@ public class DiningResvController {
 	{
 		return service.dining_reserve(request, model, session);
 	}
+	
+	@RequestMapping("/dining/getDTresv")
+	public void getDTresv(HttpServletRequest request, PrintWriter out)
+	{
+		service.getDTresv(request, out);
+	}
 
 	/*@RequestMapping("/dining/getDineAvail")
 	public void getDineAvail(HttpServletRequest request, PrintWriter out, DiningVO dvo)
@@ -47,14 +53,14 @@ public class DiningResvController {
     //   
     
     @RequestMapping("/dining/dining_reserve_ok")
-    public String dining_reserve_ok(DiningResvVO drvo)
+    public String dining_reserve_ok(DiningResvVO drvo, HttpSession session)
     {
-    	return service.dining_reserve_ok(drvo);
+    	return service.dining_reserve_ok(drvo,session);
     }
     @RequestMapping("/dining/dining_reserve_check")
-    public String dining_reserve_check(HttpSession session, Model model)
+    public String dining_reserve_check(HttpServletRequest request,  Model model)
     {
-    	return service.dining_reserve_check(session, model);
+    	return service.dining_reserve_check(request, model);
     }
     
    /* @RequestMapping("/dining/getcheck")

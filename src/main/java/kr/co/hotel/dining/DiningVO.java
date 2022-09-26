@@ -7,31 +7,21 @@ public class DiningVO {
 	private String dcode, dine_pimg, dine_cimg;
 	
 	// count값 증가
-		private int cnt;
-		private String dine_type;
+	private int cnt;
+	private String dine_type;
 		
-
-	// 
-	private int td;
-	
-	public int getTd() {
-		return td;
-	}
-	public void setTd(int td) {
-		this.td = td;
-	}
 	public int getDining_id() {
-			return dining_id;
-		}
-		public void setDining_id(int dining_id) {
-			this.dining_id = dining_id;
-		}
-		public int getCnt() {
-			return cnt;
-		}
-		public void setCnt(int cnt) {
-			this.cnt = cnt;
-		}
+		return dining_id;
+	}
+	public void setDining_id(int dining_id) {
+		this.dining_id = dining_id;
+	}
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
 	/*public String getDine_time() {
 		return dine_time;
 	}

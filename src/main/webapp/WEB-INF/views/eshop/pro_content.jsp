@@ -214,20 +214,20 @@
 			juk=Math.ceil(${pvo.price * (pvo.juk / 100)} * su);
 		else if(${(pvo.halin != 0) && (pvo.juk != 0)})
 			juk=Math.ceil(${(pvo.price - (pvo.price * (pvo.halin / 100))) * (pvo.juk / 100)} * su);
-
-		total=new Intl.NumberFormat().format(total);
+		
 		juk=new Intl.NumberFormat().format(juk);
+		total=new Intl.NumberFormat().format(total);
+		if(${pvo.juk != 0})
+			document.getElementById("juk_price").innerText=juk;
 		document.getElementById("total_price").innerText=total;
-		document.getElementById("juk_price").innerText=juk;
 		
 		/* pro_gumae로 넘어갈 [주문금액], [할인금액], [총결제금액]의 최종가격을 구해서 input type="hidden"에 넣기 */
 		let pimsi=tprice*su;
 		let himsi=thalin*su;
-		let yimsi=tpay*su;
 		
 		document.getElementById("tprice").value=pimsi;
 		document.getElementById("thalin").value=himsi;
-		document.getElementById("tpay").value=yimsi;
+		document.getElementById("tpay").value=pimsi-himsi+parseInt("${pvo.baefee}");
 	}
 	
 	/* 위시리스트에 추가하고 삭제하기 */
@@ -415,6 +415,8 @@
 			<!-- 상품정보_area_end -->
 			
 			<!-- pro_gumae에 보낼 정보 start -->
+			<c:set var="chalin" value="${pvo.price * (pvo.halin / 100)}"/>
+			<c:set var="cpay" value="${pvo.price - (pvo.price * (pvo.halin / 100)) + pvo.baefee}"/>
 			<input type="hidden" name="total_price" value="${pvo.price}" id="tprice">
 			<input type="hidden" name="total_halin" value="${chalin}" id="thalin">
 			<input type="hidden" name="total_baefee" value="${pvo.baefee}">

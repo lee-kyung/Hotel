@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.web.util.WebUtils;
 
 import kr.co.hotel.member.MemberVO;
@@ -25,7 +26,7 @@ public class LoginServiceImpl implements LoginService {
 		
 		mvo=mapper.login_ok(mvo);
 		int ck=Integer.parseInt(request.getParameter("ck"));
-		
+
 		if(mvo != null) {
 			String userid=mvo.getUserid();
 			session.setAttribute("userid", userid);
@@ -33,6 +34,7 @@ public class LoginServiceImpl implements LoginService {
 			session.setAttribute("email", mvo.getEmail());
 			session.setAttribute("phone", mvo.getPhone());
 			session.setAttribute("joinday", mvo.getJoinday());
+			session.setAttribute("juk", mvo.getJuk());
 			
 			/* 비회원 장바구니를 회원 장바구니로 옮기기 (+중복삭제) */
 			Cookie cookie = WebUtils.getCookie(request, "cookieid");
@@ -60,7 +62,7 @@ public class LoginServiceImpl implements LoginService {
 			}
 			else if(ck==3)
 			{
-				return "redirect:/main/index";					
+				return "redirect:/main/index";
 			}
 			else
 				return "redirect:/main/index";

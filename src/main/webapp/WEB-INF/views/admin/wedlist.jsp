@@ -14,7 +14,10 @@
 	section table{
 		width: 1300px;
 	}
-
+	input[type=button]{
+		display: none;
+	}
+	
 </style>
 <script>
 	function move(my)
@@ -43,6 +46,12 @@
 		else
 			return true;		
 	}
+	
+	function ordersort(oby)
+	{	
+		location="wedlist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby="+oby; 
+	}
+
 </script>
 </head>
 
@@ -77,17 +86,25 @@
 		</select>
 		</div></h5>
 		</tr>
+		<form name="aa" method="post" >
 		<tr>
-			<td> 번호 </td>
+			<td> 번호	 </td>
 			<td> 아이디 </td>
-			<td> 예약상담일 </td>
-			<td> 예약일 </td>
-			<td> 예식희망일 </td>
+			<td> 예약상담일
+               <span onclick="location='wedlist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=wresv_cday asc'">∧</span>
+               <span onclick="location='wedlist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=wresv_cday desc'">∨</span>
+         </td>
+         <td> 예약일 </td>
+         <td> 예식희망일
+               <span onclick="location='wedlist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=wresv_wday asc'">∧</span>
+               <span onclick="location='wedlist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=wresv_wday desc'">∨</span>
+          </td>
 			<td> 예약시간 </td>
 			<td> 웨딩홀 </td>
 			<td> 예약자 </td>
 			<td> 연락번호 </td>
 			<td> 인원 </td>
+			<td> 예약번호 </td>
 			<td> 예약상태 </td>
 		</tr>
 	  <c:forEach items="${wlist}" var="wvo">
@@ -102,21 +119,32 @@
 	  		<td> ${wvo.wresv_name} </td>
 	  		<td> ${wvo.wresv_phone} </td>
 	  		<td> ${wvo.wresv_inwon} </td>
-	  		<td> ${wvo.state} </td>		
+	  		<td> ${wvo.wresv_code} </td>
+	  		<c:if test="${wvo.state == 0}">
+	  			<c:set var="state" value="예약완료"/>
+		  	</c:if>
+		  	<c:if test="${wvo.state == 1}">
+		  		<c:set var="state" value="취소됌"/>
+		  	</c:if>
+		  	<c:if test="${wvo.state == 2}">
+		  		<c:set var="state" value="사용완료"/>
+		  	</c:if>
+	  		<td> ${state} </td>		
 	  	</tr>
 	  </c:forEach>
+	  </form>
 	</table>
 	<div id="lis">
 		<!-- 10페이지 단위로 이전으로 가기 -->
 		<c:if test="${pstart==1}"></c:if> <!-- 페이지 그룹이 1일때 -->
 		<c:if test="${pstart!=1}"><!-- 1그룹이 아니면 -->
-			<a href="wedlist?page=${pstart-1}&pcnt=${pcnt}&sel=${sel}&sword=${sword}">◀</a>
+			<a href="wedlist?page=${pstart-1}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=${oby}">◀</a>
 		</c:if>
 		
 		<!-- 1페이지 단위로 이전으로 가기 -->
 		<c:if test="${page==1}"></c:if> <!-- 1페이지면 -->
 		<c:if test="${page!=1}"><!-- 1페이지가 아니면 -->
-			<a href="wedlist?page=${page-1}&pcnt=${pcnt}&sel=${sel}&sword=${sword}">◁</a>
+			<a href="wedlist?page=${page-1}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=${oby}">◁</a>
 		</c:if>
 		
 		<!-- 페이지 출력 -->
@@ -128,19 +156,19 @@
 			<c:if test="${page!=i}">
 				<c:set var="st" value=""/>
 			</c:if>
-			<b><a href="wedlist?page=${i}&pcnt=${pcnt}&sel=${sel}&sword=${sword}"${st}>${i}</a></b><!-- 누른페이지로 이동걸기 -->
+			<b><a href="wedlist?page=${i}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=${oby}"${st}>${i}</a></b><!-- 누른페이지로 이동걸기 -->
 		</c:forEach>
 		
 		<!-- 1페이지 단위로 다음으로 가기 -->
 		<c:if test="${page==chong}"></c:if>
 		<c:if test="${page!=chong}">
-			<a href="wedlist?page=${page+1}&pcnt=${pcnt}&sel=${sel}&sword=${sword}">▷</a>
+			<a href="wedlist?page=${page+1}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=${oby}">▷</a>
 		</c:if>
 		
 		<!-- 10페이지 단위로 다음으로 가기 -->
 		<c:if test="${pend==chong}"></c:if>
 		<c:if test="${pend!=chong}">
-			<a href="wedlist?page=${pend+1}&pcnt=${pcnt}&sel=${sel}&sword=${sword}">▶</a>
+			<a href="wedlist?page=${pend+1}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=${oby}">▶</a>
 		</c:if>
 		
 	</div>

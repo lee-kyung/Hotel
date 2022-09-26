@@ -13,7 +13,6 @@ public class RoomResvVO {
 	// 객실명
 	private String rname;
 	
-	
 	public String getRname() {
 		return rname;
 	}

@@ -266,7 +266,7 @@ public class WeddingServiceImpl implements WeddingService{
 		}
 	
 			out.print(str);
-			out.print(wresv_cday);
+			
 	}
 
 	@Override

@@ -121,7 +121,7 @@ public class EshopServiceImpl implements EshopService {
 
 		/* 정렬말머리의 초기화면값 처리하기*/
 		if(request.getParameter("osel") == null)
-			osel="id asc";
+			osel="sold desc";
 		else
 			osel=request.getParameter("osel");
 		
@@ -359,7 +359,7 @@ public class EshopServiceImpl implements EshopService {
 		/* 정렬말머리의 초기화면값 처리하기*/
 		String osel;
 		if(request.getParameter("osel") == null)
-			osel="id asc";
+			osel="id desc";
 		else
 			osel=request.getParameter("osel");
 		
@@ -394,12 +394,22 @@ public class EshopServiceImpl implements EshopService {
 	}
 
 	@Override
-	public String pro_gumae_ok(GumaeVO gvo, HttpSession session, HttpServletRequest request) {
+	public String pro_gumae_ok(GumaeVO gvo, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
 		Cookie cookie = WebUtils.getCookie(request, "cookieid");	// 이미 생성된 쿠키값
 		
 		if(session.getAttribute("userid") == null)
-			if(cookie == null)
-				gvo.setUserid("guest");
+			if(cookie == null) {
+				//gvo.setUserid("guest");
+				String cookievalue=RandomStringUtils.random(20, true, true);
+				Cookie cookieid=new Cookie("cookieid", cookievalue);
+			
+				/* 쿠키유지시간 설정하기 */
+				cookieid.setPath("/");
+				cookieid.setMaxAge(60 * 60 * 1);
+				response.addCookie(cookieid);
+				
+				gvo.setUserid(cookievalue);
+			}
 			else
 				gvo.setUserid(cookie.getValue());
 		else
@@ -434,15 +444,29 @@ public class EshopServiceImpl implements EshopService {
 		int gchk=Integer.parseInt(request.getParameter("gchk"));
 		
 		for(int i=0;i<pcode.length;i++) {
+			/* gumae테이블에 저장하기 */
 			gvo.setPcode(pcode[i]);
 			gvo.setTotal_su(Integer.parseInt(su[i]));
 			gvo.setTotal_price(Integer.parseInt(price[i]));
 			mapper.pro_gumae_ok(gvo);
 			
+			/* 판매된 수량(su)만큼 product테이블의 재고(su)에서 빼고 판매량(sold)에 더하기 */
+			mapper.suMinusPlus(su[i], pcode[i]);
+			
 			if(gchk == 1)	// 1이면 장바구니에서
 				mapper.cart_del(pcode[i], userid);	// [구매]로 넘어간 [장바구니 속 상품]을 cart테이블에서 삭제하기					
 		}
 
-		return "redirect:/main/index";
+		return "redirect:/eshop/gumae_okmsg?jumuncode="+jumuncode;
+	}
+
+	@Override
+	public String gumae_okmsg(HttpServletRequest request, Model model) {
+		String jumuncode=request.getParameter("jumuncode");
+		
+		System.out.println(jumuncode);
+		model.addAttribute("name", mapper.getName(jumuncode));
+		model.addAttribute("jumuncode", jumuncode);		
+		return "eshop/gumae_okmsg";
 	}
 }

@@ -7,9 +7,94 @@
 	section{
 	width:1100px;
 	margin:auto;
-	border:1px solid red;
 	margin-top:100px;
 	margin-bottom:200px;}
+	
+	section #member_input #txt1{
+	text-align:center;
+	font-size:40px;}
+	
+	section #member_input #txt2{
+	margin-top:30px;
+	margin-bottom:60px;
+	text-align:center;
+	font-size:20px;}
+	
+	section #member_input form{
+	border:1px solid #887159;
+	padding-top:20px;
+	padding-bottom:40px;}
+	
+	section #member_input form div{
+	padding:10px;}
+	
+	section #member_input form span{
+	margin-left:30px;}
+	
+	section #member_input form input[type=text], input[type=password]{
+	margin-left:20px;
+	width:300px;
+	height:50px;
+	outline:none}
+	
+	section #member_input #phone1{
+	width:200px;
+	height:44px;
+	outline:none;}
+	
+	section #member_input #phone2{
+	width:200px;
+	margin-left:0px;
+	height:44px;
+	outline:none;}
+	
+	section #member_input select{
+	width:130px;
+	margin-left:20px;
+	text-align:center;
+	height:40px;
+	outline:none;}
+	
+	section #member_input #email{
+	margin-left:0px;}
+	
+	section #member_input #email_juso{
+	width:250px;
+	height:50px;
+	outline:none;}
+	
+	section #member_input #select{
+	width:200px;
+	margin-left:0px;
+	height:50px;
+	outline:none;}
+	
+	section #member_input #zip{
+	width:200px;}
+	
+	section #member_input #juso, #member_input #juso_etc{
+	width:770px;
+	margin-top:10px;}
+	
+	section #member_input input[type=button]{
+	width:150px;
+	margin-left:416px;
+	background:#887159;
+	color:white;
+	border:none;
+	height:50px;}
+	
+	section #member_input input[type=submit]{
+	margin-top:70px;
+	width:300px;
+	background:#887159;
+	color:white;
+	border:none;
+	height:60px;}
+	
+	section #member_input #btn_right{
+	float:right;}
+	
 </style>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -269,15 +354,18 @@
 		$('#select').change(function() {
 			if ($('#select').val() == 'directly') 
 			{
-				$('#email_juso').attr("disabled", false);
+				$('#email_juso').attr("readonly", false);
 	            $('#email_juso').val("");
 	            $('#email_juso').focus();
+	            $('#email_juso').css({"border": "1px solid #6C6C6C"});
+	            $('#email_juso').css({"background": "white"});
 	        } 
 			else 
 			{
 	            $('#email_juso').val($('#select').val());
 	            $('#email_juso').attr("readonly", true);
 	            $('#email_juso').css({"background": "#F3F3F3"});
+	            $('#email_juso').css({"border": "1px solid #6C6C6C"});
 	        }
 	    })
 	});
@@ -357,26 +445,23 @@
 
 <section>
 <div id="member_input">
-	<div id="txt">호텔 멤버 가입</div>
+	<div id="txt1">호텔 멤버 가입</div>
 	<div id="txt2">멤버가 되어 호텔이 제공하는 최고의 혜택을 만나보세요.</div>
 	<form name="join" method="post" action="member_input_ok" onsubmit="return check(this)">
 		
 		<div>
 			<div>아이디</div>
 			<input type="text" name="userid" maxlength="12" onblur="userid_check(this.value)">
-			<br>
 			<span id="msg" style="font-size:13px;"></span>
 		</div>
 		<div>
 			<div>비밀번호</div>
 			<input type="password" name="pwd" maxlength="15" onkeyup="pwd_check(this.value)">
-			<br>
 			<span id="msg2" style="font-size:13px;"></span>
 		</div>
 		<div>
 			<div>비밀번호 확인</div>
 			<input type="password" name="pwd2" maxlength="15" onkeyup="pwd_equal(this.value)">
-			<br>
 			<span id="msg3" style="font-size:13px;"></span>
 		</div>
 		<div>
@@ -393,9 +478,9 @@
 					<option value="018">018</option>
 					<option value="019">019</option>
 				</select>
-				<input type="text" name="phone1" id="phone1" maxlength="4" onblur="phone_check(this.value)">-
+				<input type="text" name="phone1" id="phone1" maxlength="4" onblur="phone_check(this.value)">&nbsp;&nbsp;-
 				<input type="text" name="phone2" id="phone2" maxlength="4" onblur="phone_check(this.value)">
-				<div id="msg4" style="font-size:13px;"></div>
+				<span id="msg4" style="font-size:13px;"></span>
 		</div>
 		<div>
 			<div>생년월일</div>
@@ -408,7 +493,7 @@
 			<div>이메일</div>
 			
        		 	<input type="text" name="email_id" onkeyup="email_check(this.value)"> 
- 				<span>@</span>
+ 				<span id="email">@</span>
  				<input name="email_juso" id="email_juso"> 
  				<select id="select">
 	            	<option value="" disabled selected>E-Mail 선택</option>
@@ -418,17 +503,18 @@
 		            <option value="nate.com" id="nate.com">nate.com</option>
 		            <option value="directly" id="textEmail">직접 입력하기</option>
 	        	</select>
-	        	<br>
 			<span id="msg5" style="font-size:13px;"></span>
 		</div>
 		<div>
 			<div>주소</div>
-				<input type="text" name="zip" readonly  placeholder="우편번호">
+				<input type="text" name="zip" readonly  placeholder="우편번호" id="zip">
 				<input type="button" value="주소찾기" onclick="juso_search()">
-				<input type="text" name="juso" placeholder="주소" readonly>
-				<input type="text" name="juso_etc" placeholder="상세주소">
+				<br>
+				<input type="text" name="juso" placeholder="주소" readonly id="juso">
+				<br>
+				<input type="text" name="juso_etc" placeholder="상세주소" id="juso_etc">
 		</div>
-		<div>
+		<div id="btn_right">
 				<input type="submit" value="가입">
 		</div>
 	</form>

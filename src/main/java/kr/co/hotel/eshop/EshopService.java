@@ -29,5 +29,6 @@ public interface EshopService {
 	public String wish(HttpSession session, Model model, HttpServletRequest request);
 	public String move_cart(HttpSession session, HttpServletRequest request);
 	
-	public String pro_gumae_ok(GumaeVO gvo, HttpSession session, HttpServletRequest request);
+	public String pro_gumae_ok(GumaeVO gvo, HttpSession session, HttpServletRequest request, HttpServletResponse response);
+	public String gumae_okmsg(HttpServletRequest request, Model model);
 }

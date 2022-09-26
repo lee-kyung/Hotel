@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -80,8 +81,8 @@
 			<td> 번호 </td>
 			<td> 아이디 </td>
 			<td> 예약번호 </td>
-			<td> 전화번호 </td>
-			<td> 이메일 </td>
+			<td> 예약자 </td>
+			<td> 연락번호 </td>
 			<td> 식사날짜 </td>
 			<td> 식사유형 </td>
 			<td> 식사시간 </td>
@@ -93,13 +94,13 @@
 			<td> 예약일 </td>
 			<td> 예약상태 </td>
 		</tr>
-	  <c:forEach items="${dlist}" var="dvo">
+ 	  <c:forEach items="${dlist}" var="dvo">
 	  	<tr>
 	  		<td> ${dvo.dr_id} </td>
 	  		<td> ${dvo.userid} </td>
-	  		<td> ${dvo.dining_id} </td>
+	  		<td> ${dvo.bid} </td>
+	  		<td> ${dvo.bkname} </td>
 	  		<td> ${dvo.p1}-${dvo.p2}-${dvo.p3} </td>
-	  		<td> ${dvo.email} </td>
 	  		<td> ${dvo.dr_date} </td>
 	  		<td> ${dvo.dine_type} </td>
 	  		<td> ${dvo.dr_time} </td>
@@ -109,9 +110,18 @@
 	  		<td> ${dvo.dr_total} </td>
 	  		<td> ${dvo.dr_extrarq} </td>
 	  		<td> ${dvo.writeday} </td>
-	  		<td> ${dvo.dr_state} </td>
+	  		<c:if test="${dvo.dr_state == 0}">
+	  			<c:set var="state" value="예약"/>
+		  	</c:if>
+		  	<c:if test="${dvo.dr_state == 1}">
+		  		<c:set var="state" value="사용완료"/>
+		  	</c:if>
+		  	<c:if test="${dvo.dr_state == 2}">
+		  		<c:set var="state" value="취소됌"/>
+		  	</c:if>
+		  		<td> ${state} </td>
 	  	</tr>
-	  </c:forEach>
+	  </c:forEach> 
 	</table>
 	<div id="lis">
 		<!-- 10페이지 단위로 이전으로 가기 -->
@@ -172,4 +182,3 @@
 
 
 </body>
-

@@ -124,4 +124,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from cart where pcode=#{param1} and userid=#{param2}
 	</delete>
 	
+	<update id="suMinusPlus">
+		update product set su=su-${param1}, sold=sold+${param1} where pcode=#{param2}
+	</update>
+	
+	<select id="getName" resultType="String">
+		select pname from gumae where jumuncode=#{param1} limit 1
+	</select>
+	
 </mapper>
