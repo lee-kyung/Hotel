@@ -37,7 +37,7 @@
 	    	<div>
 	    		<fmt:parseNumber var="in" value="${rvo.checkin}" integerOnly="true"/>
 	    		<fmt:parseNumber var="out" value="${rvo.checkout}" integerOnly="true"/>
-	    		${days}박
+	    		${days}박 
 	    	</div>
 	    	<div> 체크아웃 ${rvo.checkout} </div>
 	    </div>
