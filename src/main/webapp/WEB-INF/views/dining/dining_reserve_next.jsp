@@ -215,7 +215,27 @@
 		       <hr>
 		   <div id="outer">
 <!--left--><div id="left">	
-			       
+			   <table width="1100" border="1">
+     <c:forEach items="${dvo}" var="dvo">
+     <tr>
+        <th>${dine_type }</th>
+        <td>성인 ${dine_adult}</td>
+        <td>어린이 ${dine_child }</td>
+
+    </tr>
+    </c:forEach>
+    </table>
+               <div>가격 안내</div><br>
+               <div id="info_pri">
+               <c:forEach items="${dvo}" var="dvo">
+               <tr>
+        <th>${dvo.dine_type }</th>
+        <td>성인 ${dvo.dine_adult}</td>
+        <td>어린이 ${dvo.dine_child }</td>
+
+    </tr>
+               </c:forEach>
+               </div>
                <div style="float:left; width:700px;" id="info"><b>안내사항</b></div><br>
 			   <div id="info_con">
 			      - 예약 신청을 위한 페이지로 예약 신청 후 직원이 확인하여 예약 확정 문자를 보내드립니다.<br>
@@ -296,6 +316,7 @@
 			   <!-- 고객정보 -->
 			   <div><div style="float:left; width:500px;"><b>고객 정보</b></div><div style="float:right;align:right;font-size:12px">* 필수입력항목</div></div><br>
  			</table>
+ 			
  			<table>
  			 	<tr height="10px"> 
  					<td>

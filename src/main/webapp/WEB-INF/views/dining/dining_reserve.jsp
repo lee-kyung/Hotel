@@ -12,6 +12,8 @@
   }
   #section table{
     margin:auto; 
+    margin-top:15px;
+    margin-bottom:15px;
   }
   #section table #info{
     font-size:14px;
@@ -171,7 +173,18 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
     <!-- 부타이틀(자유롭게 변경)_area_start -->
 
 <div id="section">
- <input type="hidden" name="dine_type">
+ 
+    <table width="1100" border="1">
+     <c:forEach items="${dlist}" var="dvo">
+     <tr>
+        <th>${dvo.dine_type }</th>
+        <td>성인 ${dvo.dine_adult}</td>
+        <td>어린이 ${dvo.dine_child }</td>
+
+    </tr>
+    </c:forEach>
+    </table>
+   
     <table width="1100" border="1">
      <tr>
         <td id="info">
