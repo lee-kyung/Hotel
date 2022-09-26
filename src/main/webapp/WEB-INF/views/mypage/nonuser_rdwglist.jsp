@@ -3,7 +3,17 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <head>
-
+<style>
+	#rdwglist {
+		width : 1100px;
+		margin : auto;
+	}
+	#rdwglist table {
+		width : 1000px;
+		margin : auto;
+		text-align : center;
+	}
+</style>
 </head>
 
 <body>
@@ -17,44 +27,51 @@
 
 	<!-- ================ 예약 및 주문 내역 Area Start ================= -->
 	<div id="rdwglist">
-	${rvo.bkname}
-    <!-- 객실 예약내역_area_start -->
-    <c:if test="${gubun == 'r'}">
-	<table id="room" border="1">
-		<tr>
-			<td> 예약자 </td>
-			<td> 체크인 </td>
-			<td> 체크아웃 </td>
-			<td> 객실명 </td>
-			<td> 예약인원 </td>
-			<td> 추가침대 </td>
-			<td> 조식 </td>
-			<td> 총 결제금액</td>
-			<td> 특별요청사항 </td>
-			<td> 예약한 날짜 </td>
-			<td> 예약상태 </td>		
-		</tr>
-	    <tr>
-	  		<td> ${rvo.bkname} </td>
-	  		<td> ${rvo.checkin} </td>
-	  		<td> ${rvo.checkout} </td>
-	  		<td> ${rvo.rname} </td>
-	  		<td> ${rvo.binwon} </td>
-	  		<td> ${rvo.bextbed} </td>
-	  		<td> ${rvo.bmeal} </td>
-	  		<td> ${rvo.btotal} </td>
-			<td> ${rvo.bkdate} </td>	  		
-	  		<td> ${rvo.spreq} </td>
-	  			<c:choose>
-					<c:when test="${rvo.bstate == 1}"> <c:set var="rstate" value="예약"/> </c:when>
-					<c:when test="${rvo.bstate == 2}"> <c:set var="rstate" value="사용완료"/> </c:when>
-					<c:when test="${rvo.bstate == 3}"> <c:set var="rstate" value="취소됨"/> </c:when>
-				</c:choose>
-	  		<td> ${rstate} </td>
-	  	<tr>
-	</table>
- 	</c:if>
-    <!-- 객실 예약내역_area_end -->
+	    <!-- 객실 예약내역_area_start -->
+	    <c:if test="${gubun == 'r'}">
+	    
+	    <!-- 예약 정보 -->
+	    <div>
+	    	<h3> 예약 정보 </h3>
+	    	<div> 체크인 ${rvo.checkin} </div>
+	    	<div>
+	    		<fmt:parseNumber var="in" value="${rvo.checkin}" integerOnly="true"/>
+	    		<fmt:parseNumber var="out" value="${rvo.checkout}" integerOnly="true"/>
+	    		${days}박
+	    	</div>
+	    	<div> 체크아웃 ${rvo.checkout} </div>
+	    </div>
+	    
+	    <!-- 객실 정보 -->
+	    <div>
+	    	<h3> 객실 정보</h3>
+	    	<div> 객실명 ${rvo.rname} </div>
+	    	<div> 예약인원 ${rvo.binwon} </div>
+	    	<div> 조식 ${rvo.bmeal} </div>
+	    	<div> 추가침대 ${rvo.bextbed} </div>
+	    	<div> 특별요청사항 ${rvo.spreq} </div>
+	    </div>
+	    
+	    <!-- 예약자 정보 -->
+	    <div>
+	    	<h3> 예약자 정보</h3>
+	    	<div> 예약자 ${rvo.bkname} </div>
+	    	<div> 연락처 ${rvo.bkphone} </div>
+	    	<div> 총 결제금액 ${rvo.btotal} </div>
+	    	<div> 예약한 날짜 ${rvo.bkdate} </div>
+	    </div>
+	
+		<!-- 예약 상태 -->
+		<div>
+		<c:choose>
+			<c:when test="${rvo.bstate == 1}"> <div onclick="cancel()"> 예약취소 </div> </c:when>
+			<c:when test="${rvo.bstate == 2}"> <div> 사용완료 </div> </c:when>
+			<c:when test="${rvo.bstate == 3}"> <div> 취소완료 </div> </c:when>
+		</c:choose>
+			<div onclick="location='../main/index'"> 메인으로 </div>
+		</div>
+	 	</c:if>
+	    <!-- 객실 예약내역_area_end -->
     
     <!-- 다이닝 예약내역_area_start -->
  	<c:if test="${gubun == 'd'}">
@@ -143,7 +160,7 @@
 			<td> 주문할 날짜 </td>
 			<td> 주문상태 </td>
 		</tr>
-	  <c:forEach var="gvo" items="${glist}">
+		<c:forEach var="gvo" items="${glist}">
 		<tr>
 			<td> ${gvo.pname} </td>
 			<td> ${gvo.pphone} </td>
@@ -158,9 +175,9 @@
 				</c:choose>
 	  		<td> ${estate} </td>	
 		</tr>
-	  </c:forEach>
+		</c:forEach>
 	</table>
- 	</c:if>
+	</c:if>
     <!-- 이샵 주문내역_area_end -->
     
 	</div>
