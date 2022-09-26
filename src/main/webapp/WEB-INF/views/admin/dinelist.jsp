@@ -78,12 +78,18 @@
 		</div></h5>
 		</tr>
 		<tr>
-			<td> 번호 </td>
+			<td> 번호 
+				<span onclick="location='dinelist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=dr_id asc'">∧</span>
+				<span onclick="location='dinelist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=dr_id desc'">∨</span>
+			</td>
 			<td> 아이디 </td>
 			<td> 예약번호 </td>
 			<td> 예약자 </td>
 			<td> 연락번호 </td>
-			<td> 식사날짜 </td>
+			<td> 식사날짜 
+				<span onclick="location='dinelist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=dr_date asc'">∧</span>
+				<span onclick="location='dinelist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=dr_date desc'">∨</span>
+			</td>
 			<td> 식사유형 </td>
 			<td> 식사시간 </td>
 			<td> 성인 </td>
@@ -92,7 +98,10 @@
 			<td> 총 금액 </td>
 			<td> 요청사항 </td>
 			<td> 예약일 </td>
-			<td> 예약상태 </td>
+			<td> 예약상태 
+				<span onclick="location='dinelist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=dr_state asc'">∧</span>
+				<span onclick="location='dinelist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=dr_state desc'">∨</span>
+			</td>
 		</tr>
  	  <c:forEach items="${dlist}" var="dvo">
 	  	<tr>
@@ -127,13 +136,13 @@
 		<!-- 10페이지 단위로 이전으로 가기 -->
 		<c:if test="${pstart==1}"></c:if> <!-- 페이지 그룹이 1일때 -->
 		<c:if test="${pstart!=1}"><!-- 1그룹이 아니면 -->
-			<a href="dinelist?page=${pstart-1}&pcnt=${pcnt}&sel=${sel}&sword=${sword}">◀</a>
+			<a href="dinelist?page=${pstart-1}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=${oby}">◀</a>
 		</c:if>
 		
 		<!-- 1페이지 단위로 이전으로 가기 -->
 		<c:if test="${page==1}"></c:if> <!-- 1페이지면 -->
 		<c:if test="${page!=1}"><!-- 1페이지가 아니면 -->
-			<a href="dinelist?page=${page-1}&pcnt=${pcnt}&sel=${sel}&sword=${sword}">◁</a>
+			<a href="dinelist?page=${page-1}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=${oby}">◁</a>
 		</c:if>
 		
 		<!-- 페이지 출력 -->
@@ -145,19 +154,19 @@
 			<c:if test="${page!=i}">
 				<c:set var="st" value=""/>
 			</c:if>
-			<b><a href="dinelist?page=${i}&pcnt=${pcnt}&sel=${sel}&sword=${sword}"${st}>${i}</a></b><!-- 누른페이지로 이동걸기 -->
+			<b><a href="dinelist?page=${i}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=${oby}"${st}>${i}</a></b><!-- 누른페이지로 이동걸기 -->
 		</c:forEach>
 		
 		<!-- 1페이지 단위로 다음으로 가기 -->
 		<c:if test="${page==chong}"></c:if>
 		<c:if test="${page!=chong}">
-			<a href="dinelist?page=${page+1}&pcnt=${pcnt}&sel=${sel}&sword=${sword}">▷</a>
+			<a href="dinelist?page=${page+1}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=${oby}">▷</a>
 		</c:if>
 		
 		<!-- 10페이지 단위로 다음으로 가기 -->
 		<c:if test="${pend==chong}"></c:if>
 		<c:if test="${pend!=chong}">
-			<a href="dinelist?page=${pend+1}&pcnt=${pcnt}&sel=${sel}&sword=${sword}">▶</a>
+			<a href="dinelist?page=${pend+1}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=${oby}">▶</a>
 		</c:if>
 		
 	</div>

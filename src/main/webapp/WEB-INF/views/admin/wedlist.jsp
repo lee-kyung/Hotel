@@ -47,11 +47,6 @@
 			return true;		
 	}
 	
-	function ordersort(oby)
-	{	
-		location="wedlist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby="+oby; 
-	}
-
 </script>
 </head>
 
@@ -86,13 +81,15 @@
 		</select>
 		</div></h5>
 		</tr>
-		<form name="aa" method="post" >
 		<tr>
-			<td> 번호	 </td>
+			<td> 번호	 
+				 <span onclick="location='wedlist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=wresv_id asc'">∧</span>
+	             <span onclick="location='wedlist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=wresv_id desc'">∨</span>
+			</td>
 			<td> 아이디 </td>
 			<td> 예약상담일
-               <span onclick="location='wedlist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=wresv_cday asc'">∧</span>
-               <span onclick="location='wedlist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=wresv_cday desc'">∨</span>
+				<span onclick="location='wedlist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=wresv_cday asc'">∧</span>
+				<span onclick="location='wedlist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=wresv_cday desc'">∨</span>
          </td>
          <td> 예약일 </td>
          <td> 예식희망일
@@ -105,7 +102,10 @@
 			<td> 연락번호 </td>
 			<td> 인원 </td>
 			<td> 예약번호 </td>
-			<td> 예약상태 </td>
+			<td> 예약상태
+				<span onclick="location='wedlist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=state asc'">∧</span>
+				<span onclick="location='wedlist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=state desc'">∨</span>
+			</td>
 		</tr>
 	  <c:forEach items="${wlist}" var="wvo">
 	  	<tr>
@@ -132,7 +132,6 @@
 	  		<td> ${state} </td>		
 	  	</tr>
 	  </c:forEach>
-	  </form>
 	</table>
 	<div id="lis">
 		<!-- 10페이지 단위로 이전으로 가기 -->
