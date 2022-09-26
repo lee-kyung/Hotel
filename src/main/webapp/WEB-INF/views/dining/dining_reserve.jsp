@@ -179,8 +179,9 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
      <c:forEach items="${dlist}" var="dvo">
      <tr>
         <th>${dvo.dine_type }</th>
-        <td>성인 ${dvo.dine_adult}</td>
-        <td>어린이 ${dvo.dine_child }</td>
+
+        <td>성인 ${dvo.dine_adult}<br>
+           어린이 ${dvo.dine_child }</td>
 
     </tr>
     </c:forEach>

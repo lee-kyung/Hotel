@@ -22,8 +22,8 @@
     width: 800px;
 	height: 80px;
 	/* 	border: 1px solid #887159; */
-	marin-top:20px;
-	margin-bottom: 30px;
+	marin-top:10px;
+
   }
   diningsec input[type=text]{
 	/* width: 260px; */
@@ -216,26 +216,7 @@
 		   <div id="outer">
 <!--left--><div id="left">	
 			   <table width="1100" border="1">
-     <c:forEach items="${dvo}" var="dvo">
-     <tr>
-        <th>${dine_type }</th>
-        <td>성인 ${dine_adult}</td>
-        <td>어린이 ${dine_child }</td>
-
-    </tr>
-    </c:forEach>
-    </table>
-               <div>가격 안내</div><br>
-               <div id="info_pri">
-               <c:forEach items="${dvo}" var="dvo">
-               <tr>
-        <th>${dvo.dine_type }</th>
-        <td>성인 ${dvo.dine_adult}</td>
-        <td>어린이 ${dvo.dine_child }</td>
-
-    </tr>
-               </c:forEach>
-               </div>
+     
                <div style="float:left; width:700px;" id="info"><b>안내사항</b></div><br>
 			   <div id="info_con">
 			      - 예약 신청을 위한 페이지로 예약 신청 후 직원이 확인하여 예약 확정 문자를 보내드립니다.<br>
@@ -247,7 +228,7 @@
 			      - 홈페이지 예약 할인 프로모션은 예약 상황에 따라 조기 마감 될 수 있으며 바우쳐,쿠폰사용 및 제휴 할인과 중복 적용되지 않습니다.<br>
 			   </div>
 			   <div>
-			   <br>
+			  
 			   </div>
 			   <!-- 예약정보 -->
 			   <table>
