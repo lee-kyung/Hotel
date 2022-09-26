@@ -15,17 +15,7 @@
 		width : 1100px;
 		height : ${height}px;
 		margin : auto;
-		margin-top : 100px;
-	}
-	#wish table th {
-		text-align : center;	
-	}
-	#wish table td {
-		text-align : center;
-		height : 100px;
-	}
-	#wish table tr td:nth-child(2) {
-		text-align : left;
+		margin-top : 50px;
 	}
 	#wish #spinner {
 		border : 1px solid lightgray;
@@ -73,8 +63,8 @@
 	}
 	#wish #button11 {
 		width : 150px;
-		height : 42px;
-		padding-top : 8px;
+		height : 41px;
+		padding-top : 9px;
 		border : 1px solid #887159;
 		background : #887159;
 		color : white;
@@ -85,8 +75,8 @@
 	}
 	#wish #button22 {
 		width : 150px;
-		height : 42px;
-		padding-top : 8px;
+		height : 41px;
+		padding-top : 9px;
 		border : 1px solid #887159;
 		color : #887159;
 		font-size : 15px;
@@ -95,22 +85,63 @@
 		cursor : pointer;
 	}
 	#wish #button3 {
-		width : 100%;
+		width : 150px;
 		height : 30px;
 		padding-top : 5px;
 		border : 1px solid #887159;
 		color : #887159;
+		margin : auto;
 		font-size : 13px;
 		font-weight : normal;
 		cursor : pointer;
+		float : right;
+		margin-top : 30px;
+	}
+	#wish table tr:nth-child(2) th {
+		text-align : center;
+		background : #f9f4ee;
+		padding-top : 6px;
+	}
+	#wish table td {
+		text-align : center;
+		border-bottom : 1px solid #ececec;
+	}
+	#wish table tr:first-child td {
+		border-bottom : 1px solid #887159;
+		height : 80px;
+	}
+	#wish table tr td:nth-child(2) {
+		text-align : left;
+	}
+	#wish #mainck {
+		accent-color : #887159;
+		width : 17px;
+		height : 17px;
+	}
+	#wish #subck {
+		accent-color : #887159;
+		width : 15px;
+		height : 15px;
+	}
+	#wish .obtn {
+		display : inline-block;
+		width : 80px;
+		height : 35px;
+		padding-top : 5px;
+		border-bottom : 2px solid #887159;
+		background : white;
+		color : #887159;
+		font-weight : normal;
+		cursor : pointer;
+		margin-left : 10px;
+		margin-top : 15px;
+	}
+	#wish .obtn:hover {
+		background : #887159;
+		color : white;
 	}
 </style>
 <script>
-	/* 정렬순 선택하기 */
-	function order_sel(osel){
-		location="wish?osel="+osel;
-	}
-
 	/* 위시리스트의 초기상태 : 전부체크 */
 	window.onload=function(){
 		document.getElementById("mainck").checked=true;
@@ -182,6 +213,26 @@
 		}
 		location="move_cart?pcode="+pcode;
 	}
+	
+	/* 정렬순을 클릭하며 색상 변하기 */
+	window.onload=function(){
+		if(${osel == 'id asc'}) {
+			document.getElementsByClassName("obtn")[0].style.background="#887159";
+			document.getElementsByClassName("obtn")[0].style.color="white";
+			}
+			else if (${osel == 'halin desc'}) {
+				document.getElementsByClassName("obtn")[1].style.background="#887159";
+				document.getElementsByClassName("obtn")[1].style.color="white";
+				}
+				else if (${osel == 'price asc'}) {
+					document.getElementsByClassName("obtn")[2].style.background="#887159";
+					document.getElementsByClassName("obtn")[2].style.color="white";
+					}
+					else if (${osel == 'price desc'}) {
+						document.getElementsByClassName("obtn")[3].style.background="#887159";
+						document.getElementsByClassName("obtn")[3].style.color="white";
+						}
+	}
 </script>
 </head>
 
@@ -195,58 +246,35 @@
 
 	<!-- ================ 장바구니 Area Start ================= -->
     <div id="wish">
-    	<div class="default-select" id="default-select" style="display:inline-block;">
-			<select onchange="order_sel(this.value)" id="osel">
-				<c:if test="${osel == 'id asc'}">
-					<option value="id asc" selected> 과거등록순 </option>
-				</c:if>
-				<c:if test="${osel != 'id asc'}">
-					<option value="id asc"> 등록순 </option>
-				</c:if>
-				<c:if test="${osel == 'id desc'}">
-					<option value="id desc" selected> 최신등록순 </option>
-				</c:if>
-				<c:if test="${osel != 'id desc'}">
-					<option value="id desc"> 최신상품순 </option>
-				</c:if>
-				<c:if test="${osel == 'halin desc'}">
-					<option value="halin desc" selected> 높은할인율순 </option>
-				</c:if>
-				<c:if test="${osel != 'halin desc'}">
-					<option value="halin desc"> 높은할인율순 </option>
-				</c:if>
-				<c:if test="${osel == 'price asc'}">
-					<option value="price asc" selected> 낮은가격순 </option>
-				</c:if>
-				<c:if test="${osel != 'price asc'}">
-					<option value="price asc"> 낮은가격순 </option>
-				</c:if>
-				<c:if test="${osel == 'price desc'}">
-					<option value="price desc" selected> 높은가격순 </option>
-				</c:if>
-				<c:if test="${osel != 'price desc'}">
-					<option value="price desc"> 높은가격순 </option>
-				</c:if>
-			</select>
-		</div>
-		<table width="1000" align="center" border="1">
+		<table width="1000" align="center" cellpadding="0">
 			<tr>
-				<th height="50"> <input type="checkbox" onclick="allcheck(this.checked)" id="mainck"> </th>
-				<th colspan="2">상품정보</th>
-				<th>상품금액</th>
-				<th>배송비</th>
-				<th>장바구니</th>
+				<td colspan="8" height="50">
+					<div id="osel" style="float:left;">
+						<span onclick="location='../eshop/wish?osel=id asc'" class="obtn"> 등록순 </span>
+						<span onclick="location='../eshop/wish?osel=halin desc'" class="obtn"> 할인율순 </span>
+						<span onclick="location='../eshop/wish?osel=price asc'" class="obtn"> 저가격순 </span>
+						<span onclick="location='../eshop/wish?osel=price desc'" class="obtn"> 고가격순 </span>
+					</div>
+					<div onclick="wish_del()" id="button3"> 선택상품 삭제하기 </div>
+				</td>
+			</tr>
+			<tr>
+				<th height="50" width="70"> <input type="checkbox" onclick="allcheck(this.checked)" id="mainck"> </th>
+				<th colspan="2" width="300">상품정보</th>
+				<th width="250">상품금액</th>
+				<th width="150">배송비</th>
+				<th width="150">장바구니</th>
 			</tr>
 		<c:if test="${wlist.size() < 1}">
 			<tr>
-				<td colspan="80" height="100"> 등록된 상품이 없습니다. </td>
+				<td colspan="80"> <div style="height:200px;padding-top:90px;"> 등록된 상품이 없습니다.</div> </td>
 			</tr>
 		</c:if>
 		<c:forEach var="wvo" items="${wlist}">
 			<input type="hidden" class="pcode" value="${wvo.pcode}">
 			<tr>
-				<td> <input type="checkbox" class="subck" onclick="subcheck()" value="${wvo.id}"> </td> <!-- 체크박스 -->
-				<td colspan="2">	<!-- 상품정보(이미지, 상품명) -->
+				<td height="100"> <input type="checkbox" class="subck" onclick="subcheck()" value="${wvo.id}" id="subck"> </td> <!-- 체크박스 -->
+				<td colspan="2" style="padding-left:20px;">	<!-- 상품정보(이미지, 상품명) -->
 					<img src="../img/eshop/${wvo.fimg}" width="80" height="80" id="main_fimg">
 					${wvo.title}
 				</td>
@@ -274,14 +302,11 @@
 			</tr>
 		</c:forEach>
 			<tr>
-				<th colspan="8" height="60"> <div onclick="wish_del()" id="button3"> 선택상품 삭제하기 </div> </th>
-			</tr>
-			<tr>
-				<th colspan="8" height="80">
+				<td colspan="8" height="80" style="border:none;">
 					<span onclick="location='eshop'" id="button22" style="float:left;"> 계속 쇼핑하기 </span>
 					<span onclick="move_cart(2)" id="button11" style="float:right;"> 전체 장바구니로 </span>
 					<span onclick="move_cart(1)" id="button22" style="float:right;"> 선택 장바구니로 </span>					
-				</th>
+				</td>
 			</tr>
 		</table>
 	</div>

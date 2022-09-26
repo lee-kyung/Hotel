@@ -13,6 +13,9 @@
 	#first #first_1{
 	margin:auto;
 	width:1800px;}
+		
+	#first #first_1 span{
+	cursor:pointer;}
 	
 	#first #txt{
 	text-align:left;
@@ -35,7 +38,8 @@
 	border-right:none;
 	text-align:center;
 	font-size:25px;
-	padding-top:50px;}
+	padding-top:50px;
+	cursor:pointer;}
 	
 	#first ul li:last-child{
 	border-right:1px solid #cccccc;}
@@ -43,10 +47,38 @@
 	section{
 	width:1100px;
 	margin:auto;
-	border:1px solid red;
-	margin-top:100px;
+	margin-top:50px;
 	margin-bottom:200px;}
-
+	
+	section #profile #border{
+	margin-top:70px;
+	margin-bottom:70px;
+	border:1px solid #887159;
+	padding-top:20px;
+	padding-bottom:40px;}
+	
+	section #profile div{
+	padding:10px;}
+	
+	section #profile #title{
+	text-align:center;
+	font-size:35px;}
+	
+	section #profile .my{
+	border:1px solid #887159;
+	width:500px;
+	height:50px;
+	margin-left:20px;}
+	
+	section #profile #btn_right{
+	float:right;}
+	section #profile input[type=button]{
+	margin-top:70px;
+	width:300px;
+	height:60px;
+	background:#887159;
+	border:none;
+	color:white;}
 </style>
 </head>
 
@@ -62,7 +94,7 @@
     </div>
 <div id="first">
 	<div id="first_1">
-		<div id="txt">${name }님, 환영합니다.</div> 
+		<div id="txt"><span onclick="location='mypage'">${name }님, 환영합니다.</span></div>
 		<div class="txt2">
 			<span onclick="location='../mypage/myprofile_pwd'">회원정보 수정 > </span>&nbsp;&nbsp;
 			<span onclick="location='../mypage/mypwd_change'">비밀번호 수정 > </span>
@@ -74,36 +106,38 @@
 </div>
 
 <section>
-<div id="profile_edit">
+<div id="profile">
+	<div id="title">회원정보</div>
+	<div id="border">
 		<div>
 			<div>아이디</div>
-			<div>${mvo.userid }</div>
+			<div class="my">${mvo.userid }</div>
 		</div>
 		<div>
 			<div>이름</div>
-			<div>${mvo.name }</div>
+			<div class="my">${mvo.name }</div>
 		</div>
 		<div>
 			<div>휴대전화</div>
-			<div>${mvo.phone }</div>
+			<div class="my">${mvo.phone }</div>
 		</div>
 		<div>
 			<div>생년월일</div>
-			<div>${mvo.birth }</div>
+			<div class="my">${mvo.birth }</div>
 		</div>
 		<div>
 			<div>이메일</div>
-			<div>${mvo.email }</div>
+			<div class="my">${mvo.email }</div>
 		</div>
 		<div>
 			<div>주소</div>
-			<div>${mvo.juso } ${mvo.juso_etc }</div>
+			<div class="my">${mvo.juso } ${mvo.juso_etc }</div>
 		</div>
-		
-		<input type="button" onclick="location='../mypage/myprofile_edit'" value="정보수정">
-		<input type="button" value="회원탈퇴">
-		
-		
+		<div id="btn_right">
+			<input type="button" onclick="location='../mypage/myprofile_edit'" value="정보수정">
+			<input type="button" value="회원탈퇴">
+		</div>
+	</div>
 </div>
 </section>
 </body>

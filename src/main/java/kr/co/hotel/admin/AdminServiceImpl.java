@@ -30,15 +30,24 @@ public class AdminServiceImpl implements AdminService{
 		ArrayList<DiningResvVO> dlist=mapper.getdiningresv();
 		ArrayList<WeddingResvVO> wlist=mapper.getweddingresv();
 		ArrayList<GumaeVO> glist=mapper.getgumae();
+		
+		/* userid가 쿠키값일 경우 'guest'로 바꾸기 */
+		for(int i=0;i<glist.size();i++) {
+			if(glist.get(i).getUserid().length() == 20)
+				glist.get(i).setUserid("guest");
+		}
 
 		model.addAttribute("rlist", rlist);
 		model.addAttribute("dlist", dlist);
 		model.addAttribute("wlist", wlist);
 		model.addAttribute("glist", glist);
 		
+		// 상태 변경
 		Date date = Date.valueOf(LocalDate.now());
 		
 		mapper.bstatechange(date);
+		mapper.wstatechange(date);
+		mapper.dstatechange(date);
 		
 		return "/admin/admin";
 	}
@@ -51,7 +60,7 @@ public class AdminServiceImpl implements AdminService{
 		return "/admin/memberlist";
 	}
 
-// 객실예약 리스트 확인
+// 각 예약 리스트 확인
 	@Override
 	public String roomlist(Model model, HttpServletRequest request) {
 		int page, start;
@@ -110,7 +119,7 @@ public class AdminServiceImpl implements AdminService{
 	public String wedlist(Model model, HttpServletRequest request) {
 		int page, start;
 		int pcnt;
-		String oby;
+		String oby, oby2;
 		
 		if(request.getParameter("pcnt")==null)
 			pcnt=10;
@@ -266,7 +275,14 @@ public class AdminServiceImpl implements AdminService{
 		if(chong<pend)
 			pend=chong;
 		
-		model.addAttribute("glist",mapper.glist(sel, sword, start, pcnt));
+		/* userid가 쿠키값일 경우 'guest'로 바꾸기 */
+		ArrayList<GumaeVO> glist=mapper.glist(sel, sword, start, pcnt);
+		for(int i=0;i<glist.size();i++) {
+			if(glist.get(i).getUserid().length() == 20)
+				glist.get(i).setUserid("guest");
+		}
+		
+		model.addAttribute("glist",glist);
 		model.addAttribute("page",page);
 		model.addAttribute("pstart",pstart);
 		model.addAttribute("pend",pend);
@@ -276,6 +292,23 @@ public class AdminServiceImpl implements AdminService{
 		model.addAttribute("sword",sword);
 		
 		return "/admin/gumaelist";
+	}
+
+	@Override
+	public String estatechange(HttpServletRequest request) {
+		String state=request.getParameter("state");
+		String id=request.getParameter("id");
+		
+		mapper.estatechange(state, id);
+		
+		/* 주문이 취소되면 product테이블의 [재고]와 [판매량]을 원래대로 */
+		int state2=Integer.parseInt(state);
+		String pcode=request.getParameter("pcode");
+		String su=request.getParameter("su");
+		if(state2 == 2)
+			mapper.suPlusMinus(su, pcode);
+		
+		return "redirect:/admin/gumaelist";
 	}
 
 }

@@ -26,7 +26,28 @@ public class DiningResvVO {
 	// 예약번호
 	private String bid;
 	
-    public int getSudan() {
+	/* 달력의 예약마감 표시용 */
+	private int cnt, td, dt;
+	
+    public int getDt() {
+		return dt;
+	}
+	public void setDt(int dt) {
+		this.dt = dt;
+	}
+	public int getTd() {
+		return td;
+	}
+	public void setTd(int td) {
+		this.td = td;
+	}
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
+	public int getSudan() {
 		return sudan;
 	}
 	public void setSudan(int sudan) {

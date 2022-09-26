@@ -65,7 +65,9 @@
                                         	<ul class="submenu">
                                                 <li><a href="../eshop/pro_list?pcode=p01">product</a></li>
                                                 <li><a href="../eshop/pro_list?pcode=p02">voucher</a></li>
-                                                <li><a href="../eshop/pro_write">상품등록</a></li>	<!-- 나중에 관리자만 볼 수 있게 할 메뉴 -->
+                                                <c:if test="${userid == 'admin'}">
+                                                	<li><a href="../eshop/pro_write">상품등록</a></li>	<!-- 관리자만 볼 수 있는 메뉴 -->
+                                                </c:if>
                                             </ul>                                        
                                         </li>
                                         <li><a href="../etc/contact">etc<i class="ti-angle-down"></i></a>
@@ -106,9 +108,9 @@
                                         </li> -->
                                         <li>
 		                                <c:if test="${userid == null}">
-		                                	<a href="#"> <i class="fa fa-list-alt"></i> </a>
+		                                	<a href="../mypage/nonuser"> <i class="fa fa-list-alt"></i> </a>
                                             <a href="../eshop/cart?p=p01"> <i class="fa fa-cart-arrow-down"></i> </a>
-											<a href="../login/login">로그인</a>
+											<a href="../login/login?ck=3">로그인</a>
 											<a href="../member/member_input">회원가입</a>
 										</c:if>
 										<c:if test="${(userid != null) && (userid != 'admin')}">

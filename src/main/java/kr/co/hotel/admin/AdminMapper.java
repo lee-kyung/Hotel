@@ -33,7 +33,14 @@ public interface AdminMapper {
 	public ArrayList<GumaeVO> glist(String sel,String sword,int start,int pcnt);
 	public int getGChong(int pcnt,String sel,String sword);
 	
-// 상태 변경
+// 상태 변경 - 날짜 지나면 변경
 	public void bstatechange(Date date);
+	public void wstatechange(Date date);
+	public void dstatechange(Date date);
+//	상태 변경 - 버튼으로 변경
+	public void estatechange(String state, String id);
+	
+//  주문이 취소되면 product테이블의 [재고]와 [판매량]을 원래대로
+	public void suPlusMinus(String su, String pcode);
 	
 }

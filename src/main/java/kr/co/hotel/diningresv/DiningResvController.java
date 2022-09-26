@@ -26,6 +26,12 @@ public class DiningResvController {
 	{
 		return service.dining_reserve(request, model, session);
 	}
+	
+	@RequestMapping("/dining/getDTresv")
+	public void getDTresv(HttpServletRequest request, PrintWriter out)
+	{
+		service.getDTresv(request, out);
+	}
 
 	/*@RequestMapping("/dining/getDineAvail")
 	public void getDineAvail(HttpServletRequest request, PrintWriter out, DiningVO dvo)

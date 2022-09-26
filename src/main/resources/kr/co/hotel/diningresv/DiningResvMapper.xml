@@ -6,11 +6,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="kr.co.hotel.diningresv.DiningResvMapper">
     
     <select id="dining_reserve" resultType="kr.co.hotel.dining.DiningVO">
-	  <![CDATA[  select d.*, dr.dine_type, right(dr.dr_date,2) as td
-	  from dining as d, diningresv as dr
-	  where dr.dr_date>=#{param1} and dr.dr_date <= #{param2}
-	  and d.dine_type=dr.dine_type order by id asc ]]>
-	</select>                                      <!-- 며칠 -->
+		select * from dining order by id asc
+	</select>
+	
+	<select id="getDresv" resultType="kr.co.hotel.diningresv.DiningResvVO">
+		<![CDATA[ select dine_type, right(dr_date, 2) as td, count(*) as cnt
+		from diningresv
+		where dr_date >= #{param1} and dr_date <= #{param2}
+		group by dine_type, dr_date ]]>
+	</select>
+	
+	<select id="getDTresv" resultType="kr.co.hotel.diningresv.DiningResvVO">
+		select left(dr_time, 2) as dt, count(*) as cnt
+		from diningresv where dr_date=#{param1} and dine_type=#{param2}
+		group by dr_time;
+	</select>
 	
 	<select id="dining_reserve_next" resultType="kr.co.hotel.dining.DiningVO">
 	  select * from dining where dine_type=#{param1}

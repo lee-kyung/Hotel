@@ -215,35 +215,35 @@
 		</c:if>
 		<div class="default-select" id="default-select" style="display:inline-block;">
 			<select onchange="order_sel(this.value)" id="osel">
-				<c:if test="${osel == 'id asc'}">
-					<option value="id asc" selected> 등록순 </option>
+				<c:if test="${osel == 'sold desc'}">
+					<option value="sold desc" selected> 인기순 </option>
 				</c:if>
-				<c:if test="${osel != 'id asc'}">
-					<option value="id asc"> 등록순 </option>
+				<c:if test="${osel != 'sold desc'}">
+					<option value="sold desc"> 인기순 </option>
 				</c:if>
 				<c:if test="${osel == 'id desc'}">
-					<option value="id desc" selected> 최신상품순 </option>
+					<option value="id desc" selected> 최신순 </option>
 				</c:if>
 				<c:if test="${osel != 'id desc'}">
-					<option value="id desc"> 최신상품순 </option>
+					<option value="id desc"> 최신순 </option>
 				</c:if>
 				<c:if test="${osel == 'halin desc'}">
-					<option value="halin desc" selected> 높은할인율순 </option>
+					<option value="halin desc" selected> 할인율순 </option>
 				</c:if>
 				<c:if test="${osel != 'halin desc'}">
-					<option value="halin desc"> 높은할인율순 </option>
-				</c:if>
-				<c:if test="${osel == 'price asc'}">
-					<option value="price asc" selected> 낮은가격순 </option>
-				</c:if>
-				<c:if test="${osel != 'price asc'}">
-					<option value="price asc"> 낮은가격순 </option>
+					<option value="halin desc"> 할인율순 </option>
 				</c:if>
 				<c:if test="${osel == 'price desc'}">
-					<option value="price desc" selected> 높은가격순 </option>
+					<option value="price desc" selected> 고가격순 </option>
 				</c:if>
 				<c:if test="${osel != 'price desc'}">
-					<option value="price desc"> 높은가격순 </option>
+					<option value="price desc"> 고가격순 </option>
+				</c:if>
+				<c:if test="${osel == 'price asc'}">
+					<option value="price asc" selected> 저가격순 </option>
+				</c:if>
+				<c:if test="${osel != 'price asc'}">
+					<option value="price asc"> 저가격순 </option>
 				</c:if>
 			</select>
 		</div>

@@ -7,8 +7,8 @@
 	<c:if test="${size <= 1}">
 		<c:set var="height" value="2000"/>
 	</c:if>
-	<c:if test="${size > 5}">
-		<c:set var="height" value="${ ((size-4) * 100) + 800 }"/>
+	<c:if test="${size > 2}">
+		<c:set var="height" value="${((size-1) * 100) + 1500}"/>
 	</c:if>
 <style>
 	#pro_gumae {
@@ -25,24 +25,24 @@
 		font-family : 돋움;
 	}*/
 	#pro_gumae prosec table {
-		width: 580px;
-		height: 80px;
-		margin-bottom: 30px;
+		width : 580px;
+		height : 80px;
+		margin-bottom : 30px;
 	}
 	#pro_gumae prosec table tr td:first-child  {
 		width : 150px;
 		height : 70px;
 	}
 	#pro_gumae prosec input[type=text] {
-		width: 450px;
-		height: 50px;
-		border: 1px solid #887159;
+		width : 450px;
+		height : 50px;
+		border : 1px solid #887159;
 		outline : none;
 		padding-left : 10px;
 	}
 	#pro_gumae prosec #outer {
-		outline:1px solid #887159;
-		width: 1000px;
+		outline : 1px solid #887159;
+		width : 1000px;
 	}
 	#pro_gumae prosec #outer #title {
 		height : 30px;
@@ -51,30 +51,32 @@
 		border-bottom : 1px solid lightgray;
 	}
 	#pro_gumae prosec #outer #left {
-		float: left;
-		width: 600px;
+		float : left;
+		width : 600px;
 		padding-left : 20px;
 	}
 	#pro_gumae prosec #outer #left #bzip {
-		width: 250px;
-		height: 50px;
-		border: 1px solid #887159;
+		width : 250px;
+		height : 50px;
+		border : 1px solid #887159;
 		outline : none;
 	}
 	#pro_gumae prosec #outer #left #zip_btn {
-		width: 200px;
-		height: 50px;
-		border: 1px solid #887159;
+		width : 200px;
+		height : 50px;
+		border : 1px solid #887159;
 		background : #887159;
 		color : white;
 		cursor : pointer;
 	}
 	#pro_gumae prosec #outer #right {
-		background: #f9f9f9; 
-		width: 350px;
-		height: 780px;
-		float: right;
-		margin-left: 5px;
+		border-top : 1px solid #887159;
+		background : #f9f9f9; 
+		width : 350px;
+		height : 450px;
+		float : right;
+		margin-left : 5px;
+		position : relative;	/* fixed는 고정, relative는 따라 다님 */
 	}
 	#pro_gumae prosec #outer #right #total {
 		margin-left : 25px;
@@ -111,6 +113,9 @@
 		color : #887159;
 		cursor : pointer;
 	}
+	#pro_gumae #ck {
+		accent-color : #887159;
+	}
 </style>
 <!-- jQuery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous" type="text/javascript"></script>
@@ -136,10 +141,12 @@
 		}).open();
 	}
 	
+	/* [이전단계]로 돌아가기 */
 	function goBack(){
 		history.back();
 	}
 	
+	/* 회원의 개인정보를 가져오기 or 비회원이 작성한 동일정보를 보내기 */
 	function getInfo(ck){
 		if(${userid == null}) {
 			if(ck == true) {
@@ -169,6 +176,28 @@
 			}
 		}
 	}
+	
+	/* 스크롤이 특정값이 되면 #right의 position을 fixed로 변경하기 */
+	function right_stop(){
+		//document.getElementById("abc").innerText=document.documentElement.scrollTop;	// 스크롤 위치 보는 법 	<span id="abc"></span>
+		let top=document.documentElement.scrollTop;
+		if(top > 750 && top < 1300) {
+			document.getElementById("right").style.position="fixed";
+			document.getElementById("right").style.top="110px";
+			document.getElementById("right").style.left="905px";
+		}
+		/*else if(top >= 1800) {
+			document.getElementById("right").style.position="relative";
+			document.getElementById("right").style.top="1910px";
+			document.getElementById("right").style.left="905px";
+		}*/
+		else if(top <= 750) {
+			document.getElementById("right").style.position="relative";
+			document.getElementById("right").style.top="0px";
+			document.getElementById("right").style.left="0px";
+		}
+	}
+	window.onscroll=right_stop;
 </script>
 </head>
 <body>
@@ -184,8 +213,8 @@
 	<input type="hidden" name="gchk" value="${gchk}">
 		<!-- 주문상품확인 start -->
 		<h3> 주문상품 확인 </h3>
-		<table width="1000" align="center" border="1">
-			<tr>
+		<table width="1000" align="center" cellpadding="0">
+			<tr height="50" style="border-top:1px solid #887159;background:#f9f4ee;text-align:center">
 				<th colspan="2">상품정보</th>
 				<th>상품금액</th>
 				<th>수량</th>
@@ -198,14 +227,14 @@
 				<c:set var="ctotal" value=""/>
 			
 			<c:forEach var="pvo" items="${plist}">
-			<tr>
+			<tr height="100" style="text-align:center;">
 				<!-- 상품정보(이미지, 상품명) -->
-				<td colspan="2">
+				<td colspan="2" width="250" style="text-align:left;padding-left:10px;">
 					<img src="../img/eshop/${pvo.img}" width="80" height="80" id="main_fimg">
 					${pvo.title}
 				</td>
 				<!-- 상품금액 -->
-				<td>
+				<td width="200">
 					<c:if test="${pvo.halin != 0}">
 						KRW <span class="price_text1"> <fmt:formatNumber value="${pvo.price - (pvo.price * (pvo.halin / 100))}" pattern=",###"/> </span>
 					</c:if>
@@ -214,9 +243,9 @@
 					</c:if>
 				</td>	
 				<!-- 수량 -->
-				<td> ${pvo.su} </td>
+				<td width="70"> ${pvo.su}개 </td>
 				<!-- 주문금액 -->
-				<td>
+				<td width="200">
 					<c:if test="${pvo.halin != 0}">
 						KRW <span class="price_text1"> <fmt:formatNumber value="${(pvo.price - (pvo.price * (pvo.halin / 100))) * pvo.su}" pattern=",###"/> </span>
 					</c:if>
@@ -225,7 +254,7 @@
 					</c:if>
 				</td>
 				<!-- 배송비 -->
-				<td>
+				<td width="130">
 					<c:if test="${pvo.baefee == 0}">
 						무료
 					</c:if>
@@ -298,10 +327,10 @@
  		<c:if test="${p == 'p01'}">
  			<div id="title" style="margin-top:50px;"><b style="float:left;font-size:20px;"> 배송지 정보 입력 </b>
  				<c:if test="${userid == null}">
- 					<span style="float:right;"><input type="checkbox" name="same_info" onclick="getInfo(this.checked)"> 주문자와 동일 </span>
+ 					<span style="float:right;"><input type="checkbox" name="same_info" onclick="getInfo(this.checked)" id="ck"> 주문자와 동일 </span>
  				</c:if>
  				<c:if test="${userid != null}">
- 					<span style="float:right;"><input type="checkbox" name="same_info" onclick="getInfo(this.checked)"> 회원정보와 동일 </span>
+ 					<span style="float:right;"><input type="checkbox" name="same_info" onclick="getInfo(this.checked)" id="ck"> 회원정보와 동일 </span>
  				</c:if>
  			</div>
  			<table>
@@ -329,19 +358,17 @@
  		</c:if>
  		<c:if test="${p == 'p02'}">
 		</c:if>
-				<div><b>결제 방법</b></div>
-				<div id="paymethod">
-				
+			<div id="title"><b style="font-size:20px;"> 약관 동의 </b></div>
+			<div>
+				<div style="float:left; width:500px;font-weight:900">
+					비회원주문 개인정보 수집이용 동의
 				</div>
-				<br>
-				<div><b>약관 동의</b></div>
-				<div>
-					<div style="float:left; width:500px;font-weight:900">비회원주문 개인정보 수집이용 동의</div><div style="float:right;align:right;font-size:12px"><input type="checkbox" name="agree1">동의합니다</div>
-				</div><br>
-				<div>
-					
+				<div style="float:right;align:right;font-size:12px">
+					<input type="checkbox" name="agree1" id="ck">
+					동의합니다
 				</div>
 			</div>
+		</div>
 		<div id="right">
 			<div id="title" style="width:330px;margin-left:10px;"><b style="font-size:20px;"> 결제 정보 </b></div>
 				<div id="total"> <span style="float:left;"> 주문금액 </span> <span style="float:right;"> KRW <fmt:formatNumber value="${total_price}" pattern=",###"/> </span> </div>
@@ -351,7 +378,12 @@
 				<div id="total_p"> KRW <b style="font-family:TimesNewRoman;"> <fmt:formatNumber value="${total_pay}" pattern=",###"/> </b> </div>
 				<div id="btns">					
 					<input type="button" id="gobackBtn" value="이전단계" onclick="goBack()">
-					<input type="button" id="paymentBtn" value="결제하기" onclick="return check()">
+					<c:if test="${p == 'p01'}">	<!-- 배송상품일 경우 -->
+						<input type="button" id="paymentBtn" value="결제하기" onclick="return check1()">
+					</c:if>
+					<c:if test="${p == 'p02'}">	<!-- 모바일상품일 경우 -->
+						<input type="button" id="paymentBtn" value="결제하기" onclick="return check2()">
+					</c:if>
 				</div>
 		</div>
 		</div>
@@ -364,18 +396,18 @@
 	</section>
 	
 	<script>
-	/* 필수입력 체크후 [결제하기]로 진행 */
-	function check()
+	/* 배송상품의 필수입력 체크후 [결제하기]로 진행 */
+	function check1()
 	{
-		if(document.gumae.bname.value.trim() == "") {
+		if(document.gumae.pname.value.trim() == "") {
 			alert("주문자명을 입력하세요.");
 			return false;
 			}
-			else if(document.gumae.bphone.value.trim() == "") {
+			else if(document.gumae.pphone.value.trim() == "") {
 				alert("주문자의 연락처를 입력하세요.");
 				return false;
 				}
-				else if(document.gumae.pname.value.trim() == "") {
+				else if(document.gumae.bname.value.trim() == "") {
 					alert("받는 사람을 입력하세요.");
 					return false;
 					}
@@ -398,12 +430,32 @@
 									else if(document.gumae.agree1.checked == false) {
 										alert("비회원주문 개인정보 수집이용에 대한 동의가 필요합니다.");
 										return false;
-									}
-									else
-									{
-										document.gumae.submit();
-										return true;
-									}
+										}
+										else {
+											document.gumae.submit();
+											return true;
+										}
+	}
+	
+	/* 모바일상품의 필수입력 체크후 [결제하기]로 진행 */
+	function check2()
+	{
+		if(document.gumae.pname.value.trim() == "") {
+			alert("주문자명을 입력하세요.");
+			return false;
+			}
+			else if(document.gumae.pphone.value.trim() == "") {
+				alert("주문자의 연락처를 입력하세요.");
+				return false;
+				}
+				else if(document.gumae.agree1.checked == false) {
+					alert("비회원주문 개인정보 수집이용에 대한 동의가 필요합니다.");
+					return false;
+					}
+					else {
+						document.gumae.submit();
+						return true;
+					}
 	}
   </script>
   
