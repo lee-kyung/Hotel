@@ -196,11 +196,11 @@
 
             if(aa.length > 1) {
                var crcode=document.getElementsByClassName("crcode");
-               
+               var crsu=document.getElementsByClassName("crsu");
                for(i=0;i<aa.length;i+=2){ //cnt받아온 객실길이만큼 돌때
                   for(j=0;j<crcode.length;j++){ // 만약 객실rcode가 
                      if(aa[i]==crcode[j].innerText.trim()){ // cnt들어있는 rcode랑 같다면
-                        if(aa[i+1]>=1) 
+                        if(aa[i+1]>=crsu[j].value) 
                         {
                            cbtn[j].disabled=true;
                            cbtn[j].style.background="#F9F9F9";
@@ -280,6 +280,7 @@
             <c:forEach items="${list}" var="rvo" varStatus="my">
             <div id="ro_info">
              <input type="hidden" name="rcode2" value="${rvo.rcode}">
+             <input type="hidden" name="rsu" value="${rvo.rsu}" class="crsu">
                <div id="left" style="float:left;height:250px;width:500px">
                   <img src="../img/rooms/${rvo.rpimg}" width="500px" height="248px">
                </div>
