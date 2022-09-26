@@ -19,8 +19,9 @@
 .black{background-image:url(../img/banner/black.png)}
 .basic{background-image:url(../img/banner/basic.png)}
 
-.dabout1{background-image:url(../img/about/d1.png)}
+.about_bg_1{background-image:url(../img/banner/d1.png)}
 
+.d1{background-image:url(../img/banner/d1.png)}
 
 
 .bradcam_area{padding:170px;background-size:cover;background-position:center center;text-align:center;padding:269px 0 159px 0}@media (max-width: 767px){.bradcam_area{padding:150px 0}}.bradcam_area h3{font-size:60px;color:#fff;font-weight:400;margin-bottom:0;text-transform:capitalize}@media (max-width: 767px){.bradcam_area h3{font-size:30px}}.popup_box{background:#fff;display:inline-block;z-index:9;width:681px;padding:60px 40px}.popup_box h3{text-align:center;font-size:22px;color:#1F1F1F;margin-bottom:46px}.popup_box .boxed-btn3{width:100%;text-transform:capitalize}.popup_box 
