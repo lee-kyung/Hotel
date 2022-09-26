@@ -64,7 +64,7 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public String roomlist(Model model, HttpServletRequest request) {
 		int page, start;
-		
+		String oby;
 		int pcnt;
 		if(request.getParameter("pcnt")==null)
 			pcnt=10;
@@ -77,6 +77,12 @@ public class AdminServiceImpl implements AdminService{
 			page=Integer.parseInt(request.getParameter("page"));
 		
 		start=(page-1)*pcnt;
+		
+		// 정렬
+		if(request.getParameter("oby")==null)
+			oby="id desc";
+		else
+			oby=request.getParameter("oby");
 		
 		int pstart,pend;
 		pstart=page/10;
@@ -103,7 +109,7 @@ public class AdminServiceImpl implements AdminService{
 		if(chong<pend)
 			pend=chong;
 		
-		model.addAttribute("rlist",mapper.rlist(sel, sword, start, pcnt));
+		model.addAttribute("rlist",mapper.rlist(sel, sword, start, pcnt, oby));
 		model.addAttribute("page",page);
 		model.addAttribute("pstart",pstart);
 		model.addAttribute("pend",pend);
@@ -119,7 +125,7 @@ public class AdminServiceImpl implements AdminService{
 	public String wedlist(Model model, HttpServletRequest request) {
 		int page, start;
 		int pcnt;
-		String oby, oby2;
+		String oby;
 		
 		if(request.getParameter("pcnt")==null)
 			pcnt=10;
@@ -196,6 +202,13 @@ public class AdminServiceImpl implements AdminService{
 		
 		start=(page-1)*pcnt;
 		
+		// 정렬
+		String oby;
+		if(request.getParameter("oby")==null)
+			oby="dr_id desc";
+		else
+			oby=request.getParameter("oby");
+		
 		int pstart,pend;
 		pstart=page/10;
 		if(page%10==0)
@@ -221,7 +234,7 @@ public class AdminServiceImpl implements AdminService{
 		if(chong<pend)
 			pend=chong;
 		
-		model.addAttribute("dlist",mapper.dlist(sel, sword, start, pcnt));
+		model.addAttribute("dlist",mapper.dlist(sel, sword, start, pcnt, oby));
 		model.addAttribute("page",page);
 		model.addAttribute("pstart",pstart);
 		model.addAttribute("pend",pend);
@@ -250,6 +263,13 @@ public class AdminServiceImpl implements AdminService{
 		
 		start=(page-1)*pcnt;
 		
+		// 정렬
+		String oby;
+		if(request.getParameter("oby")==null)
+			oby="id desc";
+		else
+			oby=request.getParameter("oby");
+				
 		int pstart,pend;
 		pstart=page/10;
 		if(page%10==0)
@@ -276,7 +296,7 @@ public class AdminServiceImpl implements AdminService{
 			pend=chong;
 		
 		/* userid가 쿠키값일 경우 'guest'로 바꾸기 */
-		ArrayList<GumaeVO> glist=mapper.glist(sel, sword, start, pcnt);
+		ArrayList<GumaeVO> glist=mapper.glist(sel, sword, start, pcnt, oby);
 		for(int i=0;i<glist.size();i++) {
 			if(glist.get(i).getUserid().length() == 20)
 				glist.get(i).setUserid("guest");
