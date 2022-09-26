@@ -76,20 +76,32 @@
 		</div></h5>
 		</tr>
 		<tr>
-			<td> ID </td>
+			<td> ID 
+				<span onclick="location='roomlist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=id asc'">∧</span>
+				<span onclick="location='roomlist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=id desc'">∨</span>
+			</td>
 			<td> 아이디 </td>
 			<td> 예약자 </td>
 			<td> 연락처 </td>
-			<td> 체크인 </td>
+			<td> 체크인 
+				<span onclick="location='roomlist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=checkin asc'">∧</span>
+				<span onclick="location='roomlist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=checkin desc'">∨</span>
+			</td>
 			<td> 체크아웃 </td>
 			<td> 객실명 </td>
-			<td> 예약일 </td>
+			<td> 예약일 
+				<span onclick="location='roomlist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=bkdate asc'">∧</span>
+				<span onclick="location='roomlist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=bkdate desc'">∨</span>
+			</td>
 			<td> 예약인원 </td>
 			<td> 추가침대 </td>
 			<td> 조식 </td>
 			<td> 총 결제금액</td>
 			<td> 특별요청사항 </td>
-			<td> 예약상태 </td>		
+			<td> 예약상태 
+				<span onclick="location='roomlist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=bstate asc'">∧</span>
+				<span onclick="location='roomlist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=bstate desc'">∨</span>
+			</td>		
 		</tr>
 	  <c:forEach items="${rlist}" var="rvo">
 	    <tr>
@@ -123,13 +135,13 @@
 		<!-- 10페이지 단위로 이전으로 가기 -->
 		<c:if test="${pstart==1}"></c:if> <!-- 페이지 그룹이 1일때 -->
 		<c:if test="${pstart!=1}"><!-- 1그룹이 아니면 -->
-			<a href="roomlist?page=${pstart-1}&pcnt=${pcnt}&sel=${sel}&sword=${sword}">◀</a>
+			<a href="roomlist?page=${pstart-1}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=${oby}">◀</a>
 		</c:if>
 		
 		<!-- 1페이지 단위로 이전으로 가기 -->
 		<c:if test="${page==1}"></c:if> <!-- 1페이지면 -->
 		<c:if test="${page!=1}"><!-- 1페이지가 아니면 -->
-			<a href="roomlist?page=${page-1}&pcnt=${pcnt}&sel=${sel}&sword=${sword}">◁</a>
+			<a href="roomlist?page=${page-1}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=${oby}">◁</a>
 		</c:if>
 		
 		<!-- 페이지 출력 -->
@@ -141,19 +153,19 @@
 			<c:if test="${page!=i}">
 				<c:set var="st" value=""/>
 			</c:if>
-			<b><a href="roomlist?page=${i}&pcnt=${pcnt}&sel=${sel}&sword=${sword}"${st}>${i}</a></b><!-- 누른페이지로 이동걸기 -->
+			<b><a href="roomlist?page=${i}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=${oby}"${st}>${i}</a></b><!-- 누른페이지로 이동걸기 -->
 		</c:forEach>
 		
 		<!-- 1페이지 단위로 다음으로 가기 -->
 		<c:if test="${page==chong}"></c:if>
 		<c:if test="${page!=chong}">
-			<a href="roomlist?page=${page+1}&pcnt=${pcnt}&sel=${sel}&sword=${sword}">▷</a>
+			<a href="roomlist?page=${page+1}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=${oby}">▷</a>
 		</c:if>
 		
 		<!-- 10페이지 단위로 다음으로 가기 -->
 		<c:if test="${pend==chong}"></c:if>
 		<c:if test="${pend!=chong}">
-			<a href="roomlist?page=${pend+1}&pcnt=${pcnt}&sel=${sel}&sword=${sword}">▶</a>
+			<a href="roomlist?page=${pend+1}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=${oby}">▶</a>
 		</c:if>
 		
 	</div>
