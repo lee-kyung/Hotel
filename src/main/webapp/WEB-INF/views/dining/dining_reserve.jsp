@@ -178,15 +178,16 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
     <table width="1100" border="1">
      <c:forEach items="${dlist}" var="dvo">
      <tr>
-        <th>${dvo.dine_type }</th>
-
-        <td>성인 ${dvo.dine_adult}<br>
-           어린이 ${dvo.dine_child }</td>
+        <th>${dvo.dine_type}</th>
+        <td>
+           성인 <fmt:formatNumber value="${dvo.dine_adult}" pattern="#,###"/>원<br>
+           어린이 <fmt:formatNumber value="${dvo.dine_child}" pattern="#,###"/>원
+        </td>
 
     </tr>
     </c:forEach>
     </table>
-   
+   <div> <fmt:formatNumber value="${drvo.dr_total}" pattern="#,###"/>원 </div>
     <table width="1100" border="1">
      <tr>
         <td id="info">

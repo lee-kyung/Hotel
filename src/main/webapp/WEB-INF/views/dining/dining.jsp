@@ -59,10 +59,11 @@
     <!-- about_info_area_start -->
     <div class="about_info_area">
         <div class="about_active owl-carousel">
-            <div class="single_slider about_bg_1"></div>
-            <div class="single_slider about_bg_1"></div>
-            <div class="single_slider about_bg_1"></div>
-            <div class="single_slider about_bg_1"></div>
+            <div class="dabout1"></div>
+            <div class="single_slider about_bg_2"></div>
+            <div class="single_slider about_bg_3"></div>
+            <div class="single_slider about_bg_4"></div>
+            <div class="single_slider about_bg_5"></div>
         </div>
     </div>
     <!-- about_info_area_start -->
