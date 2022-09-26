@@ -88,6 +88,7 @@
 			</td>
 			<td> 아이디 </td>
 			<td> 예약상담일
+<<<<<<< HEAD
 	               <span onclick="location='wedlist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=wresv_cday asc'">∧</span>
 	               <span onclick="location='wedlist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=wresv_cday desc'">∨</span>
 	         </td>
@@ -96,6 +97,16 @@
 	               <span onclick="location='wedlist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=wresv_wday asc'">∧</span>
 	               <span onclick="location='wedlist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=wresv_wday desc'">∨</span>
 	          </td>
+=======
+               <span onclick="location='wedlist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=wresv_cday asc'">∧</span>
+               <span onclick="location='wedlist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=wresv_cday desc'">∨</span>
+         </td>
+         <td> 예약일 </td>
+         <td> 예식희망일
+               <span onclick="location='wedlist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=wresv_wday asc'">∧</span>
+               <span onclick="location='wedlist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=wresv_wday desc'">∨</span>
+          </td>
+>>>>>>> branch 'main' of https://github.com/ey0k/hotel.git
 			<td> 예약시간 </td>
 			<td> 웨딩홀 </td>
 			<td> 예약자 </td>
