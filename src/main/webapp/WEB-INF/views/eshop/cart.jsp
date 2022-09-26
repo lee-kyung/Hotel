@@ -494,7 +494,7 @@
 	    		<div id="msg"> 비회원구매 시 쿠폰 이용 등 회원에게만 제공되는 혜택을 받으실 수 없습니다.<br>회원가입 및 로그인 하시고 구매혜택 받아가세요. </div>
 	    		<div id="box">
 	    			<div id="memin" onclick="location='../member/member_input'"> 회원가입 </div>
-	    			<div id="login" onclick="location='../login/login?ck=4'"> 로그인 </div>
+	    			<div id="login" onclick="location='../login/login?ck=3&p=${p}'"> 로그인 </div>
 	    		</div>
 	    	</div>
     	</c:if>

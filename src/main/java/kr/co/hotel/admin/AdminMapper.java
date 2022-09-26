@@ -21,16 +21,16 @@ public interface AdminMapper {
 	public ArrayList<GumaeVO> getgumae(); 
 	
 // 회원목록 각각 페이지에서 보이게
-	public ArrayList<RoomResvVO> rlist(String sel,String sword,int start,int pcnt);
+	public ArrayList<RoomResvVO> rlist(String sel,String sword,int start,int pcnt,String oby);
 	public int getRChong(int pcnt,String sel,String sword);
 	
 	public ArrayList<WeddingResvVO> wlist(String sel,String sword,int start,int pcnt,String oby);
 	public int getWChong(int pcnt,String sel,String sword);
 	
-	public ArrayList<DiningResvVO> dlist(String sel,String sword,int start,int pcnt);
+	public ArrayList<DiningResvVO> dlist(String sel,String sword,int start,int pcnt,String oby);
 	public int getDChong(int pcnt,String sel,String sword);
 	
-	public ArrayList<GumaeVO> glist(String sel,String sword,int start,int pcnt);
+	public ArrayList<GumaeVO> glist(String sel,String sword,int start,int pcnt,String oby);
 	public int getGChong(int pcnt,String sel,String sword);
 	
 // 상태 변경 - 날짜 지나면 변경
