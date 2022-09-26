@@ -116,68 +116,68 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public String wedlist(Model model, HttpServletRequest request) {
-		int page, start;
-		int pcnt;
-		String oby, oby2;
-		
-		if(request.getParameter("pcnt")==null)
-			pcnt=10;
-		else
-			pcnt=Integer.parseInt(request.getParameter("pcnt"));
-		
-		if(request.getParameter("page")==null)
-			page=1;
-		else
-			page=Integer.parseInt(request.getParameter("page"));
-		
-		start=(page-1)*pcnt;
-		
-		// 정렬
-		if(request.getParameter("oby")==null)
-			oby="wresv_id desc";
-		else
-			oby=request.getParameter("oby");
-		
-		// 페이지 마저..
-		int pstart,pend;
-		pstart=page/10;
-		if(page%10==0)
-			pstart--;
-		
-		pstart=pstart*10+1;
-		pend=pstart+9;
-		
-		String sel; // 검색필드..말머리같은거
-		if(request.getParameter("sel")==null)
-			sel="0";
-		else
-			sel=request.getParameter("sel");
-		
-		String sword; // searchword..검색어
-		if(request.getParameter("sword")==null)
-			sword="";
-		else
-			sword=request.getParameter("sword");
-		
-		int chong=mapper.getWChong(pcnt, sel, sword);
-		
-		if(chong<pend)
-			pend=chong;
-		
-		
-		model.addAttribute("wlist",mapper.wlist(sel, sword, start, pcnt, oby));
-		model.addAttribute("page",page);
-		model.addAttribute("pstart",pstart);
-		model.addAttribute("pend",pend);
-		model.addAttribute("chong",chong);
-		model.addAttribute("pcnt",pcnt);
-		model.addAttribute("sel",sel);
-		model.addAttribute("sword",sword);
-		model.addAttribute("oby",oby);
-		
-		return "/admin/wedlist";
-	}
+	   public String wedlist(Model model, HttpServletRequest request) {
+	      int page, start;
+	      int pcnt;
+	      String oby;
+	      
+	      if(request.getParameter("pcnt")==null)
+	         pcnt=10;
+	      else
+	         pcnt=Integer.parseInt(request.getParameter("pcnt"));
+	      
+	      if(request.getParameter("page")==null)
+	         page=1;
+	      else
+	         page=Integer.parseInt(request.getParameter("page"));
+	      
+	      start=(page-1)*pcnt;
+	      
+	      // 정렬
+	      if(request.getParameter("oby")==null)
+	         oby="wresv_id desc";
+	      else
+	         oby=request.getParameter("oby");
+	      
+	      // 페이지 마저..
+	      int pstart,pend;
+	      pstart=page/10;
+	      if(page%10==0)
+	         pstart--;
+	      
+	      pstart=pstart*10+1;
+	      pend=pstart+9;
+	      
+	      String sel; // 검색필드..말머리같은거
+	      if(request.getParameter("sel")==null)
+	         sel="0";
+	      else
+	         sel=request.getParameter("sel");
+	      
+	      String sword; // searchword..검색어
+	      if(request.getParameter("sword")==null)
+	         sword="";
+	      else
+	         sword=request.getParameter("sword");
+	      
+	      int chong=mapper.getWChong(pcnt, sel, sword);
+	      
+	      if(chong<pend)
+	         pend=chong;
+	      
+	      
+	      model.addAttribute("wlist",mapper.wlist(sel, sword, start, pcnt, oby));
+	      model.addAttribute("page",page);
+	      model.addAttribute("pstart",pstart);
+	      model.addAttribute("pend",pend);
+	      model.addAttribute("chong",chong);
+	      model.addAttribute("pcnt",pcnt);
+	      model.addAttribute("sel",sel);
+	      model.addAttribute("sword",sword);
+	      model.addAttribute("oby",oby);
+	      
+	      return "/admin/wedlist";
+	   }
 
 	@Override
 	public String dinelist(Model model, HttpServletRequest request) {

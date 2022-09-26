@@ -105,51 +105,52 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
 	function date_type(y, m, d, t) {
 		let ymd=y+"-"+m+"-"+d;
 		document.getElementById("dr_date").value=ymd;
-		
+		document.getElementById("dr_type").innerHTML="<option>"+t+"</option>";
+
 		let chk=new XMLHttpRequest();
 		chk.open("get", "getDTresv?dd="+ymd+"&dt="+t);
 		chk.send();
 		chk.onreadystatechange=function(){
 			if(chk.readyState == 4) {
-				/* 예약된 게 없다면 */
-				/*document.getElementById("dr_type").innerHTML="<option value='"+t+"'>"+t+"</option>";
-				if(t == 'Breakfast')
-					document.getElementById("dr_time").innerHTML="<option>선택</option><option value='08:00'>08:00</option><option value='10:00''>10:00</option>";
-					else if(t == 'Lunch')
-						document.getElementById("dr_time").innerHTML="<option>선택</option><option value='13:00'>13:00</option><option value='15:00'>15:00</option>";
-						else if(t == 'Dinner')
-							document.getElementById("dr_time").innerHTML="<option>선택</option><option value='16:00'>16:00</option><option value='18:00'>18:00</option>";*/
-			              
+				let tmcnt=chk.responseText.split(",");	// [시간, 예약수, 시간, 예약수] = [8, 3, 10, 1]
+				
 				/* 예약된 게 있다면 */
-				let tmcnt=chk.responseText.split(",");
 				let bk=3;	// 타임당 만석인 테이블의 수를 입력 (ex : 8시 타임 3테이블, 10시 타임 3테이블 = 3 입력)
-				console.log(tmcnt);
-				console.log(tmcnt.length);
 				if(tmcnt.length > 1) {
 					for(i=0;i<tmcnt.length;i+=2) {
-						if(tmcnt[i] == 8 && tmcnt[i+1] == bk){
+						if(tmcnt[i] == 8 && tmcnt[i+1] == bk) {
 							document.getElementById("dr_time").innerHTML="<option>선택</option><option value='10:00'>10:00</option>";
-							console.log(tmcnt[i]);
-							console.log(tmcnt[i+1]);
-							console.log(bk);
+							console.log(tmcnt[i] == 8 && tmcnt[i+1] == bk);
 						}
-							else if(tmcnt[i] == 10 && tmcnt[i+1] == bk)
+							else if(tmcnt[i] == 10 && tmcnt[i+1] == bk) {
 								document.getElementById("dr_time").innerHTML="<option>선택</option><option value='08:00'>08:00</option>";
-								else if(t == 'Breakfast')
+								console.log(tmcnt[i] == 8 && tmcnt[i+1] == bk);
+							}
+								else if((tmcnt[i] == 8 || tmcnt[i] == 10) && tmcnt[i+1] != bk)
 									document.getElementById("dr_time").innerHTML="<option>선택</option><option value='08:00'>08:00</option><option value='10:00'>10:00</option>";
 						else if(tmcnt[i] == 13 && tmcnt[i+1] == bk)
 							document.getElementById("dr_time").innerHTML="<option>선택</option><option value='15:00'>15:00</option>";
 							else if(tmcnt[i] == 15 && tmcnt[i+1] == bk)
 								document.getElementById("dr_time").innerHTML="<option>선택</option><option value='13:00'>13:00</option>";
-								else if(t == 'Lunch')
+								else if((tmcnt[i] == 13 || tmcnt[i] == 15) && tmcnt[i+1] != bk)
 									document.getElementById("dr_time").innerHTML="<option>선택</option><option value='13:00'>13:00</option><option value='15:00'>15:00</option>";
 						else if(tmcnt[i] == 16 && tmcnt[i+1] == bk)
 							document.getElementById("dr_time").innerHTML="<option>선택</option><option value='18:00'>18:00</option>";
 							else if(tmcnt[i] == 18 && tmcnt[i+1] == bk)
 								document.getElementById("dr_time").innerHTML="<option>선택</option><option value='16:00'>16:00</option>";
-								else if(t == 'Dinner')
+								else if((tmcnt[i] == 16 || tmcnt[i] == 18) && tmcnt[i+1] != bk)
 									document.getElementById("dr_time").innerHTML="<option>선택</option><option value='16:00'>16:00</option><option value='18:00'>18:00</option>";
 					}
+				}
+				else {
+					/* 예약된 게 없다면 */
+					document.getElementById("dr_type").innerHTML="<option value='"+t+"'>"+t+"</option>";
+					if(t == 'Breakfast')
+						document.getElementById("dr_time").innerHTML="<option>선택</option><option value='08:00'>08:00</option><option value='10:00''>10:00</option>";
+						else if(t == 'Lunch')
+							document.getElementById("dr_time").innerHTML="<option>선택</option><option value='13:00'>13:00</option><option value='15:00'>15:00</option>";
+							else if(t == 'Dinner')
+								document.getElementById("dr_time").innerHTML="<option>선택</option><option value='16:00'>16:00</option><option value='18:00'>18:00</option>";
 				}
 			}
 		}	

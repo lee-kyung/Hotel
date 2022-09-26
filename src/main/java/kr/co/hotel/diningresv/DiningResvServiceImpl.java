@@ -106,7 +106,7 @@ public class DiningResvServiceImpl implements DiningResvService{
       return "/dining/dining_reserve";
    }
    
-   @Override
+   @Override	/* select태그의 타임당 예약마감 표시 */
    public void getDTresv(HttpServletRequest request, PrintWriter out) {
 	   String dd=request.getParameter("dd");
 	   String dt=request.getParameter("dt");
