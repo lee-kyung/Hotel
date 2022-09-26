@@ -21,8 +21,8 @@ public class LoginController {
 	private LoginService service;
 	
 	@RequestMapping("/login/login")
-	public String login() {
-		return "/login/login";
+	public String login(HttpServletRequest request, Model model) {
+		return service.login(request, model);
 	}
 	
 	@RequestMapping("/login/login_ok")
