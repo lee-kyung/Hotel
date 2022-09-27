@@ -19,7 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="rooms" resultType="kr.co.hotel.room.RoomVO">
 		select r.*, rd.code, rd.rtype, rd.rtxt from room r inner join rdae rd on rd.code=substring(r.rcode,2,2) 
-		where rcode='r01001' or rcode='r02001' or rcode='r03001' or rcode='r04001'
+	<!-- 	where rcode='r01001' or rcode='r02001' or rcode='r03001' or rcode='r04001' -->
 	</select>
 
 	<select id="room_content" resultType="kr.co.hotel.room.RoomVO">

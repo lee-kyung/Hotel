@@ -36,29 +36,23 @@ public class RoomController {
 	}
 	// 객실 타입관련
 	@RequestMapping("/room/rooms")
-	public String room_content(Model model,HttpServletRequest request)
+	public String rooms(Model model,HttpServletRequest request)
 	{
 		return service.rooms(model,request);
 	}
 	
 	@RequestMapping("/room/room_content")
-	public String rooms(Model model,HttpServletRequest request) 
+	public String room_content(Model model,HttpServletRequest request) 
 	{
 		return service.room_content(model,request);
 	}
 	
-	@RequestMapping("/room/room_su")
-	public String room_su(HttpServletRequest request, HttpSession session, Model model)
-	{
-		return service.room_su(request, session, model);
-	}
-	
-	
 	@RequestMapping("/room/roomtest")
-	public String roomtest()
+	public String roomtest(Model model,HttpServletRequest request)
 	{
-		return "/room/roomtest";
+		return service.roomtest(model,request);
 	}
+	
 	
 	
 	
