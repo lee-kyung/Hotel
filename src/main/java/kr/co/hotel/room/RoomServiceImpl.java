@@ -56,6 +56,7 @@ public class RoomServiceImpl implements RoomService{
 			rvo.setRcode(multi.getParameter("rcode"));
 			rvo.setRtxt(multi.getParameter("rtxt"));
 			rvo.setRtxt2(multi.getParameter("rtxt2"));
+			rvo.setRtxt2(multi.getParameter("rtxt3"));
 			rvo.setRview(multi.getParameter("rview"));
 			rvo.setRbed(multi.getParameter("rbed"));
 		}
