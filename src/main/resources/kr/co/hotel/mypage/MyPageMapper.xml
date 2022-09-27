@@ -168,7 +168,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select rb.*, r.rname from roombk rb, room r where rb.rcode=r.rcode and rb.bid=#{param1}
 	</select>
 	
-	<!-- <select id="getDinfo" resultType="kr.co.hotel.diningresv.DiningResvVO">
+	<select id="getDinfo" resultType="kr.co.hotel.diningresv.DiningResvVO">
 		select * from diningresv where bid=#{param1}
 	</select>
 	
@@ -176,15 +176,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from weddingresv where wresv_code=#{param1}
 	</select>
 	
-	<select id="getEinfo" resultType="kr.co.hotel.eshop.gumaeVO">
+	<select id="getEinfo" resultType="kr.co.hotel.eshop.GumaeVO">
 		select g.*, substr(p.fimg, 1, instr(p.fimg, ",")-1) as pimg
 		from gumae g, product p
 		where g.pcode=p.pcode and g.jumuncode=#{param1}
 	</select>
-	
 	<select id ="getPnum" resultType="String">
 		select substr(pcode, 1, 3) from gumae where jumuncode=#{param1} limit 1
-	</select> -->
+	</select>
 	
 	
 	

@@ -4,6 +4,8 @@ import java.io.PrintWriter;
 import java.net.URLEncoder;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -600,13 +602,21 @@ public class MyPageServiceImpl implements MyPageService{
 		String bjcode=request.getParameter("bjcode");
 		String c=bjcode.substring(0, 1);
 		
-		if(c == "r")
-			model.addAttribute("rvo", mapper.getRinfo(bjcode));
-		else if(c == "d")
+		if(c.equals("r")) {
+			RoomResvVO rvo=mapper.getRinfo(bjcode);
+			model.addAttribute("rvo", rvo);
+			LocalDate in = LocalDate.parse(rvo.getCheckin(), DateTimeFormatter.ISO_DATE);
+			LocalDate out = LocalDate.parse(rvo.getCheckout(), DateTimeFormatter.ISO_DATE);
+			Period diff = Period.between(in, out);
+			model.addAttribute("days", diff);
+			System.out.println(diff);
+
+		}
+		else if(c.equals("d"))
 			model.addAttribute("dvo", mapper.getDinfo(bjcode));
-		else if(c == "w")
+		else if(c.equals("w"))
 			model.addAttribute("wvo", mapper.getWinfo(bjcode));
-		else if(c == "e") {
+		else if(c.equals("e")) {
 			model.addAttribute("p", mapper.getPnum(bjcode));
 			model.addAttribute("glist", mapper.getEinfo(bjcode));
 		}

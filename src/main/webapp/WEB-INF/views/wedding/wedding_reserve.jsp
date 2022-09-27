@@ -240,7 +240,7 @@
 	width:400px;
 	height:70px;}
 	
-	section #wed_resv #background{
+	/* section #wed_resv #background{
 	position:absolute;
     left:0px;
     top:0px;
@@ -248,17 +248,17 @@
     height:3638px;
     background:rgba(240,240,240,0.6);
     visibility:hidden;}
-	
+	*/
 	section #wed_resv #user{
 	margin-top:70px;
 	border:1px solid #887159;
-	margin-left:300px;
+ 	margin-left:15%;
 	height:400px;
 	width:1100px;
 	position:absolute;
 	text-align:center;
 	background:white;
-	z-index:1;}
+	z-index:1;} 
 	
 	section #wed_resv #user #user_txt{
 	margin-top:50px;
@@ -276,7 +276,8 @@
 	text-align:center;
 	background:#887159;
 	color:white;
-	border:none;}
+	border:none;
+	cursor:pointer;}
 	
 	
 	section #wed_resv #login{
@@ -342,6 +343,16 @@
 	#wed_chk2 img{
 	width:100%;}
 	
+	section #wed_resv .btn_css{
+	width:300px;
+	border: 1px solid #887159;
+	background:white;
+	color:#887159;
+	cursor:pointer;}
+	
+	section #wed_resv .btn_css:hover{
+	background:#887159;
+	color:white;}
 </style>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script> 
@@ -375,39 +386,41 @@
 	
 	function login_view()
 	{
-		document.getElementById("background").style.visibility="visible";
-		document.getElementById("login").style.visibility="visible";
+	//	document.getElementById("background").style.visibility="visible";
+	//	document.getElementById("login").style.visibility="visible";
 		document.getElementById("user").style.visibility="hidden";
-		position_chg();
+		location="../login/login?ck=1"
+	//	position_chg();
     }
+
+	function resv_view()
+	{
+	//	document.getElementById("resv").style.display="block";
+		document.getElementById("user").style.display="none";
+	}
     
     // 브라우저 중앙에 레이어를 위치 시키지 위한 좌표
     function position_chg()
     {
 	   	 var x=innerWidth;  // 브라우저 가로
 	   	 var y=innerHeight; // 브라우저 세로
-	   	 var left=(x/2)-500;
+	   	 var left=(x/2)-1000;
 	   	 var top=(y/2)-200+document.documentElement.scrollTop;
 	   	 
-	   	 document.getElementById("login").style.left=left+"px";
-	   	 document.getElementById("login").style.top=top+"px";
+	   	 document.getElementById("user").style.left=left+"px";
+	   	 document.getElementById("user").style.top=top+"px";
     }
     
     // 브라우저의 크기를 바꿀때마다 실행
     window.onresize=position_chg;
     
     
-    function login_close()
+/*     function login_close()
     {
     	document.getElementById("background").style.visibility="hidden";
     	document.getElementById("login").style.visibility="hidden";
-    }
+    } */
     
-	function resv_view()
-	{
-		document.getElementById("resv").style.display="block";
-		document.getElementById("user").style.display="none";
-	}
 	
 	function edit()
 	{
@@ -611,7 +624,7 @@
 			<div id="n_user" onclick="resv_view()">비회원으로 예약</div>	
 		</div>	
 	</c:if>
-		
+<!-- 		
 	<div id="background">
 	<div id="login">
 	<form method="post" action="../login/login_ok">
@@ -638,7 +651,7 @@
 	</div>	
 		
 		
-	</div>
+	</div> -->
 		
 		
 		
@@ -706,7 +719,7 @@
 						<div>${today } 23:59까지 입금해주세요</div>
 					</div>
 				</div>
-				<input type="button" class="button button-contactForm btn_1 boxed-btn" id="paymentBtn" onclick="return resv_check()" value="상담예약 결제하기">			
+				<input type="button" class="btn_css" id="paymentBtn" onclick="return resv_check()" value="상담예약 결제하기">			
 			</td>
 		</tr>
 		
@@ -869,6 +882,7 @@
 		
 		else if(document.wresv.wresv_pay.value=="1")
 		{
+			alert("dd");
 			document.wresv.submit();
 			return true;
 		}

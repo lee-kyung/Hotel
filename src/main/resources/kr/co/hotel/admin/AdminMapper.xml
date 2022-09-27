@@ -34,7 +34,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select rb.*, r.rname, r.rcode 
 		from roombk as rb, room as r 
 		where rb.rcode=r.rcode and ${param1} like concat('%',#{param2},'%') 
-		order by checkin desc limit #{param3},#{param4}
+		order by ${param5} limit #{param3},#{param4}
 	</select>
 	<select id="getRChong" resultType="Integer">
 		select ceil(count(*)/#{param1}) from roombk where ${param2} like concat ('%',#{param3},'%') 
@@ -50,7 +50,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<select id="dlist" resultType="kr.co.hotel.diningresv.DiningResvVO">
-		select * from diningresv where ${param1} like concat('%',#{param2},'%') order by dr_id desc limit #{param3},#{param4}
+		select * from diningresv where ${param1} like concat('%',#{param2},'%') order by ${param5} limit #{param3},#{param4}
 	</select>
 	<select id="getDChong" resultType="Integer">
 		select ceil(count(*)/#{param1}) from diningresv where ${param2} like concat('%',#{param3},'%')
@@ -58,7 +58,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<select id="glist" resultType="kr.co.hotel.eshop.GumaeVO">
-		select * from gumae where ${param1} like concat('%',#{param2},'%') order by id desc limit #{param3},#{param4}
+		select * from gumae where ${param1} like concat('%',#{param2},'%') order by ${param5} limit #{param3},#{param4}
 	</select>
 	<select id="getGChong" resultType="Integer">
 		select ceil(count(*)/#{param1}) from gumae where ${param2} like concat('%',#{param3},'%')

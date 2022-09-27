@@ -206,17 +206,17 @@ public class WeddingServiceImpl implements WeddingService{
 	@Override	
 	public String weddingReserve_ok(WeddingResvVO wrvo, HttpSession session) 
 	{
-	
-		if(session.getAttribute("userid").toString() != null)
-		{
-			String userid=session.getAttribute("userid").toString();
-			wrvo.setUserid(userid); // wrvo에 userid 가져와서 넣기
-		}
+		String userid="";
+		if(session.getAttribute("userid") == null)
+			userid="guest";
 		else
-		{
-			String userid="guest";
-			wrvo.setUserid(userid);	// wrvo에 userid 가져와서 넣기
-		}
+			userid=session.getAttribute("userid").toString();
+		
+		wrvo.setUserid(userid); // wrvo에 userid 가져와서 넣기
+		
+		
+		System.out.println("sdf");
+		System.out.println("sdf"+userid);
 		
 		/*주문번호 생성하기 -> 구매날짜(8자리)+난수(4자리)+찐숫자(4자리)*/
 		Date today=new Date();

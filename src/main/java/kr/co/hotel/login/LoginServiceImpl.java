@@ -20,12 +20,24 @@ import kr.co.hotel.member.MemberVO;
 public class LoginServiceImpl implements LoginService {
 	@Autowired
 	private LoginMapper mapper;
+	
+	@Override
+	public String login(HttpServletRequest request, Model model) {
+		if(request.getParameter("ck") != null) {
+			String ck=request.getParameter("ck");
+			model.addAttribute("ck", ck);
+		}
+		if(request.getParameter("p") != null) {
+			String p=request.getParameter("p");
+			model.addAttribute("p", p);
+		}
+		return "/login/login";
+	}
 
 	@Override
-	public String login_ok(MemberVO mvo, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
-		
+	public String login_ok(MemberVO mvo, HttpSession session, HttpServletRequest request, HttpServletResponse response) {	
 		mvo=mapper.login_ok(mvo);
-		int ck=Integer.parseInt(request.getParameter("ck"));
+		int ck;
 
 		if(mvo != null) {
 			String userid=mvo.getUserid();
@@ -52,20 +64,19 @@ public class LoginServiceImpl implements LoginService {
 				response.addCookie(cookie);
 			}
 			
-			if(ck==1)
-			{
-				return "redirect:/wedding/wedding_reserve";
+			if(request.getParameter("ck") != null) {
+				ck=Integer.parseInt(request.getParameter("ck"));
+				if(ck==1)
+					return "redirect:/wedding/wedding_reserve";
+				else if(ck==2)
+					return "redirect:/room/room_resv";
+				else if(ck == 3)
+					return "redirect:/eshop/cart?p="+request.getParameter("p");	
+				else
+					return "redirect:/main/index";
 			}
-			else if(ck==2)
-			{
-				return "redirect:/room/room_resv";
-			}
-			else if(ck==3)
-			{
-				return "redirect:/main/index";
-			}
-			else
-				return "redirect:/main/index";
+
+			return "redirect:/main/index";
 		}
 		else
 			return "redirect:/login/login";

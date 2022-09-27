@@ -255,11 +255,6 @@
 					- 투숙 당일 노쇼(No Show) 발생 시 동일한 위약금이 청구될 수 있습니다.
 				</div>
 				<br>
-				<div><b>결제 방법</b></div>
-				<div id="paymethod">
-					간편결제 <input type="radio" value="0" name="paym">					
-				</div>
-				<br>
 				<div><b>약관 동의</b></div>
 				<div>
 					<div style="float:left; width:500px;font-weight:900">개인정보 수집 및 이용에 대한 동의</div><div style="float:right;align:right;font-size:12px"><input type="checkbox" name="agree1">동의합니다</div>
@@ -341,11 +336,6 @@
 		else if(document.resv.agree2.checked!=true)
 		{
 			alert("상품 정보 및 취소 규정에 대한 동의가 필요합니다.");
-			return false;
-		}
-		else if(document.resv.paym.value=="")
-		{
-			alert("결제방법을 선택하세요")	;
 			return false;
 		}
 		else
