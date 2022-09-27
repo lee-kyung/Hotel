@@ -124,6 +124,10 @@
 				<td colspan="2"> <input type="text" name="rtxt2"> </td>
 			</tr>
 			<tr>
+				<td> 이벤트 설명 </td>
+				<td colspan="2"> <input type="text" name="rtxt3"> </td>
+			</tr>
+			<tr>
 				<td> 객실메인 이미지 </td>
 				<td colspan="2"> <input type="file" name="rpimg"> </td>
 			</tr>

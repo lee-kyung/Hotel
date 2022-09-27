@@ -21,6 +21,7 @@ public interface EshopMapper {
 	public Integer checkWish(String userid, String pcode);
 	
 	public void cart_add(String userid, String pcode, int su);
+	public void cart_del(String userid, String pcode);
 	public Integer checkCart(String userid, String pcode);
 	public void cart_suadd(int su, String userid, String pcode);
 	public ArrayList<CartVO> cart(String userid, String p);
@@ -34,5 +35,6 @@ public interface EshopMapper {
 	
 	public void pro_gumae_ok(GumaeVO gvo);
 	public Integer getJumun();
-	public void cart_del(String pcode, String userid);
+	public void suMinusPlus(String su, String pcode);
+	public String getName(String jumuncode);
 }

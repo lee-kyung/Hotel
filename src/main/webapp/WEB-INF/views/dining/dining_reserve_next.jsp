@@ -19,11 +19,9 @@
 	margin-bottom: 120px;
   }
   diningsec table{
-    width: 800px;
+    width: 750px;
 	height: 80px;
 	/* 	border: 1px solid #887159; */
-	marin-top:20px;
-	margin-bottom: 30px;
   }
   diningsec input[type=text]{
 	/* width: 260px; */
@@ -44,8 +42,8 @@
 	width: 240px;
 	height: 780px;
 	float: right;
-	margin-left: 10px;
-	padding: 20px;
+/* 	margin-left: 10px;
+	padding: 20px; */
 	/* position: absolute;
 	left: 950px; */
   } 
@@ -71,7 +69,7 @@
     
   }
   td{
-    margin-top:40px;
+    margin-top:15px;
   }
   
   /* 결제 css */
@@ -210,12 +208,12 @@
 	  <%--  <input type="hidden" name="dr_total" value="${dvo.dine_child }"> --%>
 		  <div style="color:#887159; font-weight:900"> RESERVATION</div>
 		       <div style="font-size: 25px;"> 파라다이스호텔 부산에 오신 것을 환영합니다.</div><br>
-		       
 		       <h2>ON THE PLATE</h2><br>
 		       <hr>
 		   <div id="outer">
 <!--left--><div id="left">	
-			       
+			   <table>
+     
                <div style="float:left; width:700px;" id="info"><b>안내사항</b></div><br>
 			   <div id="info_con">
 			      - 예약 신청을 위한 페이지로 예약 신청 후 직원이 확인하여 예약 확정 문자를 보내드립니다.<br>
@@ -226,12 +224,15 @@
 			      - 어린이 인원 예약 시 요청사항에 나이 정보를 입력해 주시기 바랍니다.<br>
 			      - 홈페이지 예약 할인 프로모션은 예약 상황에 따라 조기 마감 될 수 있으며 바우쳐,쿠폰사용 및 제휴 할인과 중복 적용되지 않습니다.<br>
 			   </div>
-			   <div>
-			   <br>
-			   </div>
+			   </table>
+			   
+			  
 			   <!-- 예약정보 -->
 			   <table>
+			   		   <!-- 고객정보 -->
 			   
+			   <div><div style="float:left; width:500px;"><b>고객 정보</b></div><div style="float:right;align:right;font-size:12px">* 필수입력항목</div></div><br>
+ 			
 			   <tr>
 			   
 			       <th width="300">방문 희망 일자</th>
@@ -289,22 +290,23 @@
 			       <td colspan="3">
 			      m1 * 요청사항은 레스토랑 사정에 따라 응대가 어려울 수 있으며 추가 문의는 전화 주시기 바랍니다.<br>
 			      m2 * 요청사항을 최대한 반영하도록 최선을 다하겠습니다.<br>
-         &nbsp;&nbsp;다만, 호텔의 사정으로 부득이 반영되지 않을 수도 있으니 이 점 양해 부탁드립니다.
+         &nbsp;&nbsp;다만, 호텔의 사정으로 부득이 반영되지 않을 수도 있으니 이 점 양해 부탁드립니다.<br>
 			       </td>
 			   </tr>
-			   
-			   <!-- 고객정보 -->
-			   <div><div style="float:left; width:500px;"><b>고객 정보</b></div><div style="float:right;align:right;font-size:12px">* 필수입력항목</div></div><br>
- 			</table>
+			   </table>
+	
+ 			
  			<table>
  			 	<tr height="10px"> 
  					<td>
+ 					<br>
  					<c:if test="${userid==null}">
  					* 예약자 이름 &nbsp;<input type="text" name="bkname">
  					* 휴대폰 번호 &nbsp;
-                    <input type="text" name="p1" value="${p1}" class="inputs" maxlength="3" size="10"/>-
-			        <input type="text" name="p2" value="${p2}" class="inputs" maxlength="4" size="10"/>-
-			        <input type="text" name="p3" value="${p3}" class="inputs" maxlength="4" size="10"/>
+                    <input type="text" name="p1" value="${p1}" class="inputs" maxlength="3" size="7"/>-
+			        <input type="text" name="p2" value="${p2}" class="inputs" maxlength="4" size="8"/>-
+			        <input type="text" name="p3" value="${p3}" class="inputs" maxlength="4" size="8"/>
+			        <br>
 			        * 휴대폰 번호는 예약번호 전송에 쓰입니다. 정확히 기입해 주세요.
                     </c:if>
                     </td>

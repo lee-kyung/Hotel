@@ -22,6 +22,7 @@ public interface EshopService {
 	public void wish_del(HttpSession session, HttpServletRequest request, PrintWriter out);
 	
 	public void cart_add(HttpSession session, HttpServletRequest request, PrintWriter out, HttpServletResponse response);
+	public void cart_del(HttpSession session, HttpServletRequest request, PrintWriter out);
 	public String cart(HttpSession session, Model model, HttpServletRequest request, HttpServletResponse response);
 	public String wishcart_del(HttpServletRequest request);
 	public String pro_gumae(HttpServletRequest request, Model model, HttpSession session);
@@ -29,5 +30,6 @@ public interface EshopService {
 	public String wish(HttpSession session, Model model, HttpServletRequest request);
 	public String move_cart(HttpSession session, HttpServletRequest request);
 	
-	public String pro_gumae_ok(GumaeVO gvo, HttpSession session, HttpServletRequest request);
+	public String pro_gumae_ok(GumaeVO gvo, HttpSession session, HttpServletRequest request, HttpServletResponse response);
+	public String gumae_okmsg(HttpServletRequest request, Model model);
 }

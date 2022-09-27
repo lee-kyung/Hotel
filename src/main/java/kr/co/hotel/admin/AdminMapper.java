@@ -21,16 +21,16 @@ public interface AdminMapper {
 	public ArrayList<GumaeVO> getgumae(); 
 	
 // 회원목록 각각 페이지에서 보이게
-	public ArrayList<RoomResvVO> rlist(String sel,String sword,int start,int pcnt);
+	public ArrayList<RoomResvVO> rlist(String sel,String sword,int start,int pcnt,String oby);
 	public int getRChong(int pcnt,String sel,String sword);
 	
 	public ArrayList<WeddingResvVO> wlist(String sel,String sword,int start,int pcnt,String oby);
 	public int getWChong(int pcnt,String sel,String sword);
 	
-	public ArrayList<DiningResvVO> dlist(String sel,String sword,int start,int pcnt);
+	public ArrayList<DiningResvVO> dlist(String sel,String sword,int start,int pcnt,String oby);
 	public int getDChong(int pcnt,String sel,String sword);
 	
-	public ArrayList<GumaeVO> glist(String sel,String sword,int start,int pcnt);
+	public ArrayList<GumaeVO> glist(String sel,String sword,int start,int pcnt,String oby);
 	public int getGChong(int pcnt,String sel,String sword);
 	
 // 상태 변경 - 날짜 지나면 변경
@@ -39,5 +39,8 @@ public interface AdminMapper {
 	public void dstatechange(Date date);
 //	상태 변경 - 버튼으로 변경
 	public void estatechange(String state, String id);
+	
+//  주문이 취소되면 product테이블의 [재고]와 [판매량]을 원래대로
+	public void suPlusMinus(String su, String pcode);
 	
 }

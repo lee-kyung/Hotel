@@ -13,6 +13,9 @@
 	#first #first_1{
 	margin:auto;
 	width:1800px;}
+		
+	#first #first_1 span{
+	cursor:pointer;}
 	
 	#first #txt{
 	text-align:left;
@@ -44,7 +47,6 @@
 	section{
 	width:1300px;
 	margin:auto;
-	border:1px solid red;
 	margin-top:100px;
 	margin-bottom:200px;}
 
@@ -100,8 +102,7 @@
 	height:40px;
 	border:1px solid #887159;
 	color:#887159;
-	background:white;
-	cursor:pointer;}
+	background:white;}
 	
 	section #wed table#first_t{
 	margin-top:50px;
@@ -115,8 +116,19 @@
 	padding-top:10px;
 	padding-bottom:10px;}
 	
+	section #wed table#first_t tr:last-child{
+	border-right-color:white;
+	border-left-color:white;
+	border-bottom-color:white}
+	
+	section #wed #txt3{
+	text-align:center;
+	font-size:35px;
+	margin-top:30px;
+	display:none;}
 	
 	section #wed table#second_t{
+	margin-top:30px;
 	width:1300px;
 	text-align:center;}
 	
@@ -127,6 +139,27 @@
 	padding-top:10px;
 	padding-bottom:10px;}
 	
+	section #wed table#first_t #page{
+	font-size:0px;}
+	
+	section #wed table#first_t #page .page_n{
+	border:1px solid black;
+	display:inline-block;
+	width:60px;
+	height:50px;
+	padding-top:10px;
+	font-size:16px;
+	border:1px solid #887159;
+	border-right:none;
+	margin-top:30px;
+	color:#887159;}
+	
+	section #wed table#first_t #page .page_n:last-child{
+	border-right:1px solid #887159;}
+	
+	section #wed a:hover{
+	text-decoration:underline;
+	color:red;}
 	
 </style>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
@@ -159,7 +192,8 @@
 				// alert(search.responseText);
 				var get=decodeURI(search.responseText.split(","));
 				document.getElementById("inn").innerHTML=get;
-				
+				document.getElementById("first_t").style.display="none";
+				document.getElementById("txt3").style.display="block";
 				
 			}
 		}
@@ -179,14 +213,14 @@
     </div>
 <div id="first">
 	<div id="first_1">
-		<div id="txt">${name }님, 환영합니다.</div> 
+		<div id="txt"><span onclick="location='mypage'">${name }님, 환영합니다.</span></div>
 		<div class="txt2">
 			<span onclick="location='../mypage/myprofile_pwd'">회원정보 수정 > </span>&nbsp;&nbsp;
 			<span onclick="location='../mypage/mypwd_change'">비밀번호 수정 > </span>
 		</div> 
 	</div>	
 	<ul>
-		<li onclick="location='room_resv'">객실 예약 확인</li><li onclick="location='dine_resv'">레스토랑 예약 확인</li><li onclick="location='eshop_resv'">E-SHOP 주문내역</li><li onclick="location='wedding_resv'">웨딩 예약 확인</li>
+		<li onclick="location='room_resv'">객실 예약 확인</li><li onclick="location='dine_resv'">레스토랑 예약 확인</li><li onclick="location='eshop_gumae'">E-SHOP 주문내역</li><li onclick="location='wedding_resv'">웨딩 예약 확인</li>
 	</ul>
 </div>
 
@@ -208,11 +242,11 @@
 			<td>예식희망일</td>
 			<td>희망하는 웨딩홀</td>
 			<td>예약한 날</td>
-			<td width="120px;"></td>
+			<td width="120px;">상태 변경</td>
 		</tr>
 		<c:forEach items="${wlist }" var="wvo">
 		<tr>
-			<td>${wvo.wresv_code }</td>
+			<td><a href="wedding_content?wresv_id=${wvo.wresv_id }">${wvo.wresv_code }</a></td>
 			<td>${wvo.wresv_cday }</td>
 			<td>${wvo.wresv_time }</td>
 			<td>${wvo.wresv_wday }</td>
@@ -232,10 +266,87 @@
 		</tr>
 		</c:forEach>
 		<tr>
+			<td colspan="7">
+				<div id="page">
+				<!-- 10페이지단위로 이동 -->
+					<c:if test="${pstart==1 }">
+						<a class="page_n"> << </a>
+					</c:if>
+					<c:if test="${pstart!=1 }">
+						<a href="wedding_resv?page=${pstart-1 }&pcnt=${pcnt}" class="page_n"> << </a>
+					</c:if>	
+					
+				<!-- 1페이지단위로 이동 -->
+					<c:if test="${page==1 }">
+						<a class="page_n"> < </a>
+					</c:if>
+					<c:if test="${page!=1 }">
+						<a href="wedding_resv?page=${page-1 }&pcnt=${pcnt}" class="page_n"> < </a>
+					</c:if>		
+					
+				<!-- 페이지출력	 -->
+					<c:forEach begin="${pstart }" end="${pend }" var="i">
+						<!-- 현재페이지 강조 -->
+						<c:if test="${page==i }">
+							<c:set var="st" value="style='color:white; background:#887159;'"/>
+						</c:if>
+						<c:if test="${page!=i }">
+							<c:set var="st" value=""/>
+						</c:if>
+						
+						<!-- 선택 페이지 이동 -->
+						<a href="wedding_resv?page=${i }&pcnt=${pcnt}" ${st } class="page_n"> ${i} </a><!--  -->
+					</c:forEach>
+				
+				<!-- 1페이지단위로 이동 -->
+					<c:if test="${page==chong }">
+						<a class="page_n"> > </a>
+					</c:if>
+					<c:if test="${page!=chong }">
+						<a href="wedding_resv?page=${page+1 }&pcnt=${pcnt}" class="page_n"> > </a>
+					</c:if>	
+						
+				<!-- 10페이지단위로 이동 -->
+					<c:if test="${pend==chong }">
+						<a class="page_n"> >> </a>
+					</c:if>
+					<c:if test="${pend!=chong }">
+						<a href="wedding_resv?page=${pend+1 }&pcnt=${pcnt}" class="page_n"> >> </a>
+					</c:if>	
+				</div>
+			</td>
 		</tr>
 	</table>	
-
+	<div id="txt3"> 조회 결과 </div>
 		<div id="inn"></div>
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 </div>
 </section>

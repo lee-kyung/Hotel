@@ -11,7 +11,11 @@ import kr.co.hotel.room.RoomVO;
 
 public interface DiningResvMapper {
 
-	public ArrayList<DiningVO> dining_reserve(String start, String end);
+	public ArrayList<DiningVO> dining_reserve();
+	
+	public ArrayList<DiningResvVO> getDresv(String start, String end);
+	
+	public ArrayList<DiningResvVO> getDTresv(String dd, String dt);
 	
 	/*public ArrayList<DiningVO> getDineAvail(String dine_type);*/
 	

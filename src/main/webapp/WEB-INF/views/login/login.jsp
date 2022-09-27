@@ -66,7 +66,8 @@
 	<section id="login">
 		<div id="title">로그인</div>
 		<form method="post" action="login_ok">
-		<input type="hidden" name="ck" value="3">
+		<input type="hidden" name="ck" value="${ck}">
+		<%-- <input type="hidden" name="p" value="${p}"> --%>
 			<div> <input type="text" name="userid" placeholder="아이디를 입력하세요"> </div>
 			<div> <input type="password" name="pwd" placeholder="비밀번호를 입력하세요"> </div>
 			<div> <input type="submit" value="LOGIN"> </div>

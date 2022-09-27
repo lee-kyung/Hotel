@@ -76,6 +76,11 @@ public class EshopController {
 		service.cart_add(session, request, out, response);
 	}
 	
+	@RequestMapping("/eshop/cart_del")
+	public void cart_del(HttpSession session, HttpServletRequest request, PrintWriter out) {
+		service.cart_del(session, request, out);
+	}
+	
 	@RequestMapping("/eshop/cart")
 	public String cart(HttpSession session, Model model, HttpServletRequest request, HttpServletResponse response) {
 		return service.cart(session, model, request, response);
@@ -102,7 +107,12 @@ public class EshopController {
 	}
 	
 	@RequestMapping("/eshop/pro_gumae_ok")
-	public String pro_gumae_ok(GumaeVO gvo, HttpSession session, HttpServletRequest request) {
-		return service.pro_gumae_ok(gvo, session, request);
+	public String pro_gumae_ok(GumaeVO gvo, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+		return service.pro_gumae_ok(gvo, session, request, response);
+	}
+	
+	@RequestMapping("/eshop/gumae_okmsg")
+	public String gumae_okmsg(HttpServletRequest request, Model model) {
+		return service.gumae_okmsg(request, model);
 	}
 }

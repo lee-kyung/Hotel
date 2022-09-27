@@ -77,7 +77,10 @@
 		</div></h5>
 		</tr>
 		<tr>
-			<td> 번호 </td>
+			<td> 번호 
+				<span onclick="location='gumaelist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=id asc'">∧</span>
+				<span onclick="location='gumaelist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=id desc'">∨</span>
+			</td>
 			<td> 아이디 </td>
 			<td> 주문번호 </td>
 			<td> 구매자 </td>
@@ -85,8 +88,14 @@
 			<td> 상품명 </td>
 			<td> 상품코드 </td>
 			<td> 총결제금액 </td>
-			<td> 구매일 </td>
-			<td colspan="2"> 상태 </td>			
+			<td> 구매일 
+				<span onclick="location='gumaelist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=buyday asc'">∧</span>
+				<span onclick="location='gumaelist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=buyday desc'">∨</span>
+			</td>
+			<td colspan="2"> 상태 
+				<span onclick="location='gumaelist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=state asc'">∧</span>
+				<span onclick="location='gumaelist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=state desc'">∨</span>
+			</td>			
 		</tr>
 	  <c:forEach items="${glist}" var="gvo">
 		<tr>
@@ -116,7 +125,7 @@
 	  			<input type="button" value="배송완료" onclick="location='../admin/estatechange?state=3&id=${gvo.id}'">
 	  		</c:if>
 	  		<c:if test="${gvo.state == 1}">
-	  			<input type="button" value="취소완료" onclick="location='../admin/estatechange?state=2&id=${gvo.id}'">
+	  			<input type="button" value="취소승인" onclick="location='../admin/estatechange?state=2&id=${gvo.id}&pcode=${gvo.pcode}&su=${gvo.total_su}'">
 	  		</c:if>
 	  		</td>	  		
 		</tr>
@@ -126,13 +135,13 @@
 		<!-- 10페이지 단위로 이전으로 가기 -->
 		<c:if test="${pstart==1}"></c:if> <!-- 페이지 그룹이 1일때 -->
 		<c:if test="${pstart!=1}"><!-- 1그룹이 아니면 -->
-			<a href="gumaelist?page=${pstart-1}&pcnt=${pcnt}&sel=${sel}&sword=${sword}">◀</a>
+			<a href="gumaelist?page=${pstart-1}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=${oby}">◀</a>
 		</c:if>
 		
 		<!-- 1페이지 단위로 이전으로 가기 -->
 		<c:if test="${page==1}"></c:if> <!-- 1페이지면 -->
 		<c:if test="${page!=1}"><!-- 1페이지가 아니면 -->
-			<a href="gumaelist?page=${page-1}&pcnt=${pcnt}&sel=${sel}&sword=${sword}">◁</a>
+			<a href="gumaelist?page=${page-1}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=${oby}">◁</a>
 		</c:if>
 		
 		<!-- 페이지 출력 -->
@@ -144,19 +153,19 @@
 			<c:if test="${page!=i}">
 				<c:set var="st" value=""/>
 			</c:if>
-			<b><a href="gumaelist?page=${i}&pcnt=${pcnt}&sel=${sel}&sword=${sword}"${st}>${i}</a></b><!-- 누른페이지로 이동걸기 -->
+			<b><a href="gumaelist?page=${i}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=${oby}"${st}>${i}</a></b><!-- 누른페이지로 이동걸기 -->
 		</c:forEach>
 		
 		<!-- 1페이지 단위로 다음으로 가기 -->
 		<c:if test="${page==chong}"></c:if>
 		<c:if test="${page!=chong}">
-			<a href="gumaelist?page=${page+1}&pcnt=${pcnt}&sel=${sel}&sword=${sword}">▷</a>
+			<a href="gumaelist?page=${page+1}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=${oby}">▷</a>
 		</c:if>
 		
 		<!-- 10페이지 단위로 다음으로 가기 -->
 		<c:if test="${pend==chong}"></c:if>
 		<c:if test="${pend!=chong}">
-			<a href="gumaelist?page=${pend+1}&pcnt=${pcnt}&sel=${sel}&sword=${sword}">▶</a>
+			<a href="gumaelist?page=${pend+1}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=${oby}">▶</a>
 		</c:if>
 		
 	</div>

@@ -8,6 +8,21 @@ public class CartVO {
 	private int price, halin, baefee, juk, psu;	// psu는 재고수량
 	private String title, fimg;	// fimg=1번째 메인이미지
 	
+	/* 장바구니 배송상품/모바일상품 개수 */
+	private int cnt1, cnt2;
+	
+	public int getCnt1() {
+		return cnt1;
+	}
+	public void setCnt1(int cnt1) {
+		this.cnt1 = cnt1;
+	}
+	public int getCnt2() {
+		return cnt2;
+	}
+	public void setCnt2(int cnt2) {
+		this.cnt2 = cnt2;
+	}
 	public int getPrice() {
 		return price;
 	}

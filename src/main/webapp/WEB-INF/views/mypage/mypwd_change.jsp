@@ -14,6 +14,9 @@
 	#first #first_1{
 	margin:auto;
 	width:1800px;}
+		
+	#first #first_1 span{
+	cursor:pointer;}
 	
 	#first #txt{
 	text-align:left;
@@ -250,7 +253,7 @@
 <!-- first -->    
 <div id="first">
 	<div id="first_1">
-		<div id="txt">${name }님, 환영합니다.</div> 
+		<div id="txt"><span onclick="location='mypage'">${name }님, 환영합니다.</span></div>
 		<div id="txt2">
 			<span onclick="location='../mypage/myprofile_pwd'">회원정보 수정 > </span>&nbsp;&nbsp;
 			<span onclick="location='../mypage/mypwd_change'">비밀번호 수정 > </span>

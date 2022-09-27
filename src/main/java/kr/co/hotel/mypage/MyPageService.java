@@ -30,4 +30,33 @@ public interface MyPageService {
 
 	public String weddingR_state_change(HttpServletRequest request);
 
+	public String dine_resv(Model model, HttpSession session, HttpServletRequest request);
+
+	public void dine_resv_search(HttpSession session, HttpServletRequest request, PrintWriter out);
+
+	public String dineR_state_change(HttpServletRequest request);
+
+	public String eshop_gumae(Model model, HttpSession session, HttpServletRequest request);
+
+	public void eshop_gumae_search(HttpSession session, HttpServletRequest request, PrintWriter out);
+
+	public String eshopG_state_change(HttpServletRequest request);
+
+	public String room_resv(Model model, HttpSession session, HttpServletRequest request);
+
+	public void room_resv_search(HttpSession session, HttpServletRequest request, PrintWriter out);
+
+	public String roomR_state_change(HttpServletRequest request);
+
+	public String wedding_content(HttpServletRequest request, Model model, HttpSession session);
+
+	public String room_content(HttpServletRequest request, Model model, HttpSession session);
+
+	public String dine_content(HttpServletRequest request, Model model, HttpSession session);
+
+	public String eshop_content(HttpServletRequest request, Model model, HttpSession session);
+
+	public String nonuser_rdwglist(HttpServletRequest request, Model model);
+	
+	
 }

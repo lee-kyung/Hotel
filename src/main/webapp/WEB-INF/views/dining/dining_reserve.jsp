@@ -12,6 +12,8 @@
   }
   #section table{
     margin:auto; 
+    margin-top:15px;
+    margin-bottom:15px;
   }
   #section table #info{
     font-size:14px;
@@ -40,13 +42,26 @@
   #section #calendar td{
     border-bottom:1px solid #d3d3d3;
     width:140px;
-    height:80px;
+    height:140px;
   }
   #section #day{
     text-align:left;
+    
   }
-  .sprite{
-  background-color: #fefefe;
+  #section #day_td{
+    height:10px;
+  }
+  #section #pri_info{
+    height:80px;
+    font-size:12px;
+  }
+  #section #type_info{
+    text-align:center;
+    width:140px;
+    background: #b8a898;
+  }
+  #section .sprite{
+background-color: #fefefe;
 opacity: 0.4;
 background-size: 7px 7px;
 background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.7000000000000001px, #fefefe 0, #fefefe 50%);
@@ -76,38 +91,85 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script> 
 <script>
-   // 예약 완료된 타임은 빨간색 으로 처리
-   window.onload=function()
-   {
-      var td=[${td}];    // var td=[25, 30, 27, 27, 28]
-      var dt=[${dt}];  // var td=[아침, 아침, 점심, 저녁, 저녁]
-      var today=new Date();
-      var dd=1;
-          //if(today.getFullYear()==${y} && today.getMonth()+1 == ${m}) // 요청한 달이 이번달이라면  
-          //dd=today.getDate();
-       //alert(dd);
-      //alert(td.length);
-      for(i=0;i<td.length;i++)
-      {
-         if(dt[i] == 1)
-                 document.getElementsByClassName("b1")[td[i]-dd].style.color="red";
-            else if(dt[i] == 2)
-                     document.getElementsByClassName("b2")[td[i]-dd].style.color="red";
-                 else if(dt[i] == 3)
-                     document.getElementsByClassName("b3")[td[i]-dd].style.color="red";
-      }
+	/* 달력에서 예약마감된 날짜의 식사타입을 빨간색으로 처리 */
+	window.onload=function() {
+		let dt=[${dt}];	// 예약된 식사타입
+		let td=[${td}];	// 예약된 날짜
+		let cnt=[${cnt}];	// 예약된 수
+		let bk=6;	// 식사타입당 두 타임을 합쳐 만석인 테이블의 수를 입력 (ex : 8시 타임 3테이블 + 10시 타임 3테이블 = 총 6 입력)
       
-   }
-  /* 달력에서 [아침,점심,저녁]을 클릭하면, 해당 [날짜], [다이닝타입], [시간대]를 보내기 */
-     function date_type(y, m, d, t) {
-      document.getElementById("dr_date").value=y+"-"+m+"-"+d;
-      document.getElementById("dr_type").innerHTML="<option value='"+t+"'>"+t+"</option>";
-      if(t == 'Breakfast')
-         document.getElementById("dr_time").innerHTML="<option>선택</option><option value='8:00'>8:00</option><option value='10:00' name='dr_time'>10:00</option>";
-         else if(t == 'Lunch')
-            document.getElementById("dr_time").innerHTML="<option>선택</option><option value='13:00'>13:00</option><option value='15:00' name='dr_time'>15:00</option>";
-            else if(t == 'Dinner')
-               document.getElementById("dr_time").innerHTML="<option>선택</option><option value='16:00'>16:00</option><option value='18:00' name='dr_time'>18:00</option>";
+		for(i=0;i<td.length;i++) {
+			if(dt[i] == 1 && cnt[i] == bk) {
+				document.getElementsByClassName("b1")[td[i]-1].style.color="red";
+				document.getElementsByClassName("b1")[td[i]-1].style.textDecoration="line-through"; 
+				document.getElementsByClassName("b1")[td[i]-1].setAttribute("onclick", "alert('예약이 마감됐습니다.');");
+				}
+				else if(dt[i] == 2 && cnt[i] == bk) {
+					document.getElementsByClassName("b2")[td[i]-1].style.color="red";
+					document.getElementsByClassName("b2")[td[i]-1].style.textDecoration="line-through";
+					document.getElementsByClassName("b2")[td[i]-1].setAttribute("onclick", "alert('예약이 마감됐습니다.');");
+					}
+					else if(dt[i] == 3 && cnt[i] == bk) {
+						document.getElementsByClassName("b3")[td[i]-1].style.color="red";
+						document.getElementsByClassName("b3")[td[i]-1].style.textDecoration="line-through";
+						document.getElementsByClassName("b3")[td[i]-1].setAttribute("onclick", "alert('예약이 마감됐습니다.');");
+					}
+		}
+	}
+   
+  /* 달력에서 [아침,점심,저녁]을 클릭하면, 해당 [날짜], [다이닝타입], [시간대]를 보내기 → [시간대]의 예약마감은 ajax로 값 가져와서 처리 */
+	function date_type(y, m, d, t) {
+		let ymd=y+"-"+m+"-"+d;
+		document.getElementById("dr_date").value=ymd;
+		document.getElementById("dr_type").innerHTML="<option>"+t+"</option>";
+
+		let chk=new XMLHttpRequest();
+		chk.open("get", "getDTresv?dd="+ymd+"&dt="+t);
+		chk.send();
+		chk.onreadystatechange=function(){
+			if(chk.readyState == 4) {
+				let tmcnt=chk.responseText.split(",");	// [시간, 예약수, 시간, 예약수] = [8, 3, 10, 1]
+				
+				/* 예약된 게 있다면 */
+				let bk=3;	// 타임당 만석인 테이블의 수를 입력 (ex : 8시 타임 3테이블, 10시 타임 3테이블 = 3 입력)
+				if(tmcnt.length > 1) {
+					for(i=0;i<tmcnt.length;i+=2) {
+						if(tmcnt[i] == 8 && tmcnt[i+1] == bk) {
+							document.getElementById("dr_time").innerHTML="<option>선택</option><option value='10:00'>10:00</option>";
+							console.log(tmcnt[i] == 8 && tmcnt[i+1] == bk);
+						}
+							else if(tmcnt[i] == 10 && tmcnt[i+1] == bk) {
+								document.getElementById("dr_time").innerHTML="<option>선택</option><option value='08:00'>08:00</option>";
+								console.log(tmcnt[i] == 8 && tmcnt[i+1] == bk);
+							}
+								else if((tmcnt[i] == 8 || tmcnt[i] == 10) && tmcnt[i+1] != bk)
+									document.getElementById("dr_time").innerHTML="<option>선택</option><option value='08:00'>08:00</option><option value='10:00'>10:00</option>";
+						else if(tmcnt[i] == 13 && tmcnt[i+1] == bk)
+							document.getElementById("dr_time").innerHTML="<option>선택</option><option value='15:00'>15:00</option>";
+							else if(tmcnt[i] == 15 && tmcnt[i+1] == bk)
+								document.getElementById("dr_time").innerHTML="<option>선택</option><option value='13:00'>13:00</option>";
+								else if((tmcnt[i] == 13 || tmcnt[i] == 15) && tmcnt[i+1] != bk)
+									document.getElementById("dr_time").innerHTML="<option>선택</option><option value='13:00'>13:00</option><option value='15:00'>15:00</option>";
+						else if(tmcnt[i] == 16 && tmcnt[i+1] == bk)
+							document.getElementById("dr_time").innerHTML="<option>선택</option><option value='18:00'>18:00</option>";
+							else if(tmcnt[i] == 18 && tmcnt[i+1] == bk)
+								document.getElementById("dr_time").innerHTML="<option>선택</option><option value='16:00'>16:00</option>";
+								else if((tmcnt[i] == 16 || tmcnt[i] == 18) && tmcnt[i+1] != bk)
+									document.getElementById("dr_time").innerHTML="<option>선택</option><option value='16:00'>16:00</option><option value='18:00'>18:00</option>";
+					}
+				}
+				else {
+					/* 예약된 게 없다면 */
+					document.getElementById("dr_type").innerHTML="<option value='"+t+"'>"+t+"</option>";
+					if(t == 'Breakfast')
+						document.getElementById("dr_time").innerHTML="<option>선택</option><option value='08:00'>08:00</option><option value='10:00''>10:00</option>";
+						else if(t == 'Lunch')
+							document.getElementById("dr_time").innerHTML="<option>선택</option><option value='13:00'>13:00</option><option value='15:00'>15:00</option>";
+							else if(t == 'Dinner')
+								document.getElementById("dr_time").innerHTML="<option>선택</option><option value='16:00'>16:00</option><option value='18:00'>18:00</option>";
+				}
+			}
+		}	
   }
  
 </script>
@@ -119,7 +181,7 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
     <!-- 새 이미지 추가하는 법
        ①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기
        ②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
-    <div class="bradcam_area dining">   <!-- class="bradcam_area 클래스명" -->
+    <div class="bradcam_area dining2">   <!-- class="bradcam_area 클래스명" -->
         <h3> ON THE PLATE </h3>
     </div>
     <!-- bradcam_area_end -->
@@ -128,7 +190,20 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
     <!-- 부타이틀(자유롭게 변경)_area_start -->
 
 <div id="section">
- <input type="hidden" name="dine_type">
+ 
+    <table width="1100" border="1">
+     <c:forEach items="${dlist}" var="dvo">
+     <tr id="pri_info">
+        <th id="type_info">${dvo.dine_type}</th>
+        <td>
+           성인 <fmt:formatNumber value="${dvo.dine_adult}" pattern="#,###"/>원<br>
+           어린이 <fmt:formatNumber value="${dvo.dine_child}" pattern="#,###"/>원
+        </td>
+
+    </tr>
+    </c:forEach>
+    </table>
+ <%--   <div> <fmt:formatNumber value="${drvo.dr_total}" pattern="#,###"/>원 </div> --%>
     <table width="1100" border="1">
      <tr>
         <td id="info">
@@ -212,7 +287,7 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
           <c:if test="${ !((yoil>j && i==1) || (chong < day)) }">
 
           <td id="day">
-             ${day}<p></p>
+             <span id="day_td">${day}</span><p></p>
           <%
                int day2=Integer.parseInt(pageContext.getAttribute("day").toString());
                int y=Integer.parseInt(request.getAttribute("y").toString());

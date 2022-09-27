@@ -25,17 +25,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="pro_list" resultType="kr.co.hotel.eshop.ProductVO">
 		select *, substr(fimg, 1, instr(fimg, ",")-1) as img,
-		(select count(*) from wish where userid=#{param1}
-		and pcode=product.pcode) as wishchk
-		from product
-		where pcode like concat(#{param2}, '%')
+		(select count(*) from wish where userid=#{param1} and pcode=product.pcode) as wishchk,
+		(select count(*) from cart where userid=#{param1} and pcode=product.pcode) as cartchk
+		from product where pcode like concat(#{param2}, '%')
 		order by ${param3} limit ${param4}, ${param5}
 	</select>
 	
 	<select id="pro_list2" resultType="kr.co.hotel.eshop.ProductVO">
-		select *, substr(fimg, 1, instr(fimg, ",")-1) as img
-		from product
-		where pcode like concat(#{param1}, '%')
+		select *, substr(fimg, 1, instr(fimg, ",")-1) as img, 0 as cartchk
+		from product where pcode like concat(#{param1}, '%')
 		order by ${param2} limit ${param3}, ${param4}
 	</select>
 	
@@ -65,6 +63,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into cart(userid, pcode, su)
 		values(#{param1}, #{param2}, ${param3})
 	</insert>
+	
+	<delete id="cart_del">
+		delete from cart where userid=#{param1} and pcode=#{param2}
+	</delete>
 	
 	<select id="checkCart" resultType="Integer">
 		select count(*) from cart where userid=#{param1} and pcode=#{param2}
@@ -120,8 +122,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select ifnull(max(right(jumuncode, 4)), 0) from gumae
 	</select>
 	
-	<delete id="cart_del">
-		delete from cart where pcode=#{param1} and userid=#{param2}
-	</delete>
+	<update id="suMinusPlus">
+		update product set su=su-${param1}, sold=sold+${param1} where pcode=#{param2}
+	</update>
+	
+	<select id="getName" resultType="String">
+		select pname from gumae where jumuncode=#{param1} limit 1
+	</select>
 	
 </mapper>

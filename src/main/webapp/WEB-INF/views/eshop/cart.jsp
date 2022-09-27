@@ -15,7 +15,7 @@
 		width : 1100px;
 		height : ${height}px;
 		margin : auto;
-		margin-top : 50px;
+		margin-top : 40px;
 	}
 	#cart #spinner {
 		border : 1px solid lightgray;
@@ -51,8 +51,8 @@
 	}
 	#cart #button11 {
 		width : 150px;
-		height : 42px;
-		padding-top : 8px;
+		height : 41px;
+		padding-top : 9px;
 		border : 1px solid #887159;
 		background : #887159;
 		color : white;
@@ -63,8 +63,8 @@
 	}
 	#cart #button22 {
 		width : 150px;
-		height : 42px;
-		padding-top : 8px;
+		height : 41px;
+		padding-top : 9px;
 		border : 1px solid #887159;
 		color : #887159;
 		font-size : 15px;
@@ -85,7 +85,7 @@
 	#cart #cate1 {
 		margin : auto;
 		text-align : center;
-		margin-top : 70px;
+		margin-top : 40px;
 		width : 605px;
 		height : 80px;
 	}
@@ -151,7 +151,7 @@
 	#cart #paynum {
 		display : inline-block;
 		font-size : 35px;
-		color : #887159;
+		/*color : #887159;*/
 	}
 	#cart #sign {
 		font-weight : normal;
@@ -168,6 +168,42 @@
 	#cart #pouter3 {
 		display : inline-block;
 		line-height : 170%;
+	}
+	#cart #show_mb {
+		margin : auto;
+		width : 1000px;
+		height : 82px;
+		padding : 18px 10px 0px 20px;
+		border : 1px solid lightgray;
+	}
+	#cart #msg {
+		float : left;
+		font-size : 14px;
+	}
+	#cart #box {
+		float : right;
+	}
+	#cart #box #memin {
+		display : inline-block;
+		width : 150px;
+		height : 37px;
+		padding-top : 6px;
+		text-align : center;
+		margin-right : 10px;
+		border : 1px solid black;
+		color : black;
+		cursor : pointer;
+	}
+	#cart #box #login {
+		display : inline-block;
+		width : 150px;
+		height : 37px;
+		padding-top : 6px;
+		text-align : center;
+		border : 1px solid black;
+		background :black;
+		color : white;
+		cursor : pointer;
 	}
 </style>
 <script>
@@ -389,10 +425,8 @@
 		let su=document.getElementsByClassName("su")[num].value;
 		
 		/* 가격에 대한 최종 정보도 가져가기 */
-		let total_price=document.getElementsByClassName("price")[num].innerText;
-			total_price=total_price.substring(4, total_price.length);
-			total_price=parseInt(total_price.replace(/,/g, "") * su);
-		let total_halin=parseInt(document.getElementsByClassName("halin")[num].value);
+		let total_price=parseInt(document.getElementsByClassName("cost")[num].value * su);
+		let total_halin=parseInt(document.getElementsByClassName("halin")[num].value * su);
 		let total_baefee=document.getElementsByClassName("baefee")[num].innerText;
 		let total_pay=parseInt(total_price - total_halin);
 		
@@ -455,6 +489,15 @@
 
 	<!-- ================ 장바구니 Area Start ================= -->
     <div id="cart">
+    	<c:if test="${userid == null}">
+	    	<div id="show_mb">
+	    		<div id="msg"> 비회원구매 시 쿠폰 이용 등 회원에게만 제공되는 혜택을 받으실 수 없습니다.<br>회원가입 및 로그인 하시고 구매혜택 받아가세요. </div>
+	    		<div id="box">
+	    			<div id="memin" onclick="location='../member/member_input'"> 회원가입 </div>
+	    			<div id="login" onclick="location='../login/login?ck=3&p=${p}'"> 로그인 </div>
+	    		</div>
+	    	</div>
+    	</c:if>
   		<c:if test="${p == 'p01'}">
     		<div id="cate1">
 				<span id="cate2" onclick="location='cart?p=p01'"> 배 송 상 품 </span><span id="cate3" onclick="location='cart?p=p02'"> 모 바 일 상 품 </span>
@@ -525,6 +568,9 @@
 					<div onclick="location='wishcart_del?delid=${cvo.id},&dchk=2&p=${p}'" id="button2"> 삭제하기 </div>
 				</td>
 			</tr>
+			
+				<input type="hidden" name="cost" value="${cvo.price}" class="cost">
+					
 		</c:forEach>
 			<tr>
 				<td colspan="8" height="50"> <div onclick="cart_del()" id="button3"> 선택상품 삭제하기 </div> </td>

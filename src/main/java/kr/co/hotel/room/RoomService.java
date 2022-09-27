@@ -13,7 +13,8 @@ public interface RoomService {
 	public String room_write_ok(HttpServletRequest request);
 	public String rooms(Model model,HttpServletRequest request);
 	public String room_content(Model model,HttpServletRequest request);
+	public String roomtest(Model model, HttpServletRequest request);
 	
-	public String room_su(HttpServletRequest request, HttpSession session, Model model);
 
+	
 }

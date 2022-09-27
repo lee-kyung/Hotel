@@ -18,8 +18,8 @@
     <!-- 새 이미지 추가하는 법
     	①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기
     	②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
-    <div class="bradcam_area dining">	<!-- class="bradcam_area 클래스명" -->
-        <h3> DINE & DRINK </h3>
+    <div class="bradcam_area dbanner">	<!-- class="bradcam_area 클래스명" -->
+        <div id="h3"> DINE & DRINK </div>
     </div>
     <!-- bradcam_area_end -->
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
@@ -59,10 +59,14 @@
     <!-- about_info_area_start -->
     <div class="about_info_area">
         <div class="about_active owl-carousel">
-            <div class="single_slider about_bg_1"></div>
-            <div class="single_slider about_bg_1"></div>
-            <div class="single_slider about_bg_1"></div>
-            <div class="single_slider about_bg_1"></div>
+            <div class="single_slider d1"></div>
+            <div class="single_slider d2"></div>
+            <div class="single_slider d3"></div>
+            <div class="single_slider d4"></div>
+            <div class="single_slider d5"></div>
+            <div class="single_slider d6"></div>
+            <div class="single_slider d7"></div>
+            <div class="single_slider d8"></div>
         </div>
     </div>
     <!-- about_info_area_start -->
