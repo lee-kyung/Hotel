@@ -6,11 +6,11 @@
 	<c:set var="size" value="${plist.size()}"/>
 	<c:if test="${size <= 1}">
 		<c:set var="height" value="2000"/>
-		<c:set var="paytop" value="700"/>	<!-- 750 -->
+		<c:set var="paytop" value="690"/>	<!-- 750 -->
 	</c:if>
 	<c:if test="${size > 1}">
 		<c:set var="height" value="${((size-1) * 100) + 1500}"/>
-		<c:set var="paytop" value="${((size-1) * 100) + 700}"/>
+		<c:set var="paytop" value="${((size-1) * 100) + 690}"/>
 	</c:if>
 <style>
 	#pro_gumae {
@@ -194,15 +194,15 @@
 		let top=document.documentElement.scrollTop;
 		let left=(window.screen.width/2)+137;
 		
-		if(top <= ${paytop}) {
-			document.getElementById("right").style.position="relative";
-			document.getElementById("right").style.top="0px";
-			document.getElementById("right").style.left="0px";
-		}
-		else if(${paytop} < top /*&& top < 2000*/) {
+		if(${paytop} < top) {
 			document.getElementById("right").style.position="fixed";
 			document.getElementById("right").style.top="110px";
 			document.getElementById("right").style.left=left+"px";
+		}
+		else if(top <= ${paytop}) {
+			document.getElementById("right").style.position="relative";
+			document.getElementById("right").style.top="0px";
+			document.getElementById("right").style.left="0px";
 		}
 		/*else {
 			document.getElementById("right").style.position="relative";
@@ -303,7 +303,7 @@
   		<div id="left">
  			<div id="title"><b style="font-size:20px;"> 주문자 정보 입력 </b></div>
  			<table>
- 				<tr> 
+ 				<tr>
  					<td> 주문자명* </td>
  					<td>
  						<c:if test="${userid == null}">
@@ -371,7 +371,8 @@
  		</c:if>
  		<c:if test="${p == 'p02'}">
 		</c:if>
-			<div id="title" style="margin-top:50px;"><b style="font-size:20px;"> 약관 동의 </b></div>
+		<c:if test="${userid == null}">
+		<div id="title" style="margin-top:50px;"><b style="font-size:20px;"> 약관 동의 </b></div>
 			<div style="margin-top:20px;">
 				<div style="float:left; width:500px;font-weight:900">
 					비회원주문 개인정보 수집이용 동의
@@ -381,7 +382,6 @@
 					동의합니다
 				</div>
 			</div>
-			<div>
 			<textarea id="agree_scroll">
 1.이용약관
 ※ “ㄹㄷ호텔 이숍”의 이용약관은 공정거래위원회에서 심의한 표준약관에 기반하여 작성 되었습니다.
@@ -528,8 +528,8 @@
 <부칙>
 제1조 (시행일)
 본 약관은 2022년 1월 25일부터 시행됩니다.
-				</textarea>
-			</div>
+			</textarea>
+		</c:if>
 		</div>
 		<div id="right">
 			<div id="title" style="width:330px;margin-left:10px;"><b style="font-size:20px;"> 결제 정보 </b></div>
@@ -588,15 +588,11 @@
 								else if(document.gumae.bjuso_etc.value.trim() == "") {
 									alert("상세주소를 입력하세요.");
 									return false;
-									}
-									else if(document.gumae.agree1.checked == false) {
-										alert("비회원주문 개인정보 수집이용에 대한 동의가 필요합니다.");
-										return false;
-										}
-										else {
-											document.gumae.submit();
-											return true;
-										}
+								}
+								else {
+									document.gumae.submit();
+									return true;
+								}
 	}
 	
 	/* 모바일상품의 필수입력 체크후 [결제하기]로 진행 */
@@ -613,11 +609,11 @@
 				else if(document.gumae.agree1.checked == false) {
 					alert("비회원주문 개인정보 수집이용에 대한 동의가 필요합니다.");
 					return false;
-					}
-					else {
-						document.gumae.submit();
-						return true;
-					}
+				}
+				else {
+					document.gumae.submit();
+					return true;
+				}
 	}
   </script>
   
