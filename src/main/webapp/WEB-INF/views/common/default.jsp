@@ -68,7 +68,11 @@
                             <div class="main-menu  d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a href="../main/index">home</a></li>
+                                        <li><a href="../main/index">HOTEL<i class="ti-angle-down"></i></a>
+                                            <ul class="submenu">
+                                                <li><a href="../info/info">호텔 소개</a></li>
+                                                <li><a href="../info/info">호텔 소개</a></li>
+                                            </ul>
                                         <li><a href="../room/rooms">rooms</a></li> <!-- class="active" -->
                                         <li><a href="../dining/dining">dining<i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
