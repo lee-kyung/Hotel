@@ -820,7 +820,6 @@
 		}
 		else if(document.wresv.wresv_pay.value=="0")
 		{
-			//alert("카카오");
 				//결제관련
 				$("#paymentBtn").click(function () {
 					var IMP = window.IMP; // 생략가능
@@ -871,7 +870,6 @@
 		else if(document.wresv.wresv_pay.value=="1")
 		{
 			document.wresv.submit();
-			alert("입금");
 			return true;
 		}
 	}

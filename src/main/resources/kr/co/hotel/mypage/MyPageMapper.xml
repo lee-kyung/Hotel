@@ -115,19 +115,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
   	<select id="eshop_gumae" resultType="kr.co.hotel.eshop.GumaeVO">
-  		select g.*, p.title from gumae g, product p where g.pcode=p.pcode and userid=#{param1} order by id desc limit #{param2},#{param3}
+  		select g.*, p.title, count(*) as cnt from gumae g, product p where g.pcode=p.pcode and userid=#{param1} group by g.jumuncode order by id desc limit #{param2},#{param3}
   	</select>
   	
-<!-- date안먹음 -->
   	<select id="eshop_gumae_search" resultType="kr.co.hotel.eshop.GumaeVO">
-  		<![CDATA[select g.*, p.title from gumae g, product p where g.pcode=p.pcode and userid=#{param1} and #{param2}<= buyday and buyday <=#{param3} order by id desc]]>
+  		<![CDATA[select g.*, p.title, count(*) as cnt from gumae g, product p where g.pcode=p.pcode and userid=#{param1} and #{param2}<= g.buyday and g.buyday <=#{param3} group by g.jumuncode order by id desc]]>
   	</select>
-
+  	
   	<update id="eshopG_state_change">
-  		update gumae set state=#{param2} where id=#{param1}
+  		update gumae set state=#{param2} where jumuncode=#{param1}
   	</update>
 
-  	
   	
   	
   	<select id="getroomChong" resultType="Integer">
@@ -158,11 +156,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   		select bk.*, r.rname from roombk bk, room r where bk.rcode=r.rcode and userid=#{param1} and bk.id=#{param2}
   	</select>
   	
-  	<select id="eshop_content" resultType="kr.co.hotel.eshop.GumaeVO">
-  		select g.*, p.title from gumae g, product p where g.pcode=p.pcode and userid=#{param1} and g.id=#{param2}
+  	<select id="eshop_content_list" resultType="kr.co.hotel.eshop.GumaeVO">
+  		select g.*, p.title from gumae g, product p where g.pcode=p.pcode and userid=#{param1} and g.jumuncode=#{param2}
   	</select>
   	
-  	
+  	<select id="eshop_content_info" resultType="kr.co.hotel.eshop.GumaeVO">
+  		select g.*, p.title from gumae g, product p where g.pcode=p.pcode and userid=#{param1} and g.id=#{param2}
+  	</select>
   	
   	<select id="getRinfo" resultType="kr.co.hotel.roomresv.RoomResvVO">
 		select rb.*, r.rname from roombk rb, room r where rb.rcode=r.rcode and rb.bid=#{param1}

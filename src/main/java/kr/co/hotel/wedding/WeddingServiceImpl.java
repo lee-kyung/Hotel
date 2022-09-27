@@ -2,14 +2,17 @@ package kr.co.hotel.wedding;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Enumeration;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.aop.framework.adapter.DefaultAdvisorAdapterRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -203,31 +206,38 @@ public class WeddingServiceImpl implements WeddingService{
 	@Override	
 	public String weddingReserve_ok(WeddingResvVO wrvo, HttpSession session) 
 	{
-		
-		String userid="";
-		
-		if(session.getAttribute("userid")!=null)
+	
+		if(session.getAttribute("userid").toString() != null)
 		{
-			userid=session.getAttribute("userid").toString();
+			String userid=session.getAttribute("userid").toString();
+			wrvo.setUserid(userid); // wrvo에 userid 가져와서 넣기
+		}
+		else
+		{
+			String userid="guest";
+			wrvo.setUserid(userid);	// wrvo에 userid 가져와서 넣기
 		}
 		
-		wrvo.setUserid(userid);
-		Integer number=mapper.getWresv_code(userid);
+		/*주문번호 생성하기 -> 구매날짜(8자리)+난수(4자리)+찐숫자(4자리)*/
+		Date today=new Date();
+		SimpleDateFormat dateFormat=new SimpleDateFormat("yyyyMMdd");
+		String now=dateFormat.format(today);
+		
+		String rand=RandomStringUtils.random(4, false, true);
+		
+		Integer n=mapper.getWresv_code();
+		n++;
+		String num=n.toString();
+		switch(num.length())
+		{
+			case  1 : num="000"+num; break;
+			case  2 : num="00"+num; break;
+			case  3 : num="0"+num; break;
+		}
 		
 		
-		number++;
-		System.out.println(number);
 		
-		String num=number.toString();
-		
-		if(num.length()==1)
-			num="000"+num;
-		else if(num.length()==2)
-			num="00"+num;
-		else if(num.length()==3)
-			num="0"+num;
-		
-		String wresv_code=userid+'w'+num;
+		String wresv_code='w'+now+rand+num;
 
 		wrvo.setWresv_code(wresv_code);
 		
