@@ -12,6 +12,8 @@
   }
   #section table{
     margin:auto; 
+    margin-top:15px;
+    margin-bottom:15px;
   }
   #section table #info{
     font-size:14px;
@@ -86,14 +88,17 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
 		for(i=0;i<td.length;i++) {
 			if(dt[i] == 1 && cnt[i] == bk) {
 				document.getElementsByClassName("b1")[td[i]-1].style.color="red";
+				document.getElementsByClassName("b3")[td[i]-1].style.text-decoration="line-through";
 				document.getElementsByClassName("b1")[td[i]-1].setAttribute("onclick", "alert('예약이 마감됐습니다.');");
 				}
 				else if(dt[i] == 2 && cnt[i] == bk) {
 					document.getElementsByClassName("b2")[td[i]-1].style.color="red";
+					document.getElementsByClassName("b3")[td[i]-1].style.text-decoration="line-through";
 					document.getElementsByClassName("b2")[td[i]-1].setAttribute("onclick", "alert('예약이 마감됐습니다.');");
 					}
 					else if(dt[i] == 3 && cnt[i] == bk) {
 						document.getElementsByClassName("b3")[td[i]-1].style.color="red";
+						document.getElementsByClassName("b3")[td[i]-1].style.text-decoration="line-through";
 						document.getElementsByClassName("b3")[td[i]-1].setAttribute("onclick", "alert('예약이 마감됐습니다.');");
 					}
 		}
@@ -163,7 +168,7 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
     <!-- 새 이미지 추가하는 법
        ①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기
        ②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
-    <div class="bradcam_area dining">   <!-- class="bradcam_area 클래스명" -->
+    <div class="bradcam_area dbanner">   <!-- class="bradcam_area 클래스명" -->
         <h3> ON THE PLATE </h3>
     </div>
     <!-- bradcam_area_end -->
@@ -172,7 +177,20 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
     <!-- 부타이틀(자유롭게 변경)_area_start -->
 
 <div id="section">
- <input type="hidden" name="dine_type">
+ 
+    <table width="1100" border="1">
+     <c:forEach items="${dlist}" var="dvo">
+     <tr>
+        <th>${dvo.dine_type}</th>
+        <td>
+           성인 <fmt:formatNumber value="${dvo.dine_adult}" pattern="#,###"/>원<br>
+           어린이 <fmt:formatNumber value="${dvo.dine_child}" pattern="#,###"/>원
+        </td>
+
+    </tr>
+    </c:forEach>
+    </table>
+ <%--   <div> <fmt:formatNumber value="${drvo.dr_total}" pattern="#,###"/>원 </div> --%>
     <table width="1100" border="1">
      <tr>
         <td id="info">

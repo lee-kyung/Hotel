@@ -19,8 +19,16 @@
 .black{background-image:url(../img/banner/black.png)}
 .basic{background-image:url(../img/banner/basic.png)}
 
+/* .about_bg_1{background-image:url(../img/banner/d1.png)} */
 
-
+.dbanner{background-image:url(../img/banner/dbanner.jpg)}
+.d1{background-image:url(../img/banner/d1.png)}
+.d2{background-image:url(../img/banner/d2.jpg)}
+.d3{background-image:url(../img/banner/d3.jpg)}
+.d4{background-image:url(../img/banner/d4.jpg)}
+.d5{background-image:url(../img/banner/d5.jpg)}
+.d6{background-image:url(../img/banner/d6.jpg)}
+.d7{background-image:url(../img/banner/d7.jpg)}
 
 .bradcam_area{padding:170px;background-size:cover;background-position:center center;text-align:center;padding:269px 0 159px 0}@media (max-width: 767px){.bradcam_area{padding:150px 0}}.bradcam_area h3{font-size:60px;color:#fff;font-weight:400;margin-bottom:0;text-transform:capitalize}@media (max-width: 767px){.bradcam_area h3{font-size:30px}}.popup_box{background:#fff;display:inline-block;z-index:9;width:681px;padding:60px 40px}.popup_box h3{text-align:center;font-size:22px;color:#1F1F1F;margin-bottom:46px}.popup_box .boxed-btn3{width:100%;text-transform:capitalize}.popup_box 
 .nice-select:not(.dining_reserve_next){-webkit-tap-highlight-color:transparent;background-color:#fff;border:solid 1px #E2E2E2;box-sizing:border-box;clear:both;cursor:pointer;display:block;float:left;font-family:"Raleway",sans-serif;font-weight:normal;width:100% !important;line-height:50px;outline:none;padding-left:18px;padding-right:30px;position:relative;text-align:left !important;-webkit-transition:all 0.2s ease-in-out;transition:all 0.2s ease-in-out;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;white-space:nowrap;width:auto;border-radius:0;margin-bottom:30px;height:50px !important;font-size:16px;font-weight:400;color:#919191}.popup_box 
