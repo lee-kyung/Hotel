@@ -60,10 +60,13 @@
     <div class="about_info_area">
         <div class="about_active owl-carousel">
             <div class="single_slider d1"></div>
-            <div class="single_slider about_bg_2"></div>
-            <div class="single_slider about_bg_3"></div>
-            <div class="single_slider about_bg_4"></div>
-            <div class="single_slider about_bg_5"></div>
+            <div class="single_slider d2"></div>
+            <div class="single_slider d3"></div>
+            <div class="single_slider d4"></div>
+            <div class="single_slider d5"></div>
+            <div class="single_slider d6"></div>
+            <div class="single_slider d7"></div>
+            <div class="single_slider d8"></div>
         </div>
     </div>
     <!-- about_info_area_start -->
