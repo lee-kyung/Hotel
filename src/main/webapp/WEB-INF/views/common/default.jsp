@@ -100,7 +100,7 @@
                         <div class="col-xl-2 col-lg-2">
                             <div class="logo-img">
                                 <a href="../main/index">
-                                    <img src="../img/logo.png" alt="">
+                                    <img src="../img/logo1.png" alt="">
                                 </a>
                             </div>
                         </div>
