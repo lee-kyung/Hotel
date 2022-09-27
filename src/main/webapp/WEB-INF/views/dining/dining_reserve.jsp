@@ -46,6 +46,10 @@
   }
   #section #day{
     text-align:left;
+    
+  }
+  #section #day_td{
+    height:10px;
   }
   #section #pri_info{
     height:80px;
@@ -177,7 +181,7 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
     <!-- 새 이미지 추가하는 법
        ①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기
        ②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
-    <div class="bradcam_area dbanner">   <!-- class="bradcam_area 클래스명" -->
+    <div class="bradcam_area dining2">   <!-- class="bradcam_area 클래스명" -->
         <h3> ON THE PLATE </h3>
     </div>
     <!-- bradcam_area_end -->
@@ -283,7 +287,7 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
           <c:if test="${ !((yoil>j && i==1) || (chong < day)) }">
 
           <td id="day">
-             ${day}<p></p>
+             <span id="day_td">${day}</span><p></p>
           <%
                int day2=Integer.parseInt(pageContext.getAttribute("day").toString());
                int y=Integer.parseInt(request.getAttribute("y").toString());
