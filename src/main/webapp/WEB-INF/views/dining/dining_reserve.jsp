@@ -76,7 +76,7 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
      height:50px;
      font-size:16px;
      text-align:center;
-     padding: 5px 0px;
+     /* padding: 5px 0px; */
   }
   
   /*  bootstrap calendar css 시작  */
