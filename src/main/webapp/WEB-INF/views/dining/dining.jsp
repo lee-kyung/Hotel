@@ -61,7 +61,7 @@
                     <div class="about_info">
                         <div class="section_title mb-20px">
                             <span>About Us</span>
-                            <div id="logo"> L A  M E R </div>
+                            <div id="logo"> L A&nbsp;&nbsp;M E R </div>
                         </div>
                         <p>파라다이스호텔 부산의 다양한 레스토랑에서
 마스터 쉐프들이 펼치는 화려한 미식의 세계로 초대합니다.</p>

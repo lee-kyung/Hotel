@@ -193,7 +193,7 @@
     	①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기
     	②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
  <div class="bradcam_area s7">	<!-- class="bradcam_area 클래스명" -->
-     <div id="h3"> L A  M E R  </div>
+     <div id="h3"> L A&nbsp;&nbsp;M E R  </div>
   </div>  
     <!-- bradcam_area_end -->
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
@@ -208,7 +208,7 @@
 	  <%--  <input type="hidden" name="dr_total" value="${dvo.dine_child }"> --%>
 		  <div style="color:#887159; font-weight:900"> RESERVATION</div>
 		       <div style="font-size: 25px;"> 파라다이스호텔 부산에 오신 것을 환영합니다.</div><br>
-		       <h2>ON THE PLATE</h2><br>
+		       <!-- <h2>ON THE PLATE</h2><br> -->
 		       <hr>
 		   <div id="outer">
 <!--left--><div id="left">	

@@ -16,7 +16,8 @@
 		font-size: 80px;
 		letter-spacing: 4px;
 		color: white;
-		text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
+        /*글씨 테두리*/	
+        text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
 	}
 </style>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

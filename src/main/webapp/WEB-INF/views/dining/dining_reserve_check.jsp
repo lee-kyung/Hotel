@@ -6,6 +6,7 @@
  <style>
   section{
     width:1000px;
+    height:1000px;
     margin:auto;
   }
   section #resv_check #left{
@@ -13,18 +14,18 @@
     display:inline-block;
     margin-left:20px;
     width:150px;
+    float:left;
   }
   section #resv_check #right{
     margin-top:20px;
     display:inline-block;
     /* margin-left:20px; */
     width:150px;
+
   }
  </style>
  
- 
 </head>
-
 <body>
 
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
@@ -32,7 +33,7 @@
     <!-- 새 이미지 추가하는 법
     	①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기
     	②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
-    <div class="bradcam_area d_default">	<!-- class="bradcam_area 클래스명" -->
+    <div class="bradcam_area s7">	<!-- class="bradcam_area 클래스명" -->
         <div id="h3"> Dining Reservation</div>
     </div>
     <!-- bradcam_area_end -->
@@ -43,12 +44,13 @@
 <div id="resv_check"> 
 	
 	<div id="title">RESERVATION</div>
-	<div id="name">${drvo.bkname }님 !  <span id="txt">예약이 완료되었습니다.</span></div>
+	<div id="name">${drvo.bkname}님 !  <span id="txt">예약이 완료되었습니다.</span></div>
 	<div id="border">
 	<div id="left">
       <div> 예약 일자 </div>
       <div> 예약 번호</div>
       <div> 예약자 성함 </div>
+      <div> 예약자 번호</div>
       <div> 예약 상품 </div>
       <div> 입장 시간 </div>
       <div> 결제 방법 </div>
@@ -59,20 +61,31 @@
       <div> ${drvo.writeday} </div>
       <div> ${drvo.bid}</div>
       <div> ${drvo.bkname} </div>
+      <div> ${drvo.p1}-${drvo.p2}-${drvo.p3} </div>
       <div> ${drvo.dine_type} </div>
       <div> ${drvo.dr_time} </div>
       <div> 
-      <c:if test="${drvo.sudan == 0}">
-         <c:set var="sudan" value="간편결제"/>
-       </c:if>
-       <c:if test="${drvo.sudan == 1}">
-         <c:set var="sudan" value="현장결제"/>
-       </c:if>
+	      <c:if test="${drvo.sudan == 0}">
+	         <c:set var="sudan" value="간편결제"/>
+	       </c:if>
+	       <c:if test="${drvo.sudan == 1}">
+	         <c:set var="sudan" value="현장결제"/>
+	       </c:if>
       <div>${sudan}</div>
+      </div> 
       <div> <fmt:formatNumber value="${drvo.dr_total}" pattern="#,###"/>원 </div>
-      <div> ${drvo.dr_extrarq}</div>
+       
+      <div>
       
-    </div> 
+	      <c:if test="">
+	        <%-- <c:set var="extrarq" value="요청 사항 없음"/> --%>
+	        <input type="text" name="extra" value="요청 사항 없음" readonly>
+	      </c:if>
+      ${drvo.dr_extrarq}
+      
+      </div> 
+      
+   
    </div>
   </div> 
 

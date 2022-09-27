@@ -185,7 +185,7 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
        ①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기
        ②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
     <div class="bradcam_area s7">   <!-- class="bradcam_area 클래스명" -->
-        <div id="h3"> L A  M E R  </div>
+        <div id="h3"> L A&nbsp;&nbsp;M E R  </div>
     </div>
     <!-- bradcam_area_end -->
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
