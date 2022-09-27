@@ -12,7 +12,11 @@
      text-align:left;
      margin:auto;
   }
-
+  logo{
+     font-family:fantasy;
+     color:#887159;
+     font-size:40px;
+  }
 </style>
 </head>
 
@@ -23,7 +27,7 @@
     <!-- 새 이미지 추가하는 법
     	①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기
     	②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
-    <div class="bradcam_area d_default">	<!-- class="bradcam_area 클래스명" -->
+    <div class="bradcam_area s7">	<!-- class="bradcam_area 클래스명" -->
         <div id="h3"> DINE & DRINK </div>
     <!-- bradcam_area_end -->
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
@@ -31,13 +35,13 @@
 	<!-- ================ Dining Area Start ================= -->
     <!-- about_area_start -->
     <div class="about_area">
-        <!-- <div class="container">
+        <div class="container">
             <div class="row">
                 <div class="col-xl-5 col-lg-5">
                     <div class="about_info">
                         <div class="section_title mb-20px">
                             <span>About Us</span>
-                            <h3> L A  M E R </h3>
+                            <div id="logo"> L A  M E R </div>
                         </div>
                         <p>파라다이스호텔 부산의 다양한 레스토랑에서
 마스터 쉐프들이 펼치는 화려한 미식의 세계로 초대합니다.</p>
@@ -55,7 +59,7 @@
                     </div>
                 </div>
             </div>
-        </div> -->
+        </div>
        
     </div>
     <!-- about_area_end -->
@@ -78,7 +82,7 @@
 
     <!-- about_main_info_start -->
     <div class="about_main_info">
-        <div class="container">
+        <!-- <div class="container">
             <div class="row">
                 <div class="col-xl-6 col-md-6">
                     <div class="single_about_info">
@@ -102,7 +106,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
     <!-- about_main_info_end -->
 <!--     <div class="img_3">
@@ -114,7 +118,7 @@
         			<th>이용안내</th>
         		</tr>
         		<tr>
-        			<b>운영시간</b>
+        			<td><b>운영시간</b></td>
         			<td>아침 08:00 - 10:50 (마지막 입장 10:10)<br>
 점심 13:00 - 15:50 (LAST ORDER 14:00)<br>
 * 중식은 런치 코스 또는 한식 코스, 키즈세트 메뉴로 운영합니다.<br>

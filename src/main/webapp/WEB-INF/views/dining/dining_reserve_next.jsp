@@ -192,8 +192,8 @@
     <!-- 새 이미지 추가하는 법
     	①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기
     	②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
- <div class="bradcam_area dining2">	<!-- class="bradcam_area 클래스명" -->
-     <h3> ON THE PLATE </h3>
+ <div class="bradcam_area s7">	<!-- class="bradcam_area 클래스명" -->
+     <div id="h3"> L A  M E R  </div>
   </div>  
     <!-- bradcam_area_end -->
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
