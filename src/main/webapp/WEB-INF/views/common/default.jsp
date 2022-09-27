@@ -16,6 +16,8 @@
 		font-size: 80px;
 		letter-spacing: 4px;
 		color: white;
+        /*글씨 테두리*/	
+        text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
 	}
 </style>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -66,7 +68,11 @@
                             <div class="main-menu  d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a href="../main/index">home</a></li>
+                                        <li><a href="../main/index">HOTEL<i class="ti-angle-down"></i></a>
+                                            <ul class="submenu">
+                                                <li><a href="../info/info">호텔 소개</a></li>
+                                                <li><a href="../info/info">호텔 소개</a></li>
+                                            </ul>
                                         <li><a href="../room/rooms">rooms</a></li> <!-- class="active" -->
                                         <li><a href="../dining/dining">dining<i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
