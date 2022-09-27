@@ -12,10 +12,17 @@
      text-align:left;
      margin:auto;
   }
-  logo{
+  #logo{
      font-family:fantasy;
      color:#887159;
      font-size:40px;
+  }
+  .genric-btn.default{
+     background:#a28d78;
+     color:white;
+  }
+  .genric-btn.default:hover{
+     background: #887159;
   }
 </style>
 </head>
@@ -45,16 +52,17 @@
                         </div>
                         <p>파라다이스호텔 부산의 다양한 레스토랑에서
 마스터 쉐프들이 펼치는 화려한 미식의 세계로 초대합니다.</p>
-                        <a href="../dining/dining_reserve" class="line-button">예약하기</a>
+                        <!-- <a href="../dining/dining_reserve" class="line-button">예약하기</a> -->
+                        <a href="../dining/dining_reserve" class="genric-btn default">온라인 예약</a>
                     </div>
                 </div>
                 <div class="col-xl-7 col-lg-7">
                     <div class="about_thumb d-flex">
                         <div class="img_1">
-                            <img src="../img/about/m1.jpg" alt="" width="200">
+                            <img src="../img/about/m1.jpg" alt="" width="250" height="280">
                         </div>
                         <div class="img_2">
-                            <img src="../img/about/m2.jpg" alt="">
+                            <img src="../img/about/m2.jpg" alt="" width="500" height="250">
                         </div>
                     </div>
                 </div>

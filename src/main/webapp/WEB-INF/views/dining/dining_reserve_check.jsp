@@ -59,7 +59,7 @@
       <div> ${drvo.writeday} </div>
       <div> ${drvo.bid}</div>
       <div> ${drvo.bkname} </div>
-      <div> ${drvo.dine_type} <img src="../resources/img/${dine_pimg}" width="70" height="70"> </div>
+      <div> ${drvo.dine_type} </div>
       <div> ${drvo.dr_time} </div>
       <div> 
       <c:if test="${drvo.sudan == 0}">

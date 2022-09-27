@@ -207,7 +207,7 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
     </c:forEach>
     </table>
  <%--   <div> <fmt:formatNumber value="${drvo.dr_total}" pattern="#,###"/>원 </div> --%>
-    <table width="1100" border="1">
+    <table width="1100">
      <tr>
         <td id="info">
 ▷ 4월1일부로 디너 이용 시 만12세 이하의 어린이 입장이 제한됩니다.<br>
@@ -220,7 +220,7 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
    </table>
 
 <!-- bootstrap calendar html 시작 --> <!-- bootstrap calendar html 시작 --> <!-- bootstrap calendar html 시작 -->
- <table id="top" width="1100" border="1">
+ <table id="top" width="1100">
   <tr>
     <th>
   <h2 class="page-header">
