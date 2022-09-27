@@ -76,6 +76,11 @@ public class EshopController {
 		service.cart_add(session, request, out, response);
 	}
 	
+	@RequestMapping("/eshop/cart_del")
+	public void cart_del(HttpSession session, HttpServletRequest request, PrintWriter out) {
+		service.cart_del(session, request, out);
+	}
+	
 	@RequestMapping("/eshop/cart")
 	public String cart(HttpSession session, Model model, HttpServletRequest request, HttpServletResponse response) {
 		return service.cart(session, model, request, response);

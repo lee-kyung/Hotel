@@ -143,10 +143,15 @@ public class EshopServiceImpl implements EshopService {
 			pend=ptotal;
 		
 		/* 회원과 비회원을 구분하여 plist를 불러와 view에 전달하기 */
-		if(session.getAttribute("userid") == null)
+		String userid="";
+		Cookie cookie = WebUtils.getCookie(request, "cookieid");
+		if(session.getAttribute("userid") == null && cookie == null)
 			model.addAttribute("plist", mapper.pro_list2(pcode, osel, pindex, psel));
 		else {
-			String userid=session.getAttribute("userid").toString();
+			if(session.getAttribute("userid") == null)
+				userid=cookie.getValue();
+			else
+				userid=session.getAttribute("userid").toString();
 			model.addAttribute("plist", mapper.pro_list(userid, pcode, osel, pindex, psel));
 		}			
 		
@@ -207,7 +212,11 @@ public class EshopServiceImpl implements EshopService {
 	@Override
 	public void cart_add(HttpSession session, HttpServletRequest request, PrintWriter out, HttpServletResponse response) {
 		String pcode=request.getParameter("pcode");	// 상품코드
-		int su=Integer.parseInt(request.getParameter("su"));
+		int su;
+			if(request.getParameter("su") == null)
+				su=1;
+			else
+				su=Integer.parseInt(request.getParameter("su"));
 		Cookie cookie = WebUtils.getCookie(request, "cookieid");	// 이미 생성된 쿠키값
 		
 		if(session.getAttribute("userid") == null) {	// 비회원인데
@@ -252,6 +261,19 @@ public class EshopServiceImpl implements EshopService {
 		String p=pcode.substring(0, 3);	// 메인분류값
 		String str="0,"+p;
 		out.print(str);
+	}
+	
+	@Override
+	public void cart_del(HttpSession session, HttpServletRequest request, PrintWriter out) {
+		String pcode=request.getParameter("pcode");
+		Cookie cookie = WebUtils.getCookie(request, "cookieid");	// 이미 생성된 쿠키값
+		String userid="";
+		if(session.getAttribute("userid") == null)
+			userid=cookie.getValue();
+		else
+			userid=session.getAttribute("userid").toString();
+		mapper.cart_del(userid, pcode);
+		out.print("0");
 	}
 
 	@Override
@@ -454,7 +476,7 @@ public class EshopServiceImpl implements EshopService {
 			mapper.suMinusPlus(su[i], pcode[i]);
 			
 			if(gchk == 1)	// 1이면 장바구니에서
-				mapper.cart_del(pcode[i], userid);	// [구매]로 넘어간 [장바구니 속 상품]을 cart테이블에서 삭제하기					
+				mapper.cart_del(userid, pcode[i]);	// [구매]로 넘어간 [장바구니 속 상품]을 cart테이블에서 삭제하기					
 		}
 
 		return "redirect:/eshop/gumae_okmsg?jumuncode="+jumuncode;
