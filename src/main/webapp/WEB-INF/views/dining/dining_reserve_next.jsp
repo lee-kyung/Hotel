@@ -192,7 +192,7 @@
     <!-- 새 이미지 추가하는 법
     	①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기
     	②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
- <div class="bradcam_area dining2">	<!-- class="bradcam_area 클래스명" -->
+ <div class="bradcam_area dbanner">	<!-- class="bradcam_area 클래스명" -->
      <h3> ON THE PLATE </h3>
   </div>  
     <!-- bradcam_area_end -->
@@ -299,12 +299,14 @@
  			<table>
  			 	<tr height="10px"> 
  					<td>
+ 					<br>
  					<c:if test="${userid==null}">
  					* 예약자 이름 &nbsp;<input type="text" name="bkname">
  					* 휴대폰 번호 &nbsp;
                     <input type="text" name="p1" value="${p1}" class="inputs" maxlength="3" size="7"/>-
 			        <input type="text" name="p2" value="${p2}" class="inputs" maxlength="4" size="8"/>-
 			        <input type="text" name="p3" value="${p3}" class="inputs" maxlength="4" size="8"/>
+			        <br>
 			        * 휴대폰 번호는 예약번호 전송에 쓰입니다. 정확히 기입해 주세요.
                     </c:if>
                     </td>
