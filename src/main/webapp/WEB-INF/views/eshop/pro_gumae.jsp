@@ -224,6 +224,7 @@
 	<section id="pro_gumae">
 	<form name="gumae" method="post" action="pro_gumae_ok">
 	<input type="hidden" name="gchk" value="${gchk}">
+		
 		<!-- 주문상품확인 start -->
 		<h3> 주문상품 확인 </h3>
 		<table width="1000" align="center" cellpadding="0" id="pro_table">
@@ -553,7 +554,8 @@
  	</div>
 	</div>
 	</div>
-		<!-- 주문서작성 end -->	
+	<!-- 주문서작성 end -->
+		
 	</form>
 	</section>
 	
