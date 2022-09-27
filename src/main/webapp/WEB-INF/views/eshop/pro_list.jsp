@@ -71,9 +71,15 @@
 	}
 	#pro_list #wish {
 		float : right;
-		margin-right : 10px;
 	}
 	#pro_list #wish img {
+		cursor : pointer;
+	}
+	#pro_list #cart {
+		float : right;
+		margin-right : 10px;
+	}
+	#pro_list #cart img {
 		cursor : pointer;
 	}
 	#pro_list #price_text1 {
@@ -138,15 +144,8 @@
 		chk.onload=function(){
 			if(chk.responseText == "0") {
 				//alert("위시리스트에 추가됐습니다.");
-				//document.getElementById("wishimg").src="../img/eshop/wish_on.png";
-				//document.getElementById("wishimg").setAttribute("onclick", "wish_del('${pvo.pcode}')");
-				//eval("document.getElementById('wishimg').setAttribute('onclick','wish_del('"+pcode+"')')");
-				//var sss="wish_del('"+pcode+"')";
-				//$("#wishimg").attr("onclick",sss);
-				//console.log(pcode);
 				document.getElementsByClassName("wishimg")[num].src="../img/eshop/wish_on.png";
 				document.getElementsByClassName("wishimg")[num].setAttribute("onclick", "wish_del('"+pcode+"','"+num+"')");
-				//alert(document.getElementsByClassName("wishimg")[num].getAttribute("onclick"));
 			}
 		}
 		chk.open("get", "wish_add?pcode="+pcode);
@@ -155,20 +154,41 @@
 	function wish_del(pcode, num){
 		let chk=new XMLHttpRequest();
 		chk.onload=function(){
-			if(chk.responseText == "0") {
+			let arr=chk.responseText;
+			if(arr[0]  == "0") {
 				//alert("위시리스트에서 삭제됐습니다.");
-				//document.getElementById("wishimg").src="../img/eshop/wish_off.png";
-				//document.getElementById("wishimg").setAttribute("onclick", "wish_add('${pvo.pcode}')");
-				//eval("document.getElementById('wishimg').setAttribute('onclick','wish_add('"+pcode+"')')");
-				//var sss="wish_add('"+pcode+"')";
-				//$("#wishimg").attr("onclick",sss);
-				//console.log(pcode);
 				document.getElementsByClassName("wishimg")[num].src="../img/eshop/wish_off.png";
 				document.getElementsByClassName("wishimg")[num].setAttribute("onclick", "wish_add('"+pcode+"','"+num+"')");
-				//alert(document.getElementsByClassName("wishimg")[num].getAttribute("onclick"));
 			}
 		}
 		chk.open("get", "wish_del?pcode="+pcode);
+		chk.send();
+	}
+	
+	/* 장바구니에 추가하고 삭제하기 */
+	function cart_add(pcode, num){
+		let chk=new XMLHttpRequest();
+		chk.onload=function(){
+			let arr=chk.responseText;
+			if(arr[0] == "0") {
+				//alert("장바구니에 추가됐습니다.");
+				document.getElementsByClassName("cartimg")[num].src="../img/eshop/cart_on.png";
+				document.getElementsByClassName("cartimg")[num].setAttribute("onclick", "cart_del('"+pcode+"','"+num+"')");
+			}
+		}
+		chk.open("get", "cart_add?pcode="+pcode);
+		chk.send();
+	}
+	function cart_del(pcode, num){
+		let chk=new XMLHttpRequest();
+		chk.onload=function(){
+			if(chk.responseText == "0") {
+				//alert("장바구니에서 삭제됐습니다.");
+				document.getElementsByClassName("cartimg")[num].src="../img/eshop/cart_off.png";
+				document.getElementsByClassName("cartimg")[num].setAttribute("onclick", "cart_add('"+pcode+"','"+num+"')");
+			}
+		}
+		chk.open("get", "cart_del?pcode="+pcode);
 		chk.send();
 	}
 </script>
@@ -222,10 +242,10 @@
 					<option value="sold desc"> 인기순 </option>
 				</c:if>
 				<c:if test="${osel == 'id desc'}">
-					<option value="id desc" selected> 최신순 </option>
+					<option value="id desc" selected> 신상품순 </option>
 				</c:if>
 				<c:if test="${osel != 'id desc'}">
-					<option value="id desc"> 최신순 </option>
+					<option value="id desc"> 신상품순 </option>
 				</c:if>
 				<c:if test="${osel == 'halin desc'}">
 					<option value="halin desc" selected> 할인율순 </option>
@@ -285,25 +305,37 @@
 		<c:set var="n" value="3"/>	<!-- 한 행에 출력되는 열(상품)의 개수 -->
 		<c:set var="i" value="0"/>	<!-- 상품 3개마다 행을 바꾸기 위한 변수 -->	
 			<tr>
-			<c:forEach var="pvo" items="${plist}" varStatus="wish">
+			<c:forEach var="pvo" items="${plist}" varStatus="list">
 				<td>
 					<div class="offers_area padding_top" id="eshop_img"><div class="single_offers"><div class="about_thumb">
 						<img src="../img/eshop/${pvo.img}" height="300" width="300" onclick="content_view('${pvo.pcode}')" style="cursor:pointer">	<!-- 상품이미지 -->
 					</div></div></div>
-					<div id="title" onclick="content_view('${pvo.pcode}')"> ${pvo.title} </div>	<!-- 상품명 -->
-					<div id="wish">	<!-- 위시리스트 -->
+					<!-- 상품명 -->
+					<div id="title" onclick="content_view('${pvo.pcode}')"> ${pvo.title} </div>
+					<!-- 위시리스트 -->
+					<div id="wish">
 						<c:if test="${userid == null}">
 							<img src="../img/eshop/wish_off.png" width="20" onclick="alert('로그인하셔야 본 서비스를 이용하실 수 있습니다.')">
 						</c:if>
 						<c:if test="${(userid != null) && (pvo.wishchk == 0)}">
-							<img src="../img/eshop/wish_off.png" width="20" onclick="wish_add('${pvo.pcode}', ${wish.index})" class="wishimg">
+							<img src="../img/eshop/wish_off.png" width="20" onclick="wish_add('${pvo.pcode}', ${list.index})" class="wishimg">
 						</c:if>
 						<c:if test="${(userid != null) && (pvo.wishchk == 1)}">
-							<img src="../img/eshop/wish_on.png" width="20" onclick="wish_del('${pvo.pcode}', ${wish.index})" class="wishimg">
+							<img src="../img/eshop/wish_on.png" width="20" onclick="wish_del('${pvo.pcode}', ${list.index})" class="wishimg">
+						</c:if>
+					</div>
+					<!-- 장바구니 -->
+					<div id="cart">
+						<c:if test="${pvo.cartchk == 0}">
+							<img src="../img/eshop/cart_off.png" width="25" onclick="cart_add('${pvo.pcode}', ${list.index})" class="cartimg">
+						</c:if>
+						<c:if test="${pvo.cartchk == 1}">
+							<img src="../img/eshop/cart_on.png" width="25" onclick="cart_del('${pvo.pcode}', ${list.index})" class="cartimg">
 						</c:if>
 					</div>
 					<hr style="width:350px;">
-					<div id="price">		<!-- 판매가 / 할인가 원가 할인율-->
+					<!-- 판매가 / 할인가 원가 할인율-->
+					<div id="price">
 						<c:if test="${pvo.halin == 0}">
 							KRW <b id="price_text1"> <fmt:formatNumber value="${pvo.price}" pattern="#,###"/> </b>
 						</c:if>
