@@ -275,22 +275,22 @@
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
 	<c:if test="${pvo.subpcode == 'p0101'}">
 		<div class="bradcam_area eshop2">
-	        <h3 onclick="location='pro_list?pcode=p0101'" style="cursor:pointer;"> B E D D I N G </h3>
+	        <div id="h3" onclick="location='pro_list?pcode=p0101'" style="cursor:pointer;"> B E D D I N G </div>
 	    </div>
 	</c:if>
 	<c:if test="${pvo.subpcode == 'p0102'}">
 	    <div class="bradcam_area eshop2">
-	        <h3 onclick="location='pro_list?pcode=p0102'" style="cursor:pointer;"> L I F E S T Y L E </h3>
+	        <div id="h3" onclick="location='pro_list?pcode=p0102'" style="cursor:pointer;"> L I F E S T Y L E </div>
 	    </div>
 	</c:if>
 	<c:if test="${pvo.subpcode == 'p0201'}">
 	    <div class="bradcam_area eshop3">
-	        <h3 onclick="location='pro_list?pcode=p0201'" style="cursor:pointer;"> R E S T A U R A N T </h3>
+	        <div id="h3" onclick="location='pro_list?pcode=p0201'" style="cursor:pointer;"> D I N I N G </div>
 	    </div>
     </c:if>
     <c:if test="${pvo.subpcode == 'p0202'}">
 	    <div class="bradcam_area eshop3">
-	        <h3 onclick="location='pro_list?pcode=p0202'" style="cursor:pointer;"> H O T E L </h3>
+	        <div id="h3" onclick="location='pro_list?pcode=p0202'" style="cursor:pointer;"> H O T E L </div>
 	    </div>
     </c:if>
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->

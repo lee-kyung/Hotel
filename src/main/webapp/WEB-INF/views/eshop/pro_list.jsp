@@ -198,22 +198,32 @@
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
     <c:if test="${(pcode == 'p01')}">
 	    <div class="bradcam_area eshop2">
-	        <div id="h3"> onclick="location='pro_list?pcode=p01&osel=${osel}'" style="cursor:pointer;"> P R O D U C T </div>
+	        <div id="h3" onclick="location='pro_list?pcode=p01&osel=${osel}'" style="cursor:pointer;"> P R O D U C T </div>
 	    </div>
     </c:if>
     <c:if test="${(pcode == 'p0101')}">
 	    <div class="bradcam_area eshop4">
-	        <h3 onclick="location='pro_list?pcode=p01&osel=${osel}'" style="cursor:pointer;"> P R O D U C T </h3>
+	        <div id="h3" onclick="location='pro_list?pcode=p01&osel=${osel}'" style="cursor:pointer;"> P R O D U C T </div>
 	    </div>
     </c:if>
     <c:if test="${(pcode == 'p0102')}">
 	    <div class="bradcam_area eshop5">
-	        <h3 onclick="location='pro_list?pcode=p01&osel=${osel}'" style="cursor:pointer;"> P R O D U C T </h3>
+	        <div id="h3" onclick="location='pro_list?pcode=p01&osel=${osel}'" style="cursor:pointer;"> P R O D U C T </div>
 	    </div>
     </c:if>
-    <c:if test="${(pcode == 'p02') || (pcode == 'p0201') || (pcode == 'p0202')}">
+    <c:if test="${(pcode == 'p02')}">
 	    <div class="bradcam_area eshop3">
-	        <h3 onclick="location='pro_list?pcode=p02&osel=${osel}'" style="cursor:pointer;"> V O U C H E R </h3>
+	        <div id="h3" onclick="location='pro_list?pcode=p02&osel=${osel}'" style="cursor:pointer;"> V O U C H E R </div>
+	    </div>
+    </c:if>
+    <c:if test="${(pcode == 'p0201')}">
+	    <div class="bradcam_area eshop6">
+	        <div id="h3" onclick="location='pro_list?pcode=p02&osel=${osel}'" style="cursor:pointer;"> V O U C H E R </div>
+	    </div>
+    </c:if>
+    <c:if test="${(pcode == 'p0202')}">
+	    <div class="bradcam_area eshop7">
+	        <div id="h3" onclick="location='pro_list?pcode=p02&osel=${osel}'" style="cursor:pointer;"> V O U C H E R </div>
 	    </div>
     </c:if>
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->

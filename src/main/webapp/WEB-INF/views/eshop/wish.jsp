@@ -17,14 +17,6 @@
 		margin : auto;
 		margin-top : 50px;
 	}
-	#wish #spinner {
-		border : 1px solid lightgray;
-		outline : none;
-	}
-	input[type=number]::-webkit-inner-spin-button,
-	input[type=number]::-webkit-outer-spin-button {
-		opacity: 1;
-	}
 	#wish #price_text1 {
 		font-family : TimesNewRoman;
 		color : black;
@@ -54,7 +46,7 @@
 		width : 80px;
 		height : 30px;
 		padding-top : 5px;
-		border : 1px solid #887159;
+		border : 1px solid lightgray;
 		color : #887159;
 		margin : auto;
 		font-size : 13px;
@@ -88,7 +80,7 @@
 		width : 150px;
 		height : 30px;
 		padding-top : 5px;
-		border : 1px solid #887159;
+		border : 1px solid lightgray;
 		color : #887159;
 		margin : auto;
 		font-size : 13px;
@@ -237,7 +229,7 @@
 <body>
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
 	    <div class="bradcam_area eshop1">
-	        <h3> 위 시 리 스 트 </h3>
+	        <div id="h3"> W I S H L I S T </div>
 	    </div>
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
 
@@ -272,7 +264,7 @@
 			<input type="hidden" class="pcode" value="${wvo.pcode}">
 			<tr>
 				<td height="100"> <input type="checkbox" class="subck" onclick="subcheck()" value="${wvo.id}" id="subck"> </td> <!-- 체크박스 -->
-				<td colspan="2" style="padding-left:20px;">	<!-- 상품정보(이미지, 상품명) -->
+				<td colspan="2" style="padding-left:10px;">	<!-- 상품정보(이미지, 상품명) -->
 					<img src="../img/eshop/${wvo.fimg}" width="80" height="80" id="main_fimg">
 					${wvo.title}
 				</td>
@@ -294,7 +286,7 @@
 					</c:if>
 				</td>
 				<td>	<!-- 1개 주문 or 삭제하기 -->
-					<div onclick="location='move_cart?pcode=${wvo.pcode},'" id="button1"> 장바구니로 </div>
+					<div onclick="location='move_cart?pcode=${wvo.pcode},'" id="button1"> 장바구니 </div>
 					<div onclick="location='wishcart_del?delid=${wvo.id},&dchk=1'" id="button2"> 삭제하기 </div>
 				</td>
 			</tr>

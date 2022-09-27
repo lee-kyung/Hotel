@@ -18,7 +18,7 @@
 
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
     <div class="bradcam_area basic">	<!-- class="bradcam_area 클래스명" -->
-        <h3> 주문 완료 </h3>
+        <div id="h3"> T H A N K Y O U </div>
     </div>
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
 

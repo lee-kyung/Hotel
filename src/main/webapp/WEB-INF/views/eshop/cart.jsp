@@ -42,7 +42,7 @@
 		width : 80px;
 		height : 30px;
 		padding-top : 5px;
-		border : 1px solid #887159;
+		border : 1px solid lightgray;
 		color : #887159;
 		margin : auto;
 		font-size : 13px;
@@ -73,7 +73,8 @@
 		cursor : pointer;
 	}
 	#cart #button3 {
-		width : 100%;
+		float : right;
+		width : 150px;
 		height : 30px;
 		padding-top : 5px;
 		border : 1px solid lightgray;
@@ -412,7 +413,7 @@
 <body>
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
 	    <div class="bradcam_area eshop1">
-	        <h3> 장 바 구 니 </h3>
+	        <div id="h3"> C A R T </div>
 	    </div>
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
 
@@ -503,7 +504,7 @@
 					
 		</c:forEach>
 			<tr>
-				<td colspan="8" height="50"> <div onclick="cart_del()" id="button3"> 선택상품 삭제하기 </div> </td>
+				<td colspan="8" style="height:50px;padding-top:10px;padding-bottom:20px;"> <div onclick="cart_del()" id="button3"> 선택상품 삭제하기 </div> </td>
 			</tr>
 			<tr>
 				<th colspan="8" height="100" style="border-top:2px solid #887159;border-bottom:none;">
