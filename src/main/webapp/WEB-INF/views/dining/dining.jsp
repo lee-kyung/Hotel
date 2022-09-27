@@ -18,7 +18,7 @@
     <!-- 새 이미지 추가하는 법
     	①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기
     	②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
-    <div class="bradcam_area dbanner">	<!-- class="bradcam_area 클래스명" -->
+    <div class="bradcam_area d_default">	<!-- class="bradcam_area 클래스명" -->
         <h3> DINE & DRINK </h3>
     </div>
     <!-- bradcam_area_end -->
@@ -33,8 +33,7 @@
                     <div class="about_info">
                         <div class="section_title mb-20px">
                             <span>About Us</span>
-                            <h3> BUFFET <br>
-                                    On the plate</h3>
+                            <h3> L A  M E R </h3>
                         </div>
                         <p>파라다이스호텔 부산의 다양한 레스토랑에서
 마스터 쉐프들이 펼치는 화려한 미식의 세계로 초대합니다.</p>
@@ -44,10 +43,10 @@
                 <div class="col-xl-7 col-lg-7">
                     <div class="about_thumb d-flex">
                         <div class="img_1">
-                            <img src="../img/about/about_1.jpg" alt="" width="200">
+                            <img src="../img/about/m1.jpg" alt="" width="200">
                         </div>
                         <div class="img_2">
-                            <img src="../img/about/about_2.jpg" alt="">
+                            <img src="../img/about/m2.jpg" alt="">
                         </div>
                     </div>
                 </div>
@@ -59,14 +58,16 @@
     <!-- about_info_area_start -->
     <div class="about_info_area">
         <div class="about_active owl-carousel">
-            <div class="single_slider d1"></div>
-            <div class="single_slider d2"></div>
-            <div class="single_slider d3"></div>
-            <div class="single_slider d4"></div>
-            <div class="single_slider d5"></div>
-            <div class="single_slider d6"></div>
-            <div class="single_slider d7"></div>
-            <div class="single_slider d8"></div>
+            <div class="single_slider s1"></div>
+            <div class="single_slider s2"></div>
+            <div class="single_slider s3"></div>
+            <div class="single_slider s4"></div>
+            <div class="single_slider s5"></div>
+            <div class="single_slider lunch"></div>
+            <div class="single_slider s6"></div>
+            <div class="single_slider s7"></div>
+            <div class="single_slider s8"></div>
+            <div class="single_slider s1"></div>
         </div>
     </div>
     <!-- about_info_area_start -->
@@ -88,7 +89,11 @@
                     <div class="single_about_info">
                         <h3>We Serve Fresh and <br>
                             Delicious Food</h3>
-                            <p>Suscipit libero pretium nullam potenti. Interdum, blandit <br> phasellus consectetuer dolor ornare dapibus enim ut tincidunt <br> rhoncus tellus sollicitudin pede nam maecenas, dolor sem. <br> Neque sollicitudin enim. Dapibus lorem feugiat facilisi <br> faucibus et. Rhoncus.
+                            <p> 레스토랑 한 가운데 들어선 오픈 키친은<br>
+                                          더 건강하고 더 신선한 음식을 선사하겠다는<br>
+                                            라메르의 약속입니다.<br><br>
+                            바다를 닮은 여유로운 공간은 이국적이고 우아한 인테리어, 편안함을 강조한 가구,<br>
+                            푸르른 식물, 광활한 바다와 조화를 이뤄 탄성을 자아냅니다.
                             </p>
                     </div>
                 </div>

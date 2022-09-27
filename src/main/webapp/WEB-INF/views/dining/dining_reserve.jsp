@@ -10,6 +10,9 @@
     height:1700px;
     border:1px solid #887159;
   }
+  #section h3{
+    font-family: Bernard MT Condensed;
+  }
   #section table{
     margin:auto; 
     margin-top:15px;
@@ -181,8 +184,8 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
     <!-- 새 이미지 추가하는 법
        ①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기
        ②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
-    <div class="bradcam_area dining2">   <!-- class="bradcam_area 클래스명" -->
-        <h3> ON THE PLATE </h3>
+    <div class="bradcam_area d_default">   <!-- class="bradcam_area 클래스명" -->
+        <h3> L A  M E R  </h3>
     </div>
     <!-- bradcam_area_end -->
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
