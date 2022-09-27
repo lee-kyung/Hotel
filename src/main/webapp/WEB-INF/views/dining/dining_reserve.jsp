@@ -46,6 +46,10 @@
   }
   #section #day{
     text-align:left;
+    
+  }
+  #section #day_td{
+    height:10px;
   }
   #section #pri_info{
     height:80px;
@@ -283,7 +287,7 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
           <c:if test="${ !((yoil>j && i==1) || (chong < day)) }">
 
           <td id="day">
-             ${day}<p></p>
+             <span id="day_td">${day}</span><p></p>
           <%
                int day2=Integer.parseInt(pageContext.getAttribute("day").toString());
                int y=Integer.parseInt(request.getAttribute("y").toString());
