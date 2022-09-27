@@ -69,6 +69,15 @@ opacity: 0.4;
 background-size: 7px 7px;
 background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.7000000000000001px, #fefefe 0, #fefefe 50%);
   }
+  #section input [type=submit]{
+    background:#a28d78;
+     color:#f2f1ef;
+     width:200px;
+     height:50px;
+     font-size:16px;
+     text-align:center;
+     padding: 5px 0px;
+  }
   
   /*  bootstrap calendar css 시작  */
   .calendar-toolbar {
@@ -355,8 +364,24 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
 	       <td><select name="dine_type" id="dr_type"></select></td>
 	       <td><select name="dr_time" id="dr_time"></select></td>
 	     </tr>
-	     <tr>
+	     <!-- <tr>
 	       <td><input type="submit" value="예약하기" class="cbtn" > </td>
+	     </tr> -->
+	     <tr>
+	       <td><input type="button" value="이전" onclick="location='dining'"> </td>
+	     <c:if test="${userid ==null}">  
+	       
+           <td colspan="2" align="right">
+           <input type="submit" value="비회원으로 예약" class="cbtn" >
+           <input type="submit" value="회원으로 예약" class="cbtn" > 
+           </td>
+	     </c:if>
+	       <!-- <td colspan="3">
+	       <span id="resv">
+	       <input type="button" value="비회원" class="guest">
+	       <input type="submit" value="회원" class="cbtn">
+	     </span>
+	     </td> -->
 	     </tr>
    </table>
   </form>
