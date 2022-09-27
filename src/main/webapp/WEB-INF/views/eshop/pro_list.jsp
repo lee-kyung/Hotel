@@ -198,7 +198,7 @@
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
     <c:if test="${(pcode == 'p01')}">
 	    <div class="bradcam_area eshop2">
-	        <h3 onclick="location='pro_list?pcode=p01&osel=${osel}'" style="cursor:pointer;"> P R O D U C T </h3>
+	        <div id="h3"> onclick="location='pro_list?pcode=p01&osel=${osel}'" style="cursor:pointer;"> P R O D U C T </div>
 	    </div>
     </c:if>
     <c:if test="${(pcode == 'p0101')}">
