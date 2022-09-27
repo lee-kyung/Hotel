@@ -260,8 +260,7 @@
 	
 	/* 후보이미지를 클릭하면 메인이미지 자리에 뜨기 */
 	function show_img(num){
-		document.getElementById("main_fimg").src=document.getElementsByClassName("other_fimgs[num]").src;
-		//console.log(document.getElementsByClassName("mine[num]").src);
+		document.getElementById("main_fimg").src=document.getElementsByClassName("other_fimgs")[num].src;
 	}
 	
 	/* 바로구매 : javascript로 form을 submit시키기*/

@@ -292,7 +292,7 @@
 			</tr>
 		</c:forEach>
 			<tr>
-				<td colspan="8" height="80" style="border:none;">
+				<td colspan="8" height="100" style="border:none;">
 					<span onclick="location='eshop'" id="button22" style="float:left;"> 계속 쇼핑하기 </span>
 					<span onclick="move_cart(2)" id="button11" style="float:right;"> 전체 장바구니로 </span>
 					<span onclick="move_cart(1)" id="button22" style="float:right;"> 선택 장바구니로 </span>					
