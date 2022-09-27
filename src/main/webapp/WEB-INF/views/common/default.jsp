@@ -6,6 +6,18 @@
 <html class="no-js" lang="zxx">
 
 <head>
+<style>
+	.bradcam_area{
+		height: 300px;
+	}
+	.bradcam_area #h3{
+		margin-top: -70px;
+		font-family: fantasy;
+		font-size: 80px;
+		letter-spacing: 4px;
+		color: white;
+	}
+</style>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -36,7 +48,7 @@
     </script>
     
     	<decorator:head/>
-    
+   
 </head>
 
 <body>

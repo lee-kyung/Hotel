@@ -42,7 +42,8 @@
 .default-select .nice-select{border:none;border-radius:0px;height:40px;background:#f9f9ff;padding-left:20px;padding-right:40px}
 .default-select .nice-select .list{margin-top:0;border:none;border-radius:0px;box-shadow:none;width:100%;padding:10px 0 10px 0px}
 .default-select .nice-select .list .option{font-weight:300;-webkit-transition:all 0.3s ease 0s;-moz-transition:all 0.3s ease 0s;-o-transition:all 0.3s ease 0s;transition:all 0.3s ease 0s;line-height:28px;min-height:28px;font-size:12px;padding-left:20px}
-.default-select .nice-select .list .option.selected{color:#ff5e13;background:transparent}
+.defaul
+-select .nice-select .list .option.selected{color:#ff5e13;background:transparent}
 .default-select .nice-select .list .option:hover{color:#ff5e13;background:transparent}
 .default-select .current{margin-right:50px;font-weight:300}
 .default-select .nice-select::after{right:20px}.form-select{height:40px;width:100%}
