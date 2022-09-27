@@ -237,22 +237,29 @@
 		<tr>
 			<td width="200px;">주문번호</td>
 			<td>상품명</td>
-			<td width="100px;">결제방식</td>
+			<td width="100px;">추가상품</td>
 			<td width="150px;">총 결제금액</td>
 			<td width="150px">구매한 날</td>
-			<td width="240px"></td>
+			<td width="240px">상태 변경</td>
 		</tr>
 		<c:forEach items="${glist }" var="gvo">
 		<tr>
-			<td><a href="eshop_content?id=${gvo.id}">${gvo.jumuncode }</a></td>
+			<td><a href="eshop_content?id=${gvo.id}&jumuncode=${gvo.jumuncode }">${gvo.jumuncode }</a></td>
 			<td>${gvo.title }</td>
-			<td>${gvo.pay_sudan}</td>
+			<c:if test="${gvo.cnt==1 }">			
+				<td></td>
+			</c:if>	
+			<c:if test="${gvo.cnt!=1 }">			
+				<td>${gvo.cnt-1}개</td>
+			</c:if>			
 			<td>${gvo.total_price }</td>
 			<td>${gvo.buyday }</td>
 			<td>
 				<c:if test="${gvo.state==0 }">
-					<input type="button" class="btn3" value="결제취소" onclick="location='eshopG_state_change?state=1&id=${gvo.id}'">
-					<input type="button" class="btn3" value="배송완료" onclick="location='eshopG_state_change?state=3&id=${gvo.id}'">
+					<input type="button" class="btn3" value="결제취소" onclick="location='eshopG_state_change?state=1&id=${gvo.id}&jumuncode=${gvo.jumuncode }'">
+					<c:if test="${(gvo.state==0) && (gvo.bname==null)}">
+						<input type="button" class="btn3" value="사용완료" onclick="location='eshopG_state_change?state=3&id=${gvo.id}&jumuncode=${gvo.jumuncode }'">
+					</c:if>
 				</c:if>
 				<c:if test="${gvo.state==1 }"> 
 					<input type="button" class="btn4" value="취소진행중">
@@ -260,8 +267,11 @@
 				<c:if test="${gvo.state==2 }">
 					<input type="button" class="btn4" value="취소완료">
 				</c:if>
-				<c:if test="${gvo.state==3 }">
+				<c:if test="${(gvo.state==3) && (gvo.bname !=null)}">
 					<input type="button" class="btn4" value="배송완료">
+				</c:if>
+				<c:if test="${(gvo.state==3) && (gvo.bname==null)}">
+					<input type="button" class="btn4" value="사용완료">
 				</c:if>
 			</td>
 		</tr>

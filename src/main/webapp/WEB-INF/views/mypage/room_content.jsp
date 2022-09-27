@@ -181,7 +181,7 @@
 			<td id="name">${rvo.rname }</td>
 			<td align="right">
 				<c:if test="${rvo.bstate==1 }">
-				<input type="button" id="btn3" value="예약취소" onclick="location='roomR_state_change?r=1&bstate=3&id=${rvo.id}'">
+				<input type="button" id="btn3" value="예약취소" onclick="location='roomR_state_change?bstate=3&id=${rvo.id}'">
 				</c:if>
 				<c:if test="${rvo.bstate==2 }">
 					<input type="button" class="btn4" value="사용완료">
@@ -242,7 +242,7 @@
 		<tr>
 			<td>결제수단</td>
 			<td>
-				카드결제
+				간편결제
 			</td>
 		</tr>
 		<tr>

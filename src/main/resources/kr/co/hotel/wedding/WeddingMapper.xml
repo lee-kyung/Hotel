@@ -32,7 +32,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	 -->
 	<select id="getWresv_code" resultType="Integer">
-		select ifnull(max(right(wresv_code,4)),0) from weddingresv where userid=#{param1}
+		select ifnull(max(right(wresv_code,4)),0) from weddingresv
 	</select>
 	 
 	 

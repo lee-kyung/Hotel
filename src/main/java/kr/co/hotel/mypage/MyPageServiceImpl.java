@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.xml.transform.ErrorListener;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -180,14 +181,14 @@ public class MyPageServiceImpl implements MyPageService{
 
 		String str="";
 		str=str+"<table border='1' id='second_t'>";
-		str=str+"<tr><td>"+URLEncoder.encode("예약번호")+"</td><td>"+URLEncoder.encode("상담일")+"</td><td>"+URLEncoder.encode("상담 시간")+"</td><td>"+URLEncoder.encode("예식 희망일")+"</td><td>"+URLEncoder.encode("희망하는 웨딩홀")+"</td><td>"+URLEncoder.encode("예약한 날")+"</td><td width='120px;'></td></tr>";
+		str=str+"<tr><td>"+URLEncoder.encode("예약번호")+"</td><td>"+URLEncoder.encode("상담일")+"</td><td>"+URLEncoder.encode("상담 시간")+"</td><td>"+URLEncoder.encode("예식 희망일")+"</td><td>"+URLEncoder.encode("희망하는 웨딩홀")+"</td><td>"+URLEncoder.encode("예약한 날")+"</td><td width='120px;'>"+URLEncoder.encode("현 상태")+"</td></tr>";
 		for(int i=0; i<wlist.size(); i++)
 		{
 			WeddingResvVO wrvo=wlist.get(i);
 			str=str+" <tr><td><a href='wedding_content?wresv_id="+wrvo.getWresv_id()+"'>"+wrvo.getWresv_code()+"</a></td><td>"+wrvo.getWresv_cday()+"</td><td>"+wrvo.getWresv_time()+"</td><td>"+wrvo.getWresv_wday()+"</td><td>"+wrvo.getWresv_hall()+"</td><td>"+wrvo.getWresv_day()+"</td>";
 			if(wrvo.getState()==0)
 			{
-				str=str+"<td><input type='button' id='btn3' value='"+URLEncoder.encode("예약취소")+"' onclick='location='weddingR_state_change?state=1&wresv_id="+wrvo.getWresv_id()+"'></td></tr>";				
+				str=str+"<td><input type='button' class='btn4' value='"+URLEncoder.encode("결제완료")+"' onclick='location='weddingR_state_change?state=1&wresv_id="+wrvo.getWresv_id()+"'></td></tr>";				
 			}
 			else if(wrvo.getState()==1)
 			{
@@ -213,14 +214,9 @@ public class MyPageServiceImpl implements MyPageService{
 		String state=request.getParameter("state");
 		mapper.weddingR_state_change(wresv_id, state);
 		
-		String w=request.getParameter("w");
-		
-		if(w!=" ")
-		{
-			return "redirect:/mypage/wedding_content?wresv_id="+wresv_id;
-		}
-		else
-			return "redirect:/mypage/wedding_resv";
+
+		return "redirect:/mypage/wedding_content?wresv_id="+wresv_id;
+
 	}
 	
 	@Override
@@ -286,7 +282,7 @@ public class MyPageServiceImpl implements MyPageService{
 
 		String str="";
 		str=str+"<table border='1' id='second_t'>";
-		str=str+"<tr><td>"+URLEncoder.encode("예약번호")+"</td><td>"+URLEncoder.encode("식사 날짜")+"</td><td>"+URLEncoder.encode("식사 유형")+"</td><td>"+URLEncoder.encode("식사 시간")+"</td><td width=\"300px\">"+URLEncoder.encode("예약 인원")+"</td><td>"+URLEncoder.encode("총 금액")+"</td><td>"+URLEncoder.encode("예약한 날")+"</td><td width='120px;'></td></tr>";
+		str=str+"<tr><td>"+URLEncoder.encode("예약번호")+"</td><td>"+URLEncoder.encode("식사 날짜")+"</td><td>"+URLEncoder.encode("식사 유형")+"</td><td>"+URLEncoder.encode("식사 시간")+"</td><td width=\"300px\">"+URLEncoder.encode("예약 인원")+"</td><td>"+URLEncoder.encode("총 금액")+"</td><td>"+URLEncoder.encode("예약한 날")+"</td><td width='120px;'>"+URLEncoder.encode("현 상태")+"</td></tr>";
 		for(int i=0; i<dlist.size(); i++)
 		{
 			DiningResvVO dvo=dlist.get(i);
@@ -317,7 +313,7 @@ public class MyPageServiceImpl implements MyPageService{
 			
 			if(dvo.getDr_state()==0)
 			{
-				str=str+"<td><input type=\"button\" id=\"btn3\" value=\""+URLEncoder.encode("예약취소")+"\" onclick=\"location='dineR_state_change?state=2&dr_id="+dvo.getDr_id()+"\"></td></tr>";				
+				str=str+"<td><input type=\"button\" class='btn4' value=\""+URLEncoder.encode("예약완료")+"\" onclick=\"location='dineR_state_change?state=2&dr_id="+dvo.getDr_id()+"\"></td></tr>";				
 			}
 			else if(dvo.getDr_state()==1)
 			{
@@ -343,12 +339,9 @@ public class MyPageServiceImpl implements MyPageService{
 		String dr_state=request.getParameter("dr_state");
 		mapper.dineR_state_change(dr_id, dr_state);
 		
-		String d=request.getParameter("d");
-		
-		if(d!=" ")
-			return "redirect:/mypage/dine_content?dr_id="+dr_id;
-		else
-			return "redirect:/mypage/dine_resv";
+	
+		return "redirect:/mypage/dine_content?dr_id="+dr_id;
+
 	}
 
 	@Override
@@ -386,7 +379,6 @@ public class MyPageServiceImpl implements MyPageService{
 		
 		if(chong<pend)
 			pend=chong;
-
 		
 		ArrayList<GumaeVO> glist=mapper.eshop_gumae(userid, start, pcnt);
 		
@@ -397,7 +389,6 @@ public class MyPageServiceImpl implements MyPageService{
 		model.addAttribute("chong", chong);
 		model.addAttribute("pcnt", pcnt);
 		
-
 		return "/mypage/eshop_gumae";
 	}
 
@@ -413,15 +404,15 @@ public class MyPageServiceImpl implements MyPageService{
 
 		String str="";
 		str=str+"<table border='1' id='second_t'>";
-		str=str+"<tr><td>"+URLEncoder.encode("주문번호")+"</td><td>"+URLEncoder.encode("상품명")+"</td><td>"+URLEncoder.encode("결제방식")+"</td><td>"+URLEncoder.encode("총 결제금액")+"</td><td>"+URLEncoder.encode("구매한 날 ")+"</td><td width='120px;'></td></tr>";
+		str=str+"<tr><td>"+URLEncoder.encode("주문번호")+"</td><td>"+URLEncoder.encode("상품명")+"</td><td>"+URLEncoder.encode("추가상품")+"</td><td>"+URLEncoder.encode("총 결제금액")+"</td><td>"+URLEncoder.encode("구매한 날 ")+"</td><td width='120px;'>"+URLEncoder.encode("현 상태")+"</td></tr>";
 		for(int i=0; i<glist.size(); i++)
 		{
 			GumaeVO gvo=glist.get(i);
-			str=str+" <tr><td><a href='eshop_content?id="+gvo.getId()+"'>"+gvo.getJumuncode()+"</a></td><td>"+gvo.getTitle()+"</td><td>"+gvo.getPay_sudan()+"</td><td>"+gvo.getTotal_price()+"</td><td>"+gvo.getBuyday()+"</td>";
+			str=str+" <tr><td><a href='eshop_content?id="+gvo.getId()+"'>"+gvo.getJumuncode()+"</a></td><td>"+URLEncoder.encode(gvo.getTitle())+"</td><td>"+gvo.getCnt()+URLEncoder.encode("개")+"</td><td>"+gvo.getTotal_price()+"</td><td>"+gvo.getBuyday()+"</td>";
 			
 			if(gvo.getState()==0)
 			{
-				str=str+"<td><input type=\"button\" id=\"btn3\" value=\""+URLEncoder.encode("결제취소")+"\" onclick=\"location='eshopG_state_change?state=1&id="+gvo.getId()+"\"></td></tr>";				
+				str=str+"<td><input type=\"button\" class='btn4' value=\""+URLEncoder.encode("결제완료")+"\" onclick=\"location='eshopG_state_change?state=1&id="+gvo.getId()+"\"></td></tr>";				
 			}
 			else if(gvo.getState()==1)
 			{
@@ -431,9 +422,13 @@ public class MyPageServiceImpl implements MyPageService{
 			{
 				str=str+"<td><input type=\"button\" class=\"btn4\" value=\""+URLEncoder.encode("취소완료")+"\"></td></tr>";	
 			}
-			else
+			else if(gvo.getState()==3 && gvo.getBname() !=null)
 			{
 				str=str+"<td><input type=\"button\" class=\"btn4\" value=\""+URLEncoder.encode("배송완료")+"\"></td></tr>";	
+			}
+			else
+			{
+				str=str+"<td><input type=\"button\" class=\"btn4\" value=\""+URLEncoder.encode("사용완료")+"\"></td></tr>";	
 			}
 		}
 		str=str+"</table>";
@@ -447,18 +442,13 @@ public class MyPageServiceImpl implements MyPageService{
 	@Override
 	public String eshopG_state_change(HttpServletRequest request) 
 	{
-		String id=request.getParameter("id");
+		String jumuncode=request.getParameter("jumuncode");
 		String state=request.getParameter("state");
-		mapper.eshopG_state_change(id, state);
+		String id=request.getParameter("id");
+		mapper.eshopG_state_change(jumuncode, state);
 		
-		String e=request.getParameter("e");
-		
-		if(e!=" ")
-		{
-			return "redirect:/mypage/eshop_content?id="+id;
-		}
-		else
-			return "redirect:/mypage/eshop_gumae";
+		return "redirect:/mypage/eshop_content?id="+id+"&jumuncode="+jumuncode;
+
 		
 	}
 
@@ -523,7 +513,7 @@ public class MyPageServiceImpl implements MyPageService{
 
 		String str="";
 		str=str+"<table border='1' id='second_t'>";
-		str=str+"<tr><td width=\"170px;\">"+URLEncoder.encode("예약번호")+"</td><td>"+URLEncoder.encode("객실명")+"</td><td>"+URLEncoder.encode("체크인")+"</td><td>"+URLEncoder.encode("체크아웃")+"</td><td>"+URLEncoder.encode("예약인원")+"</td><td>"+URLEncoder.encode("총 결제금액")+"</td><td>"+URLEncoder.encode("예약한 날")+"</td><td width='120px;'></td></tr>";
+		str=str+"<tr><td width=\"170px;\">"+URLEncoder.encode("예약번호")+"</td><td>"+URLEncoder.encode("객실명")+"</td><td>"+URLEncoder.encode("체크인")+"</td><td>"+URLEncoder.encode("체크아웃")+"</td><td>"+URLEncoder.encode("예약인원")+"</td><td>"+URLEncoder.encode("총 결제금액")+"</td><td>"+URLEncoder.encode("예약한 날")+"</td><td width='120px;'>"+URLEncoder.encode("현 상태")+"</td></tr>";
 		for(int i=0; i<rlist.size(); i++)
 		{
 			RoomResvVO rvo=rlist.get(i);
@@ -531,7 +521,7 @@ public class MyPageServiceImpl implements MyPageService{
 			
 			if(rvo.getBstate()==1)
 			{
-				str=str+"<td><input type=\"button\" id=\"btn3\" value=\""+URLEncoder.encode("예약취소")+"\" onclick=\"location='roomR_state_change?bstate=3&id="+rvo.getId()+"\"></td></tr>";				
+				str=str+"<td><input type=\"button\" class='btn4' value=\""+URLEncoder.encode("예약완료")+"\" onclick=\"location='roomR_state_change?bstate=3&id="+rvo.getId()+"\"></td></tr>";				
 			}
 			else if(rvo.getBstate()==2)
 			{
@@ -558,12 +548,8 @@ public class MyPageServiceImpl implements MyPageService{
 		String bstate=request.getParameter("bstate");
 		mapper.roomR_state_change(id, bstate);
 		
-		String r=request.getParameter("r");
-		
-		if(r!=" ")
-			return "redirect:/mypage/room_content?id="+id;
-		else
-			return "redirect:/mypage/room_resv";		
+		return "redirect:/mypage/room_content?id="+id;
+	
 	}
 
 	@Override
@@ -602,8 +588,12 @@ public class MyPageServiceImpl implements MyPageService{
 	{
 		String userid=session.getAttribute("userid").toString();
 		String id=request.getParameter("id");
-		GumaeVO gvo=mapper.eshop_content(userid, id);
+		String jumuncode=request.getParameter("jumuncode");
+//		System.out.println(jumuncode);
+		ArrayList<GumaeVO> glist =mapper.eshop_content_list(userid, jumuncode);
+		GumaeVO gvo=mapper.eshop_content_info(userid, id);
 		model.addAttribute("gvo", gvo);
+		model.addAttribute("glist", glist);
 		return "/mypage/eshop_content";
 	}
 

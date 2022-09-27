@@ -242,7 +242,7 @@
 			<td>예식희망일</td>
 			<td>희망하는 웨딩홀</td>
 			<td>예약한 날</td>
-			<td width="120px;"></td>
+			<td width="120px;">상태 변경</td>
 		</tr>
 		<c:forEach items="${wlist }" var="wvo">
 		<tr>
