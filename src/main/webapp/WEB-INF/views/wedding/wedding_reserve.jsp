@@ -882,7 +882,7 @@
 		
 		else if(document.wresv.wresv_pay.value=="1")
 		{
-			alert("dd");
+			//alert("dd");
 			document.wresv.submit();
 			return true;
 		}
