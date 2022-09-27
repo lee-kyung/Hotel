@@ -20,7 +20,7 @@
 
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
     <div class="bradcam_area basic">	<!-- class="bradcam_area 클래스명" -->
-        <h3> 비회원 예약/주문 내역 </h3>
+        <div id="h3"> 예약/주문 내역 </div>
     </div>
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
 
