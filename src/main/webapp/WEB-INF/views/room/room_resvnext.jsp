@@ -338,11 +338,6 @@
 			alert("상품 정보 및 취소 규정에 대한 동의가 필요합니다.");
 			return false;
 		}
-		else if(document.resv.paym.value=="")
-		{
-			alert("결제방법을 선택하세요")	;
-			return false;
-		}
 		else
 		{
 			//결제관련

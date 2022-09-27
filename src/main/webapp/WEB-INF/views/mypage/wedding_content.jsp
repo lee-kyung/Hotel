@@ -163,7 +163,7 @@
 		<div id="left">${wvo.wresv_day } 예약일</div>
 		<div id="right">${wvo.wresv_code }</div>	
 	</div>
-		
+
 	<table>
 		<tr>
 			<td colspan="2">
@@ -181,8 +181,9 @@
 		<tr>
 			<td id="name"> ${wvo.wresv_cday } 상담예약</td>
 			<td align="right">
+		
 				<c:if test="${wvo.state==0 }">
-					<input type="button" id="btn3" value="예약취소" onclick="location='weddingR_state_change?w=1&state=1&wresv_id=${wvo.wresv_id}'">
+					<input type="button" id="btn3" value="예약취소" onclick="location='weddingR_state_change?state=1&wresv_id=${wvo.wresv_id}'">
 				</c:if>
 				<c:if test="${wvo.state==1 }">
 					<input type="button" class="btn4" value="취소완료">
@@ -213,7 +214,7 @@
 			<td>${wvo.wresv_content }</td>
 		</tr>
 	</table>
-	
+
 	<table>
 		<tr>
 			<td colspan="2">예약자 정보</td>
