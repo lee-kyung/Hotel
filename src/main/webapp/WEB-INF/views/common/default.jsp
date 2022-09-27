@@ -6,6 +6,18 @@
 <html class="no-js" lang="zxx">
 
 <head>
+<style>
+	.bradcam_area{
+		height: 300px;
+	}
+	.bradcam_area #h3{
+		margin-top: -70px;
+		font-family: fantasy;
+		font-size: 80px;
+		letter-spacing: 4px;
+		color: white;
+	}
+</style>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -36,7 +48,7 @@
     </script>
     
     	<decorator:head/>
-    
+   
 </head>
 
 <body>
@@ -73,9 +85,6 @@
                                         	<ul class="submenu">
                                                 <li><a href="../eshop/pro_list?pcode=p01">product</a></li>
                                                 <li><a href="../eshop/pro_list?pcode=p02">voucher</a></li>
-                                                <c:if test="${userid == 'admin'}">
-                                                	<li><a href="../eshop/pro_write">상품등록</a></li>	<!-- 관리자만 볼 수 있는 메뉴 -->
-                                                </c:if>
                                             </ul>                                        
                                         </li>
                                         <li><a href="../etc/contact">etc<i class="ti-angle-down"></i></a>
@@ -116,10 +125,10 @@
                                         </li> -->
                                          <li>
 		                                <c:if test="${userid == null}">
-                                            <a href="../mypage/nonuser"> <i class="fa fa-list-alt"></i> </a>
                                             <a href="../eshop/cart?p=p01"> <i class="fa fa-cart-arrow-down"></i> </a>
 											<a href="../login/login?ck=4">로그인</a>
 											<a href="../member/member_input">회원가입</a>
+											<a href="../mypage/nonuser">예약주문조회</i> </a>
 										</c:if>
 										<c:if test="${(userid != null) && (userid != 'admin')}">
 											<a href="../mypage/mypage"> ${name}님

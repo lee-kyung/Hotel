@@ -181,7 +181,7 @@
 			<td id="name"> ${dvo.dr_date } 식사예약일</td>
 			<td align="right">
 				<c:if test="${dvo.dr_state==0 }">
-					<input type="button" id="btn3" value="예약취소" onclick="location='dineR_state_change?d=1&dr_state=2&dr_id=${dvo.dr_id}'">
+					<input type="button" id="btn3" value="예약취소" onclick="location='dineR_state_change?dr_state=2&dr_id=${dvo.dr_id}'">
 				</c:if>
 				<c:if test="${dvo.dr_state==1 }">
 					<input type="button" class="btn4" value="사용완료">

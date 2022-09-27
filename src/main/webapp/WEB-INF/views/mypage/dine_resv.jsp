@@ -243,7 +243,7 @@
 			<td width="300px">예약 인원</td>
 			<td>총 금액</td>
 			<td>예약한 날</td>
-			<td width="120px;"></td>
+			<td width="120px;">상태 변경</td>
 		</tr>
  		<c:forEach items="${dlist }" var="dvo">
 		<tr>

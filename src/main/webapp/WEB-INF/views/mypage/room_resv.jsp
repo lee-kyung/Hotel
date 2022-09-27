@@ -244,7 +244,7 @@
 			<td>예약인원</td>
 			<td>총 결제금액</td>
 			<td>예약일</td>
-			<td width="120px;"></td>
+			<td width="120px;">상태 변경</td>
 		</tr>
 		<c:forEach items="${rlist }" var="rvo">
 		<tr>

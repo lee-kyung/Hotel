@@ -262,7 +262,7 @@
 				<div>
 <textarea style="resize: none; border:none" rows="5" cols="80" readonly>호텔은 귀하의 개인정보를 소중하게 생각하며, 서비스제공을 위해 개인정보보호법 제 15조 및 제22조에 따라 귀하의 동의를 받고자 합니다.
 개인정보 수집 및 이용 동의 
-1. 수집 및 이용 목적 : 본인 식별, 서비스 및 정보제공, 민원처리, 고객문의 안내 
+1. 수집 및 이용 목적 : 본인 식별, 서비스 및 정보제공, 민원처리, 고객문의 안내
 2. 수집 항목 
 필수항목 : 성명, 휴대전화번호 
 3. 보유 기간 및 파기시점 
@@ -336,11 +336,6 @@
 		else if(document.resv.agree2.checked!=true)
 		{
 			alert("상품 정보 및 취소 규정에 대한 동의가 필요합니다.");
-			return false;
-		}
-		else if(document.resv.paym.value=="")
-		{
-			alert("결제방법을 선택하세요")	;
 			return false;
 		}
 		else

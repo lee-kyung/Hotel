@@ -71,7 +71,6 @@
 	}
 	#pro_list #wish {
 		float : right;
-		margin-right : 5px;
 	}
 	#pro_list #wish img {
 		cursor : pointer;
@@ -108,12 +107,12 @@
 <script>
 	/* 페이지목록수 선택하기 */
 	function page_sel(psel){
-		location="pro_list?pcode=${pcode}&osel=${osel}&psel="+psel;	// 정렬후 psel변경해도 정렬순 유지시키기
+		location="pro_list?pcode=${pcode}&osel=${osel}&psel="+psel;
 	}
 	
 	/* 정렬순 선택하기 */
 	function order_sel(osel){
-		location="pro_list?pcode=${pcode}&psel=${psel}&osel="+osel;	// 페이지목록수 변경후 osel변경해도 페이지목록개수 유지시키기
+		location="pro_list?pcode=${pcode}&psel=${psel}&osel="+osel;
 	}
 	
 	/* 브라우저에 변경된 페이지목록수 및 정렬순 나타내기 */
@@ -199,7 +198,7 @@
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
     <c:if test="${(pcode == 'p01')}">
 	    <div class="bradcam_area eshop2">
-	        <h3 onclick="location='pro_list?pcode=p01&osel=${osel}'" style="cursor:pointer;"> P R O D U C T </h3>
+	        <div id="h3"> onclick="location='pro_list?pcode=p01&osel=${osel}'" style="cursor:pointer;"> P R O D U C T </div>
 	    </div>
     </c:if>
     <c:if test="${(pcode == 'p0101')}">

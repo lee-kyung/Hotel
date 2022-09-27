@@ -13,6 +13,15 @@ public class GumaeVO {
 	/* product테이블의 필드 */
 	private String pimg, title;
 	
+	/*eshop_gumae의 cnt*/
+	private int cnt;
+	
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
 	public int getTotal_su() {
 		return total_su;
 	}

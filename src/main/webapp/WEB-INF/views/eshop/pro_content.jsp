@@ -169,22 +169,6 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script> 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script>
-	/* 수량을 변경하면 [총 상품금액]도 변하게 하기 */
-	/*$(function(){
-		$("#spinner").spinner({
-			min : 1,
-			max : 100,
-			spin : function(e, ui){
-				let total=parseInt(${pvo.price} * ui.value);
-				if(${pvo.halin != 0})
-					total=parseInt(${pvo.price - (pvo.price * (pvo.halin / 100) ) } * ui.value);
-
-				total=new Intl.NumberFormat().format(total);
-				document.getElementById("total_price").innerText=total;
-			}
-		});
-	});*/
-	
 	/* 수량을 '1~${pvo.su}' 사이값만 입력되도록 하기 */
 	function su_check(su){
 		if(su < 1)
@@ -256,7 +240,7 @@
 		chk.send();
 	}
 	
-	/* 장바구니에 회원/비회원 구분하여 추가하기 */
+	/* 장바구니에 회원&비회원 구분하여 추가하기 */
 	function cart_add(pcode){
 		let su=document.pro_cnt.su.value;
 		let chk=new XMLHttpRequest();

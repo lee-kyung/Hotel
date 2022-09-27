@@ -152,14 +152,14 @@
 	}
 
 	/* 전체 선택 & 해제하기 */
-	function allcheck(ck){	// ck가 true면 체크된 상태, ck가 false면 체크가 안된 상태
-		let len=document.getElementsByClassName("subck").length;	// subck의 개수를 구하기
-		if(ck){	// [mainck]가 체크되면, class="subck"의 checked속성을 true로 바꾸기			
+	function allcheck(ck){
+		let len=document.getElementsByClassName("subck").length;
+		if(ck){	
 			for(i=0;i<len;i++) {
 				document.getElementsByClassName("subck")[i].checked=true;
 			}
 		}
-		else {	// [mainck]의 체크가 해제되면, class="subck"의 checked속성을 false로 바꾸기		
+		else {	
 			for(i=0;i<len;i++) {
 				document.getElementsByClassName("subck")[i].checked=false;
 			}
@@ -168,13 +168,13 @@
 	
 	/* 개별로 선택 & 해제하기 */
 	function subcheck(){
-		let chk=0;	// subck의 항목이 얼마나 체크됐는지 확인하는 변수
-		let len=document.getElementsByClassName("subck").length;	// subck의 개수를 구하기
-		for(i=0;i<len;i++) {	// subck의 checked속성의 true/false를 일일이 확인하여 개수 세기
+		let chk=0;
+		let len=document.getElementsByClassName("subck").length;
+		for(i=0;i<len;i++) {
 			if(document.getElementsByClassName("subck")[i].checked)
 				chk++;
 		}
-		if(chk == len)	// 전체 subck의 개수와 checked된 개수가 같다면? mainck의 checked를 true로, 다르다면? mainck의 checked는 false로
+		if(chk == len)
 			document.getElementById("mainck").checked=true;
 		else
 			document.getElementById("mainck").checked=false;
@@ -182,19 +182,17 @@
 	
 	/* 선택상품 위시리스트 삭제하기 */
 	function wish_del(){
-		/* 체크된 상품을 삭제 → 체크된 상품의 wish.id들을 '구분자'를 통해 '문자열의 형태'로 만들어서 [delid]에 담아 전송하기 */
 		let del="";
-		let len=document.getElementsByClassName("subck").length;	// subck의 개수를 구하기
+		let len=document.getElementsByClassName("subck").length;
 		for(i=0;i<len;i++) {
-			if(document.getElementsByClassName("subck")[i].checked)	// 체크가 됐다면
+			if(document.getElementsByClassName("subck")[i].checked)
 				del=document.getElementsByClassName("subck")[i].value+","+del;
 		}
-		location="wishcart_del?delid="+del+"&dchk=1";	// delid=삭제할id,삭제할id,삭제할id, → 마지막 구분자(콤마)는 신경X		
+		location="wishcart_del?delid="+del+"&dchk=1";
 	}
 	
 	/* 선택상품 or 전체상품 장바구니로 보내기 */
 	function move_cart(n){	// n=1이면 선택이동, n=2면 전체이동
-		/* 체크박스가 체크된 곳의 index와 hidden의 index는 같다 → [hidden의 value값]을 구분자(,)를 사용하여 [pcode변수]에 배열로 저장 */
 		let pcode="";
 		let len=document.getElementsByClassName("subck").length;	
 		
@@ -206,9 +204,9 @@
 			}
 		}
 		
-		/* pcode를 구분자(,)로 구분하여 하나의 문자열로 생성하기 */
+		/* pcode를 배열을 위해 하나의 문자열로 만들기 */
 		for(i=0;i<len;i++) {
-			if(document.getElementsByClassName("subck")[i].checked)	// (장바구니이동)체크가 됐다면
+			if(document.getElementsByClassName("subck")[i].checked)
 				pcode=document.getElementsByClassName("pcode")[i].value+","+pcode;
 		}
 		location="move_cart?pcode="+pcode;
