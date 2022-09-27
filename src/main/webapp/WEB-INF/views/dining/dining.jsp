@@ -19,10 +19,20 @@
   }
   .genric-btn.default{
      background:#a28d78;
-     color:white;
+     color:#f2f1ef;
+     width:200px;
+     height:50px;
+     font-size:16px;
+     text-align:center;
+     vertical-align:center;
+     padding: 5px 0px;
   }
   .genric-btn.default:hover{
      background: #887159;
+  }
+  .section_title span{
+     color:black;
+     font-size:17px;
   }
 </style>
 </head>
