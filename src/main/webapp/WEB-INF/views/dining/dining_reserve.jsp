@@ -112,17 +112,17 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
       
 		for(i=0;i<td.length;i++) {
 			if(dt[i] == 1 && cnt[i] == bk) {
-				document.getElementsByClassName("b1")[td[i]-1].style.color="red";
+				document.getElementsByClassName("b1")[td[i]-1].style.color="#4B4352";
 				document.getElementsByClassName("b1")[td[i]-1].style.textDecoration="line-through"; 
 				document.getElementsByClassName("b1")[td[i]-1].setAttribute("onclick", "alert('예약이 마감됐습니다.');");
 				}
 				else if(dt[i] == 2 && cnt[i] == bk) {
-					document.getElementsByClassName("b2")[td[i]-1].style.color="red";
+					document.getElementsByClassName("b2")[td[i]-1].style.color="#4B4352";
 					document.getElementsByClassName("b2")[td[i]-1].style.textDecoration="line-through";
 					document.getElementsByClassName("b2")[td[i]-1].setAttribute("onclick", "alert('예약이 마감됐습니다.');");
 					}
 					else if(dt[i] == 3 && cnt[i] == bk) {
-						document.getElementsByClassName("b3")[td[i]-1].style.color="red";
+						document.getElementsByClassName("b3")[td[i]-1].style.color="#4B4352";
 						document.getElementsByClassName("b3")[td[i]-1].style.textDecoration="line-through";
 						document.getElementsByClassName("b3")[td[i]-1].setAttribute("onclick", "alert('예약이 마감됐습니다.');");
 					}
