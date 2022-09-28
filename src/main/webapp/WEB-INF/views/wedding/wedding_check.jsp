@@ -101,9 +101,15 @@
 	
 	section #wed_chk table:first-child #btn1, #btn2{
 	width:120px;
-	height:30px;
-	padding-left:30px;
-	padding-bottom:30px;}
+	height:50px;
+	border:1px solid #887159;
+	background:white;
+	color:#887159;
+	cursor:pointer;}
+	
+	section #wed_chk table:first-child #btn1:hover, #btn2:hover{
+	background:#887159;
+	color:white;}
 	
 	section #wed_chk table:first-child #btn2{
 	margin-left:30px;}
@@ -203,7 +209,7 @@
     	①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기
     	②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
     <div class="bradcam_area wedding">	<!-- class="bradcam_area 클래스명" -->
-        <h3> 사전견적 </h3>
+        <div id="h3">WEDDING</div>
     </div>
     <!-- bradcam_area_end -->
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
@@ -253,8 +259,8 @@
           <tr>
           	<td>하객음식</td>
           	<td>	
-          		<input type="button" id="btn2" class="button button-contactForm btn_1 boxed-btn" onclick="change_food2()" value="분리예식">
-          		<input type="button" id="btn1" class="button button-contactForm btn_1 boxed-btn" onclick="change_food1()" value="동시예식">
+          		<input type="button" id="btn2"  onclick="change_food2()" value="분리예식">
+          		<input type="button" id="btn1"  onclick="change_food1()" value="동시예식">
           	</td>
           </tr>
           <tr id="tr_food1">

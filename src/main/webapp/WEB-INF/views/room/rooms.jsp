@@ -208,7 +208,6 @@ section #room_list .slider input[type=radio]:nth-child(4):checked ~ul.imgs>li:nt
 
 <!-- ================ Rooms Area Start ================= -->
 <!-- 객실 리스트 -->
-<div class="features_room">
 	<div class="container">
 		<div class="row">
 		<roomsec>
@@ -390,10 +389,6 @@ section #room_list .slider input[type=radio]:nth-child(4):checked ~ul.imgs>li:nt
 			</c:if>
 		</c:forEach> </roomsec>
 	</div>
-
-
-
-</div>
 
 <!-- ================ Rooms Area End ================= -->
 </body>

@@ -28,17 +28,20 @@
 	font-size:20px;
 	cursor:pointer;}
 	
+	#first #list{
+	width:100%;
+	margin:auto;}
+	
 	#first ul li{
 	display:inline-block;
 	border:1px solid #cccccc;
-	width:450px;
+	width:23%;
 	height:150px;
 	margin-top:20px;
 	background:white;
 	border-right:none;
-	text-align:center;
 	font-size:25px;
-	padding-top:50px;
+	padding-top:52px;
 	cursor:pointer;}
 	
 	#first ul li:last-child{
@@ -80,13 +83,15 @@
 	border:1px solid #887159;
 	background:white;
 	margin-left:20px;
-	color:#887159;}
+	color:#887159;
+	cursor:pointer;}
 	
 	section #dine form #btn2{
 	width:100px;
 	height:40px;
 	border:none;
 	color:white;
+	cursor:pointer;
 	background:#887159;}
 	
 	section #dine #btn3{
@@ -136,8 +141,8 @@
 	font-weight:600;}
 
 	section #dine table#second_t td{
-	padding-top:10px;
-	padding-bottom:10px;}
+	padding-top:15px;
+	padding-bottom:15px;}
 	
 	section #dine table#first_t #page{
 	font-size:0px;}
@@ -209,7 +214,7 @@
     	①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기
     	②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
     <div class="bradcam_area basic">	<!-- class="bradcam_area 클래스명" -->
-        <h3> 문구(자유롭게 변경하기) </h3>
+        <div id="h3">DINING</div>
     </div>
 <div id="first">
 	<div id="first_1">
@@ -219,9 +224,11 @@
 			<span onclick="location='../mypage/mypwd_change'">비밀번호 수정 > </span>
 		</div> 
 	</div>	
-	<ul>
-		<li onclick="location='room_resv'">객실 예약 확인</li><li onclick="location='dine_resv'">레스토랑 예약 확인</li><li onclick="location='eshop_gumae'">E-SHOP 주문내역</li><li onclick="location='wedding_resv'">웨딩 예약 확인</li>
-	</ul>
+	<div id="list">
+		<ul>
+			<li onclick="location='room_resv'">객실 예약 확인</li><li onclick="location='dine_resv'">레스토랑 예약 확인</li><li onclick="location='eshop_gumae'">E-SHOP 주문내역</li><li onclick="location='wedding_resv'">웨딩 예약 확인</li>
+		</ul>
+	</div>
 </div>
 
 <section>
@@ -267,7 +274,7 @@
 				</c:if>
 
 			</td>
-			<td>${dvo.dr_total}</td>
+			<td><fmt:formatNumber value="${dvo.dr_total}"/>원</td>
 			<td>${dvo.writeday}</td>
 			<td>
 	 			<c:if test="${dvo.dr_state==0 }">
