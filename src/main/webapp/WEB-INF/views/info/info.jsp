@@ -11,7 +11,7 @@ appkey=221164233a66d168e789f0d0113a6dcb&libraries=services,clusterer,drawing"></
 
 
 <script>
-			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+/* 			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 			mapOption = { 
 			    center: new kakao.maps.LatLng(35.200680, 129.229312), // 지도의 중심좌표
 			    level: 3 // 지도의 확대 레벨
@@ -32,9 +32,15 @@ appkey=221164233a66d168e789f0d0113a6dcb&libraries=services,clusterer,drawing"></
 				marker.setMap(map);
 				
 				alert(`위도 : ${latlng.getLat()}, 경도 : ${latlng.getLng()}`);
-			});
+			}); */
 			</script>
-
+<style>
+    #map{
+	max-width: none;
+	height: auto;
+	border: 0;
+}
+</style>
 <body>
 
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
@@ -53,7 +59,16 @@ appkey=221164233a66d168e789f0d0113a6dcb&libraries=services,clusterer,drawing"></
     <!-- 부타이틀(자유롭게 변경)_area_start -->
 <section>
          <div id="map" style="width:500px;height:400px;"></div>
-			
+		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?
+		appkey=def97946ef83ffb1f9a1cacb75ac32eb"></script>
+		<script>
+			var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+			var options = { //지도를 생성할 때 필요한 기본 옵션
+				center: new kakao.maps.LatLng(35.200680, 129.229312), //지도의 중심좌표.
+				level: 13 //지도의 레벨(확대, 축소 정도)
+			};
+			var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+		</script>
 </section>
 
 
