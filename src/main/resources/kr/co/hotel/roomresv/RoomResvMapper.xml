@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
 <mapper namespace="kr.co.hotel.roomresv.RoomResvMapper">
 	<select id="room_resv" resultType="kr.co.hotel.room.RoomVO">
-		select * from room order by rname desc;
+		select * from room where rstate=0 order by rcode desc;
 	</select>
 	
 	<select id="room_resvnext" resultType="kr.co.hotel.room.RoomVO">

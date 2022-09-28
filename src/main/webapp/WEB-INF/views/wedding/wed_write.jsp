@@ -50,6 +50,20 @@
     background:#887159;
     color:white;}
     
+    section #wed_write table #outer #left{
+    float:left;}
+    
+    section #wed_write table #outer #right{
+    float:right;}
+    
+    section #wed_write table .file_btn{
+    width:30px;
+    height:30px;
+    background:#887159;
+    border:1px solid #887159;
+    color:white;
+    cursor:pointer;}
+    
 </style>
 
 <script>
@@ -280,11 +294,13 @@
     			<td>사진(4장 등록가능)</td>
     			
     			<td id="outer">
-    			
-    				<input type="button" onclick="add_file()" value="+">
-					<input type="button" onclick="del_file()" value="-">
-				
-					<p class="fname"><input type="file" name="fname1"></p>
+    				<div id="right">
+	    				<input type="button" onclick="add_file()" value="+" class="file_btn">
+						<input type="button" onclick="del_file()" value="-" class="file_btn">
+					</div>
+					<div id="left">
+						<p class="fname"><input type="file" name="fname1"></p>
+					</div>
     			</td>
     			
     		</tr>

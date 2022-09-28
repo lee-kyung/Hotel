@@ -11,7 +11,10 @@
 	margin-bottom:200px;}
 	
 	section #wed_list #txt1{
-	font-size:40px;
+	font-size:60px;
+	font-weight:600;
+	font-family:fantasy;
+	letter-spacing:5px;
 	text-align:center;
 	margin-bottom:50px;}
 	
@@ -66,7 +69,7 @@
 <section>
 <div id="wed_list">
 
-<div id="txt1">웨딩홀</div>
+<div id="txt1">ADMIN</div>
 	<div id="bar"></div>
 	<div id="list">
 		<c:forEach items="${list }" var="wvo">

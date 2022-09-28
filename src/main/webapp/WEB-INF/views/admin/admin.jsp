@@ -7,58 +7,62 @@
 <style>
 /******************/
 	#first{
-	width:100%;
-	height:400px;
-	background:#F3F3F3;
-	text-align:center;}
-	
+		width: 100%;
+		height: 400px;
+		background: #F3F3F3;
+		text-align: center;
+		margin: auto;
+	}
 	#first #first_1{
-	margin:auto;
-	width:1800px;}
-	
+		margin: auto;
+		width: 100%;
+	}
 	#first #txt{
-	text-align:left;
-	font-size:40px;
-	padding-top:50px;}
-	
+		text-align:left;
+		font-size:40px;
+		padding-top:50px;
+	}
 	#first .txt2{
-	padding-top: 10px;
-	text-align:right;
-	font-size:18px;}
-	
+		padding-top: 10px;
+		text-align:right;
+		font-size:18px;
+	}
 	#first .txt2 span{
-	cursor:pointer;}
-	
+		cursor:pointer;
+	}
 	#first ul li{
-	display:inline-block;
-	border:1px solid #cccccc;
-	width:450px;
-	height:100px;
-	margin-top:44px;
-	background:white;
-	border-right:none;
-	text-align:center;
-	font-size:25px;
-	padding-top:30px;}
-	
+		display: inline-block;
+		border: 1px solid #cccccc;
+		width: 24%;
+		height: 100px;
+		margin-top: 44px;
+		background: white;
+		border-right: none;
+		text-align: center;
+		font-size: 25px;
+		padding-top: 30px;
+	}	
 	#first ul li:last-child{
-	border-right:1px solid #cccccc;}
+		border-right:1px solid #cccccc;
+	}
 /******************/
 
 	section{
-		width:1500px;
+		width:1300px;
 		margin:auto;
 		margin-top:100px;
 		margin-bottom:200px;
 	}
 	section table{
-		width: 1500px;
+		width: 1300px;
 	}
 </style>
 </head>
 
 <body>
-
+<c:if test="${userid != 'admin'}">
+	<c:redirect url="../main/index"/>
+</c:if>
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
     <!-- bradcam_area_start -->
     <!-- 새 이미지 추가하는 법
@@ -79,7 +83,7 @@
 		<li><a href="../admin/roomlist">객실 예약 확인</a></li><li><a href="../admin/dinelist">레스토랑 예약 확인</a></li><li><a href="../admin/gumaelist">E-SHOP 주문내역</a></li><li><a href="../admin/wedlist">웨딩 예약 확인</a></li>
 	</ul>
 	<ul>
-		<li><a href="../room/room_write">객실 등록</a></li><li><a href="../dining/dining_write">레스토랑 등록</a></li><li><a href="../eshop/pro_write">E-SHOP 상품 등록</a></li><li><a href="../wedding/wed_hall_write">웨딩홀 등록</a></li>
+		<li><a href="../room/room_list">객실 관리</a></li><li><a href="../dining/dining_write">레스토랑 관리</a></li><li><a href="../eshop/pro_write">E-SHOP 상품 관리</a></li><li><a href="../wedding/wed_hall_write">웨딩홀 관리</a></li>
 	</ul>
 </div>
 <!-- first/ -->
