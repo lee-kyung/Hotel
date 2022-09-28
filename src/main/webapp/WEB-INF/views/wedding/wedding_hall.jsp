@@ -20,7 +20,8 @@
 	font-family:fantasy;}
 	
 	section #wed_hall #wed_hall_name a:hover{
-	color:#887159;}
+	color:#887159;
+	letter-spacing:3px;}
 	
 	/***************************/	
 	section #wed_hall .slider{
@@ -158,7 +159,13 @@
 	margin-bottom:50px;}
 	
 </style>
-
+<script>
+	
+	function aa()
+	{
+		
+	}
+</script>
 </head>
 
 <body>
@@ -169,7 +176,7 @@
     	①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기
     	②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
     <div class="bradcam_area wedding">	<!-- class="bradcam_area 클래스명" -->
-        <h3> 웨딩홀 </h3>
+        <div id="h3">WEDDING</div>
     </div>
     <!-- bradcam_area_end -->
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
@@ -183,7 +190,7 @@
 	
 		<c:forEach items="${list }" var="wvo">
 		
-			<li><a href="../wedding/wedding_hall?id=${wvo.id }">${wvo.wed_hall }</a></li>
+			<li><a href="../wedding/wedding_hall?id=${wvo.id }"><span onclick="aa()">${wvo.wed_hall }</span></a></li>
 			
 		</c:forEach>
                      

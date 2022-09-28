@@ -82,7 +82,8 @@
 	background:#887159;
 	color:white;
 	border:none;
-	height:50px;}
+	height:50px;
+	cursor:pointer;}
 	
 	section #member_input input[type=submit]{
 	margin-top:70px;
@@ -90,7 +91,8 @@
 	background:#887159;
 	color:white;
 	border:none;
-	height:60px;}
+	height:60px;
+	cursor:pointer;}
 	
 	section #member_input #btn_right{
 	float:right;}

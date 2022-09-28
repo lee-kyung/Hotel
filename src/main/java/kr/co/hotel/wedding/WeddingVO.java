@@ -4,9 +4,7 @@ public class WeddingVO {
 
 	private int id, wed_min, wed_max, wed_size, wed_price;
 	private String wed_hall, wed_title, wed_txt, wed_txt2, wed_fname, wed_food, wed_direct, wed_type;
-	
-	
-	
+
 	
 	public int getWed_price() {
 		return wed_price;
@@ -86,7 +84,6 @@ public class WeddingVO {
 	public void setWed_type(String wed_type) {
 		this.wed_type = wed_type;
 	}
-	
 	
 	
 }

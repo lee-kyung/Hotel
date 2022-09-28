@@ -28,17 +28,20 @@
 	font-size:20px;
 	cursor:pointer;}
 	
+	#first #list{
+	width:100%;
+	margin:auto;}
+	
 	#first ul li{
 	display:inline-block;
 	border:1px solid #cccccc;
-	width:450px;
+	width:23%;
 	height:150px;
 	margin-top:20px;
 	background:white;
 	border-right:none;
-	text-align:center;
 	font-size:25px;
-	padding-top:50px;
+	padding-top:52px;
 	cursor:pointer;}
 	
 	#first ul li:last-child{
@@ -70,6 +73,12 @@
 	height:50px;
 	margin-left:20px;}
 	
+	section #profile .myjuso{
+	border:1px solid #887159;
+	width:700px;
+	height:50px;
+	margin-left:20px;}
+	
 	section #profile #btn_right{
 	float:right;}
 	section #profile input[type=button]{
@@ -78,7 +87,9 @@
 	height:60px;
 	background:#887159;
 	border:none;
-	color:white;}
+	color:white;
+	cursor:pointer;}
+	
 </style>
 </head>
 
@@ -90,7 +101,7 @@
     	①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기
     	②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
     <div class="bradcam_area basic">	<!-- class="bradcam_area 클래스명" -->
-        <h3> 문구(자유롭게 변경하기) </h3>
+        <div id="h3">MY PROFILE</div>
     </div>
 <div id="first">
 	<div id="first_1">
@@ -99,10 +110,12 @@
 			<span onclick="location='../mypage/myprofile_pwd'">회원정보 수정 > </span>&nbsp;&nbsp;
 			<span onclick="location='../mypage/mypwd_change'">비밀번호 수정 > </span>
 		</div> 
-	</div>	
-	<ul>
-		<li>객실 예약 확인</li><li>레스토랑 예약 확인</li><li>E-SHOP 주문내역</li><li>웨딩 예약 확인</li>
-	</ul>
+	</div>
+	<div id="list">	
+		<ul>
+			<li onclick="location='room_resv'">객실 예약 확인</li><li onclick="location='dine_resv'">레스토랑 예약 확인</li><li onclick="location='eshop_gumae'">E-SHOP 주문내역</li><li onclick="location='wedding_resv'">웨딩 예약 확인</li>
+		</ul>
+	</div>
 </div>
 
 <section>
@@ -131,11 +144,11 @@
 		</div>
 		<div>
 			<div>주소</div>
-			<div class="my">${mvo.juso } ${mvo.juso_etc }</div>
+			<div class="myjuso">${mvo.juso } ${mvo.juso_etc }</div>
 		</div>
 		<div id="btn_right">
 			<input type="button" onclick="location='../mypage/myprofile_edit'" value="정보수정">
-			<input type="button" value="회원탈퇴">
+			<input type="button" value="회원탈퇴" onclick="location='../member/member_out'">
 		</div>
 	</div>
 </div>

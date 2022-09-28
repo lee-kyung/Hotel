@@ -188,15 +188,15 @@ public class MyPageServiceImpl implements MyPageService{
 			str=str+" <tr><td><a href='wedding_content?wresv_id="+wrvo.getWresv_id()+"'>"+wrvo.getWresv_code()+"</a></td><td>"+wrvo.getWresv_cday()+"</td><td>"+wrvo.getWresv_time()+"</td><td>"+wrvo.getWresv_wday()+"</td><td>"+wrvo.getWresv_hall()+"</td><td>"+wrvo.getWresv_day()+"</td>";
 			if(wrvo.getState()==0)
 			{
-				str=str+"<td><input type='button' class='btn4' value='"+URLEncoder.encode("결제완료")+"' onclick='location='weddingR_state_change?state=1&wresv_id="+wrvo.getWresv_id()+"'></td></tr>";				
+				str=str+"<td>"+URLEncoder.encode("결제완료")+"</td></tr>";				
 			}
 			else if(wrvo.getState()==1)
 			{
-				str=str+"<td><input type=\"button\" class=\"btn4\" value=\""+URLEncoder.encode("예약취소")+"\"></td></tr>";				
+				str=str+"<td style='color:red;'>"+URLEncoder.encode("예약취소")+"</td></tr>";				
 			}
 			else
 			{
-				str=str+"<td><input type=\"button\" class=\"btn4\" value=\""+URLEncoder.encode("상담완료")+"\"></td></tr>";	
+				str=str+"<td style='color:#887159;'>"+URLEncoder.encode("상담완료")+"</td></tr>";	
 			}
 			
 		}
@@ -288,7 +288,7 @@ public class MyPageServiceImpl implements MyPageService{
 			DiningResvVO dvo=dlist.get(i);
 			str=str+" <tr><td><a href='dine_content?dr_id="+dvo.getDr_id()+"'>"+dvo.getBid()+"</a></td><td>"+dvo.getDr_date()+"</td><td>"+dvo.getDine_type()+"</td><td>"+dvo.getDr_time()+"</td>";
 			
-			str=str+"<td>"+URLEncoder.encode("성인 ")+dvo.getAdult()+URLEncoder.encode("인")+"%20"+URLEncoder.encode("어린이 ")+dvo.getChild()+URLEncoder.encode("인")+"%20%20"+URLEncoder.encode("유아 ")+dvo.getBaby()+URLEncoder.encode("인")+"</td>";
+			str=str+"<td>"+URLEncoder.encode("성인 ")+dvo.getAdult()+URLEncoder.encode("인,")+URLEncoder.encode("어린이 ")+dvo.getChild()+URLEncoder.encode("인, ")+URLEncoder.encode("유아 ")+dvo.getBaby()+URLEncoder.encode("인")+"</td>";
 			
 			/*
 			   if(dvo.getAdult()!="0" && dvo.getChild()=="0" && dvo.getBaby()=="0")
@@ -309,25 +309,26 @@ public class MyPageServiceImpl implements MyPageService{
 				}
 			*/
 			
-			str=str+"</td><td>"+dvo.getDr_total()+"</td><td>"+dvo.getWriteday()+"</td>";
+			str=str+"</td><td>"+dvo.getDr_total()+URLEncoder.encode("원")+"</td><td>"+dvo.getWriteday()+"</td>";
 			
 			if(dvo.getDr_state()==0)
 			{
-				str=str+"<td><input type=\"button\" class='btn4' value=\""+URLEncoder.encode("예약완료")+"\" onclick=\"location='dineR_state_change?state=2&dr_id="+dvo.getDr_id()+"\"></td></tr>";				
+				str=str+"<td >"+URLEncoder.encode("예약완료")+"</td></tr>";				
 			}
 			else if(dvo.getDr_state()==1)
 			{
-				str=str+"<td><input type=\"button\" class=\"btn4\" value=\""+URLEncoder.encode("사용완료")+"\"></td></tr>";				
+				str=str+"<td style='color:#887159;'>"+URLEncoder.encode("사용완료")+"</td></tr>";				
 			}
 			else
 			{
-				str=str+"<td><input type=\"button\" class=\"btn4\" value=\""+URLEncoder.encode("취소완료")+"\"></td></tr>";	
+				str=str+"<td style='color:red;'>"+URLEncoder.encode("취소완료")+"</td></tr>";	
 			}
 			
 		}
 		str=str+"</table>";
 		
 		str=str.replace("+", " ");
+		str=str.replace("%2C", ", ");
 		
 		out.print(str);
 	}
@@ -404,36 +405,37 @@ public class MyPageServiceImpl implements MyPageService{
 
 		String str="";
 		str=str+"<table border='1' id='second_t'>";
-		str=str+"<tr><td>"+URLEncoder.encode("주문번호")+"</td><td>"+URLEncoder.encode("상품명")+"</td><td>"+URLEncoder.encode("추가상품")+"</td><td>"+URLEncoder.encode("총 결제금액")+"</td><td>"+URLEncoder.encode("구매한 날 ")+"</td><td width='120px;'>"+URLEncoder.encode("현 상태")+"</td></tr>";
+		str=str+"<tr><td width=\"200px;\">"+URLEncoder.encode("주문번호")+"</td><td>"+URLEncoder.encode("상품명")+"</td><td width=\"100px;\">"+URLEncoder.encode("추가상품")+"</td><td width=\"150px;\">"+URLEncoder.encode("총 결제금액")+"</td><td width=\"150px\">"+URLEncoder.encode("구매한 날 ")+"</td><td width='120px;'>"+URLEncoder.encode("현 상태")+"</td></tr>";
 		for(int i=0; i<glist.size(); i++)
 		{
 			GumaeVO gvo=glist.get(i);
-			str=str+" <tr><td><a href='eshop_content?id="+gvo.getId()+"'>"+gvo.getJumuncode()+"</a></td><td>"+URLEncoder.encode(gvo.getTitle())+"</td><td>"+gvo.getCnt()+URLEncoder.encode("개")+"</td><td>"+gvo.getTotal_price()+"</td><td>"+gvo.getBuyday()+"</td>";
+			str=str+" <tr><td><a href='eshop_content?id="+gvo.getId()+"&jumuncode="+gvo.getJumuncode()+"'>"+gvo.getJumuncode()+"</a></td><td>"+URLEncoder.encode(gvo.getTitle())+"</td><td>"+URLEncoder.encode("외 ")+(gvo.getCnt()-1)+URLEncoder.encode("개")+"</td><td>"+gvo.getTotal_price()+URLEncoder.encode("원")+"</td><td>"+gvo.getBuyday()+"</td>";
 			
 			if(gvo.getState()==0)
 			{
-				str=str+"<td><input type=\"button\" class='btn4' value=\""+URLEncoder.encode("결제완료")+"\" onclick=\"location='eshopG_state_change?state=1&id="+gvo.getId()+"\"></td></tr>";				
+				str=str+"<td>"+URLEncoder.encode("결제완료")+"</td></tr>";				
 			}
 			else if(gvo.getState()==1)
 			{
-				str=str+"<td><input type=\"button\" class=\"btn4\" value=\""+URLEncoder.encode("취소진행중")+"\"></td></tr>";				
+				str=str+"<td>"+URLEncoder.encode("취소진행중")+"</td></tr>";				
 			}
 			else if(gvo.getState()==2)
 			{
-				str=str+"<td><input type=\"button\" class=\"btn4\" value=\""+URLEncoder.encode("취소완료")+"\"></td></tr>";	
+				str=str+"<td style='color:red;'>"+URLEncoder.encode("취소완료")+"</td></tr>";	
 			}
 			else if(gvo.getState()==3 && gvo.getBname() !=null)
 			{
-				str=str+"<td><input type=\"button\" class=\"btn4\" value=\""+URLEncoder.encode("배송완료")+"\"></td></tr>";	
+				str=str+"<td style='color:#887159;'>"+URLEncoder.encode("배송완료")+"</td></tr>";	
 			}
 			else
 			{
-				str=str+"<td><input type=\"button\" class=\"btn4\" value=\""+URLEncoder.encode("사용완료")+"\"></td></tr>";	
+				str=str+"<td style='color:#887159;'>"+URLEncoder.encode("사용완료")+"</td></tr>";	
 			}
 		}
 		str=str+"</table>";
 		
 		str=str.replace("+", " ");
+		str=str.replace("%2C ", ", ");
 		
 		out.print(str);
 		
@@ -517,21 +519,20 @@ public class MyPageServiceImpl implements MyPageService{
 		for(int i=0; i<rlist.size(); i++)
 		{
 			RoomResvVO rvo=rlist.get(i);
-			str=str+" <tr><td><a href='room_content?id="+rvo.getId()+"'>"+rvo.getBid()+"</a></td><td>"+rvo.getRname()+"</td><td>"+rvo.getCheckin()+"</td><td>"+rvo.getCheckout()+"</td><td>"+rvo.getBinwon()+URLEncoder.encode("인")+"</td><td>"+rvo.getBtotal()+"</td><td>"+rvo.getBkdate()+"</td>";
+			str=str+" <tr><td><a href='room_content?id="+rvo.getId()+"'>"+rvo.getBid()+"</a></td><td>"+rvo.getRname()+"</td><td>"+rvo.getCheckin()+"</td><td>"+rvo.getCheckout()+"</td><td>"+rvo.getBinwon()+URLEncoder.encode("인")+"</td><td>"+rvo.getBtotal()+URLEncoder.encode("원")+"</td><td>"+rvo.getBkdate()+"</td>";
 			
 			if(rvo.getBstate()==1)
 			{
-				str=str+"<td><input type=\"button\" class='btn4' value=\""+URLEncoder.encode("예약완료")+"\" onclick=\"location='roomR_state_change?bstate=3&id="+rvo.getId()+"\"></td></tr>";				
+				str=str+"<td>"+URLEncoder.encode("예약완료")+"</td></tr>";				
 			}
 			else if(rvo.getBstate()==2)
 			{
-				str=str+"<td><input type=\"button\" class=\"btn4\" value=\""+URLEncoder.encode("사용완료")+"\"></td></tr>";				
+				str=str+"<td style='color:#887159;'>"+URLEncoder.encode("사용완료")+"</td></tr>";	
 			}
 			else
 			{
-				str=str+"<td><input type=\"button\" class=\"btn4\" value=\""+URLEncoder.encode("취소완료")+"\"></td></tr>";	
+				str=str+"<td style='color:red;'>"+URLEncoder.encode("취소완료")+"</td></tr>";	
 			}
-			
 		}
 		str=str+"</table>";
 		
