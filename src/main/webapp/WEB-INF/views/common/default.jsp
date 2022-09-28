@@ -171,6 +171,9 @@
 		background: white;
 		text-align: center;
 	}
+	#loglayer #txt2{
+		margin-top: 50px;
+	}
 	#loglayer #logform{
 		margin-top: 200px;
 	}
@@ -179,6 +182,13 @@
 		height: 50px;
 		border: none;
 		border-bottom: 2px solid #887159;
+		background: white;
+		color: #887159;
+	}
+	#loglayer input[type=button]{
+		width: 400px;
+		height: 80px;
+		border: 1px solid #887159;
 		background: white;
 		color: #887159;
 	}
@@ -224,19 +234,17 @@
 <div id="loglayer">
 	<div>
 		<div id="txt">객실 예약을 진행하려면 로그인 또는 비회원으로 진행 선택을 해주세요.</div>
-		<!-- <form method="post" action="../login/login_ok" id="logform">
-		<input type="hidden" name="ck" value="2">
-			<div><input type="text" name="userid" placeholder="아이디" id="gologin"></div>
-			<div><input type="password" name="pwd" placeholder="비밀번호" id="gologin"></div> -->
-			<p>
-			<div><input type="button" value="로그인" onclick="location='../login/login?ck=2'"></div>
-			<hr>
-			<a href="../room/room_resv"><input type="button" value="비회원으로 계속" id="keepgo"></a>
-		<!-- </form> -->
 		<br>
-	</div>
-</div> 
-                            </div>
+		<div id="txt2">
+			<div>
+				<input type="button" value="로그인" onclick="location='../login/login?ck=2'">
+				<hr>
+				<input type="button" value="비회원으로 계속" id="keepgo" onclick="location='../room/room_resv'">
+			</div>
+		</div>
+	</div> 
+</div>
+					</div>
                         </div>
                         <div class="col-12">
                             <div class="mobile_menu d-block d-lg-none"></div>
