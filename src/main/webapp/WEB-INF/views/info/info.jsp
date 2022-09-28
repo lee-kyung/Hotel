@@ -24,7 +24,7 @@ appkey=221164233a66d168e789f0d0113a6dcb&libraries=services,clusterer,drawing"></
 			const marker = new kakao.maps.Marker();
 			
 			//카카오맵 클릭 이벤트 추가
-			kakao.maps.event.addListener(map, 'click', (mouseEvent) => {
+			kakao.maps.event.addListener(map, 'click', (mouseEvent) {
 				//클릭한 위도, 경도 정보 불러오기
 				const latlng = mouseEvent.latLng;
 				//마커 위치를 클릭한 위치로 이동
@@ -55,34 +55,7 @@ appkey=221164233a66d168e789f0d0113a6dcb&libraries=services,clusterer,drawing"></
          <div id="map" style="width:500px;height:400px;"></div>
 			
 </section>
-<!-- 지도[s] -->    
-<!--     <div id="map" style="width:600px;height:400px; margin:auto; margin-top:10px;"></div>
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=42be5e09039a963ee3f9a39d4bcb5af4"></script>
-    <script>
-        var container = document.getElementById('map'); //지도 표시 div
-        var options = {
-            center: new kakao.maps.LatLng(36.300442, 127.574917), //지도의 중심좌표
-            level: 3 //지도의 확대 레벨
-        };
- 
-        var map = new kakao.maps.Map(container, options);
-        
-        // 마커가 표시될 위치
-        var markerPosition  = new kakao.maps.LatLng(36.300442, 127.574917); 
- 
-        // 마커 생성
-        var marker = new kakao.maps.Marker({
-            position: markerPosition
-        });
- 
-        // 마커가 지도 위에 표시되도록 설정
-        marker.setMap(map);
- 
-        // 아래 코드는 지도 위의 마커를 제거하는 코드
-        // marker.setMap(null);  
-        
-    </script> -->
-    <!-- 지도[e] -->
+
 
     	<br>
     	<br>
