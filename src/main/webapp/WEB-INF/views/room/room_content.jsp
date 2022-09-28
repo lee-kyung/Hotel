@@ -19,14 +19,14 @@
 		margin: auto;
 	}
 /* ul메뉴관련 */
-	roomsec > #menu{
+ 	roomsec #menu{
 		width: 1200px;
 		height: 60px;
 		margin: auto;
 		position: relative;
 		magrin-top: 40px;
 	}
-	roomsec > #menu > ul{
+	roomsec #menu ul{
 		margin-bottom:50px;
 		margin-left: 0;
 		padding-left: 0;
@@ -35,16 +35,16 @@
 		font-size: 40px;
 		font-weight: 700;
 		font-family: fantasy;
-		color: #887159;
-	} 
+		color: black;
+	}  
 	roomsec #menu ul li{
 		display:inline-block;
 		padding-right:30px;
-/* 		font-size: 40px;
+ 		font-size: 40px;
 		font-weight: 700;
 		font-family: fantasy;
-		color: #887159; */
-	}
+		color: #887159; 
+	} 
 /* sec2 */
 	roomsec #sec2{
 		margin-top: 30px;
@@ -61,6 +61,7 @@
 	roomsec #sec2 img{
 		width: 1198px;
 	}
+	
 </style>
 <script>
 	function change_sub(n)
@@ -69,11 +70,13 @@
 		var len=sub.length;
 		for(i=0;i<len;i++)
 		{
-			sub[i].style.color="black";
+			sub[i].style.color="#887159";
 			sub[i].style.borderBottom="none";
 		} 
-		// 선택된 li 색깔
-		sub[n].style.borderBottom="3px solid #887159";
+		// 선택된 색깔
+		sub[n].style.borderBottom="5px solid #887159";
+		sub[n].style.background="white";
+		//alert(sub[n]);
 	}
 </script>
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
@@ -82,7 +85,7 @@
     	①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기
     	②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
     <div class="bradcam_area rooms"> <!-- class="bradcam_area 클래스명" -->
-        <div id="h3"> R O O M S </div>>
+        <div id="h3"> R O O M S </div>
     </div>
     <!-- bradcam_area_end -->
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
@@ -94,10 +97,10 @@
     <roomsec>
     	<div id="menu"> 
     	<ul>
-    	<c:set var="i" value="0"/>
+     	<c:set var="i" value="0"/> 
     	<c:forEach items="${list}" var="rvo"> 
     		<li class="sub" onclick="change_sub(${i})"><a href="../room/room_content?code=${rvo.code}&rcode=${rvo.rcode}">${rvo.rname}</a></li>
-    	<c:set var="i" value="${i+1}"/>
+     	<c:set var="i" value="${i+1}"/> 
     	</c:forEach>
     	</ul>
     	</div>
