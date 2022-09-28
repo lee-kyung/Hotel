@@ -19,6 +19,10 @@
         /*글씨 테두리*/	
         text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
 	}
+	/* #title{
+	    color:white;
+	    font-weight:600;
+	} */
 </style>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
@@ -74,7 +78,7 @@
                                                 <li><a href="../info/info">호텔 소개</a></li>
                                             </ul>
                                         <li><a href="../room/rooms">rooms</a></li> <!-- class="active" -->
-                                        <li><a href="../dining/dining">dining<i class="ti-angle-down"></i></a>
+                                        <li id="title"><a href="">dining<i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
                                                 <li><a href="../dining/dining">레스토랑 소개</a></li>
                                                 <li><a href="../dining/dining_reserve">레스토랑 예약</a></li>

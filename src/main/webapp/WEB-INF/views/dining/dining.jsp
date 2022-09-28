@@ -42,13 +42,47 @@
 	 font-size:50px;
 	 color:#887159;
   }
-  #left{
-	 width:760px;
+  .container{
+	width: 990px;
+	margin: auto;
+  }
+  diningsec{
+     margin:auto;
+  }
+  diningsec #outer{
+     outline:1px solid #887159;
+     width:1000px;
+     height:990px;
+     background:#e5e4e2;
+     margin-top:40px;
+     margin-bottom:100px;
+  }
+  diningsec #outer #left{
+     /* background:gold; */
+	 width:240px;
+	 padding:15px;
+	 padding-top:24px;
 	 float:left;
   }
-  #right{
-	 width:240px;
+  diningsec #outer #left b{
+     color:black;
+     font-size:20px;
+  } 
+  diningsec #outer #right{
+     /* background:orange; */
+	 width:760px;
 	 float:right;
+  }
+  diningsec #info_con{
+    line-height:2;
+    text-align:left;
+    margin-left:47px;
+    margin-top:20px;
+    font-size:15px;
+  }
+  diningsec #info_con b{
+    font-size:17px;
+    color:black;
   }
 </style>
 </head>
@@ -100,8 +134,9 @@
 
     <!-- about_info_area_start -->
     <div class="about_info_area">
+              <div id="middle">Gallery</div>
         <div class="about_active owl-carousel">
-          <div id="middle">Gallery</div>
+
             <div class="single_slider s1"></div>
             <div class="single_slider s2"></div>
             <div class="single_slider s3"></div>
@@ -152,35 +187,33 @@
 		자연이 우리 삶에 좀더 가까워졌으면 하는 바람 위에<br>
 		저희 호텔은 오늘도 건강한 식탁을, 건강한 내일을 만들어 갑니다.
     </div>
-<div id="container">
+<div class="container">
  <div id="row">
    <diningsec>
     <div id="outer">
       	<div id="left">
-          <table>
-    	   <div style="float:left; width:700px;" id="info"><b>이용안내</b></div><br>
-		   
-		  </table>
+    	   <b>이용안내</b>		  
      	 </div>
 
       <div id="right">
-<div id="info_con">
-		      <div><b>운영시간</b></div>
+		<div id="info_con">
+<!-- <table> -->
+		      <div><b>운영시간</b><br><br></div>
 		      <div id="time">
     			아침 08:00 - 10:50 (마지막 입장 10:10)<br>
 				점심 13:00 - 15:50 (LAST ORDER 14:00)<br>
 				* 중식은 런치 코스 또는 한식 코스, 키즈세트 메뉴로 운영합니다.<br>
 				저녁 16:00 - 19:50 (LAST ORDER 18:30)<br>
-				* 석식은 디너 코스 또는 한식 코스, 키즈세트 메뉴로 운영합니다.<br>
+				* 석식은 디너 코스 또는 한식 코스, 키즈세트 메뉴로 운영합니다.<br><br>
 		      </div>
-		      <div><b>가격</b></div>
+		      <div><b>가격</b><br><br></div>
 		      	<div id="pri">
     			아침 : 성인 60,000원 / 소인(49개월~13세) 30,000원<br>
 				점심 : 런치코스 105,000원 / 소인(49개월~13세) 52,500원<br>
-				저녁 : 디너코스 120,000원 / 소인(49개월~13세) 60,000원<br>
+				저녁 : 디너코스 120,000원 / 소인(49개월~13세) 60,000원<br><br>
 		      	</div>
 
-		     <div><b>그릴 BBQ 다이닝</b></div>
+		     <div><b>그릴 BBQ 다이닝</b><br><br></div>
 		      	<div id="bbq">
 				[ 운영 시간 ]<br>
 				18:00~22:00 (Last Order 20:00)<br>
@@ -192,10 +225,12 @@
 				- 에이드 1잔<br>
 				- 소르베<br><br>
 				*신선한 식재료 준비를 위해 사전예약 및 당일 한정 수량으로 판매합니다.<br>
-				*상기 메뉴는 식재료에 따라 변동될 수 있습니다.<br>
+				*상기 메뉴는 식재료에 따라 변동될 수 있습니다.<br><br>
 		   		</div>
-		   </div>
+<!-- </table> -->
+		</div>
       </div>
+      
     </div>
    </diningsec>
  </div>
