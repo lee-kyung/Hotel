@@ -35,7 +35,7 @@ public class MemberServiceImpl implements MemberService{
 		mvo.setEmail(email_id+"@"+email_juso);
 		
 		mapper.member_input_ok(mvo);
-		return "/login/login";
+		return "/login/login?ck=4";
 	}
 
 	@Override
@@ -44,6 +44,16 @@ public class MemberServiceImpl implements MemberService{
 		String userid=request.getParameter("userid");
 		int cnt=mapper.userid_check(userid);
 		out.print(cnt);
+	}
+
+	@Override
+	public String member_out(HttpSession session) 
+	{
+		String userid=session.getAttribute("userid").toString();
+		mapper.member_out(userid);
+		
+		session.invalidate();
+		return "redirect:/main/index";
 	}
 
 }

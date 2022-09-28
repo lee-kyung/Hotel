@@ -20,7 +20,8 @@
 	font-family:fantasy;}
 	
 	section #wed_hall #wed_hall_name a:hover{
-	color:#887159;}
+	color:#887159;
+	letter-spacing:3px;}
 	
 	/***************************/	
 	section #wed_hall .slider{

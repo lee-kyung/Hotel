@@ -11,13 +11,14 @@
 	margin-bottom:200px;}
 	
 	section #wed_write table{
-	width:1100px;
+	margin:auto;
+	width:900px;
 	border-collapse:separate;
     border-spacing:20px;}
     
     section #wed_write table td:first-child{
     font-weight:600;
-    width:250px;}
+    width:200px;}
     
     section #wed_write table input[type=text]{
     width:98%;
@@ -33,10 +34,18 @@
     section #wed_write table tr:last-child{
     text-align:center;}
     
-    section #wed_write table input[type=submit]{    
-    width:200px;
-    height:60px;}
+    section #wed_write table .btn{    
+    width:300px;
+    height:70px;
+    background:white;
+    margin-top:50px;
+    border:1px solid #887159;
+    color:#887159;
+    cursor:pointer;}
     
+    section #wed_write table .btn:hover{
+    background:#887159;
+    color:white;}
 </style>
 
 <script>
@@ -64,6 +73,103 @@
 			document.getElementsByClassName("fname")[len].remove();
 		}
 	}
+	
+	
+	function check(chk)
+	{	
+		var num=(chk.wed_size.value).search(/[0-9]/);
+		var kor=(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/).test(chk.wed_size.value);
+		var eng=(/^[a-zA-Z]*$/).test(chk.wed_size.value); 
+		var spe =(/[~!@#$%^&*()_+|<>?:{}]/gi).test(chk.wed_size.value);
+		
+		
+		if(chk.wed_hall.value.trim().length==0)
+		{
+			alert("웨딩홀 이름을 작성하세요.");
+			return false;
+		}
+		else if(chk.wed_title.value.trim().length==0)	
+		{
+			alert("소개글을 작성하세요.");
+			return false;
+		}
+		else if(chk.fname1.value.trim().length==0)	
+		{
+			alert("사진을 등록하세요.");
+			return false;
+		}
+		else if(chk.wed_txt.value.trim().length==0)	
+		{
+			alert("특징을 작성하세요.");
+			return false;
+		}
+		else if(chk.wed_size.value.trim().length==0)	
+		{
+			alert("규모를 작성하세요.");
+			return false;
+		}
+		else if( ((chk.wed_size.value).search(/[0-9]/) != 0) && ((/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/).test(chk.wed_size.value)>0))	
+		{
+			alert("숫자로 작성하세요.");
+			return false;
+		}
+		else if(chk.wed_min.value.trim().length==0)	
+		{
+			alert("최소인원을 작성하세요 .");
+			return false;
+		}
+		else if( ((chk.wed_min.value).search(/[0-9]/) != 0) && ((/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/).test(chk.wed_min.value)>0))	
+		{
+			alert("숫자로 작성하세요 .");
+			return false;
+		}
+		else if(chk.wed_max.value.trim().length==0)	
+		{
+			alert("최대인원을 작성하세요.");
+			return false;
+		}
+		else if( ((chk.wed_max.value).search(/[0-9]/) != 0) && ((/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/).test(chk.wed_max.value)>0))	
+		{
+			alert("숫자로 작성하세요.");
+			return false;
+		}
+		else if(chk.wed_food.value.trim().length==0)	
+		{
+			alert("하객음식을 작성하세요.");
+			return false;
+		}
+		else if(chk.wed_direct.value.trim().length==0)	
+		{
+			alert("연출을 작성하세요.");
+			return false;
+		}
+		else if(chk.wed_type.value.trim().length==0)	
+		{
+			alert("예식타입을 작성하세요.");
+			return false;
+		}
+		else if(chk.wed_txt2.value.trim().length==0)	
+		{
+			alert("Special Benefit을 작성하세요.");
+			return false;
+		}
+		else if(chk.wed_price.value.trim().length==0)	
+		{
+			alert("웨딩홀 금액을 작성하세요.");
+			return false;
+		}
+		else if(((chk.wed_price.value).search(/[0-9]/) != 0) && ((/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/).test(chk.wed_price.value)>0))	
+		{
+			alert("숫자로 작성하세요.");
+			return false;
+		}
+		else
+		{
+			alert("웨딩홀이 등록됐습니다.");
+			return true;
+		}
+	} 
+	
 </script>
 
 
@@ -89,7 +195,7 @@
 <section>
 <div id="wed_write">
 
-     	<form method="post" action="wed_hall_write_ok" enctype="multipart/form-data">
+     	<form method="post" action="wed_write_ok" enctype="multipart/form-data" onsubmit="return check(this)">
     	<table>
     	<tr>
     			<td>웨딩홀 이름</td>
@@ -116,16 +222,16 @@
     			<td><textarea name="wed_txt"></textarea></td>
     		</tr>
     		<tr>
-    			<td>규모</td>
-    			<td><input type="text" name="wed_size"></td>
+    			<td>규모(m2)</td>
+    			<td><input type="text" name="wed_size" placeholder="숫자만 입력해주세요"></td>
     		</tr>
     		<tr>
-    			<td>최소인원</td>
-    			<td><input type="text" name="wed_min"></td>
+    			<td>최소인원(인)</td>
+    			<td><input type="text" name="wed_min" placeholder="숫자만 입력해주세요"></td>
     		</tr>
     		<tr>
-    			<td>최대인원</td>
-    			<td><input type="text" name="wed_max"></td>
+    			<td>최대인원(인)</td>
+    			<td><input type="text" name="wed_max" placeholder="숫자만 입력해주세요"></td>
     		</tr>
     		<tr>
     			<td>하객음식</td>
@@ -145,13 +251,14 @@
     		</tr>
     		
     		<tr>
-    			<td>금액</td>
-    			<td><input type="text" name="wed_price"></td>
+    			<td>금액(만원)</td>
+    			<td><input type="text" name="wed_price" placeholder="숫자만 입력해주세요"></td>
     		</tr>
     		
     		<tr>
     			<td colspan="2">
-					<input type="submit" class="button button-contactForm btn_1 boxed-btn" value="작성">
+					<input type="submit"  class="btn" value="작성">
+					<input type="button"  class="btn" onclick="location='wed_list'" value="리스트">
     			</td>
     		</tr>
     		

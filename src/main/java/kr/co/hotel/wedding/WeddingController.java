@@ -26,15 +26,15 @@ public class WeddingController {
 		return service.wedding_check(model);
 	}
 	
-	@RequestMapping("/wedding/wed_hall_write")
-	public String wed_hall_write() {
-		return "/wedding/wed_hall_write";
+	@RequestMapping("/wedding/wed_write")
+	public String wed_write() {
+		return "/wedding/wed_write";
 	}
 	
-	@RequestMapping("/wedding/wed_hall_write_ok")
-	public String wed_hall_write_ok(HttpServletRequest request) throws Exception
+	@RequestMapping("/wedding/wed_write_ok")
+	public String wed_write_ok(HttpServletRequest request) throws Exception
 	{
-		return service.wed_hall_write_ok(request); 
+		return service.wed_write_ok(request); 
 	}
 	
 	@RequestMapping("/wedding/wedding_hall")
@@ -68,6 +68,22 @@ public class WeddingController {
 		return service.wed_resv_check(request, session, model);
 	}
 	
+	@RequestMapping("/wedding/wed_list")
+	public String wed_list(Model model)
+	{
+		return service.wed_list(model);
+	}
 	
+	@RequestMapping("/wedding/wed_content")
+	public String wed_content(HttpServletRequest request, Model model)
+	{
+		return service.wed_content(request, model);
+	}
+	
+	@RequestMapping("/wedding/wed_update")
+	public String wed_update(HttpServletRequest request, Model model)
+	{
+		return service.wed_update(request, model);
+	}
 	
 }

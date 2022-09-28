@@ -28,6 +28,10 @@
 	font-size:20px;
 	cursor:pointer;}
 	
+	#first #list{
+	width:1820px;
+	margin:auto;}
+	
 	#first ul li{
 	display:inline-block;
 	border:1px solid #cccccc;
@@ -153,9 +157,11 @@
 			<span onclick="location='../mypage/mypwd_change'">비밀번호 수정 > </span>
 		</div> 
 	</div>	
-	<ul>
-		<li onclick="location='room_resv'">객실 예약 확인</li><li onclick="location='dine_resv'">레스토랑 예약 확인</li><li onclick="location='eshop_gumae'">E-SHOP 주문내역</li><li onclick="location='wedding_resv'">웨딩 예약 확인</li>
-	</ul>
+	<div id="list">
+		<ul>
+			<li onclick="location='room_resv'">객실 예약 확인</li><li onclick="location='dine_resv'">레스토랑 예약 확인</li><li onclick="location='eshop_gumae'">E-SHOP 주문내역</li><li onclick="location='wedding_resv'">웨딩 예약 확인</li>
+		</ul>
+	</div>
 </div>
 
 <section>
@@ -184,18 +190,15 @@
 				<c:if test="${(gvo.state==3) && (gvo.bname !=null)}">
 					배송완료
 				</c:if>	
-				<c:if test="${(gvo.state==3) && (gvo.bname==null)}">
-					사용완료
-				</c:if>	
 			</td>
 		</tr>
 		<tr>
 			<td id="name" colspan="2">${gvo.title }</td>
 			<td align="right">
 				<c:if test="${gvo.state==0 }">
-					<input type="button" class="btn3" value="결제취소" onclick="location='eshopG_state_change?state=1&jumuncode=${gvo.jumuncode}&id=${gvo.id }'">
-					<c:if test="${(gvo.state==0) && (gvo.bname==null)}">
-						<input type="button" class="btn3" value="사용완료" onclick="location='eshopG_state_change?state=3&jumuncode=${gvo.jumuncode}&id=${gvo.id }'">
+					<input type="button" class="btn3" value="결제취소" onclick="location='eshopG_state_change?state=1&id=${gvo.id}&jumuncode=${gvo.jumuncode }'">
+					<c:if test="${(gvo.state==0) && (gvo.bname!=null)}">
+						<input type="button" class="btn3" value="배송완료" onclick="location='eshopG_state_change?state=3&id=${gvo.id}&jumuncode=${gvo.jumuncode }'">
 					</c:if>
 				</c:if>
 				<c:if test="${gvo.state==1 }"> 
@@ -206,9 +209,6 @@
 				</c:if>
 				<c:if test="${(gvo.state==3) && (gvo.bname !=null)}">
 					<input type="button" class="btn4" value="배송완료">
-				</c:if>
-				<c:if test="${(gvo.state==3) && (gvo.bname==null)}">
-					<input type="button" class="btn4" value="사용완료">
 				</c:if>
 			</td>
 		</tr>
@@ -272,7 +272,7 @@
 		</tr>
 		<tr>
 			<td>결제금액</td>
-			<td>${gvo.total_price }</td>
+			<td><fmt:formatNumber value="${gvo.total_price }"/>원</td>
 		</tr>
 	</table>
 

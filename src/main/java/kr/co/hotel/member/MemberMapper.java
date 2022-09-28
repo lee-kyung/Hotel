@@ -6,4 +6,6 @@ public interface MemberMapper {
 
 	public int userid_check(String userid);
 
+	public void member_out(String userid);
+
 }

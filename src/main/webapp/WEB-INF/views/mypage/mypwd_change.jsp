@@ -31,6 +31,10 @@
 	#first #txt2 span{
 	cursor:pointer;}
 	
+	#first #list{
+	width:1820px;
+	margin:auto;}
+	
 	#first ul li{
 	display:inline-block;
 	border:1px solid #cccccc;
@@ -81,16 +85,23 @@
 	padding-top:20px;}
 	
 	section #myprofile_pwd #bar{
-	margin-top:20px;
+	margin-top:70px;
 	border-bottom:1px solid #cccccc;}
 	
 	section #myprofile_pwd input[type=submit]{
 	width:450px;
 	height:80px;
-	margin-top:50px;}
+	margin-top:50px;
+	border:1px solid #887159;
+	background:white;
+	color:#887159;
+	cursor:pointer;}
 	
-	section #myprofile_pwd #msg4{
-	margin-top:70px;}
+	section #myprofile_pwd input[type=submit]:hover{
+	background:#887159;
+	color:white;}
+	
+	
 	
 	section #myprofile_pwd #btn_center{
 	text-align:center;}
@@ -214,21 +225,18 @@
 		
  		if(pre==0)
  		{
- 			document.getElementById("msg4").innerText="현재 비밀번호를 확인하세요";
- 			document.getElementById("msg4").style.color="red";
+ 			alert("현재 비밀번호를 확인하세요");
  			return false;
  		}
  		
  		else if(new1==0)
  		{
- 			document.getElementById("msg4").innerText="새로운 비밀번호를 확인하세요";
- 			document.getElementById("msg4").style.color="red";
+ 			alert("새로운 비밀번호를 확인하세요");
  			return false;
  		}
  		else if(new2==0)
  		{
- 			document.getElementById("msg4").innerText="새로운 비밀번호를 다시 입력하세요";
- 			document.getElementById("msg4").style.color="red";
+ 			alert("새로운 비밀번호를 재 확인하세요");
  			return false;
  		}
  		else 
@@ -259,9 +267,11 @@
 			<span onclick="location='../mypage/mypwd_change'">비밀번호 수정 > </span>
 		</div> 
 	</div>	
-	<ul>
-		<li>객실 예약 확인</li><li>레스토랑 예약 확인</li><li>E-SHOP 주문내역</li><li>웨딩 예약 확인</li>
-	</ul>
+	<div id="list">
+		<ul>
+			<li onclick="location='room_resv'">객실 예약 확인</li><li onclick="location='dine_resv'">레스토랑 예약 확인</li><li onclick="location='eshop_gumae'">E-SHOP 주문내역</li><li onclick="location='wedding_resv'">웨딩 예약 확인</li>
+		</ul>
+	</div>
 </div>
 <!-- first/ -->
 	
@@ -285,9 +295,9 @@
 	<input type="password" name="newpwd2" placeholder="비밀번호를 입력하세요" onkeyup="newpwd_equal(this.value)">
 	<div id="msg3" style="font-size:14px;"></div>
 	
-	<div id="msg4" style="font-size:14px;"></div>
+
 	<div id="bar"></div>
-	<div id="btn_center"><input type="submit" class="button button-contactForm btn_1 boxed-btn" value="확인"></div>
+	<div id="btn_center"><input type="submit" value="확인"></div>
 </form>
 </div>
 </section>

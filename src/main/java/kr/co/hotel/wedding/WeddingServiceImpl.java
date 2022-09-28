@@ -31,7 +31,7 @@ public class WeddingServiceImpl implements WeddingService{
 	private WeddingMapper mapper;
 
 	@Override
-	public String wed_hall_write_ok(HttpServletRequest request) throws Exception 
+	public String wed_write_ok(HttpServletRequest request) throws Exception 
 	{
 		String path=request.getRealPath("resources/img/wedding");
 		int size=1024*1024*10;
@@ -77,7 +77,7 @@ public class WeddingServiceImpl implements WeddingService{
 		wvo.setWed_type(wed_type);
 		wvo.setWed_price(Integer.parseInt(wed_price));
 		
-		mapper.wed_hall_write_ok(wvo);
+		mapper.wed_write_ok(wvo);
 		
 		return "redirect:/wedding/wedding_hall?id=15";
 	}
@@ -287,6 +287,45 @@ public class WeddingServiceImpl implements WeddingService{
 		WeddingResvVO wrvo=mapper.wed_resv_check(wresv_code);
 		model.addAttribute("wrvo", wrvo);
 		return "/wedding/wed_resv_check";
+	}
+
+	@Override
+	public String wed_list(Model model) 
+	{
+		ArrayList<WeddingVO> list=mapper.wed_list();
+		model.addAttribute("list", list);
+		return "/wedding/wed_list";
+	}
+
+	@Override
+	public String wed_content(HttpServletRequest request, Model model) 
+	{
+		String id=request.getParameter("id");
+		WeddingVO wvo=mapper.wed_content(id);
+		wvo.setWed_title(wvo.getWed_title().replace("\r\n", "<br>"));
+		wvo.setWed_txt(wvo.getWed_txt().replace("\r\n", "<br>"));
+		wvo.setWed_txt2(wvo.getWed_txt2().replace("\r\n", "<br>"));
+		
+		String[] img=wvo.getWed_fname().split(",");
+		model.addAttribute("img", img);
+		model.addAttribute("wvo", wvo);
+		return "/wedding/wed_content";
+	}
+
+	@Override
+	public String wed_update(HttpServletRequest request, Model model) 
+	{
+		String id=request.getParameter("id");
+		WeddingVO wvo=mapper.wed_content(id);
+		wvo.setWed_title(wvo.getWed_title().replace("\r\n", "<br>"));
+		wvo.setWed_txt(wvo.getWed_txt().replace("\r\n", "<br>"));
+		wvo.setWed_txt2(wvo.getWed_txt2().replace("\r\n", "<br>"));
+		
+		String[] img=wvo.getWed_fname().split(",");
+		model.addAttribute("img", img);
+		model.addAttribute("wvo", wvo);
+		
+		return  "/wedding/wed_update";
 	}
 	
 	

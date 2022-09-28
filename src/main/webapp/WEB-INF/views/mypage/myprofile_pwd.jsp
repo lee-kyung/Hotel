@@ -31,6 +31,10 @@
 	#first #txt2 span{
 	cursor:pointer;}
 	
+	#first #list{
+	width:1820px;
+	margin:auto;}
+	
 	#first ul li{
 	display:inline-block;
 	border:1px solid #cccccc;
@@ -86,7 +90,15 @@
 	section #myprofile_pwd input[type=button]{
 	width:450px;
 	height:80px;
-	margin-top:50px;}
+	margin-top:50px;
+	border:1px solid #887159;
+	color:#887159;
+	background:white;
+	cursor:pointer;}
+	
+	section #myprofile_pwd input[type=button]:hover{
+	color:white;
+	background:#887159;}
 	
 	section #myprofile_pwd #btn_center{
 	text-align:center;}
@@ -151,9 +163,11 @@
 			<span onclick="location='../mypage/mypwd_change'">비밀번호 수정 > </span>
 		</div> 
 	</div>	
-	<ul>
-		<li>객실 예약 확인</li><li>레스토랑 예약 확인</li><li>E-SHOP 주문내역</li><li>웨딩 예약 확인</li>
-	</ul>
+	<div id="list">
+		<ul>
+			<li onclick="location='room_resv'">객실 예약 확인</li><li onclick="location='dine_resv'">레스토랑 예약 확인</li><li onclick="location='eshop_gumae'">E-SHOP 주문내역</li><li onclick="location='wedding_resv'">웨딩 예약 확인</li>
+		</ul>
+	</div>
 </div>
 <!-- first/ -->
 	
@@ -169,7 +183,7 @@
 	<input type="password" name="pwd" placeholder="비밀번호를 입력하세요">
 	<div id="msg" style="font-size:14px;"></div>
 	<div id="bar"></div>
-	<div id="btn_center"><input type="button" onclick="check()" class="button button-contactForm btn_1 boxed-btn" value="확인"></div>
+	<div id="btn_center"><input type="button" onclick="check()" value="확인"></div>
 </form>
 </div>
 </section>

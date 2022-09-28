@@ -4,7 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybats-3-mapper.dtd">
  
 <mapper namespace="kr.co.hotel.wedding.WeddingMapper">
-	<insert id="wed_hall_write_ok" parameterType="kr.co.hotel.wedding.WeddingVO">
+	<insert id="wed_write_ok" parameterType="kr.co.hotel.wedding.WeddingVO">
  		insert into wedding(wed_hall, wed_title, wed_min, wed_max, wed_txt, wed_txt2, wed_fname, wed_size, wed_food, wed_direct, wed_type, wed_price) 
  		values(#{wed_hall}, #{wed_title}, #{wed_min}, #{wed_max}, #{wed_txt}, #{wed_txt2},  #{wed_fname}, #{wed_size}, #{wed_food}, #{wed_direct}, #{wed_type}, #{wed_price})
   	</insert>
@@ -54,8 +54,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   		select * from weddingresv where wresv_code=#{param}
   	</select>
   	
+  	<select id="wed_list" resultType="kr.co.hotel.wedding.WeddingVO">
+  		select * from wedding order by id asc
+  	</select>
   	
-  	
-  	
+  	<select id="wed_content" resultType="kr.co.hotel.wedding.WeddingVO">
+  		select * from wedding where id=#{param1}
+  	</select>
   	
 </mapper>
