@@ -3,7 +3,27 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!doctype html>
 <html class="no-js" lang="zxx">
-
+  <style>
+    /* #title{
+	    color:white;
+	    font-weight:600;
+	    cursor: pointer;
+	    display: inline-block;
+	    text-transform: capitalize;
+	    font-family: "Raleway",sans-serif;
+	    padding: 0px 0px 10px 0px;
+	    outline: medium none;
+	    background-color: transparent;
+	    text-decoration: none;
+	   
+	}
+	#title :-webkit-any-link{
+	    /* text-decoration: underline; */
+	}
+	#title i{
+	    font-size: 9px;
+	} */
+  </style>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
@@ -46,13 +66,13 @@
                             <div class="main-menu  d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a href="../main/index">HOTEL<i class="ti-angle-down"></i></a>
+                                        <li><a href="../main/index">Hotel<i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
                                                 <li><a href="../info/info">호텔 소개</a></li>
                                                 <li><a href="../info/info">호텔 소개</a></li>
                                             </ul>
                                         <li><a href="../room/rooms">rooms</a></li>
-                                        <li><a href="../dining/dining">dining<i class="ti-angle-down"></i></a>
+                                        <li id="title"><a href="">dining<i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
                                                 <li><a href="../dining/dining">레스토랑 소개</a></li>
                                                 <li><a href="../dining/dining_reserve">레스토랑 예약</a></li>
