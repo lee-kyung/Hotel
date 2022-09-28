@@ -14,25 +14,22 @@
 		margin: auto;
 		margin-bottom: 80px;
 	}
-	
 	roomsec {
 		margin-bottom: 80px;
 		margin: auto;
 	}
-	
 	roomsec #txt1 {
 		color: #887159;
 		font-weight: 900;
 		font-size: 50px;
 		font-family: fantasy;
 	}
-	
 	roomsec #txt2 {
 		color: #887159;
 		font-weight: 900;
 		font-size: 20px;
 	}
-	
+
 	roomsec table {
 		width: 1200px;
 		height: 100px;
@@ -88,15 +85,18 @@
 		/* margin-bottom: 30px; */
 		margin-top: 30px;
 		display: inline-block;
+		border-radius: 10px;
 	}
 	
 	roomsec #ro_info img {
 		width: 393px;
 		height: 280px;
+		border-top-right-radius: 10px;
+		border-top-left-radius: 10px;
 	}
 	
 	roomsec #roomdiv {
-		/* visibility: hidden; */
+		visibility: hidden;
 	}
 	
 	roomsec #ro_info #ro_in{
@@ -284,7 +284,6 @@
 
    <!-- ================ Rooms Area Start ================= -->
    <!-- 객실 리스트 -->
-<div class="features_room">
   <div class="container">
     <div class="row"> 
        <roomsec>
@@ -330,31 +329,28 @@
             <div id="ccc" style="display:none"></div>
          <div id="roomdiv">
             <c:forEach items="${list}" var="rvo" varStatus="my">
-            <div id="ro_info">
-             <input type="hidden" name="rcode2" value="${rvo.rcode}">
-             <input type="hidden" name="rsu" value="${rvo.rsu}" class="crsu">
-                  <img src="../img/rooms/${rvo.rpimg}">
+			<div id="ro_info">
+            <input type="hidden" name="rcode2" value="${rvo.rcode}">
+            <input type="hidden" name="rsu" value="${rvo.rsu}" class="crsu">
+				<img src="../img/rooms/${rvo.rpimg}">
                 <div id="ro_in">
-                  <div id="rname">${rvo.rname}</div> <span class="crcode">${rvo.rcode}</span>
-                  <div id="rtxt3">${rvo.rtxt3}</div>
-                <div id="ro_inner">
-                  <div><span id="subr">전망</span>${rvo.rview}</div>
-                  <div><span id="subr">베드타입</span>${rvo.rbed}</div>
-                  <div><span id="subr">가격</span>${rvo.rprice}</div>                  
-                  <div><span id="subr">기준|최대인원</span>${rvo.rmin}/<span class="crmax">${rvo.rmax}</span></div>
-                </div>                  
-                  <br>
-                  <input type="button" value="객 실 선 택" class="cbtn" onclick="form_submit(${my.index})">
-            </div>
-            </div>
+					<div id="rname">${rvo.rname}</div> <span class="crcode">${rvo.rcode}</span>
+					<div id="rtxt3">${rvo.rtxt3}</div>
+	                <div id="ro_inner">
+						<div><span id="subr">전망</span>${rvo.rview}</div>
+						<div><span id="subr">베드타입</span>${rvo.rbed}</div>
+						<div><span id="subr">가격</span>${rvo.rprice}</div>                  
+						<div><span id="subr">기준|최대인원</span>${rvo.rmin}/<span class="crmax">${rvo.rmax}</span></div>
+	                </div>                  
+				<br>
+					<input type="button" value="객 실 선 택" class="cbtn" onclick="form_submit(${my.index})">
+				</div>
+			</div>
             </c:forEach> 
          </div>
         </form>   
       </roomsec>
     </div>
   </div>
-</div>
-
-    <!-- ================ Rooms Area End ================= -->
-
+  <!-- ================ Rooms Area End ================= -->
 </body>

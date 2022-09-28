@@ -69,7 +69,7 @@ roomsec hr{
 }
 roomsec #subr {
 	font-weight: 900;
-	width: 100px;http://localhost:8080/hotel/img/rooms/dc1.jpg
+	width: 100px;
 	display: inline-block;
 	color: #887159;
 	margin-top: 10px;
@@ -208,7 +208,6 @@ section #room_list .slider input[type=radio]:nth-child(4):checked ~ul.imgs>li:nt
 
 <!-- ================ Rooms Area Start ================= -->
 <!-- 객실 리스트 -->
-<div class="features_room">
 	<div class="container">
 		<div class="row">
 		<roomsec>
@@ -390,10 +389,6 @@ section #room_list .slider input[type=radio]:nth-child(4):checked ~ul.imgs>li:nt
 			</c:if>
 		</c:forEach> </roomsec>
 	</div>
-
-
-
-</div>
 
 <!-- ================ Rooms Area End ================= -->
 </body>
