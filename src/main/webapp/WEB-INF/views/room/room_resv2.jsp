@@ -12,7 +12,6 @@
 	.container {
 		width: 1300px;
 		margin: auto;
-		margin-bottom: 80px;
 	}
 	
 	roomsec {
@@ -59,7 +58,6 @@
 	}
 
 	roomsec table select {
-		width: 100px;
 		height: 40px;
 		color: #887159;
 		border: 1px solid #887159;
@@ -70,7 +68,7 @@
 		background: #FFFFFF;
 		border: 1px solid #887159;
 		color: #887159;
-		width: 120px;
+		width: 80px;
 		height: 40px;
 	}
 	
@@ -79,60 +77,42 @@
 		background: #887159;
 		cursor: pointer;
 	}
-
-/* 객실목록 */	
-	roomsec #ro_info {
-		width: 395px;
-		height: 530px;
-		border: 1px solid #887159;
-		/* margin-bottom: 30px; */
-		margin-top: 30px;
-		display: inline-block;
-	}
 	
-	roomsec #ro_info img {
-		width: 393px;
-		height: 280px;
+	roomsec #ro_info {
+		width: 1200px;
+		height: 400px;
+		border: 1px solid #887159;
+		margin-bottom: 30px;
+		margin-top: 30px;
 	}
 	
 	roomsec #roomdiv {
 		/* visibility: hidden; */
 	}
 	
-	roomsec #ro_info #ro_in{
-		margin-left: 10px;
-		margin-top: 3px;
+	roomsec #ro_info #left{
+		float: left;
+		width: 800px;
+		height: 400px;
 	}
-	roomsec #rname{
-		font-size: 20px;
-		color: #887159;
-		font-weight: 700;	
+
+	roomsec #ro_info #left img{
+		width: 800px;
+		height: 400px;
 	}
-	
-	roomsec #rtxt3{
-		font-size: 14px;
-		color: #887159;
-		height: 15px;
-	}
-	
-	roomsec #ro_info #ro_inner{
-		margin-top: 10px;
-		color: #887159;
-	}
-	
-	roomsec #subr{
-		width: 120px;
-		display: inline-block;
-		font-weight: 500;
+	roomsec #ro_info #right {
+		float: right;
+		width: 390px;
+		height: 400px;
+		padding-top: 35px;
+		padding-left: 20px;
 	}
 	
 	roomsec .cbtn {
 		background: #FFFFFF;
 		border: 1px solid #887159;
 		color: #887159;
-		width: 370px;
-		height: 50px;
-		font-weight: 900;
+		width: 80px;
 	}
 	
 	roomsec .cbtn:hover {
@@ -277,7 +257,7 @@
        ①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기
        ②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
     <div class="bradcam_area rooms"> <!-- class="bradcam_area 클래스명" -->
-        <div id="h3"> RESERVATION </div>>
+        <div id="h3"> Reservation </div>>
     </div>
     <!-- bradcam_area_end -->
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
@@ -293,13 +273,13 @@
           <br>
             <form name="room" method="post" action="room_resvnext" >
             <input type="hidden" name="rcode">
-            <table>
+            <table border="1">
                <tr> 
                   <th> 체크인 </th>
                   <th> 체크아웃 </th>
-                  <th width="140px"> 성인 </th>
-                  <th width="140px"> 어린이 </th>
-                  <th width="160px"></th>
+                  <th> 성인 </th>
+                  <th> 어린이 </th>
+                  <th></th>
                </tr>  
                <tr>
                   <td><input type="text" name="checkin" id="checkin" placeholder="체크인"></td>
@@ -328,29 +308,28 @@
 
             
             <div id="ccc" style="display:none"></div>
-         <div id="roomdiv">
+            <div id="roomdiv">
             <c:forEach items="${list}" var="rvo" varStatus="my">
             <div id="ro_info">
              <input type="hidden" name="rcode2" value="${rvo.rcode}">
              <input type="hidden" name="rsu" value="${rvo.rsu}" class="crsu">
+               <div id="left">
                   <img src="../img/rooms/${rvo.rpimg}">
-                <div id="ro_in">
-                  <div id="rname">${rvo.rname}</div> <span class="crcode">${rvo.rcode}</span>
-                  <div id="rtxt3">${rvo.rtxt3}</div>
-                <div id="ro_inner">
+               </div>
+               <div id="right">
+                  <div id="rname">${rvo.rname}</div> <span class="crcode">${rvo.rcode}</span> <p>
                   <div><span id="subr">전망</span>${rvo.rview}</div>
                   <div><span id="subr">베드타입</span>${rvo.rbed}</div>
                   <div><span id="subr">가격</span>${rvo.rprice}</div>                  
-                  <div><span id="subr">기준|최대인원</span>${rvo.rmin}/<span class="crmax">${rvo.rmax}</span></div>
-                </div>                  
+                  <div><span id="subr">기준|최대인원</span>${rvo.rmin}/<span class="crmax">${rvo.rmax}</span></div>                  
                   <br>
-                  <input type="button" value="객 실 선 택" class="cbtn" onclick="form_submit(${my.index})">
-            </div>
+                  <input type="button" value="객실선택" class="cbtn" onclick="form_submit(${my.index})">
+               </div>
             </div>
             </c:forEach> 
-         </div>
-        </form>   
-      </roomsec>
+            </div>
+         </form>   
+         </roomsec>
     </div>
   </div>
 </div>

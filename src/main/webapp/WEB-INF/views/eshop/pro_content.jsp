@@ -169,22 +169,6 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script> 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script>
-	/* 수량을 변경하면 [총 상품금액]도 변하게 하기 */
-	/*$(function(){
-		$("#spinner").spinner({
-			min : 1,
-			max : 100,
-			spin : function(e, ui){
-				let total=parseInt(${pvo.price} * ui.value);
-				if(${pvo.halin != 0})
-					total=parseInt(${pvo.price - (pvo.price * (pvo.halin / 100) ) } * ui.value);
-
-				total=new Intl.NumberFormat().format(total);
-				document.getElementById("total_price").innerText=total;
-			}
-		});
-	});*/
-	
 	/* 수량을 '1~${pvo.su}' 사이값만 입력되도록 하기 */
 	function su_check(su){
 		if(su < 1)
@@ -256,7 +240,7 @@
 		chk.send();
 	}
 	
-	/* 장바구니에 회원/비회원 구분하여 추가하기 */
+	/* 장바구니에 회원&비회원 구분하여 추가하기 */
 	function cart_add(pcode){
 		let su=document.pro_cnt.su.value;
 		let chk=new XMLHttpRequest();
@@ -276,8 +260,7 @@
 	
 	/* 후보이미지를 클릭하면 메인이미지 자리에 뜨기 */
 	function show_img(num){
-		document.getElementById("main_fimg").src=document.getElementsByClassName("other_fimgs[num]").src;
-		//console.log(document.getElementsByClassName("mine[num]").src);
+		document.getElementById("main_fimg").src=document.getElementsByClassName("other_fimgs")[num].src;
 	}
 	
 	/* 바로구매 : javascript로 form을 submit시키기*/
@@ -291,22 +274,22 @@
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
 	<c:if test="${pvo.subpcode == 'p0101'}">
 		<div class="bradcam_area eshop2">
-	        <h3 onclick="location='pro_list?pcode=p0101'" style="cursor:pointer;"> B E D D I N G </h3>
+	        <div id="h3" onclick="location='pro_list?pcode=p0101'" style="cursor:pointer;"> B E D D I N G </div>
 	    </div>
 	</c:if>
 	<c:if test="${pvo.subpcode == 'p0102'}">
 	    <div class="bradcam_area eshop2">
-	        <h3 onclick="location='pro_list?pcode=p0102'" style="cursor:pointer;"> L I F E S T Y L E </h3>
+	        <div id="h3" onclick="location='pro_list?pcode=p0102'" style="cursor:pointer;"> L I F E S T Y L E </div>
 	    </div>
 	</c:if>
 	<c:if test="${pvo.subpcode == 'p0201'}">
 	    <div class="bradcam_area eshop3">
-	        <h3 onclick="location='pro_list?pcode=p0201'" style="cursor:pointer;"> R E S T A U R A N T </h3>
+	        <div id="h3" onclick="location='pro_list?pcode=p0201'" style="cursor:pointer;"> D I N I N G </div>
 	    </div>
     </c:if>
     <c:if test="${pvo.subpcode == 'p0202'}">
 	    <div class="bradcam_area eshop3">
-	        <h3 onclick="location='pro_list?pcode=p0202'" style="cursor:pointer;"> H O T E L </h3>
+	        <div id="h3" onclick="location='pro_list?pcode=p0202'" style="cursor:pointer;"> H O T E L </div>
 	    </div>
     </c:if>
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
