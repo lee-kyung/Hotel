@@ -596,36 +596,84 @@ public class MyPageServiceImpl implements MyPageService{
 		model.addAttribute("glist", glist);
 		return "/mypage/eshop_content";
 	}
+	
+	@Override
+	public String rdwg_check(HttpServletRequest request, Model model) {
+		model.addAttribute("err", request.getParameter("err"));
+		return "/mypage/rdwg_check";
+	}
 
 	@Override
-	public String nonuser_rdwglist(HttpServletRequest request, Model model) {
+	public String rdwg_info(HttpServletRequest request, Model model) {
 		String bjcode=request.getParameter("bjcode");
 		String c=bjcode.substring(0, 1);
 		
-		if(c.equals("r")) {
-			RoomResvVO rvo=mapper.getRinfo(bjcode);
-			model.addAttribute("rvo", rvo);
-			LocalDate in = LocalDate.parse(rvo.getCheckin(), DateTimeFormatter.ISO_DATE);
-			LocalDate out = LocalDate.parse(rvo.getCheckout(), DateTimeFormatter.ISO_DATE);
-			Period diff = Period.between(in, out);
-			model.addAttribute("days", diff);
-			System.out.println(diff);
-
-		}
-		else if(c.equals("d"))
-			model.addAttribute("dvo", mapper.getDinfo(bjcode));
-		else if(c.equals("w"))
-			model.addAttribute("wvo", mapper.getWinfo(bjcode));
-		else if(c.equals("e")) {
-			model.addAttribute("p", mapper.getPnum(bjcode));
-			model.addAttribute("glist", mapper.getEinfo(bjcode));
-		}
-		
-		System.out.println(bjcode);
-		System.out.println(c);
+		Date date=Date.valueOf(LocalDate.now());
+		mapper.Wstate_complete_change(date);
+		mapper.Rstate_complete_change(date);
+		mapper.Dstate_complete_change(date);
 		
 		model.addAttribute("gubun", c);
-		return "/mypage/nonuser_rdwglist";
+		
+		if(c.equals("r")) {
+			RoomResvVO rvo=mapper.getRinfo(bjcode);
+			if(rvo != null) {
+				model.addAttribute("rvo", rvo);
+				return "/mypage/rdwg_info";
+			}
+			else
+				return "redirect:/mypage/rdwg_check?err=1";
+		}			
+		else if(c.equals("d")) {
+			DiningResvVO dvo=mapper.getDinfo(bjcode);
+			if(dvo != null) {
+				model.addAttribute("dvo", dvo);
+				return "/mypage/rdwg_info";
+			}
+			else
+				return "redirect:/mypage/rdwg_check?err=1";
+		}	
+		else if(c.equals("w")) {
+			WeddingResvVO wvo=mapper.getWinfo(bjcode);
+			if(wvo != null) {
+				model.addAttribute("wvo", wvo);
+				return "/mypage/rdwg_info";
+			}
+			else
+				return "redirect:/mypage/rdwg_check?err=1";
+		}	
+		else if(c.equals("e")) {
+			ArrayList<GumaeVO> glist=mapper.getEinfo(bjcode);
+			if(glist.size() != 0) {
+				model.addAttribute("glist", glist);
+				model.addAttribute("gvo", glist.get(0));
+				model.addAttribute("buyday", glist.get(0).getBuyday().substring(0,10));
+				return "/mypage/rdwg_info";
+			}
+			else
+				return "redirect:/mypage/rdwg_check?err=2";
+		}
+		else
+			return "redirect:/mypage/rdwg_check?err=3";	
 	}
+
+	@Override
+	public String bjcancel(HttpServletRequest request) {
+		String bjcode=request.getParameter("bjcode");
+		String c=bjcode.substring(0, 1);
+		
+		if(c.equals("r"))
+			mapper.chgRinfo(bjcode);
+		else if(c.equals("d"))
+			mapper.chgDinfo(bjcode);
+		else if(c.equals("w"))
+			mapper.chgWinfo(bjcode);
+		else if(c.equals("e"))
+			mapper.chgEinfo(bjcode);
+		
+		return "redirect:/main/index";
+	}
+
+	
 
 }

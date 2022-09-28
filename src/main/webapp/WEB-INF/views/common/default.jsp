@@ -134,7 +134,7 @@
                                             <a href="../eshop/cart?p=p01"> <i class="fa fa-cart-arrow-down"></i> </a>
 											<a href="../login/login?ck=4">로그인</a>
 											<a href="../member/member_input">회원가입</a>
-											<a href="../mypage/nonuser">예약주문조회</i> </a>
+											<a href="../mypage/rdwg_check?err=0">비회원조회</i> </a>
 										</c:if>
 										<c:if test="${(userid != null) && (userid != 'admin')}">
 											<a href="../mypage/mypage"> ${name}님

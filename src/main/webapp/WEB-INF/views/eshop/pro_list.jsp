@@ -239,8 +239,8 @@
 		</c:if>
 		<c:if test="${(pcode == 'p02') || (pcode == 'p0201') || (pcode == 'p0202')}">
 			<div id="cate1">
-				<span id="cate2" onclick="location='pro_list?pcode=p0201&osel=${osel}'"> R E S T A U R A N T </span>
-				<span id="cate3" onclick="location='pro_list?pcode=p0202&osel=${osel}'"> H O T E L </span>
+				<span id="cate2" onclick="location='pro_list?pcode=p0201&osel=${osel}'"> D I N I N G </span>
+				<span id="cate3" onclick="location='pro_list?pcode=p0202&osel=${osel}'"> B A K E R Y </span>
 			</div>
 		</c:if>
 		<div class="default-select" id="default-select" style="display:inline-block;">
