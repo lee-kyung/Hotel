@@ -175,14 +175,14 @@ public class EshopServiceImpl implements EshopService {
 		
 		/* wish테이블에 '해당유저'와 '해당상품'이 들어있는지 확인하고 model로 전달하기 */
 		int wishcnt;
-		if(session.getAttribute("userid") == null)	// 로그인을 안 했다면?
+		if(session.getAttribute("userid") == null)
 			wishcnt=0;
-		else {	// 로그인했는데
+		else {
 			String userid=session.getAttribute("userid").toString();
 			int chk=mapper.checkWish(userid, pcode);
-			if(chk == 0)	// wish테이블에 해당상품이 없다면?
+			if(chk == 0)
 				wishcnt=0;
-			else	// wish테이블에 해당상품이 있다면?
+			else
 				wishcnt=1;
 		}
 		model.addAttribute("wishcnt", wishcnt);

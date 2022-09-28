@@ -159,7 +159,13 @@
 	margin-bottom:50px;}
 	
 </style>
-
+<script>
+	
+	function aa()
+	{
+		
+	}
+</script>
 </head>
 
 <body>
@@ -184,7 +190,7 @@
 	
 		<c:forEach items="${list }" var="wvo">
 		
-			<li><a href="../wedding/wedding_hall?id=${wvo.id }">${wvo.wed_hall }</a></li>
+			<li><a href="../wedding/wedding_hall?id=${wvo.id }"><span onclick="aa()">${wvo.wed_hall }</span></a></li>
 			
 		</c:forEach>
                      

@@ -29,6 +29,14 @@ public interface WeddingMapper {
 
 	public WeddingVO wed_content(String id);
 
+	public void wed_update_ok(WeddingVO wvo);
+
+	public String getFname(String id);
+
+	public void wed_delete(String id);
+	
+	
+
 
 	
 	

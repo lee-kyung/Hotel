@@ -1,5 +1,6 @@
 package kr.co.hotel.wedding;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
@@ -79,7 +80,7 @@ public class WeddingServiceImpl implements WeddingService{
 		
 		mapper.wed_write_ok(wvo);
 		
-		return "redirect:/wedding/wedding_hall?id=15";
+		return "redirect:/wedding/wed_list";
 	}
 
 	@Override
@@ -317,15 +318,94 @@ public class WeddingServiceImpl implements WeddingService{
 	{
 		String id=request.getParameter("id");
 		WeddingVO wvo=mapper.wed_content(id);
-		wvo.setWed_title(wvo.getWed_title().replace("\r\n", "<br>"));
-		wvo.setWed_txt(wvo.getWed_txt().replace("\r\n", "<br>"));
-		wvo.setWed_txt2(wvo.getWed_txt2().replace("\r\n", "<br>"));
 		
 		String[] img=wvo.getWed_fname().split(",");
 		model.addAttribute("img", img);
 		model.addAttribute("wvo", wvo);
 		
 		return  "/wedding/wed_update";
+	}
+
+	@Override
+	public String wed_update_ok(HttpServletRequest request, WeddingVO wvo) throws Exception 
+	{
+		
+		String path=request.getRealPath("resources/img/wedding");
+		int size=1024*1024*10;
+		MultipartRequest multi=new MultipartRequest(request,path,size,"utf-8",new DefaultFileRenamePolicy());
+		
+		Enumeration file=multi.getFileNames();
+		String fnames="";
+
+		while(file.hasMoreElements())
+		{
+			String fname=file.nextElement().toString();
+			fnames=fnames+multi.getFilesystemName(fname)+",";
+		}
+
+		fnames=fnames.replace("null,", "")+multi.getParameter("save");
+	//	System.out.println(fnames);
+
+		String wed_hall=multi.getParameter("wed_hall");
+		String wed_title=multi.getParameter("wed_title");
+		String wed_min=multi.getParameter("wed_min");
+		String wed_max=multi.getParameter("wed_max");
+		String wed_txt=multi.getParameter("wed_txt");
+		String wed_txt2=multi.getParameter("wed_txt2");
+		String wed_size=multi.getParameter("wed_size");
+		String wed_food=multi.getParameter("wed_food");
+		String wed_direct=multi.getParameter("wed_direct");
+		String wed_type=multi.getParameter("wed_type");
+		String wed_price=multi.getParameter("wed_price");
+	
+		int id=Integer.parseInt(multi.getParameter("id"));
+			
+		wvo.setId(id);
+		wvo.setWed_hall(wed_hall);
+		wvo.setWed_title(wed_title);
+		wvo.setWed_min(Integer.parseInt(wed_min));
+		wvo.setWed_max(Integer.parseInt(wed_max));
+		wvo.setWed_txt(wed_txt);
+		wvo.setWed_txt2(wed_txt2);
+		wvo.setWed_fname(fnames);
+		wvo.setWed_size(Integer.parseInt(wed_size));
+		wvo.setWed_food(wed_food);
+		wvo.setWed_direct(wed_direct);
+		wvo.setWed_type(wed_type);
+		wvo.setWed_price(Integer.parseInt(wed_price));
+		mapper.wed_update_ok(wvo);
+		
+		String[] del=multi.getParameter("del").split(",");
+		for(int i=0; i<del.length; i++)
+		{
+			File del_file=new File(path+"/"+del[i]);
+			
+			if(del_file.exists())
+				del_file.delete();
+		}
+		
+		return "redirect:/wedding/wed_content?id="+id;
+	}
+
+	@Override
+	public String wed_delete(HttpServletRequest request) 
+	{
+		String id=request.getParameter("id");
+		
+		String path=request.getRealPath("resources/img/wedding");		
+		
+		String[] del=mapper.getFname(id).split(",");
+		
+		for(int i=0; i<del.length; i++)
+		{
+			File del_file=new File(path+"/"+del[i]);
+			if(del_file.exists())
+				del_file.delete();
+		}
+		
+		mapper.wed_delete(id);
+		
+		return "redirect:/wedding/wed_list";
 	}
 	
 	

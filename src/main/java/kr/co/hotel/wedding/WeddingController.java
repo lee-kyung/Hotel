@@ -86,4 +86,16 @@ public class WeddingController {
 		return service.wed_update(request, model);
 	}
 	
+	@RequestMapping("/wedding/wed_update_ok")
+	public String wed_update_ok(HttpServletRequest request, WeddingVO wvo) throws Exception
+	{
+		return service.wed_update_ok(request, wvo);
+	}
+	
+	@RequestMapping("/wedding/wed_delete")
+	public String wed_delete(HttpServletRequest request)
+	{
+		return service.wed_delete(request);
+	}
+	
 }

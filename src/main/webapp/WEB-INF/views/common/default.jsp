@@ -6,6 +6,20 @@
 <html class="no-js" lang="zxx">
 
 <head>
+<style>
+	.bradcam_area{
+		height: 300px;
+	}
+	.bradcam_area #h3{
+		margin-top: -70px;
+		font-family: fantasy;
+		font-size: 80px;
+		letter-spacing: 4px;
+		color: white;
+        /*글씨 테두리*/	
+        text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
+	}
+</style>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -36,7 +50,7 @@
     </script>
     
     	<decorator:head/>
-    
+   
 </head>
 
 <body>
@@ -54,7 +68,11 @@
                             <div class="main-menu  d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a href="../main/index">home</a></li>
+                                        <li><a href="../main/index">Hotel<i class="ti-angle-down"></i></a>
+                                            <ul class="submenu">
+                                                <li><a href="../info/info">호텔 소개</a></li>
+                                                <li><a href="../info/info">호텔 소개</a></li>
+                                            </ul>
                                         <li><a href="../room/rooms">rooms</a></li> <!-- class="active" -->
                                         <li><a href="../dining/dining">dining<i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
@@ -73,9 +91,6 @@
                                         	<ul class="submenu">
                                                 <li><a href="../eshop/pro_list?pcode=p01">product</a></li>
                                                 <li><a href="../eshop/pro_list?pcode=p02">voucher</a></li>
-                                                <c:if test="${userid == 'admin'}">
-                                                	<li><a href="../eshop/pro_write">상품등록</a></li>	<!-- 관리자만 볼 수 있는 메뉴 -->
-                                                </c:if>
                                             </ul>                                        
                                         </li>
                                         <li><a href="../etc/contact">etc<i class="ti-angle-down"></i></a>
@@ -116,10 +131,10 @@
                                         </li> -->
                                          <li>
 		                                <c:if test="${userid == null}">
-                                            <a href="../mypage/nonuser"> <i class="fa fa-list-alt"></i> </a>
                                             <a href="../eshop/cart?p=p01"> <i class="fa fa-cart-arrow-down"></i> </a>
 											<a href="../login/login?ck=4">로그인</a>
 											<a href="../member/member_input">회원가입</a>
+											<a href="../mypage/nonuser">예약주문조회</i> </a>
 										</c:if>
 										<c:if test="${(userid != null) && (userid != 'admin')}">
 											<a href="../mypage/mypage"> ${name}님

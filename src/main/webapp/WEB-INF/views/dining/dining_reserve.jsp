@@ -10,6 +10,9 @@
     height:1700px;
     border:1px solid #887159;
   }
+  #section h3{
+    font-family: Bernard MT Condensed;
+  }
   #section table{
     margin:auto; 
     margin-top:15px;
@@ -46,6 +49,10 @@
   }
   #section #day{
     text-align:left;
+    
+  }
+  #section #day_td{
+    height:10px;
   }
   #section #pri_info{
     height:80px;
@@ -61,6 +68,15 @@ background-color: #fefefe;
 opacity: 0.4;
 background-size: 7px 7px;
 background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.7000000000000001px, #fefefe 0, #fefefe 50%);
+  }
+  #section input [type=submit]{
+    background:#a28d78;
+     color:#f2f1ef;
+     width:200px;
+     height:50px;
+     font-size:16px;
+     text-align:center;
+     /* padding: 5px 0px; */
   }
   
   /*  bootstrap calendar css 시작  */
@@ -96,17 +112,17 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
       
 		for(i=0;i<td.length;i++) {
 			if(dt[i] == 1 && cnt[i] == bk) {
-				document.getElementsByClassName("b1")[td[i]-1].style.color="red";
+				document.getElementsByClassName("b1")[td[i]-1].style.color="#4B4352";
 				document.getElementsByClassName("b1")[td[i]-1].style.textDecoration="line-through"; 
 				document.getElementsByClassName("b1")[td[i]-1].setAttribute("onclick", "alert('예약이 마감됐습니다.');");
 				}
 				else if(dt[i] == 2 && cnt[i] == bk) {
-					document.getElementsByClassName("b2")[td[i]-1].style.color="red";
+					document.getElementsByClassName("b2")[td[i]-1].style.color="#4B4352";
 					document.getElementsByClassName("b2")[td[i]-1].style.textDecoration="line-through";
 					document.getElementsByClassName("b2")[td[i]-1].setAttribute("onclick", "alert('예약이 마감됐습니다.');");
 					}
 					else if(dt[i] == 3 && cnt[i] == bk) {
-						document.getElementsByClassName("b3")[td[i]-1].style.color="red";
+						document.getElementsByClassName("b3")[td[i]-1].style.color="#4B4352";
 						document.getElementsByClassName("b3")[td[i]-1].style.textDecoration="line-through";
 						document.getElementsByClassName("b3")[td[i]-1].setAttribute("onclick", "alert('예약이 마감됐습니다.');");
 					}
@@ -177,8 +193,8 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
     <!-- 새 이미지 추가하는 법
        ①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기
        ②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
-    <div class="bradcam_area dbanner">   <!-- class="bradcam_area 클래스명" -->
-        <h3> ON THE PLATE </h3>
+    <div class="bradcam_area s7">   <!-- class="bradcam_area 클래스명" -->
+        <div id="h3"> L A&nbsp;&nbsp;M E R  </div>
     </div>
     <!-- bradcam_area_end -->
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
@@ -200,7 +216,7 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
     </c:forEach>
     </table>
  <%--   <div> <fmt:formatNumber value="${drvo.dr_total}" pattern="#,###"/>원 </div> --%>
-    <table width="1100" border="1">
+    <table width="1100">
      <tr>
         <td id="info">
 ▷ 4월1일부로 디너 이용 시 만12세 이하의 어린이 입장이 제한됩니다.<br>
@@ -213,7 +229,7 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
    </table>
 
 <!-- bootstrap calendar html 시작 --> <!-- bootstrap calendar html 시작 --> <!-- bootstrap calendar html 시작 -->
- <table id="top" width="1100" border="1">
+ <table id="top" width="1100">
   <tr>
     <th>
   <h2 class="page-header">
@@ -283,7 +299,7 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
           <c:if test="${ !((yoil>j && i==1) || (chong < day)) }">
 
           <td id="day">
-             ${day}<p></p>
+             <span id="day_td">${day}</span><p></p>
           <%
                int day2=Integer.parseInt(pageContext.getAttribute("day").toString());
                int y=Integer.parseInt(request.getAttribute("y").toString());
@@ -348,8 +364,24 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
 	       <td><select name="dine_type" id="dr_type"></select></td>
 	       <td><select name="dr_time" id="dr_time"></select></td>
 	     </tr>
-	     <tr>
+	     <!-- <tr>
 	       <td><input type="submit" value="예약하기" class="cbtn" > </td>
+	     </tr> -->
+	     <tr>
+	       <td><input type="button" value="이전" onclick="location='dining'"> </td>
+	     <c:if test="${userid ==null}">  
+	       
+           <td colspan="2" align="right">
+           <input type="submit" value="비회원으로 예약" class="cbtn" >
+           <input type="submit" value="회원으로 예약" class="cbtn" > 
+           </td>
+	     </c:if>
+	       <!-- <td colspan="3">
+	       <span id="resv">
+	       <input type="button" value="비회원" class="guest">
+	       <input type="submit" value="회원" class="cbtn">
+	     </span>
+	     </td> -->
 	     </tr>
    </table>
   </form>

@@ -9,89 +9,141 @@
 </head>
 <body>
 <style>
-   .container{
-      width: 990px;
-      margin: auto;
-   }
-   roomsec{
-      margin-bottom: 80px;
-      margin: auto;
-   }
-   roomsec table{
-      width: 800px;
-      height: 80px;
-      border: 1px solid #887159;
-   }
-   roomsec #tbouter{
-      background: #F9F9F9;
-      width: 840px;
-      height: 100px;
-      border: 1px solid black;
-   }
-   roomsec #tb{
-      background: #F9F9F9;
-      color: #A6908C;
-      border: none;
-      text-align: center;
-   }
-   roomsec #tb th{
-      text-align: left;
-      height: 16px;
-   }
-   roomsec td{
-      height:37px;
-   }
-   roomsec table input[type=text]{
-      height: 35px;
-      margin-top: 17px;
-      border: 1px solid #E6E3DF;
-   }
-   roomsec #searchbtn{
-      background: #FFFFFF;
-      border: 1px solid #887159;
-      color: #887159;
-      width: 80px;
-      height: 35px;
-   }
-   roomsec #searchbtn:hover{
-      color: white;
-      background:#887159;
-      cursor: pointer;
-   }
-   roomsec table select{
-      height: 35px;
-      color:  #887159;
-      border: 1px solid #887159;
-      background: white;
-   }
-   roomsec #ro_info{
-      width: 800px;
-      height: 250px;
-      border: 1px solid #887159;   
-      margin-bottom: 30px;
-      margin-top: 30px;
-   }
-   roomsec #roomdiv{
-      visibility: hidden;
-   }
-   roomsec #ro_info #right{
-      padding-top: 35px;
-      padding-left: 20px;
-   }
-    roomsec .cbtn{
-      background: #FFFFFF; 
-      border: 1px solid #887159;
-      color: #887159; 
-      width: 80px;
-   }
-    roomsec .cbtn:hover{
-      cursor: pointer;
-      background: #887159;
-      color: #FFFFFF;   
-   }
-   .crcode{
-      display: none;
-   } 
+	.container {
+		width: 1300px;
+		margin: auto;
+		margin-bottom: 80px;
+	}
+	
+	roomsec {
+		margin-bottom: 80px;
+		margin: auto;
+	}
+	
+	roomsec #txt1 {
+		color: #887159;
+		font-weight: 900;
+		font-size: 50px;
+		font-family: fantasy;
+	}
+	
+	roomsec #txt2 {
+		color: #887159;
+		font-weight: 900;
+		font-size: 20px;
+	}
+	
+	roomsec table {
+		width: 1200px;
+		height: 100px;
+		border: 1px solid #887159;
+		background: #F9F9F9;
+		/* color: #A6908C; */
+		color: #887159;
+		border: none;
+		text-align: center;
+		border-spacing: 0;
+		border-collapse: collapsed;
+		border: 1px solid #F9F9F9;
+	}
+	
+	roomsec table th{
+		font-size: 20px;
+	}
+	
+	roomsec table input[type=text] {
+		height: 40px;
+		margin-top: 20px;
+		/* border: 1px solid #E6E3DF; */
+		border: 1px solid #887159;
+	}
+
+	roomsec table select {
+		width: 100px;
+		height: 40px;
+		color: #887159;
+		border: 1px solid #887159;
+		background: white;
+	}
+		
+	roomsec #searchbtn {
+		background: #FFFFFF;
+		border: 1px solid #887159;
+		color: #887159;
+		width: 120px;
+		height: 40px;
+	}
+	
+	roomsec #searchbtn:hover {
+		color: white;
+		background: #887159;
+		cursor: pointer;
+	}
+
+/* 객실목록 */	
+	roomsec #ro_info {
+		width: 395px;
+		height: 530px;
+		border: 1px solid #887159;
+		/* margin-bottom: 30px; */
+		margin-top: 30px;
+		display: inline-block;
+	}
+	
+	roomsec #ro_info img {
+		width: 393px;
+		height: 280px;
+	}
+	
+	roomsec #roomdiv {
+		/* visibility: hidden; */
+	}
+	
+	roomsec #ro_info #ro_in{
+		margin-left: 10px;
+		margin-top: 3px;
+	}
+	roomsec #rname{
+		font-size: 20px;
+		color: #887159;
+		font-weight: 700;	
+	}
+	
+	roomsec #rtxt3{
+		font-size: 14px;
+		color: #887159;
+		height: 15px;
+	}
+	
+	roomsec #ro_info #ro_inner{
+		margin-top: 10px;
+		color: #887159;
+	}
+	
+	roomsec #subr{
+		width: 120px;
+		display: inline-block;
+		font-weight: 500;
+	}
+	
+	roomsec .cbtn {
+		background: #FFFFFF;
+		border: 1px solid #887159;
+		color: #887159;
+		width: 370px;
+		height: 50px;
+		font-weight: 900;
+	}
+	
+	roomsec .cbtn:hover {
+		cursor: pointer;
+		background: #887159;
+		color: #FFFFFF;
+	}
+	
+	.crcode {
+		display: none;
+	}
 </style>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
@@ -225,7 +277,7 @@
        ①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기
        ②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
     <div class="bradcam_area rooms"> <!-- class="bradcam_area 클래스명" -->
-        <h3> Reservation </h3>
+        <div id="h3"> RESERVATION </div>>
     </div>
     <!-- bradcam_area_end -->
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
@@ -236,18 +288,18 @@
   <div class="container">
     <div class="row"> 
        <roomsec>
-          <div style="color:#887159; font-weight:900">RESERVATION</div>
-          <div style="font-size: 25px;">호텔에 오신것을 환영합니다.</div>
+          <div id="txt1">RESERVATION</div>
+          <div id="txt2">ㅁㅁ 호텔에 오신것을 환영합니다!</div>
           <br>
             <form name="room" method="post" action="room_resvnext" >
             <input type="hidden" name="rcode">
-            <table id="tb">
+            <table>
                <tr> 
                   <th> 체크인 </th>
                   <th> 체크아웃 </th>
-                  <th> 성인 </th>
-                  <th> 어린이 </th>
-                  <th width="100px"></th>
+                  <th width="140px"> 성인 </th>
+                  <th width="140px"> 어린이 </th>
+                  <th width="160px"></th>
                </tr>  
                <tr>
                   <td><input type="text" name="checkin" id="checkin" placeholder="체크인"></td>
@@ -276,28 +328,29 @@
 
             
             <div id="ccc" style="display:none"></div>
-            <div id="roomdiv">
+         <div id="roomdiv">
             <c:forEach items="${list}" var="rvo" varStatus="my">
             <div id="ro_info">
              <input type="hidden" name="rcode2" value="${rvo.rcode}">
              <input type="hidden" name="rsu" value="${rvo.rsu}" class="crsu">
-               <div id="left" style="float:left;height:250px;width:500px">
-                  <img src="../img/rooms/${rvo.rpimg}" width="500px" height="248px">
-               </div>
-               <div id="right" style="float:right;height:250px;width:270px">
-                  <div id="rname">${rvo.rname}</div> <span class="crcode">${rvo.rcode}</span> <p>
+                  <img src="../img/rooms/${rvo.rpimg}">
+                <div id="ro_in">
+                  <div id="rname">${rvo.rname}</div> <span class="crcode">${rvo.rcode}</span>
+                  <div id="rtxt3">${rvo.rtxt3}</div>
+                <div id="ro_inner">
                   <div><span id="subr">전망</span>${rvo.rview}</div>
                   <div><span id="subr">베드타입</span>${rvo.rbed}</div>
                   <div><span id="subr">가격</span>${rvo.rprice}</div>                  
-                  <div><span id="subr">기준|최대인원</span>${rvo.rmin}/<span class="crmax">${rvo.rmax}</span></div>                  
+                  <div><span id="subr">기준|최대인원</span>${rvo.rmin}/<span class="crmax">${rvo.rmax}</span></div>
+                </div>                  
                   <br>
-                  <input type="button" value="객실선택" class="cbtn" onclick="form_submit(${my.index})">
-               </div>
+                  <input type="button" value="객 실 선 택" class="cbtn" onclick="form_submit(${my.index})">
+            </div>
             </div>
             </c:forEach> 
-            </div>
-         </form>   
-         </roomsec>
+         </div>
+        </form>   
+      </roomsec>
     </div>
   </div>
 </div>

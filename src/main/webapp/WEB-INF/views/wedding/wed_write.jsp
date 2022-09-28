@@ -25,6 +25,9 @@
     height:50px;
     outline:none;}
     
+    section #wed_write table input[type=text].num_input{
+    width:50%;}
+    
     section #wed_write table textarea{
     width:98%;
     height:200px;
@@ -46,6 +49,7 @@
     section #wed_write table .btn:hover{
     background:#887159;
     color:white;}
+    
 </style>
 
 <script>
@@ -73,15 +77,82 @@
 			document.getElementsByClassName("fname")[len].remove();
 		}
 	}
+ 
+	var num_chk1=0;
+	function num_check1(num)
+	{
+		var num=(/^[0-9]+$/).test(num);
+		
+		if(num==0)
+		{
+			document.getElementById("msg1").innerText="숫자로만 입력해주세요";
+			document.getElementById("msg1").style.color="red";
+			num_chk1=0;
+		}
+		else
+		{
+			document.getElementById("msg1").innerText="";
+			num_chk1=1;
+		}
+	} 
 	
+	var num_chk2=0;
+	function num_check2(num)
+	{
+		var num=(/^[0-9]+$/).test(num);
+		
+		if(num==0)
+		{
+			document.getElementById("msg2").innerText="숫자로만 입력해주세요";
+			document.getElementById("msg2").style.color="red";
+			num_chk2=0;
+		}
+		else
+		{
+			document.getElementById("msg2").innerText="";
+			num_chk2=1;
+		}
+	} 
+	
+	var num_chk3=0;
+	function num_check3(num)
+	{
+		var num=(/^[0-9]+$/).test(num);
+		
+		if(num==0)
+		{
+			document.getElementById("msg3").innerText="숫자로만 입력해주세요";
+			document.getElementById("msg3").style.color="red";
+			num_chk3=0;
+		}
+		else
+		{
+			document.getElementById("msg3").innerText="";
+			num_chk3=1;
+		}
+	} 
+	
+	var num_chk4=0;
+	function num_check4(num)
+	{
+		var num=(/^[0-9]+$/).test(num);
+		
+		if(num==0)
+		{
+			document.getElementById("msg4").innerText="숫자로만 입력해주세요";
+			document.getElementById("msg4").style.color="red";
+			num_chk4=0;
+		}
+		else
+		{
+			document.getElementById("msg4").innerText="";
+			num_chk4=1;
+		}
+	} 
 	
 	function check(chk)
 	{	
-		var num=(chk.wed_size.value).search(/[0-9]/);
-		var kor=(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/).test(chk.wed_size.value);
-		var eng=(/^[a-zA-Z]*$/).test(chk.wed_size.value); 
-		var spe =(/[~!@#$%^&*()_+|<>?:{}]/gi).test(chk.wed_size.value);
-		
+		var num=(/^[0-9]+$/).test(num);
 		
 		if(chk.wed_hall.value.trim().length==0)
 		{
@@ -108,7 +179,7 @@
 			alert("규모를 작성하세요.");
 			return false;
 		}
-		else if( ((chk.wed_size.value).search(/[0-9]/) != 0) && ((/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/).test(chk.wed_size.value)>0))	
+		else if(num_chk1==0)	
 		{
 			alert("숫자로 작성하세요.");
 			return false;
@@ -118,9 +189,9 @@
 			alert("최소인원을 작성하세요 .");
 			return false;
 		}
-		else if( ((chk.wed_min.value).search(/[0-9]/) != 0) && ((/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/).test(chk.wed_min.value)>0))	
+		else if(num_chk2==0)	
 		{
-			alert("숫자로 작성하세요 .");
+			alert("숫자로 작성하세요.");
 			return false;
 		}
 		else if(chk.wed_max.value.trim().length==0)	
@@ -128,7 +199,7 @@
 			alert("최대인원을 작성하세요.");
 			return false;
 		}
-		else if( ((chk.wed_max.value).search(/[0-9]/) != 0) && ((/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/).test(chk.wed_max.value)>0))	
+		else if(num_chk3==0)	
 		{
 			alert("숫자로 작성하세요.");
 			return false;
@@ -158,7 +229,7 @@
 			alert("웨딩홀 금액을 작성하세요.");
 			return false;
 		}
-		else if(((chk.wed_price.value).search(/[0-9]/) != 0) && ((/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/).test(chk.wed_price.value)>0))	
+		else if(num_chk4==0)	
 		{
 			alert("숫자로 작성하세요.");
 			return false;
@@ -223,15 +294,24 @@
     		</tr>
     		<tr>
     			<td>규모(m2)</td>
-    			<td><input type="text" name="wed_size" placeholder="숫자만 입력해주세요"></td>
+    			<td>
+    				<input type="text" name="wed_size" class="num_input" onkeyup="num_check1(this.value)">
+    				<span id="msg1" style="font-size:13px; margin-left:10px;"></span>
+    			</td>
     		</tr>
     		<tr>
     			<td>최소인원(인)</td>
-    			<td><input type="text" name="wed_min" placeholder="숫자만 입력해주세요"></td>
+    			<td>
+    				<input type="text" name="wed_min" class="num_input" onkeyup="num_check2(this.value)">
+    				<span id="msg2" style="font-size:13px; margin-left:10px;"></span>
+    			</td>
     		</tr>
     		<tr>
     			<td>최대인원(인)</td>
-    			<td><input type="text" name="wed_max" placeholder="숫자만 입력해주세요"></td>
+    			<td>
+    				<input type="text" name="wed_max" class="num_input" onkeyup="num_check3(this.value)">
+    				<span id="msg3" style="font-size:13px; margin-left:10px;"></span>
+    			</td>
     		</tr>
     		<tr>
     			<td>하객음식</td>
@@ -252,7 +332,10 @@
     		
     		<tr>
     			<td>금액(만원)</td>
-    			<td><input type="text" name="wed_price" placeholder="숫자만 입력해주세요"></td>
+    			<td>
+    				<input type="text" name="wed_price" class="num_input" onkeyup="num_check4(this.value)">
+    				<span id="msg4" style="font-size:13px; margin-left:10px;"></span>
+    			</td>
     		</tr>
     		
     		<tr>

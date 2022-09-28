@@ -134,7 +134,7 @@
     	<tr>
     		<td colspan="2">
 				<input type="button" onclick="location='wed_update?id=${wvo.id}'" value="수정">
-				<input type="button" value="삭제">
+				<input type="button" onclick="location='wed_delete?id=${wvo.id}'" value="삭제">
 				<input type="button" onclick="location='wed_list'" value="리스트">
     		</td>
     	</tr>

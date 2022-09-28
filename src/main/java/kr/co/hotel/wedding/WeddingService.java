@@ -30,4 +30,8 @@ public interface WeddingService {
 
 	public String wed_update(HttpServletRequest request, Model model);
 
+	public String wed_update_ok(HttpServletRequest request, WeddingVO wvo) throws Exception;
+
+	public String wed_delete(HttpServletRequest request);
+
 }

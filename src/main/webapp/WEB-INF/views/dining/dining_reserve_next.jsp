@@ -192,8 +192,8 @@
     <!-- 새 이미지 추가하는 법
     	①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기
     	②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
- <div class="bradcam_area dbanner">	<!-- class="bradcam_area 클래스명" -->
-     <h3> ON THE PLATE </h3>
+ <div class="bradcam_area s7">	<!-- class="bradcam_area 클래스명" -->
+     <div id="h3"> L A&nbsp;&nbsp;M E R  </div>
   </div>  
     <!-- bradcam_area_end -->
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
@@ -208,7 +208,7 @@
 	  <%--  <input type="hidden" name="dr_total" value="${dvo.dine_child }"> --%>
 		  <div style="color:#887159; font-weight:900"> RESERVATION</div>
 		       <div style="font-size: 25px;"> 파라다이스호텔 부산에 오신 것을 환영합니다.</div><br>
-		       <h2>ON THE PLATE</h2><br>
+		       <!-- <h2>ON THE PLATE</h2><br> -->
 		       <hr>
 		   <div id="outer">
 <!--left--><div id="left">	
@@ -328,8 +328,12 @@
 			   
 			      <div><b>취소 규정</b></div>
 			      <div>
-			      - 이용일로부터 1일전 23:59분전까지 무료 취소 가능합니다.<br>
-			      - 방문 당일 취소 및 변경은 위약금 10만원이 부과됩니다.
+			      <!-- - 이용일로부터 1일전 23:59분전까지 무료 취소 가능합니다.<br>
+			      - 방문 당일 취소 및 변경은 위약금 10만원이 부과됩니다. -->
+			      - 방문 예정일 1일 전까지는 변경 및 취소가 가능합니다.<br>
+			      - 방문 당일 취소 및 변경은 불가하며, 예약 인원 식사 금액의 10%가 위약금으로 부과됩니다.<br>
+			      - 방문 당일 취소 및 변경 시, 전화 문의 바랍니다.<br>
+			      - 예약 내역과 상이할 시, 이용이 제한되거나 변경될 수 있습니다.
 			      </div>
 			      <br>
 			      <div><b>결제 방법</b></div>
