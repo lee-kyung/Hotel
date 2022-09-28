@@ -201,18 +201,22 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
   
   function check()
 	{
-		// 아이디, 비번, 이름, 전화번호
+	  var selectBox= document.getElementById("dr_time");
+	  var svalue=selectBox.options.value;
+		// 다이닝 타입, 입장 시간
 		if(document.view_type.dr_date.value.trim()=="")
 		{
-			alert("이름을 입력하세요");
+			alert("예약 희망 날짜를 선택해주세요.");
 			return false;
 		}
-		else(document.reser.dr_time.value.trim()=="")
+		else (document.view_type.svalue.trim()=="")
 		{
-			alert("전화번호를 입력하세요");
+			alert("예약 희망 시간을 선택해주세요.");
 			return false;
-		}  
+		}  // options[view_type.selectedIndex]
+
 	}
+
 		
   
 
@@ -420,12 +424,11 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
 	       <td><input type="submit" value="예약하기" class="cbtn" > </td>
 	     </tr> -->
 	     <tr>
-	       <td><input type="button" value="이전" onclick="location='dining'"> </td>
+	       <td><input type="button" value="이전" class="btn" onclick="location='dining'"> </td>
 	     <c:if test="${userid == null}">  
 	       
            <td colspan="2" align="right">
-           <input type="submit" value="비회원으로 예약" class="btn" >
-           <span class="cbtn" onclick="login_view"> 회원으로 예약 </span>
+           <input type="submit" value="예약하기" class="btn" onclick="return check()">
            </td>
          </c:if>
  		   <c:if test="${userid != null}"> 
