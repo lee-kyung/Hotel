@@ -69,7 +69,7 @@ roomsec hr{
 }
 roomsec #subr {
 	font-weight: 900;
-	width: 100px;
+	width: 100px;http://localhost:8080/hotel/img/rooms/dc1.jpg
 	display: inline-block;
 	color: #887159;
 	margin-top: 10px;
