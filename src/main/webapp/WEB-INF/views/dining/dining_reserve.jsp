@@ -202,11 +202,17 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
   function check()
 	{
 		// 아이디, 비번, 이름, 전화번호
-		(document.view_type.dine_type.value.trim()=="")
+		if(document.view_type.dr_date.value.trim()=="")
 		{
 			alert("이름을 입력하세요");
 			return false;
 		}
+		else(document.reser.dr_time.value.trim()=="")
+		{
+			alert("전화번호를 입력하세요");
+			return false;
+		}  
+	}
 		
   
 
