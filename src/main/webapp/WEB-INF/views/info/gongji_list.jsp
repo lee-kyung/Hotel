@@ -114,7 +114,7 @@
 			<td>관리자</td>
 			<td>${gvo.writeday }</td>
 		</tr>
-		</c:forEach>
+		</c:forEach> 
 		
 		<tr style="border-bottom-color:white;">
 			<td colspan="3">
