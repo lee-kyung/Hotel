@@ -4,12 +4,19 @@ public class DiningVO {
 
 	private int id, dine_su, dine_adult, dine_child, dine_halin, dining_id;
 	
-	private String dcode, dine_pimg, dine_cimg;
+	private String dcode, writeday;
 	
 	// count값 증가
 	private int cnt;
 	private String dine_type;
-		
+	
+
+	public String getWriteday() {
+		return writeday;
+	}
+	public void setWriteday(String writeday) {
+		this.writeday = writeday;
+	}
 	public int getDining_id() {
 		return dining_id;
 	}
@@ -58,12 +65,6 @@ public class DiningVO {
 	public void setDine_child(int dine_child) {
 		this.dine_child = dine_child;
 	}
-	public int getDine_halin() {
-		return dine_halin;
-	}
-	public void setDine_halin(int dine_halin) {
-		this.dine_halin = dine_halin;
-	}
 
 	public String getDine_type() {
 		return dine_type;
@@ -71,17 +72,5 @@ public class DiningVO {
 	public void setDine_type(String dine_type) {
 		this.dine_type = dine_type;
 	}
-	public String getDine_pimg() {
-		return dine_pimg;
-	}
-	public void setDine_pimg(String dine_pimg) {
-		this.dine_pimg = dine_pimg;
-	}
-	public String getDine_cimg() {
-		return dine_cimg;
-	}
-	public void setDine_cimg(String dine_cimg) {
-		this.dine_cimg = dine_cimg;
-	}
-	
+
 }
