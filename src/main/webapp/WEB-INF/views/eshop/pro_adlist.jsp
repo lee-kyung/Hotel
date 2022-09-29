@@ -144,7 +144,7 @@
 						<option value="sold"> 판매량 </option>
 					</c:if>
 				</select>
-				<input type="text" name="sword" value="${sword}" placeholder="검색할 단어 또는 숫자를 입력해주세요" id="stext"><input type="submit" value="검색" id="sbutton">
+				<input type="text" name="sword" value="${sword}" placeholder="검색할 단어 또는 숫자" id="stext"><input type="submit" value="검색" id="sbutton">
 			</form>
 		</div>
 		</div>
@@ -180,7 +180,7 @@
 		   				</c:if>
 	   				</td>
 	   				<td width="70"> <img src="../img/eshop/${pvo.simg}" height="50" width="50"> </td>
-	   				<td width="310" style="text-align:left;padding-left:10px;"> <a href="pro_adcontent?id=${pvo.id}">${pvo.title}</a> </td>
+	   				<td width="310" style="text-align:left;padding-left:10px;"> <a href="pro_adcontent?id=${pvo.id}&page=${page}&psel=${psel}&ssel=${ssel}&sword=${sword}&osel=${osel}">${pvo.title}</a> </td>
 	   				<td> ${pvo.su}개 </td>
 	   				<td> ${pvo.sold}개 </td>
 	   				<td> ${pvo.buyday} </td>
@@ -189,11 +189,13 @@
     		
     		<!-- 페이지 이동 -->
     		<tr class="link" style="background:#F6F6F6;">
-				<td colspan="4" height="50" align="center">
+				<td colspan="6" height="50" align="center">
 				<!-- 그룹으로 이전 이동 -->
+				<c:if test="${pstart == 1}">
+					이전
+				</c:if>
 				<c:if test="${pstart != 1}">
-					<a href="pro_adlist?page=${pstart-1}&psel=${psel}&ssel=${ssel}&sword=${sword}&osel=${osel}" style="text-decoration:none;"><</a><a href="pro_adlist?page=${pstart-1}&psel=${psel}&ssel=${ssel}&sword=${sword}&osel=${osel}">이전</a>
-					<span style="color:#D5D5D5;">|</span>
+					<a href="pro_adlist?page=${pstart-1}&psel=${psel}&ssel=${ssel}&sword=${sword}&osel=${osel}">이전</a>
 				</c:if>
 				<!-- 페이지 이동범위 출력 -->
 				<c:forEach var="pnow" begin="${pstart}" end="${pend}">
@@ -205,13 +207,12 @@
 					</c:if>
 				</c:forEach>
 				<!-- 그룹으로 다음 이동 -->
-					<span style="color:#D5D5D5;">|</span>
 				<c:if test="${pend == ptotal}">
-					<span>다음 ></span>
+					다음
 				</c:if>
 				<c:if test="${pend != ptotal}">
 				<span>
-					<a href="pro_adlist?page=${pend+1}&psel=${psel}&ssel=${ssel}&sword=${sword}&osel=${osel}">다음</a><a href="pro_adlist?page=${pend+1}&psel=${psel}&ssel=${ssel}&sword=${sword}&osel=${osel}" style="text-decoration:none;">></a>
+					<a href="pro_adlist?page=${pend+1}&psel=${psel}&ssel=${ssel}&sword=${sword}&osel=${osel}">다음</a>
 				</span>
 				</c:if>
 				</td>

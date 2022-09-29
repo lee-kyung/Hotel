@@ -145,4 +145,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select ceil(count(*)/${param1}) from product where ${param2} like concat('%', #{param3}, '%')
 	</select>
 	
+	<select id="pro_adcontent" resultType="kr.co.hotel.eshop.ProductVO">
+		select * from product where id=#{param1}
+	</select>
+	
 </mapper>

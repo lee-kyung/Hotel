@@ -122,8 +122,8 @@ public class EshopController {
 	}
 	
 	@RequestMapping("/eshop/pro_adcontent")
-	public String pro_adcontent(Model model) {
-		return service.pro_adcontent(model);
+	public String pro_adcontent(Model model, HttpServletRequest request) {
+		return service.pro_adcontent(model, request);
 	}
 	
 	@RequestMapping("/eshop/pro_addelete")

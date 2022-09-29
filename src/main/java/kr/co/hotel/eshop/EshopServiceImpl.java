@@ -543,9 +543,19 @@ public class EshopServiceImpl implements EshopService {
 	}
 
 	@Override
-	public String pro_adcontent(Model model) {
-		// TODO Auto-generated method stub
-		return null;
+	public String pro_adcontent(Model model, HttpServletRequest request) {
+		ProductVO pvo= mapper.pro_adcontent(request.getParameter("id"));
+				
+		/* fimg를 imgs에 담아서 배열로  전달 */
+		pvo.setImgs(pvo.getFimg().split(","));
+
+		model.addAttribute("pvo", pvo);
+		model.addAttribute("page", request.getParameter("page"));
+		model.addAttribute("psel", request.getParameter("psel"));
+		model.addAttribute("ssel", request.getParameter("ssel"));
+		model.addAttribute("sword", request.getParameter("sword"));
+		model.addAttribute("osel", request.getParameter("osel"));
+		return "eshop/pro_adcontent";
 	}
 
 	@Override

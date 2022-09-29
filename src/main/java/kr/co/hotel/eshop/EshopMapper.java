@@ -39,4 +39,5 @@ public interface EshopMapper {
 	
 	public ArrayList<ProductVO> pro_adlist(String ssel, String sword, String osel, int pindex, int psel);
 	public int total(int psel, String ssel, String sword);
+	public ProductVO pro_adcontent(String id);
 }

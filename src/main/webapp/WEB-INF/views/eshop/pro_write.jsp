@@ -6,9 +6,7 @@
 <style>
 	#pro_write {
 		width : 1000px;
-		height : 700px;
-		margin : auto;
-		margin-top : 50px;
+		margin : 50px auto 50px auto;
 	}
 	#pro_write table {
 		font-size : 14px;
@@ -156,7 +154,7 @@
 <body>
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
 		<div class="bradcam_area basic">
-	        <div id="h3" onclick="location='pro_write'" style="cursor:pointer;"> 상품 등록 </div>
+	        <div id="h3" onclick="location='pro_write'" style="cursor:pointer;"> 상 품 등 록 </div>
 	    </div>
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
     
