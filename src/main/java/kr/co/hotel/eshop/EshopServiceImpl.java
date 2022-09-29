@@ -1,5 +1,6 @@
 package kr.co.hotel.eshop;
 
+import java.io.File;
 import java.io.PrintWriter;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
@@ -32,7 +33,7 @@ public class EshopServiceImpl implements EshopService {
 	@Override
 	public String pro_write(Model model) {
 		model.addAttribute("list", mapper.pro_write());
-		return "/eshop/pro_write";
+		return "/eshop/pro_adlist";
 	}
 
 	@Override
@@ -560,8 +561,22 @@ public class EshopServiceImpl implements EshopService {
 
 	@Override
 	public String pro_addelete(HttpServletRequest request) {
-		// TODO Auto-generated method stub
-		return null;
+		mapper.pro_addelete(request.getParameter("id"));
+		
+		/* [resources/img/eshop]폴더에 있는 기존이미지파일 삭제하기 */
+		String[] imgs=(request.getParameter("fimg")+request.getParameter("simg")).split(",");
+		String path=request.getRealPath("resources/img/eshop");
+
+		for(int i=0;i<imgs.length;i++) {
+			File file=new File(path+"/"+imgs[i]);
+			if(file.exists())
+				file.delete();
+		}
+		
+		/* sword는 list로 넘어갈때 한글이 깨지므로 인코딩시켜서 보내기 */
+		String sword=URLEncoder.encode(request.getParameter("sword"));
+		
+		return "redirect:/eshop/pro_adlist?page="+request.getParameter("page")+"&psel="+request.getParameter("psel")+"&ssel="+request.getParameter("ssel")+"&sword="+sword+"&osel="+request.getParameter("osel");
 	}
 
 	@Override

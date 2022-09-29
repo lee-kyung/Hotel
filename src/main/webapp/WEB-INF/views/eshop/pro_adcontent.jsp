@@ -81,8 +81,8 @@
 			<tr>
 				<td colspan="2" align="center">
 					<input type="button" value="목록" onclick="location='pro_adlist?page=${page}&psel=${psel}&ssel=${ssel}&sword=${sword}&osel=${osel}'">
-					<input type="button" value="수정" onclick="location='pro_adupdate?id=${svo.id}&page=${page}&psel=${psel}&ssel=${ssel}&sword=${sword}&osel=${osel}'">
-					<input type="button" value="삭제" onclick="location='pro_addelete?id=${svo.id}&page=${page}&psel=${psel}&ssel=${ssel}&sword=${sword}&osel=${osel}'">
+					<input type="button" value="수정" onclick="location='pro_adupdate?id=${pvo.id}&page=${page}&psel=${psel}&ssel=${ssel}&sword=${sword}&osel=${osel}'">
+					<input type="button" value="삭제" onclick="location='pro_addelete?id=${pvo.id}&fimg=${pvo.fimg}&simg=${pvo.simg}&page=${page}&psel=${psel}&ssel=${ssel}&sword=${sword}&osel=${osel}'">
 				</td>
 			</tr>
 		</table>

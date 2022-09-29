@@ -149,4 +149,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from product where id=#{param1}
 	</select>
 	
+	<delete id="pro_addelete">
+		delete from product where id=#{param1}
+	</delete>
+	
 </mapper>
