@@ -14,5 +14,9 @@ public interface AdminService {
 	public String dinelist(Model model, HttpServletRequest request);
 	public String gumaelist(Model model, HttpServletRequest request);
 	public String estatechange(HttpServletRequest request);
+	public String roombkview(Model model, HttpServletRequest request);
+	public String wedbkview(Model model, HttpServletRequest request);
+	public String dinebkview(Model model, HttpServletRequest request);
+	public String gumaeview(Model model, HttpServletRequest request);
 
 }

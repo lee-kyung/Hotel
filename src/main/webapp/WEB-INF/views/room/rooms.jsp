@@ -9,187 +9,187 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<style>
-.container {
-	width: 1300px;
-	margin: auto;
-}
-
-#rtype {
-	font-size: 35px;
-	font-weight: 900;
-}
-
-#rname {
-	margin-top: 20px;
-	font-size: 33px;
-	font-weight: 500;
-}
-
-roomsec {
-	margin-bottom: 80px;
-	width: 1300px;
-	color: #887159;
-}
-
-roomsec #ro_outer {
-/* 	outline: 1px solid #887159; */
-	width: 1200px;
-	height: 500px;
-	margin: auto;
-}
-
-roomsec #ro_outer #left {
-	background: gold;
-	float: left;  
-	width: 800px;
-	height: 500px;
-}
-
-roomsec #ro_outer #left > img{
-	width: 800px;
-	height: 500px;
-}
-
-roomsec #ro_outer #right {
-	/* background: pink; */
-	float: right;  
-	width: 390px; 
-	height: 500px;
-}
-
-roomsec #ro_outer #right #right_outer{
-	margin-top: 50px;
-}
-
-roomsec hr{
-	width: 380px;
-	margin: auto;
-	border: 1px solid #887159;
-}
-roomsec #subr {
-	font-weight: 900;
-	width: 100px;
-	display: inline-block;
-	color: #887159;
-	margin-top: 10px;
-}
-
-roomsec input[type=button] {
-	color: #887159;
-	background: white;
-	border: 1px solid #887159;
-	width: 100px;
-	height: 40px;
-}
-
-roomsec input[type=button]:hover {
-	cursor: pointer;
-	background: #887159;
-	color: white;
-}
-
-roomsec #r1 {
-	font-size: 50px;
-	font-family: fantasy;
-}
-
-section #room_list .slider {
-	width: 1200px;
-	height: 500px;
-	position: relative;
-	margin: 0 auto;
-	overflow: hidden; /* 현재 슬라이드 오른쪽에 위치한 나머지 슬라이드 들이 보이지 않도록 가림 */
-}
-
-section #room_list .slider input[type=radio] {
-	display: none;
-}
-
-section #room_list .slider ul.imgs {
-	padding: 0;
-	margin: 0;
-	list-style: none;
-}
-
-section #room_list .slider ul li img {
-	width: 800px;
-	height: 500px;
-}
-
-section #room_list .slider ul.imgs li {
-	position: absolute;
-	left: 1200px;
-	transition-delay: 1s; /* 새 슬라이드가 이동해 오는 동안 이전 슬라이드 이미지가 배경이 보이도록 지연 */
-	padding: 0;
-	margin: 0;
-}
-
-section #room_list .slider .bullets {
-	position: absolute;
-	left: 50%;
-	transform: translateX(-50%);
-	bottom: 20px;
-	z-index: 2;
-}
-
-section #room_list .slider .bullets label {
-	display: inline-block;
-	border-radius: 50%;
-	background-color: rgba(0, 0, 0, 0.55);
-	width: 20px;
-	height: 20px;
-	cursor: pointer;
-}
-
-/* 현재 선택된 불릿 배경 흰색으로 구분 표시 */
-section #room_list .slider input[type=radio]:nth-child(1):checked ~.bullets>label:nth-child(1)
-	{
-	background-color: #fff;
-}
-
-section #room_list .slider input[type=radio]:nth-child(2):checked ~.bullets>label:nth-child(2)
-	{
-	background-color: #fff;
-}
-
-section #room_list .slider input[type=radio]:nth-child(3):checked ~.bullets>label:nth-child(3)
-	{
-	background-color: #fff;
-}
-
-section #room_list .slider input[type=radio]:nth-child(4):checked ~.bullets>label:nth-child(4)
-	{
-	background-color: #fff;
-}
-
-section #room_list .slider input[type=radio]:nth-child(1):checked ~ul.imgs>li:nth-child(1)
-	{
-	left: 0;
-	transition: 0.5s;
-	z-index: 1;
-}
-
-section #room_list .slider input[type=radio]:nth-child(2):checked ~ul.imgs>li:nth-child(2)
-	{
-	left: 0;
-	transition: 0.5s;
-	z-index: 1;
-}
-
-section #room_list .slider input[type=radio]:nth-child(3):checked ~ul.imgs>li:nth-child(3)
-	{
-	left: 0;
-	transition: 0.5s;
-	z-index: 1;
-}
-
-section #room_list .slider input[type=radio]:nth-child(4):checked ~ul.imgs>li:nth-child(4)
-	{
-	left: 0;
-	transition: 0.5s;
-	z-index: 1;
-}
+<style>
+	.container {
+		width: 1300px;
+		margin: auto;
+	}
+	
+	#rtype {
+		font-size: 35px;
+		font-weight: 900;
+	}
+	
+	#rname {
+		margin-top: 20px;
+		font-size: 33px;
+		font-weight: 500;
+	}
+	
+	roomsec {
+		margin-bottom: 80px;
+		width: 1300px;
+		color: #887159;
+	}
+	
+	roomsec #ro_outer {
+	/* 	outline: 1px solid #887159; */
+		width: 1200px;
+		height: 500px;
+		margin: auto;
+	}
+	
+	roomsec #ro_outer #left {
+		background: gold;
+		float: left;  
+		width: 800px;
+		height: 500px;
+	}
+	
+	roomsec #ro_outer #left > img{
+		width: 800px;
+		height: 500px;
+	}
+	
+	roomsec #ro_outer #right {
+		/* background: pink; */
+		float: right;  
+		width: 390px; 
+		height: 500px;
+	}
+	
+	roomsec #ro_outer #right #right_outer{
+		margin-top: 50px;
+	}
+	
+	roomsec hr{
+		width: 380px;
+		margin: auto;
+		border: 1px solid #887159;
+	}
+	roomsec #subr {
+		font-weight: 900;
+		width: 100px;
+		display: inline-block;
+		color: #887159;
+		margin-top: 10px;
+	}
+	
+	roomsec input[type=button] {
+		color: #887159;
+		background: white;
+		border: 1px solid #887159;
+		width: 100px;
+		height: 40px;
+	}
+	
+	roomsec input[type=button]:hover {
+		cursor: pointer;
+		background: #887159;
+		color: white;
+	}
+	
+	roomsec #r1 {
+		font-size: 50px;
+		font-family: fantasy;
+	}
+	
+	section #room_list .slider {
+		width: 1200px;
+		height: 500px;
+		position: relative;
+		margin: 0 auto;
+		overflow: hidden; /* 현재 슬라이드 오른쪽에 위치한 나머지 슬라이드 들이 보이지 않도록 가림 */
+	}
+	
+	section #room_list .slider input[type=radio] {
+		display: none;
+	}
+	
+	section #room_list .slider ul.imgs {
+		padding: 0;
+		margin: 0;
+		list-style: none;
+	}
+	
+	section #room_list .slider ul li img {
+		width: 800px;
+		height: 500px;
+	}
+	
+	section #room_list .slider ul.imgs li {
+		position: absolute;
+		left: 1200px;
+		transition-delay: 1s; /* 새 슬라이드가 이동해 오는 동안 이전 슬라이드 이미지가 배경이 보이도록 지연 */
+		padding: 0;
+		margin: 0;
+	}
+	
+	section #room_list .slider .bullets {
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+		bottom: 20px;
+		z-index: 2;
+	}
+	
+	section #room_list .slider .bullets label {
+		display: inline-block;
+		border-radius: 50%;
+		background-color: rgba(0, 0, 0, 0.55);
+		width: 20px;
+		height: 20px;
+		cursor: pointer;
+	}
+	
+	/* 현재 선택된 불릿 배경 흰색으로 구분 표시 */
+	section #room_list .slider input[type=radio]:nth-child(1):checked ~.bullets>label:nth-child(1)
+		{
+		background-color: #fff;
+	}
+	
+	section #room_list .slider input[type=radio]:nth-child(2):checked ~.bullets>label:nth-child(2)
+		{
+		background-color: #fff;
+	}
+	
+	section #room_list .slider input[type=radio]:nth-child(3):checked ~.bullets>label:nth-child(3)
+		{
+		background-color: #fff;
+	}
+	
+	section #room_list .slider input[type=radio]:nth-child(4):checked ~.bullets>label:nth-child(4)
+		{
+		background-color: #fff;
+	}
+	
+	section #room_list .slider input[type=radio]:nth-child(1):checked ~ul.imgs>li:nth-child(1)
+		{
+		left: 0;
+		transition: 0.5s;
+		z-index: 1;
+	}
+	
+	section #room_list .slider input[type=radio]:nth-child(2):checked ~ul.imgs>li:nth-child(2)
+		{
+		left: 0;
+		transition: 0.5s;
+		z-index: 1;
+	}
+	
+	section #room_list .slider input[type=radio]:nth-child(3):checked ~ul.imgs>li:nth-child(3)
+		{
+		left: 0;
+		transition: 0.5s;
+		z-index: 1;
+	}
+	
+	section #room_list .slider input[type=radio]:nth-child(4):checked ~ul.imgs>li:nth-child(4)
+		{
+		left: 0;
+		transition: 0.5s;
+		z-index: 1;
+	}
 
 /**************************************/
 </style>
