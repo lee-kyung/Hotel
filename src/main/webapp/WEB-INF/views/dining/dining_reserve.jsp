@@ -237,9 +237,12 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
 			}
 		}	
 
+<<<<<<< HEAD
   } 
 
   
+=======
+>>>>>>> branch 'main' of https://github.com/ey0k/hotel.git
   function check()
 	{
 		// 다이닝 타입, 입장 시간
@@ -252,9 +255,13 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
 		{
 			alert("예약 희망 시간을 선택해주세요.");
 			return false;
+<<<<<<< HEAD
 		}  
 		else
 			return true;
+=======
+		}  // options[view_type.selectedIndex]
+>>>>>>> branch 'main' of https://github.com/ey0k/hotel.git
 	}
 
   /* function show()
