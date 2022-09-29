@@ -109,7 +109,7 @@
 		<tr>
 			<td colspan="2">
 				<div style="float:left; margin-left:350px;"><input type="checkbox" name="gubun" value="1"></div>
-				<div style="float:right;">이 글이 첫번째 공지로 보이길 원하는 경우 체크해주세요</div>
+				<div style="float:right;">이 글이 첫번째 dd공지로 보이길 원하는 경우 체크해주세요</div>
 			</td>
 		</tr>
 		<tr>
