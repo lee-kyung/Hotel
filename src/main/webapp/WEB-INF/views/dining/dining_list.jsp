@@ -6,7 +6,7 @@
 <style>
   table{
     margin-bottom:20px;
-    font-size:16px;
+    font-size:19px;
     line-height:2;
   }
 </style>
@@ -20,7 +20,7 @@
     	①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기
     	②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
     <div class="bradcam_area s7">	<!-- class="bradcam_area 클래스명" -->
-        <h3> 상품 등록 </h3>
+        <h3> 상품 목록 </h3>
     </div>
     <!-- bradcam_area_end -->
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
@@ -30,43 +30,26 @@
     <!-- 부타이틀(자유롭게 변경)_area_start -->
  <form name="dining_write" enctype="multipart/form-data" method="post" action="dining_write_ok">
   <br>
-  <caption><h2 align="center">다이닝 등록</h2></caption>
+  <caption><h2 align="center">상품 목록</h2></caption>
   <br>
-   <table width="800" align="center" border="1">
+   <table width="900" align="center" border="1">
      
-     <!-- <tr>
-       <td>다이닝메인 이미지</td>
-       <td colspan="2"> <input type="file" name="dine_pimg"> </td>
-     </tr>
      <tr>
-       <td>다이닝상세 이미지</td>
-       <td colspan="2"> <input type="file" name="dine_cimg"> </td>
-     </tr> -->
-     <tr>
-       <td width="200">다이닝제목</td>
-       <td colspan="2"> <input type="text" name="dine_type"> </td>
+        <td>번 호</td>   
+        <td>다이닝 타입</td> 
+        <td>성인 가격</td>
+        <td>어린이 가격</td>
+        <td>상품 등록일</td>
      </tr>
-<!--      <tr>
-       <td>다이닝시간</td>
-       <td colspan="2"> <input type="text" name="dine_time"> </td>
-     </tr> -->
+   <c:forEach items="${list}" var="dvo">
      <tr>
-       <td width="200">다이닝가격(성인기준)</td>
-       <td colspan="2"> <input type="text" name="dine_adult"> </td>
+        <td>${dvo.id}</td>   
+        <td>${dvo.dine_type}</td> 
+        <td><fmt:formatNumber value="${dvo.dine_adult}" pattern="#,###"/>원 </td>
+        <td><fmt:formatNumber value="${dvo.dine_child}" pattern="#,###"/>원 </td>
+        <td>${dvo.writeday}</td>
      </tr>
-     <tr>
-       <td width="200">다이닝가격(어린이기준)</td>
-       <td colspan="2"> <input type="text" name="dine_child"> </td>
-     </tr>
-     <!-- <tr>
-       <td>다이닝 할인율</td>
-       <td colspan="2"> <input type="text" name="dine_halin">%</td>
-     </tr> -->
-     
-     <tr align="right">
-       <td colspan="3" > <input type="submit" value="등록하기"> </td>
-       <td></td>
-     </tr>     
+   </c:forEach>
    </table>
  </form>
     <!-- 부타이틀(자유롭게 변경)_area_end -->
