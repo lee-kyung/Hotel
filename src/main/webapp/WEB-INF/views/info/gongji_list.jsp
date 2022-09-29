@@ -124,7 +124,7 @@
 						<a class="page_n"> << </a>
 					</c:if>
 					<c:if test="${pstart!=1 }">
-						<a href="wedding_resv?page=${pstart-1 }&pcnt=${pcnt}" class="page_n"> << </a>
+						<a href="gongji_list?page=${pstart-1 }&pcnt=${pcnt}" class="page_n"> << </a>
 					</c:if>	
 					
 				<!-- 1페이지단위로 이동 -->
@@ -132,7 +132,7 @@
 						<a class="page_n"> < </a>
 					</c:if>
 					<c:if test="${page!=1 }">
-						<a href="wedding_resv?page=${page-1 }&pcnt=${pcnt}" class="page_n"> < </a>
+						<a href="gongji_list?page=${page-1 }&pcnt=${pcnt}" class="page_n"> < </a>
 					</c:if>		
 					
 				<!-- 페이지출력	 -->
@@ -146,7 +146,7 @@
 						</c:if>
 						
 						<!-- 선택 페이지 이동 -->
-						<a href="wedding_resv?page=${i }&pcnt=${pcnt}" ${st } class="page_n"> ${i} </a><!--  -->
+						<a href="gongji_list?page=${i }&pcnt=${pcnt}" ${st } class="page_n"> ${i} </a><!--  -->
 					</c:forEach>
 				
 				<!-- 1페이지단위로 이동 -->
@@ -154,7 +154,7 @@
 						<a class="page_n"> > </a>
 					</c:if>
 					<c:if test="${page!=chong }">
-						<a href="wedding_resv?page=${page+1 }&pcnt=${pcnt}" class="page_n"> > </a>
+						<a href="gongji_list?page=${page+1 }&pcnt=${pcnt}" class="page_n"> > </a>
 					</c:if>	
 						
 				<!-- 10페이지단위로 이동 -->
@@ -162,7 +162,7 @@
 						<a class="page_n"> >> </a>
 					</c:if>
 					<c:if test="${pend!=chong }">
-						<a href="wedding_resv?page=${pend+1 }&pcnt=${pcnt}" class="page_n"> >> </a>
+						<a href="gongji_list?page=${pend+1 }&pcnt=${pcnt}" class="page_n"> >> </a>
 					</c:if>	
 				</div>
 			</td>

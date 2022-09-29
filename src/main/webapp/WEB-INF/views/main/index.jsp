@@ -70,6 +70,7 @@
                                             <ul class="submenu">
                                                 <li><a href="../info/info">호텔 소개</a></li>
                                                 <li><a href="../info/gongji_list">공지사항</a></li>
+                                                <li><a href="../info/faq_list">FAQ</a></li>
                                             </ul>
                                         <li><a href="../room/rooms">rooms</a></li>
                                         <li><a href="">dining<i class="ti-angle-down"></i></a>

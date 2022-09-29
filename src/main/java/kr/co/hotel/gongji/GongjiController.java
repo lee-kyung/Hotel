@@ -56,4 +56,40 @@ public class GongjiController {
 	{
 		return service.gongji_delete(request);
 	}
+	
+	@RequestMapping("/info/faq_list")
+	public String faq_list(Model model, HttpServletRequest request)
+	{
+		return service.faq_list(model, request);
+	}
+	
+	@RequestMapping("/info/faq_write")
+	public String faq_write()
+	{
+		return "/info/faq_write";
+	}
+	
+	@RequestMapping("/info/faq_write_ok")
+	public String faq_write_ok(FaqVO fvo)
+	{
+		return service.faq_write_ok(fvo);
+	}
+	
+	@RequestMapping("/info/faq_update")
+	public String faq_update(Model model, HttpServletRequest request)	 
+	{
+		return service.faq_update(model, request);
+	}
+	
+	@RequestMapping("/info/faq_update_ok")
+	public String faq_update_ok(FaqVO fvo)
+	{
+		return service.faq_update_ok(fvo);
+	}
+	
+	@RequestMapping("/info/faq_delete")
+	public String faq_delete(HttpServletRequest request)
+	{
+		return service.faq_delete(request);
+	}
 }
