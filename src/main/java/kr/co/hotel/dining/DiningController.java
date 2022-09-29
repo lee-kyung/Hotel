@@ -24,5 +24,30 @@ public class DiningController {
 	{
 		return service.dining_write_ok(request);
 	}
+	@RequestMapping("/dining/dining_list")
+	public String dining_list(Model model)
+	{
+		return service.dining_list(model);
+	}
+	@RequestMapping("/dininig/dining_content")
+	public String dininig_content(HttpServletRequest request, Model model)
+	{
+		return service.dining_content(request,model);
+	}
+	@RequestMapping("/dining/dining_update")
+	public String dining_update(HttpServletRequest request, Model model)
+	{
+		return service.dining_update(request,model);
+	}
+	@RequestMapping("/dining/dining_update_ok")
+	public String dining_update_ok(DiningVO dvo, HttpServletRequest request)
+	{
+		return service.dining_update_ok(dvo, request);
+	}
+	@RequestMapping("/dining/dining_delete")
+	public String dinining_delete(HttpServletRequest request)
+	{
+		return service.dining_delete(request);
+	}
 
 }

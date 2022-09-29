@@ -28,7 +28,7 @@
 
 	<!-- ================ 타이틀(자유롭게 변경) Area Start ================= -->
     <!-- 부타이틀(자유롭게 변경)_area_start -->
- <form name="dining_write" enctype="multipart/form-data" method="post" action="dining_write_ok">
+ <form name="dining_write" method="post" action="dining_write_ok">
   <br>
   <caption><h2 align="center">상품 목록</h2></caption>
   <br>
@@ -46,20 +46,16 @@
    <c:forEach items="${list}" var="dvo">
      <tr>
         <td>${dvo.id}</td>   
-        <td><a href="dining_content">${dvo.dine_type}</a></td> 
+        <td>${dvo.dine_type}</td> 
         <td><fmt:formatNumber value="${dvo.dine_adult}" pattern="#,###"/>원 </td>
         <td><fmt:formatNumber value="${dvo.dine_child}" pattern="#,###"/>원 </td>
         <td>${dvo.writeday}</td>
-        <td><input type="button" class="btn" onclick="location='dining_update?id=${dvo.id}'" value="수정"></td>
-        <td><input type="button" class="btn" onclick="location='dining_delete?id=${dvo.id}'" value="삭제"></td>
-        
-   </c:forEach>
-    <tr>
-        <td colspan="7" align="center">
-          <input type="button" class="btn" onclick="location='../admin/admin'" value="관리자 목록으로">
-          <input type="button" class="btn" onclick="location='dining_write'" value="다이닝등록">
+        <td colspan="2">
+           
+          <input type="button" class="btn" onclick="location='admin'" value="뒤로가기">
         </td>
      </tr>
+   </c:forEach>
    </table>
  </form>
     <!-- 부타이틀(자유롭게 변경)_area_end -->

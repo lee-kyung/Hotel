@@ -85,11 +85,11 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
      /* padding: 5px 0px; */
   }
   #section #dinetype{
-     margin-top:15px;
+     margin-top:5px;
      margin-left:2px;
-     margin-bottom:0px;
-     vertical-align:center;
+     margin-bottom:1px;
      height:87px;
+     vertical-align: middle;
   }
   #section #dinetype :hover{ /* 다이닝 타입 마우스오버 css */
      color:blue;
@@ -110,6 +110,18 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
      margin-top:20px;
      border-top:2px solid #887159;
   }
+  #dine_typediv table tr, th{
+     border-bottom:1px solid #887159;
+  }
+/*   #dine_typediv table tr{
+     margin-left:30px;
+  } */
+  tbody{
+      margin-left:30px;
+  }
+  #dine_typediv #dine tr:first-child{
+     background:#eeeae1 ;
+  } 
   #dine_typediv #dine tr:last-child{
      border-bottom:2px solid #887159;
   } 
@@ -163,15 +175,11 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
 						document.getElementsByClassName("b3")[td[i]-1].style.textDecoration="line-through";
 						document.getElementsByClassName("b3")[td[i]-1].setAttribute("onclick", "alert('선택하신 시간의 예약이 마감되었습니다. 다시 선택해주시기 바랍니다.');");
 					}
-						/* else if(dt[i] == 1 && cnt[i] != bk && cnt[i] <= bk) {
-							document.getElementsByClassName("b1")[td[i]-1].style.background="red";
+						else if(dt[i] == 4 && cnt[i] == bk) {
+							document.getElementsByClassName("b4")[td[i]-1].style.color="#aca8af";
+							document.getElementsByClassName("b4")[td[i]-1].style.textDecoration="line-through";
+							document.getElementsByClassName("b4")[td[i]-1].setAttribute("onclick", "alert('선택하신 시간의 예약이 마감되었습니다. 다시 선택해주시기 바랍니다.');");
 						}
-							else if(dt[i] == 2 && cnt[i] != bk && cnt[i] <= bk) {
-								document.getElementsByClassName("b2")[td[i]-1].style.color="red";
-						    }
-								else if(dt[i] == 3 && cnt[i] != bk && cnt[i] <= bk) {
-									document.getElementsByClassName("b3")[td[i]-1].style.color="red";
-							    } */
 		}
 	}
    
@@ -233,16 +241,13 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
 							document.getElementById("dr_time").innerHTML="<option>선택</option><option value='13:00'>13:00</option><option value='15:00'>15:00</option>";
 							else if(t == 'Dinner')
 								document.getElementById("dr_time").innerHTML="<option>선택</option><option value='16:00'>16:00</option><option value='18:00'>18:00</option>";
+							    else if(t == 'Bbq')
+								    document.getElementById("dr_time").innerHTML="<option>선택</option><option value='16:00'>16:00</option><option value='18:00'>18:00</option>";
 				}
 			}
 		}	
-
-<<<<<<< HEAD
   } 
 
-  
-=======
->>>>>>> branch 'main' of https://github.com/ey0k/hotel.git
   function check()
 	{
 		// 다이닝 타입, 입장 시간
@@ -255,24 +260,21 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
 		{
 			alert("예약 희망 시간을 선택해주세요.");
 			return false;
-<<<<<<< HEAD
 		}  
 		else
 			return true;
-=======
-		}  // options[view_type.selectedIndex]
->>>>>>> branch 'main' of https://github.com/ey0k/hotel.git
+		  // options[view_type.selectedIndex]
 	}
 
   /* function show()
     {
 	  $('#dine_type').show();
     } */
-    function show()
+/*     function show()
     {
     	document.getElementById("dine_type").style.display="block";
     }
-
+ */
 </script>
 </head>
 
@@ -389,7 +391,7 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
           <c:if test="${ !((yoil>j && i==1) || (chong < day)) }">
 
           <td id="day">
-             <div id="day_td">${day}</div>
+             <span id="day_td">${day}</span>
           <%
                int day2=Integer.parseInt(pageContext.getAttribute("day").toString());
                int y=Integer.parseInt(request.getAttribute("y").toString());
@@ -400,20 +402,21 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
   <div id="dinetype" >
             <c:if test="${dday >= today}"> <!--  오늘 이후면 클릭 되도록 -->
            
-            <span id="dine_type" class="b1" name="dine_type" style="font-size:14px;" 
-            	onclick="date_type(${y}, ${m}, ${day}, 'Breakfast');show();">
+            <span id="dine_type" class="b1" name="dine_type" style="font-size:14px;" onclick="date_type(${y}, ${m}, ${day}, 'Breakfast')">
                		<img src="../img/dining/breakfast.png" width="17px;" height="17px;">
              Breakfast <br>
             </span>
-            <span id="dine_type" class="b2" name="dine_type" style="font-size:14px;" 
-            	onclick="date_type(${y}, ${m}, ${day}, 'Lunch');show();">
+            <span id="dine_type" class="b2" name="dine_type" style="font-size:14px;" onclick="date_type(${y}, ${m}, ${day}, 'Lunch')">
               		 <img src="../img/dining/lunch.png" width="17px;" height="17px;">
              Lunch <br>
             </span>
-            <span id="dine_type" class="b3" name="dine_type" style="font-size:14px;" 
-            	onclick="date_type(${y}, ${m}, ${day}, 'Dinner');show();">
+            <span id="dine_type" class="b3" name="dine_type" style="font-size:14px;" onclick="date_type(${y}, ${m}, ${day}, 'Dinner')">
              		  <img src="../img/dining/dinner.png" width="17px;" height="17px;">
              Dinner <br>
+            </span>
+            <span id="dine_type" class="b4" name="dine_type" style="font-size:14px;" onclick="date_type(${y}, ${m}, ${day}, 'Bbq')">
+             		  <img src="../img/dining/bbq.png" width="18px;" height="19px;">
+             Bbq <br>
             </span>
             </c:if>
              
@@ -431,6 +434,10 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
             <span id="dine_type" class="b3" name="dine_type" style="font-size:14px;visibility:hidden;" >
                <img src="../img/dining/dinner.png" width="17px;" height="17px;">
                Dinner <br>
+            </span>
+            <span id="dine_type" class="b4" name="dine_type" style="font-size:14px;visibility:hidden;" >
+               <img src="../img/dining/bbq.png" width="18px;" height="19px;">
+               Bbq <br>
             </span>
           </div>    
             </c:if> 

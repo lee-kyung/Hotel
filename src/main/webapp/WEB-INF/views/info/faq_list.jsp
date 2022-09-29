@@ -75,7 +75,7 @@
 	
 	section#faq_list #page .page_n:last-child{
 	border-right:1px solid #887159;}
-	
+	 
 </style>
 <script>
 	
