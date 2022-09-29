@@ -138,9 +138,7 @@
 	    </div>
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
     
-    <c:if test="${userid != 'admin'}">
-		<c:redirect url="../main/index"/>
-	</c:if>
+    <c:if test="${userid != 'admin'}"> <c:redirect url="../main/index"/> </c:if>
     
 	<!-- ================ 상품등록 Area Start ================= -->
 	<section id="pro_write">

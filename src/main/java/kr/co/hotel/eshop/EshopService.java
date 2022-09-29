@@ -32,4 +32,10 @@ public interface EshopService {
 	
 	public String pro_gumae_ok(GumaeVO gvo, HttpSession session, HttpServletRequest request, HttpServletResponse response);
 	public String gumae_okmsg(HttpServletRequest request, Model model);
+	
+	public String pro_adlist(Model model, HttpServletRequest request);
+	public String pro_adcontent(Model model);
+	public String pro_addelete(HttpServletRequest request);
+	public String pro_adupdate(Model model);
+	public String pro_adupdate_ok(HttpServletRequest request);
 }

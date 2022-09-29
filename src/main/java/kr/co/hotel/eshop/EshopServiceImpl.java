@@ -129,11 +129,11 @@ public class EshopServiceImpl implements EshopService {
 		pend=pstart+(parr-1);
 		
 		/* 총페이지수 구하기 */
-		int ptotal=mapper.total(psel);
+		//int ptotal=mapper.total(psel);
 		
 		/* pend가 총페이지수보다 크다면 값 바꾸기 */
-		if(pend > ptotal)
-			pend=ptotal;
+		//if(pend > ptotal)
+			//pend=ptotal;
 		
 		String userid="";
 		Cookie cookie = WebUtils.getCookie(request, "cookieid");
@@ -153,7 +153,7 @@ public class EshopServiceImpl implements EshopService {
 		model.addAttribute("osel", osel);
 		model.addAttribute("pstart", pstart);
 		model.addAttribute("pend", pend);
-		model.addAttribute("ptotal", ptotal);
+		//model.addAttribute("ptotal", ptotal);
 		return "/eshop/pro_list";
 	}
 	
@@ -465,5 +465,104 @@ public class EshopServiceImpl implements EshopService {
 		model.addAttribute("name", mapper.getName(jumuncode));
 		model.addAttribute("jumuncode", jumuncode);		
 		return "eshop/gumae_okmsg";
+	}
+
+	@Override
+	public String pro_adlist(Model model, HttpServletRequest request) {
+		int page, psel;
+		String ssel, sword;
+		
+		/* 페이지의 초기화면값 처리하기 */
+		if(request.getParameter("page") == null)
+			page=1;
+		else
+			page=Integer.parseInt(request.getParameter("page"));
+		
+		/* 한페이지에 출력할 레코드개수의 초기화면값 처리하기 */
+		if(request.getParameter("psel") == null)
+			psel=15;
+		else
+			psel=Integer.parseInt(request.getParameter("psel"));
+		
+		/* 한페이지에 출력할 레코드의 index값 구하기 */
+		int pindex=(page-1)*psel;
+		
+		/* 검색말머리의 초기화면값 처리하기*/
+		if(request.getParameter("ssel") == null)
+			ssel="id";	// [검색말머리]에 없는 DB필드명 넣기
+		else
+			ssel=request.getParameter("ssel");
+		
+		/* 검색어의 초기화면값 처리하기*/
+		if(request.getParameter("sword") == null)
+			sword="";
+		else
+			sword=request.getParameter("sword");
+		
+		/* 페이지 이동을 위한 출력 범위 */
+		int pstart, pend, parr=10;
+		
+		pstart=page/parr;	// 페이지 출력 범위 : 1~10, 11~20, 21~30…
+		if((page % parr) == 0)
+			pstart--;
+			
+		pstart=(pstart*parr)+1;
+		pend=pstart+(parr-1);
+		
+		/*if(page <= parr)	// 페이지 출력 범위 : 현재페이지 앞뒤로 ±parr값
+			pstart=1;
+		else
+			pstart=page-parr;
+		
+		pend=page+parr;/*
+
+		/* 총페이지수 구하기 */
+		int ptotal=mapper.total(psel, ssel, sword);
+		
+		/* pend가 총페이지수보다 크다면 값 바꾸기 */
+		if(pend > ptotal)
+			pend=ptotal;
+		
+		/* 정렬의 초기화면값 처리하기 */
+		String osel;
+		if(request.getParameter("osel") == null)
+			osel="id desc";
+		else
+			osel=request.getParameter("osel");
+		
+		model.addAttribute("plist", mapper.pro_adlist(ssel, sword, osel, pindex, psel));
+		model.addAttribute("page", page);
+		model.addAttribute("psel", psel);
+		model.addAttribute("ssel", ssel);
+		model.addAttribute("sword", sword);
+		model.addAttribute("pstart", pstart);
+		model.addAttribute("pend", pend);
+		model.addAttribute("ptotal", ptotal);
+		model.addAttribute("osel", osel);
+		return "eshop/pro_adlist";
+	}
+
+	@Override
+	public String pro_adcontent(Model model) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String pro_addelete(HttpServletRequest request) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String pro_adupdate(Model model) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String pro_adupdate_ok(HttpServletRequest request) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

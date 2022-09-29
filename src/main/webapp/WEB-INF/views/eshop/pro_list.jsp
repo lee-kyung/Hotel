@@ -258,24 +258,36 @@
 					<option value="id desc"> 신상품순 </option>
 				</c:if>
 				<c:if test="${osel == 'halin desc'}">
-					<option value="halin desc" selected> 할인율순 </option>
+					<option value="halin desc" selected> 할인순 </option>
 				</c:if>
 				<c:if test="${osel != 'halin desc'}">
-					<option value="halin desc"> 할인율순 </option>
+					<option value="halin desc"> 할인순 </option>
 				</c:if>
 				<c:if test="${osel == 'price desc'}">
-					<option value="price desc" selected> 고가격순 </option>
+					<option value="price desc" selected> 최고가순 </option>
 				</c:if>
 				<c:if test="${osel != 'price desc'}">
-					<option value="price desc"> 고가격순 </option>
+					<option value="price desc"> 최고가순 </option>
 				</c:if>
 				<c:if test="${osel == 'price asc'}">
-					<option value="price asc" selected> 저가격순 </option>
+					<option value="price asc" selected> 최저가순 </option>
 				</c:if>
 				<c:if test="${osel != 'price asc'}">
-					<option value="price asc"> 저가격순 </option>
+					<option value="price asc"> 최저가순 </option>
 				</c:if>
 			</select>
+		</div>
+		<div>
+			<form method="post" action="list" onsubmit="return search_sel(this)">
+			<input type="hidden" name="psel" value="${psel}">	<!-- psel변경후 검색해도 psel유지시키기 -->
+				<select name="ssel" id="ssel">
+					<option value="0"> 선택 </option>
+					<option value="title"> 상품명 </option>
+					<option value="su"> 재고 </option>
+					<option value="sold"> 판매량 </option>
+				</select>
+				<input type="text" name="sword" value="${sword}" placeholder="검색할 단어 또는 숫자를 입력해주세요" id="stext"><input type="submit" value="검색" id="sbutton">
+			</form>
 		</div>
 		<div class="default-select" id="default-select" style="display:inline-block;float:right;margin-right:5px;">
 			<select onchange="page_sel(this.value)" id="psel">

@@ -12,7 +12,6 @@ public interface EshopMapper {
 	
 	public ArrayList<ProductVO> pro_list(String userid, String pcode, String osel, int pindex, int psel);
 	public ArrayList<ProductVO> pro_list2(String pcode, String osel, int pindex, int psel);
-	public int total(int psel);
 	
 	public ProductVO pro_content(String pcode);
 	
@@ -37,4 +36,7 @@ public interface EshopMapper {
 	public Integer getJumun();
 	public void suMinusPlus(String su, String pcode);
 	public String getName(String jumuncode);
+	
+	public ArrayList<ProductVO> pro_adlist(String ssel, String sword, String osel, int pindex, int psel);
+	public int total(int psel, String ssel, String sword);
 }
