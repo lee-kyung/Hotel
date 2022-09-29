@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
@@ -23,4 +24,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="gongji_delete">
 		delete from gongji where id=#{param1}
 	</delete>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybats-3-mapper.dtd">
+<mapper namespace="kr.co.hotel.gongji.GongjiMapper">
+	
+	<insert id="gongji_write_ok">
+		insert into gongji (title, content, gubun, writeday) values(#{title},#{content},#{gubun},now())
+	</insert>
+	
+	<select id="gongji_list" resultType="kr.co.hotel.gongji.GongjiVO">
+		select * from gongji order by id desc
+	</select>
+	
+	<select id="gongji_content" resultType="kr.co.hotel.gongji.GongjiVO">
+		select * from gongji where id=#{param1}
+	</select>
+	
+	<update id="gongji_update_ok">
+		update gongji set title=#{title}, content=#{content}, gubun=#{gubun} where id=#{id}
+	</update>
+	
+	<delete id="gongji_delete">
+		delete from gongji where id=#{param1}
+	</delete>
+>>>>>>> branch 'main' of https://github.com/ey0k/hotel.git
 </mapper>

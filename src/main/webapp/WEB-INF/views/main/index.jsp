@@ -72,7 +72,7 @@
                                                 <li><a href="../info/gongji_list">공지사항</a></li>
                                             </ul>
                                         <li><a href="../room/rooms">rooms</a></li>
-                                        <li id="title"><a href="">dining<i class="ti-angle-down"></i></a>
+                                        <li><a href="">dining<i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
                                                 <li><a href="../dining/dining">레스토랑 소개</a></li>
                                                 <li><a href="../dining/dining_reserve">레스토랑 예약</a></li>
