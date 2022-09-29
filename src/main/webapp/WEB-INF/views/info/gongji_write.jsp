@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -8,8 +9,7 @@
 	width:1000px;
 	margin:auto;
 	margin-top:100px;
-	margin-bottom:200px;
-	border:1px solid blue;}
+	margin-bottom:200px;}
 	
 	section#g_write{
 	width:1200px;
@@ -49,7 +49,7 @@
 	
 	section#g_write table textarea{
 	width:99%;
-	height:200px;
+	height:400px;
 	outline:none;
 	resize:none;}
 	
@@ -60,7 +60,8 @@
 	height:50px;
 	border:1px solid #887159;
 	background:#887159;
-	color:white;}
+	color:white;
+	cursor:pointer;}
 	
 </style>
 <script>
@@ -68,12 +69,12 @@
 	{
 		if(document.chk.title.value.trim()=="")
 		{
-			alter("제목을 작성해주세요");
+			alert("제목을 작성해주세요");
 			return false;
 		}
 		else if(document.chk.content.value.trim()=="")
 		{
-			alter("내용을 작성해주세요");
+			alert("내용을 작성해주세요");
 			return false;
 		}
 		else
@@ -91,8 +92,8 @@
     <!-- 새 이미지 추가하는 법
     	①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기
     	②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
-    <div class="bradcam_area basic">	<!-- class="bradcam_area 클래스명" -->
-        <div id="h3"> 공지 </div>
+    <div class="bradcam_area gongji">	<!-- class="bradcam_area 클래스명" -->
+        <div id="h3">NOTICE</div>
     </div>
 <section id="g_write">
 <form method="post" name="chk" action="gongji_write_ok" onsubmit="return check()">
@@ -109,7 +110,7 @@
 		<tr>
 			<td colspan="2">
 				<div style="float:left; margin-left:350px;"><input type="checkbox" name="gubun" value="1"></div>
-				<div style="float:right;">이 글이 첫번째 dd공지로 보이길 원하는 경우 체크해주세요</div>
+				<div style="float:right;">이 글이 첫번째 공지로 보이길 원하는 경우 체크해주세요</div>
 			</td>
 		</tr>
 		<tr>

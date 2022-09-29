@@ -69,10 +69,10 @@
                                         <li><a href="../main/index">Hotel<i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
                                                 <li><a href="../info/info">호텔 소개</a></li>
-                                                <li><a href="../info/info">호텔 소개</a></li>
+                                                <li><a href="../info/gongji_list">공지사항</a></li>
                                             </ul>
                                         <li><a href="../room/rooms">rooms</a></li>
-                                        <li id="title"><a href="">dining<i class="ti-angle-down"></i></a>
+                                        <li><a href="">dining<i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
                                                 <li><a href="../dining/dining">레스토랑 소개</a></li>
                                                 <li><a href="../dining/dining_reserve">레스토랑 예약</a></li>
@@ -205,6 +205,24 @@
 		font-size: 20px;
 		color: #887159
 	}
+	#dine #logo{
+     font-family:fantasy;
+     color:#887159;
+     font-size:60px;
+  }
+  	#dine .genric-btn.default{
+     background:#a28d78;
+     color:#f2f1ef;
+     width:200px;
+     height:50px;
+     font-size:16px;
+     text-align:center;
+     vertical-align:center;
+     padding: 5px 0px;
+  }
+  	#dine .genric-btn.default:hover{
+     background: #887159;
+  }
 </style>
 <script>
 	function logcheck()
@@ -305,39 +323,9 @@
     </div>
     <!-- slider_area_end -->
 
-    <!-- about_area_start -->
-    <div class="about_area">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-5 col-lg-5">
-                    <div class="about_info">
-                        <div class="section_title mb-20px">
-                            <span>About Us</span>
-                            <h3>A Luxuries Hotel <br>
-                                with Nature</h3>
-                        </div>
-                        <p>Suscipit libero pretium nullam potenti. Interdum, blandit phasellus consectetuer dolor ornare
-                            dapibus enim ut tincidunt rhoncus tellus sollicitudin pede nam maecenas, dolor sem. Neque
-                            sollicitudin enim. Dapibus lorem feugiat facilisi faucibus et. Rhoncus.</p>
-                        <a href="#" class="line-button">Learn More</a>
-                    </div>
-                </div>
-                <div class="col-xl-7 col-lg-7">
-                    <div class="about_thumb d-flex">
-                        <div class="img_1">
-                            <img src="../img/about/about_1.png" alt="">
-                        </div>
-                        <div class="img_2">
-                            <img src="../img/about/about_2.png" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- about_area_end -->
+   
 
-    <!-- offers_area_start -->
+    <!-- 룸 -->
     <div class="offers_area">
         <div class="container">
             <div class="row">
@@ -399,6 +387,10 @@
     </div>
     <!-- offers_area_end -->
 
+
+
+
+
     <!-- video_area_start -->
     <div class="video_area video_bg overlay">
         <div class="video_area_inner text-center">
@@ -412,169 +404,72 @@
     </div>
     <!-- video_area_end -->
 
+
+
+
+
+  
+   <!-- 다이닝 -->
     <!-- about_area_start -->
+    <div id="dine">
     <div class="about_area">
         <div class="container">
             <div class="row">
-                <div class="col-xl-7 col-lg-7">
-                    <div class="about_thumb2 d-flex">
-                        <div class="img_1">
-                            <img src="../img/about/1.png" alt="">
-                        </div>
-                        <div class="img_2">
-                            <img src="../img/about/2.png" alt="">
-                        </div>
-                    </div>
-                </div>
                 <div class="col-xl-5 col-lg-5">
                     <div class="about_info">
                         <div class="section_title mb-20px">
-                            <span>Delicious Food</span>
-                            <h3>We Serve Fresh and <br>
-                                Delicious Food</h3>
+                            <span>About Us</span>
+                            <div id="logo"> L A&nbsp;&nbsp;M E R </div>
                         </div>
-                        <p>Suscipit libero pretium nullam potenti. Interdum, blandit phasellus consectetuer dolor ornare
-                            dapibus enim ut tincidunt rhoncus tellus sollicitudin pede nam maecenas, dolor sem. Neque
-                            sollicitudin enim. Dapibus lorem feugiat facilisi faucibus et. Rhoncus.</p>
-                        <a href="#" class="line-button">Learn More</a>
+                        <p>호텔 부산의 다양한 레스토랑에서
+						    마스터 쉐프들이 펼치는 화려한 미식의 세계로 초대합니다.</p>
+                        <!-- <a href="../dining/dining_reserve" class="line-button">예약하기</a> -->
+                        <a href="../dining/dining_reserve" class="genric-btn default">온라인 예약</a>
+                    </div>
+                </div>
+                <div class="col-xl-7 col-lg-7">
+                    <div class="about_thumb d-flex">
+                        <div class="img_1">
+                            <img src="../img/about/m1.jpg" alt="" width="250" height="280">
+                        </div>
+                        <div class="img_2">
+                            <img src="../img/about/m2.jpg" alt="" width="500" height="250">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+     </div>
     </div>
     <!-- about_area_end -->
+    <!-- about_area_end -->
+  
 
-    <!-- features_room_startt -->
-    <div class="features_room">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="section_title text-center mb-100">
-                        <span>Featured Rooms</span>
-                        <h3>Choose a Better Room</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="rooms_here">
-            <div class="single_rooms">
-                <div class="room_thumb">
-                    <img src="../img/rooms/1.png" alt="">
-                    <div class="room_heading d-flex justify-content-between align-items-center">
-                        <div class="room_heading_inner">
-                            <span>From $250/night</span>
-                            <h3>Superior Room</h3>
-                        </div>
-                        <a href="#" class="line-button">book now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="single_rooms">
-                <div class="room_thumb">
-                    <img src="../img/rooms/2.png" alt="">
-                    <div class="room_heading d-flex justify-content-between align-items-center">
-                        <div class="room_heading_inner">
-                            <span>From $250/night</span>
-                            <h3>Deluxe Room</h3>
-                        </div>
-                        <a href="#" class="line-button">book now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="single_rooms">
-                <div class="room_thumb">
-                    <img src="../img/rooms/3.png" alt="">
-                    <div class="room_heading d-flex justify-content-between align-items-center">
-                        <div class="room_heading_inner">
-                            <span>From $250/night</span>
-                            <h3>Signature Room</h3>
-                        </div>
-                        <a href="#" class="line-button">book now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="single_rooms">
-                <div class="room_thumb">
-                    <img src="../img/rooms/4.png" alt="">
-                    <div class="room_heading d-flex justify-content-between align-items-center">
-                        <div class="room_heading_inner">
-                            <span>From $250/night</span>
-                            <h3>Couple Room</h3>
-                        </div>
-                        <a href="#" class="line-button">book now</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- features_room_end -->
+    
 
-    <!-- forQuery_start -->
-    <div class="forQuery">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-10 offset-xl-1 col-md-12">
-                    <div class="Query_border">
-                        <div class="row align-items-center justify-content-center">
-                            <div class="col-xl-6 col-md-6">
-                                <div class="Query_text">
-                                    <p>For Reservation 0r Query?</p>
-                                </div>
-                            </div>
-                            <div class="col-xl-6 col-md-6">
-                                <div class="phone_num">
-                                    <a href="#" class="mobile_no">+10 576 377 4789</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- forQuery_end-->
+   
 
     <!-- instragram_area_start -->
     <div class="instragram_area">
         <div class="single_instagram">
             <img src="../img/instragram/1.png" alt="">
-            <div class="ovrelay">
-                <a href="#">
-                    <i class="fa fa-instagram"></i>
-                </a>
-            </div>
+            
         </div>
         <div class="single_instagram">
             <img src="../img/instragram/2.png" alt="">
-            <div class="ovrelay">
-                <a href="#">
-                    <i class="fa fa-instagram"></i>
-                </a>
-            </div>
+          
         </div>
         <div class="single_instagram">
             <img src="../img/instragram/3.png" alt="">
-            <div class="ovrelay">
-                <a href="#">
-                    <i class="fa fa-instagram"></i>
-                </a>
-            </div>
+            
         </div>
         <div class="single_instagram">
             <img src="../img/instragram/4.png" alt="">
-            <div class="ovrelay">
-                <a href="#">
-                    <i class="fa fa-instagram"></i>
-                </a>
-            </div>
+           
         </div>
         <div class="single_instagram">
             <img src="../img/instragram/5.png" alt="">
-            <div class="ovrelay">
-                <a href="#">
-                    <i class="fa fa-instagram"></i>
-                </a>
-            </div>
+            
         </div>
     </div>
     <!-- instragram_area_end -->
@@ -584,7 +479,8 @@
         <div class="footer_top">
             <div class="container">
                 <div class="row">
-                    <div class="col-xl-3 col-md-6 col-lg-3">
+                
+                    <div class="col-xl-3 col-md-6 col-lg-3" style="margin-left:30px;">
                         <div class="footer_widget">
                             <h3 class="footer_title">
                                 address
@@ -594,7 +490,8 @@
                             <a href="#" class="line-button">Get Direction</a>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-md-6 col-lg-3">
+                    
+                    <div class="col-xl-3 col-md-6 col-lg-3" style="margin-left:180px;">
                         <div class="footer_widget">
                             <h3 class="footer_title">
                                 Reservation
@@ -603,31 +500,22 @@
                                 reservation@montana.com</p>
                         </div>
                     </div>
-                    <div class="col-xl-2 col-md-6 col-lg-2">
+                    
+                    <div class="col-xl-2 col-md-6 col-lg-2" style="margin-left:160px;">
                         <div class="footer_widget">
                             <h3 class="footer_title">
                                 Navigation
                             </h3>
                             <ul>
-                                <li><a href="#">Home</a></li>
-                                <li><a href="#">Rooms</a></li>
-                                <li><a href="#">About</a></li>
-                                <li><a href="#">News</a></li>
+                                <li><a href="#">Hotel</a></li>
+                                <li><a href="../room/rooms">Rooms</a></li>
+                                <li><a href="../dining/dining">Dining</a></li>
+                                <li><a href="../wedding/wedding">Wedding</a></li>
+                                <li><a href="../eshop/eshop">Eshop</a></li>
                             </ul>
                         </div>
                     </div>
-                    <div class="col-xl-4 col-md-6 col-lg-4">
-                        <div class="footer_widget">
-                            <h3 class="footer_title">
-                                Newsletter
-                            </h3>
-                            <form action="#" class="newsletter_form">
-                                <input type="text" placeholder="Enter your mail">
-                                <button type="submit">Sign Up</button>
-                            </form>
-                            <p class="newsletter_text">Subscribe newsletter to get updates</p>
-                        </div>
-                    </div>
+                   
                 </div>
             </div>
         </div>

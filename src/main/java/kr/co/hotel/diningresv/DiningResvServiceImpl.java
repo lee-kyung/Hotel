@@ -17,8 +17,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import kr.co.hotel.dining.DiningVO;
-import kr.co.hotel.room.RoomVO;
-import kr.co.hotel.wedding.WeddingResvVO;
+
+
 
 @Service
 @Qualifier("drs")

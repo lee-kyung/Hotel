@@ -40,20 +40,25 @@
     /* width:142px; */
     height:50px;
     border-bottom:1px solid #887159;
+    border:1px solid red;
   }
   #section #calendar td{
     border-bottom:1px solid #d3d3d3;
     width:140px;
     height:140px;
   }
+
   #section #day{
     text-align:left;
-    height:10px;
+    /* height:10px; */
+    border:1px solid blue;
+  }
+   #section #calendar #day #dine_type{ /**/
+    display:hidden;
   }
   #section #day_td{
     height:20px;
     border:1px solid black;
-    margin-top:0px;
   }
   #section #pri_info{
     height:80px;
@@ -71,7 +76,7 @@ background-size: 7px 7px;
 background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.7000000000000001px, #fefefe 0, #fefefe 50%);
   }
   #section input [type=submit]{
-    background:#a28d78;
+     background:#a28d78;
      color:#f2f1ef;
      width:200px;
      height:50px;
@@ -79,13 +84,51 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
      text-align:center;
      /* padding: 5px 0px; */
   }
-  #section #dinetype :hover{ /* 다이닝 타입 마우스오버 스타일*/
-     color:red;
-     text-decoration:underline;
-
+  #section #dinetype{
+     margin-top:5px;
+     margin-left:2px;
+     margin-bottom:1px;
+     height:87px;
+     vertical-align: middle;
   }
+  #section #dinetype :hover{ /* 다이닝 타입 마우스오버 css */
+     color:blue;
+     text-decoration:underline;
+  }
+  #dine_typediv #dine #btn{
+  }
+  #dine_typediv #dine .btn{  /* 이전, 예약하기 버튼 css */
+     border:1px solid #b8a898;
+     background:#c3b091;
+     /* color:#faf0e6; */
+  }
+  #dine_typediv #dine{ /* 예약 희망일시(select) table css*/
+     height:200px;
+     display:hidden;
+  }
+  #dine_typediv table{
+     margin-top:20px;
+     border-top:2px solid #887159;
+  }
+  #dine_typediv table tr, th{
+     border-bottom:1px solid #887159;
+  }
+/*   #dine_typediv table tr{
+     margin-left:30px;
+  } */
+  tbody{
+      margin-left:30px;
+  }
+  #dine_typediv #dine tr:first-child{
+     background:#eeeae1 ;
+  } 
+  #dine_typediv #dine tr:last-child{
+     border-bottom:2px solid #887159;
+  } 
+
   
-  /*  bootstrap calendar css 시작  */
+  
+  /*  bootstrap calendar css 시작  */  /*  bootstrap calendar css 시작  */  /*  bootstrap calendar css 시작  */
   .calendar-toolbar {
   margin-bottom: 10px;
   }
@@ -132,15 +175,11 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
 						document.getElementsByClassName("b3")[td[i]-1].style.textDecoration="line-through";
 						document.getElementsByClassName("b3")[td[i]-1].setAttribute("onclick", "alert('선택하신 시간의 예약이 마감되었습니다. 다시 선택해주시기 바랍니다.');");
 					}
-						/* else if(dt[i] == 1 && cnt[i] != bk && cnt[i] <= bk) {
-							document.getElementsByClassName("b1")[td[i]-1].style.background="red";
+						else if(dt[i] == 4 && cnt[i] == bk) {
+							document.getElementsByClassName("b4")[td[i]-1].style.color="#aca8af";
+							document.getElementsByClassName("b4")[td[i]-1].style.textDecoration="line-through";
+							document.getElementsByClassName("b4")[td[i]-1].setAttribute("onclick", "alert('선택하신 시간의 예약이 마감되었습니다. 다시 선택해주시기 바랍니다.');");
 						}
-							else if(dt[i] == 2 && cnt[i] != bk && cnt[i] <= bk) {
-								document.getElementsByClassName("b2")[td[i]-1].style.color="red";
-						    }
-								else if(dt[i] == 3 && cnt[i] != bk && cnt[i] <= bk) {
-									document.getElementsByClassName("b3")[td[i]-1].style.color="red";
-							    } */
 		}
 	}
    
@@ -202,49 +241,41 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
 							document.getElementById("dr_time").innerHTML="<option>선택</option><option value='13:00'>13:00</option><option value='15:00'>15:00</option>";
 							else if(t == 'Dinner')
 								document.getElementById("dr_time").innerHTML="<option>선택</option><option value='16:00'>16:00</option><option value='18:00'>18:00</option>";
+							    else if(t == 'Bbq')
+								    document.getElementById("dr_time").innerHTML="<option>선택</option><option value='16:00'>16:00</option><option value='18:00'>18:00</option>";
 				}
 			}
 		}	
+  } 
 
   function check()
 	{
-	  /* var s= document.getElementById("dr_time"); */
-	  /*var svalue=selectBox.options.value; */
-	  
 		// 다이닝 타입, 입장 시간
 		if(document.view_type.dr_date.value.trim()=="")
 		{
 			alert("예약 희망 날짜를 선택해주세요.");
 			return false;
 		}
-		else if(document.getElementById("dr_time").value=="")
+		else if(document.getElementById("dr_time").selectedIndex==0)
 		{
 			alert("예약 희망 시간을 선택해주세요.");
 			return false;
-		}  // options[view_type.selectedIndex]
+		}  
+		else
+			return true;
+		  // options[view_type.selectedIndex]
 	}
 
-		
-  
-
+  /* function show()
+    {
+	  $('#dine_type').show();
+    } */
+/*     function show()
+    {
+    	document.getElementById("dine_type").style.display="block";
+    }
+ */
 </script>
-<!-- <script type="text/javascript">
-  var dine_type=document.getElementById('dine_type');
-  dine_type.addEventListener('mouseover',function(){
-      dine_type.setAttribute('class','hover');
-  });
-  
-  dine_type.addEventListener('mouseout',function(){
-	  dine_type.removeAttribute('class');
-  }) */
-  /* $(document).ready(function(){
-	 $("div").hover(function(){
-		 $("#dine_type").css("color","red");
-	 }, function(){
-		 $("#dine_type").css("color","black");
-	 }) 
-  }); 
-</script> -->
 </head>
 
 <body>
@@ -360,7 +391,7 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
           <c:if test="${ !((yoil>j && i==1) || (chong < day)) }">
 
           <td id="day">
-             <div id="day_td">${day}</div>
+             <span id="day_td">${day}</span>
           <%
                int day2=Integer.parseInt(pageContext.getAttribute("day").toString());
                int y=Integer.parseInt(request.getAttribute("y").toString());
@@ -368,27 +399,30 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
              %> 
           <fmt:formatDate var="today" value="<%=new java.util.Date() %>" pattern="yyyy-MM-dd"/>
           <fmt:formatDate var="dday" value="<%=new java.util.Date(y-1900,m-1,day2) %>"  pattern="yyyy-MM-dd"/> 
-  <div id="dinetype">
+  <div id="dinetype" >
             <c:if test="${dday >= today}"> <!--  오늘 이후면 클릭 되도록 -->
            
-            <div id="dine_type" class="b1" name="dine_type" 
-            style="font-size:14px;" onclick="date_type(${y}, ${m}, ${day}, 'Breakfast')">
-               <img src="../img/dining/breakfast.png" width="17px;" height="17px;">
-               Breakfast <br>
-            </div>
+            <span id="dine_type" class="b1" name="dine_type" style="font-size:14px;" onclick="date_type(${y}, ${m}, ${day}, 'Breakfast')">
+               		<img src="../img/dining/breakfast.png" width="17px;" height="17px;">
+             Breakfast <br>
+            </span>
             <span id="dine_type" class="b2" name="dine_type" style="font-size:14px;" onclick="date_type(${y}, ${m}, ${day}, 'Lunch')">
-               <img src="../img/dining/lunch.png" width="17px;" height="17px;">
-               Lunch <br>
+              		 <img src="../img/dining/lunch.png" width="17px;" height="17px;">
+             Lunch <br>
             </span>
             <span id="dine_type" class="b3" name="dine_type" style="font-size:14px;" onclick="date_type(${y}, ${m}, ${day}, 'Dinner')">
-               <img src="../img/dining/dinner.png" width="17px;" height="17px;">
-               Dinner <br>
+             		  <img src="../img/dining/dinner.png" width="17px;" height="17px;">
+             Dinner <br>
+            </span>
+            <span id="dine_type" class="b4" name="dine_type" style="font-size:14px;" onclick="date_type(${y}, ${m}, ${day}, 'Bbq')">
+             		  <img src="../img/dining/bbq.png" width="18px;" height="19px;">
+             Bbq <br>
             </span>
             </c:if>
              
             
             <c:if test="${dday < today}"> <!--  오늘보다 이전이면 안보이게, 클릭 안되게 -->
-          <div class="sprite">
+          <div class="sprite" style="height:96px;">
             <span id="dine_type" class="b1" name="dine_type" style="font-size:14px;display:none;" >
                <img src="../img/dining/breakfast.png" width="17px;" height="17px;">
                Breakfast <br>
@@ -400,6 +434,10 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
             <span id="dine_type" class="b3" name="dine_type" style="font-size:14px;visibility:hidden;" >
                <img src="../img/dining/dinner.png" width="17px;" height="17px;">
                Dinner <br>
+            </span>
+            <span id="dine_type" class="b4" name="dine_type" style="font-size:14px;visibility:hidden;" >
+               <img src="../img/dining/bbq.png" width="18px;" height="19px;">
+               Bbq <br>
             </span>
           </div>    
             </c:if> 
@@ -415,14 +453,14 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
    </table>		
 <div id="dine_typediv"> <!-- 타임 클릭시 아래 반영되는 div --> 
 <span id="ccc" style="display:none"></span> 
-  <form name="view_type" method="post" action="dining_reserve_next">
-     <table id="dine" width="1100" border="1">
-	    <tr>
+  <form name="view_type" method="post" action="dining_reserve_next" onsubmit="return check()">
+     <table id="dine" width="1100">
+	    <tr id="sel">
 	       <th width="300">방문 희망 일자</th>
 	       <th width="300">조식/중식/석식</th>
 	       <th width="300">예약시간</th>
 	     </tr>
-	     <tr>
+	     <tr id="sel">
 	       <td><input type="text" name="dr_date" readonly id="dr_date"></td>
 	       <td><select name="dine_type" id="dr_type"></select></td>
 	       <td><select name="dr_time" id="dr_time"></select></td>
@@ -430,19 +468,17 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
 	     <!-- <tr>
 	       <td><input type="submit" value="예약하기" class="cbtn" > </td>
 	     </tr> -->
-	     <tr>
-	       <td><input type="button" value="이전" class="btn" onclick="location='dining'"> </td>
-	     <c:if test="${userid == null}">  
-	       
+	     <tr id="btn">
+	       <td><input type="button" value="이전" class="btn" onclick="location='dining'"> </td>	       
            <td colspan="2" align="right">
-           <input type="submit" value="예약하기" class="btn" onclick="return check()">
-           </td>
-         </c:if>
- 		   <c:if test="${userid != null}"> 
+           <input type="submit" value="예약하기" class="btn">
+           
+
+ 		   <%-- <c:if test="${userid != null}"> 
  		   <td colspan="2" align="right">
        <input type="submit" value="회원으로 예약" class="cbtn">
  		   </td>
- 		   </c:if> 
+ 		   </c:if> --%> 
            
 	     
 	       <!-- <td colspan="3">
@@ -496,7 +532,7 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
         break;
     }
   }
-
+ 
   // Public data API.
   $('[data-toggle="calendar"]').click(function(){
     var $this = $(this),
@@ -506,8 +542,6 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
       $elem.calendar(action);
     }
   });
-})(jQuery);
-
 $('#calendar').calendar();
 </script>
     <!-- 부타이틀(자유롭게 변경)_area_end -->

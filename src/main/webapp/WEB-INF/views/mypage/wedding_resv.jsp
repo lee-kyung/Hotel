@@ -213,7 +213,7 @@
     <!-- 새 이미지 추가하는 법
     	①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기
     	②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
-    <div class="bradcam_area basic">	<!-- class="bradcam_area 클래스명" -->
+    <div class="bradcam_area mypage">	<!-- class="bradcam_area 클래스명" -->
         <div id="h3">WEDDING</div>
     </div>
 <div id="first">

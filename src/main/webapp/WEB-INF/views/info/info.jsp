@@ -11,12 +11,13 @@ appkey=def97946ef83ffb1f9a1cacb75ac32eb"></script>
     margin:auto;
    }
    #map{
+   margin: auto !important;
     text-align:center;
     margin:auto;
 	max-width: none;
 	height: auto;
 	border: 0;
-    margin: auto !important;
+    
 }
 </style>
 <body>
