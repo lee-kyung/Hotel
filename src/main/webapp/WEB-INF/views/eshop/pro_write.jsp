@@ -138,6 +138,10 @@
 	    </div>
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
     
+    <c:if test="${userid != 'admin'}">
+		<c:redirect url="../main/index"/>
+	</c:if>
+    
 	<!-- ================ 상품등록 Area Start ================= -->
 	<section id="pro_write">
 	<form name="inpro" method="post" action="pro_write_ok" enctype="multipart/form-data" onsubmit="return check()">

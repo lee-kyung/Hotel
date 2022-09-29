@@ -144,7 +144,7 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
 		}
 	}
    
-  /* 달력에서 [아침,점심,저녁]을 클릭하면, 해당 [날짜], [다이닝타입], [시간대]를 보내기 → [시간대]의 예약마감은 ajax로 값 가져와서 처리 */
+	/* 달력에서 [아침,점심,저녁]을 클릭하면, 해당 [날짜], [다이닝타입], [시간대]를 보내기 → [시간대]의 예약마감은 ajax로 값 가져와서 처리 */
 	function date_type(y, m, d, t) {
 		let ymd=y+"-"+m+"-"+d;
 		document.getElementById("dr_date").value=ymd;
@@ -160,28 +160,36 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
 				/* 예약된 게 있다면 */
 				let bk=3;	// 타임당 만석인 테이블의 수를 입력 (ex : 8시 타임 3테이블, 10시 타임 3테이블 = 3 입력)
 				if(tmcnt.length > 1) {
-					for(i=0;i<tmcnt.length;i+=2) {
+					for(i=0;i<tmcnt.length-1;i+=2) {
 						if(tmcnt[i] == 8 && tmcnt[i+1] == bk) {
-							document.getElementById("dr_time").innerHTML="<option>선택</option><option value='10:00'>10:00</option>";
-							console.log(tmcnt[i] == 8 && tmcnt[i+1] == bk);
-						}
-							else if(tmcnt[i] == 10 && tmcnt[i+1] == bk) {
-								document.getElementById("dr_time").innerHTML="<option>선택</option><option value='08:00'>08:00</option>";
-								console.log(tmcnt[i] == 8 && tmcnt[i+1] == bk);
+							document.getElementById("dr_time").innerHTML="<option>선택</option><option value='08:00' disabled>08:00</option><option value='10:00'>10:00</option>";
+							break;
 							}
-								else if((tmcnt[i] == 8 || tmcnt[i] == 10) && tmcnt[i+1] != bk)
+							else if(tmcnt[i] == 10 && tmcnt[i+1] == bk) {
+								document.getElementById("dr_time").innerHTML="<option>선택</option><option value='08:00'>08:00</option><option value='10:00' disabled>10:00</option>";
+								break; 
+								}
+								else if((tmcnt[i] == 8 && tmcnt[i+1] != bk) || (tmcnt[i] == 10 && tmcnt[i+1] != bk))
 									document.getElementById("dr_time").innerHTML="<option>선택</option><option value='08:00'>08:00</option><option value='10:00'>10:00</option>";
-						else if(tmcnt[i] == 13 && tmcnt[i+1] == bk)
-							document.getElementById("dr_time").innerHTML="<option>선택</option><option value='15:00'>15:00</option>";
-							else if(tmcnt[i] == 15 && tmcnt[i+1] == bk)
-								document.getElementById("dr_time").innerHTML="<option>선택</option><option value='13:00'>13:00</option>";
-								else if((tmcnt[i] == 13 || tmcnt[i] == 15) && tmcnt[i+1] != bk)
+						else if(tmcnt[i] == 13 && tmcnt[i+1] == bk) {
+							document.getElementById("dr_time").innerHTML="<option>선택</option><option value='13:00' disabled>13:00</option><option value='15:00'>15:00</option>";
+							break;
+							}
+							else if(tmcnt[i] == 15 && tmcnt[i+1] == bk) {
+								document.getElementById("dr_time").innerHTML="<option>선택</option><option value='13:00'>13:00</option><option value='15:00' disabled>15:00</option>";
+								break; 
+								}
+								else if((tmcnt[i] == 13 && tmcnt[i+1] != bk) || (tmcnt[i] == 15 && tmcnt[i+1] != bk))
 									document.getElementById("dr_time").innerHTML="<option>선택</option><option value='13:00'>13:00</option><option value='15:00'>15:00</option>";
-						else if(tmcnt[i] == 16 && tmcnt[i+1] == bk)
-							document.getElementById("dr_time").innerHTML="<option>선택</option><option value='18:00'>18:00</option>";
-							else if(tmcnt[i] == 18 && tmcnt[i+1] == bk)
-								document.getElementById("dr_time").innerHTML="<option>선택</option><option value='16:00'>16:00</option>";
-								else if((tmcnt[i] == 16 || tmcnt[i] == 18) && tmcnt[i+1] != bk)
+						else if(tmcnt[i] == 16 && tmcnt[i+1] == bk) {
+							document.getElementById("dr_time").innerHTML="<option>선택</option><option value='16:00' disabled>16:00</option><option value='18:00'>18:00</option>";
+							break;
+							}
+							else if(tmcnt[i] == 18 && tmcnt[i+1] == bk) {
+								document.getElementById("dr_time").innerHTML="<option>선택</option><option value='16:00'>16:00</option><option value='18:00' disabled>18:00</option>";
+								break; 
+								}
+								else if((tmcnt[i] == 16 && tmcnt[i+1] != bk) || (tmcnt[i] == 18 && tmcnt[i+1] != bk))
 									document.getElementById("dr_time").innerHTML="<option>선택</option><option value='16:00'>16:00</option><option value='18:00'>18:00</option>";
 					}
 				}
@@ -197,24 +205,23 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
 				}
 			}
 		}	
-  }
-  
+
   function check()
 	{
-	  var selectBox= document.getElementById("dr_time");
-	  var svalue=selectBox.options.value;
+	  /* var s= document.getElementById("dr_time"); */
+	  /*var svalue=selectBox.options.value; */
+	  
 		// 다이닝 타입, 입장 시간
 		if(document.view_type.dr_date.value.trim()=="")
 		{
 			alert("예약 희망 날짜를 선택해주세요.");
 			return false;
 		}
-		else (document.view_type.svalue.trim()=="")
+		else if(document.getElementById("dr_time").value=="")
 		{
 			alert("예약 희망 시간을 선택해주세요.");
 			return false;
 		}  // options[view_type.selectedIndex]
-
 	}
 
 		
