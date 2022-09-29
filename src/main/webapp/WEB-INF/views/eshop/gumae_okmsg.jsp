@@ -8,7 +8,6 @@
 		width : 1000px; 
 		height : 500px;
 		margin : auto;
-		font : 돋움;
 		font-size : 14px;
 	}
 </style>

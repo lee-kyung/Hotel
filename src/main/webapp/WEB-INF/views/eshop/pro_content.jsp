@@ -289,7 +289,7 @@
     </c:if>
     <c:if test="${pvo.subpcode == 'p0202'}">
 	    <div class="bradcam_area eshop3">
-	        <div id="h3" onclick="location='pro_list?pcode=p0202'" style="cursor:pointer;"> H O T E L </div>
+	        <div id="h3" onclick="location='pro_list?pcode=p0202'" style="cursor:pointer;"> B A K E R Y </div>
 	    </div>
     </c:if>
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
