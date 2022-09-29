@@ -134,11 +134,11 @@
 <body>
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
 		<div class="bradcam_area basic">
-	        <div id="h3"> 상품 등록 </div>
+	        <div id="h3"> 상품 수정 </div>
 	    </div>
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
     
-	<!-- ================ 상품등록 Area Start ================= -->
+	<!-- ================ 상품수정 Area Start ================= -->
 	<section id="pro_write">
 	<form name="inpro" method="post" action="pro_write_ok" enctype="multipart/form-data" onsubmit="return check()">
 		<table width="650" align="center">
@@ -200,6 +200,6 @@
 		</table>
 	</form>
 	</section>
-    <!-- ================ 상품등록 Area End ================= -->
+    <!-- ================ 상품수정 Area End ================= -->
 
 </body>

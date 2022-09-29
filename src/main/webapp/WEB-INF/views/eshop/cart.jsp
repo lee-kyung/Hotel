@@ -15,7 +15,7 @@
 		width : 1100px;
 		height : ${height}px;
 		margin : auto;
-		margin-top : 40px;
+		margin-top : 80px;
 	}
 	#cart #spinner {
 		border : 1px solid lightgray;

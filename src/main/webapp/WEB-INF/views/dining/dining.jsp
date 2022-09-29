@@ -4,6 +4,12 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <head>
 <style>
+/*   .about_info_area .about_active owl-carousel {
+    display: block;
+    margin-left: auto;
+    margin-right: auto 
+  } */
+
   .img_3{
      text-align:center;
      margin:auto;
@@ -37,10 +43,19 @@
   #h3{
      text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
   }
+  .about_info_area{
+     margin:auto;
+     text-align:center;
+  }
+  .about_main_info{
+     margin:auto;
+     text-align:center;
+  }
   #middle{
 	 font-family:fantasy;
 	 font-size:50px;
 	 color:#887159;
+	 text-align:center;
   }
   .container{
 	width: 990px;
@@ -96,6 +111,7 @@
     	②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
     <div class="bradcam_area s7">	<!-- class="bradcam_area 클래스명" -->
         <div id="h3"> DINE & DRINK </div>
+    </div>
     <!-- bradcam_area_end -->
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
          <!-- <img src="../img/banner/dining2.jpg" width="700"> -->
@@ -110,7 +126,7 @@
                             <span>About Us</span>
                             <div id="logo"> L A&nbsp;&nbsp;M E R </div>
                         </div>
-                        <p>파라다이스호텔 부산의 다양한 레스토랑에서
+                        <p>호텔 부산의 다양한 레스토랑에서
 						    마스터 쉐프들이 펼치는 화려한 미식의 세계로 초대합니다.</p>
                         <!-- <a href="../dining/dining_reserve" class="line-button">예약하기</a> -->
                         <a href="../dining/dining_reserve" class="genric-btn default">온라인 예약</a>
@@ -135,8 +151,8 @@
     <!-- about_info_area_start -->
     <div class="about_info_area">
               <div id="middle">Gallery</div>
-        <div class="about_active owl-carousel">
-
+        <div class="about_active owl-carousel" >
+           <div class="single_slider">
             <div class="single_slider s1"></div>
             <div class="single_slider s2"></div>
             <div class="single_slider s3"></div>
@@ -146,8 +162,9 @@
             <div class="single_slider s7"></div>
             <div class="single_slider s8"></div>
             <div class="single_slider s"></div>
+          </div>
         </div>
-    </div>
+    </div> 
     <!-- about_info_area_start -->
 
     <!-- about_main_info_start -->

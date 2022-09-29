@@ -167,13 +167,18 @@ public class MyPageController {
 		return service.eshop_content(request, model, session);
 	}
 	
-	@RequestMapping("/mypage/nonuser")
-	public String nonuser() {
-		return "/mypage/nonuser";
+	@RequestMapping("/mypage/rdwg_check")
+	public String rdwg_check(HttpServletRequest request, Model model) {
+		return service.rdwg_check(request, model);
 	}
 	
-	@RequestMapping("/mypage/nonuser_rdwglist")
-	public String nonuser_rdwglist(HttpServletRequest request, Model model) {
-		return service.nonuser_rdwglist(request, model);
+	@RequestMapping("/mypage/rdwg_info")
+	public String rdwg_info(HttpServletRequest request, Model model) {
+		return service.rdwg_info(request, model);
+	}
+	
+	@RequestMapping("/mypage/bjcancel")
+	public String bjcancel(HttpServletRequest request) {
+		return service.bjcancel(request);
 	}
 }

@@ -124,10 +124,6 @@
 		sub[n].style.background="white";
 		sub[n].style.borderBottom="none";
 	}
-	function showa()
-	{
-		document.getElementById("#a2").
-	}
 </script>
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
 <!-- bradcam_area_start -->
@@ -148,7 +144,7 @@
 		<section>
 		<div id="menu">
 		<ul>
-	 		<li class="sub" onclick="showa()">활성</li><li class="sub" onclick="showd()">비활성</li>
+	 		<li class="sub" onclick="change_sub(0)">활성</li><li class="sub" onclick="change_sub(1)">비활성</li>
 		</ul>
 		</div>
 	

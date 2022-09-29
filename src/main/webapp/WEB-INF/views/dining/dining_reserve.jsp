@@ -32,13 +32,9 @@
     margin-top:20px;
     border-bottom:1px solid #887159;
   }
-  #section table #calendar #dine_type:over{
-    background:black;
-  }
   #section #calendar tr:last-child{
     border-bottom:2px solid #887159;
   }
-  
   #section #calendar th{
     font-weight:700px;
     /* width:142px; */
@@ -52,10 +48,12 @@
   }
   #section #day{
     text-align:left;
-    
+    height:10px;
   }
   #section #day_td{
-    height:10px;
+    height:20px;
+    border:1px solid black;
+    margin-top:0px;
   }
   #section #pri_info{
     height:80px;
@@ -66,7 +64,7 @@
     width:140px;
     background: #b8a898;
   }
-  #section .sprite{
+  .sprite{
 background-color: #fefefe;
 opacity: 0.4;
 background-size: 7px 7px;
@@ -84,8 +82,8 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
   #section #dinetype :hover{ /* 다이닝 타입 마우스오버 스타일*/
      color:red;
      text-decoration:underline;
-  }
 
+  }
   
   /*  bootstrap calendar css 시작  */
   .calendar-toolbar {
@@ -122,17 +120,17 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
 			if(dt[i] == 1 && cnt[i] == bk) {
 				document.getElementsByClassName("b1")[td[i]-1].style.color="#aca8af";
 				document.getElementsByClassName("b1")[td[i]-1].style.textDecoration="line-through"; 
-				document.getElementsByClassName("b1")[td[i]-1].setAttribute("onclick", "alert('예약이 마감됐습니다.');");
+				document.getElementsByClassName("b1")[td[i]-1].setAttribute("onclick", "alert('선택하신 시간의 예약이 마감되었습니다. 다시 선택해주시기 바랍니다.');");
 				}
 				else if(dt[i] == 2 && cnt[i] == bk) {
 					document.getElementsByClassName("b2")[td[i]-1].style.color="#aca8af";
 					document.getElementsByClassName("b2")[td[i]-1].style.textDecoration="line-through";
-					document.getElementsByClassName("b2")[td[i]-1].setAttribute("onclick", "alert('예약이 마감됐습니다.');");
+					document.getElementsByClassName("b2")[td[i]-1].setAttribute("onclick", "alert('선택하신 시간의 예약이 마감되었습니다. 다시 선택해주시기 바랍니다.');");
 					}
 					else if(dt[i] == 3 && cnt[i] == bk) {
 						document.getElementsByClassName("b3")[td[i]-1].style.color="#aca8af";
 						document.getElementsByClassName("b3")[td[i]-1].style.textDecoration="line-through";
-						document.getElementsByClassName("b3")[td[i]-1].setAttribute("onclick", "alert('예약이 마감됐습니다.');");
+						document.getElementsByClassName("b3")[td[i]-1].setAttribute("onclick", "alert('선택하신 시간의 예약이 마감되었습니다. 다시 선택해주시기 바랍니다.');");
 					}
 						/* else if(dt[i] == 1 && cnt[i] != bk && cnt[i] <= bk) {
 							document.getElementsByClassName("b1")[td[i]-1].style.background="red";
@@ -200,16 +198,31 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
 			}
 		}	
   }
-  /* function day(dine_type)
-  {
-	  var x=event.pageX;
-	  var y=event.pageY;
-	  alert(dine_type);
-  } */
+  
+  function check()
+	{
+	  var selectBox= document.getElementById("dr_time");
+	  var svalue=selectBox.options.value;
+		// 다이닝 타입, 입장 시간
+		if(document.view_type.dr_date.value.trim()=="")
+		{
+			alert("예약 희망 날짜를 선택해주세요.");
+			return false;
+		}
+		else (document.view_type.svalue.trim()=="")
+		{
+			alert("예약 희망 시간을 선택해주세요.");
+			return false;
+		}  // options[view_type.selectedIndex]
+
+	}
+
+		
+  
 
 </script>
-<script type="text/javascript">
-/*  var dine_type=document.getElementById('dine_type');
+<!-- <script type="text/javascript">
+  var dine_type=document.getElementById('dine_type');
   dine_type.addEventListener('mouseover',function(){
       dine_type.setAttribute('class','hover');
   });
@@ -223,8 +236,8 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
 	 }, function(){
 		 $("#dine_type").css("color","black");
 	 }) 
-  }); */
-</script>
+  }); 
+</script> -->
 </head>
 
 <body>
@@ -330,7 +343,7 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
       </tr> 
    <c:set var="day" value="1"/>
    <c:forEach  var="i" begin="1" end="${ju}"> <!-- 행 -->
-      <tr> <!-- onmouseover="over(this)" onmouseout="out(this)" -->
+      <tr> 
       
         <c:forEach var="j" begin="0" end="6">  <!-- 열 -->
           <c:if test="${(j < yoil && i==1) || (chong < day) }">
@@ -339,8 +352,8 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
            
           <c:if test="${ !((yoil>j && i==1) || (chong < day)) }">
 
-          <td id="day" ><!-- onmouseover="day(this.innerText)" onmouseout="hide day()" -->
-             <span id="day_td">${day}</span><p></p>
+          <td id="day">
+             <div id="day_td">${day}</div>
           <%
                int day2=Integer.parseInt(pageContext.getAttribute("day").toString());
                int y=Integer.parseInt(request.getAttribute("y").toString());
@@ -352,8 +365,7 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
             <c:if test="${dday >= today}"> <!--  오늘 이후면 클릭 되도록 -->
            
             <div id="dine_type" class="b1" name="dine_type" 
-            style="font-size:14px;" onclick="date_type(${y}, ${m}, ${day}, 'Breakfast')"
-            >
+            style="font-size:14px;" onclick="date_type(${y}, ${m}, ${day}, 'Breakfast')">
                <img src="../img/dining/breakfast.png" width="17px;" height="17px;">
                Breakfast <br>
             </div>
@@ -412,12 +424,11 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
 	       <td><input type="submit" value="예약하기" class="cbtn" > </td>
 	     </tr> -->
 	     <tr>
-	       <td><input type="button" value="이전" onclick="location='dining'"> </td>
+	       <td><input type="button" value="이전" class="btn" onclick="location='dining'"> </td>
 	     <c:if test="${userid == null}">  
 	       
            <td colspan="2" align="right">
-           <input type="submit" value="비회원으로 예약" class="btn" >
-           <span class="cbtn" onclick="login_view"> 회원으로 예약 </span>
+           <input type="submit" value="예약하기" class="btn" onclick="return check()">
            </td>
          </c:if>
  		   <c:if test="${userid != null}"> 
