@@ -197,23 +197,27 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
 				}
 			}
 		}	
+		
   }
   
   function check()
 	{
-	  var selectBox= document.getElementById("dr_time");
-	  var svalue=selectBox.options.value;
+	  /* var s= document.getElementById("dr_time"); */
+	  /*var svalue=selectBox.options.value; */
+	  
 		// 다이닝 타입, 입장 시간
 		if(document.view_type.dr_date.value.trim()=="")
 		{
 			alert("예약 희망 날짜를 선택해주세요.");
 			return false;
 		}
-		else (document.view_type.svalue.trim()=="")
+		else if(document.getElementById("dr_time").value=="")
 		{
 			alert("예약 희망 시간을 선택해주세요.");
 			return false;
 		}  // options[view_type.selectedIndex]
+
+			return true;
 
 	}
 
