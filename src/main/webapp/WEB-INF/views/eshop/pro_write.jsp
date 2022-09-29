@@ -130,7 +130,7 @@
 	function setview(n){
 		document.getElementsByClassName("img")[n].innerHTML="";
 		
-		for (var image of event.target.files) {
+		for(var image of event.target.files) {
 			var reader = new FileReader(); 
 			reader.onload=function(){
 				var img = document.createElement("img"); 
@@ -144,14 +144,6 @@
 			reader.readAsDataURL(image); 
 		}
 	}
-	/*function add_file(){
-		let len=document.getElementsByClassName("imgs").length;
-		if(len < 3) {
-			len++;
-			let inner="<p class='imgs'> <input type='file' name='fimg"+len+"'> </p>";
-			document.getElementById("outer").innerHTML=document.getElementById("outer").innerHTML+inner;
-		}
-	}*/
 	
 	/* 숫자만 입력했는지 체크하기 */
 	function checkNum(e){
