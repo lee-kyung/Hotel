@@ -233,6 +233,7 @@
 	    </div>
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
 
+	<c:if test="${userid == null}"> <c:redirect url="../main/index"/> </c:if>
 
 	<!-- ================ 장바구니 Area Start ================= -->
     <div id="wish">
@@ -240,10 +241,10 @@
 			<tr>
 				<td colspan="8" height="50">
 					<div id="osel" style="float:left;">
-						<span onclick="location='../eshop/wish?osel=id asc'" class="obtn"> 등록순 </span>
-						<span onclick="location='../eshop/wish?osel=halin desc'" class="obtn"> 할인율순 </span>
-						<span onclick="location='../eshop/wish?osel=price asc'" class="obtn"> 저가격순 </span>
-						<span onclick="location='../eshop/wish?osel=price desc'" class="obtn"> 고가격순 </span>
+						<span onclick="location='wish?osel=id asc'" class="obtn"> 등록순 </span>
+						<span onclick="location='wish?osel=halin desc'" class="obtn"> 할인순 </span>
+						<span onclick="location='wish?osel=price asc'" class="obtn"> 최저가순 </span>
+						<span onclick="location='wish?osel=price desc'" class="obtn"> 최고가순 </span>
 					</div>
 					<div onclick="wish_del()" id="button3"> 선택상품 삭제하기 </div>
 				</td>

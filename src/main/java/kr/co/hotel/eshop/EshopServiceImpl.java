@@ -1,5 +1,6 @@
 package kr.co.hotel.eshop;
 
+import java.io.File;
 import java.io.PrintWriter;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
@@ -87,73 +88,34 @@ public class EshopServiceImpl implements EshopService {
 			return "redirect:/eshop/error";
 		}
 		mapper.pro_write_ok(pvo);
-		return "redirect:/eshop/eshop";
+		return "redirect:/eshop/pro_adlist";
 	}
 
 	@Override
 	public String pro_list(HttpServletRequest request, Model model, HttpSession session) {
 		String pcode=request.getParameter("pcode");
-		
-		int page, psel;
-		String osel;
-		
-		/* 페이지의 초기화면값 처리하기 */
-		if(request.getParameter("page") == null)
-			page=1;
-		else
-			page=Integer.parseInt(request.getParameter("page"));
-		
-		/* 한페이지에 출력할 레코드개수의 초기화면값 처리하기 */
-		if(request.getParameter("psel") == null)
-			psel=9;
-		else
-			psel=Integer.parseInt(request.getParameter("psel"));
-		
-		/* 한페이지에 출력할 레코드의 index값 구하기 */
-		int pindex=(page-1)*psel;
 
 		/* 정렬말머리의 초기화면값 처리하기*/
+		String osel;
 		if(request.getParameter("osel") == null)
 			osel="sold desc";
 		else
 			osel=request.getParameter("osel");
-		
-		/* 페이지 이동을 위한 출력 범위 */
-		int pstart, pend, parr=10;
-		
-		pstart=page/parr;	// 페이지 출력 범위 : 1~10, 11~20, 21~30…
-		if((page%parr) == 0)
-			pstart--;
-			
-		pstart=(pstart*parr)+1;
-		pend=pstart+(parr-1);
-		
-		/* 총페이지수 구하기 */
-		int ptotal=mapper.total(psel);
-		
-		/* pend가 총페이지수보다 크다면 값 바꾸기 */
-		if(pend > ptotal)
-			pend=ptotal;
-		
+
 		String userid="";
 		Cookie cookie = WebUtils.getCookie(request, "cookieid");
 		if(session.getAttribute("userid") == null && cookie == null)
-			model.addAttribute("plist", mapper.pro_list2(pcode, osel, pindex, psel));
+			model.addAttribute("plist", mapper.pro_list2(pcode, osel));
 		else {
 			if(session.getAttribute("userid") == null)
 				userid=cookie.getValue();
 			else
 				userid=session.getAttribute("userid").toString();
-			model.addAttribute("plist", mapper.pro_list(userid, pcode, osel, pindex, psel));
+			model.addAttribute("plist", mapper.pro_list(userid, pcode, osel));
 		}			
 		
 		model.addAttribute("pcode", pcode);	// 배너사진과 문구를 구별하기 위한 pcode(pdae 또는 pdaeso)값
-		model.addAttribute("page", page);
-		model.addAttribute("psel", psel);
 		model.addAttribute("osel", osel);
-		model.addAttribute("pstart", pstart);
-		model.addAttribute("pend", pend);
-		model.addAttribute("ptotal", ptotal);
 		return "/eshop/pro_list";
 	}
 	
@@ -464,6 +426,139 @@ public class EshopServiceImpl implements EshopService {
 		String jumuncode=request.getParameter("jumuncode");
 		model.addAttribute("name", mapper.getName(jumuncode));
 		model.addAttribute("jumuncode", jumuncode);		
-		return "eshop/gumae_okmsg";
+		return "/eshop/gumae_okmsg";
+	}
+
+	@Override
+	public String pro_adlist(Model model, HttpServletRequest request) {
+		int page, psel;
+		String ssel, sword;
+		
+		/* 페이지의 초기화면값 처리하기 */
+		if(request.getParameter("page") == null)
+			page=1;
+		else
+			page=Integer.parseInt(request.getParameter("page"));
+		
+		/* 한페이지에 출력할 레코드개수의 초기화면값 처리하기 */
+		if(request.getParameter("psel") == null)
+			psel=10;
+		else
+			psel=Integer.parseInt(request.getParameter("psel"));
+		
+		/* 한페이지에 출력할 레코드의 index값 구하기 */
+		int pindex=(page-1)*psel;
+		
+		/* 검색말머리의 초기화면값 처리하기*/
+		if(request.getParameter("ssel") == null)
+			ssel="id";	// [검색말머리]에 없는 DB필드명 넣기
+		else
+			ssel=request.getParameter("ssel");
+		
+		/* 검색어의 초기화면값 처리하기*/
+		if(request.getParameter("sword") == null)
+			sword="";
+		else
+			sword=request.getParameter("sword");
+		
+		/* 페이지 이동을 위한 출력 범위 */
+		int pstart, pend, parr=10;
+		
+		pstart=page/parr;	// 페이지 출력 범위 : 1~10, 11~20, 21~30…
+		if((page % parr) == 0)
+			pstart--;
+			
+		pstart=(pstart*parr)+1;
+		pend=pstart+(parr-1);
+		
+		/*if(page <= parr)	// 페이지 출력 범위 : 현재페이지 앞뒤로 ±parr값
+			pstart=1;
+		else
+			pstart=page-parr;
+		
+		pend=page+parr;/*
+
+		/* 총페이지수 구하기 */
+		int ptotal=mapper.total(psel, ssel, sword);
+		
+		/* pend가 총페이지수보다 크다면 값 바꾸기 */
+		if(pend > ptotal)
+			pend=ptotal;
+		
+		/* 정렬의 초기화면값 처리하기 */
+		String osel;
+		if(request.getParameter("osel") == null)
+			osel="id desc";
+		else
+			osel=request.getParameter("osel");
+		
+		model.addAttribute("plist", mapper.pro_adlist(ssel, sword, osel, pindex, psel));
+		model.addAttribute("page", page);
+		model.addAttribute("psel", psel);
+		model.addAttribute("ssel", ssel);
+		model.addAttribute("sword", sword);
+		model.addAttribute("pstart", pstart);
+		model.addAttribute("pend", pend);
+		model.addAttribute("ptotal", ptotal);
+		model.addAttribute("osel", osel);
+		return "/eshop/pro_adlist";
+	}
+
+	@Override
+	public String pro_adcontent(Model model, HttpServletRequest request) {
+		ProductVO pvo= mapper.pro_adcontent(request.getParameter("id"));
+				
+		/* fimg를 imgs에 담아서 배열로 전달 */
+		pvo.setImgs(pvo.getFimg().split(","));
+
+		model.addAttribute("pvo", pvo);
+		model.addAttribute("page", request.getParameter("page"));
+		model.addAttribute("psel", request.getParameter("psel"));
+		model.addAttribute("ssel", request.getParameter("ssel"));
+		model.addAttribute("sword", request.getParameter("sword"));
+		model.addAttribute("osel", request.getParameter("osel"));
+		return "/eshop/pro_adcontent";
+	}
+
+	@Override
+	public String pro_addelete(HttpServletRequest request) {
+		mapper.pro_addelete(request.getParameter("id"));
+		
+		/* [resources/img/eshop]폴더에 있는 기존이미지파일 삭제하기 */
+		String[] imgs=(request.getParameter("fimg")+request.getParameter("simg")).split(",");
+		String path=request.getRealPath("resources/img/eshop");
+
+		for(int i=0;i<imgs.length;i++) {
+			File file=new File(path+"/"+imgs[i]);
+			if(file.exists())
+				file.delete();
+		}
+		
+		/* sword는 list로 넘어갈때 한글이 깨지므로 인코딩시켜서 보내기 */
+		String sword=URLEncoder.encode(request.getParameter("sword"));
+		
+		return "redirect:/eshop/pro_adlist?page="+request.getParameter("page")+"&psel="+request.getParameter("psel")+"&ssel="+request.getParameter("ssel")+"&sword="+sword+"&osel="+request.getParameter("osel");
+	}
+
+	@Override
+	public String pro_adupdate(Model model, HttpServletRequest request) {
+		ProductVO pvo= mapper.pro_adcontent(request.getParameter("id"));
+		
+		/* fimg를 imgs에 담아서 배열로 전달 */
+		pvo.setImgs(pvo.getFimg().split(","));
+
+		model.addAttribute("pvo", pvo);
+		model.addAttribute("page", request.getParameter("page"));
+		model.addAttribute("psel", request.getParameter("psel"));
+		model.addAttribute("ssel", request.getParameter("ssel"));
+		model.addAttribute("sword", request.getParameter("sword"));
+		model.addAttribute("osel", request.getParameter("osel"));
+		return "/eshop/pro_adupdate";
+	}
+
+	@Override
+	public String pro_adupdate_ok(HttpServletRequest request) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

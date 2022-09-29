@@ -115,4 +115,29 @@ public class EshopController {
 	public String gumae_okmsg(HttpServletRequest request, Model model) {
 		return service.gumae_okmsg(request, model);
 	}
+	
+	@RequestMapping("/eshop/pro_adlist")
+	public String pro_adlist(Model model, HttpServletRequest request) {
+		return service.pro_adlist(model, request);
+	}
+	
+	@RequestMapping("/eshop/pro_adcontent")
+	public String pro_adcontent(Model model, HttpServletRequest request) {
+		return service.pro_adcontent(model, request);
+	}
+	
+	@RequestMapping("/eshop/pro_addelete")
+	public String pro_addelete(HttpServletRequest request) {
+		return service.pro_addelete(request);
+	}
+	
+	@RequestMapping("/eshop/pro_adupdate")
+	public String pro_adupdate(Model model, HttpServletRequest request) {
+		return service.pro_adupdate(model, request);
+	}
+	
+	@RequestMapping("/ehop/pro_adupdate_ok")
+	public String pro_adupdate_ok(HttpServletRequest request) {
+		return service.pro_adupdate_ok(request);	
+	}
 }
