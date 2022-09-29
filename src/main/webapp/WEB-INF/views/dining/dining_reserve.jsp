@@ -175,15 +175,11 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
 						document.getElementsByClassName("b3")[td[i]-1].style.textDecoration="line-through";
 						document.getElementsByClassName("b3")[td[i]-1].setAttribute("onclick", "alert('선택하신 시간의 예약이 마감되었습니다. 다시 선택해주시기 바랍니다.');");
 					}
-						/* else if(dt[i] == 1 && cnt[i] != bk && cnt[i] <= bk) {
-							document.getElementsByClassName("b1")[td[i]-1].style.background="red";
+						else if(dt[i] == 4 && cnt[i] == bk) {
+							document.getElementsByClassName("b4")[td[i]-1].style.color="#aca8af";
+							document.getElementsByClassName("b4")[td[i]-1].style.textDecoration="line-through";
+							document.getElementsByClassName("b4")[td[i]-1].setAttribute("onclick", "alert('선택하신 시간의 예약이 마감되었습니다. 다시 선택해주시기 바랍니다.');");
 						}
-							else if(dt[i] == 2 && cnt[i] != bk && cnt[i] <= bk) {
-								document.getElementsByClassName("b2")[td[i]-1].style.color="red";
-						    }
-								else if(dt[i] == 3 && cnt[i] != bk && cnt[i] <= bk) {
-									document.getElementsByClassName("b3")[td[i]-1].style.color="red";
-							    } */
 		}
 	}
    
@@ -245,6 +241,8 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
 							document.getElementById("dr_time").innerHTML="<option>선택</option><option value='13:00'>13:00</option><option value='15:00'>15:00</option>";
 							else if(t == 'Dinner')
 								document.getElementById("dr_time").innerHTML="<option>선택</option><option value='16:00'>16:00</option><option value='18:00'>18:00</option>";
+							    else if(t == 'Bbq')
+								    document.getElementById("dr_time").innerHTML="<option>선택</option><option value='16:00'>16:00</option><option value='18:00'>18:00</option>";
 				}
 			}
 		}	
@@ -419,6 +417,10 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
              		  <img src="../img/dining/dinner.png" width="17px;" height="17px;">
              Dinner <br>
             </span>
+            <span id="dine_type" class="b4" name="dine_type" style="font-size:14px;visibility:hidden;" >
+               <img src="../img/dining/bbq.png" width="17px;" height="17px;">
+               Bbq
+            </span>
             </c:if>
              
             
@@ -435,6 +437,10 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
             <span id="dine_type" class="b3" name="dine_type" style="font-size:14px;visibility:hidden;" >
                <img src="../img/dining/dinner.png" width="17px;" height="17px;">
                Dinner <br>
+            </span>
+            <span id="dine_type" class="b4" name="dine_type" style="font-size:14px;visibility:hidden;" >
+               <img src="../img/dining/bbq.png" width="17px;" height="17px;">
+               Bbq
             </span>
           </div>    
             </c:if> 
