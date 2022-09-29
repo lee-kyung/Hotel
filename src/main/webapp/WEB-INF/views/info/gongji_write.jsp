@@ -8,8 +8,7 @@
 	width:1000px;
 	margin:auto;
 	margin-top:100px;
-	margin-bottom:200px;
-	border:1px solid blue;}
+	margin-bottom:200px;}
 	
 	section#g_write{
 	width:1200px;
@@ -49,7 +48,7 @@
 	
 	section#g_write table textarea{
 	width:99%;
-	height:200px;
+	height:400px;
 	outline:none;
 	resize:none;}
 	
@@ -68,12 +67,12 @@
 	{
 		if(document.chk.title.value.trim()=="")
 		{
-			alter("제목을 작성해주세요");
+			alert("제목을 작성해주세요");
 			return false;
 		}
 		else if(document.chk.content.value.trim()=="")
 		{
-			alter("내용을 작성해주세요");
+			alert("내용을 작성해주세요");
 			return false;
 		}
 		else
@@ -109,7 +108,7 @@
 		<tr>
 			<td colspan="2">
 				<div style="float:left; margin-left:350px;"><input type="checkbox" name="gubun" value="1"></div>
-				<div style="float:right;">이 글이 첫번째 dd공지로 보이길 원하는 경우 체크해주세요</div>
+				<div style="float:right;">이 글이 첫번째 공지로 보이길 원하는 경우 체크해주세요</div>
 			</td>
 		</tr>
 		<tr>

@@ -53,7 +53,6 @@ public class GongjiServiceImpl implements GongjiService{
 	{
 		String id=request.getParameter("id");
 		GongjiVO gvo=mapper.gongji_content(id);
-		gvo.setContent(gvo.getContent().replace("\r\n", "<br>"));
 		model.addAttribute("gvo", gvo);
 		
 		return "/info/gongji_update";

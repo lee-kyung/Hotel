@@ -8,10 +8,80 @@
 	width:1000px;
 	margin:auto;
 	margin-top:100px;
-	margin-bottom:200px;
-	border:1px solid blue;}
+	margin-bottom:200px;}
+	
+	section#g_update{
+	width:1200px;
+	margin:auto;
+	margin-top:100px;
+	margin-bottom:200px;}
+	
+	section#g_update #txt1{
+	font-size:28px;
+	font-weight:600;
+	letter-spacing:3px;
+	text-align:center;}
+	
+	section#g_update table{
+	margin:auto;
+	margin-top:50px;
+	width:800px;
+	border-left:none;
+	border-right:none;
+	border-top-color:white;}
+	
+	section#g_update table td{
+	padding:15px;
+	border-left:none;
+	border-right:none;}
+	
+	section#g_update table td:first-child{
+	width:100px;}
+	
+	section#g_update table tr:last-child{
+	border-bottom-color:white;}
+	
+	section#g_update table input[type=text]{
+	width:99%;
+	height:50px;
+	outline:none;}
+	
+	section#g_update table textarea{
+	width:99%;
+	height:400px;
+	outline:none;
+	resize:none;}
+	
+	section#g_update table input[type=submit], input[type=button]{
+	margin-top:50px;
+	float:right;
+	width:150px;
+	height:40px;
+	border:1px solid white;
+	background:#887159;
+	color:white;
+	cursor:pointer;}
+	
 </style>
-</head>
+<script>
+	function check(chk)
+	{
+		if(chk.title.value.trim().length==0)
+		{
+			alert("제목을 작성해주세요");
+			return false;
+		}
+		else if(chk.content.value.trim()=="")
+		{
+			alert("내용을 작성해주세요");
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
+</script>
 
 <body>
 
@@ -24,7 +94,8 @@
         <div id="h3"> 공지 </div>
     </div>
 <section id="g_update">
-<form method="post" action="gongji_update_ok">
+<div id="txt1">공지사항 수정</div>
+<form method="post" action="gongji_update_ok" onsubmit="return check(this)">
 <input type="hidden" value="${gvo.id }" name="id">
 	<table border="1">
 		<tr>
@@ -48,7 +119,8 @@
 			<c:if test="${gvo.gubun==1 }">
 				<c:set var="gu" value="checked"/>
 			</c:if>
-				<input type="checkbox" name="gubun" value="1" ${gu }>
+				<div style="float:left; margin-left:350px;"><input type="checkbox" name="gubun" value="1" ${gu }></div>
+				<div style="float:right;">이 글이 첫번째 공지로 보이길 원하는 경우 체크해주세요</div>
 			</td>
 		</tr>
 		<tr>

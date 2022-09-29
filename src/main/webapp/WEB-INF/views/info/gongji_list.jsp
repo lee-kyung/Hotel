@@ -54,7 +54,8 @@
 	height:50px;
 	border:1px solid #887159;
 	background:#887159;
-	color:white;}
+	color:white;
+	cursor:pointer;}
 	
 </style>
 </head>
@@ -96,9 +97,11 @@
 		</tr>
 		</c:forEach>
 		<tr>
+		<c:if test="${userid=='admin' }">
 			<td colspan="3">
 				<input type="button" value="작성" onclick="location='gongji_write'">
 			</td>
+		</c:if>
 		</tr>
 	</table>
 

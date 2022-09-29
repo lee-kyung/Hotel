@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<select id="gongji_list" resultType="kr.co.hotel.gongji.GongjiVO">
-		select * from gongji order by id desc
+		select * from gongji order by gubun desc, id desc
 	</select>
 	
 	<select id="gongji_content" resultType="kr.co.hotel.gongji.GongjiVO">
