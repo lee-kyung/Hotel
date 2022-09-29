@@ -17,14 +17,6 @@
 		margin : auto;
 		margin-top : 50px;
 	}
-	#wish #spinner {
-		border : 1px solid lightgray;
-		outline : none;
-	}
-	input[type=number]::-webkit-inner-spin-button,
-	input[type=number]::-webkit-outer-spin-button {
-		opacity: 1;
-	}
 	#wish #price_text1 {
 		font-family : TimesNewRoman;
 		color : black;
@@ -54,7 +46,7 @@
 		width : 80px;
 		height : 30px;
 		padding-top : 5px;
-		border : 1px solid #887159;
+		border : 1px solid lightgray;
 		color : #887159;
 		margin : auto;
 		font-size : 13px;
@@ -88,7 +80,7 @@
 		width : 150px;
 		height : 30px;
 		padding-top : 5px;
-		border : 1px solid #887159;
+		border : 1px solid lightgray;
 		color : #887159;
 		margin : auto;
 		font-size : 13px;
@@ -152,14 +144,14 @@
 	}
 
 	/* 전체 선택 & 해제하기 */
-	function allcheck(ck){	// ck가 true면 체크된 상태, ck가 false면 체크가 안된 상태
-		let len=document.getElementsByClassName("subck").length;	// subck의 개수를 구하기
-		if(ck){	// [mainck]가 체크되면, class="subck"의 checked속성을 true로 바꾸기			
+	function allcheck(ck){
+		let len=document.getElementsByClassName("subck").length;
+		if(ck){	
 			for(i=0;i<len;i++) {
 				document.getElementsByClassName("subck")[i].checked=true;
 			}
 		}
-		else {	// [mainck]의 체크가 해제되면, class="subck"의 checked속성을 false로 바꾸기		
+		else {	
 			for(i=0;i<len;i++) {
 				document.getElementsByClassName("subck")[i].checked=false;
 			}
@@ -168,13 +160,13 @@
 	
 	/* 개별로 선택 & 해제하기 */
 	function subcheck(){
-		let chk=0;	// subck의 항목이 얼마나 체크됐는지 확인하는 변수
-		let len=document.getElementsByClassName("subck").length;	// subck의 개수를 구하기
-		for(i=0;i<len;i++) {	// subck의 checked속성의 true/false를 일일이 확인하여 개수 세기
+		let chk=0;
+		let len=document.getElementsByClassName("subck").length;
+		for(i=0;i<len;i++) {
 			if(document.getElementsByClassName("subck")[i].checked)
 				chk++;
 		}
-		if(chk == len)	// 전체 subck의 개수와 checked된 개수가 같다면? mainck의 checked를 true로, 다르다면? mainck의 checked는 false로
+		if(chk == len)
 			document.getElementById("mainck").checked=true;
 		else
 			document.getElementById("mainck").checked=false;
@@ -182,19 +174,17 @@
 	
 	/* 선택상품 위시리스트 삭제하기 */
 	function wish_del(){
-		/* 체크된 상품을 삭제 → 체크된 상품의 wish.id들을 '구분자'를 통해 '문자열의 형태'로 만들어서 [delid]에 담아 전송하기 */
 		let del="";
-		let len=document.getElementsByClassName("subck").length;	// subck의 개수를 구하기
+		let len=document.getElementsByClassName("subck").length;
 		for(i=0;i<len;i++) {
-			if(document.getElementsByClassName("subck")[i].checked)	// 체크가 됐다면
+			if(document.getElementsByClassName("subck")[i].checked)
 				del=document.getElementsByClassName("subck")[i].value+","+del;
 		}
-		location="wishcart_del?delid="+del+"&dchk=1";	// delid=삭제할id,삭제할id,삭제할id, → 마지막 구분자(콤마)는 신경X		
+		location="wishcart_del?delid="+del+"&dchk=1";
 	}
 	
 	/* 선택상품 or 전체상품 장바구니로 보내기 */
 	function move_cart(n){	// n=1이면 선택이동, n=2면 전체이동
-		/* 체크박스가 체크된 곳의 index와 hidden의 index는 같다 → [hidden의 value값]을 구분자(,)를 사용하여 [pcode변수]에 배열로 저장 */
 		let pcode="";
 		let len=document.getElementsByClassName("subck").length;	
 		
@@ -206,9 +196,9 @@
 			}
 		}
 		
-		/* pcode를 구분자(,)로 구분하여 하나의 문자열로 생성하기 */
+		/* pcode를 배열을 위해 하나의 문자열로 만들기 */
 		for(i=0;i<len;i++) {
-			if(document.getElementsByClassName("subck")[i].checked)	// (장바구니이동)체크가 됐다면
+			if(document.getElementsByClassName("subck")[i].checked)
 				pcode=document.getElementsByClassName("pcode")[i].value+","+pcode;
 		}
 		location="move_cart?pcode="+pcode;
@@ -239,7 +229,7 @@
 <body>
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
 	    <div class="bradcam_area eshop1">
-	        <h3> 위 시 리 스 트 </h3>
+	        <div id="h3"> W I S H L I S T </div>
 	    </div>
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
 
@@ -274,7 +264,7 @@
 			<input type="hidden" class="pcode" value="${wvo.pcode}">
 			<tr>
 				<td height="100"> <input type="checkbox" class="subck" onclick="subcheck()" value="${wvo.id}" id="subck"> </td> <!-- 체크박스 -->
-				<td colspan="2" style="padding-left:20px;">	<!-- 상품정보(이미지, 상품명) -->
+				<td colspan="2" style="padding-left:10px;">	<!-- 상품정보(이미지, 상품명) -->
 					<img src="../img/eshop/${wvo.fimg}" width="80" height="80" id="main_fimg">
 					${wvo.title}
 				</td>
@@ -296,13 +286,13 @@
 					</c:if>
 				</td>
 				<td>	<!-- 1개 주문 or 삭제하기 -->
-					<div onclick="location='move_cart?pcode=${wvo.pcode},'" id="button1"> 장바구니로 </div>
+					<div onclick="location='move_cart?pcode=${wvo.pcode},'" id="button1"> 장바구니 </div>
 					<div onclick="location='wishcart_del?delid=${wvo.id},&dchk=1'" id="button2"> 삭제하기 </div>
 				</td>
 			</tr>
 		</c:forEach>
 			<tr>
-				<td colspan="8" height="80" style="border:none;">
+				<td colspan="8" height="100" style="border:none;">
 					<span onclick="location='eshop'" id="button22" style="float:left;"> 계속 쇼핑하기 </span>
 					<span onclick="move_cart(2)" id="button11" style="float:right;"> 전체 장바구니로 </span>
 					<span onclick="move_cart(1)" id="button22" style="float:right;"> 선택 장바구니로 </span>					

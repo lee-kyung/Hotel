@@ -13,28 +13,46 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="room_write_ok">
-		insert into room(rname,rmin,rmax,rprice,rsu,rpimg,rcimg,rcode,rtxt2,rview,rbed,writeday)
-		values(#{rname},#{rmin},#{rmax},#{rprice},#{rsu},#{rpimg},#{rcimg},#{rcode},#{rtxt2},#{rviewValue},#{rbed},now())
+		insert into room(rname,rmin,rmax,rprice,rsu,rpimg,rcimg,rcode,rtxt2,rtxt3,rview,rbed,writeday)
+		values(#{rname},#{rmin},#{rmax},#{rprice},#{rsu},#{rpimg},#{rcimg},#{rcode},#{rtxt2},#{rtxt3},#{rviewValue},#{rbed},now())
 	</insert>
 	
 	<select id="rooms" resultType="kr.co.hotel.room.RoomVO">
-		select r.*, rd.code, rd.rtype, rd.rtxt from room r inner join rdae rd on rd.code=substring(r.rcode,2,2) 
-		where rcode='r01001' or rcode='r02001' or rcode='r03001' or rcode='r04001'
+		select r.*, rd.code, rd.rtype, rd.rtxt from room r inner join rdae rd on rd.code=substring(r.rcode,2,2)
+	 	where rcode='r01001' or rcode='r02001' or rcode='r03001' or rcode='r04001' or code='05' and rstate=0
 	</select>
 
 	<select id="room_content" resultType="kr.co.hotel.room.RoomVO">
-		select r.*, rd.code, rd.rtype, rd.rtxt from room r inner join rdae rd on rd.code=substring(r.rcode,2,2) where code=#{param1}
+		select r.*, rd.code, rd.rtype, rd.rtxt from room r inner join rdae rd on rd.code=substring(r.rcode,2,2) where code=#{param1} and rstate=0
 	</select>
  
 	<select id="get_room" resultType="kr.co.hotel.room.RoomVO">
-		select * from room where rcode=#{param1}
+		select * from room where rcode=#{param1} and rstate=0
 	</select>
 
-	<select id="getRoom" resultType="kr.co.hotel.room.RoomVO">
-		select rname,rsu from room;
+	<select id="room_list" resultType="kr.co.hotel.room.RoomVO">
+		select * from room
 	</select>
-
 	
+	<select id="room_update" resultType="kr.co.hotel.room.RoomVO">
+		select * from room where id=#{param1}
+	</select>
 	
+	<update id="room_update_ok">
+		update room 
+		set rname=#{rname},rmin=#{rmin},rmax=#{rmax},rprice=#{rprice},rsu=#{rsu},rpimg=#{rpimg},rcimg=#{rcimg},rcode=#{rcode},rtxt2=#{rtxt2},rtxt3=#{rtxt3},rview=#{rview},rbed=#{rbed}
+		where id=#{id}
+	</update>
 	
+	<update id="room_disable">
+		update room set rstate=1 where id=#{param1}
+	</update>
+	
+	<delete id="room_delete">
+		delete from room where id=#{param1}
+	</delete>
+	
+	<select id="getrpimg" resultType="String">
+		select rpimg from room where id=#{param1}
+	</select>
 </mapper>

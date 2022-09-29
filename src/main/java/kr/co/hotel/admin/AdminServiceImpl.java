@@ -117,6 +117,7 @@ public class AdminServiceImpl implements AdminService{
 		model.addAttribute("pcnt",pcnt);
 		model.addAttribute("sel",sel);
 		model.addAttribute("sword",sword);
+		model.addAttribute("oby",oby);
 		
 		return "/admin/roomlist";
 	}
@@ -180,6 +181,7 @@ public class AdminServiceImpl implements AdminService{
 		model.addAttribute("pcnt",pcnt);
 		model.addAttribute("sel",sel);
 		model.addAttribute("sword",sword);
+		model.addAttribute("oby",oby);
 		
 		return "/admin/wedlist";
 	}
@@ -241,6 +243,7 @@ public class AdminServiceImpl implements AdminService{
 		model.addAttribute("pcnt",pcnt);
 		model.addAttribute("sel",sel);
 		model.addAttribute("sword",sword);
+		model.addAttribute("oby",oby);
 		
 		return "/admin/dinelist";
 	}
@@ -309,6 +312,7 @@ public class AdminServiceImpl implements AdminService{
 		model.addAttribute("pcnt",pcnt);
 		model.addAttribute("sel",sel);
 		model.addAttribute("sword",sword);
+		model.addAttribute("oby",oby);
 		
 		return "/admin/gumaelist";
 	}

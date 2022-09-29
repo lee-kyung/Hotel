@@ -3,7 +3,27 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!doctype html>
 <html class="no-js" lang="zxx">
-
+  <style>
+    /* #title{
+	    color:white;
+	    font-weight:600;
+	    cursor: pointer;
+	    display: inline-block;
+	    text-transform: capitalize;
+	    font-family: "Raleway",sans-serif;
+	    padding: 0px 0px 10px 0px;
+	    outline: medium none;
+	    background-color: transparent;
+	    text-decoration: none;
+	   
+	}
+	#title :-webkit-any-link{
+	    /* text-decoration: underline; */
+	}
+	#title i{
+	    font-size: 9px;
+	} */
+  </style>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
@@ -46,9 +66,13 @@
                             <div class="main-menu  d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a class="active" href="../main/index">home</a></li>
+                                        <li><a href="../main/index">Hotel<i class="ti-angle-down"></i></a>
+                                            <ul class="submenu">
+                                                <li><a href="../info/info">호텔 소개</a></li>
+                                                <li><a href="../info/info">호텔 소개</a></li>
+                                            </ul>
                                         <li><a href="../room/rooms">rooms</a></li>
-                                        <li><a href="../dining/dining">dining<i class="ti-angle-down"></i></a>
+                                        <li id="title"><a href="">dining<i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
                                                 <li><a href="../dining/dining">레스토랑 소개</a></li>
                                                 <li><a href="../dining/dining_reserve">레스토랑 예약</a></li>
@@ -65,9 +89,6 @@
                                         	<ul class="submenu">
                                                 <li><a href="../eshop/pro_list?pcode=p01">product</a></li>
                                                 <li><a href="../eshop/pro_list?pcode=p02">voucher</a></li>
-                                                <c:if test="${userid == 'admin'}">
-                                                	<li><a href="../eshop/pro_write">상품등록</a></li>	<!-- 관리자만 볼 수 있는 메뉴 -->
-                                                </c:if>
                                             </ul>                                        
                                         </li>
                                         <li><a href="../etc/contact">etc<i class="ti-angle-down"></i></a>
@@ -108,10 +129,10 @@
                                         </li> -->
                                         <li>
 		                                <c:if test="${userid == null}">
-		                                	<a href="../mypage/nonuser"> <i class="fa fa-list-alt"></i> </a>
                                             <a href="../eshop/cart?p=p01"> <i class="fa fa-cart-arrow-down"></i> </a>
 											<a href="../login/login?ck=4">로그인</a>
 											<a href="../member/member_input">회원가입</a>
+											<a href="../mypage/rdwg_check?err=0">비회원조회</i> </a>
 										</c:if>
 										<c:if test="${(userid != null) && (userid != 'admin')}">
 											<a href="../mypage/mypage"> ${name}님
@@ -144,6 +165,9 @@
 		background: white;
 		text-align: center;
 	}
+	#loglayer #txt2{
+		margin-top: 50px;
+	}
 	#loglayer #logform{
 		margin-top: 200px;
 	}
@@ -152,6 +176,13 @@
 		height: 50px;
 		border: none;
 		border-bottom: 2px solid #887159;
+		background: white;
+		color: #887159;
+	}
+	#loglayer input[type=button]{
+		width: 400px;
+		height: 80px;
+		border: 1px solid #887159;
 		background: white;
 		color: #887159;
 	}
@@ -197,18 +228,16 @@
 <div id="loglayer">
 	<div>
 		<div id="txt">객실 예약을 진행하려면 로그인 또는 비회원으로 진행 선택을 해주세요.</div>
-		<!-- <form method="post" action="../login/login_ok" id="logform">
-		<input type="hidden" name="ck" value="2">
-			<div><input type="text" name="userid" placeholder="아이디" id="gologin"></div>
-			<div><input type="password" name="pwd" placeholder="비밀번호" id="gologin"></div>
-			<p> -->
-			<div><input type="button" value="로그인" onclick="location='../login/login?ck=2'"></div>
-			<hr>
-			<a href="../room/room_resv"><input type="button" value="비회원으로 계속" id="keepgo"></a>
-		<!-- </form> -->
 		<br>
-	</div>
-</div> 
+		<div id="txt2">
+			<div>
+				<input type="button" value="로그인" onclick="location='../login/login?ck=2'">
+				<hr>
+				<input type="button" value="비회원으로 계속" id="keepgo" onclick="location='../room/room_resv'">
+			</div>
+		</div>
+	</div> 
+</div>
                             </div>
                         </div>
                         <div class="col-12">

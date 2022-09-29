@@ -11,7 +11,6 @@
 		margin-top : 50px;
 	}
 	#pro_write table {
-		font-family : 돋움;
 		font-size : 14px;
 		border-top : 2px solid darkgray;
 		border-bottom : 2px solid darkgray;
@@ -33,7 +32,6 @@
 		opacity: 1;
 	}
 	#pro_write p {
-		font-family : 돋움;
 		font-size : 14px;
 	}
 </style>
@@ -136,7 +134,7 @@
 <body>
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
 		<div class="bradcam_area basic">
-	        <h3> 상품 등록 </h3>
+	        <div id="h3"> 상품 등록 </div>
 	    </div>
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
     

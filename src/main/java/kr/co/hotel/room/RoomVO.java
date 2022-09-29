@@ -11,10 +11,16 @@ public class RoomVO {
 	private int cnt;
 	private String checkin, checkout;
 	
+	// 이벤트용 추가
+	private String rtxt3;
 	
 	
-	
-
+	public String getRtxt3() {
+		return rtxt3;
+	}
+	public void setRtxt3(String rtxt3) {
+		this.rtxt3 = rtxt3;
+	}
 	public String getCheckin() {
 		return checkin;
 	}

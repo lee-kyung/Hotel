@@ -90,7 +90,9 @@ public interface MyPageMapper {
 	public ArrayList<GumaeVO> getEinfo(String bjcode); 
 	public String getPnum(String bjcode);
 
-
-
+	public void chgRinfo(String bjcode);
+	public void chgDinfo(String bjcode);
+	public void chgWinfo(String bjcode);
+	public void chgEinfo(String bjcode);
 
 }

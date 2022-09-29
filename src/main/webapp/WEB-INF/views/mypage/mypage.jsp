@@ -40,17 +40,20 @@
 	#first .txt2 span{
 	cursor:pointer;}
 	
+	#first #list{
+	width:100%;
+	margin:auto;}
+	
 	#first ul li{
 	display:inline-block;
 	border:1px solid #cccccc;
-	width:450px;
+	width:23%;
 	height:150px;
 	margin-top:20px;
 	background:white;
 	border-right:none;
-	text-align:center;
 	font-size:25px;
-	padding-top:50px;
+	padding-top:52px;
 	cursor:pointer;}
 	
 	#first ul li:last-child{
@@ -135,6 +138,12 @@
 	font-size:25px;}
 	
 	section #mypage table a{
+	color:black;}
+	
+	section #mypage table a:hover{
+	color:red;}
+	
+	section #mypage table tr:first-child a{
 	color:#887159;}
 	
 	section #mypage table tr:nth-child(2){
@@ -156,10 +165,10 @@
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
     <!-- bradcam_area_start -->
     <!-- 새 이미지 추가하는 법
-    	①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기
+    	①[webapp\resources\css]폴더에 있는 [style.css]파일에 스를 추가하기
     	②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
     <div class="bradcam_area basic">	<!-- class="bradcam_area 클래스명" -->
-        <h3> 문구(자유롭게 변경하기) </h3>
+        <div id="h3">MY PAGE</div>
     </div>
     
 <!-- first -->    
@@ -167,9 +176,11 @@
 	<div id="first_1">
 		<div id="txt"><span onclick="location='mypage'">${name }님, 환영합니다.</span></div> 
 	</div>
-	<ul>
-		<li onclick="location='room_resv'">객실 예약 확인</li><li onclick="location='dine_resv'">레스토랑 예약 확인</li><li onclick="location='eshop_gumae'">E-SHOP 주문내역</li><li onclick="location='wedding_resv'">웨딩 예약 확인</li>
-	</ul>
+	<div id="list">
+		<ul>
+			<li onclick="location='room_resv'">객실 예약 확인</li><li onclick="location='dine_resv'">레스토랑 예약 확인</li><li onclick="location='eshop_gumae'">E-SHOP 주문내역</li><li onclick="location='wedding_resv'">웨딩 예약 확인</li>
+		</ul>
+	</div>
 </div>
 <!-- first/ -->
 	
@@ -195,7 +206,7 @@
 			<div style="margin-left:20px;">투숙횟수 : ${room}</div>
 			<div style="margin-left:20px;">다이닝횟수 : ${dine }</div>
 			<div style="margin-left:20px;">상품구매횟수 : ${eshop }</div>
-			<div style="margin-left:20px;">적립금 : ${juk }</div>
+			<div style="margin-left:20px;">적립금 : ${juk } 원</div>
 	</div>
 	<div class="under" style="margin-top:50px;"></div>
 	<div id="txt3">최근 사용 내역</div>
@@ -212,7 +223,7 @@
 			</tr>
 	 		<c:forEach items="${rlist }" var="rvo">
 			<tr>
-				<td>${rvo.rname}</td>
+				<td><a href="room_content?id=${rvo.id}">${rvo.rname}</a></td>
 				<td>${rvo.checkin }</td>
 				<td>${rvo.checkout }</td>
 				<td>${rvo.bkdate }</td>
@@ -232,7 +243,7 @@
 			</tr>
 			<c:forEach items="${dlist }" var="dvo">
 			<tr>
-				<td>${dvo.dr_date }</td>
+				<td><a href="dine_content?dr_id=${dvo.dr_id}">${dvo.dr_date }</a></td>
 				<td>${dvo.dine_type }</td>
 				<td>${dvo.dr_time }</td>
 				<td>${dvo.writeday }</td>
@@ -252,7 +263,7 @@
 			</tr>
 			<c:forEach items="${wlist }" var="wvo">
 			<tr>
-				<td>${wvo.wresv_hall }</td>
+				<td><a href="wedding_content?wresv_id=${wvo.wresv_id }">${wvo.wresv_hall }</a></td>
 				<td>${wvo.wresv_cday }</td>
 				<td>${wvo.wresv_time }</td>
 				<td>${wvo.wresv_day }</td>
@@ -271,8 +282,8 @@
 			</tr>
 			<c:forEach items="${glist }" var="gvo">
 			<tr>
-				<td>${gvo.title }</td>
-				<td>${gvo.total_price }</td>
+				<td><a href="eshop_content?id=${gvo.id}&jumuncode=${gvo.jumuncode }">${gvo.title }</a></td>
+				<td><fmt:formatNumber value="${gvo.total_price }"/>원</td>
 				<td>${gvo.buyday }</td>
 			</tr>
 			</c:forEach>

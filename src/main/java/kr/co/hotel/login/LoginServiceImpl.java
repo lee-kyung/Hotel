@@ -79,7 +79,7 @@ public class LoginServiceImpl implements LoginService {
 			return "redirect:/main/index";
 		}
 		else
-			return "redirect:/login/login";
+			return "redirect:/login/login?ck=4";
 	}
 	
 	@Override

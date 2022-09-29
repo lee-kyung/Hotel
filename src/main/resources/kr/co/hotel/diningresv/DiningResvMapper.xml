@@ -13,13 +13,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<![CDATA[ select dine_type, right(dr_date, 2) as td, count(*) as cnt
 		from diningresv
 		where dr_date >= #{param1} and dr_date <= #{param2}
+		and dr_state=0
 		group by dine_type, dr_date ]]>
 	</select>
 	
 	<select id="getDTresv" resultType="kr.co.hotel.diningresv.DiningResvVO">
 		select left(dr_time, 2) as dt, count(*) as cnt
 		from diningresv where dr_date=#{param1} and dine_type=#{param2}
-		group by dr_time;
+		and dr_state=0
+		group by dr_time
 	</select>
 	
 	<select id="dining_reserve_next" resultType="kr.co.hotel.dining.DiningVO">
