@@ -88,8 +88,8 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
      margin-top:15px;
      margin-left:2px;
      margin-bottom:0px;
-     vertical-align:center;
      height:87px;
+     vertical-align: middle;
   }
   #section #dinetype :hover{ /* 다이닝 타입 마우스오버 css */
      color:blue;
@@ -110,6 +110,18 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
      margin-top:20px;
      border-top:2px solid #887159;
   }
+  #dine_typediv table tr, th{
+     border-bottom:1px solid #887159;
+  }
+/*   #dine_typediv table tr{
+     margin-left:30px;
+  } */
+  tbody{
+      margin-left:30px;
+  }
+  #dine_typediv #dine tr:first-child{
+     background:#eeeae1 ;
+  } 
   #dine_typediv #dine tr:last-child{
      border-bottom:2px solid #887159;
   } 
@@ -236,13 +248,8 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
 				}
 			}
 		}	
-
-<<<<<<< HEAD
   } 
 
-  
-=======
->>>>>>> branch 'main' of https://github.com/ey0k/hotel.git
   function check()
 	{
 		// 다이닝 타입, 입장 시간
@@ -255,13 +262,10 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
 		{
 			alert("예약 희망 시간을 선택해주세요.");
 			return false;
-<<<<<<< HEAD
 		}  
 		else
 			return true;
-=======
 		}  // options[view_type.selectedIndex]
->>>>>>> branch 'main' of https://github.com/ey0k/hotel.git
 	}
 
   /* function show()
@@ -401,7 +405,7 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
             <c:if test="${dday >= today}"> <!--  오늘 이후면 클릭 되도록 -->
            
             <span id="dine_type" class="b1" name="dine_type" style="font-size:14px;" 
-            	onclick="date_type(${y}, ${m}, ${day}, 'Breakfast');show();">
+            	onclick="date_type(${y}, ${m}, ${day}, 'Breakfast'); show();">
                		<img src="../img/dining/breakfast.png" width="17px;" height="17px;">
              Breakfast <br>
             </span>
