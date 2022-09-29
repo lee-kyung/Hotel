@@ -75,7 +75,7 @@
                                         <li><a href="../main/index">Hotel<i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
                                                 <li><a href="../info/info">호텔 소개</a></li>
-                                                <li><a href="../info/info">호텔 소개</a></li>
+                                                <li><a href="../info/gongji_list">공지사항</a></li>
                                             </ul>
                                         <li><a href="../room/rooms">rooms</a></li> <!-- class="active" -->
                                         <li id="title"><a href="">dining<i class="ti-angle-down"></i></a>
@@ -265,7 +265,7 @@
         <div class="footer_top">
             <div class="container">
                 <div class="row">
-                    <div class="col-xl-3 col-md-6 col-lg-3">
+                    <div class="col-xl-3 col-md-6 col-lg-3" style="margin-left:30px;">
                         <div class="footer_widget">
                             <h3 class="footer_title">
                                 address
@@ -275,7 +275,7 @@
                             <a href="#" class="line-button">Get Direction</a>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-md-6 col-lg-3">
+                    <div class="col-xl-3 col-md-6 col-lg-3" style="margin-left:180px;">
                         <div class="footer_widget">
                             <h3 class="footer_title">
                                 Reservation
@@ -284,31 +284,21 @@
                                 reservation@montana.com</p>
                         </div>
                     </div>
-                    <div class="col-xl-2 col-md-6 col-lg-2">
+                    <div class="col-xl-2 col-md-6 col-lg-2" style="margin-left:160px;">
                         <div class="footer_widget">
                             <h3 class="footer_title">
                                 Navigation
                             </h3>
                             <ul>
-                                <li><a href="#">Home</a></li>
-                                <li><a href="#">Rooms</a></li>
-                                <li><a href="#">About</a></li>
-                                <li><a href="#">News</a></li>
+                                <li><a href="#">Hotel</a></li>
+                                <li><a href="../room/rooms">Rooms</a></li>
+                                <li><a href="../dining/dining">Dining</a></li>
+                                <li><a href="../wedding/wedding">Wedding</a></li>
+                                <li><a href="../eshop/eshop">Eshop</a></li>
                             </ul>
                         </div>
                     </div>
-                    <div class="col-xl-4 col-md-6 col-lg-4">
-                        <div class="footer_widget">
-                            <h3 class="footer_title">
-                                Newsletter
-                            </h3>
-                            <form action="#" class="newsletter_form">
-                                <input type="text" placeholder="Enter your mail">
-                                <button type="submit">Sign Up</button>
-                            </form>
-                            <p class="newsletter_text">Subscribe newsletter to get updates</p>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </div>

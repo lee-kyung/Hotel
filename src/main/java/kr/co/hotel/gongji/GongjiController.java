@@ -28,9 +28,9 @@ public class GongjiController {
 	}
 	
 	@RequestMapping("/info/gongji_list")
-	public String gongji_list(Model model)
+	public String gongji_list(Model model, HttpServletRequest request)
 	{
-		return service.gongji_list(model);
+		return service.gongji_list(model, request);
 	}
 	
 	@RequestMapping("/info/gongji_content")

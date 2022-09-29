@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import kr.co.hotel.wedding.WeddingResvVO;
+
 @Service
 @Qualifier("gs")
 public class GongjiServiceImpl implements GongjiService{
@@ -30,8 +32,46 @@ public class GongjiServiceImpl implements GongjiService{
 	}
 
 	@Override
-	public String gongji_list(Model model) 
+	public String gongji_list(Model model, HttpServletRequest request) 
 	{
+		
+		// 페이지
+			int page, start;
+			int pcnt;
+
+			if(request.getParameter("pcnt")==null)
+				pcnt=10;
+			else
+				pcnt=Integer.parseInt(request.getParameter("pcnt"));
+				
+			if(request.getParameter("page")==null)
+				page=1;
+			else
+				page=Integer.parseInt(request.getParameter("page"));
+			
+			start=(page-1)*pcnt;
+			
+			int pstart, pend;
+				
+			pstart=page/10;
+				
+			if(page%10==0)
+				pstart--;
+				
+			pstart=pstart*10+1;
+			pend=pstart+9;
+				
+			int chong=mapper.getGongjiChong(pcnt);
+				
+			if(chong<pend)
+				pend=chong;
+	
+			model.addAttribute("page", page);
+			model.addAttribute("pstart", pstart);
+			model.addAttribute("pend", pend);
+			model.addAttribute("chong", chong);
+			model.addAttribute("pcnt", pcnt);
+				
 		ArrayList<GongjiVO> glist=mapper.gongji_list();
 		model.addAttribute("glist", glist);
 		
@@ -53,7 +93,6 @@ public class GongjiServiceImpl implements GongjiService{
 	{
 		String id=request.getParameter("id");
 		GongjiVO gvo=mapper.gongji_content(id);
-		gvo.setContent(gvo.getContent().replace("\r\n", "<br>"));
 		model.addAttribute("gvo", gvo);
 		
 		return "/info/gongji_update";

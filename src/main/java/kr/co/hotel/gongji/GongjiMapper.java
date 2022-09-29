@@ -14,4 +14,6 @@ public interface GongjiMapper {
 
 	public void gongji_delete(String id);
 
+	public int getGongjiChong(int pcnt);
+
 }
