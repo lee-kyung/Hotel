@@ -233,6 +233,7 @@
 	    </div>
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
 
+	<c:if test="${userid == null}"> <c:redirect url="../main/index"/> </c:if>
 
 	<!-- ================ 장바구니 Area Start ================= -->
     <div id="wish">

@@ -86,27 +86,27 @@
 	function check(){
 		let dom=document.inpro;
 		if(dom.pcode.value.trim() == "") {
-			alert("상품코드를 생성하세요.")
+			alert("상품코드를 생성하세요.");
 			return false;
 			}
 			else if(dom.fimg1.value.trim() == "") {
-				alert("메인이미지를 등록하세요.")
+				alert("메인이미지를 등록하세요.");
 				return false;
 				}
 				else if(dom.simg.value.trim() == "") {
-					alert("상세이미지를 등록하세요.")
+					alert("상세이미지를 등록하세요.");
 					return false;
 					}
 					else if(dom.title.value.trim() == "") {
-						alert("상품명을 입력하세요.")
+						alert("상품명을 입력하세요.");
 						return false;
 						}
 						else if(dom.price.value.trim() == "") {
-							alert("판매가를 입력하세요.")
+							alert("판매가를 입력하세요.");
 							return false;
 							}
 							else if(dom.su.value.trim() == "") {
-								alert("재고를 입력하세요.")
+								alert("재고를 입력하세요.");
 								return false;
 							}
 							else
@@ -129,12 +129,34 @@
 			document.getElementsByClassName("imgs")[len].remove();
 		}
 	}
+	
+	/* 숫자만 입력했는지 체크하기 */
+	function checkNum(e){
+		let keyVal=event.keyCode;
+		if((keyVal >= 48) && (keyVal <= 57))
+			return true;
+		else {
+			alert("숫자만 입력가능합니다");
+			return false;
+		}
+	}
+	
+	/* 100이하의 숫자만 입력했는지 체크하기 */
+	function checkNum1(e, n){
+		let keyVal=event.keyCode;
+		if((keyVal >= 48) && (keyVal <= 57) && (n <= 100))
+			return true;
+		else {
+			alert("100이하의 숫자만 입력가능합니다");
+			return false;
+		}
+	}
 </script>
 </head>
 <body>
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
 		<div class="bradcam_area basic">
-	        <div id="h3"> 상품 등록 </div>
+	        <div id="h3" onclick="location='pro_write'" style="cursor:pointer;"> 상품 등록 </div>
 	    </div>
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
     
@@ -176,23 +198,23 @@
 			</tr>
 			<tr>
 				<td> 판매가 </td>
-				<td colspan="2"> <input type="number" name="price"  min="0" placeholder="숫자만 입력하세요."> </td>
+				<td colspan="2"> <input type="number" name="price"  min="0" placeholder="숫자만 입력하세요." onKeyPress="return checkNum(event)"> </td>
 			</tr>
 			<tr>
 				<td> 할인율 </td>
-				<td colspan="2"> <input type="number" name="halin" min="0" max="100" placeholder="0~100" id="size"> </td>
+				<td colspan="2"> <input type="number" name="halin" min="0" max="100" placeholder="0~100" id="size" onKeyPress="return checkNum1(event, this.value)"> </td>
 			</tr>
 			<tr>
 				<td> 적립율 </td>
-				<td colspan="2"> <input type="number" name="juk" min="0" placeholder="숫자만 입력하세요."> </td>
+				<td colspan="2"> <input type="number" name="juk" min="0" max="100" placeholder="0~100" id="size" onKeyPress="return checkNum1(event, this.value)"> </td>
 			</tr>
 			<tr>
 				<td> 재고 </td>
-				<td colspan="2"> <input type="number" name="su" min="0" placeholder="숫자만 입력하세요."> </td>
+				<td colspan="2"> <input type="number" name="su" min="0" placeholder="숫자만 입력하세요." onKeyPress="return checkNum(event)"> </td>
 			</tr>
 			<tr>
 				<td> 배송비 </td>
-				<td colspan="2"> <input type="number" name="baefee" min="0" placeholder="숫자만 입력하세요."> </td>
+				<td colspan="2"> <input type="number" name="baefee" min="0" placeholder="숫자만 입력하세요." onKeyPress="return checkNum(event)"> </td>
 			</tr>
 			<tr>
 				<td colspan="3" align="center">

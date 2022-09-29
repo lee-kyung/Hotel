@@ -480,7 +480,7 @@ public class EshopServiceImpl implements EshopService {
 		
 		/* 한페이지에 출력할 레코드개수의 초기화면값 처리하기 */
 		if(request.getParameter("psel") == null)
-			psel=15;
+			psel=10;
 		else
 			psel=Integer.parseInt(request.getParameter("psel"));
 		

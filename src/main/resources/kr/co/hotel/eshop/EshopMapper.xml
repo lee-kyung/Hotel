@@ -141,4 +141,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		order by ${param3} limit ${param4}, ${param5}
 	</select>
 	
+	<select id="total" resultType="Integer">
+		select ceil(count(*)/${param1}) from product where ${param2} like concat('%', #{param3}, '%')
+	</select>
+	
 </mapper>

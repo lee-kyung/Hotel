@@ -229,6 +229,42 @@
                     </div>
                 </div>
                 
+                <form action="#">
+                    <div class="form-group">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder='Search Keyword'
+                                onfocus="this.placeholder = ''"
+                                onblur="this.placeholder = 'Search Keyword'">
+                            <div class="input-group-append">
+                                <button class="btn" type="button"><i class="ti-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
+                        type="submit">Search</button>
+                </form>
+                
+                <nav class="blog-pagination justify-content-center d-flex">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a href="#" class="page-link" aria-label="Previous">
+                                <i class="ti-angle-left"></i>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a href="#" class="page-link">1</a>
+                        </li>
+                        <li class="page-item active">
+                            <a href="#" class="page-link">2</a>
+                        </li>
+                        <li class="page-item">
+                            <a href="#" class="page-link" aria-label="Next">
+                                <i class="ti-angle-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                
                 <div class="col-lg-4">
                     <div class="blog_right_sidebar">
                         <aside class="single_sidebar_widget search_widget">
