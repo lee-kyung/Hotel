@@ -33,7 +33,7 @@ public class EshopServiceImpl implements EshopService {
 	@Override
 	public String pro_write(Model model) {
 		model.addAttribute("list", mapper.pro_write());
-		return "/eshop/pro_adlist";
+		return "/eshop/pro_write";
 	}
 
 	@Override
@@ -88,73 +88,34 @@ public class EshopServiceImpl implements EshopService {
 			return "redirect:/eshop/error";
 		}
 		mapper.pro_write_ok(pvo);
-		return "redirect:/eshop/eshop";
+		return "redirect:/eshop/pro_adlist";
 	}
 
 	@Override
 	public String pro_list(HttpServletRequest request, Model model, HttpSession session) {
 		String pcode=request.getParameter("pcode");
-		
-		int page, psel;
-		String osel;
-		
-		/* 페이지의 초기화면값 처리하기 */
-		if(request.getParameter("page") == null)
-			page=1;
-		else
-			page=Integer.parseInt(request.getParameter("page"));
-		
-		/* 한페이지에 출력할 레코드개수의 초기화면값 처리하기 */
-		if(request.getParameter("psel") == null)
-			psel=9;
-		else
-			psel=Integer.parseInt(request.getParameter("psel"));
-		
-		/* 한페이지에 출력할 레코드의 index값 구하기 */
-		int pindex=(page-1)*psel;
 
 		/* 정렬말머리의 초기화면값 처리하기*/
+		String osel;
 		if(request.getParameter("osel") == null)
 			osel="sold desc";
 		else
 			osel=request.getParameter("osel");
-		
-		/* 페이지 이동을 위한 출력 범위 */
-		int pstart, pend, parr=10;
-		
-		pstart=page/parr;	// 페이지 출력 범위 : 1~10, 11~20, 21~30…
-		if((page%parr) == 0)
-			pstart--;
-			
-		pstart=(pstart*parr)+1;
-		pend=pstart+(parr-1);
-		
-		/* 총페이지수 구하기 */
-		//int ptotal=mapper.total(psel);
-		
-		/* pend가 총페이지수보다 크다면 값 바꾸기 */
-		//if(pend > ptotal)
-			//pend=ptotal;
-		
+
 		String userid="";
 		Cookie cookie = WebUtils.getCookie(request, "cookieid");
 		if(session.getAttribute("userid") == null && cookie == null)
-			model.addAttribute("plist", mapper.pro_list2(pcode, osel, pindex, psel));
+			model.addAttribute("plist", mapper.pro_list2(pcode, osel));
 		else {
 			if(session.getAttribute("userid") == null)
 				userid=cookie.getValue();
 			else
 				userid=session.getAttribute("userid").toString();
-			model.addAttribute("plist", mapper.pro_list(userid, pcode, osel, pindex, psel));
+			model.addAttribute("plist", mapper.pro_list(userid, pcode, osel));
 		}			
 		
 		model.addAttribute("pcode", pcode);	// 배너사진과 문구를 구별하기 위한 pcode(pdae 또는 pdaeso)값
-		model.addAttribute("page", page);
-		model.addAttribute("psel", psel);
 		model.addAttribute("osel", osel);
-		model.addAttribute("pstart", pstart);
-		model.addAttribute("pend", pend);
-		//model.addAttribute("ptotal", ptotal);
 		return "/eshop/pro_list";
 	}
 	
@@ -465,7 +426,7 @@ public class EshopServiceImpl implements EshopService {
 		String jumuncode=request.getParameter("jumuncode");
 		model.addAttribute("name", mapper.getName(jumuncode));
 		model.addAttribute("jumuncode", jumuncode);		
-		return "eshop/gumae_okmsg";
+		return "/eshop/gumae_okmsg";
 	}
 
 	@Override
@@ -540,14 +501,14 @@ public class EshopServiceImpl implements EshopService {
 		model.addAttribute("pend", pend);
 		model.addAttribute("ptotal", ptotal);
 		model.addAttribute("osel", osel);
-		return "eshop/pro_adlist";
+		return "/eshop/pro_adlist";
 	}
 
 	@Override
 	public String pro_adcontent(Model model, HttpServletRequest request) {
 		ProductVO pvo= mapper.pro_adcontent(request.getParameter("id"));
 				
-		/* fimg를 imgs에 담아서 배열로  전달 */
+		/* fimg를 imgs에 담아서 배열로 전달 */
 		pvo.setImgs(pvo.getFimg().split(","));
 
 		model.addAttribute("pvo", pvo);
@@ -556,7 +517,7 @@ public class EshopServiceImpl implements EshopService {
 		model.addAttribute("ssel", request.getParameter("ssel"));
 		model.addAttribute("sword", request.getParameter("sword"));
 		model.addAttribute("osel", request.getParameter("osel"));
-		return "eshop/pro_adcontent";
+		return "/eshop/pro_adcontent";
 	}
 
 	@Override
@@ -580,9 +541,19 @@ public class EshopServiceImpl implements EshopService {
 	}
 
 	@Override
-	public String pro_adupdate(Model model) {
-		// TODO Auto-generated method stub
-		return null;
+	public String pro_adupdate(Model model, HttpServletRequest request) {
+		ProductVO pvo= mapper.pro_adcontent(request.getParameter("id"));
+		
+		/* fimg를 imgs에 담아서 배열로 전달 */
+		pvo.setImgs(pvo.getFimg().split(","));
+
+		model.addAttribute("pvo", pvo);
+		model.addAttribute("page", request.getParameter("page"));
+		model.addAttribute("psel", request.getParameter("psel"));
+		model.addAttribute("ssel", request.getParameter("ssel"));
+		model.addAttribute("sword", request.getParameter("sword"));
+		model.addAttribute("osel", request.getParameter("osel"));
+		return "/eshop/pro_adupdate";
 	}
 
 	@Override

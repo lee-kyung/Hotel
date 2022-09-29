@@ -132,8 +132,8 @@ public class EshopController {
 	}
 	
 	@RequestMapping("/eshop/pro_adupdate")
-	public String pro_adupdate(Model model) {
-		return service.pro_adupdate(model);
+	public String pro_adupdate(Model model, HttpServletRequest request) {
+		return service.pro_adupdate(model, request);
 	}
 	
 	@RequestMapping("/ehop/pro_adupdate_ok")

@@ -36,6 +36,6 @@ public interface EshopService {
 	public String pro_adlist(Model model, HttpServletRequest request);
 	public String pro_adcontent(Model model, HttpServletRequest request);
 	public String pro_addelete(HttpServletRequest request);
-	public String pro_adupdate(Model model);
+	public String pro_adupdate(Model model, HttpServletRequest request);
 	public String pro_adupdate_ok(HttpServletRequest request);
 }

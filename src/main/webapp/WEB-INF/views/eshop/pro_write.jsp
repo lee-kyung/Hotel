@@ -110,13 +110,13 @@
 							else
 								return true;
 	}
-	
-	/* 이미지 첨부파일 추가 & 삭제 */
+
+	/* 이미지 첨부파일 추가(+미리보기) & 삭제 */
 	function add_file(){
 		let len=document.getElementsByClassName("imgs").length;
 		if(len < 3) {
 			len++;
-			let inner="<p class='imgs'> <input type='file' name='fimg"+len+"'> </p>";
+			let inner="<p class='imgs'> <span class='img'></span> <input onchange='setview("+(len-1)+")' type='file' name='fimg"+len+"'> </p>";
 			document.getElementById("outer").innerHTML=document.getElementById("outer").innerHTML+inner;
 		}
 	}
@@ -127,6 +127,31 @@
 			document.getElementsByClassName("imgs")[len].remove();
 		}
 	}
+	function setview(n){
+		document.getElementsByClassName("img")[n].innerHTML="";
+		
+		for (var image of event.target.files) {
+			var reader = new FileReader(); 
+			reader.onload=function(){
+				var img = document.createElement("img"); 
+
+				img.setAttribute("src", event.target.result); 
+				img.setAttribute("height", "50");
+				img.setAttribute("valign", "middle");
+
+				document.getElementsByClassName("img")[n].appendChild(img);  //새로 선택한 이미지 div에 출력
+			};
+			reader.readAsDataURL(image); 
+		}
+	}
+	/*function add_file(){
+		let len=document.getElementsByClassName("imgs").length;
+		if(len < 3) {
+			len++;
+			let inner="<p class='imgs'> <input type='file' name='fimg"+len+"'> </p>";
+			document.getElementById("outer").innerHTML=document.getElementById("outer").innerHTML+inner;
+		}
+	}*/
 	
 	/* 숫자만 입력했는지 체크하기 */
 	function checkNum(e){
@@ -182,8 +207,8 @@
 				<td> 메인이미지 </td>
 				<td id="outer" colspan="2">
 					<input type="button" onclick="add_file()" value="추가">
-					<input type="button" onclick="del_file()" value="삭제">
-					<p class="imgs"> <input type="file" name="fimg1"> </p>
+					<input type="button" onclick="del_file()" value="삭제"> <p>
+					<p class="imgs"> <span class="img"></span> <input type="file" name="fimg1" onchange="setview(0)"> </p>
 				</td>
 			</tr>
 			<tr>
