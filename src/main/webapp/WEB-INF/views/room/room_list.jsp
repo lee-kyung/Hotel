@@ -124,10 +124,6 @@
 		sub[n].style.background="white";
 		sub[n].style.borderBottom="none";
 	}
-	function showa()
-	{
-		document.getElementById("#a2").
-	}
 </script>
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
 <!-- bradcam_area_start -->

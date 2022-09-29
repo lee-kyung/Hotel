@@ -35,7 +35,7 @@ public class MemberServiceImpl implements MemberService{
 		mvo.setEmail(email_id+"@"+email_juso);
 		
 		mapper.member_input_ok(mvo);
-		return "/login/login?ck=4";
+		return "redirect:/login/login?ck=4";
 	}
 
 	@Override

@@ -14,13 +14,13 @@
 	#pro_list {
 		width : 1100px;
 		height : ${height}px;
-		margin : auto;
+		margin : 50px auto 100px auto;
 	}
 	#pro_list #eshop_img {
 		margin-top : 30px;
 		width : 350px;
 		height : 350px;
-		padding-top : 30px;
+		padding-top : 10px;
 	}
 	#pro_list table td {
 		padding-right : 20px;
@@ -105,11 +105,6 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script> 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script>
-	/* 페이지목록수 선택하기 */
-	function page_sel(psel){
-		location="pro_list?pcode=${pcode}&osel=${osel}&psel="+psel;
-	}
-	
 	/* 정렬순 선택하기 */
 	function order_sel(osel){
 		location="pro_list?pcode=${pcode}&psel=${psel}&osel="+osel;
@@ -117,7 +112,6 @@
 	
 	/* 브라우저에 변경된 페이지목록수 및 정렬순 나타내기 */
 	/*window.onload=function(){
-		document.getElementById("psel").value="${psel}";
 		document.getElementById("osel").value="${osel}";
 	}*/
 	
@@ -198,32 +192,32 @@
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
     <c:if test="${(pcode == 'p01')}">
 	    <div class="bradcam_area eshop2">
-	        <div id="h3" onclick="location='pro_list?pcode=p01&osel=${osel}'" style="cursor:pointer;"> P R O D U C T </div>
+	        <div id="h3" onclick="location='pro_list?pcode=p01'" style="cursor:pointer;"> P R O D U C T </div>
 	    </div>
     </c:if>
     <c:if test="${(pcode == 'p0101')}">
 	    <div class="bradcam_area eshop4">
-	        <div id="h3" onclick="location='pro_list?pcode=p01&osel=${osel}'" style="cursor:pointer;"> P R O D U C T </div>
+	        <div id="h3" onclick="location='pro_list?pcode=p01'" style="cursor:pointer;"> P R O D U C T </div>
 	    </div>
     </c:if>
     <c:if test="${(pcode == 'p0102')}">
 	    <div class="bradcam_area eshop5">
-	        <div id="h3" onclick="location='pro_list?pcode=p01&osel=${osel}'" style="cursor:pointer;"> P R O D U C T </div>
+	        <div id="h3" onclick="location='pro_list?pcode=p01'" style="cursor:pointer;"> P R O D U C T </div>
 	    </div>
     </c:if>
     <c:if test="${(pcode == 'p02')}">
 	    <div class="bradcam_area eshop3">
-	        <div id="h3" onclick="location='pro_list?pcode=p02&osel=${osel}'" style="cursor:pointer;"> V O U C H E R </div>
+	        <div id="h3" onclick="location='pro_list?pcode=p02'" style="cursor:pointer;"> V O U C H E R </div>
 	    </div>
     </c:if>
     <c:if test="${(pcode == 'p0201')}">
 	    <div class="bradcam_area eshop6">
-	        <div id="h3" onclick="location='pro_list?pcode=p02&osel=${osel}'" style="cursor:pointer;"> V O U C H E R </div>
+	        <div id="h3" onclick="location='pro_list?pcode=p02'" style="cursor:pointer;"> V O U C H E R </div>
 	    </div>
     </c:if>
     <c:if test="${(pcode == 'p0202')}">
 	    <div class="bradcam_area eshop7">
-	        <div id="h3" onclick="location='pro_list?pcode=p02&osel=${osel}'" style="cursor:pointer;"> V O U C H E R </div>
+	        <div id="h3" onclick="location='pro_list?pcode=p02'" style="cursor:pointer;"> V O U C H E R </div>
 	    </div>
     </c:if>
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
@@ -243,7 +237,7 @@
 				<span id="cate3" onclick="location='pro_list?pcode=p0202&osel=${osel}'"> B A K E R Y </span>
 			</div>
 		</c:if>
-		<div class="default-select" id="default-select" style="display:inline-block;">
+		<div class="default-select" id="default-select" style="float:right;margin-top:20px;">
 			<select onchange="order_sel(this.value)" id="osel">
 				<c:if test="${osel == 'sold desc'}">
 					<option value="sold desc" selected> 인기순 </option>
@@ -258,57 +252,23 @@
 					<option value="id desc"> 신상품순 </option>
 				</c:if>
 				<c:if test="${osel == 'halin desc'}">
-					<option value="halin desc" selected> 할인율순 </option>
+					<option value="halin desc" selected> 할인순 </option>
 				</c:if>
 				<c:if test="${osel != 'halin desc'}">
-					<option value="halin desc"> 할인율순 </option>
+					<option value="halin desc"> 할인순 </option>
 				</c:if>
 				<c:if test="${osel == 'price desc'}">
-					<option value="price desc" selected> 고가격순 </option>
+					<option value="price desc" selected> 최고가순 </option>
 				</c:if>
 				<c:if test="${osel != 'price desc'}">
-					<option value="price desc"> 고가격순 </option>
+					<option value="price desc"> 최고가순 </option>
 				</c:if>
 				<c:if test="${osel == 'price asc'}">
-					<option value="price asc" selected> 저가격순 </option>
+					<option value="price asc" selected> 최저가순 </option>
 				</c:if>
 				<c:if test="${osel != 'price asc'}">
-					<option value="price asc"> 저가격순 </option>
+					<option value="price asc"> 최저가순 </option>
 				</c:if>
-			</select>
-		</div>
-		<div class="default-select" id="default-select" style="display:inline-block;float:right;margin-right:5px;">
-			<select onchange="page_sel(this.value)" id="psel">
-				<c:if test="${psel == 9}">
-					<option value="9" selected> 9개씩 </option>
-				</c:if>
-				<c:if test="${psel != 9}">
-					<option value="9"> 9개씩 </option>
-				</c:if>
-				<c:if test="${psel == 15}">
-					<option value="15" selected> 15개씩 </option>
-				</c:if>
-				<c:if test="${psel != 15}">
-					<option value="15"> 15개씩 </option>
-				</c:if>
-				<c:if test="${psel == 30}">
-					<option value="30" selected> 30개씩 </option>
-				</c:if>
-				<c:if test="${psel != 30}">
-					<option value="30"> 30개씩 </option>
-				</c:if>
-				<%-- <c:if test="${psel == 45}">
-					<option value="45" selected> 45개씩 </option>
-				</c:if>
-				<c:if test="${psel != 45}">
-					<option value="45"> 45개씩 </option>
-				</c:if>
-				<c:if test="${psel == 60}">
-					<option value="60" selected> 60개씩 </option>
-				</c:if>
-				<c:if test="${psel != 60}">
-					<option value="60"> 60개씩 </option>
-				</c:if>	 --%>
 			</select>
 		</div>
 		<table align="center">	 <!-- 상품을 9개씩 출력 -->
@@ -318,7 +278,7 @@
 			<c:forEach var="pvo" items="${plist}" varStatus="list">
 				<td>
 					<div class="offers_area padding_top" id="eshop_img"><div class="single_offers"><div class="about_thumb">
-						<img src="../img/eshop/${pvo.img}" height="300" width="300" onclick="content_view('${pvo.pcode}')" style="cursor:pointer">	<!-- 상품이미지 -->
+						<img src="../img/eshop/${pvo.img}" height="330" width="340" onclick="content_view('${pvo.pcode}')" style="cursor:pointer;">	<!-- 상품이미지 -->
 					</div></div></div>
 					<!-- 상품명 -->
 					<div id="title" onclick="content_view('${pvo.pcode}')"> ${pvo.title} </div>
@@ -362,34 +322,6 @@
 					<tr>
 				</c:if>
 			</c:forEach>
-			</tr>
-			<tr class="link" style="background:#F6F6F6;">
-				<td colspan="4" height="50" align="center">
-				<!-- 그룹으로 이전 이동 -->
-				<c:if test="${pstart != 1}">
-					<a href="pro_list?pcode=${pcode}&page=${pstart-1}&psel=${psel}&osel=${osel}" style="text-decoration:none;"><</a><a href="pro_list?pcode=${pcode}&page=${pstart-1}&psel=${psel}&osel=${osel}">이전</a>
-					<span style="color:#D5D5D5;">|</span>
-				</c:if>
-				<!-- 페이지 이동범위 출력 -->
-				<c:forEach var="pnow" begin="${pstart}" end="${pend}">
-					<c:if test="${page == pnow}">
-						<a href="pro_list?pcode=${pcode}&page=${pstart-1}&psel=${psel}&osel=${osel}" id="pnow">${pnow}</a>
-					</c:if>
-					<c:if test="${page != pnow}">
-						<a href="pro_list?pcode=${pcode}&page=${pstart-1}&psel=${psel}&osel=${osel}" id="non_pnow">${pnow}</a>
-					</c:if>
-				</c:forEach>
-				<!-- 그룹으로 다음 이동 -->
-					<span style="color:#D5D5D5;">|</span>
-				<c:if test="${pend == ptotal}">
-					<span>다음 ></span>
-				</c:if>
-				<c:if test="${pend != ptotal}">
-				<span>
-					<a href="pro_list?pcode=${pcode}&page=${pstart-1}&psel=${psel}&osel=${osel}">다음</a><a href="pro_list?pcode=${pcode}&page=${pstart-1}&psel=${psel}&osel=${osel}" style="text-decoration:none;">></a>
-				</span>
-				</c:if>
-				</td>
 			</tr>
 		</table>
 	</section>

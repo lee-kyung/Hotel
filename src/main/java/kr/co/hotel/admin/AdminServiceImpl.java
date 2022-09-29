@@ -64,7 +64,6 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public String roomlist(Model model, HttpServletRequest request) {
 		int page, start;
-		String oby;
 		int pcnt;
 		if(request.getParameter("pcnt")==null)
 			pcnt=10;
@@ -79,10 +78,25 @@ public class AdminServiceImpl implements AdminService{
 		start=(page-1)*pcnt;
 		
 		// 정렬
+		String oby;
 		if(request.getParameter("oby")==null)
 			oby="id desc";
 		else
 			oby=request.getParameter("oby");
+		
+		
+		// 날짜기준
+		String c1, c2;
+		if(request.getParameter("c1")==null)
+			c1="1900-01-01";
+		else
+			c1=request.getParameter("c1");
+		
+		if(request.getParameter("c2")==null)
+			c2="2900-12-31";
+		else
+			c2=request.getParameter("c2");
+		
 		
 		int pstart,pend;
 		pstart=page/10;
@@ -109,7 +123,7 @@ public class AdminServiceImpl implements AdminService{
 		if(chong<pend)
 			pend=chong;
 		
-		model.addAttribute("rlist",mapper.rlist(sel, sword, start, pcnt, oby));
+		model.addAttribute("rlist",mapper.rlist(sel, sword, pstart, pcnt, oby, c1, c2));
 		model.addAttribute("page",page);
 		model.addAttribute("pstart",pstart);
 		model.addAttribute("pend",pend);
@@ -218,6 +232,18 @@ public class AdminServiceImpl implements AdminService{
 		pstart=pstart*10+1;
 		pend=pstart+9;
 		
+		// 날짜기준
+		String c1, c2;
+		if(request.getParameter("c1")==null)
+			c1="1900-01-01";
+		else
+			c1=request.getParameter("c1");
+		
+		if(request.getParameter("c2")==null)
+			c2="2900-12-31";
+		else
+			c2=request.getParameter("c2");
+				
 		String sel; // 검색필드..말머리같은거
 		if(request.getParameter("sel")==null)
 			sel="0";
@@ -235,7 +261,7 @@ public class AdminServiceImpl implements AdminService{
 		if(chong<pend)
 			pend=chong;
 		
-		model.addAttribute("dlist",mapper.dlist(sel, sword, start, pcnt, oby));
+		model.addAttribute("dlist",mapper.dlist(sel, sword, pstart, pcnt, oby, c1, c2));
 		model.addAttribute("page",page);
 		model.addAttribute("pstart",pstart);
 		model.addAttribute("pend",pend);
@@ -332,6 +358,49 @@ public class AdminServiceImpl implements AdminService{
 			mapper.suPlusMinus(su, pcode);
 		
 		return "redirect:/admin/gumaelist";
+	}
+
+
+/*예약건당 상세보기*/
+	@Override
+	public String roombkview(Model model, HttpServletRequest request) {
+		String id=request.getParameter("id");
+		RoomResvVO rvo=mapper.roombkview(id);
+		model.addAttribute("rvo", rvo);
+		
+		return "/admin/roombkview";
+	}
+
+	@Override
+	public String wedbkview(Model model, HttpServletRequest request) {
+		String wresv_id=request.getParameter("wresv_id");
+		WeddingResvVO wvo=mapper.wedbkview(wresv_id);
+		model.addAttribute("wvo", wvo);
+				
+		return "/admin/wedbkview";
+	}
+
+	@Override
+	public String dinebkview(Model model, HttpServletRequest request) {
+		String dr_id=request.getParameter("dr_id");
+		DiningResvVO dvo=mapper.dinebkview(dr_id);
+		model.addAttribute("dvo",dvo);
+		
+		return "/admin/dinebkview";
+	}
+
+	@Override
+	public String gumaeview(Model model, HttpServletRequest request) {
+		String id=request.getParameter("id");
+		String jumuncode=request.getParameter("jumuncode");
+		
+		GumaeVO gvo=mapper.gumaeview(jumuncode,id);
+		model.addAttribute("gvo", gvo);
+		
+		ArrayList<GumaeVO> glist=mapper.jumuns(jumuncode);
+		model.addAttribute("glist", glist);
+
+		return "/admin/gumaeview";
 	}
 
 }

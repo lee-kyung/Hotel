@@ -24,25 +24,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<select id="pro_list" resultType="kr.co.hotel.eshop.ProductVO">
-		select *, substr(fimg, 1, instr(fimg, ",")-1) as img,
+		select *,
+		substr(fimg, 1, instr(fimg, ",")-1) as img,
 		(select count(*) from wish where userid=#{param1} and pcode=product.pcode) as wishchk,
 		(select count(*) from cart where userid=#{param1} and pcode=product.pcode) as cartchk
 		from product where pcode like concat(#{param2}, '%')
-		order by ${param3} limit ${param4}, ${param5}
+		order by ${param3}
 	</select>
 	
 	<select id="pro_list2" resultType="kr.co.hotel.eshop.ProductVO">
-		select *, substr(fimg, 1, instr(fimg, ",")-1) as img, 0 as cartchk
+		select *,
+		substr(fimg, 1, instr(fimg, ",")-1) as img, 0 as cartchk
 		from product where pcode like concat(#{param1}, '%')
-		order by ${param2} limit ${param3}, ${param4}
-	</select>
-	
-	<select id="total" resultType="Integer">
-		select ceil(count(*)/${value}) from product
+		order by ${param2}
 	</select>
 	
 	<select id="pro_content" resultType="kr.co.hotel.eshop.ProductVO">
-		select *, substr(pcode, 1, 5) as subpcode,
+		select *,
+		substr(pcode, 1, 5) as subpcode,
 		substr(fimg, 1, instr(fimg, ",")-1) as img
 		from product where pcode=#{param1}
 	</select>
@@ -77,7 +76,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<select id="cart" resultType="kr.co.hotel.eshop.CartVO">
-		select c.*, substr(p.fimg, 1, instr(p.fimg, ",")-1) as fimg,
+		select c.*,
+		substr(p.fimg, 1, instr(p.fimg, ",")-1) as fimg,
 		p.title, p.price, p.halin, p.baefee, p.juk, p.su as psu
 		from cart c, product p
 		where c.pcode like concat(#{param2}, '%')
@@ -90,7 +90,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 	
 	<select id="pro_gumae" resultType="kr.co.hotel.eshop.ProductVO">
-		select *, substr(fimg, 1, instr(fimg, ",")-1) as img
+		select *,
+		substr(fimg, 1, instr(fimg, ",")-1) as img
 		from product where pcode=#{param1}
 	</select>
 	
@@ -99,7 +100,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="wish" resultType="kr.co.hotel.eshop.WishVO">
-		select w.*, substr(p.fimg, 1, instr(p.fimg, ",")-1) as fimg,
+		select w.*,
+		substr(p.fimg, 1, instr(p.fimg, ",")-1) as fimg,
 		p.title, p.price, p.halin, p.baefee
 		from wish w, product p
 		where w.pcode=p.pcode and userid=#{param1}
@@ -129,5 +131,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getName" resultType="String">
 		select pname from gumae where jumuncode=#{param1} limit 1
 	</select>
+	
+	<select id="pro_adlist" resultType="kr.co.hotel.eshop.ProductVO">
+		select * ,
+		substr(fimg, 1, instr(fimg, ",")-1) as img,
+		length(fimg)-length(replace(fimg, ",", "")) as cnt
+		from product
+		where ${param1} like concat('%', #{param2}, '%')
+		order by ${param3} limit ${param4}, ${param5}
+	</select>
+	
+	<select id="total" resultType="Integer">
+		select ceil(count(*)/${param1}) from product where ${param2} like concat('%', #{param3}, '%')
+	</select>
+	
+	<select id="pro_adcontent" resultType="kr.co.hotel.eshop.ProductVO">
+		select * from product where id=#{param1}
+	</select>
+	
+	<delete id="pro_addelete">
+		delete from product where id=#{param1}
+	</delete>
 	
 </mapper>

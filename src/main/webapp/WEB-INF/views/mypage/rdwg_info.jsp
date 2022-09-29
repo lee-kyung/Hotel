@@ -359,7 +359,7 @@
  	<c:if test="${gubun == 'e'}">
  	<!-- 예약 정보 -->
 		<div id="tbox">
-			<div style="float:left;"> ${buyday} 구매 </div>
+			<div style="float:left;"> ${buyday} 결제 </div>
 			<div style="float:right;"> ${gvo.jumuncode} </div>	
 		</div>
 	
@@ -385,8 +385,8 @@
 			<c:forEach var="gvo" items="${glist}">
 			<tr>
 				<td width="300" style="padding-left:50px;">
-					<img src="../img/eshop/${gvo.pimg}" width="50" height="50">
-					${gvo.title}
+					<img src="../img/eshop/${gvo.pimg}" width="50" height="50" onclick="location='../eshop/pro_content?pcode=${gvo.pcode}'" style="cursor:pointer;">
+					<span onclick="location='../eshop/pro_content?pcode=${gvo.pcode}'" style="cursor:pointer;"> ${gvo.title} </span>
 				</td>
 				<td width="100"> ${gvo.total_su}개 </td>
 				<td> <fmt:formatNumber value="${gvo.total_price}" pattern=",###"/>원 </td>

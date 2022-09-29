@@ -6,9 +6,7 @@
 <style>
 	#pro_write {
 		width : 1000px;
-		height : 700px;
-		margin : auto;
-		margin-top : 50px;
+		margin : 50px auto 50px auto;
 	}
 	#pro_write table {
 		font-size : 14px;
@@ -86,39 +84,39 @@
 	function check(){
 		let dom=document.inpro;
 		if(dom.pcode.value.trim() == "") {
-			alert("상품코드를 생성하세요.")
+			alert("상품코드를 생성하세요.");
 			return false;
 			}
 			else if(dom.fimg1.value.trim() == "") {
-				alert("메인이미지를 등록하세요.")
+				alert("메인이미지를 등록하세요.");
 				return false;
 				}
 				else if(dom.simg.value.trim() == "") {
-					alert("상세이미지를 등록하세요.")
+					alert("상세이미지를 등록하세요.");
 					return false;
 					}
 					else if(dom.title.value.trim() == "") {
-						alert("상품명을 입력하세요.")
+						alert("상품명을 입력하세요.");
 						return false;
 						}
 						else if(dom.price.value.trim() == "") {
-							alert("판매가를 입력하세요.")
+							alert("판매가를 입력하세요.");
 							return false;
 							}
 							else if(dom.su.value.trim() == "") {
-								alert("재고를 입력하세요.")
+								alert("재고를 입력하세요.");
 								return false;
 							}
 							else
 								return true;
 	}
-	
-	/* 이미지 첨부파일 추가 & 삭제 */
+
+	/* 이미지 첨부파일 추가(+미리보기) & 삭제 */
 	function add_file(){
 		let len=document.getElementsByClassName("imgs").length;
 		if(len < 3) {
 			len++;
-			let inner="<p class='imgs'> <input type='file' name='fimg"+len+"'> </p>";
+			let inner="<p class='imgs'> <span class='img'></span> <input onchange='setview("+(len-1)+")' type='file' name='fimg"+len+"'> </p>";
 			document.getElementById("outer").innerHTML=document.getElementById("outer").innerHTML+inner;
 		}
 	}
@@ -129,14 +127,55 @@
 			document.getElementsByClassName("imgs")[len].remove();
 		}
 	}
+	function setview(n){
+		document.getElementsByClassName("img")[n].innerHTML="";
+		
+		for(var image of event.target.files) {
+			var reader = new FileReader(); 
+			reader.onload=function(){
+				var img = document.createElement("img"); 
+
+				img.setAttribute("src", event.target.result); 
+				img.setAttribute("height", "50");
+				img.setAttribute("valign", "middle");
+
+				document.getElementsByClassName("img")[n].appendChild(img);  //새로 선택한 이미지 div에 출력
+			};
+			reader.readAsDataURL(image); 
+		}
+	}
+	
+	/* 숫자만 입력했는지 체크하기 */
+	function checkNum(e){
+		let keyVal=event.keyCode;
+		if((keyVal >= 48) && (keyVal <= 57))
+			return true;
+		else {
+			alert("숫자만 입력가능합니다");
+			return false;
+		}
+	}
+	
+	/* 100이하의 숫자만 입력했는지 체크하기 */
+	function checkNum1(e, n){
+		let keyVal=event.keyCode;
+		if((keyVal >= 48) && (keyVal <= 57) && (n <= 100))
+			return true;
+		else {
+			alert("100이하의 숫자만 입력가능합니다");
+			return false;
+		}
+	}
 </script>
 </head>
 <body>
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
 		<div class="bradcam_area basic">
-	        <div id="h3"> 상품 등록 </div>
+	        <div id="h3" onclick="location='pro_write'" style="cursor:pointer;"> 상 품 등 록 </div>
 	    </div>
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
+    
+    <c:if test="${userid != 'admin'}"> <c:redirect url="../main/index"/> </c:if>
     
 	<!-- ================ 상품등록 Area Start ================= -->
 	<section id="pro_write">
@@ -160,8 +199,8 @@
 				<td> 메인이미지 </td>
 				<td id="outer" colspan="2">
 					<input type="button" onclick="add_file()" value="추가">
-					<input type="button" onclick="del_file()" value="삭제">
-					<p class="imgs"> <input type="file" name="fimg1"> </p>
+					<input type="button" onclick="del_file()" value="삭제"> <p>
+					<p class="imgs"> <span class="img"></span> <input type="file" name="fimg1" onchange="setview(0)"> </p>
 				</td>
 			</tr>
 			<tr>
@@ -174,23 +213,23 @@
 			</tr>
 			<tr>
 				<td> 판매가 </td>
-				<td colspan="2"> <input type="number" name="price"  min="0" placeholder="숫자만 입력하세요."> </td>
+				<td colspan="2"> <input type="number" name="price"  min="0" placeholder="숫자만 입력하세요." onKeyPress="return checkNum(event)"> </td>
 			</tr>
 			<tr>
 				<td> 할인율 </td>
-				<td colspan="2"> <input type="number" name="halin" min="0" max="100" placeholder="0~100" id="size"> </td>
+				<td colspan="2"> <input type="number" name="halin" min="0" max="100" placeholder="0~100" id="size" onKeyPress="return checkNum1(event, this.value)"> </td>
 			</tr>
 			<tr>
 				<td> 적립율 </td>
-				<td colspan="2"> <input type="number" name="juk" min="0" placeholder="숫자만 입력하세요."> </td>
+				<td colspan="2"> <input type="number" name="juk" min="0" max="100" placeholder="0~100" id="size" onKeyPress="return checkNum1(event, this.value)"> </td>
 			</tr>
 			<tr>
 				<td> 재고 </td>
-				<td colspan="2"> <input type="number" name="su" min="0" placeholder="숫자만 입력하세요."> </td>
+				<td colspan="2"> <input type="number" name="su" min="0" placeholder="숫자만 입력하세요." onKeyPress="return checkNum(event)"> </td>
 			</tr>
 			<tr>
 				<td> 배송비 </td>
-				<td colspan="2"> <input type="number" name="baefee" min="0" placeholder="숫자만 입력하세요."> </td>
+				<td colspan="2"> <input type="number" name="baefee" min="0" placeholder="숫자만 입력하세요." onKeyPress="return checkNum(event)"> </td>
 			</tr>
 			<tr>
 				<td colspan="3" align="center">

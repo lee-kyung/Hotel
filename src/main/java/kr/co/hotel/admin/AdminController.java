@@ -38,7 +38,6 @@ public class AdminController {
 	public String wedlist(Model model, HttpServletRequest request)
 	{
 		return service.wedlist(model, request);
-
 	}
 	
 	@RequestMapping("/admin/dinelist")
@@ -58,7 +57,34 @@ public class AdminController {
 	{
 		return service.estatechange(request);
 	}
+	
+/*예약건당 상세뷰*/
+	@RequestMapping("/admin/roombkview")
+	public String roombkview(Model model, HttpServletRequest request)
+	{
+		return service.roombkview(model,request);
+	}
+	
+	@RequestMapping("/admin/wedbkview")
+	public String wedbkview(Model model, HttpServletRequest request)
+	{
+		return service.wedbkview(model, request);
+	}
 
+	@RequestMapping("/admin/dinebkview")
+	public String dinebkview(Model model, HttpServletRequest request)
+	{
+		return service.dinebkview(model, request);
+	}
+	
+	@RequestMapping("/admin/gumaeview")
+	public String gumaeview(Model model, HttpServletRequest request)
+	{
+		return service.gumaeview(model, request);	
+	}
+	
+	
+	
 }
 
 

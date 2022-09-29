@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybats-3-mapper.dtd">
+<mapper namespace="kr.co.hotel.gongji.GongjiMapper">
+	
+	<insert id="gongji_write_ok">
+		insert into gongji (title, content, gubun, writeday) values(#{title},#{content},#{gubun},now())
+	</insert>
+	
+	<select id="gongji_list" resultType="kr.co.hotel.gongji.GongjiVO">
+		select * from gongji order by gubun desc, id desc
+	</select>
+	
+	<select id="gongji_content" resultType="kr.co.hotel.gongji.GongjiVO">
+		select * from gongji where id=#{param1}
+	</select>
+	
+	<update id="gongji_update_ok">
+		update gongji set title=#{title}, content=#{content}, gubun=#{gubun} where id=#{id}
+	</update>
+	
+	<delete id="gongji_delete">
+		delete from gongji where id=#{param1}
+	</delete>
+	
+	<select id="getGongjiChong" resultType="Integer">
+		select ceil(count(*)/#{param1}) from gongji
+	</select>
+	
+	<select id="faq_list" resultType="kr.co.hotel.gongji.FaqVO">
+		select * from faq order by id desc
+	</select>
+	
+	<select id="getFaqChong" resultType="Integer">
+		select ceil(count(*)/#{param1}) from faq
+	</select>
+	
+	<insert id="faq_write_ok">
+		insert into faq(title, content, writeday) values(#{title}, #{content}, now())
+	</insert>
+	
+	<select id="faq_update" resultType="kr.co.hotel.gongji.FaqVO">
+		select * from faq where id=#{param1}
+	</select>
+	
+	<update id="faq_update_ok">
+		update faq set title=#{title}, content=#{content} where id=#{id}
+	</update>
+	
+	<delete id="faq_delete">
+		delete from faq where id=#{param1}
+	</delete>
+</mapper>

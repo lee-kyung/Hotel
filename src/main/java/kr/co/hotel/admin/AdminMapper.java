@@ -21,13 +21,13 @@ public interface AdminMapper {
 	public ArrayList<GumaeVO> getgumae(); 
 	
 // 회원목록 각각 페이지에서 보이게
-	public ArrayList<RoomResvVO> rlist(String sel,String sword,int start,int pcnt,String oby);
+	public ArrayList<RoomResvVO> rlist(String sel,String sword,int start,int pcnt,String oby,String c1, String c2);
 	public int getRChong(int pcnt,String sel,String sword);
 	
 	public ArrayList<WeddingResvVO> wlist(String sel,String sword,int start,int pcnt,String oby);
 	public int getWChong(int pcnt,String sel,String sword);
 	
-	public ArrayList<DiningResvVO> dlist(String sel,String sword,int start,int pcnt,String oby);
+	public ArrayList<DiningResvVO> dlist(String sel,String sword,int start,int pcnt,String oby,String c1, String c2);
 	public int getDChong(int pcnt,String sel,String sword);
 	
 	public ArrayList<GumaeVO> glist(String sel,String sword,int start,int pcnt,String oby);
@@ -42,5 +42,31 @@ public interface AdminMapper {
 	
 //  주문이 취소되면 product테이블의 [재고]와 [판매량]을 원래대로
 	public void suPlusMinus(String su, String pcode);
+	
+// 예약건 상세내역
+	public RoomResvVO roombkview(String id);
+	public WeddingResvVO wedbkview(String wresv_id);
+	public DiningResvVO dinebkview(String dr_id);
+	public GumaeVO gumaeview(String junmuncode, String id);
+	public ArrayList<GumaeVO> jumuns(String jumuncode);
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }
