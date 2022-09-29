@@ -16,4 +16,16 @@ public interface GongjiMapper {
 
 	public int getGongjiChong(int pcnt);
 
+	public ArrayList<FaqVO> faq_list();
+
+	public int getFaqChong(int pcnt);
+
+	public void faq_write_ok(FaqVO fvo);
+
+	public FaqVO faq_update(String id);
+
+	public void faq_update_ok(FaqVO fvo);
+
+	public void faq_delete(String id);
+
 }

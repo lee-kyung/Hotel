@@ -119,6 +119,89 @@ public class GongjiServiceImpl implements GongjiService{
 		mapper.gongji_delete(id);
 		return "redirect:/info/gongji_list";
 	}
+
+	@Override
+	public String faq_list(Model model, HttpServletRequest request) 
+	{
+		int page, start;
+		int pcnt;
+
+		if(request.getParameter("pcnt")==null)
+			pcnt=10;
+		else
+			pcnt=Integer.parseInt(request.getParameter("pcnt"));
+			
+		if(request.getParameter("page")==null)
+			page=1;
+		else
+			page=Integer.parseInt(request.getParameter("page"));
+		
+		start=(page-1)*pcnt;
+		
+		int pstart, pend;
+			
+		pstart=page/10;
+			
+		if(page%10==0)
+			pstart--;
+			
+		pstart=pstart*10+1;
+		pend=pstart+9;
+			
+		int chong=mapper.getFaqChong(pcnt);
+			
+		if(chong<pend)
+			pend=chong;
+
+		model.addAttribute("page", page);
+		model.addAttribute("pstart", pstart);
+		model.addAttribute("pend", pend);
+		model.addAttribute("chong", chong);
+		model.addAttribute("pcnt", pcnt);
+		
+		FaqVO fvo=new FaqVO();
+		ArrayList<FaqVO> flist=mapper.faq_list();
+		for(int i=0; i<flist.size(); i++)
+		{
+			fvo=flist.get(i);
+			fvo.setContent(fvo.getContent().replace("\r\n", "<br>"));			
+			
+		}
+		model.addAttribute("flist", flist);
+		
+		return "/info/faq_list";
+	}
+
+	@Override
+	public String faq_write_ok(FaqVO fvo) 
+	{
+		mapper.faq_write_ok(fvo);
+		return "redirect:/info/faq_list";
+	}
+
+	@Override
+	public String faq_update(Model model, HttpServletRequest request) 
+	{
+		String id=request.getParameter("id");
+		FaqVO fvo=mapper.faq_update(id);
+		model.addAttribute("fvo", fvo);
+		return "/info/faq_update";
+	}
+
+	@Override
+	public String faq_update_ok(FaqVO fvo) 
+	{
+		mapper.faq_update_ok(fvo);
+		return "redirect:/info/faq_list";
+	}
+
+	@Override
+	public String faq_delete(HttpServletRequest request) 
+	{
+		String id=request.getParameter("id");
+		mapper.faq_delete(id);
+		return "redirect:/info/faq_list";
+	}
 	
 	
 }

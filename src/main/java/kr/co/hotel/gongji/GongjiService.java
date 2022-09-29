@@ -18,4 +18,14 @@ public interface GongjiService {
 
 	public String gongji_delete(HttpServletRequest request);
 
+	public String faq_list(Model model, HttpServletRequest request);
+
+	public String faq_write_ok(FaqVO fvo);
+
+	public String faq_update(Model model, HttpServletRequest request);
+
+	public String faq_update_ok(FaqVO fvo);
+
+	public String faq_delete(HttpServletRequest request);
+
 }
