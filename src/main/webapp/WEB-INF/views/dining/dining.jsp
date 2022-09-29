@@ -67,7 +67,7 @@
   diningsec #outer{
      outline:1px solid #887159;
      width:1000px;
-     height:990px;
+     height:900px;
      background:#e5e4e2;
      margin-top:40px;
      margin-bottom:100px;
@@ -78,21 +78,27 @@
 	 padding:15px;
 	 padding-top:24px;
 	 float:left;
+	 margin:auto;
+	 border:1px solid red;
+	 text-align:center;
   }
   diningsec #outer #left b{
      color:black;
      font-size:20px;
+
   } 
   diningsec #outer #right{
      /* background:orange; */
 	 width:760px;
 	 float:right;
+	 border:1px solid blue;
   }
   diningsec #info_con{
     line-height:2;
     text-align:left;
     margin-left:47px;
-    margin-top:20px;
+    margin-right:10px;
+    margin-top:25px;
     font-size:15px;
   }
   diningsec #info_con b{
@@ -152,7 +158,7 @@
     <div class="about_info_area">
               <div id="middle">Gallery</div>
         <div class="about_active owl-carousel" >
-           <div class="single_slider">
+           <div class="single_slider" style="align:center;">
             <div class="single_slider s1"></div>
             <div class="single_slider s2"></div>
             <div class="single_slider s3"></div>
