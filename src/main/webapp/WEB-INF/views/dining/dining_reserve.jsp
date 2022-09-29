@@ -85,9 +85,9 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
      /* padding: 5px 0px; */
   }
   #section #dinetype{
-     margin-top:15px;
+     margin-top:5px;
      margin-left:2px;
-     margin-bottom:0px;
+     margin-bottom:1px;
      height:87px;
      vertical-align: middle;
   }
@@ -263,18 +263,18 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
 		}  
 		else
 			return true;
-		}  // options[view_type.selectedIndex]
+		  // options[view_type.selectedIndex]
 	}
 
   /* function show()
     {
 	  $('#dine_type').show();
     } */
-    function show()
+/*     function show()
     {
     	document.getElementById("dine_type").style.display="block";
     }
-
+ */
 </script>
 </head>
 
@@ -391,7 +391,7 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
           <c:if test="${ !((yoil>j && i==1) || (chong < day)) }">
 
           <td id="day">
-             <div id="day_td">${day}</div>
+             <span id="day_td">${day}</span>
           <%
                int day2=Integer.parseInt(pageContext.getAttribute("day").toString());
                int y=Integer.parseInt(request.getAttribute("y").toString());
@@ -402,24 +402,21 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
   <div id="dinetype" >
             <c:if test="${dday >= today}"> <!--  오늘 이후면 클릭 되도록 -->
            
-            <span id="dine_type" class="b1" name="dine_type" style="font-size:14px;" 
-            	onclick="date_type(${y}, ${m}, ${day}, 'Breakfast'); show();">
+            <span id="dine_type" class="b1" name="dine_type" style="font-size:14px;" onclick="date_type(${y}, ${m}, ${day}, 'Breakfast')">
                		<img src="../img/dining/breakfast.png" width="17px;" height="17px;">
              Breakfast <br>
             </span>
-            <span id="dine_type" class="b2" name="dine_type" style="font-size:14px;" 
-            	onclick="date_type(${y}, ${m}, ${day}, 'Lunch');show();">
+            <span id="dine_type" class="b2" name="dine_type" style="font-size:14px;" onclick="date_type(${y}, ${m}, ${day}, 'Lunch')">
               		 <img src="../img/dining/lunch.png" width="17px;" height="17px;">
              Lunch <br>
             </span>
-            <span id="dine_type" class="b3" name="dine_type" style="font-size:14px;" 
-            	onclick="date_type(${y}, ${m}, ${day}, 'Dinner');show();">
+            <span id="dine_type" class="b3" name="dine_type" style="font-size:14px;" onclick="date_type(${y}, ${m}, ${day}, 'Dinner')">
              		  <img src="../img/dining/dinner.png" width="17px;" height="17px;">
              Dinner <br>
             </span>
-            <span id="dine_type" class="b4" name="dine_type" style="font-size:14px;visibility:hidden;" >
-               <img src="../img/dining/bbq.png" width="17px;" height="17px;">
-               Bbq
+            <span id="dine_type" class="b4" name="dine_type" style="font-size:14px;" onclick="date_type(${y}, ${m}, ${day}, 'Bbq')">
+             		  <img src="../img/dining/bbq.png" width="18px;" height="19px;">
+             Bbq <br>
             </span>
             </c:if>
              
@@ -439,8 +436,8 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
                Dinner <br>
             </span>
             <span id="dine_type" class="b4" name="dine_type" style="font-size:14px;visibility:hidden;" >
-               <img src="../img/dining/bbq.png" width="17px;" height="17px;">
-               Bbq
+               <img src="../img/dining/bbq.png" width="18px;" height="19px;">
+               Bbq <br>
             </span>
           </div>    
             </c:if> 
