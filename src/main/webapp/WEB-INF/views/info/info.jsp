@@ -60,16 +60,12 @@ appkey=def97946ef83ffb1f9a1cacb75ac32eb"></script>
 	        latlng: new kakao.maps.LatLng(35.200680, 129.229312)
 	    },
 	    {
-	        title: '생태연못', 
-	        latlng: new kakao.maps.LatLng(33.450936, 126.569477)
+	        title: '아난티 코드', 
+	        latlng: new kakao.maps.LatLng(37.626727, 127.482574)
 	    },
 	    {
-	        title: '텃밭', 
-	        latlng: new kakao.maps.LatLng(33.450879, 126.569940)
-	    },
-	    {
-	        title: '근린공원',
-	        latlng: new kakao.maps.LatLng(33.451393, 126.570738)
+	        title: '아난티 남해', 
+	        latlng: new kakao.maps.LatLng(34.776888, 127.851892)
 	    }
 	];
 
@@ -93,34 +89,28 @@ appkey=def97946ef83ffb1f9a1cacb75ac32eb"></script>
 	    });
 	}
 	
-	
-	// 주소-좌표 변환 객체를 생성합니다
-	var geocoder = new kakao.maps.services.Geocoder();
+	// 마커를 지도에 표시합니다.
+	marker.setMap(map);
+	// 마커에 커서가 오버됐을 때 마커 위에 표시할 인포윈도우를 생성합니다
+	var iwContent = '<div style="padding:5px;">Hello World!</div>'; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
 
-	// 주소로 좌표를 검색합니다
-	geocoder.addressSearch('제주특별자치도 제주시 첨단로 242', function(result, status) {
+	// 인포윈도우를 생성합니다
+	var infowindow = new kakao.maps.InfoWindow({
+	    content : iwContent
+	});
 
-	    // 정상적으로 검색이 완료됐으면 
-	     if (status === kakao.maps.services.Status.OK) {
+	// 마커에 마우스오버 이벤트를 등록합니다
+	kakao.maps.event.addListener(marker, 'mouseover', function() {
+	  // 마커에 마우스오버 이벤트가 발생하면 인포윈도우를 마커위에 표시합니다
+	    infowindow.open(map, marker);
+	});
 
-	        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+	// 마커에 마우스아웃 이벤트를 등록합니다
+	kakao.maps.event.addListener(marker, 'mouseout', function() {
+	    // 마커에 마우스아웃 이벤트가 발생하면 인포윈도우를 제거합니다
+	    infowindow.close();
+	});
 
-	        // 결과값으로 받은 위치를 마커로 표시합니다
-	        var marker = new kakao.maps.Marker({
-	            map: map,
-	            position: coords
-	        });
-
-	        // 인포윈도우로 장소에 대한 설명을 표시합니다
-	        var infowindow = new kakao.maps.InfoWindow({
-	            content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
-	        });
-	        infowindow.open(map, marker);
-
-	        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-	        map.setCenter(coords);
-	    } 
-	});  
 	// 부트스트랩 충돌시에 사용하는 스크립트
 	/* function relayout(){
 		setTimeout(function(){map.relayout();},0);

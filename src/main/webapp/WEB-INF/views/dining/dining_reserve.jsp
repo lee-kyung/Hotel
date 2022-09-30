@@ -86,6 +86,7 @@
   }
   #section #calendar th{
     font-weight:700px;
+    margin-left:15px;
     /* width:142px; */
     height:50px;
     border-bottom:1px solid #887159;
@@ -112,6 +113,7 @@
   #section #day_td{
     height:20px;
     /* border:1px solid black; */
+    margin-left:5px;
   }
 
   .sprite{
@@ -207,22 +209,22 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
 			if(dt[i] == 1 && cnt[i] == bk) {
 				document.getElementsByClassName("b1")[td[i]-1].style.color="#aca8af";
 				document.getElementsByClassName("b1")[td[i]-1].style.textDecoration="line-through"; 
-				document.getElementsByClassName("b1")[td[i]-1].setAttribute("onclick", "alert('선택하신 시간의 예약이 마감되었습니다. 다시 선택해주시기 바랍니다.');");
+				document.getElementsByClassName("b1")[td[i]-1].setAttribute("onclick", "alert('선택하신 Breakfast의 예약이 마감되었습니다. 다시 선택해주시기 바랍니다.');");
 				}
 				else if(dt[i] == 2 && cnt[i] == bk) {
 					document.getElementsByClassName("b2")[td[i]-1].style.color="#aca8af";
 					document.getElementsByClassName("b2")[td[i]-1].style.textDecoration="line-through";
-					document.getElementsByClassName("b2")[td[i]-1].setAttribute("onclick", "alert('선택하신 시간의 예약이 마감되었습니다. 다시 선택해주시기 바랍니다.');");
+					document.getElementsByClassName("b2")[td[i]-1].setAttribute("onclick", "alert('선택하신 Lunch의 예약이 마감되었습니다. 다시 선택해주시기 바랍니다.');");
 					}
 					else if(dt[i] == 3 && cnt[i] == bk) {
 						document.getElementsByClassName("b3")[td[i]-1].style.color="#aca8af";
 						document.getElementsByClassName("b3")[td[i]-1].style.textDecoration="line-through";
-						document.getElementsByClassName("b3")[td[i]-1].setAttribute("onclick", "alert('선택하신 시간의 예약이 마감되었습니다. 다시 선택해주시기 바랍니다.');");
+						document.getElementsByClassName("b3")[td[i]-1].setAttribute("onclick", "alert('선택하신 Dinner의 예약이 마감되었습니다. 다시 선택해주시기 바랍니다.');");
 					}
 						else if(dt[i] == 4 && cnt[i] == bk) {
 							document.getElementsByClassName("b4")[td[i]-1].style.color="#aca8af";
 							document.getElementsByClassName("b4")[td[i]-1].style.textDecoration="line-through";
-							document.getElementsByClassName("b4")[td[i]-1].setAttribute("onclick", "alert('선택하신 시간의 예약이 마감되었습니다. 다시 선택해주시기 바랍니다.');");
+							document.getElementsByClassName("b4")[td[i]-1].setAttribute("onclick", "alert('선택하신 Bbq의 예약이 마감되었습니다. 다시 선택해주시기 바랍니다.');");
 						}
 		}
 	}
@@ -291,34 +293,18 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
 			}
 		}
   } 
-  // 예약 타입, 시간 선택 체크
-  function check()
-	{
-		// 다이닝 타입, 입장 시간
-		if(document.view_type.dr_date.value.trim()=="")
-		{
-			alert("예약 희망 날짜를 선택해주세요.");
-			return false;
-		}
-		else if(document.getElementById("dr_time").selectedIndex==0)
-		{
-			alert("예약 희망 시간을 선택해주세요.");
-			return false;
-		}  
-		else
-			return true;
-		  // options[view_type.selectedIndex]
-	}
+
     // 예약 타입 선택시 시간 선택 테이블 보이게 하기
-    window.onload = function () {
+/*     function () {
         var el = document.getElementById("dr_time");
         el.onclick = show;
-    }
+    } */
     function show(y, m, d, t){
     	var table=document.getElementById("dine");
    	    table.style.visibility="visible"; 
    	    //alert("몽!");
     } 
+    
 </script>
 </head>
 
@@ -453,19 +439,19 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
   <div id="dinetype">
             <c:if test="${dday >= today}"> <!--  오늘 이후면 클릭 되도록 -->
            
-            <div id="dine_type" class="b1" name="dine_type" style="font-size:14px;" onclick="show(${y}, ${m}, ${day}, 'Breakfast');date_type(${y}, ${m}, ${day}, 'Breakfast');">
+            <div id="dine_type" class="b1" name="dine_type" style="font-size:14px;" onclick="show(${y}, ${m}, ${day});date_type(${y}, ${m}, ${day}, 'Breakfast');">
 <img src="../img/dining/breakfast.png" width="17px;" height="17px;">
              Breakfast <br>
             </div>
-            <div id="dine_type" class="b2" name="dine_type" style="font-size:14px;" onclick="show(${y}, ${m}, ${day}, 'Lunch');date_type(${y}, ${m}, ${day}, 'Lunch');">
+            <div id="dine_type" class="b2" name="dine_type" style="font-size:14px;" onclick="show(${y}, ${m}, ${day});date_type(${y}, ${m}, ${day}, 'Lunch');">
 <img src="../img/dining/lunch.png" width="17px;" height="17px;">
              Lunch <br>
             </div>
-            <div id="dine_type" class="b3" name="dine_type" style="font-size:14px;" onclick="show(${y}, ${m}, ${day}, 'Dinner');date_type(${y}, ${m}, ${day}, 'Dinner');">
+            <div id="dine_type" class="b3" name="dine_type" style="font-size:14px;" onclick="show(${y}, ${m}, ${day});date_type(${y}, ${m}, ${day}, 'Dinner');">
 <img src="../img/dining/dinner.png" width="17px;" height="17px;">
              Dinner <br>
             </div>
-            <div id="dine_type" class="b4" name="dine_type" style="font-size:14px;" onclick="show(${y}, ${m}, ${day}, 'Bbq');date_type(${y}, ${m}, ${day}, 'Bbq');">
+            <div id="dine_type" class="b4" name="dine_type" style="font-size:14px;" onclick="show(${y}, ${m}, ${day});date_type(${y}, ${m}, ${day}, 'Bbq');">
  <img src="../img/dining/bbq.png" width="18px;" height="19px;">
              Bbq <br>
             </div>
