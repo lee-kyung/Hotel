@@ -192,7 +192,10 @@
 	function right_stop(){
 		//document.getElementById("abc").innerText=document.documentElement.scrollTop;	// <span id="abc"></span>
 		let top=document.documentElement.scrollTop;
-		let left=(window.screen.width/2)+137;
+		let left=(window.screen.width/2)+240;	//137, 220, (window.screen.width/7)
+		
+		console.log(window.screen.width/7);
+		console.log((window.screen.width/2)+240);
 		
 		if(${paytop} < top) {
 			document.getElementById("right").style.position="fixed";
