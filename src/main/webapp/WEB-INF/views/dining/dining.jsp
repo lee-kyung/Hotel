@@ -58,7 +58,7 @@
 	 text-align:center;
   }
   .container{
-	width: 990px;
+	/* width: 990px; */
 	margin: auto;
   }
   diningsec{
@@ -220,7 +220,7 @@
 
       <div id="right">
 		<div id="info_con">
-<!-- <table> -->
+
 		      <div><b>운영시간</b><br><br></div>
 		      <div id="time">
     			아침 08:00 - 10:50 (마지막 입장 10:10)<br>
@@ -250,7 +250,7 @@
 				*신선한 식재료 준비를 위해 사전예약 및 당일 한정 수량으로 판매합니다.<br>
 				*상기 메뉴는 식재료에 따라 변동될 수 있습니다.<br><br>
 		   		</div>
-<!-- </table> -->
+
 		</div>
       </div>
       
@@ -258,25 +258,9 @@
    </diningsec>
  </div>
 </div>
+
     <!-- about_main_info_end -->
-<!--     <div class="img_3">
-      <img src="../img/about/fee.JPG" width="1100" height="800" text-align="center">
-    </div> -->
-     <!-- <div class="about">
-        	<table width="900" align="center">
-        		<tr>
-        			<th>이용안내</th>
-        		</tr>
-        		<tr>
-        			<td><b>운영시간</b></td>
-        			<td>아침 08:00 - 10:50 (마지막 입장 10:10)<br>
-점심 13:00 - 15:50 (LAST ORDER 14:00)<br>
-* 중식은 런치 코스 또는 한식 코스, 키즈세트 메뉴로 운영합니다.<br>
-저녁 16:00 - 19:50 (LAST ORDER 18:30)<br>
-* 석식은 디너 코스 또는 한식 코스, 키즈세트 메뉴로 운영합니다.<br></td>
-        		</tr>
-        	</table>
-        </div> -->
+
     <!-- ================ Dining Area End ================= -->
 
 </body>
