@@ -93,7 +93,7 @@
 
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
     <div class="bradcam_area basic">
-        <div id="h3" onclick="location='pro_adlist'" style="cursor:pointer;"> 상 품 목 록 </div>
+        <div id="h3" onclick="location='../admin/admin'" style="cursor:pointer;"> 상 품 목 록 </div>
     </div>
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
 
