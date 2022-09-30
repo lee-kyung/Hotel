@@ -104,6 +104,12 @@
     	<div id="selbox">
     	<div class="default-select" id="default-select" style="float:left;">
 			<select onchange="page_sel(this.value)" id="psel">
+				<c:if test="${psel == 5}">
+					<option value="5" selected> 5개씩 </option>
+				</c:if>
+				<c:if test="${psel != 5}">
+					<option value="5"> 5개씩 </option>
+				</c:if>
 				<c:if test="${psel == 10}">
 					<option value="10" selected> 10개씩 </option>
 				</c:if>
@@ -121,18 +127,6 @@
 				</c:if>
 				<c:if test="${psel != 30}">
 					<option value="30"> 30개씩 </option>
-				</c:if>
-				<c:if test="${psel == 40}">
-					<option value="40" selected> 40개씩 </option>
-				</c:if>
-				<c:if test="${psel != 40}">
-					<option value="40"> 40개씩 </option>
-				</c:if>
-				<c:if test="${psel == 50}">
-					<option value="50" selected> 50개씩 </option>
-				</c:if>
-				<c:if test="${psel != 50}">
-					<option value="50"> 50개씩 </option>
 				</c:if>
 			</select>
 		</div>
@@ -199,12 +193,18 @@
     		<c:forEach var="pvo" items="${plist}">
     			<tr>
     				<td id="img_box">
+    				<c:if test="${pvo.img != ''}">
 	    				<img src="../img/eshop/${pvo.img}" height="50" width="50">
 		   				<c:if test="${pvo.cnt != 1}">
 		   					<span id="img_txt"> +${pvo.cnt-1} </span>
 		   				</c:if>
+		   			</c:if>
 	   				</td>
-	   				<td width="70"> <img src="../img/eshop/${pvo.simg}" height="50" width="50"> </td>
+	   				<td width="70">
+	   				<c:if test="${pvo.simg != ''}">
+	   					<img src="../img/eshop/${pvo.simg}" height="50" width="50">
+	   				</c:if>
+	   				</td>
 	   				<td width="310" style="text-align:left;padding-left:10px;"> <a href="pro_adcontent?id=${pvo.id}&page=${page}&psel=${psel}&ssel=${ssel}&sword=${sword}&osel=${osel}">${pvo.title}</a> </td>
 	   				<td> ${pvo.su}개 </td>
 	   				<td> ${pvo.sold}개 </td>
@@ -216,10 +216,10 @@
    		<!-- 페이지 이동 -->
 		<nav class="blog-pagination justify-content-center d-flex" style="margin-top:30px;">
 		<ul class="pagination">
-			<!-- 5페이지 이전 이동 -->
+			<!-- 그룹 이전 이동 -->
 			<c:if test="${pstart == 1}">
 				<li class="page-item">
-					<span class="page-link" aria-label="Previous" style="cursor:default;">
+					<span class="page-link" aria-label="Previous" style="cursor:default;background:white;color:lightgray;">
 						<i class="ti-angle-left"></i>
 					</span>
 				</li>
@@ -246,19 +246,19 @@
 			</c:if>
 			</c:forEach>
 			
-			<!-- 5페이지 다음 이동 -->
-			<c:if test="${pend == ptotal}">
-				<li class="page-item">
-					<span class="page-link" aria-label="Next">
-					    <i class="ti-angle-right"></i>
-					</span>
-				</li>
-			</c:if>
+			<!-- 그룹 다음 이동 -->
 			<c:if test="${pend != ptotal}">
 				<li class="page-item">
 					<a href="pro_adlist?page=${pend+1}&psel=${psel}&ssel=${ssel}&sword=${sword}&osel=${osel}" class="page-link" aria-label="Next">
 				    	<i class="ti-angle-right"></i>
 				    </a>
+				</li>
+			</c:if>
+			<c:if test="${pend == ptotal}">
+				<li class="page-item">
+					<span class="page-link" aria-label="Next" style="cursor:default;background:white;color:lightgray;">
+					    <i class="ti-angle-right"></i>
+					</span>
 				</li>
 			</c:if>
 		</ul>

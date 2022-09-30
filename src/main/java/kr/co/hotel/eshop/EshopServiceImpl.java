@@ -82,7 +82,6 @@ public class EshopServiceImpl implements EshopService {
 			pvo.setJuk(Integer.parseInt(multi.getParameter("juk")));
 			pvo.setSu(Integer.parseInt(multi.getParameter("su")));
 			pvo.setBaefee(Integer.parseInt(multi.getParameter("baefee")));
-			pvo.setBuyday(multi.getParameter("buyday"));
 		}
 		catch(Exception e) {
 			return "redirect:/eshop/error";
@@ -442,7 +441,7 @@ public class EshopServiceImpl implements EshopService {
 		
 		/* 한페이지에 출력할 레코드개수의 초기화면값 처리하기 */
 		if(request.getParameter("psel") == null)
-			psel=10;
+			psel=5;
 		else
 			psel=Integer.parseInt(request.getParameter("psel"));
 		
@@ -462,21 +461,21 @@ public class EshopServiceImpl implements EshopService {
 			sword=request.getParameter("sword");
 		
 		/* 페이지 이동을 위한 출력 범위 */
-		int pstart, pend, parr=5;
+		int pstart, pend, parr=2;
 		
-		pstart=page/parr;	// 페이지 출력 범위 : 1~10, 11~20, 21~30…
+		/*pstart=page/parr;	// 페이지 출력 범위 : 1~10, 11~20, 21~30…
 		if((page % parr) == 0)
 			pstart--;
 			
 		pstart=(pstart*parr)+1;
-		pend=pstart+(parr-1);
+		pend=pstart+(parr-1);*/
 		
-		/*if(page <= parr)	// 페이지 출력 범위 : 현재페이지 앞뒤로 ±parr값
+		if(page <= parr)	// 페이지 출력 범위 : 현재페이지 앞뒤로 ±parr값
 			pstart=1;
 		else
 			pstart=page-parr;
 		
-		pend=page+parr;/*
+		pend=page+parr;
 
 		/* 총페이지수 구하기 */
 		int ptotal=mapper.total(psel, ssel, sword);
@@ -535,7 +534,9 @@ public class EshopServiceImpl implements EshopService {
 		}
 		
 		/* sword는 list로 넘어갈때 한글이 깨지므로 인코딩시켜서 보내기 */
-		String sword=URLEncoder.encode(request.getParameter("sword"));
+		String sword="";
+		if(request.getParameter("sword") != null)
+			sword=URLEncoder.encode(request.getParameter("sword"));
 		
 		return "redirect:/eshop/pro_adlist?page="+request.getParameter("page")+"&psel="+request.getParameter("psel")+"&ssel="+request.getParameter("ssel")+"&sword="+sword+"&osel="+request.getParameter("osel");
 	}
@@ -558,7 +559,60 @@ public class EshopServiceImpl implements EshopService {
 
 	@Override
 	public String pro_adupdate_ok(HttpServletRequest request) {
-		// TODO Auto-generated method stub
-		return null;
+		String path=request.getRealPath("resources/img/eshop");
+		int size=1024*1024*30;
+		DefaultFileRenamePolicy rename=new DefaultFileRenamePolicy();		
+		ProductVO pvo=new ProductVO();
+		try {
+			MultipartRequest multi=new MultipartRequest(request, path, size, "utf-8", rename);
+			
+			Enumeration file=multi.getFileNames();
+			String imgs="";
+			while(file.hasMoreElements()) {
+				String fimg=file.nextElement().toString();
+				
+				if(!fimg.equals("simg"))
+					imgs=multi.getFilesystemName(fimg)+","+imgs;
+			}
+			imgs=multi.getParameter("keep")+imgs.replace("null,", "");
+			System.out.println(multi.getParameter(imgs));
+			
+			pvo.setId(Integer.parseInt(multi.getParameter("id")));
+			pvo.setTitle(multi.getParameter("title"));
+			pvo.setFimg(imgs);
+			if(multi.getFilesystemName("simg") != null) {
+				pvo.setSimg(multi.getFilesystemName("simg"));
+				File file2=new File(path+"/"+multi.getParameter("olds"));
+				if(file2.exists())
+					file2.delete();
+			}
+			else
+				pvo.setSimg(multi.getParameter("skeep"));
+			pvo.setPrice(Integer.parseInt(multi.getParameter("price")));
+			pvo.setHalin(Integer.parseInt(multi.getParameter("halin")));
+			pvo.setJuk(Integer.parseInt(multi.getParameter("juk")));
+			pvo.setSu(Integer.parseInt(multi.getParameter("su")));
+			pvo.setBaefee(Integer.parseInt(multi.getParameter("baefee")));
+			
+			mapper.pro_adupdate_ok(pvo);
+			
+			/* 기존이미지파일을 삭제하기(메인+상세) */
+			String[] del=(multi.getParameter("del")+multi.getParameter("sdel")).split(",");
+			for(int i=0;i<del.length;i++) {
+				File file2=new File(path+"/"+del[i]);
+				if(file2.exists())
+					file2.delete();
+			}
+			
+			/* sword는 list로 넘어갈때 한글이 깨지므로 인코딩시켜서 보내기 */
+			String sword="";
+			if(multi.getParameter("sword") != null)
+				sword=URLEncoder.encode(multi.getParameter("sword"));
+			
+			return "redirect:/eshop/pro_adcontent?id="+multi.getParameter("id")+"&page="+multi.getParameter("page")+"&psel="+multi.getParameter("psel")+"&ssel="+multi.getParameter("ssel")+"&sword="+sword+"&osel="+multi.getParameter("osel");
+		}
+		catch(Exception e) {
+			return "redirect:/eshop/error";
+		}
 	}
 }

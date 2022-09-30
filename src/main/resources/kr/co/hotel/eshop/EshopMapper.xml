@@ -153,4 +153,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from product where id=#{param1}
 	</delete>
 	
+	<update id="pro_adupdate_ok" parameterType="kr.co.hotel.eshop.ProductVO">
+		update product set title=#{title}, fimg=#{fimg}, simg=#{simg},
+		price=#{price}, halin=#{halin}, juk=#{juk}, su=#{su}, baefee=#{baefee}
+		where id=#{id}
+	</update>
 </mapper>

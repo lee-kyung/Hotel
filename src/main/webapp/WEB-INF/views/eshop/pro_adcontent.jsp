@@ -36,6 +36,9 @@
 		border-top : 2px solid #887159;
 		padding : 10px;
 	}
+	#adcon table tr {
+		height : 70px;
+	}
 	#adcon table td {
 		padding-top : 10px;
 		padding-bottom : 10px;
@@ -84,35 +87,41 @@
 			</tr>
 			<tr>
 				<td> 판매가 </td>
-				<td> ${pvo.price} </td>
+				<td> <fmt:formatNumber value="${pvo.price}" pattern=",###"/> 원 </td>
 			</tr>
 			<tr>
 				<td> 할인율 </td>
-				<td> ${pvo.halin} </td>
+				<td> ${pvo.halin} % </td>
 			</tr>
 			<tr>
 				<td> 적립율 </td>
-				<td> ${pvo.juk} </td>
+				<td> ${pvo.juk} % </td>
 			</tr>
 			<tr>
 				<td> 재고 </td>
-				<td> ${pvo.su} </td>
+				<td> <fmt:formatNumber value="${pvo.su}" pattern=",###"/> 개 </td>
 			</tr>
 			<tr>
 				<td> 배송비 </td>
-				<td> ${pvo.baefee} </td>
+				<td> <fmt:formatNumber value="${pvo.baefee}" pattern=",###"/> 원 </td>
 			</tr>
 			<tr>
 				<td> 메인이미지 </td>
 				<td>
+					<c:if test="${pvo.fimg != ''}">
 					<c:forEach var="imgs" items="${pvo.imgs}">
 						<img src="../img/eshop/${imgs}" width="425">
 					</c:forEach>
+					</c:if>
 				</td>
 			</tr>
 			<tr style="border-bottom:2px solid #887159">
 				<td> 상세이미지 </td>
-				<td> <img src="../img/eshop/${pvo.simg}" width="850"> </td>
+				<td>
+				<c:if test="${pvo.simg != ''}">
+					<img src="../img/eshop/${pvo.simg}" width="850">
+				</c:if>
+				</td>
 			</tr>
 			<tr height="100">
 				<td colspan="2" align="center" style="border:none;">

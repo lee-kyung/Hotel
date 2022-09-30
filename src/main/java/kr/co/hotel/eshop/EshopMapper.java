@@ -41,4 +41,5 @@ public interface EshopMapper {
 	public int total(int psel, String ssel, String sword);
 	public ProductVO pro_adcontent(String id);
 	public void pro_addelete(String id);
+	public void pro_adupdate_ok(ProductVO pvo);
 }
