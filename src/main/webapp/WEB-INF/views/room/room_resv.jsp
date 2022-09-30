@@ -275,7 +275,7 @@
  <div id="sec1"> 
       <roomsec>
          <div id="txt1">RESERVATION</div>
-         <div id="txt2">ㅁㅁ 호텔에 오신것을 환영합니다!</div>
+         <div id="txt2">WELCOME TO MONTANA HOTEL!</div>
          <br>
            <form name="room" method="post" action="room_resvnext" >
            <input type="hidden" name="rcode">

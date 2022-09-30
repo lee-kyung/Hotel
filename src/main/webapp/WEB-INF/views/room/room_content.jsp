@@ -84,7 +84,7 @@
     	①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기
     	②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
     <div class="bradcam_area rooms"> <!-- class="bradcam_area 클래스명" -->
-        <div id="h3"> R O O M S </div>
+        <div id="h3"><a href="../room/rooms" style="color:white"> R O O M S </a></div>
     </div>
     <!-- bradcam_area_end -->
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
@@ -96,7 +96,7 @@
     	<div id="menu"> 
     	<ul>
      	<c:set var="i" value="0"/> 
-    	<c:forEach items="${list}" var="rvo"> 
+    	<c:forEach items="${list}" var="rvo">
     		<li class="sub" onclick="change_sub(${i})"><a href="../room/room_content?code=${rvo.code}&rcode=${rvo.rcode}">${rvo.rname}</a></li>
      	<c:set var="i" value="${i+1}"/> 
     	</c:forEach>

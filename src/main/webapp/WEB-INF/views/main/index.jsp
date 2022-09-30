@@ -68,8 +68,8 @@
                                     <ul id="navigation">
                                         <li><a href="../main/index">Hotel<i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
-                                                <li><a href="../info/info">호텔 소개</a></li>
-                                                <li><a href="../info/gongji_list">공지사항</a></li>
+                                                <li style="margin:0px"><a href="../info/info">ABOUT MONTANA</a></li>
+                                                <li><a href="../info/gongji_list">NOTICE</a></li>
                                                 <li><a href="../info/faq_list">FAQ</a></li>
                                             </ul>
                                         <li><a href="../room/rooms">rooms</a></li>
@@ -81,9 +81,9 @@
                                         </li>
                                         <li><a href="../wedding/wedding">wedding<i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
-                                                <li><a href="../wedding/wedding_hall?id=15">웨딩홀</a></li>
-                                                <li><a href="../wedding/wedding_reserve">상담예약</a></li>
-                                                <li><a href="../wedding/wedding_check">견적</a></li>
+                                                <li style="margin:0px"><a href="../wedding/wedding_hall?id=15">WEDDING	HALL</a></li>
+                                                <li><a href="../wedding/wedding_reserve">BOOK</a></li>
+                                                <li><a href="../wedding/wedding_check">QUATATION</a></li>
                                             </ul>
                                         </li>
                                         <li><a href="../eshop/eshop">eshop<i class="ti-angle-down"></i></a>
@@ -131,19 +131,19 @@
                                         <li>
 		                                <c:if test="${userid == null}">
                                             <a href="../eshop/cart?p=p01"> <i class="fa fa-cart-arrow-down"></i> </a>
-											<a href="../login/login?ck=4">로그인</a>
-											<a href="../member/member_input">회원가입</a>
-											<a href="../mypage/rdwg_check?err=0">비회원조회</i> </a>
+											<a style="color:white;" href="../login/login?ck=4">로그인</a>
+											<a style="color:white;" href="../member/member_input">회원가입</a>
+											<a style="color:white;" href="../mypage/rdwg_check?err=0">비회원조회</i> </a>
 										</c:if>
 										<c:if test="${(userid != null) && (userid != 'admin')}">
-											<a href="../mypage/mypage"> ${name}님
+											<a style="color:white;" href="../mypage/mypage"> ${name}님
 											<a href="../eshop/cart?p=p01"> <i class="fa fa-cart-arrow-down"></i> </a>
                                             <a href="../eshop/wish"> <i class="fa fa-heart-o"></i> </a>
-											<a href="../login/logout">로그아웃</a>
+											<a style="color:white;" href="../login/logout">로그아웃</a>
 										</c:if>
 										<c:if test="${userid == 'admin'}">
-											<a href="../admin/admin"> ${name}님</a>
-											<a href="../login/logout">로그아웃</a>
+											<a style="color:white;" href="../admin/admin"> ${name}님</a>
+											<a style="color:white;" href="../login/logout">로그아웃</a>
 										</c:if>
 		                                </li>
                                     </ul>
@@ -157,6 +157,20 @@
                                 </c:if>
                               </div>
 <style>
+	
+	#logbtn{
+		width:100px;
+		height: 40px;
+		background: white;
+		color: #887159;
+		border:1px solid #887159;
+		border-radius: 4px;
+		cursor: pointer;
+	}
+	#logbtn:hover{
+		background: #887159;
+		color: white;
+	}
 	#loglayer{
 		position: absolute;
 		visibility: hidden;
@@ -270,7 +284,7 @@
                     <div class="row">
                         <div class="col-xl-12">
                             <div class="slider_text text-center">
-                                <h3>Montana Resort</h3>
+                                <h3>Montana Hotel</h3>
                                 <p>Unlock to enjoy the view of Martine</p>
                             </div>
                         </div>
@@ -325,8 +339,8 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="section_title text-center mb-100">
-                        <span>Our Offers</span>
-                        <h3>Ongoing Offers</h3>
+                        
+                        <h3 style="margin-top: 100px;">Ongoing Offers</h3>
                     </div>
                 </div>
             </div>
@@ -334,46 +348,43 @@
                 <div class="col-xl-4 col-md-4">
                     <div class="single_offers">
                         <div class="about_thumb">
-                            <img src="../img/offers/1.png" alt="">
+                            <img src="../img/rooms/e1.jpg" alt="">
                         </div>
-                        <h3>Up to 35% savings on Club <br>
-                            rooms and Suites</h3>
+                        <h3>DEXLUE EVENT</h3>
                         <ul>
-                            <li>Luxaries condition</li>
-                            <li>3 Adults & 2 Children size</li>
-                            <li>Sea view side</li>
+                            <li>무료 미니바 2인</li>
+                            <li>넷플릭스 셋톱 대여</li>
+                       <!-- <li>Sea view side</li> -->
                         </ul>
-                        <a href="#" class="book_now">book now</a>
+                        <a href="../room/roomresv" class="book_now">book now</a>
                     </div>
                 </div>
                 <div class="col-xl-4 col-md-4">
                     <div class="single_offers">
                         <div class="about_thumb">
-                            <img src="../img/offers/2.png" alt="">
+                            <img src="../img/rooms/e2.jpg" alt="">
                         </div>
-                        <h3>Up to 35% savings on Club <br>
-                            rooms and Suites</h3>
+                        <h3>PREMIUM DELUXE EVENT</h3>
                         <ul>
-                            <li>Luxaries condition</li>
-                            <li>3 Adults & 2 Children size</li>
-                            <li>Sea view side</li>
+                            <li>무료 미니바 2인</li>
+                            <li>넷플릭스 셋톱 대여</li>
+                            <!-- <li>Sea view side</li> -->
                         </ul>
-                        <a href="#" class="book_now">book now</a>
+                        <a href="../room/roomresv" class="book_now">book now</a>
                     </div>
                 </div>
                 <div class="col-xl-4 col-md-4">
                     <div class="single_offers">
                         <div class="about_thumb">
-                            <img src="../img/offers/3.png" alt="">
+                            <img src="../img/rooms/e3.png" alt="">
                         </div>
-                        <h3>Up to 35% savings on Club <br>
-                            rooms and Suites</h3>
+                        <h3>SPECIAL SUITE EVENT</h3>
                         <ul>
-                            <li>Luxaries condition</li>
-                            <li>3 Adults & 2 Children size</li>
-                            <li>Sea view side</li>
+                            <li>어린이를 위한 공간</li>
+                            <li>어린이용 놀이방 이용</li>
+                            <!-- <li>Sea view side</li> -->
                         </ul>
-                        <a href="#" class="book_now">book now</a>
+                        <a href="../room/roomresv" class="book_now">book now</a>
                     </div>
                 </div>
             </div>

@@ -37,13 +37,13 @@
 		color: #887159;
 	}
 	roomsec #ro_outer {
-	 	border: 1px solid #887159; 
+	 	/*  border: 1px solid #887159; */  
 		width: 1200px;
 		height: 500px;
 		margin: auto;
 	}
 	roomsec #ro_outer #left {
-		background: gold;
+		/* background: gold; */
 		float: left;  
 		width: 800px;
 		height: 500px;
@@ -51,12 +51,16 @@
 	roomsec #ro_outer #left > img{
 		width: 800px;
 		height: 500px;
+		border-radius: 15px;
 	}
 	roomsec #ro_outer #right {
 		/* background: pink; */
 		float: right;  
 		width: 390px; 
 		height: 500px;
+	}
+	roomsec #ro_outer #right div {
+		padding: 5px;
 	}
 	roomsec #ro_outer #right #right_outer{
 		margin-top: 50px;
@@ -77,8 +81,11 @@
 		color: #887159;
 		background: white;
 		border: 1px solid #887159;
+		border-radius: 3px;
 		width: 100px;
 		height: 40px;
+		margin-left: 280px;
+		margin-top: 30px;
 	}
 	roomsec input[type=button]:hover {
 		cursor: pointer;
