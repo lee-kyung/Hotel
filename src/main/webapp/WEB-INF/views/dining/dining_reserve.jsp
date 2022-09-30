@@ -56,6 +56,17 @@
     /* margin-top:15px; */
     margin-bottom:15px;
   }
+  #section #pri_info{
+    width:100px;
+    height:70px;
+    font-size:12px;
+    padding-right:30px;
+  }
+  #section #type_info{
+    text-align:center;
+    width:140px;
+    background: #b8a898;
+  }
   #section table #info{
     font-size:14px;
   }
@@ -85,7 +96,11 @@
     width:140px;
     height:140px;
   }
-
+  #section #calendar #dine_type{
+    margin-left:7px;
+    line-height:1.7;
+    letter-spacing: 1.3px;
+  }
   #section #day{
     text-align:left;
     /* height:10px; */
@@ -98,15 +113,7 @@
     height:20px;
     /* border:1px solid black; */
   }
-  #section #pri_info{
-    height:80px;
-    font-size:12px;
-  }
-  #section #type_info{
-    text-align:center;
-    width:140px;
-    background: #b8a898;
-  }
+
   .sprite{
 background-color: #fefefe;
 opacity: 0.4;
@@ -151,12 +158,9 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
   #dine_typediv table tr, th{
      border-bottom:1px solid #887159;
   }
-/*   #dine_typediv table tr{
-     margin-left:30px;
-  } */
-  tbody{
+/*   tbody{
       margin-left:30px;
-  }
+  } */
   #dine_typediv #dine tr:first-child{
      background:#eeeae1 ;
   } 
