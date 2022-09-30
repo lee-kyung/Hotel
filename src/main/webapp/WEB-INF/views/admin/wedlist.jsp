@@ -240,7 +240,7 @@
 		
 		<!-- 1페이지 단위로 이전으로 가기 -->
 		<c:if test="${page==1}"></c:if> <!-- 1페이지면 -->
-		<c:if test="${page!=1}"><!-- 1페이지가 아니면 -->
+		<c:if test="${page!=1}"><!-- 1페이지가 아니면 --> 
 			<a href="wedlist?page=${page-1}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=${oby}">◁</a>
 		</c:if>
 		
