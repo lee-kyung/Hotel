@@ -29,11 +29,11 @@ public class DiningController {
 	{
 		return service.dining_list(model);
 	}
-	@RequestMapping("/dininig/dining_content")
+	/*@RequestMapping("/dininig/dining_content")
 	public String dininig_content(HttpServletRequest request, Model model)
 	{
 		return service.dining_content(request,model);
-	}
+	}*/
 	@RequestMapping("/dining/dining_update")
 	public String dining_update(HttpServletRequest request, Model model)
 	{

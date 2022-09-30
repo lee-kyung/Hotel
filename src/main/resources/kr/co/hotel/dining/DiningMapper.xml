@@ -17,10 +17,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 select * from dining order by id asc
 	</select>
 	
-	<select id="dining_content" resultType="kr.co.hotel.dining.DiningVO">
-	 select * from dining
+	<!-- <select id="dining_content" resultType="kr.co.hotel.dining.DiningVO">
+	 select * from dining where id=#{param1}
 	</select>
-	
+	 -->
 	<select id="dining_update" resultType="kr.co.hotel.dining.DiningVO">
 	 select * from dining where id=#{param1}
 	</select>
