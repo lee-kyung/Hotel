@@ -2,7 +2,7 @@ package kr.co.hotel.dining;
 
 public class DiningVO {
 
-	private int id, dine_su, dine_adult, dine_child, dine_halin, dining_id;
+	private int id, dine_su, dine_adult, dine_child;
 	
 	private String dcode, writeday;
 	
@@ -17,12 +17,7 @@ public class DiningVO {
 	public void setWriteday(String writeday) {
 		this.writeday = writeday;
 	}
-	public int getDining_id() {
-		return dining_id;
-	}
-	public void setDining_id(int dining_id) {
-		this.dining_id = dining_id;
-	}
+
 	public int getCnt() {
 		return cnt;
 	}
