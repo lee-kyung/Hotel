@@ -7,7 +7,7 @@
 /******************/
 	#first{
 		width: 100%;
-		height: 400px;
+		height: 270px;
 		background: #F3F3F3;
 		text-align: center;
 		margin: auto;
@@ -43,6 +43,9 @@
 	}	
 	#first ul li:last-child{
 		border-right:1px solid #cccccc;
+	}
+	#first ul li:hover{
+		background: #F3F3F3;
 	}
 /******************/
 
@@ -100,14 +103,7 @@
 		</div> 
 	</div>
 	<ul>
-		<li><a href="../admin/roomlist">객실 예약 확인</a></li><li><a href="../admin/dinelist">레스토랑 예약 확인</a></li><li><a href="../admin/gumaelist">E-SHOP 주문내역</a></li><li><a href="../admin/wedlist">웨딩 예약 확인</a></li>
-	</ul>
-	<ul>
-<<<<<<< HEAD
 		<li><a href="../room/room_list">객실 관리</a></li><li><a href="../dining/dining_list">레스토랑 관리</a></li><li><a href="../eshop/pro_ad_list">E-SHOP 상품 관리</a></li><li><a href="../wedding/wed_list">웨딩홀 관리</a></li>
-=======
-		<li><a href="../room/room_list">객실 관리</a></li><li><a href="../dining/dining_list">레스토랑 관리</a></li><li><a href="../eshop/pro_write">E-SHOP 상품 관리</a></li><li><a href="../wedding/wed_hall_write">웨딩홀 관리</a></li>
->>>>>>> branch 'main' of https://github.com/ey0k/hotel.git
 	</ul>
 </div>
 <!-- first/ -->
@@ -121,7 +117,7 @@
 	
 	<table id="room">
 		<tr>
-			<td colspan="14"><h2>ROOM</h2></td>
+			<td colspan="14"><h2><a href="../admin/roomlist">ROOM</a></h2></td>
 		</tr>
 		<tr>
 			<th height="50px"> 예약자 </th>
@@ -159,7 +155,7 @@
 	
 	<table id="dine">
 		<tr>
-			<td colspan="16"><h2>DINING</h2></td>
+			<td colspan="16"><h2><a href="../admin/dinelist">DINING</a></h2></td>
 		</tr>
 		<tr>
 
@@ -198,7 +194,7 @@
 	
 	<table id="shop">
 		<tr>
-			<td colspan="11"><h2>ESHOP</h2></td>
+			<td colspan="11"><h2><a href="../admin/gumaelist">ESHOP</a></h2></td>
 		</tr>
 		<tr>
 			<th height="50px"> 구매자 </th>
@@ -237,7 +233,7 @@
 	
 	<table id="wedding">
 		<tr>
-			<td colspan="12"><h2>WEDDING</h2></td>
+			<td colspan="12"><h2><a href="../admin/wedlist">WEDDING</a></h2></td>
 		</tr>
 		<tr>
 			<th height="50px"> 예약자 </th>
