@@ -90,13 +90,8 @@ public class DiningResvServiceImpl implements DiningResvService{
     	   else if(drlist.get(i).getDine_type().equals("Dinner"))
     		   	drlist.get(i).setDine_type("3");
     	   else if(drlist.get(i).getDine_type().equals("Bbq"))
-<<<<<<< HEAD
    		   	drlist.get(i).setDine_type("4");
-          
-=======
-    		    drlist.get(i).setDine_type("4");
- 
->>>>>>> branch 'main' of https://github.com/ey0k/hotel.git
+
     	   dine_type=dine_type+drlist.get(i).getDine_type()+",";
     	   td=td+drlist.get(i).getTd()+",";
     	   cnt=cnt+drlist.get(i).getCnt()+",";
