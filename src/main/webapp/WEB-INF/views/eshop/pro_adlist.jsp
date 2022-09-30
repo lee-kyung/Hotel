@@ -5,11 +5,11 @@
 <head>
 <style>
 	#adlist {
-		margin : 50px auto 50px auto;
+		margin : 70px auto 100px auto;
 	}
 	#adlist #selbox {
 		width : 900px;
-		margin : auto;
+		margin : auto auto 10px auto;
 	}
 	#adlist #selbox #sbox {
 		display : inline-block;
@@ -93,7 +93,7 @@
 
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
     <div class="bradcam_area basic">
-        <div id="h3" onclick="location='pro_adlist'" style="cursor:pointer;"> 상 품 목 록 </div>
+        <div id="h3" onclick="location='../admin/admin'" style="cursor:pointer;"> 상 품 목 록 </div>
     </div>
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
 

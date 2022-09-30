@@ -233,6 +233,7 @@
 			</tr>
 			<tr>
 				<td colspan="3" align="center">
+					<input type="button" value="이전으로" onclick="location='pro_adlist'">
 					<input type="submit" value="등록하기">
 				</td>
 			</tr>
