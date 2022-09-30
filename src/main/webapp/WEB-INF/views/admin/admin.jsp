@@ -112,7 +112,13 @@
 				<a href="../admin/memberlist">회원 목록 확인</a></span>
 		</div> 
 	</div>
+<<<<<<< HEAD
 
+=======
+	<ul>
+		<li><a href="../admin/roomlist">객실 예약 확인</a></li><li><a href="../admin/dinelist">레스토랑 예약 확인</a></li><li><a href="../admin/gumaelist">E-SHOP 주문내역</a></li><li><a href="../admin/wedlist">웨딩 예약 확인</a></li>
+	</ul>
+>>>>>>> branch 'main' of https://github.com/ey0k/hotel.git
 	<ul>
 		<li><a href="../room/room_list">객실 관리</a></li><li><a href="../dining/dining_list">레스토랑 관리</a></li><li><a href="../eshop/pro_adlist">E-SHOP 상품 관리</a></li><li><a href="../wedding/wed_list">웨딩홀 관리</a></li>
 	</ul>

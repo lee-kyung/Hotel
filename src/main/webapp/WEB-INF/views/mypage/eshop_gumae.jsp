@@ -164,6 +164,7 @@
 	
 	section #eshop a:hover{
 	text-decoration:underline;
+	letter-spacing:1px;
 	color:red;}
 </style>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
@@ -242,7 +243,7 @@
 	</form>
 	<table border="1" id="first_t">
 		<tr>
-			<td width="200px;">주문번호</td>
+			<td width="190px;">주문번호</td>
 			<td>상품명</td>
 			<td width="100px;">추가상품</td>
 			<td width="150px;">총 결제금액</td>

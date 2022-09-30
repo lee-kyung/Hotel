@@ -164,6 +164,7 @@
 	
 	section #dine a:hover{
 	text-decoration:underline;
+	letter-spacing:1px;
 	color:red;}
 	
 </style>
@@ -243,7 +244,7 @@
 	</form>
 	<table border="1" id="first_t">
 		<tr>
-			<td>예약번호</td>
+			<td width="190">예약번호</td>
 			<td>식사 날짜</td>
 			<td>식사 유형</td>
 			<td>식사 시간</td>
