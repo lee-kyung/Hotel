@@ -121,15 +121,14 @@
          </tr>
          <tr>
            <th>요청 사항</th>
-             <c:if test="${dr_extrarq == null}">
            <td>
-                        <span id="rq">요청사항 없음</span>
-                          </td>
+             <c:if test="${drvo.dr_extrarq == null}">
+                      <span id="rq">요청사항 없음</span>
                </c:if> 
-         
-           <td> 
-           ${drvo.dr_extrarq}
-           
+
+             <c:if test="${drvo.dr_extrarq != null}">
+                      ${drvo.dr_extrarq}
+             </c:if>
            </td>
            
         </tr>

@@ -139,7 +139,7 @@
 		<table>
 			<tr>
 				<tr>
-					<td width="100"> 상품코드 </td>
+					<td width="100"> 상품코드 </td> 
 					<td> ${pvo.pcode} </td>
 				</tr>
 			</tr>

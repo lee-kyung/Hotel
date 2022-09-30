@@ -23,6 +23,22 @@
 	    color:white;
 	    font-weight:600;
 	} */
+	
+	/* 하단 높이 조정 중 */
+	/*.footer {
+		height : 450px;	
+		padding : 0px;	
+	}
+	.footer .footer_top {
+		height : 350px;
+		border : 1px solid red;
+		magin : 0px;
+	}
+	.footer .footer_top .container {
+		border : 1px solid red;
+		margin-bottom : 100px;
+	}*/
+
 </style>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
