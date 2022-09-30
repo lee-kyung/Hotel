@@ -5,11 +5,11 @@
 <head>
 <style>
 	#adlist {
-		margin : 50px auto 50px auto;
+		margin : 70px auto 100px auto;
 	}
 	#adlist #selbox {
 		width : 900px;
-		margin : auto;
+		margin : auto auto 10px auto;
 	}
 	#adlist #selbox #sbox {
 		display : inline-block;
