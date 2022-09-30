@@ -7,15 +7,53 @@
  <style>
   #section{
     width:100%;
-    height:1700px;
+    height:1900px;
     border:1px solid #887159;
+    margin:auto;
+    padding-top:20px;
   }
-  #section h3{
+  #section #h3{
     font-family: Bernard MT Condensed;
+  }
+  #section #outer{ /* 상단 표, 이미지 */
+    border:1px solid black;
+    width:1100px;
+    height:400px;
+    background:#e5e4e2;
+    margin:auto;
+  }
+  #section #outer #left{ /* 상단 이미지 */
+  border:1px solid red;
+    width:600px;
+    height:400px;
+    float:left;
+    margin:auto;
+  }
+  #section #outer #right{ /* 상단 가격표 */
+  border:1px solid blue;
+    width:370px;
+    height:200px;
+    float:right;
+    margin:auto;
+    margin-top:40px;
+  }
+  #section #outer #right table{
+    margin:auto;
+    vertical-align:middle;
+    height:100px;
+    font-size:14px;
+    padding-right:50px;
+  }
+  #section #outer #right #pri{
+    margin:auto;
+    vertical-align:middle;
+    height:100px;
+    font-size:14px;
+    margin-right:30px;
   }
   #section table{
     margin:auto; 
-    margin-top:15px;
+    /* margin-top:15px; */
     margin-bottom:15px;
   }
   #section table #info{
@@ -125,10 +163,10 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
   #dine_typediv #dine tr:last-child{
      border-bottom:2px solid #887159;
   } 
-  #section #dine_typediv table{
-     display:none;
+   #section #dine_typediv table{
+     visibility:hidden;
   }
-  
+
   
   /*  bootstrap calendar css 시작  */  /*  bootstrap calendar css 시작  */  /*  bootstrap calendar css 시작  */
   .calendar-toolbar {
@@ -247,10 +285,9 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
 								    document.getElementById("dr_time").innerHTML="<option>선택</option><option value='16:00'>16:00</option><option value='18:00'>18:00</option>";
 				}
 			}
-		}	
-		
+		}
   } 
-
+  // 예약 타입, 시간 선택 체크
   function check()
 	{
 		// 다이닝 타입, 입장 시간
@@ -268,31 +305,16 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
 			return true;
 		  // options[view_type.selectedIndex]
 	}
-
-  /* function show()
-    {
-	  $('#dine_type').show();
-    } */
-/*     function show()
-    {
-    	document.getElementById("dine_type").style.display="block";
-    }
- */
-
-/*     function hide(){
-     document.getElementById("dine_typediv").style.display ="none"; 	 
-    	
-    } */
+    // 예약 타입 선택시 시간 선택 테이블 보이게 하기
     window.onload = function () {
         var el = document.getElementById("dr_time");
         el.onclick = show;
     }
-    function show(){
-    	var table=document.getElementById("dinediv");
-   	     table.style.display ="block"; 
-   	    
-   	 //alert("몽!");
-    }
+    function show(y, m, d, t){
+    	var table=document.getElementById("dine");
+   	    table.style.visibility="visible"; 
+   	    //alert("몽!");
+    } 
 </script>
 </head>
 
@@ -311,19 +333,26 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
     <!-- 부타이틀(자유롭게 변경)_area_start -->
 
 <div id="section">
- 
-    <table width="1100" border="1">
-     <c:forEach items="${dlist}" var="dvo">
-     <tr id="pri_info">
-        <th id="type_info">${dvo.dine_type}</th>
-        <td>
-           성인 <fmt:formatNumber value="${dvo.dine_adult}" pattern="#,###"/>원<br>
-           어린이 <fmt:formatNumber value="${dvo.dine_child}" pattern="#,###"/>원
-        </td>
-
-    </tr>
-    </c:forEach>
-    </table>
+ <div id="outer">
+   	<div id="left">
+    	 <img src="../img/about/m2.jpg" width="600" height="390">
+  	 </div> <!-- left end -->
+  	 <div id="right">
+    
+	    <table id="pri" width="350" border="1">
+	     <c:forEach items="${dlist}" var="dvo">
+	     <tr id="pri_info">
+	        <th id="type_info">${dvo.dine_type}</th>
+	        <td>
+	           성인 <fmt:formatNumber value="${dvo.dine_adult}" pattern="#,###"/>원<br>
+	           어린이 <fmt:formatNumber value="${dvo.dine_child}" pattern="#,###"/>원
+	        </td>
+	
+	    </tr>
+	    </c:forEach>
+	    </table>
+  	 </div> <!-- right end -->
+ 	 </div> <!-- outer end -->
  <%--   <div> <fmt:formatNumber value="${drvo.dr_total}" pattern="#,###"/>원 </div> --%>
     <table width="1100">
      <tr>
@@ -420,20 +449,20 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
   <div id="dinetype">
             <c:if test="${dday >= today}"> <!--  오늘 이후면 클릭 되도록 -->
            
-            <div id="dine_type" class="b1" name="dine_type" style="font-size:14px;" onclick="show();date_type(${y}, ${m}, ${day}, 'Breakfast');">
-               		<img src="../img/dining/breakfast.png" width="17px;" height="17px;">
+            <div id="dine_type" class="b1" name="dine_type" style="font-size:14px;" onclick="show(${y}, ${m}, ${day}, 'Breakfast');date_type(${y}, ${m}, ${day}, 'Breakfast');">
+<img src="../img/dining/breakfast.png" width="17px;" height="17px;">
              Breakfast <br>
             </div>
-            <div id="dine_type" class="b2" name="dine_type" style="font-size:14px;" onclick="show();date_type(${y}, ${m}, ${day}, 'Lunch');">
-              		 <img src="../img/dining/lunch.png" width="17px;" height="17px;">
+            <div id="dine_type" class="b2" name="dine_type" style="font-size:14px;" onclick="show(${y}, ${m}, ${day}, 'Lunch');date_type(${y}, ${m}, ${day}, 'Lunch');">
+<img src="../img/dining/lunch.png" width="17px;" height="17px;">
              Lunch <br>
             </div>
-            <div id="dine_type" class="b3" name="dine_type" style="font-size:14px;" onclick="show();date_type(${y}, ${m}, ${day}, 'Dinner');">
-             		  <img src="../img/dining/dinner.png" width="17px;" height="17px;">
+            <div id="dine_type" class="b3" name="dine_type" style="font-size:14px;" onclick="show(${y}, ${m}, ${day}, 'Dinner');date_type(${y}, ${m}, ${day}, 'Dinner');">
+<img src="../img/dining/dinner.png" width="17px;" height="17px;">
              Dinner <br>
             </div>
-            <div id="dine_type" class="b4" name="dine_type" style="font-size:14px;" onclick="show();date_type(${y}, ${m}, ${day}, 'Bbq');">
-             		  <img src="../img/dining/bbq.png" width="18px;" height="19px;">
+            <div id="dine_type" class="b4" name="dine_type" style="font-size:14px;" onclick="show(${y}, ${m}, ${day}, 'Bbq');date_type(${y}, ${m}, ${day}, 'Bbq');">
+ <img src="../img/dining/bbq.png" width="18px;" height="19px;">
              Bbq <br>
             </div>
             </c:if>
@@ -474,6 +503,7 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
   <form name="view_type" method="post" action="dining_reserve_next" onsubmit="return check()">
      <div id="dinediv">
      <table id="dine" width="1100">
+     
 	    <tr id="sel">
 	       <th width="300">방문 희망 일자</th>
 	       <th width="300">조식/중식/석식</th>

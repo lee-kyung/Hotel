@@ -20,7 +20,7 @@
     	①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기
     	②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
     <div class="bradcam_area s7">	<!-- class="bradcam_area 클래스명" -->
-        <h3> 상품 목록 </h3>
+        <div id="h3" onclick="location='../admin/admin'"> ADMIN </div>
     </div>
     <!-- bradcam_area_end -->
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
@@ -28,36 +28,40 @@
 
 	<!-- ================ 타이틀(자유롭게 변경) Area Start ================= -->
     <!-- 부타이틀(자유롭게 변경)_area_start -->
- <form name="dining_write" method="post" action="dining_write_ok">
+ <input type="hidden" name="id" value="${dvo.id}">
   <br>
   <caption><h2 align="center">상품 목록</h2></caption>
   <br>
 
    <table width="900" align="center" border="1"> 
      <tr>
-        <th>번 호</th>   
-        <th>다이닝 타입</th> 
-        <th>성인 가격</th>
-        <th>어린이 가격</th>
-        <th>상품 등록일</th>
-        <th>수 정</th>
-        <th>삭 제</th>
+        <th>번 호</th>
+        <td>${dvo.id}</td>
      </tr>
-   <c:forEach items="${list}" var="dvo">
+     <tr>   
+        <th>다이닝 타입</th> 
+        <td><input type="text" name="dine_type" value="${dvo.dine_type}"></td>
+     </tr>
      <tr>
-        <td>${dvo.id}</td>   
-        <td>${dvo.dine_type}</td> 
-        <td><fmt:formatNumber value="${dvo.dine_adult}" pattern="#,###"/>원 </td>
-        <td><fmt:formatNumber value="${dvo.dine_child}" pattern="#,###"/>원 </td>
+        <th>성인 가격</th>
+        <td><input type="text" name="dine_adult" value="${dvo.dine_adult}"></td>
+     </tr>
+     <tr>
+        <th>어린이 가격</th>
+        <td><input type="text" name="dine_child" value="${dvo.dine_child}"></td>
+     </tr>
+     <tr>
+        <th>상품 등록일</th>
         <td>${dvo.writeday}</td>
-        <td colspan="2">
-           
-          <input type="button" class="btn" onclick="location='admin'" value="뒤로가기">
+     </tr>
+     <tr>
+        <td colspan="2" align="center">
+        <input type="submit" value="수정">
+  <%--       <input type="button" onclick="location='dining_delete?id=${dvo.id}'" value="삭제"> --%>
+        <input type="button" onclick="location='dining_list'" value="다이닝 목록">
         </td>
      </tr>
-   </c:forEach>
    </table>
- </form>
     <!-- 부타이틀(자유롭게 변경)_area_end -->
     <!-- ================ 타이틀(자유롭게 변경) Area End ================= -->
 
