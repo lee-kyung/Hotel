@@ -196,9 +196,9 @@
 			<td align="right">
 				<c:if test="${gvo.state==0 }">
 					<input type="button" class="btn3" value="결제취소" onclick="location='eshopG_state_change?state=1&id=${gvo.id}&jumuncode=${gvo.jumuncode }'">
-					<c:if test="${(gvo.state==0) && (gvo.bname!=null)}">
+<%-- 					<c:if test="${(gvo.state==0) && (gvo.bname!=null)}">
 						<input type="button" class="btn3" value="배송완료" onclick="location='eshopG_state_change?state=3&id=${gvo.id}&jumuncode=${gvo.jumuncode }'">
-					</c:if>
+					</c:if> --%>
 				</c:if>
 				<c:if test="${gvo.state==1 }"> 
 					<input type="button" class="btn4" value="취소진행중">
