@@ -21,7 +21,7 @@ public class GongjiServiceImpl implements GongjiService{
 	@Override
 	public String gongji_write_ok(GongjiVO gvo, HttpServletRequest request) 
 	{
-		int gubun;
+		int gubun; 
 		if(gvo.getGubun()==0)
 			gubun=0;
 		else

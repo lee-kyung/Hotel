@@ -164,6 +164,7 @@
 	
 	section #wed a:hover{
 	text-decoration:underline;
+	letter-spacing:1px;
 	color:red;}
 	
 </style>
@@ -243,7 +244,7 @@
 	</form>
 	<table border="1" id="first_t">
 		<tr>
-			<td>예약번호</td>
+			<td width="190">예약번호</td>
 			<td>상담일</td>
 			<td>상담 시간</td>
 			<td>예식희망일</td>

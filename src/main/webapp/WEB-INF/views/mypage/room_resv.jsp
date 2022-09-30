@@ -163,6 +163,7 @@
 	border-right:1px solid #887159;}
 	
 	section #room a:hover{
+	letter-spacing:1px;
 	text-decoration:underline;
 	color:red;}
 	
@@ -244,7 +245,7 @@
 	</form>
 	<table border="1" id="first_t">
 		<tr>
-			<td width="170px;">예약번호</td>
+			<td width="190px;">예약번호</td>
 			<td>객실명</td>
 			<td>체크인</td>
 			<td>체크아웃</td>

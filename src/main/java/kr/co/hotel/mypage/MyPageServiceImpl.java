@@ -181,7 +181,7 @@ public class MyPageServiceImpl implements MyPageService{
 
 		String str="";
 		str=str+"<table border='1' id='second_t'>";
-		str=str+"<tr><td>"+URLEncoder.encode("예약번호")+"</td><td>"+URLEncoder.encode("상담일")+"</td><td>"+URLEncoder.encode("상담 시간")+"</td><td>"+URLEncoder.encode("예식 희망일")+"</td><td>"+URLEncoder.encode("희망하는 웨딩홀")+"</td><td>"+URLEncoder.encode("예약한 날")+"</td><td width='120px;'>"+URLEncoder.encode("현 상태")+"</td></tr>";
+		str=str+"<tr><td width=\"190\">"+URLEncoder.encode("예약번호")+"</td><td>"+URLEncoder.encode("상담일")+"</td><td>"+URLEncoder.encode("상담 시간")+"</td><td>"+URLEncoder.encode("예식 희망일")+"</td><td>"+URLEncoder.encode("희망하는 웨딩홀")+"</td><td>"+URLEncoder.encode("예약한 날")+"</td><td width='120px;'>"+URLEncoder.encode("현 상태")+"</td></tr>";
 		for(int i=0; i<wlist.size(); i++)
 		{
 			WeddingResvVO wrvo=wlist.get(i);
@@ -282,7 +282,7 @@ public class MyPageServiceImpl implements MyPageService{
 
 		String str="";
 		str=str+"<table border='1' id='second_t'>";
-		str=str+"<tr><td>"+URLEncoder.encode("예약번호")+"</td><td>"+URLEncoder.encode("식사 날짜")+"</td><td>"+URLEncoder.encode("식사 유형")+"</td><td>"+URLEncoder.encode("식사 시간")+"</td><td width=\"300px\">"+URLEncoder.encode("예약 인원")+"</td><td>"+URLEncoder.encode("총 금액")+"</td><td>"+URLEncoder.encode("예약한 날")+"</td><td width='120px;'>"+URLEncoder.encode("현 상태")+"</td></tr>";
+		str=str+"<tr><td width=\"190\">"+URLEncoder.encode("예약번호")+"</td><td>"+URLEncoder.encode("식사 날짜")+"</td><td>"+URLEncoder.encode("식사 유형")+"</td><td>"+URLEncoder.encode("식사 시간")+"</td><td width=\"300px\">"+URLEncoder.encode("예약 인원")+"</td><td>"+URLEncoder.encode("총 금액")+"</td><td>"+URLEncoder.encode("예약한 날")+"</td><td width='120px;'>"+URLEncoder.encode("현 상태")+"</td></tr>";
 		for(int i=0; i<dlist.size(); i++)
 		{
 			DiningResvVO dvo=dlist.get(i);
@@ -405,7 +405,7 @@ public class MyPageServiceImpl implements MyPageService{
 
 		String str="";
 		str=str+"<table border='1' id='second_t'>";
-		str=str+"<tr><td width=\"200px;\">"+URLEncoder.encode("주문번호")+"</td><td>"+URLEncoder.encode("상품명")+"</td><td width=\"100px;\">"+URLEncoder.encode("추가상품")+"</td><td width=\"150px;\">"+URLEncoder.encode("총 결제금액")+"</td><td width=\"150px\">"+URLEncoder.encode("구매한 날 ")+"</td><td width='120px;'>"+URLEncoder.encode("현 상태")+"</td></tr>";
+		str=str+"<tr><td width=\"190px;\">"+URLEncoder.encode("주문번호")+"</td><td>"+URLEncoder.encode("상품명")+"</td><td width=\"100px;\">"+URLEncoder.encode("추가상품")+"</td><td width=\"150px;\">"+URLEncoder.encode("총 결제금액")+"</td><td width=\"150px\">"+URLEncoder.encode("구매한 날 ")+"</td><td width='120px;'>"+URLEncoder.encode("현 상태")+"</td></tr>";
 		for(int i=0; i<glist.size(); i++)
 		{
 			GumaeVO gvo=glist.get(i);
@@ -515,7 +515,7 @@ public class MyPageServiceImpl implements MyPageService{
 
 		String str="";
 		str=str+"<table border='1' id='second_t'>";
-		str=str+"<tr><td width=\"170px;\">"+URLEncoder.encode("예약번호")+"</td><td>"+URLEncoder.encode("객실명")+"</td><td>"+URLEncoder.encode("체크인")+"</td><td>"+URLEncoder.encode("체크아웃")+"</td><td>"+URLEncoder.encode("예약인원")+"</td><td>"+URLEncoder.encode("총 결제금액")+"</td><td>"+URLEncoder.encode("예약한 날")+"</td><td width='120px;'>"+URLEncoder.encode("현 상태")+"</td></tr>";
+		str=str+"<tr><td width=\"190px;\">"+URLEncoder.encode("예약번호")+"</td><td>"+URLEncoder.encode("객실명")+"</td><td>"+URLEncoder.encode("체크인")+"</td><td>"+URLEncoder.encode("체크아웃")+"</td><td>"+URLEncoder.encode("예약인원")+"</td><td>"+URLEncoder.encode("총 결제금액")+"</td><td>"+URLEncoder.encode("예약한 날")+"</td><td width='120px;'>"+URLEncoder.encode("현 상태")+"</td></tr>";
 		for(int i=0; i<rlist.size(); i++)
 		{
 			RoomResvVO rvo=rlist.get(i);

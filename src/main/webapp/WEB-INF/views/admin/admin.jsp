@@ -7,7 +7,7 @@
 /******************/
 	#first{
 		width: 100%;
-		height: 400px;
+		height: 270px;
 		background: #F3F3F3;
 		text-align: center;
 		margin: auto;
@@ -43,6 +43,9 @@
 	}	
 	#first ul li:last-child{
 		border-right:1px solid #cccccc;
+	}
+	#first ul li:hover{
+		background: #F3F3F3;
 	}
 /******************/
 
@@ -117,7 +120,7 @@
 	
 	<table id="room">
 		<tr>
-			<td colspan="14"><h2>ROOM</h2></td>
+			<td colspan="14"><h2><a href="../admin/roomlist">ROOM</a></h2></td>
 		</tr>
 		<tr>
 			<th height="50px"> 예약자 </th>
@@ -155,7 +158,7 @@
 	
 	<table id="dine">
 		<tr>
-			<td colspan="16"><h2>DINING</h2></td>
+			<td colspan="16"><h2><a href="../admin/dinelist">DINING</a></h2></td>
 		</tr>
 		<tr>
 
@@ -194,7 +197,7 @@
 	
 	<table id="shop">
 		<tr>
-			<td colspan="11"><h2>ESHOP</h2></td>
+			<td colspan="11"><h2><a href="../admin/gumaelist">ESHOP</a></h2></td>
 		</tr>
 		<tr>
 			<th height="50px"> 구매자 </th>
@@ -233,7 +236,7 @@
 	
 	<table id="wedding">
 		<tr>
-			<td colspan="12"><h2>WEDDING</h2></td>
+			<td colspan="12"><h2><a href="../admin/wedlist">WEDDING</a></h2></td>
 		</tr>
 		<tr>
 			<th height="50px"> 예약자 </th>
