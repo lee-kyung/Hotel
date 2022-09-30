@@ -27,7 +27,7 @@
 		margin: auto;
 	}
 	#sec1 table{
-		width: 1200px;
+		width: 1300px;
 		margin-top: 20px;
 		margin: auto;
 	}
@@ -42,6 +42,24 @@
 	}
 	#sec1 table th{
 		font-size: 20px;
+		font-weight: 700;
+		color: #887159;
+	}
+	#sec1 table tr td{
+		padding: 15px;
+	}
+	#sec1 table tr:nth-child(even){
+		background: #f9f3ed;
+	}
+	#sec1 table #title2{
+		font-weight: 800;
+		font-size: 18px;
+	}
+	#sec1 table span:hover{
+		cursor: pointer;
+		color: #887159;
+	}
+	#sec1 table a:hover{
 		font-weight: 700;
 		color: #887159;
 	}
@@ -152,7 +170,7 @@
 		</select>
 		</div>
 	<table id="room">
-		<tr>
+		<tr id="title2">
 			<td> 번호 
 				<span onclick="location='roomlist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=id asc'">∧</span>
 				<span onclick="location='roomlist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=id desc'">∨</span>

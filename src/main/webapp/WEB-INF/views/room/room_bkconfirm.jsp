@@ -18,6 +18,8 @@
 	#sec2{
 		width: 700px;
 		margin: auto;
+		border: 1px solid #887159;
+		border-radius: 20px;
 	}
 	#sec2 #title{
 		text-decoration: underline;
@@ -25,22 +27,45 @@
 		font-family: fantasy;
 		font-size: 50px;
 		text-align: center;
+		margin-top: 20px;
 	}
 	#sec2 #name{
 		text-align: center;
 	}
-	#sec table{
+	#sec #sec2 #tb{
 		width: 500px;
 		margin: auto;
 		margin-top: 50px;
 		font-size: 20px;
-		border: 1px solid #887159;
-		border-radius: 25px;
 	}
 	#sec table tr td{
 		padding: 15px;
+		border-bottom: 1px solid #887159;
 	}
-	
+	#sec2 #txt2{
+		margin-top: 70px;
+		color: #887159;
+		text-align: center;
+	}
+	#sec2 #txt3{
+		margin-top: 50px;
+		text-align: center;
+	}
+	#sec2 input[type=button]{
+		width: 200px;
+		height: 40px;
+		color: #887159;
+		border-radius: 2px;
+		border: 1px solid #887159;
+		background: white;
+		margin-auto;
+		cursor: pointer;
+		margin-bottom: 50px;
+	}
+	#sec2 input[type=button]:hover{
+		color: white;
+		background: #887159;
+	}
 </style>
   <!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
     <!-- bradcam_area_start -->
@@ -58,7 +83,7 @@
 <div id="sec">
 	<div id="sec2">
 	<div id="title">BOOKING CONFIRMED!</div>
-		<table>
+		<table id="tb">
 			<tr>
 				<th> 예약번호 </th>
 				<td> ${rsvo.bid} </td>
@@ -77,6 +102,6 @@
 			</tr>
 		</table>
 		<div id="txt2">자세한 사항은  마이페이지에서 확인 가능하며 비회원의 경우 예약번호로 조회가 가능합니다.</div>
-		<div><input type="button" onclick="location='../main/index'" value="확 인"></div>
+		<div id="txt3"><input type="button" onclick="location='../main/index'" value="확 인"></div>
 	</div>
 </div>

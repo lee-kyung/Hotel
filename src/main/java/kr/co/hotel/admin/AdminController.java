@@ -21,13 +21,24 @@ public class AdminController {
 	{
 		return service.admin(model);
 	}
-
+// member관련
 	@RequestMapping("/admin/memberlist")
-	public String memberlist(Model model)
+	public String memberlist(Model model, HttpServletRequest request)
 	{
-		return service.memberlist(model);
+		return service.memberlist(model, request);
 	}
-	
+	@RequestMapping("/admin/mstatechange")
+	public String mstatechange(HttpServletRequest request)
+	{
+		return service.mstatechange(request);
+	}
+	@RequestMapping("/admin/meminfo")
+	public String meminfo(Model model, HttpServletRequest request)
+	{
+		return service.meminfo(model, request);
+	}
+
+// 관리관련 
 	@RequestMapping("/admin/roomlist")
 	public String roomlist(Model model, HttpServletRequest request)
 	{

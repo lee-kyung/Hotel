@@ -51,15 +51,84 @@ public class AdminServiceImpl implements AdminService{
 		
 		return "/admin/admin";
 	}
-
+	
+// member
 	@Override
-	public String memberlist(Model model) {
-		ArrayList<MemberVO> list=mapper.memberlist();
-		model.addAttribute("list", list);
+	public String memberlist(Model model, HttpServletRequest request) {
+		int page, start;
+		int pcnt;
+		if(request.getParameter("pcnt")==null)
+			pcnt=10;
+		else
+			pcnt=Integer.parseInt(request.getParameter("pcnt"));
+		
+		if(request.getParameter("page")==null)
+			page=1;
+		else
+			page=Integer.parseInt(request.getParameter("page"));
+		
+		start=(page-1)*pcnt;
+		
+		// 정렬
+		String oby;
+		if(request.getParameter("oby")==null)
+			oby="id desc";
+		else
+			oby=request.getParameter("oby");
+		
+		int pstart,pend;
+		pstart=page/10;
+		if(page%10==0)
+			pstart--;
+		
+		pstart=pstart*10+1;
+		pend=pstart+9;
+		
+		String sel; // 검색필드..말머리같은거
+		if(request.getParameter("sel")==null)
+			sel="0";
+		else
+			sel=request.getParameter("sel");
+		
+		String sword; // searchword..검색어
+		if(request.getParameter("sword")==null)
+			sword="";
+		else
+			sword=request.getParameter("sword");
+		
+		int chong=mapper.getMChong(pcnt, sel, sword);
+		
+		if(chong<pend)
+			pend=chong;
+		
+		model.addAttribute("mlist",mapper.mlist(sel, sword, start, pcnt, oby));
+		model.addAttribute("page",page);
+		model.addAttribute("pstart",pstart);
+		model.addAttribute("pend",pend);
+		model.addAttribute("chong",chong);
+		model.addAttribute("pcnt",pcnt);
+		model.addAttribute("sel",sel);
+		model.addAttribute("sword",sword);
+		model.addAttribute("oby",oby);
 		
 		return "/admin/memberlist";
 	}
 
+	@Override
+	public String mstatechange(HttpServletRequest request) {
+		String id=request.getParameter("id");
+		mapper.mstatechange(id);
+		return "redirect:/admin/memberlist";
+	}
+
+	@Override
+	public String meminfo(Model model, HttpServletRequest request) {
+		String id=request.getParameter("id");
+		MemberVO mvo=mapper.meminfo(id);
+		model.addAttribute("mvo", mvo);
+		return "/admin/meminfo";
+	}
+	
 // 각 예약 리스트 확인
 	@Override
 	public String roomlist(Model model, HttpServletRequest request) {
@@ -123,7 +192,7 @@ public class AdminServiceImpl implements AdminService{
 		if(chong<pend)
 			pend=chong;
 		
-		model.addAttribute("rlist",mapper.rlist(sel, sword, pstart, pcnt, oby, c1, c2));
+		model.addAttribute("rlist",mapper.rlist(sel, sword, start, pcnt, oby, c1, c2));
 		model.addAttribute("page",page);
 		model.addAttribute("pstart",pstart);
 		model.addAttribute("pend",pend);
@@ -261,7 +330,7 @@ public class AdminServiceImpl implements AdminService{
 		if(chong<pend)
 			pend=chong;
 		
-		model.addAttribute("dlist",mapper.dlist(sel, sword, pstart, pcnt, oby, c1, c2));
+		model.addAttribute("dlist",mapper.dlist(sel, sword, start, pcnt, oby, c1, c2));
 		model.addAttribute("page",page);
 		model.addAttribute("pstart",pstart);
 		model.addAttribute("pend",pend);
@@ -402,6 +471,7 @@ public class AdminServiceImpl implements AdminService{
 
 		return "/admin/gumaeview";
 	}
+
 
 }
 

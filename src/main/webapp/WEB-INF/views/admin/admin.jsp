@@ -20,14 +20,18 @@
 		text-align:left;
 		font-size:40px;
 		padding-top:50px;
+		margin-right: 10px;
 	}
 	#first .txt2{
 		padding-top: 10px;
 		text-align:right;
 		font-size:18px;
 	}
-	#first .txt2 span{
+	#first .txt2 a{
 		cursor:pointer;
+	}
+	#first .txt2 a:hover{
+		color: #887159;
 	}
 	#first ul li{
 		display: inline-block;
@@ -73,6 +77,9 @@
 		font-weight: 700;
 		color: #887159;
 	}
+	#sec table tr td{
+		padding: 10px;
+	}
 	#sec1 h2{
 		color: #887159;
 		font-family: fantasy;
@@ -99,18 +106,15 @@
 <div id="first">
 	<div id="first_1"> 
 		<div class="txt2">
-			<span onclick="location='../admin/memberlist'">회원 목록 확인 </span>&nbsp;&nbsp;
+			<span>
+				<a href="../info/gongji_list">공지 관리</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+				<a href="../info/faq_list">FAQ관리</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+				<a href="../admin/memberlist">회원 목록 확인</a></span>
 		</div> 
 	</div>
-	<ul>
-<<<<<<< HEAD
-		<li><a href="../room/room_list">객실 관리</a></li><li><a href="../dining/dining_list">레스토랑 관리</a></li><li><a href="../eshop/pro_ad_list">E-SHOP 상품 관리</a></li><li><a href="../wedding/wed_list">웨딩홀 관리</a></li>
-=======
-		<li><a href="../admin/roomlist">객실 예약 확인</a></li><li><a href="../admin/dinelist">레스토랑 예약 확인</a></li><li><a href="../admin/gumaelist">E-SHOP 주문내역</a></li><li><a href="../admin/wedlist">웨딩 예약 확인</a></li>
-	</ul>
+
 	<ul>
 		<li><a href="../room/room_list">객실 관리</a></li><li><a href="../dining/dining_list">레스토랑 관리</a></li><li><a href="../eshop/pro_adlist">E-SHOP 상품 관리</a></li><li><a href="../wedding/wed_list">웨딩홀 관리</a></li>
->>>>>>> branch 'main' of https://github.com/ey0k/hotel.git
 	</ul>
 </div>
 <!-- first/ -->

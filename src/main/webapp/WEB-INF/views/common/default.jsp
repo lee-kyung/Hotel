@@ -180,25 +180,14 @@
 	}
 	#loglayer #gologin{
 		width: 400px;
-		height: 50px;
-		border: none;
-		border-bottom: 2px solid #887159;
-		background: white;
-		color: #887159;
-	}
-	#loglayer input[type=button]{
-		width: 400px;
 		height: 80px;
 		border: 1px solid #887159;
 		background: white;
 		color: #887159;
+		cursor: pointer;
 	}
-	#loglayer input[type=button]{
-		width: 400px;
-		height: 80px;
-		border: 1px solid #887159;
-		background: white;
-		color: #887159;
+	#loglayer #gologin:hover{
+		color: black;
 	}
 	#loglayer #keepgo{
 		width: 400px;
@@ -206,6 +195,10 @@
 		border: 1px solid #887159;
 		background: #887159;
 		color: white;
+		cursor: pointer;
+	}
+	#loglayer #keepgo:hover{
+		color: black;
 	}
 	#loglayer #txt{
 		margin-top: 150px;
@@ -238,7 +231,7 @@
 		<br>
 		<div id="txt2">
 			<div>
-				<input type="button" value="로그인" onclick="location='../login/login?ck=2'">
+				<input type="button" value="로그인" id="gologin" onclick="location='../login/login?ck=2'">
 				<hr>
 				<input type="button" value="비회원으로 계속" id="keepgo" onclick="location='../room/room_resv'">
 			</div>

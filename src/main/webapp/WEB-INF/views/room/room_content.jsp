@@ -9,14 +9,11 @@
 </head>
 <body>
 <style>
-	.container{
+	#sec1{
 		width: 1300px;
 		margin: auto;
-	}
-	roomsec{
 		margin-top: 40px;
 		margin-bottom: 80px;
-		margin: auto;
 	}
 /* ul메뉴관련 */
  	roomsec #menu{
@@ -24,7 +21,7 @@
 		height: 60px;
 		margin: auto;
 		position: relative;
-		magrin-top: 40px;
+		magrin-top: 20px;
 	}
 	roomsec #menu ul{
 		margin-bottom:50px;
@@ -48,6 +45,8 @@
 /* sec2 */
 	roomsec #sec2{
 		margin-top: 30px;
+		width: 1200px;
+		margin: auto;
 	}
 	roomsec #sec2 #rname{
 		font-size:35px; 
@@ -92,8 +91,7 @@
 
 	<!-- ================ Rooms Area Start ================= -->
 	<!-- 객실 리스트 -->
-<div class="container">
-	<div class="row"> 
+<div id="sec1">
     <roomsec>
     	<div id="menu"> 
     	<ul>
@@ -117,7 +115,6 @@
 	</div> <!-- sec2end-->
 	
  	</roomsec>
- 	</div>
 </div>
 
     <!-- ================ Rooms Area End ================= -->

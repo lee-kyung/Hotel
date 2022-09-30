@@ -27,7 +27,7 @@
 		margin: auto;
 	}
 	#sec1 table{
-		width: 1200px;
+		width: 1300px;
 		margin-top: 20px;
 		margin: auto;
 	}
@@ -42,6 +42,24 @@
 	}
 	#sec1 table th{
 		font-size: 20px;
+		font-weight: 700;
+		color: #887159;
+	}
+	#sec1 table tr td{
+		padding: 15px;
+	}
+	#sec1 table tr:nth-child(even){
+		background: #f9f3ed;
+	}
+	#sec1 table #title2{
+		font-weight: 800;
+		font-size: 18px;
+	}
+	#sec1 table span:hover{
+		cursor: pointer;
+		color: #887159;
+	}
+	#sec1 table a:hover{
 		font-weight: 700;
 		color: #887159;
 	}
@@ -76,6 +94,17 @@
 		width: 200px;
 		margin: auto; 
 	}
+	#sec1 input[type=button]{
+		width: 90px;
+		height: 25px;
+		border: 1px solid #887159;
+		border-radius: 2px;
+		background: white;
+		color: #887159;
+	}
+	#sec1 input[type=button]:hover{
+		font-weight: 700;
+	}
 </style>
 <script>
 	function move(my)
@@ -108,6 +137,9 @@
 </head>
 
 <body>
+<c:if test="${userid != 'admin'}">
+	<c:redirect url="../main/index"/>
+</c:if>
 
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
     <!-- bradcam_area_start -->
@@ -122,7 +154,7 @@
 <section>
 <div id="sec1">
 <!-- 내용 작성 -->
-	<div id="title"> <a href="gumaelist">구매자 리스트</a></div>
+	<div id="title"> <a href="gumaelist">ESHOP 구매자 리스트</a></div>
 	<div id="list">
 		목록
 		<select onchange="move(this)" id="pcnt">
@@ -133,7 +165,7 @@
 		</select>
 		</div>
 	<table id="gumae">
-		<tr>
+		<tr id="title2">
 			<td> 번호 
 				<span onclick="location='gumaelist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=id asc'">∧</span>
 				<span onclick="location='gumaelist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=id desc'">∨</span>
@@ -142,11 +174,11 @@
 			<td> 주문번호 </td>
 			<td> 상품명 </td>
 			<td> 상품코드 </td>
+			<td> 총금액 </td>
 			<td> 구매일 
 				<span onclick="location='gumaelist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=buyday asc'">∧</span>
 				<span onclick="location='gumaelist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=buyday desc'">∨</span>
 			</td>
-			<td> 총결제금액 </td>
 			<td colspan="2"> 상태 
 				<span onclick="location='gumaelist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=state asc'">∧</span>
 				<span onclick="location='gumaelist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=state desc'">∨</span>

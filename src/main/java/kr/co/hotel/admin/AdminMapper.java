@@ -12,8 +12,12 @@ import kr.co.hotel.wedding.WeddingResvVO;
 
 
 public interface AdminMapper {
-	public ArrayList<MemberVO> memberlist();
-
+// member관련	
+	public ArrayList<MemberVO> mlist(String sel,String sword,int start,int pcnt,String oby);
+	public int getMChong(int pcnt,String sel,String sword);
+	public void mstatechange(String id);
+	public MemberVO meminfo(String id);
+	
 // admin첫 화면에서 최신 5개 예약 보이게 
 	public ArrayList<RoomResvVO> getroombk();
 	public ArrayList<DiningResvVO> getdiningresv();
