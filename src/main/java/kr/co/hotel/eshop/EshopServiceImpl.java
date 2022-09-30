@@ -462,7 +462,7 @@ public class EshopServiceImpl implements EshopService {
 			sword=request.getParameter("sword");
 		
 		/* 페이지 이동을 위한 출력 범위 */
-		int pstart, pend, parr=10;
+		int pstart, pend, parr=5;
 		
 		pstart=page/parr;	// 페이지 출력 범위 : 1~10, 11~20, 21~30…
 		if((page % parr) == 0)

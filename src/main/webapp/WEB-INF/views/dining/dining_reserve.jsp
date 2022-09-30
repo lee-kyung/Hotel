@@ -40,7 +40,7 @@
     /* width:142px; */
     height:50px;
     border-bottom:1px solid #887159;
-    border:1px solid red;
+    /* border:1px solid red; */
   }
   #section #calendar td{
     border-bottom:1px solid #d3d3d3;
@@ -51,14 +51,14 @@
   #section #day{
     text-align:left;
     /* height:10px; */
-    border:1px solid blue;
+    /* border:1px solid blue; */
   }
    #section #calendar #day #dine_type{ /**/
     display:hidden;
   }
   #section #day_td{
     height:20px;
-    border:1px solid black;
+    /* border:1px solid black; */
   }
   #section #pri_info{
     height:80px;
@@ -125,7 +125,9 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
   #dine_typediv #dine tr:last-child{
      border-bottom:2px solid #887159;
   } 
-
+  #section #dine_typediv table{
+     display:none;
+  }
   
   
   /*  bootstrap calendar css 시작  */  /*  bootstrap calendar css 시작  */  /*  bootstrap calendar css 시작  */
@@ -246,6 +248,7 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
 				}
 			}
 		}	
+		
   } 
 
   function check()
@@ -275,6 +278,21 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
     	document.getElementById("dine_type").style.display="block";
     }
  */
+
+/*     function hide(){
+     document.getElementById("dine_typediv").style.display ="none"; 	 
+    	
+    } */
+    window.onload = function () {
+        var el = document.getElementById("dr_time");
+        el.onclick = show;
+    }
+    function show(){
+    	var table=document.getElementById("dinediv");
+   	     table.style.display ="block"; 
+   	    
+   	 //alert("몽!");
+    }
 </script>
 </head>
 
@@ -399,25 +417,25 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
              %> 
           <fmt:formatDate var="today" value="<%=new java.util.Date() %>" pattern="yyyy-MM-dd"/>
           <fmt:formatDate var="dday" value="<%=new java.util.Date(y-1900,m-1,day2) %>"  pattern="yyyy-MM-dd"/> 
-  <div id="dinetype" >
+  <div id="dinetype">
             <c:if test="${dday >= today}"> <!--  오늘 이후면 클릭 되도록 -->
            
-            <span id="dine_type" class="b1" name="dine_type" style="font-size:14px;" onclick="date_type(${y}, ${m}, ${day}, 'Breakfast')">
+            <div id="dine_type" class="b1" name="dine_type" style="font-size:14px;" onclick="show();date_type(${y}, ${m}, ${day}, 'Breakfast');">
                		<img src="../img/dining/breakfast.png" width="17px;" height="17px;">
              Breakfast <br>
-            </span>
-            <span id="dine_type" class="b2" name="dine_type" style="font-size:14px;" onclick="date_type(${y}, ${m}, ${day}, 'Lunch')">
+            </div>
+            <div id="dine_type" class="b2" name="dine_type" style="font-size:14px;" onclick="show();date_type(${y}, ${m}, ${day}, 'Lunch');">
               		 <img src="../img/dining/lunch.png" width="17px;" height="17px;">
              Lunch <br>
-            </span>
-            <span id="dine_type" class="b3" name="dine_type" style="font-size:14px;" onclick="date_type(${y}, ${m}, ${day}, 'Dinner')">
+            </div>
+            <div id="dine_type" class="b3" name="dine_type" style="font-size:14px;" onclick="show();date_type(${y}, ${m}, ${day}, 'Dinner');">
              		  <img src="../img/dining/dinner.png" width="17px;" height="17px;">
              Dinner <br>
-            </span>
-            <span id="dine_type" class="b4" name="dine_type" style="font-size:14px;" onclick="date_type(${y}, ${m}, ${day}, 'Bbq')">
+            </div>
+            <div id="dine_type" class="b4" name="dine_type" style="font-size:14px;" onclick="show();date_type(${y}, ${m}, ${day}, 'Bbq');">
              		  <img src="../img/dining/bbq.png" width="18px;" height="19px;">
              Bbq <br>
-            </span>
+            </div>
             </c:if>
              
             
@@ -451,9 +469,10 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
        </tr>
      </c:forEach> 
    </table>		
-<div id="dine_typediv"> <!-- 타임 클릭시 아래 반영되는 div --> 
+<div id="dine_typediv" > <!-- 타임 클릭시 아래 반영되는 div --> 
 <span id="ccc" style="display:none"></span> 
   <form name="view_type" method="post" action="dining_reserve_next" onsubmit="return check()">
+     <div id="dinediv">
      <table id="dine" width="1100">
 	    <tr id="sel">
 	       <th width="300">방문 희망 일자</th>
@@ -472,23 +491,10 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
 	       <td><input type="button" value="이전" class="btn" onclick="location='dining'"> </td>	       
            <td colspan="2" align="right">
            <input type="submit" value="예약하기" class="btn">
-           
 
- 		   <%-- <c:if test="${userid != null}"> 
- 		   <td colspan="2" align="right">
-       <input type="submit" value="회원으로 예약" class="cbtn">
- 		   </td>
- 		   </c:if> --%> 
-           
-	     
-	       <!-- <td colspan="3">
-	       <span id="resv">
-	       <input type="button" value="비회원" class="guest">
-	       <input type="submit" value="회원" class="cbtn">
-	     </span>
-	     </td> -->
 	     </tr>
    </table>
+     </div>
   </form>
 </div>
 
