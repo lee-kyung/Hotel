@@ -152,8 +152,8 @@
 		</tr>
 	  <c:forEach items="${mlist}" var="mvo">
 	    <tr>
-	  		<td><a href="../admin/roombkview?id=${mvo.id}"> ${mvo.id}</a> </td>	    	
-	  		<td><a href="../admin/meminfo?id=${mvo.id}"> ${mvo.userid}</a> </td>
+	  		<td>${mvo.id}</td>	    	
+	  		<td><a href="../admin/meminfo?id=${mvo.id}&userid=${mvo.userid}"> ${mvo.userid}</a> </td>
 	  		<td> ${mvo.name} </td>
 	  		<td> ${mvo.joinday} </td>
 	  	<c:if test="${mvo.state == 0}">

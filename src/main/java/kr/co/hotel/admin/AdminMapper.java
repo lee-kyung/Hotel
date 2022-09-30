@@ -17,6 +17,12 @@ public interface AdminMapper {
 	public int getMChong(int pcnt,String sel,String sword);
 	public void mstatechange(String id);
 	public MemberVO meminfo(String id);
+
+// member 각 구매내역 관련 
+	public Integer getmrcnt(String userid); 
+	public Integer getmdcnt(String userid); 
+	public Integer getmwcnt(String userid); 
+	public Integer getmgcnt(String userid);  
 	
 // admin첫 화면에서 최신 5개 예약 보이게 
 	public ArrayList<RoomResvVO> getroombk();
@@ -28,13 +34,13 @@ public interface AdminMapper {
 	public ArrayList<RoomResvVO> rlist(String sel,String sword,int start,int pcnt,String oby,String c1, String c2);
 	public int getRChong(int pcnt,String sel,String sword);
 	
-	public ArrayList<WeddingResvVO> wlist(String sel,String sword,int start,int pcnt,String oby);
+	public ArrayList<WeddingResvVO> wlist(String sel,String sword,int start,int pcnt,String oby,String c1, String c2);
 	public int getWChong(int pcnt,String sel,String sword);
 	
 	public ArrayList<DiningResvVO> dlist(String sel,String sword,int start,int pcnt,String oby,String c1, String c2);
 	public int getDChong(int pcnt,String sel,String sword);
 	
-	public ArrayList<GumaeVO> glist(String sel,String sword,int start,int pcnt,String oby);
+	public ArrayList<GumaeVO> glist(String sel,String sword,int start,int pcnt,String oby,String c1, String c2);
 	public int getGChong(int pcnt,String sel,String sword);
 	
 // 상태 변경 - 날짜 지나면 변경

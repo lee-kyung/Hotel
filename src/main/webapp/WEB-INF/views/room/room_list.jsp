@@ -105,7 +105,7 @@
 		margin: auto;
 	}
 	section #a2{
-		visibility: hidden;
+		display: none; 
 	}
 	
 </style>
@@ -123,6 +123,16 @@
 		// 선택된 li 배경색 : white, 밑줄 X
 		sub[n].style.background="white";
 		sub[n].style.borderBottom="none";
+	}
+	function showd()
+	{
+		document.getElementById("a2").style.display="block";
+		document.getElementById("a1").style.display="none";
+	}
+	function showa()
+	{
+		document.getElementById("a1").style.display="block";
+		document.getElementById("a2").style.display="none";
 	}
 </script>
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
@@ -144,7 +154,7 @@
 		<section>
 		<div id="menu">
 		<ul>
-	 		<li class="sub" onclick="showa()">활성</li><li class="sub" onclick="showd()">비활성</li>
+	 		<li class="sub" onclick="change_sub(0);showa()">활성</li><li class="sub" onclick="change_sub(1);showd()">비활성</li>
 		</ul>
 		</div>
 	

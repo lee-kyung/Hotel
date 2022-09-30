@@ -1,6 +1,7 @@
 package kr.co.hotel.admin;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.ui.Model;
 

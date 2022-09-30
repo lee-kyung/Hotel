@@ -68,7 +68,7 @@
 		width: 1200px;
 		text-align: center;
 	}
-	#sec2 input[type=text]{
+	#sec2 > input[type=text]{
 		width: 200px;
 		height: 28px;
 		border: 1px solid #887159;
@@ -78,21 +78,31 @@
 		height: 26px;
 		border: 1px solid #887159;
 	}
-	#sec2 input[type=submit]{
+	#sec2 input[type=submit],input[type=button]{
 		width: 100px;
 		height: 28px;
 		background: white;
 		color: #887159;
 		border: 1px solid #887159;
+		border-radius: 2px;
 	}
-	#sec2 input[type=submit]:hover{
+	#sec2 input[type=submit]:hover,input[type=button]:hover{
 		color: white;
 		background: #887159;
 		border: 1px solid #887159;
 	}
-	#sec2 #cal{
-		width: 200px;
+	#dtsearch{
+		width: 1000px;
 		margin: auto;
+		display:inline-block;
+		margin-top: 20px;
+	}
+	#aa,#bb{
+		width: 200px;
+		display:inline-block;
+	}
+	#aa input[type=text],#bb input[type=text]{
+		height: 15px;
 	}
 </style>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -126,7 +136,7 @@
 			return true;		
 	}
 
-/* 	$(function(){
+	$(function(){
 	   $("#c1").datepicker({
 		   format: "yyyy-mm-dd",
 	   });
@@ -135,13 +145,13 @@
 	   });  
 	});
 	
-	function csearch(my){
-		var c1=document.getElementById("#c1");
-		alert(c1);
-		var c2=document.getElementById("#c2");
-		location="roomlist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&checkin="+c1+"&"+c2;
-	} */
-
+	function csearch(c1,c2){
+		var c1=document.getElementById("c1").value;
+		var c2=document.getElementById("c2").value;
+		// alert(c1+""+c2);
+		
+		location="roomlist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=${oby}&c1="+c1+"&c2="+c2;
+	} 
 </script>
 </head>
 
@@ -261,6 +271,7 @@
 		<form method="post" action="roomlist" onsubmit="return check(this)">
 			<select name="sel" id="sel">
 				<option value="0"> 선 택 </option>
+				<option value="userid"> 아이디 </option>
 				<option value="bkname"> 예약자 </option>
 				<option value="checkin"> 체크인 </option>
 				<option value="bkphone"> 연락처  </option>
@@ -270,19 +281,12 @@
 		</form>
 		</div>	
 		<br>
-		<!-- <div id="right">
-			<div>
-			<select>
-				<option value="cin">체크인</option>
-				<option value="cout">체크아웃</option>
-			</select>
-			<div id="cal">
-				<input type="text" name="c1" placeholder="1" id="c1" value="">
-				<input type="text" name="c2" placeholder="2" id="c2" value="">
-			</div>
-				<input type="button" value="검색" onclick="csearch(this.value)">
-			</div>
-		</div> -->
+		<div id="dtsearch">
+			<form name="cal" method="post">
+			체크인 기준 기간 검색&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div id="aa"><input type="text" name="c1" id="c1"></div> ~
+			<div id="bb"><input type="text" name="c2" id="c2"></div> &nbsp;&nbsp;&nbsp;<input type="button" value="검색" onclick="csearch()">
+			</form>
+		</div> 
 	</div>
 </div>
 </div>
