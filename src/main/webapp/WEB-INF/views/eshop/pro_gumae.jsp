@@ -187,7 +187,7 @@
 	function right_stop(){
 		//document.getElementById("abc").innerText=document.documentElement.scrollTop;	// <span id="abc"></span>
 		let top=document.documentElement.scrollTop;
-		let left=(window.screen.width/2)+240;	//137, 220, (window.screen.width/7)
+		let left=(window.screen.width/2)+137;	//137, 220, (window.screen.width/7)
 		
 		console.log(window.screen.width/7);
 		console.log((window.screen.width/2)+240);
@@ -588,10 +588,10 @@
 									alert("상세주소를 입력하세요.");
 									return false;
 									}
-									else if(document.gumae.agree1.checked == false) {
+									/*else if(document.gumae.agree1.checked == false) {
 										alert("비회원주문 개인정보 수집이용에 대한 동의가 필요합니다.");
 										return false;
-									}
+									}*/
 									else {
 										document.gumae.submit();
 										return true;

@@ -22,14 +22,14 @@
 		padding-bottom : 30px;
 	}
 	#login input[type=text] {
-		width : 500px;
+		width : 400px;
 		height : 60px;
 		border : 1px solid #887159;
 		outline : none;
 		padding-left : 10px;
 	}
 	#login input[type=password] {
-		width : 500px;
+		width : 400px;
 		height : 60px;
 		border : 1px solid #887159;
 		outline : none;
@@ -37,7 +37,7 @@
 	}
 	#login input[type=submit] {
 		font-size:20px;
-		width : 500px;
+		width : 400px;
 		height : 62px;
 		border : 1px solid #887159;
 		background : #887159;
@@ -45,15 +45,12 @@
 		cursor : pointer;
 	}
 	#login #txt div{
-		width:170px;
+		width:150px;
 		display:inline-block;
 		cursor:pointer;}
 	#login #klogin {
 		margin : auto;
-		width : 500px;
-		border-top : 1px solid #887159;
 		margin-top : 20px;
-		padding-top : 30px;
 	}
 </style>
 <script src="http://code.jquery.com/jquery-latest.js"></script>

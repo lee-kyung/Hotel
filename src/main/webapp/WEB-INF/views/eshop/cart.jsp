@@ -401,7 +401,7 @@
 <body>
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
 	    <div class="bradcam_area eshop1">
-	        <div id="h3"> C A R T </div>
+	        <div id="h3" onclick="location='cart?p=${p}'" style="cursor:pointer;"> C A R T </div>
 	    </div>
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
 

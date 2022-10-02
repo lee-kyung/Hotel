@@ -78,7 +78,7 @@
 <body>
 
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
-    <div class="bradcam_area basic">
+    <div class="bradcam_area black">
         <div id="h3" onclick="location='../admin/admin'" style="cursor:pointer;"> ADMIN </div>
     </div>
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->

@@ -219,7 +219,7 @@
 				var img=document.createElement("img"); 
 
 				img.setAttribute("src", event.target.result); 
-				img.setAttribute("width", "100");
+				img.setAttribute("width", "150");
 				img.setAttribute("valign", "middle");
 
 				document.getElementsByClassName("img")[n].appendChild(img);  //새로 선택한 이미지 span에 출력
@@ -244,8 +244,8 @@
 </head>
 <body>
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
-		<div class="bradcam_area basic">
-	        <div id="h3" onclick="location='pro_write'" style="cursor:pointer;"> 상 품 등 록 </div>
+		<div class="bradcam_area black">
+	        <div id="h3" onclick="location='pro_adlist'" style="cursor:pointer;"> ESHOP 상품관리 </div>
 	    </div>
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
     
@@ -285,7 +285,7 @@
 			<tr>
 				<td> 상세이미지 </td>
 				<td colspan="2">
-					<img src="" width="100" id="simg"> <input type="file" name="simg" onchange="preview()">
+					<img src="" width="150" id="simg"> <input type="file" name="simg" onchange="preview()">
 				</td>
 			</tr>
 			<tr>

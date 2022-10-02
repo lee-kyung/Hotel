@@ -195,7 +195,7 @@
 				var img=document.createElement("img"); 
 
 				img.setAttribute("src", event.target.result); 
-				img.setAttribute("width", "100");
+				img.setAttribute("width", "150");
 				img.setAttribute("valign", "middle");
 
 				document.getElementsByClassName("img")[n].appendChild(img);
@@ -245,8 +245,8 @@
 <body>
 
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
-    <div class="bradcam_area basic">
-        <div id="h3" onclick="location='pro_adupdate?id=${pvo.id}&page=${page}&psel=${psel}&ssel=${ssel}&sword=${sword}&osel=${osel}'" style="cursor:pointer;"> 상 품 수 정 </div>
+    <div class="bradcam_area black">
+        <div id="h3" onclick="location='pro_adlist?id=${pvo.id}&page=${page}&psel=${psel}&ssel=${ssel}&sword=${sword}&osel=${osel}'" style="cursor:pointer;"> ESHOP 상품관리 </div>
     </div>
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
 
@@ -277,7 +277,7 @@
 				<td id="aa">
 					<div style="font-size:12px;color:red;"> ※삭제할 메인이미지를 체크하세요. </div>
 					<c:forEach var="imgs" items="${pvo.imgs}" varStatus="n">
-						<img src="../img/eshop/${imgs}" height="100" class="fimgs">
+						<img src="../img/eshop/${imgs}" height="50" class="fimgs">
 						<input type="checkbox" name="cbx" value="${imgs}" onclick="del_color(${n.index}, this)">
 					</c:forEach>
 				</td>
@@ -305,7 +305,7 @@
 			<tr>
 				<td>
 					<div style="font-size:12px;color:red;font-weight:normal;"> ※상세이미지는 기존 이미지를 포함하여 최대 1개까지 등록 가능합니다. </div>
-					<img src="" width="100" id="simg"> <input type="file" name="simg" onchange="preview()"> </p>
+					<img src="" width="150" id="simg"> <input type="file" name="simg" onchange="preview()"> </p>
 				</td>
 			</tr>
 			<tr>

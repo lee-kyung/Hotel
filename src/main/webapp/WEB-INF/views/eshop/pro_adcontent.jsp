@@ -61,8 +61,8 @@
 <body>
 
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
-    <div class="bradcam_area basic">
-        <div id="h3" onclick="location='pro_adcontent?id=${pvo.id}&page=${page}&psel=${psel}&ssel=${ssel}&sword=${sword}&osel=${osel}'" style="cursor:pointer;"> 상 품 상 세 </div>
+    <div class="bradcam_area black">
+        <div id="h3" onclick="location='pro_adlist?id=${pvo.id}&page=${page}&psel=${psel}&ssel=${ssel}&sword=${sword}&osel=${osel}'" style="cursor:pointer;"> ESHOP 상품관리 </div>
     </div>
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
 

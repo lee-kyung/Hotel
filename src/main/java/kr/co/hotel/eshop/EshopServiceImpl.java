@@ -91,6 +91,13 @@ public class EshopServiceImpl implements EshopService {
 	}
 
 	@Override
+	public String eshop(Model model) {
+		model.addAttribute("plist1", mapper.eshop1("p01"));
+		model.addAttribute("plist2", mapper.eshop2("p02"));
+		return "/eshop/eshop";
+	}
+	
+	@Override
 	public String pro_list(HttpServletRequest request, Model model, HttpSession session) {
 		String pcode=request.getParameter("pcode");
 
@@ -358,15 +365,15 @@ public class EshopServiceImpl implements EshopService {
 		
 		if(session.getAttribute("userid") == null)
 			if(cookie == null) {
-				//gvo.setUserid("guest");
-				String cookievalue=RandomStringUtils.random(20, true, true);
+				gvo.setUserid("guest");
+				/*String cookievalue=RandomStringUtils.random(20, true, true);
 				Cookie cookieid=new Cookie("cookieid", cookievalue);
 
 				cookieid.setPath("/");
 				cookieid.setMaxAge(60 * 60 * 1);
 				response.addCookie(cookieid);
 				
-				gvo.setUserid(cookievalue);
+				gvo.setUserid(cookievalue);*/
 			}
 			else
 				gvo.setUserid(cookie.getValue());

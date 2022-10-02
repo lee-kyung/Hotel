@@ -10,6 +10,8 @@ public interface EshopMapper {
 	public Integer getpcode(String pcode1);
 	public void pro_write_ok(ProductVO pvo);
 	
+	public ArrayList<ProductVO> eshop1(String p);
+	public ArrayList<ProductVO> eshop2(String p);
 	public ArrayList<ProductVO> pro_list(String userid, String pcode, String osel);
 	public ArrayList<ProductVO> pro_list2(String pcode, String osel);
 	

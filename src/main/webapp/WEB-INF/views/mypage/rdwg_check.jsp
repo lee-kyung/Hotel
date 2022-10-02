@@ -11,31 +11,36 @@
 		margin-top : 80px;
 		text-align : center;
 	}
-	#rdwg #msg {
+	#rdwg #mbox {
+		width : 700px;
+		height : 350px;
+		border : 2px solid #887159;
 		margin : auto;
-		height : 60px;
-		color : #887159;
-		border-bottom : 2px solid #887159;
+		text-align : center;
+	}
+	#rdwg #msg {
+		width : 420px;
+		margin : auto;
 		margin-bottom : 50px;
 	}
 	#rdwg #txt {
 		margin : auto;
 		text-align : left;
-		width : 300px;
+		width : 400px;
 		height : 30px;
 		font-weight : bold;
 	}
 	#rdwg #inp {
-		width : 300px;
-		height : 50px;
+		width : 400px;
+		height : 60px;
 		border : 1px solid #887159;
 		outline : none;
 		padding-left : 10px;
 		margin-bottom : 20px;
 	}
 	#rdwg #btn {
-		width : 300px;
-		height : 50px;
+		width : 400px;
+		height : 60px;
 		border : 1px solid #887159;
 		background : #887159;
 		color : white;
@@ -68,22 +73,23 @@
 
 <body>
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
-    <div class="bradcam_area basic">	<!-- class="bradcam_area 클래스명" -->
+    <div class="bradcam_area breadcam_bg">	<!-- class="bradcam_area 클래스명" -->
         <div id="h3" style="font-size:70px;"> 예약·주문 조회 </div>
     </div>
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
 
 
 	<!-- ================ 비회원 주문내역 Area Start ================= -->
-   	<div id="rdwg">
-   		<div id="msg"> 문자나 이메일로 수령한 예약번호 또는 주문번호를 입력하세요. </div>
-   		<form name="info" method="post" action="rdwg_info" onsubmit="return check()">
-			<div id="txt"> 예약/주문번호 </div>
-			<input type="text" name="bjcode" placeholder="예약번호 또는 주문번호를 입력하세요." id="inp"> <p>
-			<input type="submit" value="조회하기" id="btn">
-			<div id="msg"></div>
-   		</form>
-   	</div>
+	<section id="rdwg">
+   		<fieldset id="mbox">
+   		<legend id="msg"> 예약번호 또는 주문번호를 입력하세요 </legend>
+	   		<form name="info" method="post" action="rdwg_info" onsubmit="return check()">
+				<div id="txt"> 예약/주문번호 </div>
+				<input type="text" name="bjcode" placeholder="예약번호 또는 주문번호를 입력하세요." id="inp"> <p>
+				<input type="submit" value="조회하기" id="btn">
+	   		</form>
+   		</fieldset>
+   	</section>
     <!-- ================ 비회원 주문내역 Area End ================= -->
 
 </body>

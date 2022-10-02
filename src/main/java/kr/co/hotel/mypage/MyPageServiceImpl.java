@@ -674,7 +674,4 @@ public class MyPageServiceImpl implements MyPageService{
 		
 		return "redirect:/main/index";
 	}
-
-	
-
 }

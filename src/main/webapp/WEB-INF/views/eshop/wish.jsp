@@ -221,7 +221,7 @@
 <body>
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
 	    <div class="bradcam_area eshop1">
-	        <div id="h3"> W I S H L I S T </div>
+	        <div id="h3" onclick="location='wish'" style="cursor:pointer;"> W I S H L I S T </div>
 	    </div>
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
 

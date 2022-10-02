@@ -7,7 +7,7 @@
 	<c:if test="${size <= 1}">
 		<c:set var="height" value="900"/>
 	</c:if>
-	<c:if test="${size > 2}">
+	<c:if test="${size > 1}">
 		<c:set var="height" value="${ ((size-1) * 500) + 900 }"/>
 	</c:if>
 <style>

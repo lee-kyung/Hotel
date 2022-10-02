@@ -20,8 +20,8 @@ public class EshopController {
 	private EshopService service;
 	
 	@RequestMapping("/eshop/eshop")
-	public String eshop() {
-		return "/eshop/eshop";
+	public String eshop(Model model) {
+		return service.eshop(model);
 	}
 	
 	@RequestMapping("/eshop/error")
