@@ -97,8 +97,8 @@
                                         <li><a href="../room/rooms">rooms</a></li> <!-- class="active" -->
                                         <li id="title"><a href="">dining<i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
-                                                <li><a href="../dining/dining">레스토랑 소개</a></li>
-                                                <li><a href="../dining/dining_reserve">레스토랑 예약</a></li>
+                                                <li><a href="../dining/dining">DINING</a></li>
+                                                <li><a href="../dining/dining_reserve">BOOKING</a></li>
                                             </ul>
                                         </li>
                                         <li><a href="../wedding/wedding">wedding<i class="ti-angle-down"></i></a>
