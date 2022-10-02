@@ -63,28 +63,14 @@
 	function page_sel(psel){
 		location="pro_adlist?psel="+psel+"&page=${page}&ssel=${ssel}&sword=${sword}&osel=${osel}";
 	}
-	
-	/* 사용자가 선택한 페이지목록수를 브라우저에 나타내기 */
-	/*window.onload=function(){
-		document.getElementById("psel").value="${psel}";
-		
-		<c:if test="${ssel != 'id'}">	//※[ServiceImpl.java]에서 [ssel="id";]처리한 건 제외시키기 
-			document.getElementById("ssel").value="${ssel}";
-		</c:if>
-	}*/
-	
+
 	function search_sel(smsg){
-		//if(smsg.ssel.selectedIndex != 0 && smsg.sword.value.trim().length != 0)
-		/*if(smsg.ssel.value == "su" && smsg.ssel.value == "sold") {
-			alert("검색 말머리를 선택하세요");
-			return false;
-			}
-			else*/ if(smsg.sword.value.trim() == "") {
-				alert("검색할 단어 및 숫자를 입력하세요");
-				return false;
-				}
-				else
-					return true;
+	if(smsg.sword.value.trim() == "") {
+		alert("검색할 단어 및 숫자를 입력하세요");
+		return false;
+		}
+		else
+			return true;
 	}
 </script>
 </head>

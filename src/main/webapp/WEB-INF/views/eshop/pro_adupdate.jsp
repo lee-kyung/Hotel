@@ -105,21 +105,18 @@
 	}
 </style>
 <script>
-	/* 상품코드, 메인이미지, 상세이미지, 상품명, 판매가, 재고가 입력됐는지 체크하기 */
 	function del_check(upform){
-		/* fimg의 checkbox가 체크된 그림파일명과 체크가 안된 그림파일명을 각각 저장 */
-		let cbx=document.getElementsByName("cbx"); // 요소의 이름을 변수에 전달
-		let len=cbx.length; // 체크박스의 길이
-		let del="";  // 삭제할 파일을 저장
-	   	let keep="";  // 유지할 파일을 저장
+		let cbx=document.getElementsByName("cbx");
+		let len=cbx.length;
+		let del="";
+	   	let keep="";
 	   	for(i=0;i<len;i++) {	 
-			if(cbx[i].checked) // 삭제할 파일
+			if(cbx[i].checked)
 				del=del+cbx[i].value+",";
-			else   // 유지할 파일
+			else
 				keep=keep+cbx[i].value+",";	 	
 		}
 	   	
-		/* simg의 checkbox가 체크된 그림파일명과 체크가 안된 그림파일명을 각각 저장 */
 	   	let scbx=document.getElementsByName("scbx");
 	   	let skeep="";
 	   	let sdel="";
@@ -128,7 +125,6 @@
 		else
 			skeep=scbx[0].value;
 		
-	   	/* 빈칸 체크하기 */
 		let dom=document.adup;
 		if(dom.title.value.trim() == "") {
 			alert("상품명을 입력하세요.");
@@ -155,15 +151,14 @@
 								return false;
 							}
 							else {
-								upform.del.value=del; // 삭제파일 목록
-								upform.keep.value=keep; // 유지파일 목록
+								upform.del.value=del;
+								upform.keep.value=keep;
 								upform.skeep.value=skeep;
 								upform.sdel.value=sdel;
 								return true;
 							}
 	}
 	
-	/* 이미지 첨부파일 추가(+미리보기) & 삭제 */
 	function add_file(){
 		let cbx=document.getElementsByName("cbx");
 		let cnt=0;
@@ -203,7 +198,7 @@
 				img.setAttribute("width", "100");
 				img.setAttribute("valign", "middle");
 
-				document.getElementsByClassName("img")[n].appendChild(img);  //새로 선택한 이미지 span에 출력
+				document.getElementsByClassName("img")[n].appendChild(img);
 			};
 			reader.readAsDataURL(image); 
 		}
@@ -212,7 +207,6 @@
 		simg.src=URL.createObjectURL(event.target.files[0]);
 	}
 	
-	/* 숫자만 입력했는지 체크하기 */
 	function checkNum(e){
 		let keyVal=event.keyCode;
 		if((keyVal >= 48) && (keyVal <= 57))
@@ -223,7 +217,6 @@
 		}
 	}
 	
-	/* 100이하의 숫자만 입력했는지 체크하기 */
 	function checkNum1(e, n){
 		let keyVal=event.keyCode;
 		if((keyVal >= 48) && (keyVal <= 57) && (n <= 100))
@@ -234,14 +227,13 @@
 		}
 	}
 	
-	/* 삭제하기 위해 체크된 이미지에 음영주기 */
-	function del_color(n, cb){	//checkbox의 index값, checkbox자체를 매개변수로 받기 
+	function del_color(n, cb){
 		if(cb.checked)
 			document.getElementsByClassName("fimgs")[n].style.opacity="0.5";
 		else
 			document.getElementsByClassName("fimgs")[n].style.opacity="1";
 	}
-	function sdel_color(n, cb){	//checkbox의 index값, checkbox자체를 매개변수로 받기 
+	function sdel_color(n, cb){
 		if(cb.checked)
 			document.getElementsByClassName("simg")[n].style.opacity="0.5";
 		else

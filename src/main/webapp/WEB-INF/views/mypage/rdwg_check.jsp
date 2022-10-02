@@ -13,11 +13,10 @@
 	}
 	#rdwg #msg {
 		margin : auto;
-		width : 600px;
-		height : 90px;
+		height : 60px;
 		color : #887159;
 		border-bottom : 2px solid #887159;
-		margin-bottom : 30px;
+		margin-bottom : 50px;
 	}
 	#rdwg #txt {
 		margin : auto;
@@ -70,20 +69,19 @@
 <body>
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
     <div class="bradcam_area basic">	<!-- class="bradcam_area 클래스명" -->
-        <div id="h3" style="font-size:70px;"> 예약/주문 조회 </div>
+        <div id="h3" style="font-size:70px;"> 예약·주문 조회 </div>
     </div>
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
 
 
 	<!-- ================ 비회원 주문내역 Area Start ================= -->
    	<div id="rdwg">
-   		<div id="msg"> 예약 및 주문시 문자나 이메일로 수령한 예약번호 또는 주문번호를 입력하세요. </div>
+   		<div id="msg"> 문자나 이메일로 수령한 예약번호 또는 주문번호를 입력하세요. </div>
    		<form name="info" method="post" action="rdwg_info" onsubmit="return check()">
-   			<div>
-   				<div id="txt"> 예약/주문번호 </div>
-   				<input type="text" name="bjcode" placeholder="예약번호 또는 주문번호를 입력하세요." id="inp">
-   			</div>
-   			<div id="msg"> <input type="submit" value="조회하기" id="btn"> </div>
+			<div id="txt"> 예약/주문번호 </div>
+			<input type="text" name="bjcode" placeholder="예약번호 또는 주문번호를 입력하세요." id="inp"> <p>
+			<input type="submit" value="조회하기" id="btn">
+			<div id="msg"></div>
    		</form>
    	</div>
     <!-- ================ 비회원 주문내역 Area End ================= -->

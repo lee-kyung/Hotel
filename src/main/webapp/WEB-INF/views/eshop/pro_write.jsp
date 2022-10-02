@@ -107,7 +107,6 @@
 	}
 </style>
 <script>
-	/* pdae테이블의 daecode를 이용하여 pso테이블의 socode를 가져오기 */
 	function getso(daecode){
 		let chk=new XMLHttpRequest();
 		chk.open("get", "getso?daecode="+daecode);
@@ -120,7 +119,6 @@
 		}
 	}
 	
-	/* p와 daecode와 socode를 합치고(5자리), 뒤의 3자리가 1씩 증가하는 상품코드(8자리) 완성하기 */
 	function getpcode(){
 		let dae=document.inpro.dae.value;
 		let so=document.inpro.so.value;
@@ -133,19 +131,17 @@
 				return false;
 				}
 				else {
-					let pcode1="p"+dae+so;	// pcode 앞5자리 완성
+					let pcode1="p"+dae+so;
 					let chk=new XMLHttpRequest();
 					chk.open("get", "getpcode?pcode1="+pcode1)
 					chk.send();
 					chk.onreadystatechange=function(){
 						if(chk.readyState == 4) {
-							/* pcode 뒤3자리 완성 */
 							let pcode2=chk.responseText;
 							switch(pcode2.length) {
 								case 1 : pcode2="00"+pcode2; break;
 								case 2 : pcode2="0"+pcode2; break;
 							}
-							/* pcode 총8자리 완성 */
 							document.inpro.pcode.value=pcode1+pcode2;
 						}
 					}
@@ -153,7 +149,6 @@
 				}
 	}
 	
-	/* 상품코드, 메인이미지, 상세이미지, 상품명, 판매가, 재고가 입력됐는지 체크하기 */
 	function check(){
 		let dom=document.inpro;
 		if(dom.pcode.value.trim() == "") {
@@ -196,7 +191,6 @@
 											return true;
 	}
 
-	/* 이미지 첨부파일 추가(+미리보기) & 삭제 */
 	function add_file(){
 		let len=document.getElementsByClassName("imgs").length;
 		if(len < 3) {
@@ -237,7 +231,6 @@
 		simg.src=URL.createObjectURL(event.target.files[0]);
 	}
 	
-	/* 숫자만 입력했는지 체크하기 */
 	function checkNum(e){
 		let keyVal=event.keyCode;
 		if((keyVal >= 48) && (keyVal <= 57))

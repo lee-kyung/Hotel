@@ -94,5 +94,4 @@ public interface MyPageMapper {
 	public void chgDinfo(String bjcode);
 	public void chgWinfo(String bjcode);
 	public void chgEinfo(String bjcode);
-
 }

@@ -134,30 +134,25 @@
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
-	/* 우편번호 버튼 클릭시 호출되는 함수 */
 	function juso_search() {
 		new daum.Postcode({
 			oncomplete: function(data) {
-				if (data.userSelectedType === 'R')	// 사용자가 도로명 주소를 선택했을 경우
+				if (data.userSelectedType === 'R')
 					addr = data.roadAddress;
-				else	// 사용자가 지번 주소를 선택했을 경우(J)
+				else
 					addr = data.jibunAddress;
 	
-				/* 우편번호와 주소 정보를 해당 필드에 넣기 */
-				document.gumae.bzip.value = data.zonecode; // 우편번호
-				document.gumae.bjuso.value = addr;  // 주소
-				/* 커서를 상세주소 필드로 이동하기 */
+				document.gumae.bzip.value = data.zonecode;
+				document.gumae.bjuso.value = addr;
 				document.gumae.bjuso_etc.focus();
 			}
 		}).open();
 	}
 	
-	/* [이전단계]로 돌아가기 */
 	function goBack(){
 		history.back();
 	}
 	
-	/* 회원의 개인정보를 가져오기 or 비회원이 작성한 동일정보를 보내기 */
 	function getInfo(ck){
 		if(${userid == null}) {
 			if(ck == true) {
@@ -564,8 +559,7 @@
 	
 	<script>
 	/* 배송상품의 필수입력 체크후 [결제하기]로 진행 */
-	function check1()
-	{
+	function check1(){
 		if(document.gumae.pname.value.trim() == "") {
 			alert("주문자명을 입력하세요.");
 			return false;
@@ -593,16 +587,19 @@
 								else if(document.gumae.bjuso_etc.value.trim() == "") {
 									alert("상세주소를 입력하세요.");
 									return false;
-								}
-								else {
-									document.gumae.submit();
-									return true;
-								}
+									}
+									else if(document.gumae.agree1.checked == false) {
+										alert("비회원주문 개인정보 수집이용에 대한 동의가 필요합니다.");
+										return false;
+									}
+									else {
+										document.gumae.submit();
+										return true;
+									}
 	}
 	
 	/* 모바일상품의 필수입력 체크후 [결제하기]로 진행 */
-	function check2()
-	{
+	function check2(){
 		if(document.gumae.pname.value.trim() == "") {
 			alert("주문자명을 입력하세요.");
 			return false;
@@ -611,10 +608,10 @@
 				alert("주문자의 연락처를 입력하세요.");
 				return false;
 				}
-				else if(document.gumae.agree1.checked == false) {
+				/*else if(document.gumae.agree1.checked == false) {
 					alert("비회원주문 개인정보 수집이용에 대한 동의가 필요합니다.");
 					return false;
-				}
+				}*/
 				else {
 					document.gumae.submit();
 					return true;

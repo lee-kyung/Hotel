@@ -152,15 +152,15 @@
                                         </li> -->
                                          <li>
 		                                <c:if test="${userid == null}">
-                                            <a href="../eshop/cart?p=p01"> <i class="fa fa-cart-arrow-down"></i> </a>
-											<a style="color:white;font-weight:600"href="../login/login?ck=4">로그인</a>
+											<a style="color:white;font-weight:600" href="../login/login?ck=4">로그인</a>
 											<a style="color:white;font-weight:900" href="../member/member_input">회원가입</a>
 											<a style="color:white;font-weight:900" href="../mypage/rdwg_check?err=0">비회원조회</i> </a>
+											<a style="color:white;" href="../eshop/cart?p=p01"> <i class="fa fa-cart-arrow-down"></i> </a>
 										</c:if>
 										<c:if test="${(userid != null) && (userid != 'admin')}">
 											<a style="color:white;font-weight:900" href="../mypage/mypage"> ${name}님
-											<a href="../eshop/cart?p=p01"> <i class="fa fa-cart-arrow-down"></i> </a>
-                                            <a href="../eshop/wish"> <i class="fa fa-heart-o"></i> </a>
+											<a style="color:white;" href="../eshop/cart?p=p01"> <i class="fa fa-cart-arrow-down"></i> </a>
+                                            <a style="color:white;" href="../eshop/wish"> <i class="fa fa-heart-o"></i> </a>
 											<a style="color:white;font-weight:900" href="../login/logout">로그아웃</a>
 										</c:if>
 										<c:if test="${userid == 'admin'}">

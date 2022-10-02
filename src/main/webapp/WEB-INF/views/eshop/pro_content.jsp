@@ -177,12 +177,10 @@
 			document.pro_cnt.su=${pvo.su};
 	}
 
-	/* pro_gumae로 넘어갈 [주문금액], [할인금액], [총결제금액]의 개당 가격 */
 	let tprice="${pvo.price}";
 	let thalin=parseInt("${pvo.price * (pvo.halin / 100)}");
 	let tpay=parseInt("${pvo.price - (pvo.price * (pvo.halin / 100)) + pvo.baefee}");
 	
-	/* 수량을 변경하면 [총 상품금액]과 [적립금]도 변하게 하기 */
 	function change_total_juk(su){	
 		let total=Math.ceil(${pvo.price} * su);
 		let juk="";
@@ -205,7 +203,6 @@
 			document.getElementById("juk_price").innerText=juk;
 		document.getElementById("total_price").innerText=total;
 		
-		/* pro_gumae로 넘어갈 [주문금액], [할인금액], [총결제금액]의 최종가격을 구해서 input type="hidden"에 넣기 */
 		let pimsi=tprice*su;
 		let himsi=thalin*su;
 		
@@ -214,12 +211,10 @@
 		document.getElementById("tpay").value=pimsi-himsi+parseInt("${pvo.baefee}");
 	}
 	
-	/* 위시리스트에 추가하고 삭제하기 */
 	function wish_add(pcode){
 		let chk=new XMLHttpRequest();
 		chk.onload=function(){
 			if(chk.responseText == "0") {
-				//alert("위시리스트에 추가됐습니다.");
 				document.getElementById("wishimg").src="../img/eshop/wish_on.png";
 				document.getElementById("wishimg").setAttribute("onclick", "wish_del('"+pcode+"')");
 			}
@@ -231,7 +226,6 @@
 		let chk=new XMLHttpRequest();
 		chk.onload=function(){
 			if(chk.responseText == "0") {
-				//alert("위시리스트에서 삭제됐습니다.");
 				document.getElementById("wishimg").src="../img/eshop/wish_off.png";
 				document.getElementById("wishimg").setAttribute("onclick", "wish_add('"+pcode+"')");
 			}
@@ -240,7 +234,6 @@
 		chk.send();
 	}
 	
-	/* 장바구니에 회원&비회원 구분하여 추가하기 */
 	function cart_add(pcode){
 		let su=document.pro_cnt.su.value;
 		let chk=new XMLHttpRequest();
@@ -258,12 +251,10 @@
 		chk.send();
 	}
 	
-	/* 후보이미지를 클릭하면 메인이미지 자리에 뜨기 */
 	function show_img(num){
 		document.getElementById("main_fimg").src=document.getElementsByClassName("other_fimgs")[num].src;
 	}
 	
-	/* 바로구매 : javascript로 form을 submit시키기*/
 	function pro_submit(){
 		document.pro_cnt.submit();	
 	}

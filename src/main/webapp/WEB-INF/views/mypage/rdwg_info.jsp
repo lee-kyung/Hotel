@@ -384,12 +384,12 @@
 			</tr>
 			<c:forEach var="gvo" items="${glist}">
 			<tr>
-				<td width="300" style="padding-left:50px;">
+				<td style="padding-left:100px;">
 					<img src="../img/eshop/${gvo.pimg}" width="50" height="50" onclick="location='../eshop/pro_content?pcode=${gvo.pcode}'" style="cursor:pointer;">
 					<span onclick="location='../eshop/pro_content?pcode=${gvo.pcode}'" style="cursor:pointer;"> ${gvo.title} </span>
 				</td>
 				<td width="100"> ${gvo.total_su}개 </td>
-				<td> <fmt:formatNumber value="${gvo.total_price}" pattern=",###"/>원 </td>
+				<td width="150"> <fmt:formatNumber value="${gvo.total_price}" pattern=",###"/>원 </td>
 			</tr>
 			</c:forEach>
 		</table>
