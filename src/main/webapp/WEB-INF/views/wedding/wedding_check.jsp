@@ -222,7 +222,7 @@
 <div id="wed_chk">
 
 	<div id="txt">WEDDING</div>
-
+	<div style="text-align:right;">해당 비용은 참고용일 뿐이며 상담 이후에 정확한 금액을 알 수 있습니다.</div>
 	 <form name="pay" method="post">   
           <table border="1" align="center">
           <tr>
@@ -257,7 +257,7 @@
           	</td>
           </tr>
           <tr>
-          	<td>하객음식</td>
+          	<td>예식타입</td>
           	<td>	
           		<input type="button" id="btn2"  onclick="change_food2()" value="분리예식">
           		<input type="button" id="btn1"  onclick="change_food1()" value="동시예식">

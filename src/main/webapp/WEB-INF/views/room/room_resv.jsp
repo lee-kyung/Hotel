@@ -9,7 +9,7 @@
 </head>
 <body>
 <style>
-	.container {
+	#sec1 {
 		width: 1300px;
 		margin: auto;
 		margin-bottom: 80px;
@@ -29,7 +29,6 @@
 		font-weight: 900;
 		font-size: 20px;
 	}
-
 	roomsec table {
 		width: 1200px;
 		height: 100px;
@@ -43,40 +42,37 @@
 		border-collapse: collapsed;
 		border: 1px solid #F9F9F9;
 	}
-	
 	roomsec table th{
 		font-size: 20px;
 	}
-	
 	roomsec table input[type=text] {
 		height: 40px;
 		margin-top: 20px;
 		/* border: 1px solid #E6E3DF; */
 		border: 1px solid #887159;
+		border-radius: 2px;
 	}
-
 	roomsec table select {
 		width: 100px;
 		height: 40px;
 		color: #887159;
 		border: 1px solid #887159;
 		background: white;
-	}
-		
+		border-radius: 2px;
+	}	
 	roomsec #searchbtn {
 		background: #FFFFFF;
 		border: 1px solid #887159;
 		color: #887159;
 		width: 120px;
 		height: 40px;
+		border-radius: 2px;
 	}
-	
 	roomsec #searchbtn:hover {
 		color: white;
 		background: #887159;
 		cursor: pointer;
 	}
-
 /* 객실목록 */	
 	roomsec #ro_info {
 		width: 395px;
@@ -87,18 +83,15 @@
 		display: inline-block;
 		border-radius: 10px;
 	}
-	
 	roomsec #ro_info img {
 		width: 393px;
 		height: 280px;
 		border-top-right-radius: 10px;
 		border-top-left-radius: 10px;
 	}
-	
 	roomsec #roomdiv {
 		visibility: hidden;
 	}
-	
 	roomsec #ro_info #ro_in{
 		margin-left: 10px;
 		margin-top: 3px;
@@ -108,24 +101,20 @@
 		color: #887159;
 		font-weight: 700;	
 	}
-	
 	roomsec #rtxt3{
 		font-size: 14px;
 		color: #887159;
 		height: 15px;
 	}
-	
 	roomsec #ro_info #ro_inner{
 		margin-top: 10px;
 		color: #887159;
 	}
-	
 	roomsec #subr{
 		width: 120px;
 		display: inline-block;
 		font-weight: 500;
 	}
-	
 	roomsec .cbtn {
 		background: #FFFFFF;
 		border: 1px solid #887159;
@@ -133,14 +122,13 @@
 		width: 370px;
 		height: 50px;
 		font-weight: 900;
+		border-radius: 10px;
 	}
-	
 	roomsec .cbtn:hover {
 		cursor: pointer;
 		background: #887159;
 		color: #FFFFFF;
-	}
-	
+	}	
 	.crcode {
 		display: none;
 	}
@@ -284,73 +272,71 @@
 
    <!-- ================ Rooms Area Start ================= -->
    <!-- 객실 리스트 -->
-  <div class="container">
-    <div class="row"> 
-       <roomsec>
-          <div id="txt1">RESERVATION</div>
-          <div id="txt2">ㅁㅁ 호텔에 오신것을 환영합니다!</div>
-          <br>
-            <form name="room" method="post" action="room_resvnext" >
-            <input type="hidden" name="rcode">
-            <table>
-               <tr> 
-                  <th> 체크인 </th>
-                  <th> 체크아웃 </th>
-                  <th width="140px"> 성인 </th>
-                  <th width="140px"> 어린이 </th>
-                  <th width="160px"></th>
-               </tr>  
-               <tr>
-                  <td><input type="text" name="checkin" id="checkin" placeholder="체크인"></td>
-                  <td><input type="text" name="checkout" id="checkout" placeholder="체크아웃"></td>
-                  <td> 
-                     <select name="adult" id="adult">
-                        <option value="0"> 선택 </option>
-                        <option value="1"> 1 </option>
-                        <option value="2"> 2 </option>
-                        <option value="3"> 3 </option>
-                        <option value="4"> 4 </option>
-                        <option value="5"> 5 </option>
-                        <option value="6"> 6 </option>
-                     </select>
-                  </td>
-                  <td> 
-                     <select name="child" id="child">
-                        <option value="0"> 선택 </option>
-                        <option value="1"> 1 </option>
-                        <option value="2"> 2 </option>
-                     </select>
-                  </td>
-                  <td> <input type="button" id="searchbtn" value="검색" onclick="return getRoomAvail()"> </td>   
-               </tr>
-            </table>
+ <div id="sec1"> 
+      <roomsec>
+         <div id="txt1">RESERVATION</div>
+         <div id="txt2">WELCOME TO MONTANA HOTEL!</div>
+         <br>
+           <form name="room" method="post" action="room_resvnext" >
+           <input type="hidden" name="rcode">
+           <table>
+              <tr> 
+                 <th> 체크인 </th>
+                 <th> 체크아웃 </th>
+                 <th width="140px"> 성인 </th>
+                 <th width="140px"> 어린이 </th>
+                 <th width="160px"></th>
+              </tr>  
+              <tr>
+                 <td><input type="text" name="checkin" id="checkin" placeholder="체크인"></td>
+                 <td><input type="text" name="checkout" id="checkout" placeholder="체크아웃"></td>
+                 <td> 
+                    <select name="adult" id="adult">
+                       <option value="0"> 선택 </option>
+                       <option value="1"> 1 </option>
+                       <option value="2"> 2 </option>
+                       <option value="3"> 3 </option>
+                       <option value="4"> 4 </option>
+                       <option value="5"> 5 </option>
+                       <option value="6"> 6 </option>
+                    </select>
+                 </td>
+                 <td> 
+                    <select name="child" id="child">
+                       <option value="0"> 선택 </option>
+                       <option value="1"> 1 </option>
+                       <option value="2"> 2 </option>
+                    </select>
+                 </td>
+                 <td> <input type="button" id="searchbtn" value="검색" onclick="return getRoomAvail()"> </td>   
+              </tr>
+           </table>
 
-            
-            <div id="ccc" style="display:none"></div>
-         <div id="roomdiv">
-            <c:forEach items="${list}" var="rvo" varStatus="my">
-			<div id="ro_info">
-            <input type="hidden" name="rcode2" value="${rvo.rcode}">
-            <input type="hidden" name="rsu" value="${rvo.rsu}" class="crsu">
-				<img src="../img/rooms/${rvo.rpimg}">
-                <div id="ro_in">
-					<div id="rname">${rvo.rname}</div> <span class="crcode">${rvo.rcode}</span>
-					<div id="rtxt3">${rvo.rtxt3}</div>
-	                <div id="ro_inner">
-						<div><span id="subr">전망</span>${rvo.rview}</div>
-						<div><span id="subr">베드타입</span>${rvo.rbed}</div>
-						<div><span id="subr">가격</span>${rvo.rprice}</div>                  
-						<div><span id="subr">기준|최대인원</span>${rvo.rmin}/<span class="crmax">${rvo.rmax}</span></div>
-	                </div>                  
-				<br>
-					<input type="button" value="예 약 하 기" class="cbtn" onclick="form_submit(${my.index})">
-				</div>
+           
+           <div id="ccc" style="display:none"></div>
+        <div id="roomdiv">
+           <c:forEach items="${list}" var="rvo" varStatus="my">
+		<div id="ro_info">
+           <input type="hidden" name="rcode2" value="${rvo.rcode}">
+           <input type="hidden" name="rsu" value="${rvo.rsu}" class="crsu">
+			<img src="../img/rooms/${rvo.rpimg}">
+               <div id="ro_in">
+				<div id="rname">${rvo.rname}</div> <span class="crcode">${rvo.rcode}</span>
+				<div id="rtxt3">${rvo.rtxt3}</div>
+                <div id="ro_inner">
+					<div><span id="subr">전망</span>${rvo.rview}</div>
+					<div><span id="subr">베드타입</span>${rvo.rbed}</div>
+					<div><span id="subr">가격</span>${rvo.rprice}</div>                  
+					<div><span id="subr">기준|최대인원</span>${rvo.rmin}/<span class="crmax">${rvo.rmax}</span></div>
+                </div>                  
+			<br>
+				<input type="button" value="예 약 하 기" class="cbtn" onclick="form_submit(${my.index})">
 			</div>
-            </c:forEach> 
-         </div>
-        </form>   
-      </roomsec>
-    </div>
-  </div>
+		</div>
+           </c:forEach> 
+        </div>
+       </form>   
+     </roomsec>
+ </div>
   <!-- ================ Rooms Area End ================= -->
 </body>

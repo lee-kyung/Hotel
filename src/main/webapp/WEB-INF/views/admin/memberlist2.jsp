@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <head>
 <style>
-	#sec1{
+	section{
 		width:1300px;
 		margin:auto;
 		margin-top:100px;
@@ -13,25 +13,21 @@
 	#h3 a{
 		color: white;
 	}
-	#sec1 #title{
-		width: 1000px;		
-		margin: auto;
+	#sec1 #title a{
+		width: 1200px;
 	}
 	#sec1 #title a{
 		font-size: 25px;
 		color: #887159;
 		font-weight: 700;
 	}
-	#sec1 #title a:hover{
-		color: black;
-	}
 	#sec1 #list{
-		width: 1000px;
+		width: 1200px;
 		text-align: right;
 		margin: auto;
 	}
 	#sec1 table{
-		width: 1000px;
+		width: 1300px;
 		margin-top: 20px;
 		margin: auto;
 	}
@@ -61,7 +57,6 @@
 	}
 	#sec1 table span:hover{
 		cursor: pointer;
-		color: #887159;
 	}
 	#sec1 table a:hover{
 		font-weight: 700;
@@ -94,32 +89,19 @@
 		background: #887159;
 		border: 1px solid #887159;
 	}
-	#sec1 input[type=button]{
-		width: 70px;
-		height: 25px;
-		border: 1px solid #887159;
-		border-radius: 2px;
-		background: white;
-		color: #887159;
-	}
-	#sec1 input[type=button]:hover{
-		font-weight: 700; 
-	}
 </style>
 
 </head>
 
 <body>
-<c:if test="${userid != 'admin'}">
-	<c:redirect url="../main/index"/>
-</c:if>
+
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
     <!-- bradcam_area_start -->
     <!-- 새 이미지 추가하는 법
     	①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기
     	②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
     <div class="bradcam_area basic">	<!-- class="bradcam_area 클래스명" -->
-        <div id="h3"> <a href="../admin/admin">ADMIN</a></div>
+        <h3> <a href="../admin/admin">ADMIN</a></h3>
     </div>
 <div id="sec1">
 <!-- 내용 작성 -->
@@ -141,19 +123,21 @@
 			</td>
 			<td> 아이디 </td>
 			<td> 이름 </td>
+ 			<td> 전화번호 </td>
+			<td> 이메일 </td>
 			<td> 가입일 
-				<span onclick="location='memberlist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=joinday asc'">∧</span>
-				<span onclick="location='memberlist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=joinday desc'">∨</span>
+				<span onclick="location='memberlist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=checkin asc'">∧</span>
+				<span onclick="location='memberlist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=checkin desc'">∨</span>
 			</td>
-			<td colspan="2"> 가입상태 
-				<span onclick="location='memberlist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=state asc'">∧</span>
-				<span onclick="location='memberlist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=state desc'">∨</span>
+			<td> 가입상태 
+				<span onclick="location='memberlist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=bstate asc'">∧</span>
+				<span onclick="location='memberlist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=bstate desc'">∨</span>
 			</td>		
 		</tr>
 	  <c:forEach items="${mlist}" var="mvo">
 	    <tr>
-	  		<td>${mvo.id}</td>	    	
-	  		<td><a href="../admin/meminfo?id=${mvo.id}&userid=${mvo.userid}"> ${mvo.userid}</a> </td>
+	  		<td><a href="../admin/roombkview?id=${mvo.id}"> ${mvo.id}</a> </td>	    	
+	  		<td> ${mvo.userid} </td>
 	  		<td> ${mvo.name} </td>
 	  		<td> ${mvo.joinday} </td>
 	  	<c:if test="${mvo.state == 0}">
@@ -163,11 +147,6 @@
 	  		<c:set var="state" value="탈퇴된 회원"/>
 	  	</c:if>
 	  		<td> ${state} </td>
-	  		<td>
-	  		<c:if test="${mvo.state != 1}">
-	  			<input type="button" value="강퇴" onclick="location='../admin/mstatechange?state=1&id=${mvo.id}'">
-	  		</c:if>
-	  		</td>
 	  	</tr>
 	  </c:forEach>
 	</table>
@@ -216,9 +195,9 @@
 		<form method="post" action="memberlist" onsubmit="return check(this)">
 			<select name="sel" id="sel">
 				<option value="0"> 선 택 </option>
-				<option value="name"> 이름 </option>
-				<option value="joinday"> 가입일 </option>
-				<option value="userid"> 아이디  </option>
+				<option value="bkname"> 예약자 </option>
+				<option value="checkin"> 체크인 </option>
+				<option value="bkphone"> 연락처  </option>
 			</select>
 			<input type="text" name="sword" size="20" value="${sword}">
 			<input type="submit" value="검색">

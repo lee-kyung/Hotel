@@ -248,7 +248,7 @@
 			<td width="100px;">추가상품</td>
 			<td width="150px;">총 결제금액</td>
 			<td width="150px">구매한 날</td>
-			<td width="220px">상태 변경</td>
+			<td width="150px">상태 변경</td>
 		</tr>
 		<c:forEach items="${glist }" var="gvo">
 		<tr>
@@ -265,9 +265,9 @@
 			<td>
 				<c:if test="${gvo.state==0 }">
 					<input type="button" class="btn3" value="결제취소" onclick="location='eshopG_state_change?state=1&id=${gvo.id}&jumuncode=${gvo.jumuncode }'">
-					<c:if test="${(gvo.state==0) && (gvo.bname!=null)}">
+	<%-- 				<c:if test="${(gvo.state==0) && (gvo.bname!=null)}">
 						<input type="button" class="btn3" value="배송완료" onclick="location='eshopG_state_change?state=3&id=${gvo.id}&jumuncode=${gvo.jumuncode }'">
-					</c:if>
+					</c:if> --%>
 				</c:if>
 				<c:if test="${gvo.state==1 }"> 
 					<input type="button" class="btn4" value="취소진행중">

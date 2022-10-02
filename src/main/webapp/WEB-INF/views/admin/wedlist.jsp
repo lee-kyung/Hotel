@@ -27,7 +27,7 @@
 		margin: auto;
 	}
 	#sec1 table{
-		width: 1200px;
+		width: 1300px;
 		margin-top: 20px;
 		margin: auto;
 	}
@@ -42,6 +42,24 @@
 	}
 	#sec1 table th{
 		font-size: 20px;
+		font-weight: 700;
+		color: #887159;
+	}	
+	#sec1 table tr td{
+		padding: 15px;
+	}
+	#sec1 table tr:nth-child(even){
+		background: #f9f3ed;
+	}
+	#sec1 table #title2{
+		font-weight: 800;
+		font-size: 18px;
+	}
+	#sec1 table span:hover{
+		cursor: pointer;
+		color: #887159;
+	}
+	#sec1 table a:hover{
 		font-weight: 700;
 		color: #887159;
 	}
@@ -76,10 +94,23 @@
 		width: 200px;
 		margin: auto;
 	}
-/* 	input[type=button]{
-		display: none;
-	}	 */
+	#dtsearch{
+		width: 1000px;
+		margin: auto;
+		display:inline-block;
+		margin-top: 20px;
+	}
+	#aa,#bb{
+		width: 200px;
+		display:inline-block;
+	}
+	#aa input[type=text],#bb input[type=text]{
+		height: 15px;
+	}
 </style>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script> 
 <script>
 	function move(my)
 	{
@@ -107,12 +138,30 @@
 		else
 			return true;		
 	}
-	
+
+	$(function(){
+		   $("#c1").datepicker({
+			   format: "yyyy-mm-dd",
+		   });
+		   $("#c2").datepicker({
+		      format: "yyyy-mm-dd",
+		   });  
+		});
+		
+		function csearch(c1,c2){
+			var c1=document.getElementById("c1").value;
+			var c2=document.getElementById("c2").value;
+			// alert(c1+""+c2);
+			
+			location="wedlist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=${oby}&c1="+c1+"&c2="+c2;
+		} 
 </script>
 </head>
 
 <body>
-
+<c:if test="${userid != 'admin'}">
+	<c:redirect url="../main/index"/>
+</c:if>
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
     <!-- bradcam_area_start -->
     <!-- 새 이미지 추가하는 법
@@ -137,7 +186,7 @@
 		</select>
 	</div>
 	<table id="wedding">
-		<tr>
+		<tr id="title2">
 			<td> 번호	 
 				<span onclick="location='wedlist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=wresv_id asc'">∧</span>
 				<span onclick="location='wedlist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=wresv_id desc'">∨</span>
@@ -191,7 +240,7 @@
 		
 		<!-- 1페이지 단위로 이전으로 가기 -->
 		<c:if test="${page==1}"></c:if> <!-- 1페이지면 -->
-		<c:if test="${page!=1}"><!-- 1페이지가 아니면 -->
+		<c:if test="${page!=1}"><!-- 1페이지가 아니면 --> 
 			<a href="wedlist?page=${page-1}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=${oby}">◁</a>
 		</c:if>
 		
@@ -232,6 +281,13 @@
 			<input type="text" name="sword" size="20" value="${sword}">
 			<input type="submit" value="검색">
 		</form> 
+		<br>
+		<div id="dtsearch">
+			<form name="cal" method="post">
+			상담일 기준 기간 검색&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div id="aa"><input type="text" name="c1" id="c1"></div> ~
+			<div id="bb"><input type="text" name="c2" id="c2"></div> &nbsp;&nbsp;&nbsp;<input type="button" value="검색" onclick="csearch()">
+			</form>
+		</div> 
 	</div>
 </div>
 </div>

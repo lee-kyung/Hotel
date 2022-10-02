@@ -67,7 +67,7 @@
 		}
 		upform.del.value=del; // 삭제파일 목록
 		upform.str.value=str; // 보존파일 목록
-		alert(del+" "+str);
+	//	alert(del+" "+str);
 		return true;
 	}
 /* 	function add_file() // file추가
@@ -89,7 +89,11 @@
 			document.getElementsByClassName("rpimg")[len].remove();
 		}
 	} */
-</script>	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
+</script>
+<c:if test="${userid != 'admin'}">
+	<c:redirect url="../main/index"/>
+</c:if>
+	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
     <!-- bradcam_area_start -->
     <!-- 새 이미지 추가하는 법
     	①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기

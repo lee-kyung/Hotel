@@ -90,8 +90,8 @@
                                     <ul id="navigation">
                                         <li><a href="../main/index">Hotel<i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
-                                                <li><a href="../info/info">호텔 소개</a></li>
-                                                <li><a href="../info/gongji_list">공지사항</a></li>
+                                                <li style="margin:0px"><a href="../info/info">ABOUT MONTANA</a></li>
+                                                <li><a href="../info/gongji_list">NOTICE</a></li>
                                                 <li><a href="../info/faq_list">FAQ</a></li>
                                             </ul>
                                         <li><a href="../room/rooms">rooms</a></li> <!-- class="active" -->
@@ -103,9 +103,9 @@
                                         </li>
                                         <li><a href="../wedding/wedding">wedding<i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
-                                                <li><a href="../wedding/wedding_hall?id=15">웨딩홀</a></li>
-                                                <li><a href="../wedding/wedding_reserve">상담예약</a></li>
-                                                <li><a href="../wedding/wedding_check">견적</a></li>
+                                                <li style="margin:0px"><a href="../wedding/wedding_hall?id=15">WEDDING HALL</a></li>
+                                                <li><a href="../wedding/wedding_reserve">BOOK</a></li>
+                                                <li><a href="../wedding/wedding_check">QUOTATION</a></li>
                                             </ul>
                                         </li>
                                         <li><a href="../eshop/eshop">eshop<i class="ti-angle-down"></i></a>
@@ -153,19 +153,19 @@
                                          <li>
 		                                <c:if test="${userid == null}">
                                             <a href="../eshop/cart?p=p01"> <i class="fa fa-cart-arrow-down"></i> </a>
-											<a href="../login/login?ck=4">로그인</a>
-											<a href="../member/member_input">회원가입</a>
-											<a href="../mypage/rdwg_check?err=0">비회원조회</i> </a>
+											<a style="color:white;font-weight:600"href="../login/login?ck=4">로그인</a>
+											<a style="color:white;font-weight:900" href="../member/member_input">회원가입</a>
+											<a style="color:white;font-weight:900" href="../mypage/rdwg_check?err=0">비회원조회</i> </a>
 										</c:if>
 										<c:if test="${(userid != null) && (userid != 'admin')}">
-											<a href="../mypage/mypage"> ${name}님
+											<a style="color:white;font-weight:900" href="../mypage/mypage"> ${name}님
 											<a href="../eshop/cart?p=p01"> <i class="fa fa-cart-arrow-down"></i> </a>
                                             <a href="../eshop/wish"> <i class="fa fa-heart-o"></i> </a>
-											<a href="../login/logout">로그아웃</a>
+											<a style="color:white;font-weight:900" href="../login/logout">로그아웃</a>
 										</c:if>
 										<c:if test="${userid == 'admin'}">
-											<a href="../admin/admin"> ${name}님</a>
-											<a href="../login/logout">로그아웃</a>
+											<a style="color:white;font-weight:900" href="../admin/admin"> ${name}님</a>
+											<a style="color:white;font-weight:900" href="../login/logout">로그아웃</a>
 										</c:if>
 		                                </li>
                                     </ul>
@@ -196,25 +196,14 @@
 	}
 	#loglayer #gologin{
 		width: 400px;
-		height: 50px;
-		border: none;
-		border-bottom: 2px solid #887159;
-		background: white;
-		color: #887159;
-	}
-	#loglayer input[type=button]{
-		width: 400px;
 		height: 80px;
 		border: 1px solid #887159;
 		background: white;
 		color: #887159;
+		cursor: pointer;
 	}
-	#loglayer input[type=button]{
-		width: 400px;
-		height: 80px;
-		border: 1px solid #887159;
-		background: white;
-		color: #887159;
+	#loglayer #gologin:hover{
+		color: black;
 	}
 	#loglayer #keepgo{
 		width: 400px;
@@ -222,6 +211,10 @@
 		border: 1px solid #887159;
 		background: #887159;
 		color: white;
+		cursor: pointer;
+	}
+	#loglayer #keepgo:hover{
+		color: black;
 	}
 	#loglayer #txt{
 		margin-top: 150px;
@@ -254,7 +247,7 @@
 		<br>
 		<div id="txt2">
 			<div>
-				<input type="button" value="로그인" onclick="location='../login/login?ck=2'">
+				<input type="button" value="로그인" id="gologin" onclick="location='../login/login?ck=2'">
 				<hr>
 				<input type="button" value="비회원으로 계속" id="keepgo" onclick="location='../room/room_resv'">
 			</div>

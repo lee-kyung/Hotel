@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -28,7 +27,7 @@
 		margin: auto;
 	}
 	#sec1 table{
-		width: 1200px;
+		width: 1300px;
 		margin-top: 20px;
 		margin: auto;
 	}
@@ -41,8 +40,21 @@
 	#sec1 table tr:last-child td{
 		border-bottom: 1px solid #887159;
 	}
-	#sec1 table th{
-		font-size: 20px;
+	#sec1 table tr td{
+		padding: 15px;
+	}
+	#sec1 table tr:nth-child(even){
+		background: #f9f3ed;
+	}
+	#sec1 table #title2{
+		font-weight: 800;
+		font-size: 18px;
+	}
+	#sec1 table span:hover{
+		cursor: pointer;
+		color: #887159;
+	}
+	#sec1 table a:hover{
 		font-weight: 700;
 		color: #887159;
 	}
@@ -51,7 +63,7 @@
 		width: 1200px;
 		text-align: center;
 	}
-	#sec2 input[type=text]{
+	#sec2 #search>input[type=text]{
 		width: 200px;
 		height: 28px;
 		border: 1px solid #887159;
@@ -61,7 +73,7 @@
 		height: 26px;
 		border: 1px solid #887159;
 	}
-	#sec2 input[type=submit]{
+	#sec2 input[type=submit],input[type=button]{
 		width: 100px;
 		height: 28px;
 		background: white;
@@ -76,6 +88,19 @@
 	#sec2 #cal{
 		width: 200px;
 		margin: auto;
+	}
+	#dtsearch{
+		width: 1000px;
+		margin: auto;
+		display:inline-block;
+		margin-top: 20px;
+	}
+	#aa,#bb{
+		width: 200px;
+		display:inline-block;
+	}
+	#aa input[type=text],#bb input[type=text]{
+		height: 15px;
 	}
 </style>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -130,6 +155,9 @@
 
 <body>
 
+<c:if test="${userid != 'admin'}">
+	<c:redirect url="../main/index"/>
+</c:if>
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
     <!-- bradcam_area_start -->
     <!-- 새 이미지 추가하는 법
@@ -154,7 +182,7 @@
 		</select>
 		</div>
 	<table id="dining">
-		<tr>
+		<tr id="title2">
 			<td> 번호 
 				<span onclick="location='dinelist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=dr_id asc'">∧</span>
 				<span onclick="location='dinelist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=dr_id desc'">∨</span>
@@ -248,11 +276,10 @@
 			<input type="text" name="sword" size="20" value="${sword}">
 			<input type="submit" value="검색">
 		</form> 
-		<div id="right">
+		<div id="dtsearch">
 			<form name="cal" method="post">
-				<input type="text" name="c1" placeholder="1" id="c1">
-				<input type="text" name="c2" placeholder="2" id="c2">
-				<input type="button" value="검색" onclick="csearch()">
+			식사날짜 기간 검색&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div id="aa"><input type="text" name="c1" id="c1"></div> ~
+			<div id="bb"><input type="text" name="c2" id="c2"></div> &nbsp;&nbsp;&nbsp;<input type="button" value="검색" onclick="csearch()">
 			</form>
 		</div> 
 	</div>

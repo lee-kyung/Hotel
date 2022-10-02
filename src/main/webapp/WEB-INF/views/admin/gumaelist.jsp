@@ -27,7 +27,7 @@
 		margin: auto;
 	}
 	#sec1 table{
-		width: 1200px;
+		width: 1300px;
 		margin-top: 20px;
 		margin: auto;
 	}
@@ -42,6 +42,24 @@
 	}
 	#sec1 table th{
 		font-size: 20px;
+		font-weight: 700;
+		color: #887159;
+	}
+	#sec1 table tr td{
+		padding: 15px;
+	}
+	#sec1 table tr:nth-child(even){
+		background: #f9f3ed;
+	}
+	#sec1 table #title2{
+		font-weight: 800;
+		font-size: 18px;
+	}
+	#sec1 table span:hover{
+		cursor: pointer;
+		color: #887159;
+	}
+	#sec1 table a:hover{
 		font-weight: 700;
 		color: #887159;
 	}
@@ -60,14 +78,14 @@
 		height: 26px;
 		border: 1px solid #887159;
 	}
-	#sec2 input[type=submit]{
+	#sec2 input[type=submit], input[type=button]{
 		width: 100px;
 		height: 28px;
 		background: white;
 		color: #887159;
 		border: 1px solid #887159;
 	}
-	#sec2 input[type=submit]:hover{
+	#sec2 input[type=submit]:hover, input[type=button]:hover{
 		color: white;
 		background: #887159;
 		border: 1px solid #887159;
@@ -76,7 +94,34 @@
 		width: 200px;
 		margin: auto; 
 	}
+	#sec1 input[type=button]{
+		width: 90px;
+		height: 25px;
+		border: 1px solid #887159;
+		border-radius: 2px;
+		background: white;
+		color: #887159;
+	}
+	#sec1 input[type=button]:hover{
+		font-weight: 700;
+	}
+	#dtsearch{
+		width: 1000px;
+		margin: auto;
+		display:inline-block;
+		margin-top: 20px;
+	}
+	#aa,#bb{
+		width: 200px;
+		display:inline-block;
+	}
+	#aa input[type=text],#bb input[type=text]{
+		height: 15px;
+	}
 </style>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script> 
 <script>
 	function move(my)
 	{
@@ -104,10 +149,30 @@
 		else
 			return true;		
 	}
+	
+	$(function(){
+		   $("#c1").datepicker({
+			   format: "yyyy-mm-dd",
+		   });
+		   $("#c2").datepicker({
+		      format: "yyyy-mm-dd",
+		   });  
+		});
+		
+		function csearch(c1,c2){
+			var c1=document.getElementById("c1").value;
+			var c2=document.getElementById("c2").value;
+			// alert(c1+""+c2);
+			
+			location="gumaelist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=${oby}&c1="+c1+"&c2="+c2;
+		} 
 </script>
 </head>
 
 <body>
+<c:if test="${userid != 'admin'}">
+	<c:redirect url="../main/index"/>
+</c:if>
 
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
     <!-- bradcam_area_start -->
@@ -122,7 +187,7 @@
 <section>
 <div id="sec1">
 <!-- 내용 작성 -->
-	<div id="title"> <a href="gumaelist">구매자 리스트</a></div>
+	<div id="title"> <a href="gumaelist">ESHOP 구매자 리스트</a></div>
 	<div id="list">
 		목록
 		<select onchange="move(this)" id="pcnt">
@@ -133,7 +198,7 @@
 		</select>
 		</div>
 	<table id="gumae">
-		<tr>
+		<tr id="title2">
 			<td> 번호 
 				<span onclick="location='gumaelist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=id asc'">∧</span>
 				<span onclick="location='gumaelist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=id desc'">∨</span>
@@ -142,11 +207,11 @@
 			<td> 주문번호 </td>
 			<td> 상품명 </td>
 			<td> 상품코드 </td>
+			<td> 총금액 </td>
 			<td> 구매일 
 				<span onclick="location='gumaelist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=buyday asc'">∧</span>
 				<span onclick="location='gumaelist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=buyday desc'">∨</span>
 			</td>
-			<td> 총결제금액 </td>
 			<td colspan="2"> 상태 
 				<span onclick="location='gumaelist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=state asc'">∧</span>
 				<span onclick="location='gumaelist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=state desc'">∨</span>
@@ -235,7 +300,14 @@
 			</select>
 			<input type="text" name="sword" size="20" value="${sword}">
 			<input type="submit" value="검색">
-		</form> 
+		</form>
+		<br> 
+		<div id="dtsearch">
+			<form name="cal" method="post">
+			구매일 기준 기간 검색&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div id="aa"><input type="text" name="c1" id="c1"></div> ~
+			<div id="bb"><input type="text" name="c2" id="c2"></div> &nbsp;&nbsp;&nbsp;<input type="button" value="검색" onclick="csearch()">
+			</form>
+		</div> 
 	</div>
 </div>
 </div>
