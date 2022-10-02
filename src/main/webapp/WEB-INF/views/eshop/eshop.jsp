@@ -38,7 +38,7 @@
 	}
 	#eshop #eshop_img2 {
 		width : 100%;
-		height : 300px;
+		height : 100%;
 		margin : 70px auto 70px auto;
 	}
 </style>
@@ -47,7 +47,7 @@
 <body>
 
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
-    <div class="bradcam_area eshop">
+    <div class="bradcam_area eshop0">
         <div id="h3" onclick="location='eshop'" style="cursor:pointer;"> E S H O P </div>
     </div>
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->

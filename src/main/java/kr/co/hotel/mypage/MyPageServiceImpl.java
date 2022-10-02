@@ -36,7 +36,7 @@ public class MyPageServiceImpl implements MyPageService{
 	{
 		String userid=session.getAttribute("userid").toString();
 		String pwd=request.getParameter("pwd");
-		int cnt=mapper.myprofile_pwd_ok(userid, pwd);
+		int cnt=mapper.myprofile_pwd_ok(userid, pwd);		
 		out.print(cnt);
 	}
 
@@ -115,6 +115,11 @@ public class MyPageServiceImpl implements MyPageService{
 		model.addAttribute("dlist", dlist);
 		model.addAttribute("wlist", wlist);
 		model.addAttribute("glist", glist);
+		
+		/* [카카오로그인] 회원은 비밀번호 체크X */
+		String kid=userid.substring(0, 3);
+		if(kid.equals("kid"))
+			model.addAttribute("kid", kid);
 
 		return "/mypage/mypage";
 	}
