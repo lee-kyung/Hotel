@@ -20,23 +20,22 @@
     border:1px solid black;
     width:1100px;
     height:400px;
-    background:#e5e4e2;
+    /* background:#e5e4e2; */
     margin:auto;
   }
   #section #outer #left{ /* 상단 이미지 */
-  border:1px solid red;
     width:600px;
     height:400px;
     float:left;
     margin:auto;
   }
   #section #outer #right{ /* 상단 가격표 */
-  border:1px solid blue;
     width:370px;
     height:200px;
     float:right;
     margin:auto;
-    margin-top:50px;
+    margin-right:45px;
+    margin-top:58px;
   }
   #section #outer #right table{
     margin:auto;
@@ -48,7 +47,6 @@
   #section #outer #right #pri{
     margin:auto;
     vertical-align:middle;
-    height:100px;
     font-size:14px;
     margin-right:30px;
   }
@@ -331,11 +329,11 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
 <div id="section">
  <div id="outer">
    	<div id="left">
-    	 <img src="../img/about/m2.jpg" width="600" height="390">
+    	 <img src="../img/about/m2.jpg" width="600" height="400">
   	 </div> <!-- left end -->
   	 <div id="right">
     
-	    <table id="pri" width="350">
+	    <table id="pri" width="350" height="200" border="1">
 	     <c:forEach items="${dlist}" var="dvo">
 	     <tr id="pri_info">
 	        <th id="type_info">${dvo.dine_type}</th>
