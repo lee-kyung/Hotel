@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+
 <head>
  <style>
   #section{
@@ -35,7 +36,7 @@
     height:200px;
     float:right;
     margin:auto;
-    margin-top:40px;
+    margin-top:50px;
   }
   #section #outer #right table{
     margin:auto;
@@ -50,6 +51,9 @@
     height:100px;
     font-size:14px;
     margin-right:30px;
+  }
+  #section #outer #right #pri tr:fisrt child{
+    border-top:2px solid #889159;
   }
   #section table{
     margin:auto; 
@@ -257,22 +261,22 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
 								break; 
 								}
 									
-						else if(tmcnt[i] == 13 && tmcnt[i+1] == bk) {
-							document.getElementById("dr_time").innerHTML="<option>선택</option><option value='13:00' disabled>13:00</option><option value='15:00'>15:00</option>";
-							break;
-							}
-							else if(tmcnt[i] == 15 && tmcnt[i+1] == bk) {
-								document.getElementById("dr_time").innerHTML="<option>선택</option><option value='13:00'>13:00</option><option value='15:00' disabled>15:00</option>";
-								break; 
-								}
-						else if(tmcnt[i] == 16 && tmcnt[i+1] == bk) {
-							document.getElementById("dr_time").innerHTML="<option>선택</option><option value='16:00' disabled>16:00</option><option value='18:00'>18:00</option>";
-							break;
-							}
-							else if(tmcnt[i] == 18 && tmcnt[i+1] == bk) {
-								document.getElementById("dr_time").innerHTML="<option>선택</option><option value='16:00'>16:00</option><option value='18:00' disabled>18:00</option>";
-								break; 
-								}
+								else if(tmcnt[i] == 13 && tmcnt[i+1] == bk) {
+									document.getElementById("dr_time").innerHTML="<option>선택</option><option value='13:00' disabled>13:00</option><option value='15:00'>15:00</option>";
+									break;
+									}
+									else if(tmcnt[i] == 15 && tmcnt[i+1] == bk) {
+										document.getElementById("dr_time").innerHTML="<option>선택</option><option value='13:00'>13:00</option><option value='15:00' disabled>15:00</option>";
+										break; 
+										}
+										else if(tmcnt[i] == 16 && tmcnt[i+1] == bk) {
+											document.getElementById("dr_time").innerHTML="<option>선택</option><option value='16:00' disabled>16:00</option><option value='18:00'>18:00</option>";
+											break;
+											}
+											else if(tmcnt[i] == 18 && tmcnt[i+1] == bk) {
+												document.getElementById("dr_time").innerHTML="<option>선택</option><option value='16:00'>16:00</option><option value='18:00' disabled>18:00</option>";
+												break; 
+												}
 					}
 				}
 				else {
@@ -333,7 +337,7 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
   	 </div> <!-- left end -->
   	 <div id="right">
     
-	    <table id="pri" width="350" border="1">
+	    <table id="pri" width="350">
 	     <c:forEach items="${dlist}" var="dvo">
 	     <tr id="pri_info">
 	        <th id="type_info">${dvo.dine_type}</th>
