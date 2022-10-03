@@ -6,12 +6,9 @@
 <style>
 	#pro_write {
 		width : 1000px;
-		height : 700px;
-		margin : auto;
-		margin-top : 50px;
+		margin : 50px auto 50px auto;
 	}
 	#pro_write table {
-		font-family : 돋움;
 		font-size : 14px;
 		border-top : 2px solid darkgray;
 		border-bottom : 2px solid darkgray;
@@ -33,7 +30,6 @@
 		opacity: 1;
 	}
 	#pro_write p {
-		font-family : 돋움;
 		font-size : 14px;
 	}
 </style>
@@ -88,39 +84,51 @@
 	function check(){
 		let dom=document.inpro;
 		if(dom.pcode.value.trim() == "") {
-			alert("상품코드를 생성하세요.")
+			alert("상품코드를 생성하세요.");
 			return false;
 			}
 			else if(dom.fimg1.value.trim() == "") {
-				alert("메인이미지를 등록하세요.")
+				alert("메인이미지를 등록하세요.");
 				return false;
 				}
 				else if(dom.simg.value.trim() == "") {
-					alert("상세이미지를 등록하세요.")
+					alert("상세이미지를 등록하세요.");
 					return false;
 					}
 					else if(dom.title.value.trim() == "") {
-						alert("상품명을 입력하세요.")
+						alert("상품명을 입력하세요.");
 						return false;
 						}
 						else if(dom.price.value.trim() == "") {
-							alert("판매가를 입력하세요.")
+							alert("판매가를 입력하세요.");
 							return false;
 							}
-							else if(dom.su.value.trim() == "") {
-								alert("재고를 입력하세요.")
+							else if(dom.halin.value.trim() == "") {
+								alert("할인율을 입력하세요. 할인이 없다면 0을 입력하세요.");
 								return false;
-							}
-							else
-								return true;
+								}
+								else if(dom.juk.value.trim() == "") {
+									alert("적립율을 입력하세요. 적립금이 없다면 0을 입력하세요.");
+									return false;
+									}
+									else if(dom.su.value.trim() == "") {
+										alert("재고를 입력하세요.");
+										return false;
+										}
+										else if(dom.baefee.value.trim() == "") {
+											alert("배송비를 입력하세요. 배송비가 없거나 모바일상품은 0을 입력하세요.");
+											return false;
+										}
+										else
+											return true;
 	}
-	
-	/* 이미지 첨부파일 추가 & 삭제 */
+
+	/* 이미지 첨부파일 추가(+미리보기) & 삭제 */
 	function add_file(){
 		let len=document.getElementsByClassName("imgs").length;
 		if(len < 3) {
 			len++;
-			let inner="<p class='imgs'> <input type='file' name='fimg"+len+"'> </p>";
+			let inner="<p class='imgs'> <span class='img'></span> <input onchange='setview("+(len-1)+")' type='file' name='fimg"+len+"'> </p>";
 			document.getElementById("outer").innerHTML=document.getElementById("outer").innerHTML+inner;
 		}
 	}
@@ -131,14 +139,44 @@
 			document.getElementsByClassName("imgs")[len].remove();
 		}
 	}
+	function setview(n){
+		document.getElementsByClassName("img")[n].innerHTML="";
+		
+		for(var image of event.target.files) {
+			var reader=new FileReader(); 
+			reader.onload=function(){
+				var img=document.createElement("img"); 
+
+				img.setAttribute("src", event.target.result); 
+				img.setAttribute("height", "50");
+				img.setAttribute("valign", "middle");
+
+				document.getElementsByClassName("img")[n].appendChild(img);  //새로 선택한 이미지 span에 출력
+			};
+			reader.readAsDataURL(image); 
+		}
+	}
+	
+	/* 숫자만 입력했는지 체크하기 */
+	function checkNum(e){
+		let keyVal=event.keyCode;
+		if((keyVal >= 48) && (keyVal <= 57))
+			return true;
+		else {
+			alert("숫자만 입력가능합니다");
+			return false;
+		}
+	}
 </script>
 </head>
 <body>
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
 		<div class="bradcam_area basic">
-	        <h3> 상품 등록 </h3>
+	        <div id="h3" onclick="location='pro_write'" style="cursor:pointer;"> 상 품 등 록 </div>
 	    </div>
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
+    
+    <c:if test="${userid != 'admin'}"> <c:redirect url="../main/index"/> </c:if>
     
 	<!-- ================ 상품등록 Area Start ================= -->
 	<section id="pro_write">
@@ -162,8 +200,8 @@
 				<td> 메인이미지 </td>
 				<td id="outer" colspan="2">
 					<input type="button" onclick="add_file()" value="추가">
-					<input type="button" onclick="del_file()" value="삭제">
-					<p class="imgs"> <input type="file" name="fimg1"> </p>
+					<input type="button" onclick="del_file()" value="삭제"> <p>
+					<p class="imgs"> <span class="img"></span> <input type="file" name="fimg1" onchange="setview(0)"> </p>
 				</td>
 			</tr>
 			<tr>
@@ -176,7 +214,7 @@
 			</tr>
 			<tr>
 				<td> 판매가 </td>
-				<td colspan="2"> <input type="number" name="price"  min="0" placeholder="숫자만 입력하세요."> </td>
+				<td colspan="2"> <input type="number" name="price"  min="0" placeholder="숫자만 입력하세요." onKeyPress="return checkNum(event)"> </td>
 			</tr>
 			<tr>
 				<td> 할인율 </td>
@@ -184,11 +222,11 @@
 			</tr>
 			<tr>
 				<td> 적립율 </td>
-				<td colspan="2"> <input type="number" name="juk" min="0" placeholder="숫자만 입력하세요."> </td>
+				<td colspan="2"> <input type="number" name="juk" min="0" max="100" placeholder="0~100" id="size"> </td>
 			</tr>
 			<tr>
 				<td> 재고 </td>
-				<td colspan="2"> <input type="number" name="su" min="0" placeholder="숫자만 입력하세요."> </td>
+				<td colspan="2"> <input type="number" name="su" min="0" placeholder="숫자만 입력하세요." onKeyPress="return checkNum(event)"> </td>
 			</tr>
 			<tr>
 				<td> 배송비 </td>
@@ -196,6 +234,7 @@
 			</tr>
 			<tr>
 				<td colspan="3" align="center">
+					<input type="button" value="이전으로" onclick="location='pro_adlist'">
 					<input type="submit" value="등록하기">
 				</td>
 			</tr>

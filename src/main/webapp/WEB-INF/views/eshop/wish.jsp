@@ -233,6 +233,7 @@
 	    </div>
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
 
+	<c:if test="${userid == null}"> <c:redirect url="../main/index"/> </c:if>
 
 	<!-- ================ 장바구니 Area Start ================= -->
     <div id="wish">
@@ -240,10 +241,10 @@
 			<tr>
 				<td colspan="8" height="50">
 					<div id="osel" style="float:left;">
-						<span onclick="location='../eshop/wish?osel=id asc'" class="obtn"> 등록순 </span>
-						<span onclick="location='../eshop/wish?osel=halin desc'" class="obtn"> 할인율순 </span>
-						<span onclick="location='../eshop/wish?osel=price asc'" class="obtn"> 저가격순 </span>
-						<span onclick="location='../eshop/wish?osel=price desc'" class="obtn"> 고가격순 </span>
+						<span onclick="location='wish?osel=id asc'" class="obtn"> 등록순 </span>
+						<span onclick="location='wish?osel=halin desc'" class="obtn"> 할인순 </span>
+						<span onclick="location='wish?osel=price asc'" class="obtn"> 최저가순 </span>
+						<span onclick="location='wish?osel=price desc'" class="obtn"> 최고가순 </span>
 					</div>
 					<div onclick="wish_del()" id="button3"> 선택상품 삭제하기 </div>
 				</td>
@@ -292,7 +293,7 @@
 			</tr>
 		</c:forEach>
 			<tr>
-				<td colspan="8" height="80" style="border:none;">
+				<td colspan="8" height="100" style="border:none;">
 					<span onclick="location='eshop'" id="button22" style="float:left;"> 계속 쇼핑하기 </span>
 					<span onclick="move_cart(2)" id="button11" style="float:right;"> 전체 장바구니로 </span>
 					<span onclick="move_cart(1)" id="button22" style="float:right;"> 선택 장바구니로 </span>					

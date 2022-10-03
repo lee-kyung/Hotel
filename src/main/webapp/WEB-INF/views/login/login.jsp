@@ -46,7 +46,8 @@
 	
 	#login #txt div{
 	width:170px;
-	display:inline-block;}
+	display:inline-block;
+	cursor:pointer;}
 </style>
 <script>
 
@@ -56,7 +57,7 @@
 <body>
 
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
-    <div class="bradcam_area basic">	<!-- class="bradcam_area 클래스명" -->
+    <div class="bradcam_area gongji">	<!-- class="bradcam_area 클래스명" -->
        <br><br>
     </div>
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->

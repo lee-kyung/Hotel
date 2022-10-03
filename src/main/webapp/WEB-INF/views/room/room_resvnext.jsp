@@ -76,6 +76,7 @@
 		width: 300px;
 		height: 45px;
 		border: 1px solid #887159;
+		border-radius: 2px;
 	}
 	roomsec #sec3{
 		width: 845px;
@@ -124,6 +125,7 @@
 		color: #887159;
 		background: white;
 		pointer: cursor;
+		border-radius: 2px;
 	}
 	roomsec #pay input[type=button]:hover {
 		background: #887159;
@@ -252,7 +254,6 @@
 	
 	<!-- ================ Rooms Area Start ================= -->
 	<!-- 객실 리스트 -->
-<div class="features_room">
 	<div class="container">
 		<div class="row">
 			<roomsec>
@@ -276,8 +277,8 @@
 				 		<div><span id="sb">* 휴대폰 번호 </span><input type="text" name="bkphone" id="bkphone" value=""></div>
 				 		<br>
 						<div> 
-							* 특별 요청사항<sup>(<span id="nowByte">0</span>/100bytes)</sup> 
-							<textarea cols="80" rows="3" name="spreq" onkeyup="fn_checkByte(this)"
+							특별 요청사항<sup>(<span id="nowByte">0</span>/100bytes)</sup> 
+							<textarea cols="80" rows="3" name="spreq" onkeyup="fn_checkByte(this)" 
 							placeholder="객실 투숙 시 필요한 비품관련 요청은 한정된 수량으로 인하여 서비스 이용이 제한될 수 있으니 유선상으로 문의하여 주시기 바랍니다."></textarea>
 						</div>
 					</div>
@@ -312,7 +313,7 @@
 							</div>
 						</div>
 						<div>
-<textarea style="resize: none; border: none" rows="5" cols="95"	readonly>
+<textarea style="resize: none; border: none" rows="5" cols="85"	readonly>
 호텔은 귀하의 개인정보를 소중하게 생각하며, 서비스제공을 위해 개인정보보호법 제 15조 및 제22조에 따라 귀하의 동의를 받고자 합니다.
 개인정보 수집 및 이용 동의 
 1. 수집 및 이용 목적 : 본인 식별, 서비스 및 정보제공, 민원처리, 고객문의 안내
@@ -331,7 +332,7 @@
 						</div>
 						<br>
 						<div>
-<textarea style="resize: none; border: none" rows="3" cols="95"	readonly>
+<textarea style="resize: none; border: none" rows="3" cols="85"	readonly>
 예약 취소 및 변경은 상기 [취소 규정] 기간 내 가능하며, 이후 도착일 기준 하루 전 18시까지 1박 요금의 50%, 이후 취소 시 1박 요금의 100%수수료가 발생합니다.
 투숙 당일 노쇼(No Show) 발생 시 동일한 위약금이 청구될 수 있습니다.
 </textarea>
@@ -381,7 +382,6 @@
 		</div> <!-- row class end -->
 		</roomsec>
 	</div><!-- container end -->
-</div><!-- features room end -->
 <script>
 	// 입력 했는지 확인
 	function check() {

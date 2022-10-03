@@ -1,7 +1,7 @@
 package kr.co.hotel.eshop;
 
 public class ProductVO {
-	private int id, price, halin, juk, su, baefee;
+	private int id, price, halin, juk, su, baefee, sold;
 	private String pcode, title, fimg, simg, buyday;
 	
 	private int cnt;	// cnt = fimg의 이미지 개수
@@ -9,11 +9,15 @@ public class ProductVO {
 	private String[] imgs;	// 콤마기준으로 자른 fimg의 이미지를 넣을 배열
 	
 	private String subpcode;	// pcode의 앞5자리(p0101, p0102, p0201, p0202)만 가져오기
-	
 	private int wishchk;	// pro_list의 위시리스트 체크
-	
 	private int cartchk;	// pro_list의 장바구니 체크
 	
+	public int getSold() {
+		return sold;
+	}
+	public void setSold(int sold) {
+		this.sold = sold;
+	}
 	public int getCartchk() {
 		return cartchk;
 	}

@@ -37,4 +37,10 @@ public class MemberController {
 	{
 		service.userid_check(request, out);
 	}
+	
+	@RequestMapping("/member/member_out")
+	public String member_out(HttpSession session)
+	{
+		return service.member_out(session);
+	}
 }

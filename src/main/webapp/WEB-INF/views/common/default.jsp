@@ -19,6 +19,26 @@
         /*글씨 테두리*/	
         text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
 	}
+	/* #title{
+	    color:white;
+	    font-weight:600;
+	} */
+	
+	/* 하단 높이 조정 중 */
+	/*.footer {
+		height : 450px;	
+		padding : 0px;	
+	}
+	.footer .footer_top {
+		height : 350px;
+		border : 1px solid red;
+		magin : 0px;
+	}
+	.footer .footer_top .container {
+		border : 1px solid red;
+		margin-bottom : 100px;
+	}*/
+
 </style>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
@@ -68,13 +88,14 @@
                             <div class="main-menu  d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a href="../main/index">HOTEL<i class="ti-angle-down"></i></a>
+                                        <li><a href="../main/index">Hotel<i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
-                                                <li><a href="../info/info">호텔 소개</a></li>
-                                                <li><a href="../info/info">호텔 소개</a></li>
+                                                <li style="margin:0px"><a href="../info/info">ABOUT MONTANA</a></li>
+                                                <li><a href="../info/gongji_list">NOTICE</a></li>
+                                                <li><a href="../info/faq_list">FAQ</a></li>
                                             </ul>
                                         <li><a href="../room/rooms">rooms</a></li> <!-- class="active" -->
-                                        <li><a href="../dining/dining">dining<i class="ti-angle-down"></i></a>
+                                        <li id="title"><a href="">dining<i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
                                                 <li><a href="../dining/dining">레스토랑 소개</a></li>
                                                 <li><a href="../dining/dining_reserve">레스토랑 예약</a></li>
@@ -82,9 +103,9 @@
                                         </li>
                                         <li><a href="../wedding/wedding">wedding<i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
-                                                <li><a href="../wedding/wedding_hall?id=15">웨딩홀</a></li>
-                                                <li><a href="../wedding/wedding_reserve">상담예약</a></li>
-                                                <li><a href="../wedding/wedding_check">견적</a></li>
+                                                <li style="margin:0px"><a href="../wedding/wedding_hall?id=15">WEDDING HALL</a></li>
+                                                <li><a href="../wedding/wedding_reserve">BOOK</a></li>
+                                                <li><a href="../wedding/wedding_check">QUOTATION</a></li>
                                             </ul>
                                         </li>
                                         <li><a href="../eshop/eshop">eshop<i class="ti-angle-down"></i></a>
@@ -106,7 +127,7 @@
                         <div class="col-xl-2 col-lg-2">
                             <div class="logo-img">
                                 <a href="../main/index">
-                                    <img src="../img/logo1.png" alt="">
+                                    <img src="../img/logo.png" alt="">
                                 </a>
                             </div>
                         </div>
@@ -132,19 +153,19 @@
                                          <li>
 		                                <c:if test="${userid == null}">
                                             <a href="../eshop/cart?p=p01"> <i class="fa fa-cart-arrow-down"></i> </a>
-											<a href="../login/login?ck=4">로그인</a>
-											<a href="../member/member_input">회원가입</a>
-											<a href="../mypage/nonuser">예약주문조회</i> </a>
+											<a style="color:white;font-weight:600"href="../login/login?ck=4">로그인</a>
+											<a style="color:white;font-weight:900" href="../member/member_input">회원가입</a>
+											<a style="color:white;font-weight:900" href="../mypage/rdwg_check?err=0">비회원조회</i> </a>
 										</c:if>
 										<c:if test="${(userid != null) && (userid != 'admin')}">
-											<a href="../mypage/mypage"> ${name}님
+											<a style="color:white;font-weight:900" href="../mypage/mypage"> ${name}님
 											<a href="../eshop/cart?p=p01"> <i class="fa fa-cart-arrow-down"></i> </a>
                                             <a href="../eshop/wish"> <i class="fa fa-heart-o"></i> </a>
-											<a href="../login/logout">로그아웃</a>
+											<a style="color:white;font-weight:900" href="../login/logout">로그아웃</a>
 										</c:if>
 										<c:if test="${userid == 'admin'}">
-											<a href="../admin/admin"> ${name}님</a>
-											<a href="../login/logout">로그아웃</a>
+											<a style="color:white;font-weight:900" href="../admin/admin"> ${name}님</a>
+											<a style="color:white;font-weight:900" href="../login/logout">로그아웃</a>
 										</c:if>
 		                                </li>
                                     </ul>
@@ -167,23 +188,22 @@
 		background: white;
 		text-align: center;
 	}
+	#loglayer #txt2{
+		margin-top: 50px;
+	}
 	#loglayer #logform{
 		margin-top: 200px;
 	}
 	#loglayer #gologin{
 		width: 400px;
-		height: 50px;
-		border: none;
-		border-bottom: 2px solid #887159;
-		background: white;
-		color: #887159;
-	}
-	#loglayer input[type=button]{
-		width: 400px;
 		height: 80px;
 		border: 1px solid #887159;
 		background: white;
 		color: #887159;
+		cursor: pointer;
+	}
+	#loglayer #gologin:hover{
+		color: black;
 	}
 	#loglayer #keepgo{
 		width: 400px;
@@ -191,6 +211,10 @@
 		border: 1px solid #887159;
 		background: #887159;
 		color: white;
+		cursor: pointer;
+	}
+	#loglayer #keepgo:hover{
+		color: black;
 	}
 	#loglayer #txt{
 		margin-top: 150px;
@@ -220,19 +244,17 @@
 <div id="loglayer">
 	<div>
 		<div id="txt">객실 예약을 진행하려면 로그인 또는 비회원으로 진행 선택을 해주세요.</div>
-		<!-- <form method="post" action="../login/login_ok" id="logform">
-		<input type="hidden" name="ck" value="2">
-			<div><input type="text" name="userid" placeholder="아이디" id="gologin"></div>
-			<div><input type="password" name="pwd" placeholder="비밀번호" id="gologin"></div> -->
-			<p>
-			<div><input type="button" value="로그인" onclick="location='../login/login?ck=2'"></div>
-			<hr>
-			<a href="../room/room_resv"><input type="button" value="비회원으로 계속" id="keepgo"></a>
-		<!-- </form> -->
 		<br>
-	</div>
-</div> 
-                            </div>
+		<div id="txt2">
+			<div>
+				<input type="button" value="로그인" id="gologin" onclick="location='../login/login?ck=2'">
+				<hr>
+				<input type="button" value="비회원으로 계속" id="keepgo" onclick="location='../room/room_resv'">
+			</div>
+		</div>
+	</div> 
+</div>
+					</div>
                         </div>
                         <div class="col-12">
                             <div class="mobile_menu d-block d-lg-none"></div>
@@ -253,7 +275,7 @@
         <div class="footer_top">
             <div class="container">
                 <div class="row">
-                    <div class="col-xl-3 col-md-6 col-lg-3">
+                    <div class="col-xl-3 col-md-6 col-lg-3" style="margin-left:30px;">
                         <div class="footer_widget">
                             <h3 class="footer_title">
                                 address
@@ -263,7 +285,7 @@
                             <a href="#" class="line-button">Get Direction</a>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-md-6 col-lg-3">
+                    <div class="col-xl-3 col-md-6 col-lg-3" style="margin-left:180px;">
                         <div class="footer_widget">
                             <h3 class="footer_title">
                                 Reservation
@@ -272,31 +294,21 @@
                                 reservation@montana.com</p>
                         </div>
                     </div>
-                    <div class="col-xl-2 col-md-6 col-lg-2">
+                    <div class="col-xl-2 col-md-6 col-lg-2" style="margin-left:160px;">
                         <div class="footer_widget">
                             <h3 class="footer_title">
                                 Navigation
                             </h3>
                             <ul>
-                                <li><a href="#">Home</a></li>
-                                <li><a href="#">Rooms</a></li>
-                                <li><a href="#">About</a></li>
-                                <li><a href="#">News</a></li>
+                                <li><a href="#">Hotel</a></li>
+                                <li><a href="../room/rooms">Rooms</a></li>
+                                <li><a href="../dining/dining">Dining</a></li>
+                                <li><a href="../wedding/wedding">Wedding</a></li>
+                                <li><a href="../eshop/eshop">Eshop</a></li>
                             </ul>
                         </div>
                     </div>
-                    <div class="col-xl-4 col-md-6 col-lg-4">
-                        <div class="footer_widget">
-                            <h3 class="footer_title">
-                                Newsletter
-                            </h3>
-                            <form action="#" class="newsletter_form">
-                                <input type="text" placeholder="Enter your mail">
-                                <button type="submit">Sign Up</button>
-                            </form>
-                            <p class="newsletter_text">Subscribe newsletter to get updates</p>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </div>

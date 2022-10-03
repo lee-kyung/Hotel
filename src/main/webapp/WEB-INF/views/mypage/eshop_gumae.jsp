@@ -28,17 +28,20 @@
 	font-size:20px;
 	cursor:pointer;}
 	
+	#first #list{
+	width:100%;
+	margin:auto;}
+	
 	#first ul li{
 	display:inline-block;
 	border:1px solid #cccccc;
-	width:450px;
+	width:23%;
 	height:150px;
 	margin-top:20px;
 	background:white;
 	border-right:none;
-	text-align:center;
 	font-size:25px;
-	padding-top:50px;
+	padding-top:52px;
 	cursor:pointer;}
 	
 	#first ul li:last-child{
@@ -80,14 +83,16 @@
 	border:1px solid #887159;
 	background:white;
 	margin-left:20px;
-	color:#887159;}
+	color:#887159;
+	cursor:pointer;}
 	
 	section #eshop form #btn2{
 	width:100px;
 	height:40px;
 	border:none;
 	color:white;
-	background:#887159;}
+	background:#887159;
+	cursor:pointer;}
 	
 	section #eshop .btn3{
 	width:100px;
@@ -159,6 +164,7 @@
 	
 	section #eshop a:hover{
 	text-decoration:underline;
+	letter-spacing:1px;
 	color:red;}
 </style>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
@@ -207,8 +213,8 @@
     <!-- 새 이미지 추가하는 법
     	①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기
     	②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
-    <div class="bradcam_area basic">	<!-- class="bradcam_area 클래스명" -->
-        <h3> 문구(자유롭게 변경하기) </h3>
+    <div class="bradcam_area mypage">	<!-- class="bradcam_area 클래스명" -->
+        <div id="h3">ESHOP</div>
     </div>
 <div id="first">
 	<div id="first_1">
@@ -218,9 +224,11 @@
 			<span onclick="location='../mypage/mypwd_change'">비밀번호 수정 > </span>
 		</div> 
 	</div>	
-	<ul>
-		<li onclick="location='room_resv'">객실 예약 확인</li><li onclick="location='dine_resv'">레스토랑 예약 확인</li><li onclick="location='eshop_gumae'">E-SHOP 주문내역</li><li onclick="location='wedding_resv'">웨딩 예약 확인</li>
-	</ul>
+	<div id="list">
+		<ul>
+			<li onclick="location='room_resv'">객실 예약 확인</li><li onclick="location='dine_resv'">레스토랑 예약 확인</li><li onclick="location='eshop_gumae'">E-SHOP 주문내역</li><li onclick="location='wedding_resv'">웨딩 예약 확인</li>
+		</ul>
+	</div>
 </div>
 
 <section>
@@ -235,31 +243,31 @@
 	</form>
 	<table border="1" id="first_t">
 		<tr>
-			<td width="200px;">주문번호</td>
+			<td width="190px;">주문번호</td>
 			<td>상품명</td>
 			<td width="100px;">추가상품</td>
 			<td width="150px;">총 결제금액</td>
 			<td width="150px">구매한 날</td>
-			<td width="240px">상태 변경</td>
+			<td width="150px">상태 변경</td>
 		</tr>
 		<c:forEach items="${glist }" var="gvo">
 		<tr>
 			<td><a href="eshop_content?id=${gvo.id}&jumuncode=${gvo.jumuncode }">${gvo.jumuncode }</a></td>
 			<td>${gvo.title }</td>
 			<c:if test="${gvo.cnt==1 }">			
-				<td></td>
+				<td>0 개</td>
 			</c:if>	
 			<c:if test="${gvo.cnt!=1 }">			
-				<td>${gvo.cnt-1}개</td>
+				<td>외 ${gvo.cnt-1} 개</td>
 			</c:if>			
-			<td>${gvo.total_price }</td>
+			<td><fmt:formatNumber value="${gvo.total_price }"/>원</td>
 			<td>${gvo.buyday }</td>
 			<td>
 				<c:if test="${gvo.state==0 }">
 					<input type="button" class="btn3" value="결제취소" onclick="location='eshopG_state_change?state=1&id=${gvo.id}&jumuncode=${gvo.jumuncode }'">
-					<c:if test="${(gvo.state==0) && (gvo.bname==null)}">
-						<input type="button" class="btn3" value="사용완료" onclick="location='eshopG_state_change?state=3&id=${gvo.id}&jumuncode=${gvo.jumuncode }'">
-					</c:if>
+	<%-- 				<c:if test="${(gvo.state==0) && (gvo.bname!=null)}">
+						<input type="button" class="btn3" value="배송완료" onclick="location='eshopG_state_change?state=3&id=${gvo.id}&jumuncode=${gvo.jumuncode }'">
+					</c:if> --%>
 				</c:if>
 				<c:if test="${gvo.state==1 }"> 
 					<input type="button" class="btn4" value="취소진행중">
@@ -269,9 +277,6 @@
 				</c:if>
 				<c:if test="${(gvo.state==3) && (gvo.bname !=null)}">
 					<input type="button" class="btn4" value="배송완료">
-				</c:if>
-				<c:if test="${(gvo.state==3) && (gvo.bname==null)}">
-					<input type="button" class="btn4" value="사용완료">
 				</c:if>
 			</td>
 		</tr>

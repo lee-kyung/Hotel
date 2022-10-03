@@ -210,7 +210,7 @@
     <!-- 새 이미지 추가하는 법
     	①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기
     	②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
-    <div class="bradcam_area basic">	<!-- class="bradcam_area 클래스명" -->
+     <div class="bradcam_area gongji">	<!-- class="bradcam_area 클래스명" -->
         <br><br>
     </div>
     <!-- bradcam_area_end -->
@@ -236,6 +236,7 @@
 	  	<div>이메일</div>
 	  	<div><input type="text" name="email"></div>
 	  	<div><input type="button" value="아이디 찾기" onclick="userid_search_fn()"></div>
+	  	<div style="text-align:center; font-size:16px; cursor:pointer;" onclick="location='../login/login?ck=4'">로그인하기</div>
   	</form>
   	</div>
   	
@@ -248,6 +249,7 @@
 	  	<div>이메일</div>
 	  	<div><input type="text" name="email"></div>
 	  	<div><input type="button" value="비밀번호 찾기" onclick="pwd_search_fn()"></div>
+	  	<div style="text-align:center; font-size:16px; cursor:pointer;" onclick="location='../login/login?ck=4'">로그인하기</div>
   	</form>
   	</div>
   	

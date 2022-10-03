@@ -9,9 +9,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="dining_write_ok" parameterType="kr.co.hotel.dining.DiningVO">
-	 insert into dining(dining_id,dine_pimg,dine_cimg,dine_type,dine_adult,
-	 dine_child,dine_halin,dine_su,writeday)
-	 values(#{dining_id},#{dine_pimg},#{dine_cimg},#{dine_type},#{dine_adult},
-	 #{dine_child},#{dine_halin},#{dine_su},now())
+	 insert into dining(dining_id,dine_type,dine_adult,dine_child,dine_su,writeday)
+	 values(#{dining_id},#{dine_type},#{dine_adult},#{dine_child},#{dine_su},now())
 	</insert>
+	
+	<select id="dining_list" resultType="kr.co.hotel.dining.DiningVO">
+	 select * from dining order by id asc
+	</select>
+	
+	<!-- <select id="dining_content" resultType="kr.co.hotel.dining.DiningVO">
+	 select * from dining where id=#{param1}
+	</select>
+	 -->
+	<select id="dining_update" resultType="kr.co.hotel.dining.DiningVO">
+	 select * from dining where id=#{param1}
+	</select>
+	
+	<update id="dining_update_ok">
+	 update dining set dine_type=#{dine_type},dine_adult=#{dine_adult},
+	 dine_child=#{dine_child} where id=#{id}
+	</update>
+	
+	<delete id="dining_delete">
+	 delete from dining where id=#{param1}
+	</delete>
+	
 </mapper>

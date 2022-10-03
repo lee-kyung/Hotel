@@ -15,6 +15,7 @@ public class HomeController {
 	public String index() {
 		return "/main/index";
 	}
+
 	@RequestMapping("/info/info")
 	public String info() {
 		return "/info/info";

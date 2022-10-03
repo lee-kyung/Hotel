@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -10,13 +9,103 @@
 		margin:auto;
 		margin-top:100px;
 		margin-bottom:200px;
-		border: 1px solid blue;
 	}
-	section table{
+	#h3 a{
+		color: white;
+	}
+	#sec1 #title a{
+		width: 1200px;
+	}
+	#sec1 #title a{
+		font-size: 25px;
+		color: #887159;
+		font-weight: 700;
+	}
+	#sec1 #list{
+		width: 1200px;
+		text-align: right;
+		margin: auto;
+	}
+	#sec1 table{
 		width: 1300px;
+		margin-top: 20px;
+		margin: auto;
 	}
-
+	#sec1 table tr:first-child td{
+		border-bottom: 2px solid #887159;
+	}
+	#sec1 table tr th{
+		border-bottom: 1px solid #887159;
+	}
+	#sec1 table tr:last-child td{
+		border-bottom: 1px solid #887159;
+	}
+	#sec1 table tr td{
+		padding: 15px;
+	}
+	#sec1 table tr:nth-child(even){
+		background: #f9f3ed;
+	}
+	#sec1 table #title2{
+		font-weight: 800;
+		font-size: 18px;
+	}
+	#sec1 table span:hover{
+		cursor: pointer;
+		color: #887159;
+	}
+	#sec1 table a:hover{
+		font-weight: 700;
+		color: #887159;
+	}
+	#sec1 #sec2{
+		margin: auto;
+		width: 1200px;
+		text-align: center;
+	}
+	#sec2 #search>input[type=text]{
+		width: 200px;
+		height: 28px;
+		border: 1px solid #887159;
+	}
+	#sec2 select{
+		width: 80px;
+		height: 26px;
+		border: 1px solid #887159;
+	}
+	#sec2 input[type=submit],input[type=button]{
+		width: 100px;
+		height: 28px;
+		background: white;
+		color: #887159;
+		border: 1px solid #887159;
+	}
+	#sec2 input[type=submit]:hover{
+		color: white;
+		background: #887159;
+		border: 1px solid #887159;
+	}
+	#sec2 #cal{
+		width: 200px;
+		margin: auto;
+	}
+	#dtsearch{
+		width: 1000px;
+		margin: auto;
+		display:inline-block;
+		margin-top: 20px;
+	}
+	#aa,#bb{
+		width: 200px;
+		display:inline-block;
+	}
+	#aa input[type=text],#bb input[type=text]{
+		height: 15px;
+	}
 </style>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script> 
 <script>
 	function move(my)
 	{
@@ -44,30 +133,46 @@
 		else
 			return true;		
 	}
+	
+	$(function(){
+		   $("#c1").datepicker({
+			   format: "yyyy-mm-dd",
+		   });
+		   $("#c2").datepicker({
+		      format: "yyyy-mm-dd",
+		   });  
+		});
+		
+		function csearch(c1,c2){
+			var c1=document.getElementById("c1").value;
+			var c2=document.getElementById("c2").value;
+			// alert(c1+""+c2);
+			
+			location="dinelist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=${oby}&c1="+c1+"&c2="+c2;
+		} 
 </script>
 </head>
 
 <body>
 
+<c:if test="${userid != 'admin'}">
+	<c:redirect url="../main/index"/>
+</c:if>
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
     <!-- bradcam_area_start -->
     <!-- 새 이미지 추가하는 법
     	①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기
     	②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
     <div class="bradcam_area basic">	<!-- class="bradcam_area 클래스명" -->
-        <h3> <a href="../admin/admin">레스토랑 예약 리스트 </a></h3>
+        <div id="h3"> <a href="../admin/admin">ADMIN</a></div>
     </div>
     
 
 <section>
-<div>
+<div id="sec1">
 <!-- 내용 작성 -->
-
-	<table id="dining" border="1">
-	<tr>
-		<h3> <a href="dinelist">레스토랑 예약 리스트</a></h3>
-		<h5>
-		<div>
+	<div id="title"> <a href="dinelist">다이닝 예약 리스트</a></div>
+	<div id="list">
 		목록
 		<select onchange="move(this)" id="pcnt">
 			<option value="10"> 10개 </option>		
@@ -75,29 +180,23 @@
 			<option value="30"> 30개 </option>		
 			<option value="50"> 50개 </option>		
 		</select>
-		</div></h5>
-		</tr>
-		<tr>
+		</div>
+	<table id="dining">
+		<tr id="title2">
 			<td> 번호 
 				<span onclick="location='dinelist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=dr_id asc'">∧</span>
 				<span onclick="location='dinelist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=dr_id desc'">∨</span>
 			</td>
-			<td> 아이디 </td>
-			<td> 예약번호 </td>
 			<td> 예약자 </td>
-			<td> 연락번호 </td>
+			<td> 예약번호 </td>
 			<td> 식사날짜 
 				<span onclick="location='dinelist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=dr_date asc'">∧</span>
 				<span onclick="location='dinelist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=dr_date desc'">∨</span>
 			</td>
 			<td> 식사유형 </td>
 			<td> 식사시간 </td>
-			<td> 성인 </td>
-			<td> 어린이 </td>
-			<td> 유아 </td>
-			<td> 총 금액 </td>
-			<td> 요청사항 </td>
 			<td> 예약일 </td>
+			<td> 총 금액 </td>
 			<td> 예약상태 
 				<span onclick="location='dinelist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=dr_state asc'">∧</span>
 				<span onclick="location='dinelist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=dr_state desc'">∨</span>
@@ -106,18 +205,12 @@
  	  <c:forEach items="${dlist}" var="dvo">
 	  	<tr>
 	  		<td> ${dvo.dr_id} </td>
-	  		<td> ${dvo.userid} </td>
-	  		<td> ${dvo.bid} </td>
-	  		<td> ${dvo.bkname} </td>
-	  		<td> ${dvo.p1}-${dvo.p2}-${dvo.p3} </td>
+	  		<td> ${dvo.bkname} </td>	  		
+	  		<td> <a href="../admin/dinebkview?dr_id=${dvo.dr_id}"> ${dvo.bid} </a></td>
 	  		<td> ${dvo.dr_date} </td>
 	  		<td> ${dvo.dine_type} </td>
 	  		<td> ${dvo.dr_time} </td>
-	  		<td> ${dvo.adult} </td>
-	  		<td> ${dvo.child} </td>
-	  		<td> ${dvo.baby} </td>
 	  		<td> ${dvo.dr_total} </td>
-	  		<td> ${dvo.dr_extrarq} </td>
 	  		<td> ${dvo.writeday} </td>
 	  		<c:if test="${dvo.dr_state == 0}">
 	  			<c:set var="state" value="예약"/>
@@ -132,7 +225,8 @@
 	  	</tr>
 	  </c:forEach> 
 	</table>
-	<div id="lis">
+<div id="sec2">
+	<div id="pg">
 		<!-- 10페이지 단위로 이전으로 가기 -->
 		<c:if test="${pstart==1}"></c:if> <!-- 페이지 그룹이 1일때 -->
 		<c:if test="${pstart!=1}"><!-- 1그룹이 아니면 -->
@@ -182,7 +276,14 @@
 			<input type="text" name="sword" size="20" value="${sword}">
 			<input type="submit" value="검색">
 		</form> 
+		<div id="dtsearch">
+			<form name="cal" method="post">
+			식사날짜 기간 검색&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div id="aa"><input type="text" name="c1" id="c1"></div> ~
+			<div id="bb"><input type="text" name="c2" id="c2"></div> &nbsp;&nbsp;&nbsp;<input type="button" value="검색" onclick="csearch()">
+			</form>
+		</div> 
 	</div>
+</div>
 </div>
 </section>
 

@@ -85,8 +85,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   		select g.*, p.title from gumae g, product p where g.pcode=p.pcode and userid=#{param1} order by id desc limit 3
   	</select>
 
-  
-
 
   	<select id="getDineChong" resultType="Integer">
 		select ceil(count(*)/#{param1}) from diningresv where userid=#{param2}
@@ -103,12 +101,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	<update id="dineR_state_change">
   		update diningresv set dr_state=#{param2} where dr_id=#{param1}
   	</update>
-	
-	
-	
-	
-	
-	
+
 
   	<select id="getEshopGChong" resultType="Integer">
 		select ceil(count(*)/#{param1}) from gumae where userid=#{param2}
@@ -127,7 +120,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	</update>
 
   	
-  	
   	<select id="getroomChong" resultType="Integer">
 		select ceil(count(*)/#{param1}) from roombk where userid=#{param2}
 	</select>
@@ -137,7 +129,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	</select>
   	
   	<select id="room_resv_search" resultType="kr.co.hotel.roomresv.RoomResvVO">
-  		<![CDATA[select bk.*, r.rname from roombk bk, room r where bk.rcode=r.rcode and #{param2}<= bkdate and bkdate <=#{param3} order by id desc]]>
+  		<![CDATA[select bk.*, r.rname from roombk bk, room r where bk.rcode=r.rcode and userid=#{param1} and #{param2}<= bkdate and bkdate <=#{param3} order by id desc]]>
   	</select>
   	
   	<update id="roomR_state_change">
@@ -164,28 +156,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   		select g.*, p.title from gumae g, product p where g.pcode=p.pcode and userid=#{param1} and g.id=#{param2}
   	</select>
   	
+  	
   	<select id="getRinfo" resultType="kr.co.hotel.roomresv.RoomResvVO">
 		select rb.*, r.rname from roombk rb, room r where rb.rcode=r.rcode and rb.bid=#{param1}
 	</select>
-	
 	<select id="getDinfo" resultType="kr.co.hotel.diningresv.DiningResvVO">
 		select * from diningresv where bid=#{param1}
 	</select>
-	
 	<select id="getWinfo" resultType="kr.co.hotel.wedding.WeddingResvVO">
 		select * from weddingresv where wresv_code=#{param1}
 	</select>
-	
 	<select id="getEinfo" resultType="kr.co.hotel.eshop.GumaeVO">
-		select g.*, substr(p.fimg, 1, instr(p.fimg, ",")-1) as pimg
+		select g.*, substr(p.fimg, 1, instr(p.fimg, ",")-1) as pimg, p.title
 		from gumae g, product p
 		where g.pcode=p.pcode and g.jumuncode=#{param1}
 	</select>
-	<select id ="getPnum" resultType="String">
-		select substr(pcode, 1, 3) from gumae where jumuncode=#{param1} limit 1
-	</select>
 	
-	
-	
+	<delete id="chgRinfo">
+		update roombk set bstate=3 where bid=#{param1}
+	</delete>
+	<delete id="chgDinfo">
+		update diningresv set dr_state=2 where bid=#{param1}
+	</delete>
+	<delete id="chgWinfo">
+		update weddingresv set state=1 where wresv_code=#{param1}
+	</delete>
+	<delete id="chgEinfo">
+		update gumae set state=1 where jumuncode=#{param1}
+	</delete>
 	
 </mapper>

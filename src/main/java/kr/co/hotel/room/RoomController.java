@@ -53,11 +53,35 @@ public class RoomController {
 		return service.roomtest(model,request);
 	}
 	
+	@RequestMapping("/room/room_list")
+	public String room_list(Model model) 
+	{
+		return service.room_list(model);
+	}
 	
+	@RequestMapping("/room/room_update")
+	public String room_update(HttpServletRequest request, Model model)
+	{
+		return service.room_update(request, model);
+	}
 	
+	@RequestMapping("/room/room_update_ok")
+	public String room_update_ok(RoomVO rvo, HttpServletRequest request) throws Exception
+	{
+		return service.room_update_ok(rvo, request);
+	}
 	
+	@RequestMapping("/room/room_disable")
+	public String room_disable(HttpServletRequest request)
+	{
+		return service.room_disable(request);
+	}
 	
-	
+	@RequestMapping("/room/room_delete")
+	public String room_delete(HttpServletRequest request)
+	{
+		return service.room_delete(request);
+	}
 	
 	
 	

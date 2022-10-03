@@ -17,8 +17,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import kr.co.hotel.dining.DiningVO;
-import kr.co.hotel.room.RoomVO;
-import kr.co.hotel.wedding.WeddingResvVO;
+
+
 
 @Service
 @Qualifier("drs")
@@ -89,7 +89,9 @@ public class DiningResvServiceImpl implements DiningResvService{
     		   	drlist.get(i).setDine_type("2");
     	   else if(drlist.get(i).getDine_type().equals("Dinner"))
     		   	drlist.get(i).setDine_type("3");
-          
+    	   else if(drlist.get(i).getDine_type().equals("Bbq"))
+   		   	drlist.get(i).setDine_type("4");
+
     	   dine_type=dine_type+drlist.get(i).getDine_type()+",";
     	   td=td+drlist.get(i).getTd()+",";
     	   cnt=cnt+drlist.get(i).getCnt()+",";
