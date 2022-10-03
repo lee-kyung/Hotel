@@ -146,8 +146,6 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
      color:blue;
      text-decoration:underline;
   }
-  #dine_typediv #dine #btn{
-  }
   #dine_typediv #dine .btn{  /* 이전, 예약하기 버튼 css */
      border:1px solid #b8a898;
      background:#c3b091;

@@ -7,52 +7,78 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?
 appkey=def97946ef83ffb1f9a1cacb75ac32eb"></script>
 <style>
+   body{
+    text-align:center;
+   }
    section{
-    width:1100px;
+    width:800px;
     margin:auto;
    }
-   #map{
+   .map{
    margin: auto !important;
     text-align:center;
     margin:auto;
 	max-width: none;
 	height: auto;
 	border: 0;
+	padding-left:400px;
    }
-  #outer{ /* 상단 표, 이미지 */
+  section .outer{ /* 상단 표, 이미지 */
     border:1px solid black;
-    width:1100px;
-    height:400px;
+    width:800px;
+    height:1000px;
     background:#e5e4e2;
     margin:auto;
   }
-  #outer #left{ /* 상단 이미지 */
-    border:1px solid red;
-    width:300px;
-    height:400px;
-    float:left;
+  .row{
+    padding: 0 35px;
+  }
+  .outer .tab{
+    margin:auto;
+  }
+  .subtitle{
+    font-weight:500px;
+    font-size:35px;
     margin:auto;
     text-align:center;
   }
-  #outer #left .tab ul li a{
-    font-weight:500px;
-    font-size:25px;
+ 
+ .outer .nav{
+    width:300px;
+    font-weight:600px;
+    font-size:45px;
+ }
+ .outer #myTab .nav .nav-tabs .justify-content-around{ /* 상단 이미지 */
+    border:none;
+    width:800px;
+    height:400px;
+    margin:auto;
+    margin-left:400px;
+  }
+/*   .outer #myTab .nav .nav-tabs .justify-content-around a {
+    font-size:35px;
+  } */
+  .outer .tab ul li:hover{
     text-decoration:underline;
   }
-  #outer #right{ /* 상단 가격표 */
+  .location-header{
+    flex: 0 0 500px;
+  }
+  .outer .left{
+    border:1px solid red;
+    width:500px;
+    float:left;
+    margin:auto;
+    padding-left:200px;
+    /* display:flex; */
+  }
+  .outer .right{ /* 상단 가격표 */
     border:1px solid blue;
-    width:370px;
-    height:200px;
+    width:200px;
     float:right;
     margin:auto;
     margin-top:40px;
   }
-/* .customoverlay {position:relative;bottom:50px;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;float:left;}
-.customoverlay:nth-of-type(n) {border:0; box-shadow:0px 1px 2px #888;}
-.customoverlay a {display:block;text-decoration:none;color:#111;text-align:center;border-radius:6px;font-size:14px;font-weight:500;overflow:hidden;background: #d95050;background: #d95050 url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png) no-repeat right 14px center;}
-.customoverlay .title {display:block;text-align:center;background:#fff;margin-right:35px;padding:10px 15px;font-size:14px;font-weight:500;}
-.customoverlay:after {content:'';position:absolute;margin-left:-12px;left:50%;bottom:-12px;width:22px;height:12px;background:url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')} */
-
 
 </style>
 <body>
@@ -75,40 +101,66 @@ appkey=def97946ef83ffb1f9a1cacb75ac32eb"></script>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?
 appkey=def97946ef83ffb1f9a1cacb75ac32eb"></script>
-
-<div id="outer">
-  <div id="left">
+       <div class="subtitle" style="text-align:center;font-size:40px;"> Location </div>
+  <div class="outer">
+     
 			<div class="tab">
-				<ul class="left" role="tablist" id="myTab">
-					<li role="presentation" class="active"><a href="#place1" aria-controls="place1" role="tab" data-toggle="tab">아난티 코브</a></li><br>
-					<li role="presentation"><a href="#place2" aria-controls="place2" role="tab" data-toggle="tab">아난티 코드</a></li><br>
-					<li role="presentation"><a href="#place3" aria-controls="place3" role="tab" data-toggle="tab">아난티 남해</a></li><br>
+				<ul class="nav nav-tabs justify-content-around" role="tablist" id="myTab">
+					<li role="presentation" class="active"><a href="#place1" aria-controls="place1" role="tab" data-toggle="tab">Busan&nbsp;&nbsp;</a></li>
+					<li role="presentation"><a href="#place2" aria-controls="place2" role="tab" data-toggle="tab">Gapyung&nbsp;&nbsp;</a></li>
+					<li role="presentation"><a href="#place3" aria-controls="place3" role="tab" data-toggle="tab">Namhae&nbsp;&nbsp;</a></li>
 				</ul>
-		    
-  </div> <!-- left end -->
- 
-  <div id="right">
-
-				<div class="tab-content">
+	  <div class="row">
+              <div class="left">
+               <header class="location-header">
+				<div class="tab-content justify-content-center">
 					<div role="tabpanel" class="tab-pane active" id="place1">
 						<div role="tabpanel" class="tab-pane active" id="place1">
-						<div class="map" id="map1" style="width:800px;height:800px;margin:auto;"></div>
+						<div class="map" id="map1" style="width:500px;height:500px;margin:auto;"></div>
 						</div>
 					</div>
 					<div role="tabpanel" class="tab-pane" id="place2">
 						<div role="tabpanel" class="tab-pane" id="place2">
-						<div class="map" id="map2" style="width:800px;height:800px;margin:auto;"></div>
+						<div class="map" id="map2" style="width:500px;height:500px;margin:auto;"></div>
 						</div>
 					</div>
 					<div role="tabpanel" class="tab-pane" id="place3">
 						<div role="tabpanel" class="tab-pane" id="place3">
-						<div class="map" id="map3" style="width:800px;height:800px;margin:auto;"></div>
+						<div class="map" id="map3" style="width:500px;height:500px;margin:auto;"></div>
 						</div>
 					</div>
 				</div> <!-- tab-content end -->
-		      </div>
-   </div> <!-- right end -->
-</div> <!-- outer end -->
+			  </header>
+		     </div> <!-- left end -->
+		     <div class="right">
+                        <li id="title"><a href="">Busan<i class="ti-angle-down"></i></a>
+                             <ul class="submenu">
+                                <li><a href="../dining/dining">DINING</a></li>
+                                <li><a href="../dining/dining_reserve">BOOKING</a></li>
+                             </ul>
+                      	</li>	
+                      	<li id="title"><a href="">dining<i class="ti-angle-down"></i></a>
+                             <ul class="submenu">
+                                <li><a href="../dining/dining">DINING</a></li>
+                                <li><a href="../dining/dining_reserve">BOOKING</a></li>
+                             </ul>
+                      	</li>
+                      	<li id="title"><a href="">dining<i class="ti-angle-down"></i></a>
+                             <ul class="submenu">
+                                <li><a href="../dining/dining">DINING</a></li>
+                                <li><a href="../dining/dining_reserve">BOOKING</a></li>
+                             </ul>
+                      	</li>	        
+		        <div id="area">Busan <i class="ti-angle-down"></i></div>
+		          <div id="name">아난티 코브 </div>
+		        <div id="area">Busan <i class="ti-angle-down"></i></div>
+		          <div id="name">아난티 코브</div>
+		        <div id="area">Busan <i class="ti-angle-down"></i></div>
+		          <div id="name">아난티 코브</div>
+		     </div>
+	</div> <!-- row end -->
+		     </div> <!-- tab end -->
+  </div> <!-- outer end -->
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script>
 
