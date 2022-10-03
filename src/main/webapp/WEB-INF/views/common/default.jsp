@@ -97,8 +97,8 @@
                                         <li><a href="../room/rooms">rooms</a></li> <!-- class="active" -->
                                         <li id="title"><a href="">dining<i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
-                                                <li><a href="../dining/dining">레스토랑 소개</a></li>
-                                                <li><a href="../dining/dining_reserve">레스토랑 예약</a></li>
+                                                <li><a href="../dining/dining">DINING</a></li>
+                                                <li><a href="../dining/dining_reserve">BOOKING</a></li>
                                             </ul>
                                         </li>
                                         <li><a href="../wedding/wedding">wedding<i class="ti-angle-down"></i></a>
@@ -152,15 +152,15 @@
                                         </li> -->
                                          <li>
 		                                <c:if test="${userid == null}">
-                                            <a href="../eshop/cart?p=p01"> <i class="fa fa-cart-arrow-down"></i> </a>
-											<a style="color:white;font-weight:600"href="../login/login?ck=4">로그인</a>
+											<a style="color:white;font-weight:600" href="../login/login?ck=4">로그인</a>
 											<a style="color:white;font-weight:900" href="../member/member_input">회원가입</a>
 											<a style="color:white;font-weight:900" href="../mypage/rdwg_check?err=0">비회원조회</i> </a>
+											<a style="color:white;" href="../eshop/cart?p=p01"> <i class="fa fa-cart-arrow-down"></i> </a>
 										</c:if>
 										<c:if test="${(userid != null) && (userid != 'admin')}">
 											<a style="color:white;font-weight:900" href="../mypage/mypage"> ${name}님
-											<a href="../eshop/cart?p=p01"> <i class="fa fa-cart-arrow-down"></i> </a>
-                                            <a href="../eshop/wish"> <i class="fa fa-heart-o"></i> </a>
+											<a style="color:white;" href="../eshop/cart?p=p01"> <i class="fa fa-cart-arrow-down"></i> </a>
+                                            <a style="color:white;" href="../eshop/wish"> <i class="fa fa-heart-o"></i> </a>
 											<a style="color:white;font-weight:900" href="../login/logout">로그아웃</a>
 										</c:if>
 										<c:if test="${userid == 'admin'}">

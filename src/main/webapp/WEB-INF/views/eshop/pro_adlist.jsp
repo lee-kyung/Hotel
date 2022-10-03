@@ -63,28 +63,14 @@
 	function page_sel(psel){
 		location="pro_adlist?psel="+psel+"&page=${page}&ssel=${ssel}&sword=${sword}&osel=${osel}";
 	}
-	
-	/* 사용자가 선택한 페이지목록수를 브라우저에 나타내기 */
-	/*window.onload=function(){
-		document.getElementById("psel").value="${psel}";
-		
-		<c:if test="${ssel != 'id'}">	//※[ServiceImpl.java]에서 [ssel="id";]처리한 건 제외시키기 
-			document.getElementById("ssel").value="${ssel}";
-		</c:if>
-	}*/
-	
+
 	function search_sel(smsg){
-		//if(smsg.ssel.selectedIndex != 0 && smsg.sword.value.trim().length != 0)
-		/*if(smsg.ssel.value == "su" && smsg.ssel.value == "sold") {
-			alert("검색 말머리를 선택하세요");
-			return false;
-			}
-			else*/ if(smsg.sword.value.trim() == "") {
-				alert("검색할 단어 및 숫자를 입력하세요");
-				return false;
-				}
-				else
-					return true;
+	if(smsg.sword.value.trim() == "") {
+		alert("검색할 단어 및 숫자를 입력하세요");
+		return false;
+		}
+		else
+			return true;
 	}
 </script>
 </head>
@@ -92,7 +78,7 @@
 <body>
 
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
-    <div class="bradcam_area basic">
+    <div class="bradcam_area black">
         <div id="h3" onclick="location='../admin/admin'" style="cursor:pointer;"> ADMIN </div>
     </div>
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
@@ -104,6 +90,12 @@
     	<div id="selbox">
     	<div class="default-select" id="default-select" style="float:left;">
 			<select onchange="page_sel(this.value)" id="psel">
+				<c:if test="${psel == 5}">
+					<option value="5" selected> 5개씩 </option>
+				</c:if>
+				<c:if test="${psel != 5}">
+					<option value="5"> 5개씩 </option>
+				</c:if>
 				<c:if test="${psel == 10}">
 					<option value="10" selected> 10개씩 </option>
 				</c:if>
@@ -121,18 +113,6 @@
 				</c:if>
 				<c:if test="${psel != 30}">
 					<option value="30"> 30개씩 </option>
-				</c:if>
-				<c:if test="${psel == 40}">
-					<option value="40" selected> 40개씩 </option>
-				</c:if>
-				<c:if test="${psel != 40}">
-					<option value="40"> 40개씩 </option>
-				</c:if>
-				<c:if test="${psel == 50}">
-					<option value="50" selected> 50개씩 </option>
-				</c:if>
-				<c:if test="${psel != 50}">
-					<option value="50"> 50개씩 </option>
 				</c:if>
 			</select>
 		</div>
@@ -199,12 +179,18 @@
     		<c:forEach var="pvo" items="${plist}">
     			<tr>
     				<td id="img_box">
+    				<c:if test="${pvo.img != ''}">
 	    				<img src="../img/eshop/${pvo.img}" height="50" width="50">
 		   				<c:if test="${pvo.cnt != 1}">
 		   					<span id="img_txt"> +${pvo.cnt-1} </span>
 		   				</c:if>
+		   			</c:if>
 	   				</td>
-	   				<td width="70"> <img src="../img/eshop/${pvo.simg}" height="50" width="50"> </td>
+	   				<td width="70">
+	   				<c:if test="${pvo.simg != ''}">
+	   					<img src="../img/eshop/${pvo.simg}" height="50" width="50">
+	   				</c:if>
+	   				</td>
 	   				<td width="310" style="text-align:left;padding-left:10px;"> <a href="pro_adcontent?id=${pvo.id}&page=${page}&psel=${psel}&ssel=${ssel}&sword=${sword}&osel=${osel}">${pvo.title}</a> </td>
 	   				<td> ${pvo.su}개 </td>
 	   				<td> ${pvo.sold}개 </td>
@@ -216,10 +202,10 @@
    		<!-- 페이지 이동 -->
 		<nav class="blog-pagination justify-content-center d-flex" style="margin-top:30px;">
 		<ul class="pagination">
-			<!-- 5페이지 이전 이동 -->
+			<!-- 그룹 이전 이동 -->
 			<c:if test="${pstart == 1}">
 				<li class="page-item">
-					<span class="page-link" aria-label="Previous" style="cursor:default;">
+					<span class="page-link" aria-label="Previous" style="cursor:default;background:white;color:lightgray;">
 						<i class="ti-angle-left"></i>
 					</span>
 				</li>
@@ -246,19 +232,19 @@
 			</c:if>
 			</c:forEach>
 			
-			<!-- 5페이지 다음 이동 -->
-			<c:if test="${pend == ptotal}">
-				<li class="page-item">
-					<span class="page-link" aria-label="Next">
-					    <i class="ti-angle-right"></i>
-					</span>
-				</li>
-			</c:if>
+			<!-- 그룹 다음 이동 -->
 			<c:if test="${pend != ptotal}">
 				<li class="page-item">
 					<a href="pro_adlist?page=${pend+1}&psel=${psel}&ssel=${ssel}&sword=${sword}&osel=${osel}" class="page-link" aria-label="Next">
 				    	<i class="ti-angle-right"></i>
 				    </a>
+				</li>
+			</c:if>
+			<c:if test="${pend == ptotal}">
+				<li class="page-item">
+					<span class="page-link" aria-label="Next" style="cursor:default;background:white;color:lightgray;">
+					    <i class="ti-angle-right"></i>
+					</span>
 				</li>
 			</c:if>
 		</ul>

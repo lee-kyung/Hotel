@@ -7,7 +7,7 @@
 	<c:if test="${size <= 1}">
 		<c:set var="height" value="900"/>
 	</c:if>
-	<c:if test="${size > 2}">
+	<c:if test="${size > 1}">
 		<c:set var="height" value="${ ((size-1) * 500) + 900 }"/>
 	</c:if>
 <style>
@@ -105,22 +105,14 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script> 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script>
-	/* 정렬순 선택하기 */
 	function order_sel(osel){
 		location="pro_list?pcode=${pcode}&psel=${psel}&osel="+osel;
 	}
-	
-	/* 브라우저에 변경된 페이지목록수 및 정렬순 나타내기 */
-	/*window.onload=function(){
-		document.getElementById("osel").value="${osel}";
-	}*/
-	
-	/* pro_content로 이동하기 */
+
 	function content_view(pcode){
 		location="pro_content?pcode="+pcode;
 	}
 	
-	/* [하위분류]를 클릭하면 버튼색상을 변화시키기 */
 	window.onload=function(){
 		if(${(pcode == 'p0101') || (pcode == 'p0201')}) {
 			document.getElementById("cate2").style.background="#887159";
@@ -132,12 +124,10 @@
 		}
 	}
 	
-	/* 위시리스트에 추가하고 삭제하기 */
 	function wish_add(pcode, num){
 		let chk=new XMLHttpRequest();
 		chk.onload=function(){
 			if(chk.responseText == "0") {
-				//alert("위시리스트에 추가됐습니다.");
 				document.getElementsByClassName("wishimg")[num].src="../img/eshop/wish_on.png";
 				document.getElementsByClassName("wishimg")[num].setAttribute("onclick", "wish_del('"+pcode+"','"+num+"')");
 			}
@@ -150,7 +140,6 @@
 		chk.onload=function(){
 			let arr=chk.responseText;
 			if(arr[0]  == "0") {
-				//alert("위시리스트에서 삭제됐습니다.");
 				document.getElementsByClassName("wishimg")[num].src="../img/eshop/wish_off.png";
 				document.getElementsByClassName("wishimg")[num].setAttribute("onclick", "wish_add('"+pcode+"','"+num+"')");
 			}
@@ -159,13 +148,11 @@
 		chk.send();
 	}
 	
-	/* 장바구니에 추가하고 삭제하기 */
 	function cart_add(pcode, num){
 		let chk=new XMLHttpRequest();
 		chk.onload=function(){
 			let arr=chk.responseText;
 			if(arr[0] == "0") {
-				//alert("장바구니에 추가됐습니다.");
 				document.getElementsByClassName("cartimg")[num].src="../img/eshop/cart_on.png";
 				document.getElementsByClassName("cartimg")[num].setAttribute("onclick", "cart_del('"+pcode+"','"+num+"')");
 			}
@@ -177,7 +164,6 @@
 		let chk=new XMLHttpRequest();
 		chk.onload=function(){
 			if(chk.responseText == "0") {
-				//alert("장바구니에서 삭제됐습니다.");
 				document.getElementsByClassName("cartimg")[num].src="../img/eshop/cart_off.png";
 				document.getElementsByClassName("cartimg")[num].setAttribute("onclick", "cart_add('"+pcode+"','"+num+"')");
 			}
