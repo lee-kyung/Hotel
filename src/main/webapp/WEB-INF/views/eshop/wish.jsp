@@ -134,7 +134,6 @@
 	}
 </style>
 <script>
-	/* 위시리스트의 초기상태 : 전부체크 */
 	window.onload=function(){
 		document.getElementById("mainck").checked=true;
 		let len=document.getElementsByClassName("subck").length;
@@ -143,7 +142,6 @@
 		}
 	}
 
-	/* 전체 선택 & 해제하기 */
 	function allcheck(ck){
 		let len=document.getElementsByClassName("subck").length;
 		if(ck){	
@@ -158,7 +156,6 @@
 		}
 	}
 	
-	/* 개별로 선택 & 해제하기 */
 	function subcheck(){
 		let chk=0;
 		let len=document.getElementsByClassName("subck").length;
@@ -172,7 +169,6 @@
 			document.getElementById("mainck").checked=false;
 	}
 	
-	/* 선택상품 위시리스트 삭제하기 */
 	function wish_del(){
 		let del="";
 		let len=document.getElementsByClassName("subck").length;
@@ -183,12 +179,10 @@
 		location="wishcart_del?delid="+del+"&dchk=1";
 	}
 	
-	/* 선택상품 or 전체상품 장바구니로 보내기 */
 	function move_cart(n){	// n=1이면 선택이동, n=2면 전체이동
 		let pcode="";
 		let len=document.getElementsByClassName("subck").length;	
 		
-		/* 상품을 전체 체크시키기 */
 		if(n == 2) {
 			document.getElementById("mainck").checked=true;
 			for(i=0;i<len;i++) {
@@ -196,7 +190,6 @@
 			}
 		}
 		
-		/* pcode를 배열을 위해 하나의 문자열로 만들기 */
 		for(i=0;i<len;i++) {
 			if(document.getElementsByClassName("subck")[i].checked)
 				pcode=document.getElementsByClassName("pcode")[i].value+","+pcode;
@@ -204,7 +197,6 @@
 		location="move_cart?pcode="+pcode;
 	}
 	
-	/* 정렬순을 클릭하며 색상 변하기 */
 	window.onload=function(){
 		if(${osel == 'id asc'}) {
 			document.getElementsByClassName("obtn")[0].style.background="#887159";
@@ -229,7 +221,7 @@
 <body>
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
 	    <div class="bradcam_area eshop1">
-	        <div id="h3"> W I S H L I S T </div>
+	        <div id="h3" onclick="location='wish'" style="cursor:pointer;"> W I S H L I S T </div>
 	    </div>
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
 

@@ -23,6 +23,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values(#{pcode}, #{title}, #{fimg}, #{simg}, #{price}, #{halin}, #{juk}, #{su}, #{baefee})
 	</insert>
 	
+	<select id="eshop1" resultType="kr.co.hotel.eshop.ProductVO">
+		select *,
+		substr(fimg, 1, instr(fimg, ",")-1) as img
+		from product where pcode like concat(#{param1}, '%')
+		order by sold desc limit 6
+	</select>
+	
+	<select id="eshop2" resultType="kr.co.hotel.eshop.ProductVO">
+		select *,
+		substr(fimg, 1, instr(fimg, ",")-1) as img
+		from product where pcode like concat(#{param1}, '%')
+		order by sold desc limit 6
+	</select>
+	
 	<select id="pro_list" resultType="kr.co.hotel.eshop.ProductVO">
 		select *,
 		substr(fimg, 1, instr(fimg, ",")-1) as img,
@@ -153,4 +167,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from product where id=#{param1}
 	</delete>
 	
+	<update id="pro_adupdate_ok" parameterType="kr.co.hotel.eshop.ProductVO">
+		update product set title=#{title}, fimg=#{fimg}, simg=#{simg},
+		price=#{price}, halin=#{halin}, juk=#{juk}, su=#{su}, baefee=#{baefee}
+		where id=#{id}
+	</update>
 </mapper>
