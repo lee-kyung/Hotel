@@ -102,6 +102,14 @@
 	#aa input[type=text],#bb input[type=text]{
 		height: 15px;
 	}
+	#csbtn{
+		border-radius: 4px;
+	}
+	#csbtn:hover{
+		color: white;
+		background: #887159;
+		height: 24px;
+	}
 </style>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
@@ -163,7 +171,7 @@
     <!-- 새 이미지 추가하는 법
     	①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기
     	②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
-    <div class="bradcam_area basic">	<!-- class="bradcam_area 클래스명" -->
+    <div class="bradcam_area gongji">	<!-- class="bradcam_area 클래스명" -->
         <div id="h3"> <a href="../admin/admin">ADMIN</a></div>
     </div>
     
@@ -230,13 +238,13 @@
 		<!-- 10페이지 단위로 이전으로 가기 -->
 		<c:if test="${pstart==1}"></c:if> <!-- 페이지 그룹이 1일때 -->
 		<c:if test="${pstart!=1}"><!-- 1그룹이 아니면 -->
-			<a href="dinelist?page=${pstart-1}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=${oby}">◀</a>
+			<a href="dinelist?page=${pstart-1}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=${oby}&c1=${c1}&c2=${c2}">◀</a>
 		</c:if>
 		
 		<!-- 1페이지 단위로 이전으로 가기 -->
 		<c:if test="${page==1}"></c:if> <!-- 1페이지면 -->
 		<c:if test="${page!=1}"><!-- 1페이지가 아니면 -->
-			<a href="dinelist?page=${page-1}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=${oby}">◁</a>
+			<a href="dinelist?page=${page-1}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=${oby}&c1=${c1}&c2=${c2}">◁</a>
 		</c:if>
 		
 		<!-- 페이지 출력 -->
@@ -248,19 +256,19 @@
 			<c:if test="${page!=i}">
 				<c:set var="st" value=""/>
 			</c:if>
-			<b><a href="dinelist?page=${i}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=${oby}"${st}>${i}</a></b><!-- 누른페이지로 이동걸기 -->
+			<b><a href="dinelist?page=${i}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=${oby}&c1=${c1}&c2=${c2}"${st}>${i}</a></b><!-- 누른페이지로 이동걸기 -->
 		</c:forEach>
 		
 		<!-- 1페이지 단위로 다음으로 가기 -->
 		<c:if test="${page==chong}"></c:if>
 		<c:if test="${page!=chong}">
-			<a href="dinelist?page=${page+1}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=${oby}">▷</a>
+			<a href="dinelist?page=${page+1}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=${oby}&c1=${c1}&c2=${c2}">▷</a>
 		</c:if>
 		
 		<!-- 10페이지 단위로 다음으로 가기 -->
 		<c:if test="${pend==chong}"></c:if>
 		<c:if test="${pend!=chong}">
-			<a href="dinelist?page=${pend+1}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=${oby}">▶</a>
+			<a href="dinelist?page=${pend+1}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=${oby}&c1=${c1}&c2=${c2}">▶</a>
 		</c:if>
 		
 	</div>
@@ -278,8 +286,8 @@
 		</form> 
 		<div id="dtsearch">
 			<form name="cal" method="post">
-			식사날짜 기간 검색&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div id="aa"><input type="text" name="c1" id="c1"></div> ~
-			<div id="bb"><input type="text" name="c2" id="c2"></div> &nbsp;&nbsp;&nbsp;<input type="button" value="검색" onclick="csearch()">
+			<div id="aa"><input type="text" name="c1" id="c1" placeholder="식사날짜"></div> ~
+			<div id="bb"><input type="text" name="c2" id="c2" placeholder="기간검색"></div> &nbsp;&nbsp;&nbsp;<input id="csbtn" type="button" value="검색" onclick="csearch()">
 			</form>
 		</div> 
 	</div>
