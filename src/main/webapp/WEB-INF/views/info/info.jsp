@@ -6,18 +6,6 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?
 appkey=def97946ef83ffb1f9a1cacb75ac32eb"></script>
 
-<!-- CSS here -->
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/owl.carousel.min.css">
-    <link rel="stylesheet" href="../css/magnific-popup.css">
-    <link rel="stylesheet" href="../css/font-awesome.min.css">
-    <link rel="stylesheet" href="../css/themify-icons.css">
-    <link rel="stylesheet" href="../css/nice-select.css">
-    <link rel="stylesheet" href="../css/flaticon.css">
-    <link rel="stylesheet" href="../css/gijgo.css">
-    <link rel="stylesheet" href="../css/animate.css">
-    <link rel="stylesheet" href="../css/slicknav.css">
-    <link rel="stylesheet" href="../css/style.css">
 <style>
    body{
     text-align:center;
@@ -96,7 +84,9 @@ appkey=def97946ef83ffb1f9a1cacb75ac32eb"></script>
    /*  display: inline-block; */
     
   }
-
+   #myTab{
+    font-size:40px;
+   }
   /* 지점 접고 펼치기 */
   .detail {
     display: none;
@@ -107,6 +97,7 @@ appkey=def97946ef83ffb1f9a1cacb75ac32eb"></script>
     margin-left:50px;
   }
   .faq-content {
+    border-top: 1px solid #e0e0e0;
     border-bottom: 1px solid #e0e0e0;
     margin-left:50px;
   }
@@ -124,10 +115,18 @@ appkey=def97946ef83ffb1f9a1cacb75ac32eb"></script>
   .area:hover {
     color: #2962ff;
   }
+  .faq-content .area a{
+    width:20px;
+    background:gold;
+  }
+  .sebu{
+    font-size:13px;
+  }
   [id$="-toggle"] {
     margin-right: 15px;
   }
 </style>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <body>
 
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
@@ -146,15 +145,16 @@ appkey=def97946ef83ffb1f9a1cacb75ac32eb"></script>
     <!-- 부타이틀(자유롭게 변경)_area_start -->
 <section>   
 
+
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?
 appkey=def97946ef83ffb1f9a1cacb75ac32eb"></script>
        <div class="subtitle" style="text-align:center;font-size:40px;"> Location </div>
-  <div class="outer" >
+  <div class="outer">
 	  <div class="tab">
 				<ul class="nav nav-tabs justify-content-center" role="tablist" id="myTab">
-					<li role="presentation" class="active"><a href="#place1" aria-controls="place1" role="tab" data-toggle="tab">Busan&amp;</a></li>
-					<li role="presentation"><a href="#place2" aria-controls="place2" role="tab" data-toggle="tab">Gapyung&nbsp;&nbsp;</a></li>
-					<li role="presentation"><a href="#place3" aria-controls="place3" role="tab" data-toggle="tab">Namhae&nbsp;&nbsp;</a></li>
+					<li role="presentation" class="active"><a href="#place1" aria-controls="place1" role="tab" data-toggle="tab">&nbsp;&nbsp;Busan&nbsp;&nbsp;</a></li>
+					<li role="presentation"><a href="#place2" aria-controls="place2" role="tab" data-toggle="tab">&nbsp;&nbsp;Gapyung&nbsp;&nbsp;</a></li>
+					<li role="presentation"><a href="#place3" aria-controls="place3" role="tab" data-toggle="tab">&nbsp;&nbsp;Namhae&nbsp;&nbsp;</a></li>
 				</ul>
 	  <div class="row">
       <div class="left col-md-6" style="margin:auto; align:center;">
@@ -178,8 +178,8 @@ appkey=def97946ef83ffb1f9a1cacb75ac32eb"></script>
 				</div> <!-- tab-content end -->
 			  </header>
 		     </div> <!-- left end -->
-	  <div class="right col-md-6">
-			<span id="faq-title" style="text-align:left;"><h3>Ananti</h3></span>
+	  <div class="right col-md-6" id="list">
+			<span id="faq-title" style="text-align:left;"><h2>Ananti</h2></span>
 			<div class="faq-content" style="text-align:left;">
 			  <button class="area" id="are-1"><span id="are-1-toggle">▼</span><span>아난티 코브</span></button>
 				  <div class="sebu" id="seb-1">In Busan
@@ -211,9 +211,14 @@ appkey=def97946ef83ffb1f9a1cacb75ac32eb"></script>
                       &nbsp;<a href="https://map.kakao.com/?q=%EC%95%84%EB%82%9C%ED%8B%B0%EB%82%A8%ED%95%B4">
 					         <input type="button" class="btn" value="길찾기"></a>
 				      <br><br>
-				  </div>
-			</div>
- 
+				       </div>
+			      </div>
+		   </div>
+		  </div>
+	</div> <!-- row end -->
+		     </div> <!-- tab end -->
+  </div> <!-- outer end --> 
+</section> 
 <script src="http://code.jquery.com/jquery-latest.js"></script>	
    <script>
    const items = document.querySelectorAll('.area');
@@ -254,10 +259,7 @@ appkey=def97946ef83ffb1f9a1cacb75ac32eb"></script>
                              </ul>
                       	</li> -->
 
-		     </div>
-	</div> <!-- row end -->
-		     </div> <!-- tab end -->
-  </div> <!-- outer end -->
+
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script>
 
@@ -316,7 +318,7 @@ marker3.setMap(map3);
 		}, 0);  
 	}); 
 
- $('#myTab a').click(function (e) {
+ $('#list button').click(function (e) {
 	  e.preventDefault()
 	  $(this).tab('show');
 	  setTimeout(function(){
@@ -421,7 +423,7 @@ marker3.setMap(map3);
 </script> 
 
 
-</section>  
+ 
     <!-- 부타이틀(자유롭게 변경)_area_end -->
     <!-- ================ 타이틀(자유롭게 변경) Area End ================= -->
 
