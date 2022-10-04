@@ -3,7 +3,7 @@ package kr.co.hotel.diningresv;
 public class DiningResvVO {
 	
 	private int dr_id, dr_state;
-	private String dr_time, dine_type, dr_extrarq, dr_date, email, dr_total;
+	private String dr_time, dine_type, dr_extrarq, dr_date, dr_total;
 
 	// userid
 	private String userid;
@@ -104,15 +104,6 @@ public class DiningResvVO {
 	}
 	public String getDr_time() {
 		return dr_time;
-	}
-	public void setDr_time(String dr_time) {
-		this.dr_time = dr_time;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
 	}
 	public String getP1() {
 		return p1;
