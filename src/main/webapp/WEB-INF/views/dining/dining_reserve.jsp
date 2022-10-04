@@ -303,21 +303,9 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
   } 
 
     // 예약 타입 선택시 시간 선택 테이블 보이게 하기
-
-/*     function () {
-
-    /*window.onload = function () {
-
-        var el = document.getElementById("dr_time");
-        el.onclick = show;
-
-    } */
-
-
     function show(y, m, d, t){
     	var table=document.getElementById("dine");
    	    table.style.visibility="visible"; 
-   	    //alert("몽!");
     } 
     
 </script>
@@ -339,27 +327,26 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
 
 <div id="section">
  <div id="outer">
-   	<div id="left">
-    	 <img src="../img/about/m2.jpg" width="600" height="400">
-  	 </div> <!-- left end -->
-  	 <div id="right">
-    
-	    <table id="pri" width="350" height="200" border="1">
-	     <c:forEach items="${dlist}" var="dvo">
-	     <tr id="pri_info">
-	        <th id="type_info">${dvo.dine_type}</th>
-	        <td>
-	           성인 <fmt:formatNumber value="${dvo.dine_adult}" pattern="#,###"/>원<br>
-	           어린이 <fmt:formatNumber value="${dvo.dine_child}" pattern="#,###"/>원
-	        </td>
-	
-	    </tr>
-	    </c:forEach>
-	    </table>
-  	 </div> <!-- right end -->
- 	 </div> <!-- outer end -->
- <%--   <div> <fmt:formatNumber value="${drvo.dr_total}" pattern="#,###"/>원 </div> --%>
-    <table width="1100">
+	   	<div id="left">
+	    	 <img src="../img/about/m2.jpg" width="600" height="400">
+	  	</div> <!-- left end -->
+	  	<div id="right">
+	    
+		    <table id="pri" width="350" height="200" border="1">
+		     <c:forEach items="${dlist}" var="dvo">
+		     <tr id="pri_info">
+		        <th id="type_info">${dvo.dine_type}</th>
+		        <td>
+		           성인 <fmt:formatNumber value="${dvo.dine_adult}" pattern="#,###"/>원<br>
+		           어린이 <fmt:formatNumber value="${dvo.dine_child}" pattern="#,###"/>원
+		        </td>
+		
+		    </tr>
+		    </c:forEach>
+		    </table>
+	  	</div> <!-- right end -->
+ </div> <!-- outer end -->
+    <table width="1100" id="topinfo">
      <tr>
         <td id="info">
 ▷ 4월1일부로 디너 이용 시 만12세 이하의 어린이 입장이 제한됩니다.<br>
