@@ -53,6 +53,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		order by ${param2}
 	</select>
 	
+	<select id="getSum" resultType="Integer">
+		select count(*) from product where pcode like concat (#{param1}, '%')
+	</select>
+	
 	<select id="pro_content" resultType="kr.co.hotel.eshop.ProductVO">
 		select *,
 		substr(pcode, 1, 5) as subpcode,
@@ -102,6 +106,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="wishcart_del">
 		delete from ${param1} where id=#{param2}
 	</delete>
+	
+	<select id="getCsum1" resultType="Integer">
+		select count(*) from cart where pcode like concat('p01', '%') and userid=#{param1}
+	</select>
+	
+	<select id="getCsum2" resultType="Integer">
+		select count(*) from cart where pcode like concat('p02', '%') and userid=#{param1}
+	</select>
 	
 	<select id="pro_gumae" resultType="kr.co.hotel.eshop.ProductVO">
 		select *,

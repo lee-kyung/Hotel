@@ -11,7 +11,7 @@ public class ProductVO {
 	private String subpcode;	// pcode의 앞5자리(p0101, p0102, p0201, p0202)만 가져오기
 	private int wishchk;	// pro_list의 위시리스트 체크
 	private int cartchk;	// pro_list의 장바구니 체크
-	
+
 	public int getSold() {
 		return sold;
 	}

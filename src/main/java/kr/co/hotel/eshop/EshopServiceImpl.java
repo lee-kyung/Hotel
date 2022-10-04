@@ -121,6 +121,7 @@ public class EshopServiceImpl implements EshopService {
 		
 		model.addAttribute("pcode", pcode);	// 배너사진과 문구를 구별하기 위한 pcode(pdae 또는 pdaeso)값
 		model.addAttribute("osel", osel);
+		model.addAttribute("sum", mapper.getSum(pcode));
 		return "/eshop/pro_list";
 	}
 	
@@ -232,17 +233,23 @@ public class EshopServiceImpl implements EshopService {
 	public String cart(HttpSession session, Model model, HttpServletRequest request, HttpServletResponse response) {
 		ArrayList<CartVO> clist=new ArrayList<CartVO>();
 		String p=request.getParameter("p");	// 메인분류값
+		int sum1=0;
+		int sum2=0;
 		
 		if(session.getAttribute("userid") == null) {
 			Cookie cookie = WebUtils.getCookie(request, "cookieid");
 			if(cookie != null) {
 				String cookievalue=cookie.getValue();
 				clist=mapper.cart(cookievalue, p);
+				sum1=mapper.getCsum1(cookievalue);
+				sum2=mapper.getCsum2(cookievalue);
 			}
 		}
 		else {
 			String userid=session.getAttribute("userid").toString();
 			clist=mapper.cart(userid, p);
+			sum1=mapper.getCsum1(userid);
+			sum2=mapper.getCsum2(userid);
 		}
 		
 		String arrprice="";
@@ -262,7 +269,9 @@ public class EshopServiceImpl implements EshopService {
 		model.addAttribute("arrprice", arrprice);
 		model.addAttribute("arrhalin", arrhalin);
 		model.addAttribute("arrsu", arrsu);
-		model.addAttribute("arrbaefee", arrbaefee);		
+		model.addAttribute("arrbaefee", arrbaefee);
+		model.addAttribute("sum1", sum1);
+		model.addAttribute("sum2", sum2);
 		return "/eshop/cart";
 	}
 

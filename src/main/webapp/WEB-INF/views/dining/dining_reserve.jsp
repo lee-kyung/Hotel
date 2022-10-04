@@ -71,6 +71,8 @@
   }
   #section table #info{
     font-size:14px;
+    margin:auto;
+    margin-top:18px;
   }
   #section table #calendar{
     border-top:2px solid #887159;
@@ -140,7 +142,7 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
      height:87px;
      vertical-align: middle;
   }
-  #section #dinetype :hover{ /* 다이닝 타입 마우스오버 css */
+  #section #dinetype:hover{ /* 다이닝 타입 마우스오버 css */
      color:blue;
      text-decoration:underline;
   }

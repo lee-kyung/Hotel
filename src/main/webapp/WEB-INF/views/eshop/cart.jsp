@@ -98,6 +98,7 @@
 		border : 1px solid #887159;
 		color : #887159;
 		cursor : pointer;
+		letter-spacing : 2px;
 	}
 	#cart #cate3 {
 		display : inline-block;
@@ -107,6 +108,10 @@
 		border : 1px solid #887159;
 		color : #887159;
 		cursor : pointer;
+		letter-spacing : 2px;
+	}
+	#cart #sum {
+		font-family : TimesNewRoman;
 	}
 	#cart table th {
 		text-align : center;
@@ -419,12 +424,12 @@
     	</c:if>
   		<c:if test="${p == 'p01'}">
     		<div id="cate1">
-				<span id="cate2" onclick="location='cart?p=p01'"> 배 송 상 품 </span><span id="cate3" onclick="location='cart?p=p02'"> 모 바 일 상 품 </span>
+				<span id="cate2" onclick="location='cart?p=p01'"> 배 송 상 품 <span id="sum">[${sum1}]</span> </span><span id="cate3" onclick="location='cart?p=p02'"> 모 바 일 상 품 <span id="sum">[${sum2}]</span> </span>
 			</div>
 		</c:if>
 		<c:if test="${p == 'p02'}">
 			<div id="cate1">
-				<span id="cate2" onclick="location='cart?p=p01'"> 배 송 상 품 </span><span id="cate3" onclick="location='cart?p=p02'"> 모 바 일 상 품 </span>
+				<span id="cate2" onclick="location='cart?p=p01'"> 배 송 상 품 <span id="sum">[${sum1}]</span> </span><span id="cate3" onclick="location='cart?p=p02'"> 모 바 일 상 품 <span id="sum">[${sum2}]</span> </span>
 			</div>
 		</c:if>
 		<table width="1000" align="center" cellpadding="0">
