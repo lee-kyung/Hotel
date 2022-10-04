@@ -105,6 +105,9 @@ public class DiningResvVO {
 	public String getDr_time() {
 		return dr_time;
 	}
+	public void setDr_time(String dr_time) {
+		this.dr_time = dr_time;
+	}
 	public String getP1() {
 		return p1;
 	}
