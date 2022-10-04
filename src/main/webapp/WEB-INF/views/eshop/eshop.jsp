@@ -38,7 +38,7 @@
 	}
 	#eshop #eshop_img2 {
 		width : 100%;
-		height : 100%;
+		height : 50%;
 		margin : 100px auto 100px auto;
 	}
 </style>
