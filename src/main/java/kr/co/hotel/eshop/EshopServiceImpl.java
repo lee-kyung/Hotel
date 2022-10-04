@@ -82,7 +82,6 @@ public class EshopServiceImpl implements EshopService {
 			pvo.setJuk(Integer.parseInt(multi.getParameter("juk")));
 			pvo.setSu(Integer.parseInt(multi.getParameter("su")));
 			pvo.setBaefee(Integer.parseInt(multi.getParameter("baefee")));
-			pvo.setBuyday(multi.getParameter("buyday"));
 		}
 		catch(Exception e) {
 			return "redirect:/eshop/error";
@@ -92,10 +91,16 @@ public class EshopServiceImpl implements EshopService {
 	}
 
 	@Override
+	public String eshop(Model model) {
+		model.addAttribute("plist1", mapper.eshop1("p01"));
+		model.addAttribute("plist2", mapper.eshop2("p02"));
+		return "/eshop/eshop";
+	}
+	
+	@Override
 	public String pro_list(HttpServletRequest request, Model model, HttpSession session) {
 		String pcode=request.getParameter("pcode");
 
-		/* 정렬말머리의 초기화면값 처리하기*/
 		String osel;
 		if(request.getParameter("osel") == null)
 			osel="sold desc";
@@ -116,6 +121,7 @@ public class EshopServiceImpl implements EshopService {
 		
 		model.addAttribute("pcode", pcode);	// 배너사진과 문구를 구별하기 위한 pcode(pdae 또는 pdaeso)값
 		model.addAttribute("osel", osel);
+		model.addAttribute("sum", mapper.getSum(pcode));
 		return "/eshop/pro_list";
 	}
 	
@@ -227,17 +233,23 @@ public class EshopServiceImpl implements EshopService {
 	public String cart(HttpSession session, Model model, HttpServletRequest request, HttpServletResponse response) {
 		ArrayList<CartVO> clist=new ArrayList<CartVO>();
 		String p=request.getParameter("p");	// 메인분류값
+		int sum1=0;
+		int sum2=0;
 		
 		if(session.getAttribute("userid") == null) {
 			Cookie cookie = WebUtils.getCookie(request, "cookieid");
 			if(cookie != null) {
 				String cookievalue=cookie.getValue();
 				clist=mapper.cart(cookievalue, p);
+				sum1=mapper.getCsum1(cookievalue);
+				sum2=mapper.getCsum2(cookievalue);
 			}
 		}
 		else {
 			String userid=session.getAttribute("userid").toString();
 			clist=mapper.cart(userid, p);
+			sum1=mapper.getCsum1(userid);
+			sum2=mapper.getCsum2(userid);
 		}
 		
 		String arrprice="";
@@ -257,7 +269,9 @@ public class EshopServiceImpl implements EshopService {
 		model.addAttribute("arrprice", arrprice);
 		model.addAttribute("arrhalin", arrhalin);
 		model.addAttribute("arrsu", arrsu);
-		model.addAttribute("arrbaefee", arrbaefee);		
+		model.addAttribute("arrbaefee", arrbaefee);
+		model.addAttribute("sum1", sum1);
+		model.addAttribute("sum2", sum2);
 		return "/eshop/cart";
 	}
 
@@ -360,15 +374,15 @@ public class EshopServiceImpl implements EshopService {
 		
 		if(session.getAttribute("userid") == null)
 			if(cookie == null) {
-				//gvo.setUserid("guest");
-				String cookievalue=RandomStringUtils.random(20, true, true);
+				gvo.setUserid("guest");
+				/*String cookievalue=RandomStringUtils.random(20, true, true);
 				Cookie cookieid=new Cookie("cookieid", cookievalue);
 
 				cookieid.setPath("/");
 				cookieid.setMaxAge(60 * 60 * 1);
 				response.addCookie(cookieid);
 				
-				gvo.setUserid(cookievalue);
+				gvo.setUserid(cookievalue);*/
 			}
 			else
 				gvo.setUserid(cookie.getValue());
@@ -396,7 +410,6 @@ public class EshopServiceImpl implements EshopService {
 		
 		String userid=gvo.getUserid();
 		
-		/* 문자열로 오는 [pcode, su_imsi, price_imsi]를 배열에 나눠서 저장 */
 		String[] pcode=gvo.getPcode().split(",");
 		String[] su=gvo.getSu_imsi().split(",");
 		String[] price=gvo.getPrice_imsi().split(",");
@@ -434,58 +447,49 @@ public class EshopServiceImpl implements EshopService {
 		int page, psel;
 		String ssel, sword;
 		
-		/* 페이지의 초기화면값 처리하기 */
 		if(request.getParameter("page") == null)
 			page=1;
 		else
 			page=Integer.parseInt(request.getParameter("page"));
 		
-		/* 한페이지에 출력할 레코드개수의 초기화면값 처리하기 */
 		if(request.getParameter("psel") == null)
-			psel=10;
+			psel=5;
 		else
 			psel=Integer.parseInt(request.getParameter("psel"));
 		
-		/* 한페이지에 출력할 레코드의 index값 구하기 */
 		int pindex=(page-1)*psel;
 		
-		/* 검색말머리의 초기화면값 처리하기*/
 		if(request.getParameter("ssel") == null)
-			ssel="id";	// [검색말머리]에 없는 DB필드명 넣기
+			ssel="id";
 		else
 			ssel=request.getParameter("ssel");
 		
-		/* 검색어의 초기화면값 처리하기*/
 		if(request.getParameter("sword") == null)
 			sword="";
 		else
 			sword=request.getParameter("sword");
 		
-		/* 페이지 이동을 위한 출력 범위 */
-		int pstart, pend, parr=5;
+		int pstart, pend, parr=2;
 		
-		pstart=page/parr;	// 페이지 출력 범위 : 1~10, 11~20, 21~30…
+		/*pstart=page/parr;	// 페이지 출력 범위 : 1~10, 11~20, 21~30…
 		if((page % parr) == 0)
 			pstart--;
 			
 		pstart=(pstart*parr)+1;
-		pend=pstart+(parr-1);
+		pend=pstart+(parr-1);*/
 		
-		/*if(page <= parr)	// 페이지 출력 범위 : 현재페이지 앞뒤로 ±parr값
+		if(page <= parr)	// 페이지 출력 범위 : 현재페이지 앞뒤로 ±parr값
 			pstart=1;
 		else
 			pstart=page-parr;
 		
-		pend=page+parr;/*
+		pend=page+parr;
 
-		/* 총페이지수 구하기 */
 		int ptotal=mapper.total(psel, ssel, sword);
 		
-		/* pend가 총페이지수보다 크다면 값 바꾸기 */
 		if(pend > ptotal)
 			pend=ptotal;
 		
-		/* 정렬의 초기화면값 처리하기 */
 		String osel;
 		if(request.getParameter("osel") == null)
 			osel="id desc";
@@ -508,7 +512,6 @@ public class EshopServiceImpl implements EshopService {
 	public String pro_adcontent(Model model, HttpServletRequest request) {
 		ProductVO pvo= mapper.pro_adcontent(request.getParameter("id"));
 				
-		/* fimg를 imgs에 담아서 배열로 전달 */
 		pvo.setImgs(pvo.getFimg().split(","));
 
 		model.addAttribute("pvo", pvo);
@@ -523,8 +526,7 @@ public class EshopServiceImpl implements EshopService {
 	@Override
 	public String pro_addelete(HttpServletRequest request) {
 		mapper.pro_addelete(request.getParameter("id"));
-		
-		/* [resources/img/eshop]폴더에 있는 기존이미지파일 삭제하기 */
+
 		String[] imgs=(request.getParameter("fimg")+request.getParameter("simg")).split(",");
 		String path=request.getRealPath("resources/img/eshop");
 
@@ -533,9 +535,10 @@ public class EshopServiceImpl implements EshopService {
 			if(file.exists())
 				file.delete();
 		}
-		
-		/* sword는 list로 넘어갈때 한글이 깨지므로 인코딩시켜서 보내기 */
-		String sword=URLEncoder.encode(request.getParameter("sword"));
+
+		String sword="";
+		if(request.getParameter("sword") != null)
+			sword=URLEncoder.encode(request.getParameter("sword"));
 		
 		return "redirect:/eshop/pro_adlist?page="+request.getParameter("page")+"&psel="+request.getParameter("psel")+"&ssel="+request.getParameter("ssel")+"&sword="+sword+"&osel="+request.getParameter("osel");
 	}
@@ -543,8 +546,7 @@ public class EshopServiceImpl implements EshopService {
 	@Override
 	public String pro_adupdate(Model model, HttpServletRequest request) {
 		ProductVO pvo= mapper.pro_adcontent(request.getParameter("id"));
-		
-		/* fimg를 imgs에 담아서 배열로 전달 */
+
 		pvo.setImgs(pvo.getFimg().split(","));
 
 		model.addAttribute("pvo", pvo);
@@ -558,7 +560,58 @@ public class EshopServiceImpl implements EshopService {
 
 	@Override
 	public String pro_adupdate_ok(HttpServletRequest request) {
-		// TODO Auto-generated method stub
-		return null;
+		String path=request.getRealPath("resources/img/eshop");
+		int size=1024*1024*30;
+		DefaultFileRenamePolicy rename=new DefaultFileRenamePolicy();		
+		ProductVO pvo=new ProductVO();
+		try {
+			MultipartRequest multi=new MultipartRequest(request, path, size, "utf-8", rename);
+			
+			Enumeration file=multi.getFileNames();
+			String imgs="";
+			while(file.hasMoreElements()) {
+				String fimg=file.nextElement().toString();
+				
+				if(!fimg.equals("simg"))
+					imgs=multi.getFilesystemName(fimg)+","+imgs;
+			}
+			imgs=multi.getParameter("keep")+imgs.replace("null,", "");
+			System.out.println(multi.getParameter(imgs));
+			
+			pvo.setId(Integer.parseInt(multi.getParameter("id")));
+			pvo.setTitle(multi.getParameter("title"));
+			pvo.setFimg(imgs);
+			if(multi.getFilesystemName("simg") != null) {
+				pvo.setSimg(multi.getFilesystemName("simg"));
+				File file2=new File(path+"/"+multi.getParameter("olds"));
+				if(file2.exists())
+					file2.delete();
+			}
+			else
+				pvo.setSimg(multi.getParameter("skeep"));
+			pvo.setPrice(Integer.parseInt(multi.getParameter("price")));
+			pvo.setHalin(Integer.parseInt(multi.getParameter("halin")));
+			pvo.setJuk(Integer.parseInt(multi.getParameter("juk")));
+			pvo.setSu(Integer.parseInt(multi.getParameter("su")));
+			pvo.setBaefee(Integer.parseInt(multi.getParameter("baefee")));
+			
+			mapper.pro_adupdate_ok(pvo);
+			
+			String[] del=(multi.getParameter("del")+multi.getParameter("sdel")).split(",");
+			for(int i=0;i<del.length;i++) {
+				File file2=new File(path+"/"+del[i]);
+				if(file2.exists())
+					file2.delete();
+			}
+
+			String sword="";
+			if(multi.getParameter("sword") != null)
+				sword=URLEncoder.encode(multi.getParameter("sword"));
+			
+			return "redirect:/eshop/pro_adcontent?id="+multi.getParameter("id")+"&page="+multi.getParameter("page")+"&psel="+multi.getParameter("psel")+"&ssel="+multi.getParameter("ssel")+"&sword="+sword+"&osel="+multi.getParameter("osel");
+		}
+		catch(Exception e) {
+			return "redirect:/eshop/error";
+		}
 	}
 }

@@ -195,9 +195,14 @@
 			<div id="txt2">${name}님의 가입일 <span id="joinday">${joinday }</span></div>
 		</div>
 		<div id="right">
-
+		<!-- 일반회원 -->
+		<c:if test="${kid == null}">
 			<div onclick="location='../mypage/myprofile_pwd'">회원정보 수정 </div><div onclick="location='../mypage/mypwd_change'">비밀번호 수정 </div><div onclick="alert('보유하신 쿠폰이 없습니다.');">쿠폰</div>
-		 
+		</c:if>
+		<!-- 카카오로그인회원 -->
+		<c:if test="${kid != null}">
+			<div onclick="location='../mypage/myprofile'"> 회원정보 수정 </div><div onclick="alert('보유하신 쿠폰이 없습니다.');">쿠폰</div>
+		</c:if>		 
 		</div>
 	</div>
 	

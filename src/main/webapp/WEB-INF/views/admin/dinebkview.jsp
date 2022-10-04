@@ -52,7 +52,7 @@
 </style>
 </head>
 <body>
-<c:if test=" userid != 'admin' ">
+<c:if test="${userid != 'admin'}">
 	<c:redirect url="../main/index"/>
 </c:if>
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->

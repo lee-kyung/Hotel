@@ -98,6 +98,7 @@
 		border : 1px solid #887159;
 		color : #887159;
 		cursor : pointer;
+		letter-spacing : 2px;
 	}
 	#cart #cate3 {
 		display : inline-block;
@@ -107,6 +108,10 @@
 		border : 1px solid #887159;
 		color : #887159;
 		cursor : pointer;
+		letter-spacing : 2px;
+	}
+	#cart #sum {
+		font-family : TimesNewRoman;
 	}
 	#cart table th {
 		text-align : center;
@@ -191,8 +196,8 @@
 		padding-top : 6px;
 		text-align : center;
 		margin-right : 10px;
-		border : 1px solid black;
-		color : black;
+		border : 1px solid #887159;
+		color : #887159;
 		cursor : pointer;
 	}
 	#cart #box #login {
@@ -201,14 +206,13 @@
 		height : 37px;
 		padding-top : 6px;
 		text-align : center;
-		border : 1px solid black;
-		background :black;
+		border : 1px solid #887159;
+		background :#887159;
 		color : white;
 		cursor : pointer;
 	}
 </style>
 <script>
-	/* 장바구니의 초기상태 : 전부체크 및  모든 상품 값을 계산하기 */
 	window.onload=function(){
 		let exprice=[${arrprice}];
 		let exhalin=[${arrhalin}];
@@ -234,7 +238,6 @@
 		document.getElementById("total_baefee").innerText=new Intl.NumberFormat().format(total_baefee);
 		document.getElementById("total_pay").innerText=new Intl.NumberFormat().format(total_price - total_halin + total_baefee);
 		
-		/* [하위분류]를 클릭하면 버튼색상을 변화시키기 */
 		if(${p == 'p01'}) {
 			document.getElementById("cate2").style.background="#887159";
 			document.getElementById("cate2").style.color="white";
@@ -245,7 +248,6 @@
 		}
 	}
 	
-	/* 수량이 변경되면 값들도 변하기 */
 	function change_total(su, num){
 		let exprice=[${arrprice}];
 		let exhalin=[${arrhalin}];
@@ -276,8 +278,7 @@
 		document.getElementById("total_pay").innerText=new Intl.NumberFormat().format(total_price - total_halin + total_baefee);
 	}
 	
-	/* 전체 선택 & 해제하기 */
-	function allcheck(ck){	// ck가 true면 체크된 상태, ck가 false면 체크가 안된 상태
+	function allcheck(ck){
 		let exprice=[${arrprice}];
 		let exhalin=[${arrhalin}];
 		let exbaefee=[${arrbaefee}];
@@ -306,7 +307,6 @@
 		document.getElementById("total_pay").innerText=new Intl.NumberFormat().format(total_price - total_halin + total_baefee);
 	}
 	
-	/* 개별로 선택 & 해제하기 */
 	function subcheck(){
 		let exprice=[${arrprice}];
 		let exhalin=[${arrhalin}];
@@ -339,7 +339,6 @@
 			document.getElementById("mainck").checked=false;
 	}
 	
-	/* 선택상품 장바구니 삭제하기 */
 	function cart_del(){
 		let del="";
 		let subck=document.getElementsByClassName("subck");
@@ -351,11 +350,9 @@
 		location="wishcart_del?delid="+del+"&dchk=2&p=${p}";	
 	}
 	
-	/* 1개상품 구매하기 */
 	function one_gumae(pcode, num){
 		let su=document.getElementsByClassName("su")[num].value;
 		
-		/* 가격에 대한 최종 정보도 가져가기 */
 		let total_price=parseInt(document.getElementsByClassName("cost")[num].value * su);
 		let total_halin=parseInt(document.getElementsByClassName("halin")[num].value * su);
 		let total_baefee=document.getElementsByClassName("baefee")[num].innerText;
@@ -372,14 +369,12 @@
 		location="pro_gumae?pcode="+pcode+"&su="+su+"&gchk=1&p=${p}&total_price="+total_price+"&total_halin="+total_halin+"&total_baefee="+total_baefee+"&total_pay="+total_pay;
 	}
 	
-	/* 선택상품 or 전체상품 구매하기 */
-	function gumae(n){	// n=1이면 선택주문, n=2면 전체주문
+	function gumae(n){
 		let pcode="";
 		let su="";
 		let subck=document.getElementsByClassName("subck");
 		let len=subck.length;
 		
-		/* 상품을 전체 체크시키기 */
 		if(n == 2) {
 			document.getElementById("mainck").checked=true;
 			for(i=0;i<len;i++) {
@@ -387,7 +382,6 @@
 			}
 		}
 		
-		/* pcode와 su를 배열을 위해 하나의 문자열로 만들기 */
 		for(i=0;i<len;i++) {
 			if(subck[i].checked) {
 				pcode=pcode+document.getElementsByClassName("pcode")[i].value+",";
@@ -395,7 +389,6 @@
 			}
 		}
 		
-		/* 가격에 대한 최종 정보도 가져가기 */
 		let total_price=document.getElementById("total_price").innerText;
 			total_price=total_price.replace(/,/g, "");
 		let total_halin=document.getElementById("total_halin").innerText;
@@ -413,7 +406,7 @@
 <body>
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
 	    <div class="bradcam_area eshop1">
-	        <div id="h3"> C A R T </div>
+	        <div id="h3" onclick="location='cart?p=${p}'" style="cursor:pointer;"> C A R T </div>
 	    </div>
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
 
@@ -431,12 +424,12 @@
     	</c:if>
   		<c:if test="${p == 'p01'}">
     		<div id="cate1">
-				<span id="cate2" onclick="location='cart?p=p01'"> 배 송 상 품 </span><span id="cate3" onclick="location='cart?p=p02'"> 모 바 일 상 품 </span>
+				<span id="cate2" onclick="location='cart?p=p01'"> 배 송 상 품 <span id="sum">[${sum1}]</span> </span><span id="cate3" onclick="location='cart?p=p02'"> 모 바 일 상 품 <span id="sum">[${sum2}]</span> </span>
 			</div>
 		</c:if>
 		<c:if test="${p == 'p02'}">
 			<div id="cate1">
-				<span id="cate2" onclick="location='cart?p=p01'"> 배 송 상 품 </span><span id="cate3" onclick="location='cart?p=p02'"> 모 바 일 상 품 </span>
+				<span id="cate2" onclick="location='cart?p=p01'"> 배 송 상 품 <span id="sum">[${sum1}]</span> </span><span id="cate3" onclick="location='cart?p=p02'"> 모 바 일 상 품 <span id="sum">[${sum2}]</span> </span>
 			</div>
 		</c:if>
 		<table width="1000" align="center" cellpadding="0">

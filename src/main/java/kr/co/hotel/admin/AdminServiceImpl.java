@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -51,15 +52,97 @@ public class AdminServiceImpl implements AdminService{
 		
 		return "/admin/admin";
 	}
-
+	
+// member
 	@Override
-	public String memberlist(Model model) {
-		ArrayList<MemberVO> list=mapper.memberlist();
-		model.addAttribute("list", list);
+	public String memberlist(Model model, HttpServletRequest request) {
+		int page, start;
+		int pcnt;
+		if(request.getParameter("pcnt")==null)
+			pcnt=10;
+		else
+			pcnt=Integer.parseInt(request.getParameter("pcnt"));
+		
+		if(request.getParameter("page")==null)
+			page=1;
+		else
+			page=Integer.parseInt(request.getParameter("page"));
+		
+		start=(page-1)*pcnt;
+		
+		// 정렬
+		String oby;
+		if(request.getParameter("oby")==null)
+			oby="id desc";
+		else
+			oby=request.getParameter("oby");
+		
+		int pstart,pend;
+		pstart=page/10;
+		if(page%10==0)
+			pstart--;
+		
+		pstart=pstart*10+1;
+		pend=pstart+9;
+		
+		String sel; // 검색필드..말머리같은거
+		if(request.getParameter("sel")==null)
+			sel="0";
+		else
+			sel=request.getParameter("sel");
+		
+		String sword; // searchword..검색어
+		if(request.getParameter("sword")==null)
+			sword="";
+		else
+			sword=request.getParameter("sword");
+		
+		int chong=mapper.getMChong(pcnt, sel, sword);
+		
+		if(chong<pend)
+			pend=chong;
+		
+		model.addAttribute("mlist",mapper.mlist(sel, sword, start, pcnt, oby));
+		model.addAttribute("page",page);
+		model.addAttribute("pstart",pstart);
+		model.addAttribute("pend",pend);
+		model.addAttribute("chong",chong);
+		model.addAttribute("pcnt",pcnt);
+		model.addAttribute("sel",sel);
+		model.addAttribute("sword",sword);
+		model.addAttribute("oby",oby);
 		
 		return "/admin/memberlist";
 	}
 
+	@Override
+	public String mstatechange(HttpServletRequest request) {
+		String id=request.getParameter("id");
+		mapper.mstatechange(id);
+		return "redirect:/admin/memberlist";
+	}
+
+	@Override
+	public String meminfo(Model model, HttpServletRequest request) {
+		String id=request.getParameter("id");
+		String userid=request.getParameter("userid");
+		
+		MemberVO mvo=mapper.meminfo(id);
+		model.addAttribute("mvo", mvo);
+		
+		int rcnt=mapper.getmrcnt(userid);
+		int dcnt=mapper.getmdcnt(userid);
+		int wcnt=mapper.getmwcnt(userid);
+		int gcnt=mapper.getmgcnt(userid);
+		
+		model.addAttribute("rcnt", rcnt);
+		model.addAttribute("dcnt", dcnt);
+		model.addAttribute("wcnt", wcnt);
+		model.addAttribute("gcnt", gcnt);
+
+		return "/admin/meminfo";
+	}
+	
 // 각 예약 리스트 확인
 	@Override
 	public String roomlist(Model model, HttpServletRequest request) {
@@ -84,6 +167,13 @@ public class AdminServiceImpl implements AdminService{
 		else
 			oby=request.getParameter("oby");
 		
+		int pstart,pend;
+		pstart=page/10;
+		if(page%10==0)
+			pstart--;
+		
+		pstart=pstart*10+1;
+		pend=pstart+9;
 		
 		// 날짜기준
 		String c1, c2;
@@ -97,14 +187,6 @@ public class AdminServiceImpl implements AdminService{
 		else
 			c2=request.getParameter("c2");
 		
-		
-		int pstart,pend;
-		pstart=page/10;
-		if(page%10==0)
-			pstart--;
-		
-		pstart=pstart*10+1;
-		pend=pstart+9;
 		
 		String sel; // 검색필드..말머리같은거
 		if(request.getParameter("sel")==null)
@@ -123,7 +205,7 @@ public class AdminServiceImpl implements AdminService{
 		if(chong<pend)
 			pend=chong;
 		
-		model.addAttribute("rlist",mapper.rlist(sel, sword, pstart, pcnt, oby, c1, c2));
+		model.addAttribute("rlist",mapper.rlist(sel, sword, start, pcnt, oby, c1, c2));
 		model.addAttribute("page",page);
 		model.addAttribute("pstart",pstart);
 		model.addAttribute("pend",pend);
@@ -132,6 +214,8 @@ public class AdminServiceImpl implements AdminService{
 		model.addAttribute("sel",sel);
 		model.addAttribute("sword",sword);
 		model.addAttribute("oby",oby);
+		model.addAttribute("c1",c1);
+		model.addAttribute("c2",c2);
 		
 		return "/admin/roomlist";
 	}
@@ -169,6 +253,18 @@ public class AdminServiceImpl implements AdminService{
 		pstart=pstart*10+1;
 		pend=pstart+9;
 		
+		// 날짜기준
+		String c1, c2;
+		if(request.getParameter("c1")==null)
+			c1="1900-01-01";
+		else
+			c1=request.getParameter("c1");
+		
+		if(request.getParameter("c2")==null)
+			c2="2900-12-31";
+		else
+			c2=request.getParameter("c2");
+				
 		String sel; // 검색필드..말머리같은거
 		if(request.getParameter("sel")==null)
 			sel="0";
@@ -187,7 +283,7 @@ public class AdminServiceImpl implements AdminService{
 			pend=chong;
 		
 		
-		model.addAttribute("wlist",mapper.wlist(sel, sword, start, pcnt, oby));
+		model.addAttribute("wlist",mapper.wlist(sel, sword, start, pcnt, oby, c1, c2));
 		model.addAttribute("page",page);
 		model.addAttribute("pstart",pstart);
 		model.addAttribute("pend",pend);
@@ -196,6 +292,8 @@ public class AdminServiceImpl implements AdminService{
 		model.addAttribute("sel",sel);
 		model.addAttribute("sword",sword);
 		model.addAttribute("oby",oby);
+		model.addAttribute("c1",c1);
+		model.addAttribute("c2",c2);
 		
 		return "/admin/wedlist";
 	}
@@ -243,7 +341,12 @@ public class AdminServiceImpl implements AdminService{
 			c2="2900-12-31";
 		else
 			c2=request.getParameter("c2");
-				
+			
+//		System.out.println(c1);
+//		System.out.println(c2);
+		
+		
+		
 		String sel; // 검색필드..말머리같은거
 		if(request.getParameter("sel")==null)
 			sel="0";
@@ -261,7 +364,7 @@ public class AdminServiceImpl implements AdminService{
 		if(chong<pend)
 			pend=chong;
 		
-		model.addAttribute("dlist",mapper.dlist(sel, sword, pstart, pcnt, oby, c1, c2));
+		model.addAttribute("dlist",mapper.dlist(sel, sword, start, pcnt, oby, c1, c2));
 		model.addAttribute("page",page);
 		model.addAttribute("pstart",pstart);
 		model.addAttribute("pend",pend);
@@ -270,6 +373,8 @@ public class AdminServiceImpl implements AdminService{
 		model.addAttribute("sel",sel);
 		model.addAttribute("sword",sword);
 		model.addAttribute("oby",oby);
+		model.addAttribute("c1",c1);
+		model.addAttribute("c2",c2);
 		
 		return "/admin/dinelist";
 	}
@@ -306,6 +411,19 @@ public class AdminServiceImpl implements AdminService{
 		pstart=pstart*10+1;
 		pend=pstart+9;
 		
+		// 날짜기준
+		String c1, c2;
+		if(request.getParameter("c1")==null)
+			c1="1900-01-01";
+		else
+			c1=request.getParameter("c1");
+		
+		if(request.getParameter("c2")==null)
+			c2="2900-12-31";
+		else
+			c2=request.getParameter("c2");
+			
+		
 		String sel; // 검색필드..말머리같은거
 		if(request.getParameter("sel")==null)
 			sel="0";
@@ -324,7 +442,7 @@ public class AdminServiceImpl implements AdminService{
 			pend=chong;
 		
 		/* userid가 쿠키값일 경우 'guest'로 바꾸기 */
-		ArrayList<GumaeVO> glist=mapper.glist(sel, sword, start, pcnt, oby);
+		ArrayList<GumaeVO> glist=mapper.glist(sel, sword, start, pcnt, oby, c1, c2);
 		for(int i=0;i<glist.size();i++) {
 			if(glist.get(i).getUserid().length() == 20)
 				glist.get(i).setUserid("guest");
@@ -339,6 +457,8 @@ public class AdminServiceImpl implements AdminService{
 		model.addAttribute("sel",sel);
 		model.addAttribute("sword",sword);
 		model.addAttribute("oby",oby);
+		model.addAttribute("c1",c1);
+		model.addAttribute("c2",c2);
 		
 		return "/admin/gumaelist";
 	}
@@ -402,6 +522,7 @@ public class AdminServiceImpl implements AdminService{
 
 		return "/admin/gumaeview";
 	}
+
 
 }
 

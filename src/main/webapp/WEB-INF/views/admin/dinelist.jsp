@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -28,7 +27,7 @@
 		margin: auto;
 	}
 	#sec1 table{
-		width: 1200px;
+		width: 1300px;
 		margin-top: 20px;
 		margin: auto;
 	}
@@ -41,8 +40,21 @@
 	#sec1 table tr:last-child td{
 		border-bottom: 1px solid #887159;
 	}
-	#sec1 table th{
-		font-size: 20px;
+	#sec1 table tr td{
+		padding: 15px;
+	}
+	#sec1 table tr:nth-child(even){
+		background: #f9f3ed;
+	}
+	#sec1 table #title2{
+		font-weight: 800;
+		font-size: 18px;
+	}
+	#sec1 table span:hover{
+		cursor: pointer;
+		color: #887159;
+	}
+	#sec1 table a:hover{
 		font-weight: 700;
 		color: #887159;
 	}
@@ -51,7 +63,7 @@
 		width: 1200px;
 		text-align: center;
 	}
-	#sec2 input[type=text]{
+	#sec2 #search>input[type=text]{
 		width: 200px;
 		height: 28px;
 		border: 1px solid #887159;
@@ -61,7 +73,7 @@
 		height: 26px;
 		border: 1px solid #887159;
 	}
-	#sec2 input[type=submit]{
+	#sec2 input[type=submit],input[type=button]{
 		width: 100px;
 		height: 28px;
 		background: white;
@@ -76,6 +88,27 @@
 	#sec2 #cal{
 		width: 200px;
 		margin: auto;
+	}
+	#dtsearch{
+		width: 1000px;
+		margin: auto;
+		display:inline-block;
+		margin-top: 20px;
+	}
+	#aa,#bb{
+		width: 200px;
+		display:inline-block;
+	}
+	#aa input[type=text],#bb input[type=text]{
+		height: 15px;
+	}
+	#csbtn{
+		border-radius: 4px;
+	}
+	#csbtn:hover{
+		color: white;
+		background: #887159;
+		height: 24px;
 	}
 </style>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -130,12 +163,15 @@
 
 <body>
 
+<c:if test="${userid != 'admin'}">
+	<c:redirect url="../main/index"/>
+</c:if>
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
     <!-- bradcam_area_start -->
     <!-- 새 이미지 추가하는 법
     	①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기
     	②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
-    <div class="bradcam_area basic">	<!-- class="bradcam_area 클래스명" -->
+    <div class="bradcam_area gongji">	<!-- class="bradcam_area 클래스명" -->
         <div id="h3"> <a href="../admin/admin">ADMIN</a></div>
     </div>
     
@@ -154,7 +190,7 @@
 		</select>
 		</div>
 	<table id="dining">
-		<tr>
+		<tr id="title2">
 			<td> 번호 
 				<span onclick="location='dinelist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=dr_id asc'">∧</span>
 				<span onclick="location='dinelist?page=${page}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=dr_id desc'">∨</span>
@@ -202,13 +238,13 @@
 		<!-- 10페이지 단위로 이전으로 가기 -->
 		<c:if test="${pstart==1}"></c:if> <!-- 페이지 그룹이 1일때 -->
 		<c:if test="${pstart!=1}"><!-- 1그룹이 아니면 -->
-			<a href="dinelist?page=${pstart-1}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=${oby}">◀</a>
+			<a href="dinelist?page=${pstart-1}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=${oby}&c1=${c1}&c2=${c2}">◀</a>
 		</c:if>
 		
 		<!-- 1페이지 단위로 이전으로 가기 -->
 		<c:if test="${page==1}"></c:if> <!-- 1페이지면 -->
 		<c:if test="${page!=1}"><!-- 1페이지가 아니면 -->
-			<a href="dinelist?page=${page-1}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=${oby}">◁</a>
+			<a href="dinelist?page=${page-1}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=${oby}&c1=${c1}&c2=${c2}">◁</a>
 		</c:if>
 		
 		<!-- 페이지 출력 -->
@@ -220,19 +256,19 @@
 			<c:if test="${page!=i}">
 				<c:set var="st" value=""/>
 			</c:if>
-			<b><a href="dinelist?page=${i}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=${oby}"${st}>${i}</a></b><!-- 누른페이지로 이동걸기 -->
+			<b><a href="dinelist?page=${i}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=${oby}&c1=${c1}&c2=${c2}"${st}>${i}</a></b><!-- 누른페이지로 이동걸기 -->
 		</c:forEach>
 		
 		<!-- 1페이지 단위로 다음으로 가기 -->
 		<c:if test="${page==chong}"></c:if>
 		<c:if test="${page!=chong}">
-			<a href="dinelist?page=${page+1}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=${oby}">▷</a>
+			<a href="dinelist?page=${page+1}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=${oby}&c1=${c1}&c2=${c2}">▷</a>
 		</c:if>
 		
 		<!-- 10페이지 단위로 다음으로 가기 -->
 		<c:if test="${pend==chong}"></c:if>
 		<c:if test="${pend!=chong}">
-			<a href="dinelist?page=${pend+1}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=${oby}">▶</a>
+			<a href="dinelist?page=${pend+1}&pcnt=${pcnt}&sel=${sel}&sword=${sword}&oby=${oby}&c1=${c1}&c2=${c2}">▶</a>
 		</c:if>
 		
 	</div>
@@ -248,11 +284,10 @@
 			<input type="text" name="sword" size="20" value="${sword}">
 			<input type="submit" value="검색">
 		</form> 
-		<div id="right">
+		<div id="dtsearch">
 			<form name="cal" method="post">
-				<input type="text" name="c1" placeholder="1" id="c1">
-				<input type="text" name="c2" placeholder="2" id="c2">
-				<input type="button" value="검색" onclick="csearch()">
+			<div id="aa"><input type="text" name="c1" id="c1" placeholder="식사날짜"></div> ~
+			<div id="bb"><input type="text" name="c2" id="c2" placeholder="기간검색"></div> &nbsp;&nbsp;&nbsp;<input id="csbtn" type="button" value="검색" onclick="csearch()">
 			</form>
 		</div> 
 	</div>

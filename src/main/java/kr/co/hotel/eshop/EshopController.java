@@ -20,8 +20,8 @@ public class EshopController {
 	private EshopService service;
 	
 	@RequestMapping("/eshop/eshop")
-	public String eshop() {
-		return "/eshop/eshop";
+	public String eshop(Model model) {
+		return service.eshop(model);
 	}
 	
 	@RequestMapping("/eshop/error")
@@ -136,7 +136,7 @@ public class EshopController {
 		return service.pro_adupdate(model, request);
 	}
 	
-	@RequestMapping("/ehop/pro_adupdate_ok")
+	@RequestMapping("/eshop/pro_adupdate_ok")
 	public String pro_adupdate_ok(HttpServletRequest request) {
 		return service.pro_adupdate_ok(request);	
 	}

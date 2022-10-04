@@ -35,6 +35,11 @@ public class LoginController {
 		return service.logout(session);
 	}
 	
+	@RequestMapping("/login/klogin_ok")
+	public String klogin_ok(MemberVO mvo, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+		return service.klogin_ok(mvo, session, request, response);
+	}
+	
 	@RequestMapping("/login/find_IdPw")
 	public String find_IdPw()
 	{
