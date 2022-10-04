@@ -207,7 +207,9 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
 		let cnt=[${cnt}];	// 예약된 수
 		let bk=6;	// 식사타입당 두 타임을 합쳐 만석인 테이블의 수를 입력 (ex : 8시 타임 3테이블 + 10시 타임 3테이블 = 총 6 입력)
       
-		console.log();
+		console.log(dt);
+		console.log(td);
+		console.log(cnt);
 		
 		for(i=0;i<td.length;i++) {
 			if(dt[i] == 1 && cnt[i] == bk) {
@@ -246,6 +248,8 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
 			if(chk.readyState == 4) {
 				let tmcnt=chk.responseText.split(",");	// [시간, 예약수, 시간, 예약수] = [8, 3, 10, 1]
 				
+				console.log(tmcnt);
+				
 				/* 예약된 게 있다면 */
 				let bk=3;	// 타임당 만석인 테이블의 수를 입력 (ex : 8시 타임 3테이블, 10시 타임 3테이블 = 3 입력)
 				if(tmcnt.length > 1) {
@@ -258,23 +262,28 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
 								document.getElementById("dr_time").innerHTML="<option>선택</option><option value='08:00'>08:00</option><option value='10:00' disabled>10:00</option>";
 								break; 
 								}
-									
-								else if(tmcnt[i] == 13 && tmcnt[i+1] == bk) {
-									document.getElementById("dr_time").innerHTML="<option>선택</option><option value='13:00' disabled>13:00</option><option value='15:00'>15:00</option>";
-									break;
-									}
-									else if(tmcnt[i] == 15 && tmcnt[i+1] == bk) {
-										document.getElementById("dr_time").innerHTML="<option>선택</option><option value='13:00'>13:00</option><option value='15:00' disabled>15:00</option>";
-										break; 
-										}
-										else if(tmcnt[i] == 16 && tmcnt[i+1] == bk) {
-											document.getElementById("dr_time").innerHTML="<option>선택</option><option value='16:00' disabled>16:00</option><option value='18:00'>18:00</option>";
-											break;
-											}
-											else if(tmcnt[i] == 18 && tmcnt[i+1] == bk) {
-												document.getElementById("dr_time").innerHTML="<option>선택</option><option value='16:00'>16:00</option><option value='18:00' disabled>18:00</option>";
-												break; 
-												}
+								else if((tmcnt[i] == 8 && tmcnt[i+1] != bk) || (tmcnt[i] == 10 && tmcnt[i+1] != bk))
+									document.getElementById("dr_time").innerHTML="<option>선택</option><option value='08:00'>08:00</option><option value='10:00'>10:00</option>";
+						else if(tmcnt[i] == 13 && tmcnt[i+1] == bk) {
+							document.getElementById("dr_time").innerHTML="<option>선택</option><option value='13:00' disabled>13:00</option><option value='15:00'>15:00</option>";
+							break;
+							}
+							else if(tmcnt[i] == 15 && tmcnt[i+1] == bk) {
+								document.getElementById("dr_time").innerHTML="<option>선택</option><option value='13:00'>13:00</option><option value='15:00' disabled>15:00</option>";
+								break; 
+								}
+								else if((tmcnt[i] == 13 && tmcnt[i+1] != bk) || (tmcnt[i] == 15 && tmcnt[i+1] != bk))
+									document.getElementById("dr_time").innerHTML="<option>선택</option><option value='13:00'>13:00</option><option value='15:00'>15:00</option>";
+						else if(tmcnt[i] == 16 && tmcnt[i+1] == bk) {
+							document.getElementById("dr_time").innerHTML="<option>선택</option><option value='16:00' disabled>16:00</option><option value='18:00'>18:00</option>";
+							break;
+							}
+							else if(tmcnt[i] == 18 && tmcnt[i+1] == bk) {
+								document.getElementById("dr_time").innerHTML="<option>선택</option><option value='16:00'>16:00</option><option value='18:00' disabled>18:00</option>";
+								break; 
+								}
+								else if((tmcnt[i] == 16 && tmcnt[i+1] != bk) || (tmcnt[i] == 18 && tmcnt[i+1] != bk))
+									document.getElementById("dr_time").innerHTML="<option>선택</option><option value='16:00'>16:00</option><option value='18:00'>18:00</option>";
 					}
 				}
 				else {
