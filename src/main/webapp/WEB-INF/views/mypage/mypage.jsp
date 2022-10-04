@@ -141,6 +141,7 @@
 	color:black;}
 	
 	section #mypage table a:hover{
+	letter-spacing:2px;
 	color:red;}
 	
 	section #mypage table tr:first-child a{
@@ -194,9 +195,14 @@
 			<div id="txt2">${name}님의 가입일 <span id="joinday">${joinday }</span></div>
 		</div>
 		<div id="right">
-
+		<!-- 일반회원 -->
+		<c:if test="${kid == null}">
 			<div onclick="location='../mypage/myprofile_pwd'">회원정보 수정 </div><div onclick="location='../mypage/mypwd_change'">비밀번호 수정 </div><div onclick="alert('보유하신 쿠폰이 없습니다.');">쿠폰</div>
-		 
+		</c:if>
+		<!-- 카카오로그인회원 -->
+		<c:if test="${kid != null}">
+			<div onclick="location='../mypage/myprofile'"> 회원정보 수정 </div><div onclick="alert('보유하신 쿠폰이 없습니다.');">쿠폰</div>
+		</c:if>		 
 		</div>
 	</div>
 	
@@ -216,7 +222,7 @@
 				<td colspan="4"><a href="room_resv">최근 객실내역</a></td>
 			</tr>
 			<tr>
-				<td>객실명</td>
+				<td width="400">객실명</td>
 				<td>체크인</td>
 				<td>체크아웃</td>
 				<td width="150">예약일</td>
@@ -236,7 +242,7 @@
 				<td colspan="4"><a href="dine_resv">최근 레스토랑내역</a></td>
 			</tr>
 			<tr>
-				<td>식사일</td>
+				<td width="400">식사일</td>
 				<td>식사유형</td>
 				<td>식사시간</td>
 				<td width="150">예약일</td>
@@ -256,7 +262,7 @@
 				<td colspan="4"><a href="wedding_resv">최근 웨딩내역</a></td>
 			</tr>
 			<tr>
-				<td>웨딩홀</td>
+				<td width="400">웨딩홀</td>
 				<td>상담일</td>
 				<td>상담시간</td>
 				<td width="150">예약일</td>
@@ -276,7 +282,7 @@
 				<td colspan="3"><a href="eshop_gumae">최근 ESHOP내역</a></td>
 			</tr>
 			<tr>
-				<td>상품명</td>
+				<td width="600">상품명</td>
 				<td>금액</td>
 				<td width="150">구매일</td>
 			</tr>

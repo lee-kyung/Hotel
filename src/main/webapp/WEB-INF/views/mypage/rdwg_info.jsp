@@ -26,8 +26,12 @@
 		margin-bottom : 60px;
 		border-bottom : 2px solid #887159;
 	}
+	#rdwginfo table tr {
+		height : 80px;
+	}
 	#rdwginfo table td {
 		padding : 15px;
+		border-bottom : 1px solid lightgray;
 	}
 	#rdwginfo table tr:first-child{
 		font-size : 25px;
@@ -60,6 +64,9 @@
 		color : #887159;
 		cursor : pointer;
 	}
+	#rdwginfo #pro_title:hover {
+		text-decoration : underline;
+	}
 </style>
 <script>
 	function bjcancel(bjcode){
@@ -71,7 +78,7 @@
 <body>
 
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
-    <div class="bradcam_area basic">
+    <div class="bradcam_area breadcam_bg">
         <div id="h3" style="font-size:70px;">
         	<c:if test="${gubun == 'r'}"> 객실 예약내역 </c:if>
         	<c:if test="${gubun == 'd'}"> 다이닝 예약내역 </c:if>
@@ -105,8 +112,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td id="name"> ${rvo.rname} </td>
-				</td>
+				<td colspan="2" id="name"> ${rvo.rname} </td>
 			</tr>
 			<tr>
 				<td> 체크인 </td>
@@ -118,15 +124,15 @@
 			</tr>
 			<tr>
 				<td> 예약인원 </td>
-				<td> ${rvo.binwon}인 </td>
+				<td> ${rvo.binwon} 인 </td>
 			</tr>
 			<tr>
 				<td> 추가침대 </td>
-				<td> ${rvo.bextbed} </td>
+				<td> ${rvo.bextbed} 개 </td>
 			</tr>
 			<tr>
 				<td> 조식 </td>
-				<td> ${rvo.bmeal} </td>
+				<td> ${rvo.bmeal} 인 </td>
 			</tr>
 			<tr>
 				<td> 요청사항 </td>
@@ -192,8 +198,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td id="name"> ${dvo.dr_date} 방문예정 </td>
-				</td>
+				<td colspan="2" id="name"> ${dvo.dr_date} 방문예정 </td>
 			</tr>
 			<tr>
 				<td> 식사유형 </td>
@@ -205,15 +210,15 @@
 			</tr>
 			<tr>
 				<td> 성인 </td>
-				<td> ${dvo.adult}인 </td>
+				<td> ${dvo.adult} 인 </td>
 			</tr>
 			<tr>
 				<td> 어린이 </td>
-				<td> ${dvo.child}인 </td>
+				<td> ${dvo.child} 인 </td>
 			</tr>
 			<tr>
 				<td> 유아 </td>
-				<td> ${dvo.baby}인 </td>
+				<td> ${dvo.baby} 인 </td>
 			</tr>
 			<tr>
 				<td> 요청사항 </td>
@@ -285,8 +290,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td id="name"> ${wvo.wresv_cday} 상담예정 </td>
-				</td>
+				<td colspan="2" id="name"> ${wvo.wresv_cday} 상담예정 </td>
 			</tr>
 			<tr>
 				<td> 상담 시간 </td>
@@ -359,7 +363,7 @@
  	<c:if test="${gubun == 'e'}">
  	<!-- 예약 정보 -->
 		<div id="tbox">
-			<div style="float:left;"> ${buyday} 구매 </div>
+			<div style="float:left;"> ${buyday} 주문 </div>
 			<div style="float:right;"> ${gvo.jumuncode} </div>	
 		</div>
 	
@@ -384,12 +388,12 @@
 			</tr>
 			<c:forEach var="gvo" items="${glist}">
 			<tr>
-				<td width="300" style="padding-left:50px;">
-					<img src="../img/eshop/${gvo.pimg}" width="50" height="50">
-					${gvo.title}
+				<td style="padding-left:50px;">
+					<img src="../img/eshop/${gvo.pimg}" width="70" height="70" onclick="location='../eshop/pro_content?pcode=${gvo.pcode}'" style="cursor:pointer;margin-right:10px;">
+					<span onclick="location='../eshop/pro_content?pcode=${gvo.pcode}'" style="cursor:pointer;" id="pro_title"> ${gvo.title} </span>
 				</td>
 				<td width="100"> ${gvo.total_su}개 </td>
-				<td> <fmt:formatNumber value="${gvo.total_price}" pattern=",###"/>원 </td>
+				<td width="100"> <fmt:formatNumber value="${gvo.total_price}" pattern=",###"/>원 </td>
 			</tr>
 			</c:forEach>
 		</table>

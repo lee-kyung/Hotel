@@ -40,7 +40,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<update id="room_update_ok">
 		update room 
-		set rname=#{rname},rmin=#{rmin},rmax=#{rmax},rprice=#{rprice},rsu=#{rsu},rpimg=#{rpimg},rcimg=#{rcimg},rcode=#{rcode},rtxt2=#{rtxt2},rtxt3=#{rtxt3},rview=#{rview},rbed=#{rbed}
+		set rname=#{rname},rmin=#{rmin},rmax=#{rmax},rprice=#{rprice},rsu=#{rsu},rpimg=#{rpimg},rcimg=#{rcimg},rcode=#{rcode},rtxt2=#{rtxt2},rtxt3=#{rtxt3},rview=#{rviewValue},rbed=#{rbed}
 		where id=#{id}
 	</update>
 	

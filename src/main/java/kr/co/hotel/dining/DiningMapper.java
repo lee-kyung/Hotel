@@ -12,8 +12,8 @@ public interface DiningMapper {
 	// 관리자 상품 목록 및 수정, 삭제
 	public ArrayList<DiningVO> dining_list();
 	public DiningVO dining_update(String id);
-	public void dining_update_ok(DiningVO dvo, HttpServletRequest request);
-	public ArrayList<DiningVO> dining_content(String id);
+	public void dining_update_ok(DiningVO dvo);
+	/*public DiningVO dining_content(String id);*/
 	public void dining_delete(String id);
 	
 

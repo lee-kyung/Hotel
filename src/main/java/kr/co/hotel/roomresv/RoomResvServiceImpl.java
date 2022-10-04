@@ -115,7 +115,7 @@ public class RoomResvServiceImpl implements RoomResvService {
 		String checkin=request.getParameter("checkin");
 		String rcode=request.getParameter("rcode");
 		String adult=request.getParameter("adult");
-		System.out.println(adult);
+	//	System.out.println(adult);
 		ArrayList<RoomVO> list=mapper.getRoomAvail(checkin,adult);
 		//mapper.getRmax(rcode);
 		String str="";		

@@ -89,7 +89,9 @@ public class DiningResvServiceImpl implements DiningResvService{
     		   	drlist.get(i).setDine_type("2");
     	   else if(drlist.get(i).getDine_type().equals("Dinner"))
     		   	drlist.get(i).setDine_type("3");
-          
+    	   else if(drlist.get(i).getDine_type().equals("Bbq"))
+   		   	    drlist.get(i).setDine_type("4");
+
     	   dine_type=dine_type+drlist.get(i).getDine_type()+",";
     	   td=td+drlist.get(i).getTd()+",";
     	   cnt=cnt+drlist.get(i).getCnt()+",";
@@ -99,9 +101,9 @@ public class DiningResvServiceImpl implements DiningResvService{
       model.addAttribute("td", td);
       model.addAttribute("cnt", cnt);
       
-      System.out.println(dine_type);
-      System.out.println(td);
-      System.out.println(cnt);
+      //System.out.println(dine_type);
+      //System.out.println(td);
+      //System.out.println(cnt);
  
       return "/dining/dining_reserve";
    }
@@ -119,24 +121,6 @@ public class DiningResvServiceImpl implements DiningResvService{
 	   out.print(tmcnt);
 	   System.out.println(tmcnt);
    }   
-   
-   /*@Override 
-   public void getDineAvail(HttpServletRequest request, PrintWriter out, DiningVO dvo) {
-      String dine_type=request.getParameter("dine_type");
-      
-      ArrayList<DiningVO> list=mapper.getDineAvail(dine_type);
-
-      String str="";      
-   
-      for(int i=0;i<list.size();i++)
-      {
-         DiningVO dvo2=list.get(i);
-         str=str+dvo2.getDine_type()+","+dvo2.getCnt()+",";
-      }
-
-      out.print(str);
-   }*/
-
    
    @Override
    public String dining_reserve_next(HttpServletRequest request, Model model, HttpSession session)

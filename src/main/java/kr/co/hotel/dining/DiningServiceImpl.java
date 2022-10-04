@@ -55,29 +55,28 @@ public class DiningServiceImpl implements DiningService{
 		model.addAttribute("list", list);
 		return "/dining/dining_list";
 	}
-	@Override
+	/*@Override
 	public String dining_content(HttpServletRequest request, Model model)
 	{
 		String id=request.getParameter("id");
-		ArrayList<DiningVO> list=mapper.dining_content(id);
-		model.addAttribute("list", list);
+		DiningVO dvo=mapper.dining_content(id);
+		model.addAttribute("dvo", dvo);
 		return "/dining/dining_content";
-	}
+	}*/
 	@Override
 	public String dining_update(HttpServletRequest request, Model model)
 	{
 		String id=request.getParameter("id");
 		DiningVO dvo=mapper.dining_update(id);
 		model.addAttribute("dvo", dvo);
-		
 		return "/dining/dining_update";
 	}
 	@Override
 	public String dining_update_ok(DiningVO dvo, HttpServletRequest request)
 	{
 		String id=request.getParameter("id");
-		mapper.dining_update_ok(dvo,request);
-		return "redirect:/dining/dining_content?id"+dvo.getId();
+		mapper.dining_update_ok(dvo);
+		return "redirect:/dining/dining_list";
 	}
 	@Override
 	public String dining_delete(HttpServletRequest request)

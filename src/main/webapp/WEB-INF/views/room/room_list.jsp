@@ -22,6 +22,9 @@
 		margin-top: 50px;
 		height: 1400px;
 	}
+	#h3 a{
+		color: white;
+	}
 /* 메뉴 */ 
 	section #menu{
 		width: 1000px;
@@ -105,7 +108,10 @@
 		margin: auto;
 	}
 	section #a2{
-		visibility: hidden;
+		display: none; 
+	}
+	section a:hover{
+		font-weight: 700;
 	}
 	
 </style>
@@ -124,11 +130,20 @@
 		sub[n].style.background="white";
 		sub[n].style.borderBottom="none";
 	}
+	function showd()
+	{
+		document.getElementById("a2").style.display="block";
+		document.getElementById("a1").style.display="none";
+	}
 	function showa()
 	{
-		document.getElementById("#a2").
+		document.getElementById("a1").style.display="block";
+		document.getElementById("a2").style.display="none";
 	}
 </script>
+<c:if test="${userid != 'admin'}">
+	<c:redirect url="../main/index"/>
+</c:if>
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
 <!-- bradcam_area_start -->
 <!-- 새 이미지 추가하는 법
@@ -136,7 +151,7 @@
    	②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
 <div class="bradcam_area rooms">
 	<!-- class="bradcam_area 클래스명" -->
-	<div id="h3">ROOM LIST</div>
+	<div id="h3"><a href="../admin/admin">ROOM LIST</a></div>
 </div>
 <!-- bradcam_area_end -->
 <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
@@ -148,7 +163,7 @@
 		<section>
 		<div id="menu">
 		<ul>
-	 		<li class="sub" onclick="showa()">활성</li><li class="sub" onclick="showd()">비활성</li>
+	 		<li class="sub" onclick="change_sub(0);showa()">활성</li><li class="sub" onclick="change_sub(1);showd()">비활성</li>
 		</ul>
 		</div>
 	
@@ -159,7 +174,8 @@
 					<th> 번호 </th>					
 					<th> 사진 </th>					
 					<th> 객실코드 </th>					
-					<th> 객실명 </th>										
+					<th> 객실명 </th>		
+					<th> 뷰 </th>								
 					<th> 상태 </th>		
 					<th> 수정/삭제 </th>								
 				</tr> 
@@ -170,6 +186,7 @@
 			  		<td> <img src="../img/rooms/${rvo.rpimg}"> </td> 
 			  		<td> ${rvo.rcode} </td>
 			  		<td> ${rvo.rname} </td>
+			  		<td> ${rvo.rview} </td>
 			  		<c:if test="${rvo.rstate==0}">
 			  			<c:set var="rstate" value="활성"/>
 			  		</c:if>
@@ -178,9 +195,9 @@
 			  		</c:if>
 			  		<td> ${rstate} </td>
 			  		<td>
-			  			<a href="../room/room_update?id=${rvo.id}">수정</a>
+			  			<a href="../room/room_update?id=${rvo.id}">수정</a> /
 			  		<c:if test="${rvo.rstate==0}">
-			  			<a href="../room/room_disable?id=${rvo.id}">삭제</a>
+			  			<a href="../room/room_disable?id=${rvo.id}">비활성</a>
 			  		</c:if>			  			
 			  		</td>
 			  	</tr>
@@ -196,7 +213,7 @@
 					<th> 객실코드 </th>					
 					<th> 객실명 </th>										
 					<th> 상태 </th>		
-					<th> 수정/삭제 </th>								
+					<th> 수정/비활성 </th>								
 				</tr> 
 			  <c:forEach items="${list}" var="rvo">
 			  <c:if test="${rvo.rstate==1}">

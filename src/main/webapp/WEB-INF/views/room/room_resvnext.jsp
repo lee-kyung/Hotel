@@ -76,6 +76,7 @@
 		width: 300px;
 		height: 45px;
 		border: 1px solid #887159;
+		border-radius: 2px;
 	}
 	roomsec #sec3{
 		width: 845px;
@@ -124,6 +125,7 @@
 		color: #887159;
 		background: white;
 		pointer: cursor;
+		border-radius: 2px;
 	}
 	roomsec #pay input[type=button]:hover {
 		background: #887159;
@@ -275,8 +277,8 @@
 				 		<div><span id="sb">* 휴대폰 번호 </span><input type="text" name="bkphone" id="bkphone" value=""></div>
 				 		<br>
 						<div> 
-							* 특별 요청사항<sup>(<span id="nowByte">0</span>/100bytes)</sup> 
-							<textarea cols="80" rows="3" name="spreq" onkeyup="fn_checkByte(this)"
+							특별 요청사항<sup>(<span id="nowByte">0</span>/100bytes)</sup> 
+							<textarea cols="80" rows="3" name="spreq" onkeyup="fn_checkByte(this)" 
 							placeholder="객실 투숙 시 필요한 비품관련 요청은 한정된 수량으로 인하여 서비스 이용이 제한될 수 있으니 유선상으로 문의하여 주시기 바랍니다."></textarea>
 						</div>
 					</div>
