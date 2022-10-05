@@ -400,7 +400,7 @@
 			return false;
 		} else {
 			//결제관련
-			/* 		$("#paymentBtn").click(function () {
+		/* 		$("#paymentBtn").click(function () {
 						var IMP = window.IMP; // 생략가능
 						IMP.init('imp66382802'); 
 						IMP.request_pay({
@@ -409,8 +409,8 @@
 							merchant_uid: 'merchant_' + new Date().getTime(),
 
 							name: '주문명 : ${rvo.rname}',
-							amount: 2000,
-							buyer_name: '이름',
+							amount: '${rvo.rprice}',
+							buyer_name: '${bkname}',
 							buyer_postcode: '123-456',
 							}, function (rsp) {
 								console.log(rsp);
@@ -424,8 +424,8 @@
 							}
 							alert(msg);
 						});
-					}); */
-			document.resv.submit();
+					});  */
+			document.resv.submit(); 
 			return true;
 		}
 	}

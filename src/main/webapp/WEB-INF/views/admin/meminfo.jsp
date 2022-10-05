@@ -99,7 +99,7 @@
 	<table>
 		<tr>
 			<td width="150"> 객실 예약 횟수 </td>
-			<td width="50"> ${rcnt} 회</td>
+			<td width="100"> ${rcnt} 회</td>
 			<td><a href="../admin/roomlist?sel=userid&sword=${mvo.userid}"> +더보기 </a> </td>
 		</tr>
 		<tr>
