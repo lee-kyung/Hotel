@@ -20,23 +20,22 @@
     border:1px solid black;
     width:1100px;
     height:400px;
-    background:#e5e4e2;
+    /* background:#e5e4e2; */
     margin:auto;
   }
   #section #outer #left{ /* 상단 이미지 */
-  border:1px solid red;
     width:600px;
     height:400px;
     float:left;
     margin:auto;
   }
   #section #outer #right{ /* 상단 가격표 */
-  border:1px solid blue;
     width:370px;
     height:200px;
     float:right;
     margin:auto;
-    margin-top:50px;
+    margin-right:45px;
+    margin-top:58px;
   }
   #section #outer #right table{
     margin:auto;
@@ -48,7 +47,6 @@
   #section #outer #right #pri{
     margin:auto;
     vertical-align:middle;
-    height:100px;
     font-size:14px;
     margin-right:30px;
   }
@@ -73,6 +71,8 @@
   }
   #section table #info{
     font-size:14px;
+    margin:auto;
+    margin-top:18px;
   }
   #section table #calendar{
     border-top:2px solid #887159;
@@ -142,7 +142,7 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
      height:87px;
      vertical-align: middle;
   }
-  #section #dinetype :hover{ /* 다이닝 타입 마우스오버 css */
+  #section #dinetype:hover{ /* 다이닝 타입 마우스오버 css */
      color:blue;
      text-decoration:underline;
   }
@@ -303,21 +303,9 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
   } 
 
     // 예약 타입 선택시 시간 선택 테이블 보이게 하기
-
-/*     function () {
-
-    /*window.onload = function () {
-
-        var el = document.getElementById("dr_time");
-        el.onclick = show;
-
-    } */
-
-
     function show(y, m, d, t){
     	var table=document.getElementById("dine");
    	    table.style.visibility="visible"; 
-   	    //alert("몽!");
     } 
     
 </script>
@@ -339,27 +327,26 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
 
 <div id="section">
  <div id="outer">
-   	<div id="left">
-    	 <img src="../img/about/m2.jpg" width="600" height="390">
-  	 </div> <!-- left end -->
-  	 <div id="right">
-    
-	    <table id="pri" width="350">
-	     <c:forEach items="${dlist}" var="dvo">
-	     <tr id="pri_info">
-	        <th id="type_info">${dvo.dine_type}</th>
-	        <td>
-	           성인 <fmt:formatNumber value="${dvo.dine_adult}" pattern="#,###"/>원<br>
-	           어린이 <fmt:formatNumber value="${dvo.dine_child}" pattern="#,###"/>원
-	        </td>
-	
-	    </tr>
-	    </c:forEach>
-	    </table>
-  	 </div> <!-- right end -->
- 	 </div> <!-- outer end -->
- <%--   <div> <fmt:formatNumber value="${drvo.dr_total}" pattern="#,###"/>원 </div> --%>
-    <table width="1100">
+	   	<div id="left">
+	    	 <img src="../img/about/m2.jpg" width="600" height="400">
+	  	</div> <!-- left end -->
+	  	<div id="right">
+	    
+		    <table id="pri" width="350" height="200" border="1">
+		     <c:forEach items="${dlist}" var="dvo">
+		     <tr id="pri_info">
+		        <th id="type_info">${dvo.dine_type}</th>
+		        <td>
+		           성인 <fmt:formatNumber value="${dvo.dine_adult}" pattern="#,###"/>원<br>
+		           어린이 <fmt:formatNumber value="${dvo.dine_child}" pattern="#,###"/>원
+		        </td>
+		
+		    </tr>
+		    </c:forEach>
+		    </table>
+	  	</div> <!-- right end -->
+ </div> <!-- outer end -->
+    <table width="1100" id="topinfo">
      <tr>
         <td id="info">
 ▷ 4월1일부로 디너 이용 시 만12세 이하의 어린이 입장이 제한됩니다.<br>

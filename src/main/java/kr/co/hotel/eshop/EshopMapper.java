@@ -27,7 +27,7 @@ public interface EshopMapper {
 	public Integer checkCart(String userid, String pcode);
 	public void cart_suadd(int su, String userid, String pcode);
 	public ArrayList<CartVO> cart(String userid, String p);
-	public void wishcart_del(String ad, String id);
+	public void wishcart_del(String tname, String id);
 	public Integer getCsum1(String userid);
 	public Integer getCsum2(String userid);
 	
