@@ -162,17 +162,17 @@ appkey=def97946ef83ffb1f9a1cacb75ac32eb"></script>
 				<div class="tab-content justify-content-center">
 					<div role="tabpanel" class="tab-pane active" id="place1">
 						<div role="tabpanel" class="tab-pane active" id="place1">
-						<div class="map" id="map1" style="width:500px;height:600px;margin:0 auto;margin-left:250px;"></div>
+						<div class="map" id="map1" style="width:650px;height:600px;margin:0 auto;margin-left:280px;"></div>
 						</div>
 					</div>
 					<div role="tabpanel" class="tab-pane" id="place2">
 						<div role="tabpanel" class="tab-pane" id="place2">
-						<div class="map" id="map2" style="width:500px;height:600px;margin:0 auto;margin-left:250px;"></div>
+						<div class="map" id="map2" style="width:650px;height:600px;margin:0 auto;margin-left:280px;"></div>
 						</div>
 					</div>
 					<div role="tabpanel" class="tab-pane" id="place3">
 						<div role="tabpanel" class="tab-pane" id="place3">
-						<div class="map" id="map3" style="width:500px;height:600px;margin:0 auto;margin-left:250px;"></div>
+						<div class="map" id="map3" style="width:650px;height:600px;margin:0 auto;margin-left:280px;"></div>
 						</div>
 					</div>
 				</div> <!-- tab-content end -->
@@ -236,28 +236,7 @@ appkey=def97946ef83ffb1f9a1cacb75ac32eb"></script>
    }
    items.forEach(item => item.addEventListener('click', openCloseSebu));
    </script>    
-   
-                           <!-- <li id="title">Busan<i class="ti-angle-down"></i></a>
-                             <ul class="submenu">
-                                <li>아난티 코브</li>
-                                <li id="juso">부산 기장군 기장읍 기장해안로 268-31</li>
-                                <li><a href="https://place.map.kakao.com/1672210391">지도 검색</a></li>
-                             </ul>
-                      	</li>	
-                      	<li id="title">Gapyung<i class="ti-angle-down"></i></a>
-                             <ul class="submenu">
-                                <li>아난티 코드</li>
-                                <li id="juso">경기 가평군 설악면 유명로 1007-90</li>
-                                <li><a href="https://map.kakao.com/link/search/아난티코드">지도 검색</a></li>
-                             </ul>
-                      	</li>
-                      	<li id="title">Namhae<i class="ti-angle-down"></i></a>
-                             <ul class="submenu">
-                                <li>아난티 남해</li>
-                                <li id="juso">경남 남해군 남면 남서대로1179번길 40-109</li>
-                                <li><a href="https://map.kakao.com/link/search/아난티남해">지도 검색</a></li>
-                             </ul>
-                      	</li> -->
+
 
 
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
@@ -328,94 +307,6 @@ marker3.setMap(map3);
 		  map3.setCenter(new kakao.maps.LatLng(34.776888, 127.851892));
 		}, 0);  
 	}); 
-																			// 기본
-  /*  var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
-	var options = { //지도를 생성할 때 필요한 기본 옵션
-	center: new kakao.maps.LatLng(35.200680, 129.229312), //지도의 중심좌표.
-	level: 13 //지도의 레벨(확대, 축소 정도)
-	};
-	var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
-	
-	// 마커를 표시할 위치와 title 객체 배열입니다 
-	var positions = [
-	    {
-	        title: '아난티 코브', 
-	        latlng: new kakao.maps.LatLng(35.200680, 129.229312)
-	    },
-	    {
-	        title: '아난티 코드', 
-	        latlng: new kakao.maps.LatLng(37.626727, 127.482574)
-	    },
-	    {
-	        title: '아난티 남해', 
-	        latlng: new kakao.maps.LatLng(34.776888, 127.851892)
-	    }
-	];
-
-	// 마커 이미지의 이미지 주소입니다
-	var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
-	    
-	for (var i = 0; i < positions.length; i ++) {
-	    
-	    // 마커 이미지의 이미지 크기 입니다
-	    var imageSize = new kakao.maps.Size(24, 35); 
-	    
-	    // 마커 이미지를 생성합니다    
-	    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
-	    
-	    // 마커를 생성합니다
-	    var marker = new kakao.maps.Marker({
-	        map: map, // 마커를 표시할 지도
-	        position: positions[i].latlng, // 마커를 표시할 위치
-	        title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-	        image : markerImage // 마커 이미지 
-	    });
-	}
-	
-	// 마커를 지도에 표시합니다.
-	marker.setMap(map); */	
-	
-	
-    /* // 아난티 코브
-	var iwContent = '<div style="padding:5px;"> 아난티 코브 <br><a href="https://map.kakao.com/link/map/Hello World!,35.200680, 129.229312" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/Hello World!,33.450701,126.570667" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-    iwPosition = new kakao.maps.LatLng(35.200680, 129.229312); //인포윈도우 표시 위치입니다
-    
-    var iwContent1 = '<div style="padding:5px;"> 아난티 코드 <br><a href="https://map.kakao.com/link/map/Hello World!,37.626727, 127.482574" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/Hello World!,33.450701,126.570667" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-    iwPosition1 = new kakao.maps.LatLng(37.626727, 127.482574); //인포윈도우 표시 위치입니다
-    
-    var iwContent2 = '<div style="padding:5px;"> 아난티 남해 <br><a href="https://map.kakao.com/link/map/Hello World!,34.776888, 127.851892" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/Hello World!,33.450701,126.570667" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-    iwPosition2 = new kakao.maps.LatLng(34.776888, 127.851892); //인포윈도우 표시 위치입니다
-    
-
-	// 인포윈도우를 생성합니다
-	var infowindow = new kakao.maps.InfoWindow({
-	    position : iwPosition, iwPosition1, iwPosition2
-	    content : iwContent, iwContent1, iwContent2
-	});
-	  
-	// 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
-	infowindow.open(map, marker);  */
-	
-/* 	// 마커에 커서가 오버됐을 때 마커 위에 표시할 인포윈도우를 생성합니다
-	var iwContent = '<div style="padding:5px;font-weight:500;">아난티 남해</div>'; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-
-	// 인포윈도우를 생성합니다
-	var infowindow = new kakao.maps.InfoWindow({
-	    content : iwContent
-	});
-
-	// 마커에 마우스오버 이벤트를 등록합니다
-	kakao.maps.event.addListener(marker, 'mouseover', function() {
-	  // 마커에 마우스오버 이벤트가 발생하면 인포윈도우를 마커위에 표시합니다
-	    infowindow.open(map, marker);
-	});
-
-	// 마커에 마우스아웃 이벤트를 등록합니다
-	kakao.maps.event.addListener(marker, 'mouseout', function() {
-	    // 마커에 마우스아웃 이벤트가 발생하면 인포윈도우를 제거합니다
-	    infowindow.close();
-	}); */
-
 	 //부트스트랩 충돌시에 사용하는 스크립트
 	/* function relayout(){
 		setTimeout(function(){map.relayout();},0);
