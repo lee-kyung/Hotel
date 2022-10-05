@@ -205,17 +205,7 @@
 		}
 	}
 
-	/*  	// 결제창 스크롤
-	 function check()
-	 {
-	 var num=document.documentElement.scrollTop // 상단으로부터 몇 px스크롤 되었는지 값을 저장
-	 document.getElementById("right").style.position="fixed";
-	 if(num>500)
-	 document.getElementById("right").style.top=num+"px";
 	
-	 }
-	 document.onscroll=check; 
-	 */
 	 
 	 // 회원정보넣기
 	function addinfo()

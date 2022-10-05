@@ -258,106 +258,6 @@
 	width:400px;
 	height:70px;}
 	
-	/* section #wed_resv #background{
-	position:absolute;
-    left:0px;
-    top:0px;
-    width:100%;
-    height:3638px;
-    background:rgba(240,240,240,0.6);
-    visibility:hidden;}
-	*/
-/* 	section #wed_resv #user{
-	margin-top:70px;
-	border:1px solid #887159;
- 	margin-left:15%;
-	height:400px;
-	width:1100px;
-	position:absolute;
-	text-align:center;
-	background:white;
-	z-index:1;}  */
-	
-/* 	section #wed_resv #user #user_txt{
-	margin-top:50px;
-	color:#887159;
-	font-size:20px;}
-	
-	section #wed_resv #user #y_user, #n_user{
-	margin-top:100px;
-	display:inline-block;
-	border:1px solid black;
-	width:400px;
-	height:100px;
-	padding-top:30px;
-	font-size:30px;
-	text-align:center;
-	background:#887159;
-	color:white;
-	border:none;
-	cursor:pointer;} */
-	
-	
-/* 	section #wed_resv #login{
-    position:absolute;
-    margin-left:600px;
-    width:700px;
-    height:500px;
-    border:1px solid #887159;
-    background:white;
-    visibility:hidden;
-    z-index:1;} */
-    
-/*     section #wed_resv #login #login_first div{
-    display:inline-block;}
-    
-    section #wed_resv #login #login_first{
-    height:50px;
-    background:#887159;
-    color:white;
-    padding-top:10px;
-    font-size:18px;}
-    
-    section #wed_resv #login #login_first #login_left{
-    padding-left:20px;}
-    
-    section #wed_resv #login #login_first #login_right{
-    float:right;
-    padding-right:20px;} */
-    
-/*     section #wed_resv #login #login_input{
-    margin:auto;
-    margin-top:100px;
-    width:500px;
-    height:280px;}
-    
-    section #wed_resv #login #login_input input[type=text], input[type=password]{
-    border:none;
-    border-bottom:1px solid #D5D5D5;
-    outline:none;
-    width:500px;
-    height:50px;} */
-    
-/*     section #wed_resv #login input[type=submit]{
-    margin-top:50px;
-    width:500px;
-    height:50px;
-    border:none;
-    background:#887159;
-    color:white;} */
-	
-/* 	section #wed_resv #login #login_txt{
-	width:400px;
-	margin:auto;}
-	
-	section #wed_resv #login #login_txt ul li{
-	display:inline-block;
-	font-size:14px;
-	text-align:center;
-	width:130px;} */
-	
-	
-	
 	#wed_chk2{
 	margin-bottom:100px;}
 	#wed_chk2 img{
@@ -404,42 +304,7 @@
 	
 	
 	
-/* 	function login_view()
-	{
-	//	document.getElementById("background").style.visibility="visible";
-	//	document.getElementById("login").style.visibility="visible";
-		document.getElementById("user").style.visibility="hidden";
-		location="../login/login?ck=1"
-	//	position_chg();
-    }
 
-	function resv_view()
-	{
-	//	document.getElementById("resv").style.display="block";
-		document.getElementById("user").style.display="none";
-	}
-    
-    // 브라우저 중앙에 레이어를 위치 시키지 위한 좌표
-    function position_chg()
-    {
-	   	 var x=innerWidth;  // 브라우저 가로
-	   	 var y=innerHeight; // 브라우저 세로
-	   	 var left=(x/2)-1000;
-	   	 var top=(y/2)-200+document.documentElement.scrollTop;
-	   	 
-	   	 document.getElementById("user").style.left=left+"px";
-	   	 document.getElementById("user").style.top=top+"px";
-    }
-    
-    // 브라우저의 크기를 바꿀때마다 실행
-    window.onresize=position_chg;
-    
-     */
-/*     function login_close()
-    {
-    	document.getElementById("background").style.visibility="hidden";
-    	document.getElementById("login").style.visibility="hidden";
-    } */
     
 	
 	function edit()
@@ -642,46 +507,7 @@
 		</c:if>
 	</div>
 	
-<%-- 	<c:if test="${userid==null }">
-		<div id="user">
-			<div id="user_txt">상담 예약을 진행하려면 로그인 또는 비회원으로 진행 선택을 해주세요 </div>
-			<div id="y_user" onclick="login_view()">회원으로 예약</div>	
-			<div id="n_user" onclick="resv_view()">비회원으로 예약</div>	
-		</div>	
-	</c:if> --%>
-<!-- 		
-	<div id="background">
-	<div id="login">
-	<form method="post" action="../login/login_ok">
-	<input type="hidden" name="ck" value="1">
-		<div id="login_first">
-			<div id="login_left">로그인</div>
-			<div id="login_right" onclick="login_close()">X</div>		
-		</div>
-		<div id="login_input">
-			<div>아이디</div>
-			<div><input type="text" name="userid" placeholder="아이디를 입력하세요"></div>
-			<div style="margin-top:10px;">비밀번호</div>
-			<div><input type="password" name="pwd" placeholder="비밀번호를 입력하세요"></div>
-			<div><input type="submit" value="LOGIN"></div>
-		</div>
-		<div id="login_txt">
-			<ul>
-				<li>회원가입 ></li>
-				<li>아이디 찾기 ></li>
-				<li>비밀번호 찾기 ></li>
-			</ul>
-		</div>
-	</form>
-	</div>	
-		
-		
-	</div> -->
-		
-		
-		
 
-		
 		
 	
 	<form name="wresv" method="post" action="weddingReserve_ok">	
@@ -859,15 +685,15 @@
 		else if(document.wresv.wresv_pay.value=="0")
 		{
 				//결제관련
-				$("#paymentBtn").click(function () {
-					var IMP = window.IMP; // 생략가능
-					IMP.init('imp66382802'); 
+//				$("#paymentBtn").click(function () {
+//					var IMP = window.IMP; // 생략가능
+//					IMP.init('imp66382802'); 
 					// i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
 					// ''안에 띄어쓰기 없이 가맹점 식별코드를 붙여넣어주세요. 안그러면 결제창이 안뜹니다.
-					IMP.request_pay({
-						pg: 'html5_inicis',
-						pay_method: 'card',
-						merchant_uid: 'merchant_' + new Date().getTime(),
+//					IMP.request_pay({
+	//					pg: 'html5_inicis',
+		//				pay_method: 'card',
+			//			merchant_uid: 'merchant_' + new Date().getTime(),
 						/* 
 						 *  merchant_uid에 경우 
 						 *  https://docs.iamport.kr/implementation/payment
@@ -877,31 +703,31 @@
 						// 결제창에서 보여질 이름
 						// name: '주문명 : ${auction.a_title}',
 						// 위와같이 model에 담은 정보를 넣어 쓸수도 있습니다.
-						amount: 5000,
+	//					amount: 5000,
 						// amount: ${bid.b_bid},
 						// 가격 
-						 buyer_name: '이름 : ${name}',
+		//				 buyer_name: '이름 : ${name}',
 						// 구매자 이름, 구매자 정보도 model값으로 바꿀 수 있습니다.
 						// 구매자 정보에 여러가지도 있으므로, 자세한 내용은 맨 위 링크를 참고해주세요.
 						// buyer_postcode: '123-456',
 						
-						}, function (rsp) {
-							console.log(rsp);
-						if (rsp.success) {
-							var msg = '결제가 완료되었습니다.';
-							msg += '결제 금액 : ' + rsp.paid_amount;
-							
-							document.wresv.submit();
+		//				}, function (rsp) {
+		//					console.log(rsp);
+	//					if (rsp.success) {
+	//						var msg = '결제가 완료되었습니다.';
+	//						msg += '결제 금액 : ' + rsp.paid_amount;
+	//					
+	//						document.wresv.submit();
 							
 							// 결제 성공 시 정보를 넘겨줘야한다면 body에 form을 만든 뒤 위의 코드를 사용하는 방법이 있습니다.
 							// 자세한 설명은 구글링으로 보시는게 좋습니다.
-						} else {
-							var msg = '결제에 실패하였습니다.';
-							msg += '에러내용 : ' + rsp.error_msg;
-						}
-						alert(msg);
-					});
-				});
+//						} else {
+	//						var msg = '결제에 실패하였습니다.';
+	//						msg += '에러내용 : ' + rsp.error_msg;
+	//					}
+	//					alert(msg);
+	//				});
+	//			});
 				return true;
 		}
 		

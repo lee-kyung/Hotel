@@ -85,7 +85,7 @@
                                                 <li><a href="../info/faq_list">FAQ</a></li>
                                             </ul>
                                         <li><a href="../room/rooms">rooms</a></li> <!-- class="active" -->
-                                        <li id="title"><a href="">dining<i class="ti-angle-down"></i></a>
+                                        <li id="title"><a href="../dining/dining">dining<i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
                                                 <li><a href="../dining/dining">DINING</a></li>
                                                 <li><a href="../dining/dining_reserve">BOOKING</a></li>
@@ -104,12 +104,7 @@
                                                 <li><a href="../eshop/pro_list?pcode=p02">voucher</a></li>
                                             </ul>                                        
                                         </li>
-                                        <li><a href="../etc/contact">etc<i class="ti-angle-down"></i></a>
-                                        	<ul class="submenu">
-                                                <li><a href="../etc/basic">basic</a></li>
-                                                <li><a href="../etc/elements">elements</a></li>
-                                            </ul>
-                                        </li>
+
                                     </ul>
                                 </nav>
                             </div>
@@ -125,21 +120,7 @@
                             <div class="book_room">
                                 <div class="socail_links">
                                     <ul>
-                                        <!-- <li>
-                                            <a href="#">
-                                                <i class="fa fa-facebook-square"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-twitter"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-instagram"></i>
-                                            </a>
-                                        </li> -->
+      
                                          <li>
 		                                <c:if test="${userid == null}">
 											<a style="color:white;font-weight:600" href="../login/login?ck=4">로그인</a>
@@ -338,57 +319,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         </div>
     </footer>
 
-    <!-- link that opens popup -->
-
-    <!-- form itself end-->
-        <!-- <form id="test-form" name="dtpick" class="white-popup-block mfp-hide">
-                <div class="popup_box ">
-                        <div class="popup_inner">
-                            <h3>Check Availability</h3>
-                            <form action="../room/room_resv">
-                                <div class="row">
-                                    <div class="col-xl-6">
-                                        <input id="datepicker" placeholder="체크인 날짜" >
-                                    </div>
-                                    <div class="col-xl-6">
-                                        <input id="datepicker2" placeholder="체크아웃 날짜">
-                                    </div>
-                                    <div class="col-xl-6">
-                                        <select class="form-select wide" id="default-select" class="">
-                                            <option data-display="성인">1</option>
-                                            <option value="1">2</option>
-                                            <option value="2">3</option>
-                                            <option value="3">4</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-xl-6">
-                                        <select class="form-select wide" id="default-select" class="">
-                                            <option data-display="어린이">1</option>
-                                            <option value="1">2</option>
-                                            <option value="2">3</option>
-                                            <option value="3">4</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-xl-12">
-                                        <select class="form-select wide" id="default-select" class="">
-                                            <option data-display="객실타입">객실타입</option>
-                                            <option value="1">디럭스 룸</option>
-                                            <option value="2">프리미엄 디럭스 룸</option>
-                                            <option value="3">스위트</option>
-                                            <option value="4">스페셜 스위트</option>
-
-                                        </select>
-                                    </div>
-                                    <div class="col-xl-12">
-                                        <button type="submit" class="boxed-btn3">객실 검색</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-            </form> -->
-    <!-- form itself end -->
-
     <!-- JS here -->
     <script src="../js/vendor/modernizr-3.5.0.min.js"></script>
     <script src="../js/vendor/jquery-1.12.4.min.js"></script>
@@ -417,31 +347,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="../js/mail-script.js"></script>
 
     <script src="../js/main.js"></script>
-    <script>
-/*     $(function(){
-    	
-    	 $('#datepicker').datepicker({
-         	format:"yy-mm-dd",
-         	
-         	iconsLibrary: 'fontawesome',
-             icons: {
-              rightIcon: '<span class="fa fa-caret-down"></span>' 
-          }
-    	 });
-    	 
-         $('#datepicker2').datepicker({
-         	format:"yy-mm-dd",
-         	
-             iconsLibrary: 'fontawesome',
-             icons: {
-              rightIcon: '<span class="fa fa-caret-down"></span>'
-          }
 
-         });
-        
-    })
-        */
-    </script>
 
 </body>
 
