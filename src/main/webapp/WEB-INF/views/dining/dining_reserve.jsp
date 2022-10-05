@@ -78,7 +78,6 @@
     border-top:2px solid #887159;
     padding-left:30px;
     line-height:2;
-    /* height:700px; */
     padding-right:50px;
     text-align:center;
     border-collapse:collapse;
@@ -91,10 +90,8 @@
   #section #calendar th{
     font-weight:700px;
     margin-left:15px;
-    /* width:142px; */
     height:50px;
     border-bottom:1px solid #887159;
-    /* border:1px solid red; */
   }
   #section #calendar td{
     border-bottom:1px solid #d3d3d3;
@@ -116,7 +113,6 @@
   }
   #section #day_td{
     height:20px;
-    /* border:1px solid black; */
     margin-left:5px;
   }
 
@@ -142,7 +138,7 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
      height:87px;
      vertical-align: middle;
   }
-  #section #dinetype:hover{ /* 다이닝 타입 마우스오버 css */
+  #section #dinetype :hover{ /* 다이닝 타입 마우스오버 css */
      color:blue;
      text-decoration:underline;
   }
@@ -162,9 +158,6 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
   #dine_typediv table tr, th{
      border-bottom:1px solid #887159;
   }
-/*   tbody{
-      margin-left:30px;
-  } */
   #dine_typediv #dine tr:first-child{
      background:#eeeae1 ;
   } 
@@ -175,7 +168,7 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
      visibility:hidden;
   }
 
-  
+ 
   /*  bootstrap calendar css 시작  */  /*  bootstrap calendar css 시작  */  /*  bootstrap calendar css 시작  */
   .calendar-toolbar {
   margin-bottom: 10px;
