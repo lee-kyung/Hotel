@@ -308,12 +308,15 @@ public class EshopServiceImpl implements EshopService {
 		String total_halin=request.getParameter("total_halin");
 		String total_baefee=request.getParameter("total_baefee");
 		String total_pay=request.getParameter("total_pay");
+		String ptitle="";
 		
 		ArrayList<ProductVO> plist=new ArrayList<ProductVO>();
 		for(int i=0;i<pcode.length;i++) {
 			ProductVO pvo=mapper.pro_gumae(pcode[i]);
 			pvo.setSu(Integer.parseInt(su[i]));
 			plist.add(pvo);
+			
+			ptitle=plist.get(i).getTitle()+","+ptitle;
 		}
 		model.addAttribute("plist", plist);
 		model.addAttribute("total_price", total_price);
@@ -322,6 +325,8 @@ public class EshopServiceImpl implements EshopService {
 		model.addAttribute("total_pay", total_pay);
 
 		model.addAttribute("gchk", request.getParameter("gchk"));
+		
+		model.addAttribute("ptitle", ptitle);
 		
 		/* 메인분류값 */
 		String p=request.getParameter("p");

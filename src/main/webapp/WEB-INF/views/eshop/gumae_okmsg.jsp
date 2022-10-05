@@ -90,7 +90,7 @@
 		<c:if test="${userid == null}">
 			<fieldset id="mbox">
 				<legend id="msg"> 주문이 완료되었습니다 </legend>
-				<div id="msg1"> $j{name}님의 주문번호는 <b onclick="location='../mypage/rdwg_info?bjcode=${jumuncode}'">${jumuncode}</b>입니다. </div>
+				<div id="msg1"> ${jname}님의 주문번호는 <b onclick="location='../mypage/rdwg_info?bjcode=${jumuncode}'">${jumuncode}</b>입니다. </div>
 				<div id="msg2"> ※위의 주문번호는 비회원 주문조회 시 필요하오니 꼭 메모해 두시길 바랍니다. </div>
 				<div onclick="location='../eshop/eshop'" id="btn1"> 계속 쇼핑하기 </div>
 			</fieldset>
