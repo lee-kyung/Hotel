@@ -55,7 +55,6 @@
   }
   #section table{
     margin:auto; 
-    /* margin-top:15px; */
     margin-bottom:15px;
   }
   #section #pri_info{
