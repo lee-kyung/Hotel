@@ -349,7 +349,6 @@
 		}
 		location="wishcart_del?delid="+del+"&dchk=2&p=${p}";	
 	}
-	
 	function one_gumae(pcode, num){
 		let su=document.getElementsByClassName("su")[num].value;
 		

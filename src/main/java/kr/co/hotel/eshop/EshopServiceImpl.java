@@ -279,27 +279,27 @@ public class EshopServiceImpl implements EshopService {
 	public String wishcart_del(HttpServletRequest request) {
 		String[] id=request.getParameter("delid").split(",");
 		int dchk=Integer.parseInt(request.getParameter("dchk"));
-		String ad="";
+		String tname="";
 
 		if(dchk == 1) {
 			for(int i=0;i<id.length;i++) {
-				ad="wish";
-				mapper.wishcart_del(ad, id[i]);
+				tname="wish";
+				mapper.wishcart_del(tname, id[i]);
 			}
-			return "redirect:/eshop/"+ad;
+			return "redirect:/eshop/"+tname;
 		}
 		else if(dchk == 2) {
 			for(int i=0;i<id.length;i++) {
-				ad="cart";
-				mapper.wishcart_del(ad, id[i]);
+				tname="cart";
+				mapper.wishcart_del(tname, id[i]);
 			}
 			String p=request.getParameter("p");
-			return "redirect:/eshop/"+ad+"?p="+p;
+			return "redirect:/eshop/"+tname+"?p="+p;
 		}
 		else
 			return "redirect:/eshop/error";
 	}
-
+	
 	@Override
 	public String pro_gumae(HttpServletRequest request, Model model, HttpSession session) {
 		String[] pcode=request.getParameter("pcode").split(",");

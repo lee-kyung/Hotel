@@ -101,9 +101,9 @@ public class DiningResvServiceImpl implements DiningResvService{
       model.addAttribute("td", td);
       model.addAttribute("cnt", cnt);
       
-      System.out.println(dine_type);
+      /*System.out.println(dine_type);
       System.out.println(td);
-      System.out.println(cnt);
+      System.out.println(cnt);*/
  
       return "/dining/dining_reserve";
    }
@@ -120,9 +120,9 @@ public class DiningResvServiceImpl implements DiningResvService{
 	   }
 	   out.print(tmcnt);
 	   
-	   System.out.println(dd);
+	   /*System.out.println(dd);
 	   System.out.println(dt);
-	   System.out.println(tmcnt);
+	   System.out.println(tmcnt);*/
    }   
    
    @Override
