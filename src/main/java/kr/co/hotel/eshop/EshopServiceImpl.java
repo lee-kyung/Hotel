@@ -279,27 +279,27 @@ public class EshopServiceImpl implements EshopService {
 	public String wishcart_del(HttpServletRequest request) {
 		String[] id=request.getParameter("delid").split(",");
 		int dchk=Integer.parseInt(request.getParameter("dchk"));
-		String ad="";
+		String tname="";
 
 		if(dchk == 1) {
 			for(int i=0;i<id.length;i++) {
-				ad="wish";
-				mapper.wishcart_del(ad, id[i]);
+				tname="wish";
+				mapper.wishcart_del(tname, id[i]);
 			}
-			return "redirect:/eshop/"+ad;
+			return "redirect:/eshop/"+tname;
 		}
 		else if(dchk == 2) {
 			for(int i=0;i<id.length;i++) {
-				ad="cart";
-				mapper.wishcart_del(ad, id[i]);
+				tname="cart";
+				mapper.wishcart_del(tname, id[i]);
 			}
 			String p=request.getParameter("p");
-			return "redirect:/eshop/"+ad+"?p="+p;
+			return "redirect:/eshop/"+tname+"?p="+p;
 		}
 		else
 			return "redirect:/eshop/error";
 	}
-
+	
 	@Override
 	public String pro_gumae(HttpServletRequest request, Model model, HttpSession session) {
 		String[] pcode=request.getParameter("pcode").split(",");
@@ -308,12 +308,15 @@ public class EshopServiceImpl implements EshopService {
 		String total_halin=request.getParameter("total_halin");
 		String total_baefee=request.getParameter("total_baefee");
 		String total_pay=request.getParameter("total_pay");
+		String ptitle="";
 		
 		ArrayList<ProductVO> plist=new ArrayList<ProductVO>();
 		for(int i=0;i<pcode.length;i++) {
 			ProductVO pvo=mapper.pro_gumae(pcode[i]);
 			pvo.setSu(Integer.parseInt(su[i]));
 			plist.add(pvo);
+			
+			ptitle=plist.get(i).getTitle()+","+ptitle;
 		}
 		model.addAttribute("plist", plist);
 		model.addAttribute("total_price", total_price);
@@ -322,6 +325,8 @@ public class EshopServiceImpl implements EshopService {
 		model.addAttribute("total_pay", total_pay);
 
 		model.addAttribute("gchk", request.getParameter("gchk"));
+		
+		model.addAttribute("ptitle", ptitle);
 		
 		/* 메인분류값 */
 		String p=request.getParameter("p");
@@ -437,7 +442,7 @@ public class EshopServiceImpl implements EshopService {
 	@Override
 	public String gumae_okmsg(HttpServletRequest request, Model model) {
 		String jumuncode=request.getParameter("jumuncode");
-		model.addAttribute("name", mapper.getName(jumuncode));
+		model.addAttribute("jname", mapper.getName(jumuncode));
 		model.addAttribute("jumuncode", jumuncode);		
 		return "/eshop/gumae_okmsg";
 	}
