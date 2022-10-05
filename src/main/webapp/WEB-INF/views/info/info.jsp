@@ -162,17 +162,17 @@ appkey=def97946ef83ffb1f9a1cacb75ac32eb"></script>
 				<div class="tab-content justify-content-center">
 					<div role="tabpanel" class="tab-pane active" id="place1">
 						<div role="tabpanel" class="tab-pane active" id="place1">
-						<div class="map" id="map1" style="width:500px;height:600px;margin:0 auto;margin-left:250px;"></div>
+						<div class="map" id="map1" style="width:650px;height:600px;margin:0 auto;margin-left:280px;"></div>
 						</div>
 					</div>
 					<div role="tabpanel" class="tab-pane" id="place2">
 						<div role="tabpanel" class="tab-pane" id="place2">
-						<div class="map" id="map2" style="width:500px;height:600px;margin:0 auto;margin-left:250px;"></div>
+						<div class="map" id="map2" style="width:650px;height:600px;margin:0 auto;margin-left:280px;"></div>
 						</div>
 					</div>
 					<div role="tabpanel" class="tab-pane" id="place3">
 						<div role="tabpanel" class="tab-pane" id="place3">
-						<div class="map" id="map3" style="width:500px;height:600px;margin:0 auto;margin-left:250px;"></div>
+						<div class="map" id="map3" style="width:650px;height:600px;margin:0 auto;margin-left:280px;"></div>
 						</div>
 					</div>
 				</div> <!-- tab-content end -->
