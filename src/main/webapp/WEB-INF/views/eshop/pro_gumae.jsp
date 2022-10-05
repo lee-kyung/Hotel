@@ -213,7 +213,7 @@
 </head>
 <body>
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
-		<div class="bradcam_area basic">
+		<div class="bradcam_area eshop1">
 	        <div id="h3"> O R D E R </div>
 	    </div>
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->

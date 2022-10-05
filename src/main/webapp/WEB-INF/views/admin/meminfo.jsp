@@ -60,7 +60,7 @@
     <!-- 새 이미지 추가하는 법
     	①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기
     	②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
-    <div class="bradcam_area basic">	<!-- class="bradcam_area 클래스명" -->
+    <div class="bradcam_area gongji">	<!-- class="bradcam_area 클래스명" -->
         <div id="h3"> <a href="../admin/admin">ADMIN</a></div>
     </div>
 <div id="sec1">
@@ -99,7 +99,7 @@
 	<table>
 		<tr>
 			<td width="150"> 객실 예약 횟수 </td>
-			<td width="50"> ${rcnt} 회</td>
+			<td width="100"> ${rcnt} 회</td>
 			<td><a href="../admin/roomlist?sel=userid&sword=${mvo.userid}"> +더보기 </a> </td>
 		</tr>
 		<tr>

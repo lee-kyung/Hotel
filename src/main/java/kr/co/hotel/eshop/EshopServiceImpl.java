@@ -437,7 +437,7 @@ public class EshopServiceImpl implements EshopService {
 	@Override
 	public String gumae_okmsg(HttpServletRequest request, Model model) {
 		String jumuncode=request.getParameter("jumuncode");
-		model.addAttribute("name", mapper.getName(jumuncode));
+		model.addAttribute("jname", mapper.getName(jumuncode));
 		model.addAttribute("jumuncode", jumuncode);		
 		return "/eshop/gumae_okmsg";
 	}

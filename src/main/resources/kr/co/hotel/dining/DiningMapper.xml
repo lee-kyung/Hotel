@@ -9,8 +9,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="dining_write_ok" parameterType="kr.co.hotel.dining.DiningVO">
-	 insert into dining(dining_id,dine_type,dine_adult,dine_child,dine_su,writeday)
-	 values(#{dining_id},#{dine_type},#{dine_adult},#{dine_child},#{dine_su},now())
+	 insert into dining(dine_type,dine_adult,dine_child,writeday)
+	 values(#{dine_type},#{dine_adult},#{dine_child},now())
 	</insert>
 	
 	<select id="dining_list" resultType="kr.co.hotel.dining.DiningVO">

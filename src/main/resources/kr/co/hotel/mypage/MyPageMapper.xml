@@ -34,7 +34,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	</select>
   	
   	<select id="getEshopcount" resultType="Integer">
-  		select count(*) as cnt from gumae where buyday like concat('%',#{param},'%')
+  		select count(*) as cnt from gumae where buyday like concat('%',#{param},'%') group by jumuncode
   	</select>
   	
  <!--  	<select id="wedding_resv" resultType="kr.co.hotel.wedding.WeddingResvVO">
