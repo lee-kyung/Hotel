@@ -387,8 +387,7 @@
 					<br>
 					<br>
 					<br>			  
-			       <!-- <div id="pay"><input type="button" id="paymentBtn" value="예약신청" onclick="return check()"></div> -->
-			       <div id="pay"><input type="submit" id="paymentBtn" value="예약신청"></div>
+			       <div id="pay"><input type="submit" id="paymentBtn" value="예약신청" onclick="return check()"></div>
            </div>
      </form>
 
@@ -484,6 +483,7 @@
 			return true;
 		}
 	}
+    
 </script>
     <!-- 부타이틀(자유롭게 변경)_area_end -->
     <!-- ================ 타이틀(자유롭게 변경) Area End ================= -->
