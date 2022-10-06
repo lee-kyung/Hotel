@@ -97,7 +97,7 @@
 	section #search #result .txt2{
 	font-size:30px;
 	color:#BDBDBD;}
-	
+	 
 	
 </style>
 <script>
