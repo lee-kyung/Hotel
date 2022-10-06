@@ -26,15 +26,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<select id="getRoomcount" resultType="Integer">
-  		select count(*) as cnt from roombk where checkin like concat('%',#{param},'%')
+  		select count(*) as cnt from roombk where userid=#{param2} and checkin like concat(#{param1},'%')
   	</select>
   	
   	<select id="getDinecount" resultType="Integer">
-  		select count(*) as cnt from diningresv where dr_date like concat('%',#{param},'%')
+  		select count(*) as cnt from diningresv where userid=#{param2} and dr_date like concat(#{param1},'%')
   	</select>
   	
   	<select id="getEshopcount" resultType="Integer">
-  		select count(*) as cnt from gumae where buyday like concat('%',#{param},'%')
+  		select count(*) as cnt from gumae where userid=#{param2} and buyday like concat(#{param1},'%')
   	</select>
   	
  <!--  	<select id="wedding_resv" resultType="kr.co.hotel.wedding.WeddingResvVO">
