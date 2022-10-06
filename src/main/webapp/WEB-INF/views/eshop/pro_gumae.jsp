@@ -209,6 +209,122 @@
 		}*/	
 	}
 	window.onscroll=right_stop;
+	
+	/* 배송상품의 필수입력 체크후 [결제하기]로 진행 */
+	function check1(){
+		if(document.gumae.pname.value.trim() == "") {
+			alert("주문자명을 입력하세요.");
+			return false;
+			}
+			else if(document.gumae.pphone.value.trim() == "") {
+				alert("주문자의 연락처를 입력하세요.");
+				return false;
+				}
+				else if(document.gumae.pemail.value.trim() == "") {
+					alert("주문자의 이메일을 입력하세요.");
+					return false;
+					}
+					else if(document.gumae.bname.value.trim() == "") {
+						alert("받는 사람을 입력하세요.");
+						return false;
+						}
+						else if(document.gumae.bphone.value.trim() == "") {
+							alert("받는 사람의 연락처를 입력하세요.");
+							return false;
+							}
+							else if(document.gumae.bzip.value.trim() == "") {
+								alert("주소를 검색하여 우편번호를 입력하세요.");
+								return false;
+								}
+								else if(document.gumae.bjuso.value.trim() == "") {
+									alert("주소를 검색하여 기본주소를 입력하세요.");
+									return false;
+									}
+									else if(document.gumae.bjuso_etc.value.trim() == "") {
+										alert("상세주소를 입력하세요.");
+										return false;
+										}
+										/*else if(document.gumae.agree1.checked == false) {
+											alert("비회원주문 개인정보 수집이용에 대한 동의가 필요합니다.");
+											return false;
+										}*/
+										else {
+											/*$("#paymentBtn").click(function (){
+												var IMP = window.IMP;
+												IMP.init('imp66382802');
+												IMP.request_pay({
+													pg: 'html5_inicis',
+													pay_method: 'card',
+													merchant_uid: 'merchant_' + new Date().getTime(),
+													name: '${ptitle}',
+													amount: ${total_pay},
+													buyer_name: '이름',
+													buyer_postcode: '123-456',
+													}, function(rsp){
+														console.log(rsp);
+													if(rsp.success) {
+														var msg = '결제가 완료되었습니다.';*/
+														//msg += '결제 금액 : ' + rsp.paid_amount;
+														document.gumae.submit();
+													/*}
+													else {
+														var msg = '결제에 실패하였습니다.';
+														//msg += '에러내용 : ' + rsp.error_msg;
+													}
+													alert(msg);
+												});
+											});*/
+											return true;
+										}
+	}
+	
+	/* 모바일상품의 필수입력 체크후 [결제하기]로 진행 */
+	function check2(){
+		if(document.gumae.pname.value.trim() == "") {
+			alert("주문자명을 입력하세요.");
+			return false;
+			}
+			else if(document.gumae.pphone.value.trim() == "") {
+				alert("주문자의 연락처를 입력하세요.");
+				return false;
+				}
+				else if(document.gumae.pemail.value.trim() == "") {
+					alert("주문자의 이메일을 입력하세요.");
+					return false;
+					}
+					/*else if(document.gumae.agree1.checked == false) {
+						alert("비회원주문 개인정보 수집이용에 대한 동의가 필요합니다.");
+						return false;
+					}*/
+					else {
+						/*$("#paymentBtn").click(function (){
+							var IMP = window.IMP;
+							IMP.init('imp66382802');
+							IMP.request_pay({
+								pg: 'html5_inicis',
+								pay_method: 'card',
+								merchant_uid: 'merchant_' + new Date().getTime(),
+								name: '${ptitle}',
+								amount: ${total_pay},
+								buyer_name: '이름',
+								buyer_postcode: '123-456',
+								}, function(rsp){
+									console.log(rsp);
+								if(rsp.success) {
+									var msg = '결제가 완료되었습니다.';*/
+									//msg += '결제 금액 : ' + rsp.paid_amount;
+									document.gumae.submit();
+								/*}
+								else {
+									var msg = '결제에 실패하였습니다.';
+									//msg += '에러내용 : ' + rsp.error_msg;
+								}
+								alert(msg);
+							});
+						});*/
+					return true;
+					}
+	}
 </script>
 </head>
 <body>
@@ -557,75 +673,5 @@
 	</form>
 	</section>
     <!-- ================ 주문/결제 Area End ================= -->
-    	
-	<script>
-	/* 배송상품의 필수입력 체크후 [결제하기]로 진행 */
-	function check1(){
-		if(document.gumae.pname.value.trim() == "") {
-			alert("주문자명을 입력하세요.");
-			return false;
-			}
-			else if(document.gumae.pphone.value.trim() == "") {
-				alert("주문자의 연락처를 입력하세요.");
-				return false;
-				}
-				else if(document.gumae.pemail.value.trim() == "") {
-					alert("주문자의 이메일을 입력하세요.");
-					return false;
-					}
-					else if(document.gumae.bname.value.trim() == "") {
-						alert("받는 사람을 입력하세요.");
-						return false;
-						}
-						else if(document.gumae.bphone.value.trim() == "") {
-							alert("받는 사람의 연락처를 입력하세요.");
-							return false;
-							}
-							else if(document.gumae.bzip.value.trim() == "") {
-								alert("주소를 검색하여 우편번호를 입력하세요.");
-								return false;
-								}
-								else if(document.gumae.bjuso.value.trim() == "") {
-									alert("주소를 검색하여 기본주소를 입력하세요.");
-									return false;
-									}
-									else if(document.gumae.bjuso_etc.value.trim() == "") {
-										alert("상세주소를 입력하세요.");
-										return false;
-										}
-										/*else if(document.gumae.agree1.checked == false) {
-											alert("비회원주문 개인정보 수집이용에 대한 동의가 필요합니다.");
-											return false;
-										}*/
-										else {
-											document.gumae.submit();
-											return true;
-										}
-	}
-	
-	/* 모바일상품의 필수입력 체크후 [결제하기]로 진행 */
-	function check2(){
-		if(document.gumae.pname.value.trim() == "") {
-			alert("주문자명을 입력하세요.");
-			return false;
-			}
-			else if(document.gumae.pphone.value.trim() == "") {
-				alert("주문자의 연락처를 입력하세요.");
-				return false;
-				}
-				else if(document.gumae.pemail.value.trim() == "") {
-					alert("주문자의 이메일을 입력하세요.");
-					return false;
-					}
-					/*else if(document.gumae.agree1.checked == false) {
-						alert("비회원주문 개인정보 수집이용에 대한 동의가 필요합니다.");
-						return false;
-					}*/
-					else {
-						document.gumae.submit();
-						return true;
-					}
-	}
-  </script>
   
 </body>

@@ -88,10 +88,11 @@ public class MyPageServiceImpl implements MyPageService{
 		int y;
 		LocalDate today=LocalDate.now();
 		y=today.getYear();	
+		String userid=session.getAttribute("userid").toString();
 		
-		int room=mapper.getRoomcount(y);
-		int dine=mapper.getDinecount(y);
-		int eshop=mapper.getEshopcount(y);
+		int room=mapper.getRoomcount(y, userid);
+		int dine=mapper.getDinecount(y, userid);
+		int eshop=mapper.getEshopcount(y, userid);
 		
 		model.addAttribute("room", room);
 		model.addAttribute("dine", dine);
@@ -105,7 +106,7 @@ public class MyPageServiceImpl implements MyPageService{
 		
 		
 		// 최근내역
-		String userid=session.getAttribute("userid").toString();
+		
 		ArrayList<RoomResvVO> rlist=mapper.roomR_Recent(userid);
 		ArrayList<DiningResvVO> dlist=mapper.dineR_Recent(userid);
 		ArrayList<WeddingResvVO> wlist=mapper.weddingR_Recent(userid);

@@ -22,11 +22,11 @@ public interface MyPageMapper {
 
 	public void mypwd_change_ok(String newpwd, String userid);
 
-	public int getRoomcount(int y);
+	public int getRoomcount(int y, String userid);
 
-	public int getDinecount(int y);
+	public int getDinecount(int y, String userid);
 
-	public int getEshopcount(int y);
+	public int getEshopcount(int y, String userid);
 
 	public int getWeddingChong(int pcnt, String userid);
 
