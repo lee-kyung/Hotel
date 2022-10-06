@@ -294,7 +294,26 @@ background-image: repeating-linear-gradient(45deg, #828284 0, #828284 0.70000000
 			}
 		}
   } 
-
+    // 
+	function check()
+	{
+		// 다이닝 타입, 입장 시간
+		if(document.view_type.dr_date.value.trim()=="")
+		{
+			alert("예약 희망 날짜를 선택해주세요.");
+			return false;
+		}
+		else if(document.getElementById("dr_time").selectedIndex==0)
+		{
+			alert("예약 희망 시간을 선택해주세요.");
+			return false;
+		}  
+		else
+			return true;
+		}  // options[view_type.selectedIndex]
+		  // options[view_type.selectedIndex]
+	
+		
     // 예약 타입 선택시 시간 선택 테이블 보이게 하기
     function show(y, m, d, t){
     	var table=document.getElementById("dine");
