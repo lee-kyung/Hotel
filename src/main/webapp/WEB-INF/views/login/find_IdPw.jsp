@@ -40,11 +40,11 @@
 	height:70px;
 	color:#9E9E9E;}
 	
-	section #search #txt2, #txt3{
+	section #search #aa, #bb{
 	margin-top:40px;
 	font-size:20px;}
 	
-	section #search #txt3{
+	section #search #bb{
 	display:none;}
 	
 	section #search #us_form, #ps_form{
@@ -106,8 +106,8 @@
 	{
 		document.getElementById("userid").style.color="#887159";
 		document.getElementById("pwd").style.color="#9E9E9E";
-		document.getElementById("txt3").style.display="none";
-		document.getElementById("txt2").style.display="block";
+		document.getElementById("bb").style.display="none";
+		document.getElementById("aa").style.display="block";
 		document.getElementById("us_form").style.display="block";
 		document.getElementById("ps_form").style.display="none";
 		document.getElementById("result").style.display="none";
@@ -125,8 +125,8 @@
 	{
 		document.getElementById("pwd").style.color="#887159";
 		document.getElementById("userid").style.color="#9E9E9E";
-		document.getElementById("txt2").style.display="none";
-		document.getElementById("txt3").style.display="block";
+		document.getElementById("bb").style.display="block";
+		document.getElementById("aa").style.display="none";
 		document.getElementById("ps_form").style.display="block";
 		document.getElementById("us_form").style.display="none";
 		document.getElementById("result").style.display="none";
@@ -225,8 +225,8 @@
 	  	 <div id="txt1">
 		  	<div onclick="userid_fn()" id="userid">아이디 찾기</div><div onclick="pwd_fn()" id="pwd">비밀번호 찾기</div>
 		 </div>	
-	  	 <div id="txt2">아이디를 잊으셨나요?<br>회원가입 시 작성하신 이메일로 아이디를 찾으실 수 있습니다.</div>
-	  	 <div id="txt3">비밀번호를 잊으셨나요?<br>회원가입 시 작성하신 이메일로 비밀번호를 찾으실 수 있습니다.</div>
+	  	 <div id="aa">아이디를 잊으셨나요?<br>회원가입 시 작성하신 이메일로 아이디를 찾으실 수 있습니다.</div>
+	  	 <div id="bb">비밀번호를 잊으셨나요?<br>회원가입 시 작성하신 이메일로 비밀번호를 찾으실 수 있습니다.</div>
 	  </div>
 	  
 	 <div id="us_form">
