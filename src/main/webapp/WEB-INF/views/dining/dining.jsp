@@ -62,9 +62,10 @@
      margin:auto;
   }
   diningsec #outer{
+  	 margin:auto;
      outline:1px solid #887159;
      width:1000px;
-     height:900px;
+     height:950px;
      background:#e5e4e2;
      margin-top:40px;
      margin-bottom:100px;
@@ -156,7 +157,6 @@
 <div class="slider_area">
         <div class="slider_active owl-carousel">
             <div class="single_slider d-flex align-items-center justify-content-center s1"></div>
-            <div class="single_slider s1"></div>
             <div class="single_slider s2"></div>
             <div class="single_slider s3"></div>
             <div class="single_slider s5"></div>
@@ -167,7 +167,7 @@
             <div class="single_slider s"></div>
         </div>
 </div>
-
+</div>
     <!-- about_info_area_start -->
 
     <!-- about_main_info_start -->
