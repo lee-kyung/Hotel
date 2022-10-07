@@ -361,13 +361,13 @@
     
     <!-- 이샵 주문 내역_area_start -->
  	<c:if test="${gubun == 'e'}">
- 	<!-- 예약 정보 -->
+ 	<!-- 주문 정보 -->
 		<div id="tbox">
 			<div style="float:left;"> ${buyday} 주문 </div>
 			<div style="float:right;"> ${gvo.jumuncode} </div>	
 		</div>
 	
-		<!-- 예약 상세 정보 -->
+		<!-- 주문 상세 정보 -->
 		<table>
 			<tr>
 				<td colspan="3">
@@ -451,11 +451,11 @@
 			</tr>
 			<tr>
 				<td> 결제금액 </td>
-				<td> <fmt:formatNumber value="${gvo.total_price}" pattern=",###"/>원 </td>
+				<td> <fmt:formatNumber value="${tprice}" pattern=",###"/>원 </td>
 			</tr>
 		</table>
 	
-		<!-- 예약 상태 -->
+		<!-- 주문 상태 -->
 		<div id="sbox">
 			<c:if test="${gvo.state == 0}"> <div onclick="bjcancel('${gvo.jumuncode}')" id="btn2"> 주문취소 </div> </c:if>
 			<div onclick="location='../main/index'" id="btn1"> 메인으로 </div>
