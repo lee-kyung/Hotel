@@ -70,7 +70,7 @@
      margin-bottom:100px;
   }
   diningsec #outer #left{
-     /* background:gold; */
+     /* background:gold; */ 
 	 width:240px;
 	 padding:15px;
 	 padding-top:24px;
