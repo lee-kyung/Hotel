@@ -120,7 +120,6 @@
                             <div class="book_room">
                                 <div class="socail_links">
                                     <ul>
-      
                                          <li>
 		                                <c:if test="${userid == null}">
 											<a style="color:white;font-weight:600" href="../login/login?ck=4">로그인</a>
