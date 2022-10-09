@@ -125,6 +125,7 @@ appkey=def97946ef83ffb1f9a1cacb75ac32eb"></script>
   [id$="-toggle"] {
     margin-right: 15px;
   }
+  
 </style>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <body>
@@ -148,7 +149,7 @@ appkey=def97946ef83ffb1f9a1cacb75ac32eb"></script>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?
 appkey=def97946ef83ffb1f9a1cacb75ac32eb"></script>
-       <div class="subtitle" style="text-align:center;font-size:40px;"> Location </div>
+       <div class="subtitle" style="text-align:center;font-size:40px; margin:100px auto 50px auto;"> Location </div>
   <div class="outer">
 	  <div class="tab">
 				<ul class="nav nav-tabs justify-content-center" role="tablist" id="myTab">

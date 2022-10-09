@@ -86,7 +86,7 @@
 	#cart #cate1 {
 		margin : auto;
 		text-align : center;
-		margin-top : 40px;
+		margin-top : 50px;
 		width : 605px;
 		height : 80px;
 	}
@@ -196,8 +196,7 @@
 		padding-top : 6px;
 		text-align : center;
 		margin-right : 10px;
-		border : 1px solid #887159;
-		color : #887159;
+		border : 1px solid black;
 		cursor : pointer;
 	}
 	#cart #box #login {
@@ -206,8 +205,8 @@
 		height : 37px;
 		padding-top : 6px;
 		text-align : center;
-		border : 1px solid #887159;
-		background :#887159;
+		border : 1px solid black;
+		background : black;
 		color : white;
 		cursor : pointer;
 	}

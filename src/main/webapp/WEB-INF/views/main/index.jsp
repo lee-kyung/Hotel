@@ -274,7 +274,7 @@
                     <div class="row">
                         <div class="col-xl-12">
                             <div class="slider_text text-center">
-                                <h3>Montana Resort</h3>
+                                <h3>Montana Hotel</h3>
                                 <p>Unlock to enjoy the view of Martine</p>
                             </div>
                         </div>
@@ -322,7 +322,7 @@
                             <li>넷플릭스 셋톱 대여</li>
                        <!-- <li>Sea view side</li> -->
                         </ul>
-                        <a href="../room/roomresv" class="book_now">book now</a>
+                        <a href="../room/room_resv" class="book_now">book now</a>
                     </div>
                 </div>
                 <div class="col-xl-4 col-md-4">
@@ -336,7 +336,7 @@
                             <li>넷플릭스 셋톱 대여</li>
                             <!-- <li>Sea view side</li> -->
                         </ul>
-                        <a href="../room/roomresv" class="book_now">book now</a>
+                        <a href="../room/room_resv" class="book_now">book now</a>
                     </div>
                 </div>
                 <div class="col-xl-4 col-md-4">
@@ -350,7 +350,7 @@
                             <li>어린이용 놀이방 이용</li>
                             <!-- <li>Sea view side</li> -->
                         </ul>
-                        <a href="../room/roomresv" class="book_now">book now</a>
+                        <a href="../room/room_resv" class="book_now">book now</a>
                     </div>
                 </div>
             </div>

@@ -335,14 +335,14 @@
 			      - 예약 내역과 상이할 시, 이용이 제한되거나 변경될 수 있습니다.
 			      </div>
 			      <br>
-			      <div><b>결제 방법</b></div>
+			      <div><b>*결제 방법</b></div>
 				  <div id="paymethod">
 					<input type="radio" name="sudan" value="0" > 간편결제&nbsp;&nbsp;
 					<input type="radio" name="sudan" value="1" > 현장결제 <br> 
 					* 쿠폰 / 제휴 바우처 / 이벤트 쿠폰 사용 원하실 경우, 레스토랑에서 결제하기를 선택해 주세요.
 			      </div>
 			      <br>
-				<div><b>약관 동의</b></div>
+				<div><b>*약관 동의</b></div>
 				<div>
 					<div style="float:left; width:500px;font-weight:900">개인정보 수집 및 이용에 대한 동의</div><div style="float:right;align:right;font-size:12px"><input type="checkbox" name="agree1">동의합니다</div>
 				</div><br>
@@ -387,8 +387,7 @@
 					<br>
 					<br>
 					<br>			  
-			       <!-- <div id="pay"><input type="button" id="paymentBtn" value="예약신청" onclick="return check()"></div> -->
-			       <div id="pay"><input type="submit" id="paymentBtn" value="예약신청"></div>
+			       <div id="pay"><input type="submit" id="paymentBtn" value="예약신청" onclick="return check()"></div>
            </div>
      </form>
 
@@ -398,7 +397,7 @@
 </div>
 
 <script>
-    //필수입력사항 입력 했는지 확인
+    // 필수입력사항 입력 했는지 확인
     function check()
 	{
 		// 아이디, 비번, 이름, 전화번호
@@ -484,6 +483,7 @@
 			return true;
 		}
 	}
+    
 </script>
     <!-- 부타이틀(자유롭게 변경)_area_end -->
     <!-- ================ 타이틀(자유롭게 변경) Area End ================= -->
