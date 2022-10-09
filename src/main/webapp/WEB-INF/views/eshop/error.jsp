@@ -43,7 +43,7 @@
 
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
     <div class="bradcam_area black">
-        <h3> 시스템 오류 </h3>
+        <h3> 시 스 템 오 류 </h3>
     </div>
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
 

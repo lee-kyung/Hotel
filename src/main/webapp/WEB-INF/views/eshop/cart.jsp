@@ -86,7 +86,7 @@
 	#cart #cate1 {
 		margin : auto;
 		text-align : center;
-		margin-top : 40px;
+		margin-top : 50px;
 		width : 605px;
 		height : 80px;
 	}
@@ -98,6 +98,7 @@
 		border : 1px solid #887159;
 		color : #887159;
 		cursor : pointer;
+		letter-spacing : 2px;
 	}
 	#cart #cate3 {
 		display : inline-block;
@@ -107,6 +108,10 @@
 		border : 1px solid #887159;
 		color : #887159;
 		cursor : pointer;
+		letter-spacing : 2px;
+	}
+	#cart #sum {
+		font-family : TimesNewRoman;
 	}
 	#cart table th {
 		text-align : center;
@@ -191,8 +196,7 @@
 		padding-top : 6px;
 		text-align : center;
 		margin-right : 10px;
-		border : 1px solid #887159;
-		color : #887159;
+		border : 1px solid black;
 		cursor : pointer;
 	}
 	#cart #box #login {
@@ -201,8 +205,8 @@
 		height : 37px;
 		padding-top : 6px;
 		text-align : center;
-		border : 1px solid #887159;
-		background :#887159;
+		border : 1px solid black;
+		background : black;
 		color : white;
 		cursor : pointer;
 	}
@@ -334,7 +338,7 @@
 			document.getElementById("mainck").checked=false;
 	}
 	
-	function cart_del(){
+	/*function cart_del(){
 		let del="";
 		let subck=document.getElementsByClassName("subck");
 		let len=subck.length;
@@ -343,6 +347,36 @@
 				del=subck[i].value+","+del;
 		}
 		location="wishcart_del?delid="+del+"&dchk=2&p=${p}";	
+	}*/
+	function cart_del(){
+		let del="";
+		let subck=document.getElementsByClassName("subck");
+		let cktr=document.getElementsByClassName("cktr");
+		let len=subck.length;			
+		for(i=0;i<len;i++) {
+			if(subck[i].checked)
+				del=subck[i].value+","+del;
+		}
+		
+		let chk=new XMLHttpRequest();
+		chk.onreadystatechange=function(){
+			if(chk.readyState == 4) {
+				if(chk.responseText == "0") {
+					for(i=0;i<len;i++) {
+						if(subck[i].checked) {
+							cktr[i].style.display="none";
+							subck[i].checked=false;
+							document.getElementById("total_price").innerText=0;
+							document.getElementById("total_halin").innerText=0;
+							document.getElementById("total_baefee").innerText=0;
+							document.getElementById("total_pay").innerText=0;
+						}
+					}
+				}
+			}
+		}
+		chk.open("get", "wishcart_del?delid="+del+"&dchk=2");
+		chk.send();
 	}
 	
 	function one_gumae(pcode, num){
@@ -419,12 +453,12 @@
     	</c:if>
   		<c:if test="${p == 'p01'}">
     		<div id="cate1">
-				<span id="cate2" onclick="location='cart?p=p01'"> 배 송 상 품 </span><span id="cate3" onclick="location='cart?p=p02'"> 모 바 일 상 품 </span>
+				<span id="cate2" onclick="location='cart?p=p01'"> 배 송 상 품 <span id="sum">[${sum1}]</span> </span><span id="cate3" onclick="location='cart?p=p02'"> 모 바 일 상 품 <span id="sum">[${sum2}]</span> </span>
 			</div>
 		</c:if>
 		<c:if test="${p == 'p02'}">
 			<div id="cate1">
-				<span id="cate2" onclick="location='cart?p=p01'"> 배 송 상 품 </span><span id="cate3" onclick="location='cart?p=p02'"> 모 바 일 상 품 </span>
+				<span id="cate2" onclick="location='cart?p=p01'"> 배 송 상 품 <span id="sum">[${sum1}]</span> </span><span id="cate3" onclick="location='cart?p=p02'"> 모 바 일 상 품 <span id="sum">[${sum2}]</span> </span>
 			</div>
 		</c:if>
 		<table width="1000" align="center" cellpadding="0">
@@ -445,7 +479,7 @@
 		<c:forEach var="cvo" items="${clist}" varStatus="cart">
 			<input type="hidden" class="pcode" value="${cvo.pcode}">
 			<input type="hidden" class="halin" value="${cvo.price * (cvo.halin / 100)}">
-			<tr>
+			<tr class="cktr">
 				<!-- 체크박스 -->
 				<td> <input type="checkbox" class="subck" onclick="subcheck()" value="${cvo.id}" id="subck"> </td>
 				<!-- 상품정보(이미지, 상품명) -->

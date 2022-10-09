@@ -5,7 +5,7 @@
 <head>
 <style>
 	#eshop {
-		width : 1500px;
+		
 		margin : 100px auto 150px auto;
 	}
 	#eshop #eshop_img1 {
@@ -38,8 +38,8 @@
 	}
 	#eshop #eshop_img2 {
 		width : 100%;
-		height : 300px;
-		margin : 70px auto 70px auto;
+		height : 50%;
+		margin : 100px auto 100px auto;
 	}
 </style>
 </head>
@@ -47,8 +47,8 @@
 <body>
 
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
-    <div class="bradcam_area eshop">
-        <div id="h3" onclick="location='eshop'" style="cursor:pointer;"> E S H O P </div>
+    <div class="bradcam_area eshop0">
+        <!-- <div id="h3" onclick="location='eshop'" style="cursor:pointer;"> E S H O P </div> -->
     </div>
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
 
@@ -65,10 +65,10 @@
 			<td>
 				<!-- 상품이미지 -->
 				<div class="offers_area padding_top" id="eshop_img1"><div class="single_offers"><div class="about_thumb">
-					<img src="../img/eshop/${pvo.img}" height="430" width="440" onclick="content_view('${pvo.pcode}')" style="cursor:pointer;">	
+					<img src="../img/eshop/${pvo.img}" height="430" width="440" style="cursor:pointer;" onclick="location='pro_content?pcode=${pvo.pcode}'">	
 				</div></div></div>
 				<!-- 상품명 -->
-				<div id="title" onclick="content_view('${pvo.pcode}')"> ${pvo.title} </div>
+				<div id="title" onclick="location='pro_content?pcode=${pvo.pcode}'"> ${pvo.title} </div>
 				<!-- 상품상세로 이동 -->
 				<div id="content" onclick="location='pro_content?pcode=${pvo.pcode}'"> 자세히보기 > </div>
 			</td>
@@ -94,10 +94,10 @@
 			<td>
 				<!-- 상품이미지 -->
 				<div class="offers_area padding_top" id="eshop_img1"><div class="single_offers"><div class="about_thumb">
-					<img src="../img/eshop/${pvo.img}" height="430" width="440" onclick="content_view('${pvo.pcode}')" style="cursor:pointer;">	
+					<img src="../img/eshop/${pvo.img}" height="430" width="440" style="cursor:pointer;" onclick="location='pro_content?pcode=${pvo.pcode}'">	
 				</div></div></div>
 				<!-- 상품명 -->
-				<div id="title" onclick="content_view('${pvo.pcode}')"> ${pvo.title} </div>
+				<div id="title" onclick="location='pro_content?pcode=${pvo.pcode}'"> ${pvo.title} </div>
 				<!-- 상품상세로 이동 -->
 				<div id="content" onclick="location='pro_content?pcode=${pvo.pcode}'"> 자세히보기 > </div>
 			</td>

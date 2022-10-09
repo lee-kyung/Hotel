@@ -144,24 +144,20 @@
 		var bb = document.resv.bextbed.value;
 		if (bb == 1) {
 			bbprice = 65000 * bb * suk;
-			document.getElementById("bed").innerText = new Intl.NumberFormat()
-					.format(bbprice);
+			document.getElementById("bed").innerText = new Intl.NumberFormat().format(bbprice);
 		} else {
 			bbprice = 0;
-			document.getElementById("bed").innerText = new Intl.NumberFormat()
-					.format(bbprice);
+			document.getElementById("bed").innerText = new Intl.NumberFormat().format(bbprice);
 		}
 
 		// 조식
 		var bf = document.resv.bmeal.value;
 		if (bf == 1) {
 			bfprice = 30000 * binwon * suk;
-			document.getElementById("bfp").innerText = new Intl.NumberFormat()
-					.format(bfprice);
+			document.getElementById("bfp").innerText = new Intl.NumberFormat().format(bfprice);
 		} else {
 			bfprice = 0;
-			document.getElementById("bfp").innerText = new Intl.NumberFormat()
-					.format(bfprice);
+			document.getElementById("bfp").innerText = new Intl.NumberFormat().format(bfprice);
 		}
 
 		// 객실가격
@@ -169,8 +165,7 @@
 
 		// 총 가격
 		var total = Number(bbprice) + Number(bfprice) + Number(rprice);
-		document.getElementById("btotal").innerText = new Intl.NumberFormat()
-				.format(total);
+		document.getElementById("btotal").innerText = new Intl.NumberFormat().format(total);
 
 		// form태그내에 총금액을 전달
 		document.resv.btotal.value = total;
@@ -205,17 +200,7 @@
 		}
 	}
 
-	/*  	// 결제창 스크롤
-	 function check()
-	 {
-	 var num=document.documentElement.scrollTop // 상단으로부터 몇 px스크롤 되었는지 값을 저장
-	 document.getElementById("right").style.position="fixed";
-	 if(num>500)
-	 document.getElementById("right").style.top=num+"px";
 	
-	 }
-	 document.onscroll=check; 
-	 */
 	 
 	 // 회원정보넣기
 	function addinfo()
@@ -277,7 +262,7 @@
 				 		<div><span id="sb">* 휴대폰 번호 </span><input type="text" name="bkphone" id="bkphone" value=""></div>
 				 		<br>
 						<div> 
-							특별 요청사항<sup>(<span id="nowByte">0</span>/100bytes)</sup> 
+							특별 요청사항<sup>(<span id="nowByte">0</span>/100bytes)</sup> <p>
 							<textarea cols="80" rows="3" name="spreq" onkeyup="fn_checkByte(this)" 
 							placeholder="객실 투숙 시 필요한 비품관련 요청은 한정된 수량으로 인하여 서비스 이용이 제한될 수 있으니 유선상으로 문의하여 주시기 바랍니다."></textarea>
 						</div>
@@ -400,8 +385,10 @@
 			return false;
 		} else {
 			//결제관련
-			/* 		$("#paymentBtn").click(function () {
+		 		$("#paymentBtn").click(function () {
 						var IMP = window.IMP; // 생략가능
+						var total = document.resv.btotal.value;
+						
 						IMP.init('imp66382802'); 
 						IMP.request_pay({
 							pg: 'html5_inicis',
@@ -409,8 +396,8 @@
 							merchant_uid: 'merchant_' + new Date().getTime(),
 
 							name: '주문명 : ${rvo.rname}',
-							amount: 2000,
-							buyer_name: '이름',
+							amount: total,
+							buyer_name: bkname,
 							buyer_postcode: '123-456',
 							}, function (rsp) {
 								console.log(rsp);
@@ -424,8 +411,8 @@
 							}
 							alert(msg);
 						});
-					}); */
-			document.resv.submit();
+					});  
+			//document.resv.submit(); 
 			return true;
 		}
 	}

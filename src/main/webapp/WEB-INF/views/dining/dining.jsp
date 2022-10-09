@@ -23,7 +23,7 @@
      color:#887159;
      font-size:60px;
   }
-  .genric-btn.default{
+  .genric-btn .default{
      background:#a28d78;
      color:#f2f1ef;
      width:200px;
@@ -43,10 +43,7 @@
   #h3{
      text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
   }
-  .about_info_area{
-     margin:auto;
-     text-align:center;
-  }
+
   .about_main_info{
      margin:auto;
      text-align:center;
@@ -65,21 +62,22 @@
      margin:auto;
   }
   diningsec #outer{
+  	 margin:auto;
      outline:1px solid #887159;
      width:1000px;
-     height:900px;
+     height:950px;
      background:#e5e4e2;
      margin-top:40px;
      margin-bottom:100px;
   }
   diningsec #outer #left{
-     /* background:gold; */
+     /* background:gold; */ 
 	 width:240px;
 	 padding:15px;
 	 padding-top:24px;
 	 float:left;
 	 margin:auto;
-	 border:1px solid red;
+	 /* border:1px solid red; */
 	 text-align:center;
   }
   diningsec #outer #left b{
@@ -91,7 +89,7 @@
      /* background:orange; */
 	 width:760px;
 	 float:right;
-	 border:1px solid blue;
+	 /* border:1px solid blue; */
   }
   diningsec #info_con{
     line-height:2;
@@ -134,7 +132,6 @@
                         </div>
                         <p>호텔 부산의 다양한 레스토랑에서
 						    마스터 쉐프들이 펼치는 화려한 미식의 세계로 초대합니다.</p>
-                        <!-- <a href="../dining/dining_reserve" class="line-button">예약하기</a> -->
                         <a href="../dining/dining_reserve" class="genric-btn default">온라인 예약</a>
                     </div>
                 </div>
@@ -157,9 +154,9 @@
     <!-- about_info_area_start -->
     <div class="about_info_area">
               <div id="middle">Gallery</div>
-        <div class="about_active owl-carousel" >
-           <div class="single_slider" style="align:center;">
-            <div class="single_slider s1"></div>
+<div class="slider_area">
+        <div class="slider_active owl-carousel">
+            <div class="single_slider d-flex align-items-center justify-content-center s1"></div>
             <div class="single_slider s2"></div>
             <div class="single_slider s3"></div>
             <div class="single_slider s5"></div>
@@ -168,39 +165,14 @@
             <div class="single_slider s7"></div>
             <div class="single_slider s8"></div>
             <div class="single_slider s"></div>
-          </div>
         </div>
-    </div> 
+</div>
+</div>
     <!-- about_info_area_start -->
 
     <!-- about_main_info_start -->
     <div class="about_main_info">
-        <!-- <div class="container">
-            <div class="row">
-                <div class="col-xl-6 col-md-6">
-                    <div class="single_about_info">
-                        <h3>천혜의 자연경관인 해운대 바다와 해변 그리고 초록빛 가든의 멋진 경치를 감상하며 미식을 즐길 수 있는 공간 <br>
-                            </h3>
-                            <p>야외 테라스 다이닝 공간과 모든 섹션이 라이브로 운영되는 올 오픈 키친(All Open Kitchen) <br>
-                                       그리고 마스터 셰프들이 전국 각지의 진귀하고 독특한 제철 식재료만을 직접 엄선, 발굴하여 각 지역 본연의 맛을 살린 럭셔리한 미식을 경험하세요.
-                            </p>
-                    </div>
-                </div>
-                <div class="col-xl-6 col-md-6">
-                    <div class="single_about_info">
-                        <h3>We Serve Fresh and <br>
-                            Delicious Food</h3>
-                            <p> 레스토랑 한 가운데 들어선 오픈 키친은<br>
-                                          더 건강하고 더 신선한 음식을 선사하겠다는<br>
-                                            라메르의 약속입니다.<br><br>
-                            바다를 닮은 여유로운 공간은 이국적이고 우아한 인테리어, 편안함을 강조한 가구,<br>
-                            푸르른 식물, 광활한 바다와 조화를 이뤄 탄성을 자아냅니다.
-                            </p>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-  		<b>  직접 가꾼 채소로 만든 식탁</b><br>
+  		<b>직접 가꾼 채소로 만든 식탁</b><br>
     	저희 농장은 농약 없이 수경 재배를 통해 채소들을 키웁니다.<br>
 		채소들이 가장 좋아하는 온습도를 맞춰주고, 아픈 곳은 없는지 살피며 튼튼하게 자라도록 돕습니다.<br>
 		<br>

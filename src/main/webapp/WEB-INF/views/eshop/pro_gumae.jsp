@@ -209,11 +209,127 @@
 		}*/	
 	}
 	window.onscroll=right_stop;
+	
+	/* 배송상품의 필수입력 체크후 [결제하기]로 진행 */
+	function check1(){
+		if(document.gumae.pname.value.trim() == "") {
+			alert("주문자명을 입력하세요.");
+			return false;
+			}
+			else if(document.gumae.pphone.value.trim() == "") {
+				alert("주문자의 연락처를 입력하세요.");
+				return false;
+				}
+				else if(document.gumae.pemail.value.trim() == "") {
+					alert("주문자의 이메일을 입력하세요.");
+					return false;
+					}
+					else if(document.gumae.bname.value.trim() == "") {
+						alert("받는 사람을 입력하세요.");
+						return false;
+						}
+						else if(document.gumae.bphone.value.trim() == "") {
+							alert("받는 사람의 연락처를 입력하세요.");
+							return false;
+							}
+							else if(document.gumae.bzip.value.trim() == "") {
+								alert("주소를 검색하여 우편번호를 입력하세요.");
+								return false;
+								}
+								else if(document.gumae.bjuso.value.trim() == "") {
+									alert("주소를 검색하여 기본주소를 입력하세요.");
+									return false;
+									}
+									else if(document.gumae.bjuso_etc.value.trim() == "") {
+										alert("상세주소를 입력하세요.");
+										return false;
+										}
+										/*else if(document.gumae.agree1.checked == false) {
+											alert("비회원주문 개인정보 수집이용에 대한 동의가 필요합니다.");
+											return false;
+										}*/
+										else {
+											/*$("#paymentBtn").click(function (){
+												var IMP = window.IMP;
+												IMP.init('imp66382802');
+												IMP.request_pay({
+													pg: 'html5_inicis',
+													pay_method: 'card',
+													merchant_uid: 'merchant_' + new Date().getTime(),
+													name: '${ptitle}',
+													amount: ${total_pay},
+													buyer_name: '이름',
+													buyer_postcode: '123-456',
+													}, function(rsp){
+														console.log(rsp);
+													if(rsp.success) {
+														var msg = '결제가 완료되었습니다.';*/
+														//msg += '결제 금액 : ' + rsp.paid_amount;
+														document.gumae.submit();
+													/*}
+													else {
+														var msg = '결제에 실패하였습니다.';
+														//msg += '에러내용 : ' + rsp.error_msg;
+													}
+													alert(msg);
+												});
+											});*/
+											return true;
+										}
+	}
+	
+	/* 모바일상품의 필수입력 체크후 [결제하기]로 진행 */
+	function check2(){
+		if(document.gumae.pname.value.trim() == "") {
+			alert("주문자명을 입력하세요.");
+			return false;
+			}
+			else if(document.gumae.pphone.value.trim() == "") {
+				alert("주문자의 연락처를 입력하세요.");
+				return false;
+				}
+				else if(document.gumae.pemail.value.trim() == "") {
+					alert("주문자의 이메일을 입력하세요.");
+					return false;
+					}
+					/*else if(document.gumae.agree1.checked == false) {
+						alert("비회원주문 개인정보 수집이용에 대한 동의가 필요합니다.");
+						return false;
+					}*/
+					else {
+						/*$("#paymentBtn").click(function (){
+							var IMP = window.IMP;
+							IMP.init('imp66382802');
+							IMP.request_pay({
+								pg: 'html5_inicis',
+								pay_method: 'card',
+								merchant_uid: 'merchant_' + new Date().getTime(),
+								name: '${ptitle}',
+								amount: ${total_pay},
+								buyer_name: '이름',
+								buyer_postcode: '123-456',
+								}, function(rsp){
+									console.log(rsp);
+								if(rsp.success) {
+									var msg = '결제가 완료되었습니다.';*/
+									//msg += '결제 금액 : ' + rsp.paid_amount;
+									document.gumae.submit();
+								/*}
+								else {
+									var msg = '결제에 실패하였습니다.';
+									//msg += '에러내용 : ' + rsp.error_msg;
+								}
+								alert(msg);
+							});
+						});*/
+					return true;
+					}
+	}
 </script>
 </head>
 <body>
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
-		<div class="bradcam_area basic">
+		<div class="bradcam_area eshop1">
 	        <div id="h3"> O R D E R </div>
 	    </div>
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
@@ -292,96 +408,96 @@
 		<input type="hidden" name="price_imsi" value="${ctotal}">
 		<!-- pro_gumae_ok에 배열로 보낼 정보 end -->
 		
-	<!-- 주문서작성 start -->
-	<div class="features_room">
-	<div class="container">
-    <div class="row">
-    <prosec>
-    	<h3> 주문서 작성 </h3>
-    	<div id="outer">
-  		<div id="left">
- 			<div id="title"><b style="font-size:20px;"> 주문자 정보 입력 </b></div>
- 			<table>
- 				<tr>
- 					<td> 주문자명* </td>
- 					<td>
- 						<c:if test="${userid == null}">
- 							<input type="text" name="pname" placeholder="이름을 입력하세요." id="pname">
- 						</c:if>
- 						<c:if test="${userid != null}">
- 							<input type="text" name="pname" value="${mvo.name}" placeholder="이름을 입력하세요.">
- 						</c:if>
- 					</td>
- 				</tr>
- 				<tr>
- 					<td> 연락처* </td>
- 					<td>
- 						<c:if test="${userid == null}">
- 							<input type="text" name="pphone" placeholder="연락처를 입력하세요." id="pphone">
- 						</c:if>
- 						<c:if test="${userid != null}">
- 							<input type="text" name="pphone" value="${mvo.phone}" placeholder="연락처를 입력하세요.">
- 						</c:if>
- 					</td>
- 				</tr>
- 				<tr>
- 					<td> 이메일* </td>
- 					<td>
- 						<c:if test="${userid == null}">
- 							<input type="text" name="pemail"  placeholder="이메일을 입력하세요.">
- 						</c:if>
- 						<c:if test="${userid != null}">
- 							<input type="text" name="pemail" value="${mvo.email}" placeholder="연락처를 입력하세요.">
- 						</c:if>
- 					</td>
- 				</tr>
- 			</table>
- 		<c:if test="${p == 'p01'}">
- 			<div id="title" style="margin-top:50px;"><b style="float:left;font-size:20px;"> 배송지 정보 입력 </b>
- 				<c:if test="${userid == null}">
- 					<span style="float:right;"><input type="checkbox" name="same_info" onclick="getInfo(this.checked)" id="ck"> 주문자와 동일 </span>
- 				</c:if>
- 				<c:if test="${userid != null}">
- 					<span style="float:right;"><input type="checkbox" name="same_info" onclick="getInfo(this.checked)" id="ck"> 회원정보와 동일 </span>
- 				</c:if>
- 			</div>
- 			<table>
-				<tr> 
- 					<td> 받는 사람* </td>
- 					<td> <input type="text" name="bname" placeholder="이름을 입력하세요." id="bname"> </td>
- 				</tr>
- 				<tr>
- 					<td> 연락처* </td>
- 					<td> <input type="text" name="bphone" placeholder="연락처를 입력하세요." id="bphone"> </td>
- 				</tr>
- 				<tr>
- 					<td> 배송 주소* </td>
- 					<td> <input type="text" name="bzip" readonly placeholder="우편번호" id="bzip" onclick="juso_search()" ><input type="button" value="주소검색" onclick="juso_search()" id="zip_btn"> </td>
- 				</tr>
- 				<tr>
- 					<td></td>
- 					<td> <input type="text" name="bjuso" readonly placeholder="기본주소" onclick="juso_search()" id="bjuso"> </td>
- 				</tr>
- 				<tr>
- 					<td></td>
- 					<td> <input type="text" name="bjuso_etc" placeholder="상세주소를 입력하세요." id="bjuso_etc"> </td>
- 				</tr>
- 			</table>
- 		</c:if>
- 		<c:if test="${p == 'p02'}">
-		</c:if>
-		<c:if test="${userid == null}">
-		<div id="title" style="margin-top:50px;"><b style="font-size:20px;"> 약관 동의 </b></div>
-			<div style="margin-top:20px;">
-				<div style="float:left; width:500px;font-weight:900">
-					비회원주문 개인정보 수집이용 동의
+		<!-- 주문서작성 start -->
+		<div class="features_room">
+		<div class="container">
+	    <div class="row">
+	    <prosec>
+	    	<h3> 주문서 작성 </h3>
+	    	<div id="outer">
+	  		<div id="left">
+	 			<div id="title"><b style="font-size:20px;"> 주문자 정보 입력 </b></div>
+	 			<table>
+	 				<tr>
+	 					<td> 주문자명* </td>
+	 					<td>
+	 						<c:if test="${userid == null}">
+	 							<input type="text" name="pname" placeholder="이름을 입력하세요." id="pname">
+	 						</c:if>
+	 						<c:if test="${userid != null}">
+	 							<input type="text" name="pname" value="${mvo.name}" placeholder="이름을 입력하세요.">
+	 						</c:if>
+	 					</td>
+	 				</tr>
+	 				<tr>
+	 					<td> 연락처* </td>
+	 					<td>
+	 						<c:if test="${userid == null}">
+	 							<input type="text" name="pphone" placeholder="연락처를 입력하세요." id="pphone">
+	 						</c:if>
+	 						<c:if test="${userid != null}">
+	 							<input type="text" name="pphone" value="${mvo.phone}" placeholder="연락처를 입력하세요.">
+	 						</c:if>
+	 					</td>
+	 				</tr>
+	 				<tr>
+	 					<td> 이메일* </td>
+	 					<td>
+	 						<c:if test="${userid == null}">
+	 							<input type="text" name="pemail"  placeholder="이메일을 입력하세요.">
+	 						</c:if>
+	 						<c:if test="${userid != null}">
+	 							<input type="text" name="pemail" value="${mvo.email}" placeholder="연락처를 입력하세요.">
+	 						</c:if>
+	 					</td>
+	 				</tr>
+	 			</table>
+	 		<c:if test="${p == 'p01'}">
+	 			<div id="title" style="margin-top:50px;"><b style="float:left;font-size:20px;"> 배송지 정보 입력 </b>
+	 				<c:if test="${userid == null}">
+	 					<span style="float:right;"><input type="checkbox" name="same_info" onclick="getInfo(this.checked)" id="ck"> 주문자와 동일 </span>
+	 				</c:if>
+	 				<c:if test="${userid != null}">
+	 					<span style="float:right;"><input type="checkbox" name="same_info" onclick="getInfo(this.checked)" id="ck"> 회원정보와 동일 </span>
+	 				</c:if>
+	 			</div>
+	 			<table>
+					<tr> 
+	 					<td> 받는 사람* </td>
+	 					<td> <input type="text" name="bname" placeholder="이름을 입력하세요." id="bname"> </td>
+	 				</tr>
+	 				<tr>
+	 					<td> 연락처* </td>
+	 					<td> <input type="text" name="bphone" placeholder="연락처를 입력하세요." id="bphone"> </td>
+	 				</tr>
+	 				<tr>
+	 					<td> 배송 주소* </td>
+	 					<td> <input type="text" name="bzip" readonly placeholder="우편번호" id="bzip" onclick="juso_search()" ><input type="button" value="주소검색" onclick="juso_search()" id="zip_btn"> </td>
+	 				</tr>
+	 				<tr>
+	 					<td></td>
+	 					<td> <input type="text" name="bjuso" readonly placeholder="기본주소" onclick="juso_search()" id="bjuso"> </td>
+	 				</tr>
+	 				<tr>
+	 					<td></td>
+	 					<td> <input type="text" name="bjuso_etc" placeholder="상세주소를 입력하세요." id="bjuso_etc"> </td>
+	 				</tr>
+	 			</table>
+	 		</c:if>
+	 		<c:if test="${p == 'p02'}">
+			</c:if>
+			<c:if test="${userid == null}">
+			<div id="title" style="margin-top:50px;"><b style="font-size:20px;"> 약관 동의 </b></div>
+				<div style="margin-top:20px;">
+					<div style="float:left; width:500px;font-weight:900">
+						비회원주문 개인정보 수집이용 동의
+					</div>
+					<div style="float:right;align:right;font-size:12px">
+						<input type="checkbox" name="agree1" id="ck">
+						동의합니다
+					</div>
 				</div>
-				<div style="float:right;align:right;font-size:12px">
-					<input type="checkbox" name="agree1" id="ck">
-					동의합니다
-				</div>
-			</div>
-			<textarea id="agree_scroll">
+				<textarea id="agree_scroll">
 1.이용약관
 ※ “ㄹㄷ호텔 이숍”의 이용약관은 공정거래위원회에서 심의한 표준약관에 기반하여 작성 되었습니다.
 				
@@ -527,98 +643,35 @@
 <부칙>
 제1조 (시행일)
 본 약관은 2022년 1월 25일부터 시행됩니다.
-			</textarea>
-		</c:if>
+				</textarea>
+			</c:if>
+			</div>
+			<div id="right">
+				<div id="title" style="width:330px;margin-left:10px;"><b style="font-size:20px;"> 결제 정보 </b></div>
+					<div id="total"> <span style="float:left;"> 주문금액 </span> <span style="float:right;"> KRW <fmt:formatNumber value="${total_price}" pattern=",###"/> </span> </div>
+					<div id="total"> <span style="float:left;"> 할인금액 </span> <span style="float:right;"> KRW <fmt:formatNumber value="${total_halin}" pattern=",###"/> </span> </div>
+					<div id="total"> <span style="float:left;"> 배송비 </span> <span style="float:right;"> KRW <fmt:formatNumber value="${total_baefee}" pattern=",###"/> </span> </div>
+					<div id="title" style="width:330px;margin-left:10px;"> <b style="font-size:20px;"> 총 결제금액 </b> </div>
+					<div id="total_p"> KRW <b style="font-family:TimesNewRoman;"> <fmt:formatNumber value="${total_pay}" pattern=",###"/> </b> </div>
+					<div id="btns">					
+						<input type="button" id="gobackBtn" value="이전단계" onclick="goBack()">
+						<c:if test="${p == 'p01'}">	<!-- 배송상품일 경우 -->
+							<input type="button" id="paymentBtn" value="결제하기" onclick="return check1()">
+						</c:if>
+						<c:if test="${p == 'p02'}">	<!-- 모바일상품일 경우 -->
+							<input type="button" id="paymentBtn" value="결제하기" onclick="return check2()">
+						</c:if>
+					</div>
+			</div>
+			</div>
+		</prosec>
+	 	</div>
 		</div>
-		<div id="right">
-			<div id="title" style="width:330px;margin-left:10px;"><b style="font-size:20px;"> 결제 정보 </b></div>
-				<div id="total"> <span style="float:left;"> 주문금액 </span> <span style="float:right;"> KRW <fmt:formatNumber value="${total_price}" pattern=",###"/> </span> </div>
-				<div id="total"> <span style="float:left;"> 할인금액 </span> <span style="float:right;"> KRW <fmt:formatNumber value="${total_halin}" pattern=",###"/> </span> </div>
-				<div id="total"> <span style="float:left;"> 배송비 </span> <span style="float:right;"> KRW <fmt:formatNumber value="${total_baefee}" pattern=",###"/> </span> </div>
-				<div id="title" style="width:330px;margin-left:10px;"> <b style="font-size:20px;"> 총 결제금액 </b> </div>
-				<div id="total_p"> KRW <b style="font-family:TimesNewRoman;"> <fmt:formatNumber value="${total_pay}" pattern=",###"/> </b> </div>
-				<div id="btns">					
-					<input type="button" id="gobackBtn" value="이전단계" onclick="goBack()">
-					<c:if test="${p == 'p01'}">	<!-- 배송상품일 경우 -->
-						<input type="button" id="paymentBtn" value="결제하기" onclick="return check1()">
-					</c:if>
-					<c:if test="${p == 'p02'}">	<!-- 모바일상품일 경우 -->
-						<input type="button" id="paymentBtn" value="결제하기" onclick="return check2()">
-					</c:if>
-				</div>
 		</div>
-		</div>
-	</prosec>
- 	</div>
-	</div>
-	</div>
-	<!-- 주문서작성 end -->
+		<!-- 주문서작성 end -->
 		
 	</form>
 	</section>
-	
-	<script>
-	/* 배송상품의 필수입력 체크후 [결제하기]로 진행 */
-	function check1(){
-		if(document.gumae.pname.value.trim() == "") {
-			alert("주문자명을 입력하세요.");
-			return false;
-			}
-			else if(document.gumae.pphone.value.trim() == "") {
-				alert("주문자의 연락처를 입력하세요.");
-				return false;
-				}
-				else if(document.gumae.bname.value.trim() == "") {
-					alert("받는 사람을 입력하세요.");
-					return false;
-					}
-					else if(document.gumae.bphone.value.trim() == "") {
-						alert("받는 사람의 연락처를 입력하세요.");
-						return false;
-						}
-						else if(document.gumae.bzip.value.trim() == "") {
-							alert("주소를 검색하여 우편번호를 입력하세요.");
-							return false;
-							}
-							else if(document.gumae.bjuso.value.trim() == "") {
-								alert("주소를 검색하여 기본주소를 입력하세요.");
-								return false;
-								}
-								else if(document.gumae.bjuso_etc.value.trim() == "") {
-									alert("상세주소를 입력하세요.");
-									return false;
-									}
-									/*else if(document.gumae.agree1.checked == false) {
-										alert("비회원주문 개인정보 수집이용에 대한 동의가 필요합니다.");
-										return false;
-									}*/
-									else {
-										document.gumae.submit();
-										return true;
-									}
-	}
-	
-	/* 모바일상품의 필수입력 체크후 [결제하기]로 진행 */
-	function check2(){
-		if(document.gumae.pname.value.trim() == "") {
-			alert("주문자명을 입력하세요.");
-			return false;
-			}
-			else if(document.gumae.pphone.value.trim() == "") {
-				alert("주문자의 연락처를 입력하세요.");
-				return false;
-				}
-				/*else if(document.gumae.agree1.checked == false) {
-					alert("비회원주문 개인정보 수집이용에 대한 동의가 필요합니다.");
-					return false;
-				}*/
-				else {
-					document.gumae.submit();
-					return true;
-				}
-	}
-  </script>
-  
     <!-- ================ 주문/결제 Area End ================= -->
-
+  
 </body>

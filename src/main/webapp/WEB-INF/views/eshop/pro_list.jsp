@@ -71,12 +71,14 @@
 	}
 	#pro_list #wish {
 		float : right;
+		margin-top : 2px;
 	}
 	#pro_list #wish img {
 		cursor : pointer;
 	}
 	#pro_list #cart {
 		float : right;
+		margin-top : 1px;
 		margin-right : 10px;
 	}
 	#pro_list #cart img {
@@ -223,6 +225,7 @@
 				<span id="cate3" onclick="location='pro_list?pcode=p0202&osel=${osel}'"> B A K E R Y </span>
 			</div>
 		</c:if>
+		<div style="float:left;margin-top:30px;letter-spacing:-1px;"> 총 <b style="color:#887159;font-family:TimesNewRoman">${sum}</b>개의 상품이 있습니다. </div>
 		<div class="default-select" id="default-select" style="float:right;margin-top:20px;">
 			<select onchange="order_sel(this.value)" id="osel">
 				<c:if test="${osel == 'sold desc'}">

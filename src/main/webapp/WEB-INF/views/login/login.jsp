@@ -10,7 +10,7 @@
 		margin : auto;
 		text-align : center;
 		margin-top : 50px;
-		margin-bottom : 100px;
+		margin-bottom : 150px;
 	}
 	#login div {
 		padding : 5px;
@@ -18,7 +18,7 @@
 	#login #title{
 		font-size : 50px;
 		border-bottom : 1px solid #887159;
-		margin-bottom : 30px;
+		margin-bottom : 50px;
 		padding-bottom : 30px;
 	}
 	#login input[type=text] {
@@ -82,6 +82,11 @@
 			});
 		})
 	})
+	
+	/*window.onload=function(){
+		if(${err != null})
+			alert("입력하신 ID 또는 비밀번호가 잘못되었습니다.");
+	}*/
 </script>
 </head>
 
@@ -102,6 +107,11 @@
 		<input type="hidden" name="p" value="${p}">
 			<div> <input type="text" name="userid" placeholder="아이디를 입력하세요"> </div>
 			<div> <input type="password" name="pwd" placeholder="비밀번호를 입력하세요"> </div>
+			<div style="margin:10px auto 10px auto;font-size:13px;color:red;">
+				<c:if test="${err != null}">
+				아이디 또는 비밀번호를 잘못 입력하셨습니다. <br> 입력하신 내용을 다시 확인하세요.
+				</c:if>
+			</div>
 			<div> <input type="submit" value="LOGIN"> </div>
 		</form>
 		<div id="txt">

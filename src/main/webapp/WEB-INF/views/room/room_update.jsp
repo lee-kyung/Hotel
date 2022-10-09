@@ -70,25 +70,7 @@
 	//	alert(del+" "+str);
 		return true;
 	}
-/* 	function add_file() // file추가
-	{
-		var rpimg=document.getElementsByClassName("rpimg");
-		var len=rpimg.length; // 현재 type="file"의 갯수
-		len++;
-		var inner="<p class='rpimg'><input type='file' name='rpimg"+len+"'></p>"; // 추가할내용
-		
-		document.getElementById("outer").innerHTML=document.getElementById("outer").innerHTML+inner;
-	}
-	function del_file() // file삭제
-	{
-		
-		var len=document.getElementsByClassName("rpimg").length;
-		if(len > 1)
-		{
-			len--;
-			document.getElementsByClassName("rpimg")[len].remove();
-		}
-	} */
+
 </script>
 <c:if test="${userid != 'admin'}">
 	<c:redirect url="../main/index"/>
@@ -118,16 +100,7 @@
 			<tr>
 				<td> 객실 코드 </td>
 				<td> <input type="text" name="rcode" readonly value="${rvo.rcode}" style="border:none;background:#efefef"> </td>
-<%-- 				<td> <!-- 대분류(객실타입) -->
-				&nbsp
-				  <select id="default-select" name="rdae" readonly>
-				  	<option> 선택 </option>
-				  	<c:forEach items="${list}" var="rdvo">	
-						<option value="${rdvo.code}"> ${rdvo.rtype} </option>			  				  		
-				  	</c:forEach>
-				  </select> &nbsp&nbsp
-				  <input type="button" onclick="bunho()" value="객실코드생성">
-				</td> --%>
+
 			</tr>
 			<tr>
 				<td> 객실명 </td>
