@@ -651,10 +651,15 @@ public class MyPageServiceImpl implements MyPageService{
 		}	
 		else if(c.equals("e")) {
 			ArrayList<GumaeVO> glist=mapper.getEinfo(bjcode);
+			int tprice=0;
 			if(glist.size() != 0) {
+				for(int i=0;i<glist.size();i++) {
+					tprice=tprice+glist.get(i).getTotal_price();
+				}				
 				model.addAttribute("glist", glist);
 				model.addAttribute("gvo", glist.get(0));
 				model.addAttribute("buyday", glist.get(0).getBuyday().substring(0,10));
+				model.addAttribute("tprice", tprice);
 				return "/mypage/rdwg_info";
 			}
 			else

@@ -31,6 +31,10 @@ public class LoginServiceImpl implements LoginService {
 			String p=request.getParameter("p");
 			model.addAttribute("p", p);
 		}
+		if(request.getParameter("err") != null) {
+			String err=request.getParameter("err");
+			model.addAttribute("err", err);
+		}
 		return "/login/login";
 	}
 
@@ -78,7 +82,7 @@ public class LoginServiceImpl implements LoginService {
 			return "redirect:/main/index";
 		}
 		else
-			return "redirect:/login/login?ck=4";
+			return "redirect:/login/login?ck=4&err=1";
 	}
 	
 	@Override
