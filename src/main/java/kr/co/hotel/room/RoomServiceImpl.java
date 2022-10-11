@@ -192,6 +192,14 @@ public class RoomServiceImpl implements RoomService{
 		mapper.room_disable(id);
 		return "redirect:/room/room_list";
 	}
+	
+	@Override
+	public String room_enable(HttpServletRequest request) {
+		String id=request.getParameter("id");
+		mapper.room_enable(id);
+		return "redirect:/room/room_list";
+	}
+
 
 // 만약 삭제하고 싶다면 delete 보통은 disable
 	@Override

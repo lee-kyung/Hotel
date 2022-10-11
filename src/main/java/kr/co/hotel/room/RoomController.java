@@ -77,6 +77,12 @@ public class RoomController {
 		return service.room_disable(request);
 	}
 	
+	@RequestMapping("/room/room_enable")
+	public String room_enable(HttpServletRequest request)
+	{
+		return service.room_enable(request);
+	}
+	
 	@RequestMapping("/room/room_delete")
 	public String room_delete(HttpServletRequest request)
 	{

@@ -17,6 +17,7 @@ public interface RoomMapper {
 	public void room_update_ok(RoomVO rvo);
 	
 	public void room_disable(String id);
+	public void room_enable(String id);
 	
 	public void room_delete(String id);
 	public String getrpimg(String id);
