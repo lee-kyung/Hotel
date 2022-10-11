@@ -348,6 +348,7 @@
 		}
 		location="wishcart_del?delid="+del+"&dchk=2&p=${p}";	
 	}
+	
 	function one_gumae(pcode, num){
 		let su=document.getElementsByClassName("su")[num].value;
 		
@@ -448,7 +449,7 @@
 		<c:forEach var="cvo" items="${clist}" varStatus="cart">
 			<input type="hidden" class="pcode" value="${cvo.pcode}">
 			<input type="hidden" class="halin" value="${cvo.price * (cvo.halin / 100)}">
-			<tr>
+			<tr class="cktr">
 				<!-- 체크박스 -->
 				<td> <input type="checkbox" class="subck" onclick="subcheck()" value="${cvo.id}" id="subck"> </td>
 				<!-- 상품정보(이미지, 상품명) -->
