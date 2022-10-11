@@ -25,7 +25,8 @@ public interface EshopService {
 	public void cart_add(HttpSession session, HttpServletRequest request, PrintWriter out, HttpServletResponse response);
 	public void cart_del(HttpSession session, HttpServletRequest request, PrintWriter out);
 	public String cart(HttpSession session, Model model, HttpServletRequest request, HttpServletResponse response);
-	public String wishcart_del(HttpServletRequest request);
+	//public String wishcart_del(HttpServletRequest request);
+	public void wishcart_del(HttpServletRequest request, PrintWriter out);
 	public String pro_gumae(HttpServletRequest request, Model model, HttpSession session);
 	
 	public String wish(HttpSession session, Model model, HttpServletRequest request);

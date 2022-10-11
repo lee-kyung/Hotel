@@ -338,7 +338,7 @@
 			document.getElementById("mainck").checked=false;
 	}
 	
-	function cart_del(){
+	/*function cart_del(){
 		let del="";
 		let subck=document.getElementsByClassName("subck");
 		let len=subck.length;
@@ -347,7 +347,38 @@
 				del=subck[i].value+","+del;
 		}
 		location="wishcart_del?delid="+del+"&dchk=2&p=${p}";	
+	}*/
+	function cart_del(){
+		let del="";
+		let subck=document.getElementsByClassName("subck");
+		let cktr=document.getElementsByClassName("cktr");
+		let len=subck.length;			
+		for(i=0;i<len;i++) {
+			if(subck[i].checked)
+				del=subck[i].value+","+del;
+		}
+		
+		let chk=new XMLHttpRequest();
+		chk.onreadystatechange=function(){
+			if(chk.readyState == 4) {
+				if(chk.responseText == "0") {
+					for(i=0;i<len;i++) {
+						if(subck[i].checked) {
+							cktr[i].style.display="none";
+							subck[i].checked=false;
+							document.getElementById("total_price").innerText=0;
+							document.getElementById("total_halin").innerText=0;
+							document.getElementById("total_baefee").innerText=0;
+							document.getElementById("total_pay").innerText=0;
+						}
+					}
+				}
+			}
+		}
+		chk.open("get", "wishcart_del?delid="+del+"&dchk=2");
+		chk.send();
 	}
+	
 	function one_gumae(pcode, num){
 		let su=document.getElementsByClassName("su")[num].value;
 		
@@ -448,7 +479,7 @@
 		<c:forEach var="cvo" items="${clist}" varStatus="cart">
 			<input type="hidden" class="pcode" value="${cvo.pcode}">
 			<input type="hidden" class="halin" value="${cvo.price * (cvo.halin / 100)}">
-			<tr>
+			<tr class="cktr">
 				<!-- 체크박스 -->
 				<td> <input type="checkbox" class="subck" onclick="subcheck()" value="${cvo.id}" id="subck"> </td>
 				<!-- 상품정보(이미지, 상품명) -->

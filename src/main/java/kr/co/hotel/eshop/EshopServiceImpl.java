@@ -275,7 +275,7 @@ public class EshopServiceImpl implements EshopService {
 		return "/eshop/cart";
 	}
 
-	@Override
+	/*@Override
 	public String wishcart_del(HttpServletRequest request) {
 		String[] id=request.getParameter("delid").split(",");
 		int dchk=Integer.parseInt(request.getParameter("dchk"));
@@ -298,6 +298,24 @@ public class EshopServiceImpl implements EshopService {
 		}
 		else
 			return "redirect:/eshop/error";
+	}*/
+	@Override
+	public void wishcart_del(HttpServletRequest request, PrintWriter out) {
+		String[] id=request.getParameter("delid").split(",");
+		int dchk=Integer.parseInt(request.getParameter("dchk"));
+		
+		if(dchk == 1) {
+			for(int i=0;i<id.length;i++) {
+				mapper.wishcart_del("wish", id[i]);
+			}
+		}
+		else if(dchk == 2) {
+			for(int i=0;i<id.length;i++) {
+				mapper.wishcart_del("cart", id[i]);
+			}
+		}
+		
+		out.print("0");
 	}
 	
 	@Override
