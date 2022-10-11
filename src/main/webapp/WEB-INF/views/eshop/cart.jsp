@@ -210,6 +210,13 @@
 		color : white;
 		cursor : pointer;
 	}
+	#cart #ptitle {
+		cursor : pointer;
+		padding-left : 5px;
+	}
+	#cart #ptitle:hover {
+		text-decoration : underline;
+	}
 </style>
 <script>
 	window.onload=function(){
@@ -454,8 +461,8 @@
 				<td> <input type="checkbox" class="subck" onclick="subcheck()" value="${cvo.id}" id="subck"> </td>
 				<!-- 상품정보(이미지, 상품명) -->
 				<td colspan="2" style="padding-left:10px;">
-					<img src="../img/eshop/${cvo.fimg}" width="80" height="80" id="main_fimg">
-					${cvo.title}
+					<img src="../img/eshop/${cvo.fimg}" width="80" height="80" id="main_fimg" onclick="location='pro_content?pcode=${cvo.pcode}'" style="cursor:pointer;">
+					<span onclick="location='pro_content?pcode=${cvo.pcode}'" id="ptitle"> ${cvo.title} </span>
 				</td>
 				<!-- 상품금액 -->
 				<td class="price">
