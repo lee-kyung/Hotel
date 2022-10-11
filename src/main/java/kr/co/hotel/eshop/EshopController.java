@@ -86,13 +86,9 @@ public class EshopController {
 		return service.cart(session, model, request, response);
 	}
 	
-	/*@RequestMapping("/eshop/wishcart_del")
+	@RequestMapping("/eshop/wishcart_del")
 	public String wishcart_del(HttpServletRequest request) {
 		return service.wishcart_del(request);
-	}*/
-	@RequestMapping("/eshop/wishcart_del")
-	public void wishcart_del(HttpServletRequest request, PrintWriter out) {
-		service.wishcart_del(request, out);
 	}
 	
 	@RequestMapping("/eshop/pro_gumae")
