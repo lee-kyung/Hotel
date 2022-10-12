@@ -18,6 +18,7 @@ public interface RoomService {
 	public String room_update(HttpServletRequest request, Model model);
 	public String room_update_ok(RoomVO rvo, HttpServletRequest request) throws Exception;
 	public String room_disable(HttpServletRequest request);
+	public String room_enable(HttpServletRequest request);
 	public String room_delete(HttpServletRequest request);
 	
 

@@ -25,6 +25,7 @@
 	#h3 a{
 		color: white;
 	}
+	
 /* 메뉴 */ 
 	section #menu{
 		width: 1000px;
@@ -56,6 +57,11 @@
 	section #menu ul li:first-child{
 		border-bottom: none;
 		background: white;
+	}
+	
+	.sub:hover{
+		cursor: pointer;
+		font-weight: 900;
 	}
 /* 테이블 */
 	section table{
@@ -177,7 +183,7 @@
 					<th> 객실명 </th>		
 					<th> 뷰 </th>								
 					<th> 상태 </th>		
-					<th> 수정/삭제 </th>								
+					<th> 수정/비활성 </th>								
 				</tr> 
 			  <c:forEach items="${list}" var="rvo">
 			  <c:if test="${rvo.rstate==0}">
@@ -213,7 +219,7 @@
 					<th> 객실코드 </th>					
 					<th> 객실명 </th>										
 					<th> 상태 </th>		
-					<th> 수정/비활성 </th>								
+					<th> 수정/활성화 </th>								
 				</tr> 
 			  <c:forEach items="${list}" var="rvo">
 			  <c:if test="${rvo.rstate==1}">
@@ -230,10 +236,11 @@
 			  		</c:if>
 			  		<td> ${rstate} </td>
 			  		<td>
-			  			<a href="../room/room_update?id=${rvo.id}">수정</a>
-			  		<c:if test="${rvo.rstate==0}">
+			  			<a href="../room/room_update?id=${rvo.id}">수정</a> / 
+			  			<a href="../room/room_enable?id=${rvo.id}">활성화</a>
+			  		<%-- <c:if test="${rvo.rstate==0}">
 			  			<a href="../room/room_disable?id=${rvo.id}">삭제</a>
-			  		</c:if>			  			
+			  		</c:if> --%>			  			
 			  		</td>
 			  	</tr>
 			  </c:if>
