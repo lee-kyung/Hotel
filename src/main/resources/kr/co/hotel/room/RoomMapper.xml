@@ -48,6 +48,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update room set rstate=1 where id=#{param1}
 	</update>
 	
+	<update id="room_enable">
+		update room set rstate=0 where id=#{param1}
+	</update>
+	
 	<delete id="room_delete">
 		delete from room where id=#{param1}
 	</delete>
