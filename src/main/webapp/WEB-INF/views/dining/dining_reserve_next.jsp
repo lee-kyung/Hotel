@@ -91,11 +91,11 @@
 	}
  </style>
  
- <!-- jQuery -->
- <script src="http://code.jquery.com/jquery-latest.js"></script>
- <!-- iamport.payment.js -->
+<!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous" type="text/javascript"></script>
+<!-- iamport.payment.js -->
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
-
+	
 </head>
  
 <body>
@@ -387,7 +387,7 @@
 					<br>
 					<br>
 					<br>			  
-			       <div id="pay"><input type="submit" id="paymentBtn" value="예약신청" onclick="return check()"></div>
+			       <div id="pay"><input type="button" id="paymentBtn" value="예약신청" onclick="return check()"></div>
            </div>
      </form>
 
@@ -431,12 +431,12 @@
 			alert("상품 정보 및 취소 규정에 대한 동의가 필요합니다.");
 			return false;
 		}
-		else if(document.reser.paym.value=="")
+		else if(document.reser.sudan.value=="")
 		{
 			alert("결제방법을 선택하세요")	;
 			return false;
 		}
-		else
+		else if(document.reser.sudan.value==0)
 		{
 			//결제관련
 			$("#paymentBtn").click(function () {
@@ -457,7 +457,7 @@
 					// 결제창에서 보여질 이름
 					// name: '주문명 : ${auction.a_title}',
 					// 위와같이 model에 담은 정보를 넣어 쓸수도 있습니다.
-					amount: 2000,
+					amount: 100,
 					// amount: ${bid.b_bid},
 					// 가격 
 					buyer_name: '이름',
@@ -469,7 +469,7 @@
 					if (rsp.success) {
 						var msg = '결제가 완료되었습니다.';
 						msg += '결제 금액 : ' + rsp.paid_amount;
-						document.resv.submit();
+						document.reser.submit();
 						
 						// 결제 성공 시 정보를 넘겨줘야한다면 body에 form을 만든 뒤 위의 코드를 사용하는 방법이 있습니다.
 						// 자세한 설명은 구글링으로 보시는게 좋습니다.
@@ -480,6 +480,10 @@
 					alert(msg);
 				});
 			});
+			return true;
+		}
+		else if (document.reser.sudan.value==1){
+			document.reser.submit();
 			return true;
 		}
 	}
