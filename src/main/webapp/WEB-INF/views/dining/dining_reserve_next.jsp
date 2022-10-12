@@ -309,7 +309,7 @@
 			        * 휴대폰 번호는 예약번호 전송에 쓰입니다. 정확히 기입해 주세요.
                     </c:if>
                     </td>
- 					
+ 					<td>
  					<c:if test="${userid!=null }">
  					* 예약자 이름 &nbsp;<input type="text" name="bkname" value="${name}">
  					* 휴대폰 번호 &nbsp;
@@ -387,7 +387,7 @@
 					<br>
 					<br>
 					<br>			  
-			       <div id="pay"><input type="submit" id="paymentBtn" value="예약신청" onclick="return check()"></div>
+			       <div id="pay"><input type="button" id="paymentBtn" value="예약신청" onclick="return check()"></div>
            </div>
      </form>
 
@@ -441,6 +441,8 @@
 			//결제관련
 			$("#paymentBtn").click(function () {
 				var IMP = window.IMP; // 생략가능
+				var total = document.reser.dr_total.value;
+				
 				IMP.init('imp66382802'); 
 				// i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
 				// ''안에 띄어쓰기 없이 가맹점 식별코드를 붙여넣어주세요. 안그러면 결제창이 안뜹니다.
@@ -457,10 +459,10 @@
 					// 결제창에서 보여질 이름
 					// name: '주문명 : ${auction.a_title}',
 					// 위와같이 model에 담은 정보를 넣어 쓸수도 있습니다.
-					amount: 2000,
+					amount: 100,
 					// amount: ${bid.b_bid},
 					// 가격 
-					buyer_name: '이름',
+					buyer_name: bkname,
 					// 구매자 이름, 구매자 정보도 model값으로 바꿀 수 있습니다.
 					// 구매자 정보에 여러가지도 있으므로, 자세한 내용은 맨 위 링크를 참고해주세요.
 					buyer_postcode: '123-456',
@@ -469,7 +471,7 @@
 					if (rsp.success) {
 						var msg = '결제가 완료되었습니다.';
 						msg += '결제 금액 : ' + rsp.paid_amount;
-						document.resv.submit();
+						document.reser.submit();
 						
 						// 결제 성공 시 정보를 넘겨줘야한다면 body에 form을 만든 뒤 위의 코드를 사용하는 방법이 있습니다.
 						// 자세한 설명은 구글링으로 보시는게 좋습니다.
@@ -485,7 +487,7 @@
 	}
     
 </script>
-    <!-- 부타이틀(자유롭게 변경)_area_end -->
-    <!-- ================ 타이틀(자유롭게 변경) Area End ================= -->
+    <!-- dining_reserve_next_area_end -->
+    <!-- ================ dining_reserve_next Area End ================= -->
 
 </body>
