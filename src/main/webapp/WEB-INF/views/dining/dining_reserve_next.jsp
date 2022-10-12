@@ -91,11 +91,11 @@
 	}
  </style>
  
- <!-- jQuery -->
- <script src="http://code.jquery.com/jquery-latest.js"></script>
- <!-- iamport.payment.js -->
+<!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous" type="text/javascript"></script>
+<!-- iamport.payment.js -->
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
-
+	
 </head>
  
 <body>
@@ -431,12 +431,12 @@
 			alert("상품 정보 및 취소 규정에 대한 동의가 필요합니다.");
 			return false;
 		}
-		else if(document.reser.paym.value=="")
+		else if(document.reser.sudan.value=="")
 		{
 			alert("결제방법을 선택하세요")	;
 			return false;
 		}
-		else
+		else if(document.reser.sudan.value==0)
 		{
 			//결제관련
 			$("#paymentBtn").click(function () {
@@ -482,6 +482,10 @@
 					alert(msg);
 				});
 			});
+			return true;
+		}
+		else if (document.reser.sudan.value==1){
+			document.reser.submit();
 			return true;
 		}
 	}
