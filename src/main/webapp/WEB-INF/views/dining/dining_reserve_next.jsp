@@ -338,7 +338,7 @@
 			      <div><b>*결제 방법</b></div>
 				  <div id="paymethod">
 					<input type="radio" name="sudan" value="0" > 신용카드 결제&nbsp;&nbsp;
-					<input type="radio" name="sudan" value="1" > 현장결제 <br> 
+					<input type="radio" name="sudan" value="1" > 현장결제&nbsp;&nbsp;
 					<input type="radio" name="sudan" value="2" > 카카오페이 결제 <br> 
 					* 쿠폰 / 제휴 바우처 / 이벤트 쿠폰 사용 원하실 경우, 레스토랑에서 결제하기를 선택해 주세요.
 			      </div>
@@ -442,11 +442,8 @@
 			//결제관련
 			$("#paymentBtn").click(function () {
 				var IMP = window.IMP; // 생략가능
-<<<<<<< HEAD
 				var total = document.reser.dr_total.value;
-=======
->>>>>>> branch 'main' of https://github.com/ey0k/hotel.git
-				
+
 				IMP.init('imp66382802'); 
 				// i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
 				// ''안에 띄어쓰기 없이 가맹점 식별코드를 붙여넣어주세요. 안그러면 결제창이 안뜹니다.
