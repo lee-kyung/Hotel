@@ -36,6 +36,7 @@
   .genric-btn.default:hover{
      background: #887159;
   }
+  
   .section_title span{
      color:black;
      font-size:17px;

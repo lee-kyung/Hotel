@@ -91,11 +91,11 @@
 	}
  </style>
  
-<!-- jQuery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous" type="text/javascript"></script>
-<!-- iamport.payment.js -->
+ <!-- jQuery -->
+ <script src="http://code.jquery.com/jquery-latest.js"></script>
+ <!-- iamport.payment.js -->
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
-	
+
 </head>
  
 <body>
@@ -309,7 +309,7 @@
 			        * 휴대폰 번호는 예약번호 전송에 쓰입니다. 정확히 기입해 주세요.
                     </c:if>
                     </td>
- 					
+ 					<td>
  					<c:if test="${userid!=null }">
  					* 예약자 이름 &nbsp;<input type="text" name="bkname" value="${name}">
  					* 휴대폰 번호 &nbsp;
@@ -437,12 +437,15 @@
 			alert("결제방법을 선택하세요")	;
 			return false;
 		}
-		else if(document.reser.sudan.value==0)
+		else
 		{
 			//결제관련
 			$("#paymentBtn").click(function () {
 				var IMP = window.IMP; // 생략가능
+<<<<<<< HEAD
 				var total = document.reser.dr_total.value;
+=======
+>>>>>>> branch 'main' of https://github.com/ey0k/hotel.git
 				
 				IMP.init('imp66382802'); 
 				// i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
@@ -531,10 +534,6 @@
 					alert(msg);
 				});
 			});
-			return true;
-		}
-		else if (document.reser.sudan.value==1){
-			document.reser.submit();
 			return true;
 		}
 	}
