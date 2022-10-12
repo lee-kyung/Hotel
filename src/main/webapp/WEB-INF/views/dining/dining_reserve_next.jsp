@@ -436,7 +436,7 @@
 			alert("결제방법을 선택하세요")	;
 			return false;
 		}
-		else
+		else if(document.reser.sudan.value==0)
 		{
 			//결제관련
 			$("#paymentBtn").click(function () {
@@ -482,7 +482,11 @@
 				});
 			});
 			return true;
-		}
+		} 	else if(document.reser.sudan.value==1)
+			{
+			document.reser.submit();
+			return true;
+			}
 	}
     
 </script>
