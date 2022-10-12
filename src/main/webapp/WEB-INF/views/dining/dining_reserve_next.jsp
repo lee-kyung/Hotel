@@ -91,11 +91,11 @@
 	}
  </style>
  
-<!-- jQuery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous" type="text/javascript"></script>
-<!-- iamport.payment.js -->
+ <!-- jQuery -->
+ <script src="http://code.jquery.com/jquery-latest.js"></script>
+ <!-- iamport.payment.js -->
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
-	
+
 </head>
  
 <body>
@@ -436,12 +436,11 @@
 			alert("결제방법을 선택하세요")	;
 			return false;
 		}
-		else if(document.reser.sudan.value==0)
+		else
 		{
 			//결제관련
 			$("#paymentBtn").click(function () {
 				var IMP = window.IMP; // 생략가능
-				var total = document.reser.dr_total.value;
 				
 				IMP.init('imp66382802'); 
 				// i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
@@ -462,7 +461,7 @@
 					amount: 100,
 					// amount: ${bid.b_bid},
 					// 가격 
-					buyer_name: bkname,
+					buyer_name: '이름',
 					// 구매자 이름, 구매자 정보도 model값으로 바꿀 수 있습니다.
 					// 구매자 정보에 여러가지도 있으므로, 자세한 내용은 맨 위 링크를 참고해주세요.
 					buyer_postcode: '123-456',
@@ -484,14 +483,10 @@
 			});
 			return true;
 		}
-		else if (document.reser.sudan.value==1){
-			document.reser.submit();
-			return true;
-		}
 	}
     
 </script>
-    <!-- dining_reserve_next_area_end -->
-    <!-- ================ dining_reserve_next Area End ================= -->
+    <!-- 부타이틀(자유롭게 변경)_area_end -->
+    <!-- ================ 타이틀(자유롭게 변경) Area End ================= -->
 
 </body>
