@@ -437,16 +437,12 @@
 			alert("결제방법을 선택하세요")	;
 			return false;
 		}
-		else
+		else if(document.reser.sudan.value==0)
 		{
 			//결제관련
 			$("#paymentBtn").click(function () {
 				var IMP = window.IMP; // 생략가능
-<<<<<<< HEAD
-				var total = document.reser.dr_total.value;
-=======
->>>>>>> branch 'main' of https://github.com/ey0k/hotel.git
-				
+				var total = document.reser.dr_total.value;	
 				IMP.init('imp66382802'); 
 				// i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
 				// ''안에 띄어쓰기 없이 가맹점 식별코드를 붙여넣어주세요. 안그러면 결제창이 안뜹니다.

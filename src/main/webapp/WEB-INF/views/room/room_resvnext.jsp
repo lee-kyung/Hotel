@@ -282,6 +282,14 @@
 						</div>
 					</div>
 					<hr>
+					<div id="sec3">
+						<div id="title">결제 방법</div>
+						<div>
+							<input type="radio" name="sudan" value="0" > 신용카드 결제&nbsp;&nbsp;
+							<input type="radio" name="sudan" value="1" > 카카오페이 결제 <br> 
+						</div>
+					</div>
+					<hr>
 					
 					<div id="sec4">
 						<div id="title">취소 규정</div>
@@ -383,7 +391,11 @@
 		} else if (document.resv.agree2.checked != true) {
 			alert("상품 정보 및 취소 규정에 대한 동의가 필요합니다.");
 			return false;
-		} else {
+		} else if (document.resv.sudan.value==""){
+			alert("결제방법을 선택하세요")	;
+			return false;			
+		}
+		else if(document.resv.sudan.value==0) {
 			//결제관련
 		 		$("#paymentBtn").click(function () {
 						var IMP = window.IMP; // 생략가능
@@ -392,6 +404,38 @@
 						IMP.init('imp66382802'); 
 						IMP.request_pay({
 							pg: 'html5_inicis',
+							pay_method: 'card',
+							merchant_uid: 'merchant_' + new Date().getTime(),
+
+							name: '주문명 : ${rvo.rname}',
+							amount: total,
+							buyer_name: bkname,
+							buyer_postcode: '123-456',
+							}, function (rsp) {
+								console.log(rsp);
+							if (rsp.success) {
+								var msg = '결제가 완료되었습니다.';
+								msg += '결제 금액 : ' + rsp.paid_amount;
+								document.resv.submit();
+							} else {
+								var msg = '결제에 실패하였습니다.';
+								msg += '에러내용 : ' + rsp.error_msg;
+							}
+							alert(msg);
+						});
+					});  
+			//document.resv.submit(); 
+			return true;
+		}
+		else if(document.resv.sudan.value==1) {
+			//결제관련
+		 		$("#paymentBtn").click(function () {
+						var IMP = window.IMP; // 생략가능
+						var total = document.resv.btotal.value;
+						
+						IMP.init('imp66382802'); 
+						IMP.request_pay({
+							pg: 'kakaopay',
 							pay_method: 'card',
 							merchant_uid: 'merchant_' + new Date().getTime(),
 
