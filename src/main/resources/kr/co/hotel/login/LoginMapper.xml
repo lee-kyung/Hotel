@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="kr.co.hotel.login.LoginMapper">
 	
 	<select id="login_ok" resultType="kr.co.hotel.member.MemberVO">
-		select * from member where userid=#{userid} and pwd=#{pwd}
+		select * from member where userid=#{userid} and pwd=#{pwd} and state=0
 	</select>
 	
 	<select id="checkCart" resultType="Integer">
@@ -26,6 +26,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<![CDATA[ update cart a, cart b set b.su=b.su+a.su
 		where a.id < b.id and a.userid=b.userid and a.pcode=b.pcode ]]>
 	</update>
+	
+	<select id="kuser_info" resultType="kr.co.hotel.member.MemberVO">
+		select * from member where name=#{name} and email=#{email} and state=0
+	</select>
+	
+	<select id="getKid" resultType="Integer">
+		select ifnull(substring(max(userid), 4, 4), 0)+1
+		from member where userid like concat('kid', '%')
+	</select>
+	
+	<insert id="kmem_in" parameterType="kr.co.hotel.member.MemberVO">
+		insert into member(userid, name, email, joinday)
+		values(#{userid}, #{name}, #{email}, now())
+	</insert>
 	
 	<select id="userid_search_ok" resultType="String">
 		select userid from member where name=#{name} and email=#{email}

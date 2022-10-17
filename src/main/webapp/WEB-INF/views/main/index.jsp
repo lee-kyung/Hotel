@@ -3,7 +3,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!doctype html>
 <html class="no-js" lang="zxx">
+  <style>
 
+	#title i{
+	    font-size: 9px;
+	} */
+  </style>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
@@ -46,34 +51,33 @@
                             <div class="main-menu  d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a class="active" href="../main/index">home</a></li>
+                                        <li><a href="../main/index">Hotel<i class="ti-angle-down"></i></a>
+                                            <ul class="submenu">
+                                                <li style="margin:0px"><a href="../info/info">ABOUT MONTANA</a></li>
+                                                <li><a href="../info/gongji_list">NOTICE</a></li>
+                                                <li><a href="../info/faq_list">FAQ</a></li>
+                                            </ul>
                                         <li><a href="../room/rooms">rooms</a></li>
                                         <li><a href="../dining/dining">dining<i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
-                                                <li><a href="../dining/dining">레스토랑 소개</a></li>
-                                                <li><a href="../dining/dining_reserve">레스토랑 예약</a></li>
+                                                <li><a href="../dining/dining">DINING</a></li>
+                                                <li><a href="../dining/dining_reserve">BOOKING</a></li>
                                             </ul>
                                         </li>
                                         <li><a href="../wedding/wedding">wedding<i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
-                                                <li><a href="../wedding/wedding_hall?id=15">웨딩홀</a></li>
-                                                <li><a href="../wedding/wedding_reserve">상담예약</a></li>
-                                                <li><a href="../wedding/wedding_check">견적</a></li>
+                                                <li style="margin:0px"><a href="../wedding/wedding_hall?id=15">WEDDING	HALL</a></li>
+                                                <li><a href="../wedding/wedding_reserve">BOOK</a></li>
+                                                <li><a href="../wedding/wedding_check">QUATATION</a></li>
                                             </ul>
                                         </li>
                                         <li><a href="../eshop/eshop">eshop<i class="ti-angle-down"></i></a>
                                         	<ul class="submenu">
                                                 <li><a href="../eshop/pro_list?pcode=p01">product</a></li>
                                                 <li><a href="../eshop/pro_list?pcode=p02">voucher</a></li>
-                                                <li><a href="../eshop/pro_write">상품등록</a></li>	<!-- 나중에 관리자만 볼 수 있게 할 메뉴 -->
                                             </ul>                                        
                                         </li>
-                                        <li><a href="../etc/contact">etc<i class="ti-angle-down"></i></a>
-                                        	<ul class="submenu">
-                                                <li><a href="../etc/basic">basic</a></li>
-                                                <li><a href="../etc/elements">elements</a></li>
-                                            </ul>
-                                        </li>
+
                                     </ul>
                                 </nav>
                             </div>
@@ -89,37 +93,23 @@
                             <div class="book_room">
                                 <div class="socail_links">
                                     <ul>
-                                       <!--  <li>
-                                            <a href="#">
-                                                <i class="fa fa-facebook-square"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-twitter"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-instagram"></i>
-                                            </a>
-                                        </li> -->
+
                                         <li>
 		                                <c:if test="${userid == null}">
-		                                	<a href="#"> <i class="fa fa-list-alt"></i> </a>
-                                            <a href="../eshop/cart?p=p01"> <i class="fa fa-cart-arrow-down"></i> </a>
-											<a href="../login/login">로그인</a>
-											<a href="../member/member_input">회원가입</a>
+											<a style="color:white;" href="../login/login?ck=4">로그인</a>
+											<a style="color:white;" href="../member/member_input">회원가입</a>
+											<a style="color:white;" href="../mypage/rdwg_check?err=0">비회원조회</i> </a>
+											<a style="color:white;" href="../eshop/cart?p=p01"> <i class="fa fa-cart-arrow-down"></i> </a>
 										</c:if>
 										<c:if test="${(userid != null) && (userid != 'admin')}">
-											<a href="../mypage/mypage"> ${name}님
-											<a href="../eshop/cart?p=p01"> <i class="fa fa-cart-arrow-down"></i> </a>
-                                            <a href="../eshop/wish"> <i class="fa fa-heart-o"></i> </a>
-											<a href="../login/logout">로그아웃</a>
+											<a style="color:white;" href="../mypage/mypage"> ${name}님
+											<a style="color:white;" href="../eshop/cart?p=p01"> <i class="fa fa-cart-arrow-down"></i> </a>
+                                            <a style="color:white;" href="../eshop/wish"> <i class="fa fa-heart-o"></i> </a>
+											<a style="color:white;" href="../login/logout">로그아웃</a>
 										</c:if>
 										<c:if test="${userid == 'admin'}">
-											<a href="../admin/admin"> ${name}님</a>
-											<a href="../login/logout">로그아웃</a>
+											<a style="color:white;" href="../admin/admin"> ${name}님</a>
+											<a style="color:white;" href="../login/logout">로그아웃</a>
 										</c:if>
 		                                </li>
                                     </ul>
@@ -133,6 +123,20 @@
                                 </c:if>
                               </div>
 <style>
+	
+	#logbtn{
+		width:100px;
+		height: 40px;
+		background: white;
+		color: #887159;
+		border:1px solid #887159;
+		border-radius: 4px;
+		cursor: pointer;
+	}
+	#logbtn:hover{
+		background: #887159;
+		color: white;
+	}
 	#loglayer{
 		position: absolute;
 		visibility: hidden;
@@ -142,23 +146,22 @@
 		background: white;
 		text-align: center;
 	}
+	#loglayer #txt2{
+		margin-top: 50px;
+	}
 	#loglayer #logform{
 		margin-top: 200px;
 	}
 	#loglayer #gologin{
 		width: 400px;
-		height: 50px;
-		border: none;
-		border-bottom: 2px solid #887159;
-		background: white;
-		color: #887159;
-	}
-	#loglayer input[type=submit]{
-		width: 400px;
 		height: 80px;
 		border: 1px solid #887159;
 		background: white;
 		color: #887159;
+		cursor: pointer;
+	}
+	#loglayer #gologin:hover{
+		color: black;
 	}
 	#loglayer #keepgo{
 		width: 400px;
@@ -166,12 +169,34 @@
 		border: 1px solid #887159;
 		background: #887159;
 		color: white;
+		cursor: pointer;
+	}
+	#loglayer #keepgo:hover{
+		color: black;
 	}
 	#loglayer #txt{
 		margin-top: 150px;
 		font-size: 20px;
 		color: #887159
 	}
+	#dine #logo{
+     font-family:fantasy;
+     color:#887159;
+     font-size:60px;
+  }
+  	#dine .genric-btn.default{
+     background:#a28d78;
+     color:#f2f1ef;
+     width:200px;
+     height:50px;
+     font-size:16px;
+     text-align:center;
+     vertical-align:center;
+     padding: 5px 0px;
+  }
+  	#dine .genric-btn.default:hover{
+     background: #887159;
+  }
 </style>
 <script>
 	function logcheck()
@@ -195,18 +220,16 @@
 <div id="loglayer">
 	<div>
 		<div id="txt">객실 예약을 진행하려면 로그인 또는 비회원으로 진행 선택을 해주세요.</div>
-		<form method="post" action="../login/login_ok" id="logform">
-		<input type="hidden" name="ck" value="2">
-			<div><input type="text" name="userid" placeholder="아이디" id="gologin"></div>
-			<div><input type="password" name="pwd" placeholder="비밀번호" id="gologin"></div>
-			<p>
-			<div><input type="submit" value="로그인"></div>
-			<hr>
-			<a href="../room/room_resv"><input type="button" value="비회원으로 계속" id="keepgo"></a>
-		</form>
 		<br>
-	</div>
-</div> 
+		<div id="txt2">
+			<div>
+				<input type="button" value="로그인" id="gologin" onclick="location='../login/login?ck=2'">
+				<hr>
+				<input type="button" value="비회원으로 계속" id="keepgo" onclick="location='../room/room_resv'">
+			</div>
+		</div>
+	</div> 
+</div>
                             </div>
                         </div>
                         <div class="col-12">
@@ -227,7 +250,7 @@
                     <div class="row">
                         <div class="col-xl-12">
                             <div class="slider_text text-center">
-                                <h3>Montana Resort</h3>
+                                <h3>Montana Hotel</h3>
                                 <p>Unlock to enjoy the view of Martine</p>
                             </div>
                         </div>
@@ -251,7 +274,7 @@
                     <div class="row">
                         <div class="col-xl-12">
                             <div class="slider_text text-center">
-                                <h3>Montana Resort</h3>
+                                <h3>Montana Hotel</h3>
                                 <p>Unlock to enjoy the view of Martine</p>
                             </div>
                         </div>
@@ -274,46 +297,16 @@
     </div>
     <!-- slider_area_end -->
 
-    <!-- about_area_start -->
-    <div class="about_area">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-5 col-lg-5">
-                    <div class="about_info">
-                        <div class="section_title mb-20px">
-                            <span>About Us</span>
-                            <h3>A Luxuries Hotel <br>
-                                with Nature</h3>
-                        </div>
-                        <p>Suscipit libero pretium nullam potenti. Interdum, blandit phasellus consectetuer dolor ornare
-                            dapibus enim ut tincidunt rhoncus tellus sollicitudin pede nam maecenas, dolor sem. Neque
-                            sollicitudin enim. Dapibus lorem feugiat facilisi faucibus et. Rhoncus.</p>
-                        <a href="#" class="line-button">Learn More</a>
-                    </div>
-                </div>
-                <div class="col-xl-7 col-lg-7">
-                    <div class="about_thumb d-flex">
-                        <div class="img_1">
-                            <img src="../img/about/about_1.png" alt="">
-                        </div>
-                        <div class="img_2">
-                            <img src="../img/about/about_2.png" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- about_area_end -->
+   
 
-    <!-- offers_area_start -->
+    <!-- 룸 -->
     <div class="offers_area">
         <div class="container">
             <div class="row">
                 <div class="col-xl-12">
                     <div class="section_title text-center mb-100">
-                        <span>Our Offers</span>
-                        <h3>Ongoing Offers</h3>
+                        
+                        <h3 style="margin-top: 100px;">Ongoing Offers</h3>
                     </div>
                 </div>
             </div>
@@ -321,52 +314,53 @@
                 <div class="col-xl-4 col-md-4">
                     <div class="single_offers">
                         <div class="about_thumb">
-                            <img src="../img/offers/1.png" alt="">
+                            <img src="../img/rooms/e1.jpg" alt="">
                         </div>
-                        <h3>Up to 35% savings on Club <br>
-                            rooms and Suites</h3>
+                        <h3>DEXLUE EVENT</h3>
                         <ul>
-                            <li>Luxaries condition</li>
-                            <li>3 Adults & 2 Children size</li>
-                            <li>Sea view side</li>
+                            <li>무료 미니바 2인</li>
+                            <li>넷플릭스 셋톱 대여</li>
+                       <!-- <li>Sea view side</li> -->
                         </ul>
-                        <a href="#" class="book_now">book now</a>
+                        <a href="../room/room_resv" class="book_now">book now</a>
                     </div>
                 </div>
                 <div class="col-xl-4 col-md-4">
                     <div class="single_offers">
                         <div class="about_thumb">
-                            <img src="../img/offers/2.png" alt="">
+                            <img src="../img/rooms/e2.jpg" alt="">
                         </div>
-                        <h3>Up to 35% savings on Club <br>
-                            rooms and Suites</h3>
+                        <h3>PREMIUM DELUXE EVENT</h3>
                         <ul>
-                            <li>Luxaries condition</li>
-                            <li>3 Adults & 2 Children size</li>
-                            <li>Sea view side</li>
+                            <li>무료 미니바 2인</li>
+                            <li>넷플릭스 셋톱 대여</li>
+                            <!-- <li>Sea view side</li> -->
                         </ul>
-                        <a href="#" class="book_now">book now</a>
+                        <a href="../room/room_resv" class="book_now">book now</a>
                     </div>
                 </div>
                 <div class="col-xl-4 col-md-4">
                     <div class="single_offers">
                         <div class="about_thumb">
-                            <img src="../img/offers/3.png" alt="">
+                            <img src="../img/rooms/e3.png" alt="">
                         </div>
-                        <h3>Up to 35% savings on Club <br>
-                            rooms and Suites</h3>
+                        <h3>SPECIAL SUITE EVENT</h3>
                         <ul>
-                            <li>Luxaries condition</li>
-                            <li>3 Adults & 2 Children size</li>
-                            <li>Sea view side</li>
+                            <li>어린이를 위한 공간</li>
+                            <li>어린이용 놀이방 이용</li>
+                            <!-- <li>Sea view side</li> -->
                         </ul>
-                        <a href="#" class="book_now">book now</a>
+                        <a href="../room/room_resv" class="book_now">book now</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <!-- offers_area_end -->
+
+
+
+
 
     <!-- video_area_start -->
     <div class="video_area video_bg overlay">
@@ -381,169 +375,72 @@
     </div>
     <!-- video_area_end -->
 
+
+
+
+
+  
+   <!-- 다이닝 -->
     <!-- about_area_start -->
+    <div id="dine" style="margin-bottom:100px;">
     <div class="about_area">
         <div class="container">
             <div class="row">
-                <div class="col-xl-7 col-lg-7">
-                    <div class="about_thumb2 d-flex">
-                        <div class="img_1">
-                            <img src="../img/about/1.png" alt="">
-                        </div>
-                        <div class="img_2">
-                            <img src="../img/about/2.png" alt="">
-                        </div>
-                    </div>
-                </div>
                 <div class="col-xl-5 col-lg-5">
                     <div class="about_info">
                         <div class="section_title mb-20px">
-                            <span>Delicious Food</span>
-                            <h3>We Serve Fresh and <br>
-                                Delicious Food</h3>
+                            <span>About Us</span>
+                            <div id="logo"> L A&nbsp;&nbsp;M E R </div>
                         </div>
-                        <p>Suscipit libero pretium nullam potenti. Interdum, blandit phasellus consectetuer dolor ornare
-                            dapibus enim ut tincidunt rhoncus tellus sollicitudin pede nam maecenas, dolor sem. Neque
-                            sollicitudin enim. Dapibus lorem feugiat facilisi faucibus et. Rhoncus.</p>
-                        <a href="#" class="line-button">Learn More</a>
+                        <p>호텔 부산의 다양한 레스토랑에서
+						    마스터 쉐프들이 펼치는 화려한 미식의 세계로 초대합니다.</p>
+                        <!-- <a href="../dining/dining_reserve" class="line-button">예약하기</a> -->
+                        <a href="../dining/dining_reserve" class="genric-btn default">온라인 예약</a>
+                    </div>
+                </div>
+                <div class="col-xl-7 col-lg-7">
+                    <div class="about_thumb d-flex">
+                        <div class="img_1">
+                            <img src="../img/about/m1.jpg" alt="" width="250" height="280">
+                        </div>
+                        <div class="img_2">
+                            <img src="../img/about/m2.jpg" alt="" width="500" height="250">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+     </div>
     </div>
     <!-- about_area_end -->
 
-    <!-- features_room_startt -->
-    <div class="features_room">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="section_title text-center mb-100">
-                        <span>Featured Rooms</span>
-                        <h3>Choose a Better Room</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="rooms_here">
-            <div class="single_rooms">
-                <div class="room_thumb">
-                    <img src="../img/rooms/1.png" alt="">
-                    <div class="room_heading d-flex justify-content-between align-items-center">
-                        <div class="room_heading_inner">
-                            <span>From $250/night</span>
-                            <h3>Superior Room</h3>
-                        </div>
-                        <a href="#" class="line-button">book now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="single_rooms">
-                <div class="room_thumb">
-                    <img src="../img/rooms/2.png" alt="">
-                    <div class="room_heading d-flex justify-content-between align-items-center">
-                        <div class="room_heading_inner">
-                            <span>From $250/night</span>
-                            <h3>Deluxe Room</h3>
-                        </div>
-                        <a href="#" class="line-button">book now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="single_rooms">
-                <div class="room_thumb">
-                    <img src="../img/rooms/3.png" alt="">
-                    <div class="room_heading d-flex justify-content-between align-items-center">
-                        <div class="room_heading_inner">
-                            <span>From $250/night</span>
-                            <h3>Signature Room</h3>
-                        </div>
-                        <a href="#" class="line-button">book now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="single_rooms">
-                <div class="room_thumb">
-                    <img src="../img/rooms/4.png" alt="">
-                    <div class="room_heading d-flex justify-content-between align-items-center">
-                        <div class="room_heading_inner">
-                            <span>From $250/night</span>
-                            <h3>Couple Room</h3>
-                        </div>
-                        <a href="#" class="line-button">book now</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- features_room_end -->
+  
 
-    <!-- forQuery_start -->
-    <div class="forQuery">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-10 offset-xl-1 col-md-12">
-                    <div class="Query_border">
-                        <div class="row align-items-center justify-content-center">
-                            <div class="col-xl-6 col-md-6">
-                                <div class="Query_text">
-                                    <p>For Reservation 0r Query?</p>
-                                </div>
-                            </div>
-                            <div class="col-xl-6 col-md-6">
-                                <div class="phone_num">
-                                    <a href="#" class="mobile_no">+10 576 377 4789</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- forQuery_end-->
+    
+
+   
 
     <!-- instragram_area_start -->
     <div class="instragram_area">
         <div class="single_instagram">
             <img src="../img/instragram/1.png" alt="">
-            <div class="ovrelay">
-                <a href="#">
-                    <i class="fa fa-instagram"></i>
-                </a>
-            </div>
+            
         </div>
         <div class="single_instagram">
             <img src="../img/instragram/2.png" alt="">
-            <div class="ovrelay">
-                <a href="#">
-                    <i class="fa fa-instagram"></i>
-                </a>
-            </div>
+          
         </div>
         <div class="single_instagram">
             <img src="../img/instragram/3.png" alt="">
-            <div class="ovrelay">
-                <a href="#">
-                    <i class="fa fa-instagram"></i>
-                </a>
-            </div>
+            
         </div>
         <div class="single_instagram">
             <img src="../img/instragram/4.png" alt="">
-            <div class="ovrelay">
-                <a href="#">
-                    <i class="fa fa-instagram"></i>
-                </a>
-            </div>
+           
         </div>
         <div class="single_instagram">
             <img src="../img/instragram/5.png" alt="">
-            <div class="ovrelay">
-                <a href="#">
-                    <i class="fa fa-instagram"></i>
-                </a>
-            </div>
+            
         </div>
     </div>
     <!-- instragram_area_end -->
@@ -553,7 +450,8 @@
         <div class="footer_top">
             <div class="container">
                 <div class="row">
-                    <div class="col-xl-3 col-md-6 col-lg-3">
+                
+                    <div class="col-xl-3 col-md-6 col-lg-3" style="margin-left:30px;">
                         <div class="footer_widget">
                             <h3 class="footer_title">
                                 address
@@ -563,7 +461,8 @@
                             <a href="#" class="line-button">Get Direction</a>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-md-6 col-lg-3">
+                    
+                    <div class="col-xl-3 col-md-6 col-lg-3" style="margin-left:180px;">
                         <div class="footer_widget">
                             <h3 class="footer_title">
                                 Reservation
@@ -572,31 +471,22 @@
                                 reservation@montana.com</p>
                         </div>
                     </div>
-                    <div class="col-xl-2 col-md-6 col-lg-2">
+                    
+                    <div class="col-xl-2 col-md-6 col-lg-2" style="margin-left:160px;">
                         <div class="footer_widget">
                             <h3 class="footer_title">
                                 Navigation
                             </h3>
                             <ul>
-                                <li><a href="#">Home</a></li>
-                                <li><a href="#">Rooms</a></li>
-                                <li><a href="#">About</a></li>
-                                <li><a href="#">News</a></li>
+                                <li><a href="#">Hotel</a></li>
+                                <li><a href="../room/rooms">Rooms</a></li>
+                                <li><a href="../dining/dining">Dining</a></li>
+                                <li><a href="../wedding/wedding">Wedding</a></li>
+                                <li><a href="../eshop/eshop">Eshop</a></li>
                             </ul>
                         </div>
                     </div>
-                    <div class="col-xl-4 col-md-6 col-lg-4">
-                        <div class="footer_widget">
-                            <h3 class="footer_title">
-                                Newsletter
-                            </h3>
-                            <form action="#" class="newsletter_form">
-                                <input type="text" placeholder="Enter your mail">
-                                <button type="submit">Sign Up</button>
-                            </form>
-                            <p class="newsletter_text">Subscribe newsletter to get updates</p>
-                        </div>
-                    </div>
+                   
                 </div>
             </div>
         </div>
@@ -714,21 +604,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="../js/mail-script.js"></script>
 
     <script src="../js/main.js"></script>
-    <script>
-        $('#datepicker').datepicker({
-            iconsLibrary: 'fontawesome',
-            icons: {
-             rightIcon: '<span class="fa fa-caret-down"></span>'
-         }
-        });
-        $('#datepicker2').datepicker({
-            iconsLibrary: 'fontawesome',
-            icons: {
-             rightIcon: '<span class="fa fa-caret-down"></span>'
-         }
 
-        });
-    </script>
 
 </body>
 

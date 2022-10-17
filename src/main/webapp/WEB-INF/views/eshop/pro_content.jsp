@@ -169,22 +169,6 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script> 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script>
-	/* 수량을 변경하면 [총 상품금액]도 변하게 하기 */
-	/*$(function(){
-		$("#spinner").spinner({
-			min : 1,
-			max : 100,
-			spin : function(e, ui){
-				let total=parseInt(${pvo.price} * ui.value);
-				if(${pvo.halin != 0})
-					total=parseInt(${pvo.price - (pvo.price * (pvo.halin / 100) ) } * ui.value);
-
-				total=new Intl.NumberFormat().format(total);
-				document.getElementById("total_price").innerText=total;
-			}
-		});
-	});*/
-	
 	/* 수량을 '1~${pvo.su}' 사이값만 입력되도록 하기 */
 	function su_check(su){
 		if(su < 1)
@@ -193,12 +177,10 @@
 			document.pro_cnt.su=${pvo.su};
 	}
 
-	/* pro_gumae로 넘어갈 [주문금액], [할인금액], [총결제금액]의 개당 가격 */
 	let tprice="${pvo.price}";
 	let thalin=parseInt("${pvo.price * (pvo.halin / 100)}");
 	let tpay=parseInt("${pvo.price - (pvo.price * (pvo.halin / 100)) + pvo.baefee}");
 	
-	/* 수량을 변경하면 [총 상품금액]과 [적립금]도 변하게 하기 */
 	function change_total_juk(su){	
 		let total=Math.ceil(${pvo.price} * su);
 		let juk="";
@@ -214,28 +196,25 @@
 			juk=Math.ceil(${pvo.price * (pvo.juk / 100)} * su);
 		else if(${(pvo.halin != 0) && (pvo.juk != 0)})
 			juk=Math.ceil(${(pvo.price - (pvo.price * (pvo.halin / 100))) * (pvo.juk / 100)} * su);
-
-		total=new Intl.NumberFormat().format(total);
-		juk=new Intl.NumberFormat().format(juk);
-		document.getElementById("total_price").innerText=total;
-		document.getElementById("juk_price").innerText=juk;
 		
-		/* pro_gumae로 넘어갈 [주문금액], [할인금액], [총결제금액]의 최종가격을 구해서 input type="hidden"에 넣기 */
+		juk=new Intl.NumberFormat().format(juk);
+		total=new Intl.NumberFormat().format(total);
+		if(${pvo.juk != 0})
+			document.getElementById("juk_price").innerText=juk;
+		document.getElementById("total_price").innerText=total;
+		
 		let pimsi=tprice*su;
 		let himsi=thalin*su;
-		let yimsi=tpay*su;
 		
 		document.getElementById("tprice").value=pimsi;
 		document.getElementById("thalin").value=himsi;
-		document.getElementById("tpay").value=yimsi;
+		document.getElementById("tpay").value=pimsi-himsi+parseInt("${pvo.baefee}");
 	}
 	
-	/* 위시리스트에 추가하고 삭제하기 */
 	function wish_add(pcode){
 		let chk=new XMLHttpRequest();
 		chk.onload=function(){
 			if(chk.responseText == "0") {
-				//alert("위시리스트에 추가됐습니다.");
 				document.getElementById("wishimg").src="../img/eshop/wish_on.png";
 				document.getElementById("wishimg").setAttribute("onclick", "wish_del('"+pcode+"')");
 			}
@@ -247,7 +226,6 @@
 		let chk=new XMLHttpRequest();
 		chk.onload=function(){
 			if(chk.responseText == "0") {
-				//alert("위시리스트에서 삭제됐습니다.");
 				document.getElementById("wishimg").src="../img/eshop/wish_off.png";
 				document.getElementById("wishimg").setAttribute("onclick", "wish_add('"+pcode+"')");
 			}
@@ -256,7 +234,6 @@
 		chk.send();
 	}
 	
-	/* 장바구니에 회원/비회원 구분하여 추가하기 */
 	function cart_add(pcode){
 		let su=document.pro_cnt.su.value;
 		let chk=new XMLHttpRequest();
@@ -274,13 +251,10 @@
 		chk.send();
 	}
 	
-	/* 후보이미지를 클릭하면 메인이미지 자리에 뜨기 */
 	function show_img(num){
-		document.getElementById("main_fimg").src=document.getElementsByClassName("other_fimgs[num]").src;
-		//console.log(document.getElementsByClassName("mine[num]").src);
+		document.getElementById("main_fimg").src=document.getElementsByClassName("other_fimgs")[num].src;
 	}
 	
-	/* 바로구매 : javascript로 form을 submit시키기*/
 	function pro_submit(){
 		document.pro_cnt.submit();	
 	}
@@ -290,23 +264,23 @@
 <body>
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
 	<c:if test="${pvo.subpcode == 'p0101'}">
-		<div class="bradcam_area eshop2">
-	        <h3 onclick="location='pro_list?pcode=p0101'" style="cursor:pointer;"> B E D D I N G </h3>
+		<div class="bradcam_area eshop4">
+	        <div id="h3" onclick="location='pro_list?pcode=p0101'" style="cursor:pointer;"> B E D D I N G </div>
 	    </div>
 	</c:if>
 	<c:if test="${pvo.subpcode == 'p0102'}">
-	    <div class="bradcam_area eshop2">
-	        <h3 onclick="location='pro_list?pcode=p0102'" style="cursor:pointer;"> L I F E S T Y L E </h3>
+	    <div class="bradcam_area eshop5">
+	        <div id="h3" onclick="location='pro_list?pcode=p0102'" style="cursor:pointer;"> L I F E S T Y L E </div>
 	    </div>
 	</c:if>
 	<c:if test="${pvo.subpcode == 'p0201'}">
-	    <div class="bradcam_area eshop3">
-	        <h3 onclick="location='pro_list?pcode=p0201'" style="cursor:pointer;"> R E S T A U R A N T </h3>
+	    <div class="bradcam_area eshop6">
+	        <div id="h3" onclick="location='pro_list?pcode=p0201'" style="cursor:pointer;"> D I N I N G </div>
 	    </div>
     </c:if>
     <c:if test="${pvo.subpcode == 'p0202'}">
-	    <div class="bradcam_area eshop3">
-	        <h3 onclick="location='pro_list?pcode=p0202'" style="cursor:pointer;"> H O T E L </h3>
+	    <div class="bradcam_area eshop7">
+	        <div id="h3" onclick="location='pro_list?pcode=p0202'" style="cursor:pointer;"> B A K E R Y </div>
 	    </div>
     </c:if>
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
@@ -415,6 +389,8 @@
 			<!-- 상품정보_area_end -->
 			
 			<!-- pro_gumae에 보낼 정보 start -->
+			<c:set var="chalin" value="${pvo.price * (pvo.halin / 100)}"/>
+			<c:set var="cpay" value="${pvo.price - (pvo.price * (pvo.halin / 100)) + pvo.baefee}"/>
 			<input type="hidden" name="total_price" value="${pvo.price}" id="tprice">
 			<input type="hidden" name="total_halin" value="${chalin}" id="thalin">
 			<input type="hidden" name="total_baefee" value="${pvo.baefee}">

@@ -15,7 +15,7 @@
 		width : 1100px;
 		height : ${height}px;
 		margin : auto;
-		margin-top : 50px;
+		margin-top : 80px;
 	}
 	#cart #spinner {
 		border : 1px solid lightgray;
@@ -42,7 +42,7 @@
 		width : 80px;
 		height : 30px;
 		padding-top : 5px;
-		border : 1px solid #887159;
+		border : 1px solid lightgray;
 		color : #887159;
 		margin : auto;
 		font-size : 13px;
@@ -51,8 +51,8 @@
 	}
 	#cart #button11 {
 		width : 150px;
-		height : 42px;
-		padding-top : 8px;
+		height : 41px;
+		padding-top : 9px;
 		border : 1px solid #887159;
 		background : #887159;
 		color : white;
@@ -63,8 +63,8 @@
 	}
 	#cart #button22 {
 		width : 150px;
-		height : 42px;
-		padding-top : 8px;
+		height : 41px;
+		padding-top : 9px;
 		border : 1px solid #887159;
 		color : #887159;
 		font-size : 15px;
@@ -73,7 +73,8 @@
 		cursor : pointer;
 	}
 	#cart #button3 {
-		width : 100%;
+		float : right;
+		width : 150px;
 		height : 30px;
 		padding-top : 5px;
 		border : 1px solid lightgray;
@@ -85,7 +86,7 @@
 	#cart #cate1 {
 		margin : auto;
 		text-align : center;
-		margin-top : 70px;
+		margin-top : 50px;
 		width : 605px;
 		height : 80px;
 	}
@@ -97,6 +98,7 @@
 		border : 1px solid #887159;
 		color : #887159;
 		cursor : pointer;
+		letter-spacing : 2px;
 	}
 	#cart #cate3 {
 		display : inline-block;
@@ -106,6 +108,10 @@
 		border : 1px solid #887159;
 		color : #887159;
 		cursor : pointer;
+		letter-spacing : 2px;
+	}
+	#cart #sum {
+		font-family : TimesNewRoman;
 	}
 	#cart table th {
 		text-align : center;
@@ -151,7 +157,7 @@
 	#cart #paynum {
 		display : inline-block;
 		font-size : 35px;
-		color : #887159;
+		/*color : #887159;*/
 	}
 	#cart #sign {
 		font-weight : normal;
@@ -169,78 +175,50 @@
 		display : inline-block;
 		line-height : 170%;
 	}
+	#cart #show_mb {
+		margin : auto;
+		width : 1000px;
+		height : 82px;
+		padding : 18px 10px 0px 20px;
+		border : 1px solid lightgray;
+	}
+	#cart #msg {
+		float : left;
+		font-size : 14px;
+	}
+	#cart #box {
+		float : right;
+	}
+	#cart #box #memin {
+		display : inline-block;
+		width : 150px;
+		height : 37px;
+		padding-top : 6px;
+		text-align : center;
+		margin-right : 10px;
+		border : 1px solid black;
+		cursor : pointer;
+	}
+	#cart #box #login {
+		display : inline-block;
+		width : 150px;
+		height : 37px;
+		padding-top : 6px;
+		text-align : center;
+		border : 1px solid black;
+		background : black;
+		color : white;
+		cursor : pointer;
+	}
+	#cart #ptitle {
+		cursor : pointer;
+		padding-left : 5px;
+	}
+	#cart #ptitle:hover {
+		text-decoration : underline;
+	}
 </style>
 <script>
-	/* 상품당 가격을 구하기 */
-	/*function cal_pro(){
-		let len=document.getElementsByClassName("subck").length;
-		let exprice=[${arrprice}];
-		let exhalin=[${arrhalin}];
-		let exsu="";
-		let exbaefee=[${arrbaefee}];
-		let total_price="";
-		let total_halin="";
-		let total_baefee="";
-		for(i=0;i<len;i++) {
-			exsu[i]=document.getElementsByClassName("su")[i].value
-			price=parseInt(exprice[i] * exsu[i]);
-			if(exhalin[i] != 0)
-				price=parseInt((exprice[i] - (exprice[i] * (exhalin / 100))) * exsu[i]);
-			document.getElementsByClassName("price")[i].innerText=exprice[i];
-			total_price=parseInt(total_price + (exprice[i] * exsu[i]));
-			total_halin=parseInt(total_halin + ((exprice[i] * (exhalin[i] / 100)) * exsu[i]));
-			total_baefee=parseInt(total_baefee + exbaefee[i]);
-		}
-		document.getElementById("total_price").innerText="KRW "+new Intl.NumberFormat().format(total_price);
-		document.getElementById("total_halin").innerText="KRW "+new Intl.NumberFormat().format(total_halin);
-		document.getElementById("total_baefee").innerText="KRW "+new Intl.NumberFormat().format(total_baefee);
-		document.getElementById("total_pay").innerText="KRW "+new Intl.NumberFormat().format(total_price - total_halin + total_baefee);
-	}*/
-	
-	/* 수량을 변경하면 [주문금액]과 체크된 [상품금액합계&할인금액합계&배송비&결제금액]을 변하게 하기 */
-	/*function change_total(su, price, halin, num){
-		let total=parseInt(price * su);
-		if(halin != 0)
-			total=parseInt((price - (price * (halin / 100))) * su);
-		total=new Intl.NumberFormat().format(total);
-		document.getElementsByClassName("total")[num].innerText="KRW "+total;
-		
-		let total_price="";
-		let total_halin="";
-		let total_baefee="";
-		let total_pay="";
-		let len=document.getElementsByClassName("subck").length;	// subck의 개수를 구하기
-		for(i=0;i<len;i++) {
-			if(document.getElementsByClassName("subck")[i].checked) {	// 체크가 됐다면
-				total_price=total_price+parseInt(document.getElementsByClassName("total")[i].innerText);
-			}
-		}
-		console.log(total_price);
-	}*/
-	
-	/* 전체상품 구매하기 */
-	/*function all_gumae(){
-		
-		let pcode="";
-		let su="";
-		let subck=document.getElementsByClassName("subck");
-		let len=subck.length;
-		
-		document.getElementById("mainck").checked=true;
-		for(i=0;i<len;i++) {
-			document.getElementsByClassName("subck")[i].checked=true;
-		}
-
-		for(i=0;i<len;i++) {
-			if(subck[i].checked) {
-				pcode=pcode+document.getElementsByClassName("pcode")[i].value+",";
-				su=su+document.getElementsByClassName("su")[i].value+",";
-			}
-		}
-		location="pro_gumae?pcode="+pcode+"&su="+su+"&gchk=1";
-	}*/
-	
-	/* 장바구니의 초기상태 : 전부체크 및  모든 상품 값을 계산하기 */
 	window.onload=function(){
 		let exprice=[${arrprice}];
 		let exhalin=[${arrhalin}];
@@ -266,7 +244,6 @@
 		document.getElementById("total_baefee").innerText=new Intl.NumberFormat().format(total_baefee);
 		document.getElementById("total_pay").innerText=new Intl.NumberFormat().format(total_price - total_halin + total_baefee);
 		
-		/* [하위분류]를 클릭하면 버튼색상을 변화시키기 */
 		if(${p == 'p01'}) {
 			document.getElementById("cate2").style.background="#887159";
 			document.getElementById("cate2").style.color="white";
@@ -277,7 +254,6 @@
 		}
 	}
 	
-	/* 수량이 변경되면 값들도 변하기 */
 	function change_total(su, num){
 		let exprice=[${arrprice}];
 		let exhalin=[${arrhalin}];
@@ -308,8 +284,7 @@
 		document.getElementById("total_pay").innerText=new Intl.NumberFormat().format(total_price - total_halin + total_baefee);
 	}
 	
-	/* 전체 선택 & 해제하기 */
-	function allcheck(ck){	// ck가 true면 체크된 상태, ck가 false면 체크가 안된 상태
+	function allcheck(ck){
 		let exprice=[${arrprice}];
 		let exhalin=[${arrhalin}];
 		let exbaefee=[${arrbaefee}];
@@ -320,9 +295,9 @@
 		let subck=document.getElementsByClassName("subck");
 		let len=subck.length;		
 		for(i=0;i<len;i++) {
-			if(ck)	// [mainck]가 체크되면, class="subck"의 checked속성을 true로 바꾸기			
+			if(ck)	
 				subck[i].checked=true;
-			else	// [mainck]의 체크가 해제되면, class="subck"의 checked속성을 false로 바꾸기		
+			else
 				subck[i].checked=false;
 			
 			if(subck[i].checked) {
@@ -338,7 +313,6 @@
 		document.getElementById("total_pay").innerText=new Intl.NumberFormat().format(total_price - total_halin + total_baefee);
 	}
 	
-	/* 개별로 선택 & 해제하기 */
 	function subcheck(){
 		let exprice=[${arrprice}];
 		let exhalin=[${arrhalin}];
@@ -347,10 +321,10 @@
 		let total_halin="";
 		let total_baefee="";
 		
-		let chk=0;	// subck의 항목이 얼마나 체크됐는지 확인하는 변수
+		let chk=0;
 		let subck=document.getElementsByClassName("subck");
 		let len=subck.length;			
-		for(i=0;i<len;i++) {	// subck의 checked속성의 true/false를 일일이 확인하여 개수 세기
+		for(i=0;i<len;i++) {
 			if(subck[i].checked) {
 				chk++;
 				
@@ -365,15 +339,13 @@
 		document.getElementById("total_baefee").innerText=new Intl.NumberFormat().format(total_baefee);
 		document.getElementById("total_pay").innerText=new Intl.NumberFormat().format(total_price - total_halin + total_baefee);
 		
-		if(chk == len)	// 전체 subck의 개수와 checked된 개수가 같다면? mainck의 checked를 true로, 다르다면? mainck의 checked는 false로
+		if(chk == len)
 			document.getElementById("mainck").checked=true;
 		else
 			document.getElementById("mainck").checked=false;
 	}
 	
-	/* 선택상품 장바구니 삭제하기 */
 	function cart_del(){
-		/* 체크된 상품을 삭제 → 체크된 상품의 cart.id들을 '구분자'를 통해 '문자열의 형태'로 만들어서 [delid]에 담아 전송하기 */
 		let del="";
 		let subck=document.getElementsByClassName("subck");
 		let len=subck.length;
@@ -381,18 +353,14 @@
 			if(subck[i].checked)
 				del=subck[i].value+","+del;
 		}
-		location="wishcart_del?delid="+del+"&dchk=2&p=${p}";	// delid=삭제할id,삭제할id,삭제할id, → 마지막 구분자(콤마)는 신경X		
+		location="wishcart_del?delid="+del+"&dchk=2&p=${p}";	
 	}
 	
-	/* 1개상품 구매하기 */
 	function one_gumae(pcode, num){
 		let su=document.getElementsByClassName("su")[num].value;
 		
-		/* 가격에 대한 최종 정보도 가져가기 */
-		let total_price=document.getElementsByClassName("price")[num].innerText;
-			total_price=total_price.substring(4, total_price.length);
-			total_price=parseInt(total_price.replace(/,/g, "") * su);
-		let total_halin=parseInt(document.getElementsByClassName("halin")[num].value);
+		let total_price=parseInt(document.getElementsByClassName("cost")[num].value * su);
+		let total_halin=parseInt(document.getElementsByClassName("halin")[num].value * su);
 		let total_baefee=document.getElementsByClassName("baefee")[num].innerText;
 		let total_pay=parseInt(total_price - total_halin);
 		
@@ -407,14 +375,12 @@
 		location="pro_gumae?pcode="+pcode+"&su="+su+"&gchk=1&p=${p}&total_price="+total_price+"&total_halin="+total_halin+"&total_baefee="+total_baefee+"&total_pay="+total_pay;
 	}
 	
-	/* 선택상품 or 전체상품 구매하기 */
-	function gumae(n){	// n=1이면 선택주문, n=2면 전체주문
+	function gumae(n){
 		let pcode="";
 		let su="";
 		let subck=document.getElementsByClassName("subck");
 		let len=subck.length;
 		
-		/* 상품을 전체 체크시키기 */
 		if(n == 2) {
 			document.getElementById("mainck").checked=true;
 			for(i=0;i<len;i++) {
@@ -422,7 +388,6 @@
 			}
 		}
 		
-		/* pcode와 su를 구분자(,)로 구분하여 하나의 문자열로 생성하기 */
 		for(i=0;i<len;i++) {
 			if(subck[i].checked) {
 				pcode=pcode+document.getElementsByClassName("pcode")[i].value+",";
@@ -430,7 +395,6 @@
 			}
 		}
 		
-		/* 가격에 대한 최종 정보도 가져가기 */
 		let total_price=document.getElementById("total_price").innerText;
 			total_price=total_price.replace(/,/g, "");
 		let total_halin=document.getElementById("total_halin").innerText;
@@ -448,21 +412,30 @@
 <body>
 	<!-- ================ (Sitemesh) Top Area 키링템 Start ================= -->
 	    <div class="bradcam_area eshop1">
-	        <h3> 장 바 구 니 </h3>
+	        <div id="h3" onclick="location='cart?p=${p}'" style="cursor:pointer;"> C A R T </div>
 	    </div>
     <!-- ================ (Sitemesh) Top Area 키링템 End ================= -->
 
 
 	<!-- ================ 장바구니 Area Start ================= -->
     <div id="cart">
+    	<c:if test="${userid == null}">
+	    	<div id="show_mb">
+	    		<div id="msg"> 비회원구매 시 쿠폰 이용 등 회원에게만 제공되는 혜택을 받으실 수 없습니다.<br>회원가입 및 로그인 하시고 구매혜택 받아가세요. </div>
+	    		<div id="box">
+	    			<div id="memin" onclick="location='../member/member_input'"> 회원가입 </div>
+	    			<div id="login" onclick="location='../login/login?ck=3&p=${p}'"> 로그인 </div>
+	    		</div>
+	    	</div>
+    	</c:if>
   		<c:if test="${p == 'p01'}">
     		<div id="cate1">
-				<span id="cate2" onclick="location='cart?p=p01'"> 배 송 상 품 </span><span id="cate3" onclick="location='cart?p=p02'"> 모 바 일 상 품 </span>
+				<span id="cate2" onclick="location='cart?p=p01'"> 배 송 상 품 <span id="sum">[${sum1}]</span> </span><span id="cate3" onclick="location='cart?p=p02'"> 모 바 일 상 품 <span id="sum">[${sum2}]</span> </span>
 			</div>
 		</c:if>
 		<c:if test="${p == 'p02'}">
 			<div id="cate1">
-				<span id="cate2" onclick="location='cart?p=p01'"> 배 송 상 품 </span><span id="cate3" onclick="location='cart?p=p02'"> 모 바 일 상 품 </span>
+				<span id="cate2" onclick="location='cart?p=p01'"> 배 송 상 품 <span id="sum">[${sum1}]</span> </span><span id="cate3" onclick="location='cart?p=p02'"> 모 바 일 상 품 <span id="sum">[${sum2}]</span> </span>
 			</div>
 		</c:if>
 		<table width="1000" align="center" cellpadding="0">
@@ -483,13 +456,13 @@
 		<c:forEach var="cvo" items="${clist}" varStatus="cart">
 			<input type="hidden" class="pcode" value="${cvo.pcode}">
 			<input type="hidden" class="halin" value="${cvo.price * (cvo.halin / 100)}">
-			<tr>
+			<tr class="cktr">
 				<!-- 체크박스 -->
 				<td> <input type="checkbox" class="subck" onclick="subcheck()" value="${cvo.id}" id="subck"> </td>
 				<!-- 상품정보(이미지, 상품명) -->
 				<td colspan="2" style="padding-left:10px;">
-					<img src="../img/eshop/${cvo.fimg}" width="80" height="80" id="main_fimg">
-					${cvo.title}
+					<img src="../img/eshop/${cvo.fimg}" width="80" height="80" id="main_fimg" onclick="location='pro_content?pcode=${cvo.pcode}'" style="cursor:pointer;">
+					<span onclick="location='pro_content?pcode=${cvo.pcode}'" id="ptitle"> ${cvo.title} </span>
 				</td>
 				<!-- 상품금액 -->
 				<td class="price">
@@ -525,9 +498,12 @@
 					<div onclick="location='wishcart_del?delid=${cvo.id},&dchk=2&p=${p}'" id="button2"> 삭제하기 </div>
 				</td>
 			</tr>
+			
+				<input type="hidden" name="cost" value="${cvo.price}" class="cost">
+					
 		</c:forEach>
 			<tr>
-				<td colspan="8" height="50"> <div onclick="cart_del()" id="button3"> 선택상품 삭제하기 </div> </td>
+				<td colspan="8" style="height:50px;padding-top:10px;padding-bottom:20px;"> <div onclick="cart_del()" id="button3"> 선택상품 삭제하기 </div> </td>
 			</tr>
 			<tr>
 				<th colspan="8" height="100" style="border-top:2px solid #887159;border-bottom:none;">

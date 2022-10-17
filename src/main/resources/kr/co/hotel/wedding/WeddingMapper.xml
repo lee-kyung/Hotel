@@ -4,7 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybats-3-mapper.dtd">
  
 <mapper namespace="kr.co.hotel.wedding.WeddingMapper">
-	<insert id="wed_hall_write_ok" parameterType="kr.co.hotel.wedding.WeddingVO">
+	<insert id="wed_write_ok" parameterType="kr.co.hotel.wedding.WeddingVO">
  		insert into wedding(wed_hall, wed_title, wed_min, wed_max, wed_txt, wed_txt2, wed_fname, wed_size, wed_food, wed_direct, wed_type, wed_price) 
  		values(#{wed_hall}, #{wed_title}, #{wed_min}, #{wed_max}, #{wed_txt}, #{wed_txt2},  #{wed_fname}, #{wed_size}, #{wed_food}, #{wed_direct}, #{wed_type}, #{wed_price})
   	</insert>
@@ -32,7 +32,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	 -->
 	<select id="getWresv_code" resultType="Integer">
-		select ifnull(max(right(wresv_code,4)),0) from weddingresv where userid=#{param1}
+		select ifnull(max(right(wresv_code,4)),0) from weddingresv
 	</select>
 	 
 	 
@@ -54,8 +54,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   		select * from weddingresv where wresv_code=#{param}
   	</select>
   	
+  	<select id="wed_list" resultType="kr.co.hotel.wedding.WeddingVO">
+  		select * from wedding order by id asc
+  	</select>
   	
+  	<select id="wed_content" resultType="kr.co.hotel.wedding.WeddingVO">
+  		select * from wedding where id=#{param1}
+  	</select>
   	
-  	
-  	
+  	<update id="wed_update_ok" parameterType="kr.co.hotel.wedding.WeddingVO">
+  		update wedding set wed_hall=#{wed_hall}, wed_title=#{wed_title}, wed_min=#{wed_min}, wed_max=#{wed_max}, 
+  		wed_txt=#{wed_txt}, wed_txt2=#{wed_txt2}, wed_fname=#{wed_fname}, wed_size=#{wed_size}, wed_food=#{wed_food}, 
+  		wed_direct=#{wed_direct}, wed_type=#{wed_type}, wed_price=#{wed_price} where id=#{id}
+  	</update>
+	
+	<select id="getFname" resultType="String">
+		select wed_fname from wedding where id=#{param1}
+	</select>
+	
+	<delete id="wed_delete">
+  		delete from wedding where id=#{param1}
+  	</delete>
 </mapper>

@@ -17,8 +17,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import kr.co.hotel.dining.DiningVO;
-import kr.co.hotel.room.RoomVO;
-import kr.co.hotel.wedding.WeddingResvVO;
+
+
 
 @Service
 @Qualifier("drs")
@@ -68,57 +68,62 @@ public class DiningResvServiceImpl implements DiningResvService{
        request.setAttribute("ju", ju);
        request.setAttribute("y", y);
        request.setAttribute("m", m); 
+
+       model.addAttribute("dlist", mapper.dining_reserve());
+
        
-          // 달의 1일 부터 마지막일까지
-          String start=y+"-"+m+"-01";
-          String end=y+"-"+m+"-"+chong;
-          ArrayList<DiningVO> dlist=mapper.dining_reserve(start, end);
-        
-          String td="";
-          String dine_type="";
-         
-          for(int i=0;i<dlist.size();i++)
-          {
-              td=td+dlist.get(i).getTd()+",";
-              
-              if(dlist.get(i).getDine_type().equals("Breakfast"))
-                 dlist.get(i).setDine_type("1");
-              else if(dlist.get(i).getDine_type().equals("Lunch"))
-                 dlist.get(i).setDine_type("2");
-              else if(dlist.get(i).getDine_type().equals("Dinner"))
-                    dlist.get(i).setDine_type("3");
-              
-              dine_type=dine_type+dlist.get(i).getDine_type()+",";
-          }
-          // 06, 08, 01 / 01 / 01
-          // 아침, 아침, 저녁 / 저녁 / 점심
-          model.addAttribute("td",td);
-          model.addAttribute("dt",dine_type);
+       /* 달의 1일부터 마지막일까지 */
+       String start=y+"-"+m+"-01";
+       String end=y+"-"+m+"-"+chong;
+       ArrayList<DiningResvVO> drlist=mapper.getDresv(start, end);
+       
+       /* 달력의 아침/점심/저녁 예약마감 표시 */
+       String dine_type="";
+       String td="";
+       String cnt="";
+     
+       for(int i=0;i<drlist.size();i++) {
+    	   if(drlist.get(i).getDine_type().equals("Breakfast"))
+    		   	drlist.get(i).setDine_type("1");
+    	   else if(drlist.get(i).getDine_type().equals("Lunch"))
+    		   	drlist.get(i).setDine_type("2");
+    	   else if(drlist.get(i).getDine_type().equals("Dinner"))
+    		   	drlist.get(i).setDine_type("3");
+    	   else if(drlist.get(i).getDine_type().equals("Bbq"))
+   		   	    drlist.get(i).setDine_type("4");
+
+    	   dine_type=dine_type+drlist.get(i).getDine_type()+",";
+    	   td=td+drlist.get(i).getTd()+",";
+    	   cnt=cnt+drlist.get(i).getCnt()+",";
+      }
+
+      model.addAttribute("dt", dine_type);
+      model.addAttribute("td", td);
+      model.addAttribute("cnt", cnt);
       
-          //System.out.println(dine_type);
-          
-       model.addAttribute("dlist", dlist);
-       
+      /*System.out.println(dine_type);
+      System.out.println(td);
+      System.out.println(cnt);*/
+ 
       return "/dining/dining_reserve";
    }
    
-   /*@Override 
-   public void getDineAvail(HttpServletRequest request, PrintWriter out, DiningVO dvo) {
-      String dine_type=request.getParameter("dine_type");
-      
-      ArrayList<DiningVO> list=mapper.getDineAvail(dine_type);
-
-      String str="";      
-   
-      for(int i=0;i<list.size();i++)
-      {
-         DiningVO dvo2=list.get(i);
-         str=str+dvo2.getDine_type()+","+dvo2.getCnt()+",";
-      }
-
-      out.print(str);
-   }*/
-
+   @Override	/* select태그의 타임당 예약마감 표시 */
+   public void getDTresv(HttpServletRequest request, PrintWriter out) {
+	   String dd=request.getParameter("dd");
+	   String dt=request.getParameter("dt");
+	   ArrayList<DiningResvVO> drlist=mapper.getDTresv(dd, dt);
+	   
+	   String tmcnt="";
+	   for(int i=0;i<drlist.size();i++) {
+		   tmcnt=tmcnt+drlist.get(i).getDt()+","+drlist.get(i).getCnt()+",";
+	   }
+	   out.print(tmcnt);
+	   
+	   /*System.out.println(dd);
+	   System.out.println(dt);
+	   System.out.println(tmcnt);*/
+   }   
    
    @Override
    public String dining_reserve_next(HttpServletRequest request, Model model, HttpSession session)
@@ -235,10 +240,6 @@ public class DiningResvServiceImpl implements DiningResvService{
        model.addAttribute("dvo", dvo);
       return "/dining/dining_reserve_next_old";
    }
-
-
-
-	
 
 }
 

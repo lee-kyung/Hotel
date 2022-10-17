@@ -10,9 +10,11 @@ public interface EshopMapper {
 	public Integer getpcode(String pcode1);
 	public void pro_write_ok(ProductVO pvo);
 	
-	public ArrayList<ProductVO> pro_list(String userid, String pcode, String osel, int pindex, int psel);
-	public ArrayList<ProductVO> pro_list2(String pcode, String osel, int pindex, int psel);
-	public int total(int psel);
+	public ArrayList<ProductVO> eshop1(String p);
+	public ArrayList<ProductVO> eshop2(String p);
+	public ArrayList<ProductVO> pro_list(String userid, String pcode, String osel);
+	public ArrayList<ProductVO> pro_list2(String pcode, String osel);
+	public Integer getSum(String pcode);
 	
 	public ProductVO pro_content(String pcode);
 	
@@ -21,10 +23,13 @@ public interface EshopMapper {
 	public Integer checkWish(String userid, String pcode);
 	
 	public void cart_add(String userid, String pcode, int su);
+	public void cart_del(String userid, String pcode);
 	public Integer checkCart(String userid, String pcode);
 	public void cart_suadd(int su, String userid, String pcode);
 	public ArrayList<CartVO> cart(String userid, String p);
-	public void wishcart_del(String ad, String id);
+	public void wishcart_del(String tname, String id);
+	public Integer getCsum1(String userid);
+	public Integer getCsum2(String userid);
 	
 	public ProductVO pro_gumae(String pcode);
 	public MemberVO getInfo(String userid);
@@ -34,5 +39,12 @@ public interface EshopMapper {
 	
 	public void pro_gumae_ok(GumaeVO gvo);
 	public Integer getJumun();
-	public void cart_del(String pcode, String userid);
+	public void suMinusPlus(String su, String pcode);
+	public String getName(String jumuncode);
+	
+	public ArrayList<ProductVO> pro_adlist(String ssel, String sword, String osel, int pindex, int psel);
+	public int total(int psel, String ssel, String sword);
+	public ProductVO pro_adcontent(String id);
+	public void pro_addelete(String id);
+	public void pro_adupdate_ok(ProductVO pvo);
 }

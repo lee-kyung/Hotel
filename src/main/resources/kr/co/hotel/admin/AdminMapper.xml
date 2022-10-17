@@ -4,9 +4,38 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybats-3-mapper.dtd">
  
 <mapper namespace="kr.co.hotel.admin.AdminMapper">
-	<select id="memberlist" resultType="kr.co.hotel.member.MemberVO">
-		select * from member order by id desc 
+	<select id="mlist" resultType="kr.co.hotel.member.MemberVO">
+		select * from member where ${param1} like concat('%',#{param2},'%') order by ${param5} limit #{param3},#{param4}
 	</select>
+	
+	<select id="getMChong" resultType="Integer">
+		select ceil(count(*)/#{param1}) from member where ${param2} like concat ('%',#{param3},'%') 
+	</select>
+	
+	<update id="mstatechange">
+		update member set state=1 where id=#{param1}
+	</update>
+	
+	<select id="meminfo" resultType="kr.co.hotel.member.MemberVO">
+		select * from member where id=#{param1}
+	</select> 
+	
+	<select id="getmrcnt" resultType="Integer">
+		select count(*) from roombk where userid=#{param1}
+	</select>
+	
+	<select id="getmdcnt" resultType="Integer">
+		select count(*) from diningresv where userid=#{param1}
+	</select>
+	
+	<select id="getmwcnt" resultType="Integer">
+		select count(*) from weddingresv where userid=#{param1}
+	</select>
+	
+	<select id="getmgcnt" resultType="Integer">
+		select count(*) from gumae where userid=#{param1}
+	</select> 
+	 
 	
 <!-- admin첫 화면에서 최신 5개 예약 보이게 -->
 	<select id="getroombk" resultType="kr.co.hotel.roomresv.RoomResvVO">
@@ -25,7 +54,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="getgumae" resultType="kr.co.hotel.eshop.GumaeVO">
-		select * from gumae order by id desc limit 5;
+		select g.*,p.title from gumae g, product p where g.pcode=p.pcode group by g.jumuncode order by id desc limit 5;
 	</select> 
 	
 	
@@ -33,8 +62,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="rlist" resultType="kr.co.hotel.roomresv.RoomResvVO">
 		select rb.*, r.rname, r.rcode 
 		from roombk as rb, room as r 
-		where rb.rcode=r.rcode and ${param1} like concat('%',#{param2},'%') 
-		order by checkin desc limit #{param3},#{param4}
+		where ${param1} like concat('%',#{param2},'%') and rb.rcode=r.rcode and rb.checkin between #{param6} and #{param7}
+		order by ${param5} limit #{param3},#{param4}
 	</select>
 	<select id="getRChong" resultType="Integer">
 		select ceil(count(*)/#{param1}) from roombk where ${param2} like concat ('%',#{param3},'%') 
@@ -42,7 +71,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 	<select id="wlist" resultType="kr.co.hotel.wedding.WeddingResvVO">
-		select * from weddingresv where ${param1} like concat('%',#{param2},'%') order by ${param5} limit #{param3},#{param4}
+		select * from weddingresv where ${param1} like concat('%',#{param2},'%') and wresv_cday between #{param6} and #{param7} order by ${param5} limit #{param3},#{param4}
 	</select>
 	<select id="getWChong" resultType="Integer">
 		select ceil(count(*)/#{param1}) from weddingresv where ${param2} like concat('%',#{param3},'%')
@@ -50,7 +79,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<select id="dlist" resultType="kr.co.hotel.diningresv.DiningResvVO">
-		select * from diningresv where ${param1} like concat('%',#{param2},'%') order by dr_id desc limit #{param3},#{param4}
+		select * from diningresv where ${param1} like concat('%',#{param2},'%') and dr_date between #{param6} and #{param7} order by ${param5} limit #{param3},#{param4}
 	</select>
 	<select id="getDChong" resultType="Integer">
 		select ceil(count(*)/#{param1}) from diningresv where ${param2} like concat('%',#{param3},'%')
@@ -58,7 +87,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<select id="glist" resultType="kr.co.hotel.eshop.GumaeVO">
-		select * from gumae where ${param1} like concat('%',#{param2},'%') order by id desc limit #{param3},#{param4}
+		<!-- select * from gumae where ${param1} like concat('%',#{param2},'%') order by ${param5} limit #{param3},#{param4} -->
+		select g.*, p.title 
+		from gumae g, product p 
+		where ${param1} like concat('%',#{param2},'%') and g.pcode=p.pcode and g.buyday between #{param6} and #{param7}
+		group by g.jumuncode 
+		order by id desc limit #{param3},#{param4}
 	</select>
 	<select id="getGChong" resultType="Integer">
 		select ceil(count(*)/#{param1}) from gumae where ${param2} like concat('%',#{param3},'%')
@@ -78,12 +112,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<![CDATA[update gumae set state=#{param1} where id=#{param2}]]>
 	</update>
 	
+<!-- 주문이 취소되면 product테이블의 [재고]와 [판매량]을 원래대로 -->
+	<update id="suPlusMinus">
+		update product set su=su+${param1}, sold=sold-${param1} where pcode=#{param2}
+	</update>
 	
+<!-- 예약건당 상세 보기 -->
+	<select id="roombkview" resultType="kr.co.hotel.roomresv.RoomResvVO">
+		select r.rname, rb.* from room r, roombk rb where rb.id=#{param1} and r.rcode=rb.rcode;
+	</select>
 	
+	<select id="wedbkview" resultType="kr.co.hotel.wedding.WeddingResvVO">
+		select * from weddingresv where wresv_id=#{param1}
+	</select>
 	
+	<select id="dinebkview" resultType="kr.co.hotel.diningresv.DiningResvVO">
+		select * from diningresv where dr_id=#{param1}
+	</select>
 	
+	<select id="gumaeview" resultType="kr.co.hotel.eshop.GumaeVO">
+		select g.*, p.title from gumae g, product p where g.pcode=p.pcode and g.jumuncode=#{param1} and g.id=#{param2}
+	</select>
 	
-	
+	<select id="jumuns" resultType="kr.co.hotel.eshop.GumaeVO">
+		select g.*, p.title from gumae g, product p where g.pcode=p.pcode and g.jumuncode=#{param1}
+	</select>
 	
 	
 	

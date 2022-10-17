@@ -166,4 +166,19 @@ public class MyPageController {
 	{
 		return service.eshop_content(request, model, session);
 	}
+	
+	@RequestMapping("/mypage/rdwg_check")
+	public String rdwg_check(HttpServletRequest request, Model model) {
+		return service.rdwg_check(request, model);
+	}
+	
+	@RequestMapping("/mypage/rdwg_info")
+	public String rdwg_info(HttpServletRequest request, Model model) {
+		return service.rdwg_info(request, model);
+	}
+	
+	@RequestMapping("/mypage/bjcancel")
+	public String bjcancel(HttpServletRequest request) {
+		return service.bjcancel(request);
+	}
 }

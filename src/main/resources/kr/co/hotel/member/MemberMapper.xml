@@ -12,5 +12,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="userid_check" resultType="Integer">
 		select count(*) as cnt from member where userid=#{param1}
 	</select>
-
+	
+	<update id="member_out">
+		update member set state=1 where userid=#{param1}
+	</update>
 </mapper>

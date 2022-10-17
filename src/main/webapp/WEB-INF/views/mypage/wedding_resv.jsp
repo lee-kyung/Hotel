@@ -28,17 +28,20 @@
 	font-size:20px;
 	cursor:pointer;}
 	
+	#first #list{
+	width:100%;
+	margin:auto;}
+	
 	#first ul li{
 	display:inline-block;
 	border:1px solid #cccccc;
-	width:450px;
+	width:23%;
 	height:150px;
 	margin-top:20px;
 	background:white;
 	border-right:none;
-	text-align:center;
 	font-size:25px;
-	padding-top:50px;
+	padding-top:52px;
 	cursor:pointer;}
 	
 	#first ul li:last-child{
@@ -80,14 +83,16 @@
 	border:1px solid #887159;
 	background:white;
 	margin-left:20px;
-	color:#887159;}
+	color:#887159;
+	cursor:pointer;}
 	
 	section #wed form #btn2{
 	width:100px;
 	height:40px;
 	border:none;
 	color:white;
-	background:#887159;}
+	background:#887159;
+	cursor:pointer;}
 	
 	section #wed #btn3{
 	width:100px;
@@ -136,8 +141,8 @@
 	font-weight:600;}
 
 	section #wed table#second_t td{
-	padding-top:10px;
-	padding-bottom:10px;}
+	padding-top:15px;
+	padding-bottom:15px;}
 	
 	section #wed table#first_t #page{
 	font-size:0px;}
@@ -159,6 +164,7 @@
 	
 	section #wed a:hover{
 	text-decoration:underline;
+	letter-spacing:1px;
 	color:red;}
 	
 </style>
@@ -208,8 +214,8 @@
     <!-- 새 이미지 추가하는 법
     	①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기
     	②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
-    <div class="bradcam_area basic">	<!-- class="bradcam_area 클래스명" -->
-        <h3> 문구(자유롭게 변경하기) </h3>
+    <div class="bradcam_area mypage">	<!-- class="bradcam_area 클래스명" -->
+        <div id="h3">WEDDING</div>
     </div>
 <div id="first">
 	<div id="first_1">
@@ -219,9 +225,11 @@
 			<span onclick="location='../mypage/mypwd_change'">비밀번호 수정 > </span>
 		</div> 
 	</div>	
-	<ul>
-		<li onclick="location='room_resv'">객실 예약 확인</li><li onclick="location='dine_resv'">레스토랑 예약 확인</li><li onclick="location='eshop_gumae'">E-SHOP 주문내역</li><li onclick="location='wedding_resv'">웨딩 예약 확인</li>
-	</ul>
+	<div id="list">
+		<ul>
+			<li onclick="location='room_resv'">객실 예약 확인</li><li onclick="location='dine_resv'">레스토랑 예약 확인</li><li onclick="location='eshop_gumae'">E-SHOP 주문내역</li><li onclick="location='wedding_resv'">웨딩 예약 확인</li>
+		</ul>
+	</div>
 </div>
 
 <section>
@@ -236,13 +244,13 @@
 	</form>
 	<table border="1" id="first_t">
 		<tr>
-			<td>예약번호</td>
+			<td width="190">예약번호</td>
 			<td>상담일</td>
 			<td>상담 시간</td>
 			<td>예식희망일</td>
 			<td>희망하는 웨딩홀</td>
 			<td>예약한 날</td>
-			<td width="120px;"></td>
+			<td width="120px;">상태 변경</td>
 		</tr>
 		<c:forEach items="${wlist }" var="wvo">
 		<tr>

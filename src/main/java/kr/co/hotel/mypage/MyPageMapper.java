@@ -22,11 +22,11 @@ public interface MyPageMapper {
 
 	public void mypwd_change_ok(String newpwd, String userid);
 
-	public int getRoomcount(int y);
+	public int getRoomcount(int y, String userid);
 
-	public int getDinecount(int y);
+	public int getDinecount(int y, String userid);
 
-	public int getEshopcount(int y);
+	public int getEshopcount(int y, String userid);
 
 	public int getWeddingChong(int pcnt, String userid);
 
@@ -54,7 +54,7 @@ public interface MyPageMapper {
 
 	public ArrayList<GumaeVO> eshop_gumae_search(String userid, String cal_in, String cal_out);
 
-	public void eshopG_state_change(String id, String state);
+	public void eshopG_state_change(String jumuncode, String state);
 
 	public int getroomChong(int pcnt, String userid);
 
@@ -80,10 +80,18 @@ public interface MyPageMapper {
 
 	public DiningResvVO dine_content(String userid, String dr_id);
 
-	public GumaeVO eshop_content(String userid, String id);
+	public ArrayList<GumaeVO> eshop_content_list(String userid, String jumuncode);
 
+	public GumaeVO eshop_content_info(String userid, String id);
+	
+	public RoomResvVO getRinfo(String bjcode); 
+	public DiningResvVO getDinfo(String bjcode); 
+	public WeddingResvVO getWinfo(String bjcode); 
+	public ArrayList<GumaeVO> getEinfo(String bjcode); 
+	public String getPnum(String bjcode);
 
-
-
-
+	public void chgRinfo(String bjcode);
+	public void chgDinfo(String bjcode);
+	public void chgWinfo(String bjcode);
+	public void chgEinfo(String bjcode);
 }

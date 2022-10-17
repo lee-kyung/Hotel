@@ -40,11 +40,11 @@
 	height:70px;
 	color:#9E9E9E;}
 	
-	section #search #txt2, #txt3{
+	section #search #aa, #bb{
 	margin-top:40px;
 	font-size:20px;}
 	
-	section #search #txt3{
+	section #search #bb{
 	display:none;}
 	
 	section #search #us_form, #ps_form{
@@ -97,7 +97,7 @@
 	section #search #result .txt2{
 	font-size:30px;
 	color:#BDBDBD;}
-	
+	 
 	
 </style>
 <script>
@@ -106,8 +106,8 @@
 	{
 		document.getElementById("userid").style.color="#887159";
 		document.getElementById("pwd").style.color="#9E9E9E";
-		document.getElementById("txt3").style.display="none";
-		document.getElementById("txt2").style.display="block";
+		document.getElementById("bb").style.display="none";
+		document.getElementById("aa").style.display="block";
 		document.getElementById("us_form").style.display="block";
 		document.getElementById("ps_form").style.display="none";
 		document.getElementById("result").style.display="none";
@@ -125,8 +125,8 @@
 	{
 		document.getElementById("pwd").style.color="#887159";
 		document.getElementById("userid").style.color="#9E9E9E";
-		document.getElementById("txt2").style.display="none";
-		document.getElementById("txt3").style.display="block";
+		document.getElementById("bb").style.display="block";
+		document.getElementById("aa").style.display="none";
 		document.getElementById("ps_form").style.display="block";
 		document.getElementById("us_form").style.display="none";
 		document.getElementById("result").style.display="none";
@@ -210,7 +210,7 @@
     <!-- 새 이미지 추가하는 법
     	①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기
     	②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
-    <div class="bradcam_area basic">	<!-- class="bradcam_area 클래스명" -->
+     <div class="bradcam_area gongji">	<!-- class="bradcam_area 클래스명" -->
         <br><br>
     </div>
     <!-- bradcam_area_end -->
@@ -225,8 +225,8 @@
 	  	 <div id="txt1">
 		  	<div onclick="userid_fn()" id="userid">아이디 찾기</div><div onclick="pwd_fn()" id="pwd">비밀번호 찾기</div>
 		 </div>	
-	  	 <div id="txt2">아이디를 잊으셨나요?<br>회원가입 시 작성하신 이메일로 아이디를 찾으실 수 있습니다.</div>
-	  	 <div id="txt3">비밀번호를 잊으셨나요?<br>회원가입 시 작성하신 이메일로 비밀번호를 찾으실 수 있습니다.</div>
+	  	 <div id="aa">아이디를 잊으셨나요?<br>회원가입 시 작성하신 이메일로 아이디를 찾으실 수 있습니다.</div>
+	  	 <div id="bb">비밀번호를 잊으셨나요?<br>회원가입 시 작성하신 이메일로 비밀번호를 찾으실 수 있습니다.</div>
 	  </div>
 	  
 	 <div id="us_form">
@@ -236,6 +236,7 @@
 	  	<div>이메일</div>
 	  	<div><input type="text" name="email"></div>
 	  	<div><input type="button" value="아이디 찾기" onclick="userid_search_fn()"></div>
+	  	<div style="text-align:center; font-size:16px; cursor:pointer;" onclick="location='../login/login?ck=4'">로그인하기</div>
   	</form>
   	</div>
   	
@@ -248,6 +249,7 @@
 	  	<div>이메일</div>
 	  	<div><input type="text" name="email"></div>
 	  	<div><input type="button" value="비밀번호 찾기" onclick="pwd_search_fn()"></div>
+	  	<div style="text-align:center; font-size:16px; cursor:pointer;" onclick="location='../login/login?ck=4'">로그인하기</div>
   	</form>
   	</div>
   	

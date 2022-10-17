@@ -38,19 +38,52 @@ public class DiningServiceImpl implements DiningService{
 	 
 		  MultipartRequest multi=new MultipartRequest(request,path,size,"utf-8",new DefaultFileRenamePolicy());
 		  // 폼값 가져오기 => DiningVO에 넣기
-		  dvo.setDcode(multi.getParameter("dcode"));
-		  dvo.setDine_pimg(multi.getFilesystemName("dine_pimg"));
-		  dvo.setDine_cimg(multi.getFilesystemName("dine_cimg"));
 		  dvo.setDine_type(multi.getParameter("dine_type"));
 		  dvo.setDine_adult(Integer.parseInt(multi.getParameter("dine_adult")));
 		  dvo.setDine_child(Integer.parseInt(multi.getParameter("dine_child")));
-		  dvo.setDine_halin(Integer.parseInt(multi.getParameter("dine_halin")));
 		 /*dvo.setDine_time(multi.getParameter("dine_time"));*/
 		 /*dvo.setDine_su(Integer.parseInt(multi.getParameter("dine_su")));*/
 	   
 		//System.out.println(dine_time);
 		mapper.dining_write_ok(dvo);
-		return "redirect:/dining/dining";
-
-}
+		return "redirect:/dining/dining_list";
+    }
+	@Override
+	public String dining_list(Model model)
+	{
+		ArrayList<DiningVO> list=mapper.dining_list();
+		model.addAttribute("list", list);
+		return "/dining/dining_list";
+	}
+	/*@Override
+	public String dining_content(HttpServletRequest request, Model model)
+	{
+		String id=request.getParameter("id");
+		DiningVO dvo=mapper.dining_content(id);
+		model.addAttribute("dvo", dvo);
+		return "/dining/dining_content";
+	}*/
+	@Override
+	public String dining_update(HttpServletRequest request, Model model)
+	{
+		String id=request.getParameter("id");
+		DiningVO dvo=mapper.dining_update(id);
+		model.addAttribute("dvo", dvo);
+		return "/dining/dining_update";
+	}
+	@Override
+	public String dining_update_ok(DiningVO dvo, HttpServletRequest request)
+	{
+		String id=request.getParameter("id");
+		mapper.dining_update_ok(dvo);
+		return "redirect:/dining/dining_list";
+	}
+	@Override
+	public String dining_delete(HttpServletRequest request)
+	{
+		String id=request.getParameter("id");
+		mapper.dining_delete(id);
+		return "redirect:/dining/dining_list";
+	}
+	
 }

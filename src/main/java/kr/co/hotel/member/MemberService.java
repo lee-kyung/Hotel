@@ -13,4 +13,6 @@ public interface MemberService {
 
 	public void userid_check(HttpServletRequest request, PrintWriter out);
 
+	public String member_out(HttpSession session);
+
 }

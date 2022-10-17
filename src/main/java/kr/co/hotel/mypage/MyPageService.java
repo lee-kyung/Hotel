@@ -56,5 +56,7 @@ public interface MyPageService {
 
 	public String eshop_content(HttpServletRequest request, Model model, HttpSession session);
 
-
+	public String rdwg_check(HttpServletRequest request, Model model);
+	public String rdwg_info(HttpServletRequest request, Model model);	
+	public String bjcancel(HttpServletRequest request);
 }

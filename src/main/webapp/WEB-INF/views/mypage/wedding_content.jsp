@@ -28,17 +28,20 @@
 	font-size:20px;
 	cursor:pointer;}
 	
+	#first #list{
+	width:100%;
+	margin:auto;}
+	
 	#first ul li{
 	display:inline-block;
 	border:1px solid #cccccc;
-	width:450px;
+	width:23%;
 	height:150px;
 	margin-top:20px;
 	background:white;
 	border-right:none;
-	text-align:center;
 	font-size:25px;
-	padding-top:50px;
+	padding-top:52px;
 	cursor:pointer;}
 	
 	#first ul li:last-child{
@@ -139,8 +142,8 @@
     <!-- 새 이미지 추가하는 법
     	①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기
     	②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
-    <div class="bradcam_area basic">	<!-- class="bradcam_area 클래스명" -->
-        <h3> 문구(자유롭게 변경하기) </h3>
+    <div class="bradcam_area mypage">	<!-- class="bradcam_area 클래스명" -->
+        <div id="h3">WEDDING</div>
     </div>
 <div id="first">
 	<div id="first_1">
@@ -150,9 +153,11 @@
 			<span onclick="location='../mypage/mypwd_change'">비밀번호 수정 > </span>
 		</div> 
 	</div>	
-	<ul>
-		<li onclick="location='room_resv'">객실 예약 확인</li><li onclick="location='dine_resv'">레스토랑 예약 확인</li><li onclick="location='eshop_gumae'">E-SHOP 주문내역</li><li onclick="location='wedding_resv'">웨딩 예약 확인</li>
-	</ul>
+	<div id="list">
+		<ul>
+			<li onclick="location='room_resv'">객실 예약 확인</li><li onclick="location='dine_resv'">레스토랑 예약 확인</li><li onclick="location='eshop_gumae'">E-SHOP 주문내역</li><li onclick="location='wedding_resv'">웨딩 예약 확인</li>
+		</ul>
+	</div>
 </div>
 
 <section>
@@ -163,7 +168,7 @@
 		<div id="left">${wvo.wresv_day } 예약일</div>
 		<div id="right">${wvo.wresv_code }</div>	
 	</div>
-		
+
 	<table>
 		<tr>
 			<td colspan="2">
@@ -181,8 +186,9 @@
 		<tr>
 			<td id="name"> ${wvo.wresv_cday } 상담예약</td>
 			<td align="right">
+		
 				<c:if test="${wvo.state==0 }">
-					<input type="button" id="btn3" value="예약취소" onclick="location='weddingR_state_change?w=1&state=1&wresv_id=${wvo.wresv_id}'">
+					<input type="button" id="btn3" value="예약취소" onclick="location='weddingR_state_change?state=1&wresv_id=${wvo.wresv_id}'">
 				</c:if>
 				<c:if test="${wvo.state==1 }">
 					<input type="button" class="btn4" value="취소완료">
@@ -213,7 +219,7 @@
 			<td>${wvo.wresv_content }</td>
 		</tr>
 	</table>
-	
+
 	<table>
 		<tr>
 			<td colspan="2">예약자 정보</td>
@@ -249,7 +255,7 @@
 		</tr>
 		<tr>
 			<td>결제금액</td>
-			<td>5000원</td>
+			<td>5,000원</td>
 		</tr>
 	</table>
 	

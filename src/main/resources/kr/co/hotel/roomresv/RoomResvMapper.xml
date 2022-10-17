@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
 <mapper namespace="kr.co.hotel.roomresv.RoomResvMapper">
 	<select id="room_resv" resultType="kr.co.hotel.room.RoomVO">
-		select * from room order by rname desc;
+		select * from room where rstate=0 order by rcode desc;
 	</select>
 	
 	<select id="room_resvnext" resultType="kr.co.hotel.room.RoomVO">
@@ -22,7 +22,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="getRoomAvail" resultType="kr.co.hotel.room.RoomVO">
-	<![CDATA[ select rcode,count(*) as cnt from roombk where #{param1}>=checkin and checkout>#{param1} group by rcode]]>
+	<![CDATA[ select rcode,count(*) as cnt from roombk where #{param1}>=checkin and checkout>#{param1} and bstate=1 group by rcode]]>
 	</select>  
 	
 	<select id="room_bkconfirm" resultType="kr.co.hotel.roomresv.RoomResvVO">

@@ -28,17 +28,20 @@
 	font-size:20px;
 	cursor:pointer;}
 	
+	#first #list{
+	width:100%;
+	margin:auto;}
+	
 	#first ul li{
 	display:inline-block;
 	border:1px solid #cccccc;
-	width:450px;
+	width:23%;
 	height:150px;
 	margin-top:20px;
 	background:white;
 	border-right:none;
-	text-align:center;
 	font-size:25px;
-	padding-top:50px;
+	padding-top:52px;
 	cursor:pointer;}
 	
 	#first ul li:last-child{
@@ -122,11 +125,14 @@
 	border-bottom:2px solid #887159;}
 	
 	section #eshop_content table td:first-child{
-	width:250px;}
+	width:290px;}
 	
 	section #eshop_content table #name{
 	font-weight:600;
 	font-size:20px;}
+	
+	section #eshop_content #table1 td:first-child{
+	width:50px;}
 	
 </style>
 
@@ -139,8 +145,8 @@
     <!-- 새 이미지 추가하는 법
     	①[webapp\resources\css]폴더에 있는 [style.css]파일에 소스를 추가하기
     	②[webapp\resources\img\banner]폴더에 이미지파일을 추가하기 -->
-    <div class="bradcam_area basic">	<!-- class="bradcam_area 클래스명" -->
-        <h3> 문구(자유롭게 변경하기) </h3>
+    <div class="bradcam_area mypage">	<!-- class="bradcam_area 클래스명" -->
+        <div id="h3">ESHOP</div>
     </div>
 <div id="first">
 	<div id="first_1">
@@ -150,9 +156,11 @@
 			<span onclick="location='../mypage/mypwd_change'">비밀번호 수정 > </span>
 		</div> 
 	</div>	
-	<ul>
-		<li onclick="location='room_resv'">객실 예약 확인</li><li onclick="location='dine_resv'">레스토랑 예약 확인</li><li onclick="location='eshop_gumae'">E-SHOP 주문내역</li><li onclick="location='wedding_resv'">웨딩 예약 확인</li>
-	</ul>
+	<div id="list">
+		<ul>
+			<li onclick="location='room_resv'">객실 예약 확인</li><li onclick="location='dine_resv'">레스토랑 예약 확인</li><li onclick="location='eshop_gumae'">E-SHOP 주문내역</li><li onclick="location='wedding_resv'">웨딩 예약 확인</li>
+		</ul>
+	</div>
 </div>
 
 <section>
@@ -160,13 +168,15 @@
 	<div id="title">ESHOP 구매 상세 내역</div>
 	<div id="txt1">구매상세</div>
 	<div id="txt2">
+	
+
 		<div id="left">${gvo.buyday} 구매일</div>
 		<div id="right">${gvo.jumuncode}</div>	
 	</div>
 		
-	<table>
+	<table id="table1">
 		<tr>
-			<td colspan="2">
+			<td colspan="2" >
 				<c:if test="${gvo.state==0 }">
 					결제완료
 				</c:if>
@@ -176,17 +186,19 @@
 				<c:if test="${gvo.state==2 }">
 					취소완료
 				</c:if>	
-				<c:if test="${gvo.state==3 }">
+				<c:if test="${(gvo.state==3) && (gvo.bname !=null)}">
 					배송완료
 				</c:if>	
 			</td>
 		</tr>
 		<tr>
-			<td id="name">${gvo.title }</td>
+			<td id="name" colspan="2">${gvo.title }</td>
 			<td align="right">
 				<c:if test="${gvo.state==0 }">
-					<input type="button" class="btn3" value="결제취소" onclick="location='eshopG_state_change?e=1&state=1&id=${gvo.id}'">
-					<input type="button" class="btn3" value="배송완료" onclick="location='eshopG_state_change?e=1&state=3&id=${gvo.id}'">
+					<input type="button" class="btn3" value="결제취소" onclick="location='eshopG_state_change?state=1&id=${gvo.id}&jumuncode=${gvo.jumuncode }'">
+<%-- 					<c:if test="${(gvo.state==0) && (gvo.bname!=null)}">
+						<input type="button" class="btn3" value="배송완료" onclick="location='eshopG_state_change?state=3&id=${gvo.id}&jumuncode=${gvo.jumuncode }'">
+					</c:if> --%>
 				</c:if>
 				<c:if test="${gvo.state==1 }"> 
 					<input type="button" class="btn4" value="취소진행중">
@@ -194,32 +206,20 @@
 				<c:if test="${gvo.state==2 }">
 					<input type="button" class="btn4" value="취소완료">
 				</c:if>
-				<c:if test="${gvo.state==3 }">
+				<c:if test="${(gvo.state==3) && (gvo.bname !=null)}">
 					<input type="button" class="btn4" value="배송완료">
 				</c:if>
 			</td>
 		</tr>
- 		<tr>
-			<td>구매수량</td>
-			<td>${gvo.total_su }</td>
+		<c:forEach items="${glist }" var="gvo">
+ 		<tr>	
+ 			<td></td>
+			<td width="250">${gvo.title }</td>
+			<td>${gvo.total_su } 개</td>
 		</tr>
-<%-- 		<tr>
-			<td>희망하는 웨딩홀</td>
-			<td>${wvo.wresv_hall }</td>
-		</tr>
-		<tr>
-			<td>희망하는 예식일</td>
-			<td>${wvo.wresv_wday }</td>
-		</tr>
-		<tr>
-			<td>예상 참석자</td>
-			<td>${wvo.wresv_inwon }</td>
-		</tr>
-		<tr>
-			<td>문의사항</td>
-			<td>${wvo.wresv_content }</td>
-		</tr>  --%>
+		</c:forEach>
 	</table>
+	
 	
 	<table>
 		<tr>
@@ -239,6 +239,26 @@
 		</tr>
 	</table>
 	
+	<c:if test="${ gvo.bname!=null}">
+	<table>
+		<tr>
+			<td colspan="2">배송지 정보</td>
+		</tr>
+		<tr>
+			<td>받는 사람</td>
+			<td>${gvo.bname}</td>
+		</tr>
+		<tr>
+			<td>연락처</td>
+			<td>${gvo.bphone}</td>
+		</tr>
+		<tr>
+			<td>주소</td>
+			<td>${gvo.bjuso } ${gvo.bjuso_etc }</td>
+		</tr>
+	</table>
+	</c:if>
+	
 	<table>
 		<tr>
 			<td colspan="2">결제 정보</td>
@@ -246,20 +266,15 @@
 		<tr>
 			<td>결제수단</td>
 			<td>
-				<c:if test="${gvo.pay_sudan ==0}">
-					카드결제?
-				</c:if>
-				<c:if test="${gvo.pay_sudan !=0}">
-					무통장입금?
-				</c:if>
+				간편결제
 			</td>
 		</tr>
 		<tr>
 			<td>결제금액</td>
-			<td>${gvo.total_price }</td>
+			<td><fmt:formatNumber value="${gvo.total_price }"/>원</td>
 		</tr>
 	</table>
-	
+
 </div>
 </section>
 </body>

@@ -3,7 +3,7 @@ package kr.co.hotel.diningresv;
 public class DiningResvVO {
 	
 	private int dr_id, dr_state;
-	private String dr_time, dine_type, dr_extrarq, dr_date, email, dr_total;
+	private String dr_time, dine_type, dr_extrarq, dr_date, dr_total;
 
 	// userid
 	private String userid;
@@ -26,7 +26,28 @@ public class DiningResvVO {
 	// 예약번호
 	private String bid;
 	
-    public int getSudan() {
+	/* 달력의 예약마감 표시용 */
+	private int cnt, td, dt;
+	
+    public int getDt() {
+		return dt;
+	}
+	public void setDt(int dt) {
+		this.dt = dt;
+	}
+	public int getTd() {
+		return td;
+	}
+	public void setTd(int td) {
+		this.td = td;
+	}
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
+	public int getSudan() {
 		return sudan;
 	}
 	public void setSudan(int sudan) {
@@ -86,12 +107,6 @@ public class DiningResvVO {
 	}
 	public void setDr_time(String dr_time) {
 		this.dr_time = dr_time;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
 	}
 	public String getP1() {
 		return p1;

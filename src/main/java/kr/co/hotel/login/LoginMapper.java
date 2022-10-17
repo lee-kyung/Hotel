@@ -9,6 +9,10 @@ public interface LoginMapper {
 	public void cart_chgUserid(String userid, String cookievalue);
 	public void cart_delDupli();
 	public void cart_addSu();
+	
+	public MemberVO kuser_info(MemberVO mvo);
+	public Integer getKid();
+	public void kmem_in(MemberVO mvo);
 
 	public String userid_search_ok(MemberVO mvo);
 
