@@ -216,8 +216,8 @@ public class WeddingServiceImpl implements WeddingService{
 		wrvo.setUserid(userid); // wrvo에 userid 가져와서 넣기
 		
 		
-		System.out.println("sdf");
-		System.out.println("sdf"+userid);
+	/*	System.out.println("sdf");
+		System.out.println("sdf"+userid);*/
 		
 		/*주문번호 생성하기 -> 구매날짜(8자리)+난수(4자리)+찐숫자(4자리)*/
 		Date today=new Date();
@@ -263,11 +263,11 @@ public class WeddingServiceImpl implements WeddingService{
 		String wresv_cday=request.getParameter("wresv_cday");
 		model.addAttribute("wresv_cday", wresv_cday);
 		request.setAttribute("wresv_cday", wresv_cday);
-		System.out.println("wresv_cday="+wresv_cday);
+	//	System.out.println("wresv_cday="+wresv_cday);
 		
 		
 		ArrayList<WeddingResvVO> list=mapper.wresv_cal(wrvo);
-		System.out.println(list.size());
+	//	System.out.println(list.size());
 		String str="";
 		for(int i=0; i<list.size(); i++)
 		{

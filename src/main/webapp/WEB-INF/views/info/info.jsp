@@ -9,10 +9,12 @@ appkey=def97946ef83ffb1f9a1cacb75ac32eb"></script>
 <style>
    body{
     text-align:center;
+    padding-bottom:200px;
    }
    section{
     width:1100px;
     margin:auto;
+    padding-bottom:400px;
    }
    .map{
     margin: auto !important;
@@ -29,6 +31,7 @@ appkey=def97946ef83ffb1f9a1cacb75ac32eb"></script>
 /*   background:#e5e4e2; */
     margin:auto;
     text-align:center;
+padding-bottom:200px;
   }
   .row{
     width:800px;
@@ -144,7 +147,7 @@ appkey=def97946ef83ffb1f9a1cacb75ac32eb"></script>
 
 	<!-- ================ 타이틀(자유롭게 변경) Area Start ================= -->
     <!-- 부타이틀(자유롭게 변경)_area_start -->
-<section>   
+<section style="margin-bottom:200px;">   
 
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?

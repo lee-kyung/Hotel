@@ -183,7 +183,7 @@
 					<th> 객실명 </th>		
 					<th> 뷰 </th>								
 					<th> 상태 </th>		
-					<th> 수정/삭제 </th>								
+					<th> 수정/비활성 </th>								
 				</tr> 
 			  <c:forEach items="${list}" var="rvo">
 			  <c:if test="${rvo.rstate==0}">
@@ -219,7 +219,7 @@
 					<th> 객실코드 </th>					
 					<th> 객실명 </th>										
 					<th> 상태 </th>		
-					<th> 수정/비활성 </th>								
+					<th> 수정/활성화 </th>								
 				</tr> 
 			  <c:forEach items="${list}" var="rvo">
 			  <c:if test="${rvo.rstate==1}">
